@@ -60,4 +60,6 @@ class Conectar{
 }
 
 //hola  a todos 
+
+//hola soy pasante
 ?>
