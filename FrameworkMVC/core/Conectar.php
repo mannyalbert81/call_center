@@ -53,7 +53,7 @@ class Conectar{
             	exit();
             }
         }
-        
+        //maycol maycol 
         return $fpdo;
     }
 }
