@@ -61,7 +61,6 @@ class Conectar{
 
 //hola  a todos 
 // hoolaaaaaa 
-// holllllll DANNY
 
 //hola soy pasante
 ?>
