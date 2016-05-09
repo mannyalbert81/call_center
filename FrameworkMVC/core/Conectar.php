@@ -56,5 +56,6 @@ class Conectar{
         //maycol maycol 
         return $fpdo;
     }
+    //hola soy maycol
 }
 ?>
