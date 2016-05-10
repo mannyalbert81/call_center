@@ -5,7 +5,7 @@ class CartonDocumentosController extends ControladorBase{
 	public function __construct() {
 		parent::__construct();
 	}
-
+///manuel
 
 
 	public function index(){
