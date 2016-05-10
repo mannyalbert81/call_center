@@ -32,7 +32,7 @@
   
   <div  >
   <div style="margin-top: 10px;">
-  <img src="view/images/logo_adocument.png" class="img-responsive" alt="Responsive image">
+  <img src="view/images/logo-coctiva.png" class="img-responsive" alt="Responsive image">
   </div>
   <!-- aqui va el push derecho.... -->
   <div class="pull-right">
