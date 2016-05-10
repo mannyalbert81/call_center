@@ -34,7 +34,7 @@
   <div style="margin-top: 10px;">
   <img src="view/images/logo_adocument.png" class="img-responsive" alt="Responsive image">
   </div>
-  <!-- aqui va el push derecho... -->
+  <!-- aqui va el push derecho.... -->
   <div class="pull-right">
  		<div class="pull-right">
  		<p> <strong> <?php echo CLIENTE?>  </strong>  </p>
