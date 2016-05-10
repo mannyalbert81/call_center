@@ -58,7 +58,8 @@
      <?php include("view/modulos/head.php"); ?>
        
    
-    
+   <div class="container" style="margin: auto;">
+   
         <form action="<?php echo $helper->url("usuarios","Loguear"); ?>" method="post"  class="col-lg-5" style=" padding-top:100px;">
         <div   style="background:#F6FADE ;border-radius: 5px;  border: 3px solid #063B41;"  >
         
@@ -78,6 +79,9 @@
           
     	</div>    
         </form>
+       
+   
+        </div>
         
     	<footer class="col-lg-12">
            <?php include("view/modulos/footer.php"); ?>
