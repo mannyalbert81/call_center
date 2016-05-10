@@ -212,8 +212,8 @@ public function index(){
     			$usuarios->registrarSesion($id_usuario, $usuario_usuario, $id_rol, $nombre_usuario, $correo_usuario, $ip_usuario);
     			
     			//inserto en la tabla
-    			$_id_usuario = $_SESSION['id_usuario'];
-    			$_ip_usuario = $_SESSION['ip_usuario'];
+    			$_id_usuario = $_SESSION['id_usuarios'];
+    			$_ip_usuario = $_SESSION['ip_usuarios'];
     			
     			$sesiones = new SesionesModel();
 
