@@ -34,7 +34,7 @@ class AccionesModel extends ModeloBase{
 		$this->parametros = $parametros;
 	}
 	
-	//erroor nm...
+	//erroor nm....
 	
 	
 	public function __construct(){
