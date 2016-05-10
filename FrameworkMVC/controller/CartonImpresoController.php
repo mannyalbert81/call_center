@@ -10,6 +10,7 @@ class CartonImpresoController extends ControladorBase{
 ////manuel
 //pasanteee dosss 
 ///liena 11
+//maycol
 	public function index(){
 	
 		//Creamos el objeto usuario
