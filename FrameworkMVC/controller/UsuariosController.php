@@ -8,7 +8,7 @@ class UsuariosController extends ControladorBase{
 public function index(){
 	
 		session_start();
-		if (isset(  $_SESSION['usuario_usuario']) )
+		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 				//Creamos el objeto usuario
 			$rol=new RolesModel();
@@ -29,10 +29,10 @@ public function index(){
 			{
 			
 			
-					$columnas = " usuarios.id_usuario,  usuarios.nombre_usuario, usuarios.usuario_usuario ,  usuarios.telefono_usuario, usuarios.celular_usuario, usuarios.correo_usuario, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado ";
+					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado ";
 					$tablas   = "public.rol,  public.usuarios, public.estado";
 					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado";
-					$id       = "usuarios.nombre_usuario"; 
+					$id       = "usuarios.nombre_usuarios"; 
 			
 					
 					//Conseguimos todos los usuarios
@@ -41,10 +41,10 @@ public function index(){
 					
 					$resultEdit = "";
 			
-					if (isset ($_GET["id_usuario"])   )
+					if (isset ($_GET["id_usuarios"])   )
 					{
-						$_id_usuario = $_GET["id_usuario"];
-						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND usuarios.id_usuario = '$_id_usuario' "; 
+						$_id_usuario = $_GET["id_usuarios"];
+						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND usuarios.id_usuarios = '$_id_usuario' "; 
 						$resultEdit = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id); 
 					}
 			
@@ -88,25 +88,25 @@ public function index(){
 	
 		
 		//_nombre_categorias character varying, _path_categorias character varying
-		if (isset ($_POST["usuario_usuario"]) && isset ($_POST["nombre_usuario"]) && isset ($_POST["clave_usuario"]) && isset($_POST["id_rol"])  )
+		if (isset ($_POST["usuario_usuarios"]) && isset ($_POST["nombre_usuarios"]) && isset ($_POST["clave_usuarios"]) && isset($_POST["id_rol"])  )
 		{
 
 			
-			$_nombre_usuario     = $_POST["nombre_usuario"];
+			$_nombre_usuario     = $_POST["nombre_usuarios"];
 			
-			$_clave_usuario      = $_POST["clave_usuario"];
+			$_clave_usuario      = $_POST["clave_usuarios"];
 			
-			$_telefono_usuario   = $_POST["telefono_usuario"];
-			$_celular_usuario    = $_POST["celular_usuario"];
-			$_correo_usuario     = $_POST["correo_usuario"];
+			$_telefono_usuario   = $_POST["telefono_usuarios"];
+			$_celular_usuario    = $_POST["celular_usuarios"];
+			$_correo_usuario     = $_POST["correo_usuarios"];
 		    $_id_rol             = $_POST["id_rol"];
 		    $_id_estado          = $_POST["id_estado"];
-		    $_usuario_usuario     = $_POST["usuario_usuario"];
+		    $_usuario_usuario     = $_POST["usuario_usuarios"];
 	
 	
 			$funcion = "ins_usuarios";
 			
-			$parametros = " '$_nombre_usuario' ,'$_clave_usuario' , '$_telefono_usuario', '$_celular_usuario', '$_correo_usuario' , '$_id_rol', '$_id_estado' , '$_usuario_usuario'";
+			$parametros = " '$_nombre_usuarios' ,'$_clave_usuarios' , '$_telefono_usuarios', '$_celular_usuarios', '$_correo_usuarios' , '$_id_rol', '$_id_estado' , '$_usuario_usuarios'";
 			$usuarios->setFuncion($funcion);
 	
 			$usuarios->setParametros($parametros);
@@ -128,13 +128,13 @@ public function index(){
 	
 	public function borrarId()
 	{
-		if(isset($_GET["id_usuario"]))
+		if(isset($_GET["id_usuarios"]))
 		{
-			$id_usuario=(int)$_GET["id_usuario"];
+			$id_usuario=(int)$_GET["id_usuarios"];
 	
 			$usuarios=new UsuariosModel();
 				
-			$usuarios->deleteBy(" id_usuario",$id_usuario);
+			$usuarios->deleteBy(" id_usuarios",$id_usuario);
 				
 				
 		}
@@ -175,7 +175,7 @@ public function index(){
     
     
     public function Loguear(){
-    	if (isset ($_POST["usuario"]) && ($_POST["clave"] ) )
+    	if (isset ($_POST["usuarios"]) && ($_POST["clave"] ) )
     	
     	{
     		$usuarios=new UsuariosModel();
@@ -183,14 +183,14 @@ public function index(){
     		$_clave =   $_POST["clave"];
     		 
     		
-    		$where = "  usuario_usuario = '$_usuario' AND  clave_usuario ='$_clave' ";
+    		$where = "  usuario_usuarios = '$_usuario' AND  clave_usuarios ='$_clave' ";
     	
     		$result=$usuarios->getBy($where);
 
-    		$usuario_usuario = "";
+    		$usuario_usuarios = "";
     		$id_rol  = "";
-    		$nombre_usuario = "";
-    		$correo_usuario = "";
+    		$nombre_usuarios = "";
+    		$correo_usuarios = "";
     		$ip_usuario = "";
     		
     		if ( !empty($result) )
@@ -219,7 +219,7 @@ public function index(){
 
     			$funcion = "ins_sesiones";
     			
-    			$parametros = " '$_id_usuario' ,'$_ip_usuario' ";
+    			$parametros = " '$_id_usuarios' ,'$_ip_usuario' ";
     			$sesiones->setFuncion($funcion);
     			
     			$sesiones->setParametros($parametros);
@@ -261,7 +261,7 @@ public function index(){
 	public function Actualiza ()
 	{
 		session_start();
-		if (isset(  $_SESSION['usuario_usuario']) )
+		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			//Creamos el objeto usuario
 			$usuarios = new UsuariosModel();
@@ -270,24 +270,24 @@ public function index(){
 					
 				$resultEdit = "";
 					
-				$_id_usuario = $_SESSION['id_usuario'];
-				$where    = " usuarios.id_usuario = '$_id_usuario' ";
+				$_id_usuario = $_SESSION['id_usuarios'];
+				$where    = " usuarios.id_usuarios = '$_id_usuario' ";
 				$resultEdit = $usuarios->getBy($where);
 				
 
 				if ( isset($_POST["guardar"]) )
 				{
 
-					$_nombre_usuario     = $_POST["nombre_usuario"];
-					$_clave_usuario      = $_POST["clave_usuario"];
-					$_telefono_usuario   = $_POST["telefono_usuario"];
-					$_celular_usuario    = $_POST["celular_usuario"];
-					$_correo_usuario     = $_POST["correo_usuario"];
-					$_usuario_usuario     = $_POST["usuario_usuario"];
+					$_nombre_usuario     = $_POST["nombre_usuarios"];
+					$_clave_usuario      = $_POST["clave_usuarios"];
+					$_telefono_usuario   = $_POST["telefono_usuarios"];
+					$_celular_usuario    = $_POST["celular_usuarios"];
+					$_correo_usuario     = $_POST["correo_usuarios"];
+					$_usuario_usuario     = $_POST["usuario_usuarios"];
 					
-					$colval   = " nombre_usuario = '$_nombre_usuario' , clave_usuario = '$_clave_usuario'   , telefono_usuario = '$_telefono_usuario' ,  celular_usuario = '$_celular_usuario' , correo_usuario = '$_correo_usuario' , usuario_usuario = '$_usuario_usuario'    ";
+					$colval   = " nombre_usuarios = '$_nombre_usuarios' , clave_usuarios = '$_clave_usuarios'   , telefono_usuarios = '$_telefono_usuarios' ,  celular_usuarios = '$_celular_usuarios' , correo_usuarios = '$_correo_usuarios' , usuario_usuarios = '$_usuario_usuarios'    ";
 					$tabla    = "usuarios";
-					$where    = " id_usuario = '$_id_usuario' ";
+					$where    = " id_usuarios = '$_id_usuarios' ";
 					
 					$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
 					
