@@ -66,7 +66,7 @@
         <hr/>
         <div class="text-center"  >
             
-            <strong>USUARIO</strong> <input type="text" name="usuario" class="form-control"  style="text-align: center; " />
+            <strong>USUARIO</strong> <input type="text" name="usuarios" class="form-control"  style="text-align: center; " />
             
             <strong>CLAVE</strong> <input type="password" name="clave" class="form-control"  style="text-align: center; "/>
             

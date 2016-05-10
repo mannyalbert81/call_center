@@ -35,24 +35,24 @@
             		
             	</tr>
             	<tr>
-				   <td>	<input type="text" name="nombre_usuario" value="<?php echo $resEdit->nombre_usuario; ?>" class="form-control"/> </td>
-		           <td> <input type="text" name="usuario_usuario" value="<?php echo $resEdit->usuario_usuario; ?>" class="form-control"/> </td>
+				   <td>	<input type="text" name="nombre_usuarios" value="<?php echo $resEdit->nombre_usuarios; ?>" class="form-control"/> </td>
+		           <td> <input type="text" name="usuario_usuarios" value="<?php echo $resEdit->usuario_usuarios; ?>" class="form-control"/> </td>
 	            </tr>
 	            <tr>
             		<th style="width: 50%">Clave Usuario </th>
             		<th style="width: 50%">Repita Clave Usuario </th>
             	</tr>
 	            <tr>
-		            <td> <input type="password" name="clave_usuario" value="" class="form-control"/></td>
-		            <td> <input type="password" name="clave_usuario_r" value="" class="form-control"/></td>
+		            <td> <input type="password" name="clave_usuarios" value="" class="form-control"/></td>
+		            <td> <input type="password" name="clave_usuarios_r" value="" class="form-control"/></td>
 	            </tr>
 	            <tr>
             		<th style="width: 50%">Teléfono Usuario </th>
             		<th style="width: 50%">Celular  Usuario </th>
             	</tr>
 	            <tr>
-	        		<td> <input type="text" name="telefono_usuario" value="<?php echo $resEdit->telefono_usuario; ?>" class="form-control"/> </td>
-            		<td> <input type="text" name="celular_usuario" value="<?php echo $resEdit->celular_usuario; ?>" class="form-control"/> </td>    
+	        		<td> <input type="text" name="telefono_usuarios" value="<?php echo $resEdit->telefono_usuarios; ?>" class="form-control"/> </td>
+            		<td> <input type="text" name="celular_usuarios" value="<?php echo $resEdit->celular_usuarios; ?>" class="form-control"/> </td>    
 	            </tr>
                 <tr>
             		<th style="width: 50%">Correo Usuario </th>
@@ -69,7 +69,7 @@
 									
 					</td>    
                 
-                   <td> <input type="email" name="correo_usuario" value="<?php echo $resEdit->correo_usuario; ?>" class="form-control"/> </td>
+                   <td> <input type="email" name="correo_usuarios" value="<?php echo $resEdit->correo_usuariso; ?>" class="form-control"/> </td>
                 </tr>
                 <tr>
             		
@@ -102,24 +102,24 @@
             		
             	</tr>
             	<tr>
-				   <td>	<input type="text" name="nombre_usuario" value="" class="form-control"/> </td>
-		           <td> <input type="text" name="usuario_usuario" value="" class="form-control"/> </td>
+				   <td>	<input type="text" name="nombre_usuarios" value="" class="form-control"/> </td>
+		           <td> <input type="text" name="usuario_usuarios" value="" class="form-control"/> </td>
 	            </tr>
 	            <tr>
             		<th style="width: 50%">Clave Usuario </th>
             		<th style="width: 50%">Repita Clave Usuario </th>
             	</tr>
 	            <tr>
-		            <td> <input type="password" name="clave_usuario" value="" class="form-control"/></td>
-		            <td> <input type="password" name="clave_usuario_r" value="" class="form-control"/></td>
+		            <td> <input type="password" name="clave_usuarios" value="" class="form-control"/></td>
+		            <td> <input type="password" name="clave_usuarios_r" value="" class="form-control"/></td>
 	            </tr>
 	            <tr>
             		<th style="width: 50%">Teléfono Usuario </th>
             		<th style="width: 50%">Celular  Usuario </th>
             	</tr>
 	            <tr>
-	        		<td> <input type="text" name="telefono_usuario" value="" class="form-control"/> </td>
-            		<td> <input type="text" name="celular_usuario" value="" class="form-control"/> </td>    
+	        		<td> <input type="text" name="telefono_usuarios" value="" class="form-control"/> </td>
+            		<td> <input type="text" name="celular_usuarios" value="" class="form-control"/> </td>    
 	            </tr>
                 <tr>
             		<th style="width: 50%">Rol Usuario </th>
@@ -136,7 +136,7 @@
 									
 					</td>    
                 
-                   <td> <input type="email" name="correo_usuario" value="" class="form-control"/> </td>
+                   <td> <input type="email" name="correo_usuarios" value="" class="form-control"/> </td>
                 </tr>
                 <tr>
             		
@@ -187,23 +187,23 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td> <?php echo $res->id_usuario; ?>  </td>
-		               <td> <?php echo $res->nombre_usuario; ?>     </td> 
-		               <td> <?php echo $res->usuario_usuario; ?>  </td>
-		               <td> <?php echo $res->telefono_usuario; ?>  </td>
-		               <td> <?php echo $res->celular_usuario; ?>  </td>
-		               <td> <?php echo $res->correo_usuario; ?>  </td>
+	                   <td> <?php echo $res->id_usuarios; ?>  </td>
+		               <td> <?php echo $res->nombre_usuarios; ?>     </td> 
+		               <td> <?php echo $res->usuario_usuarios; ?>  </td>
+		               <td> <?php echo $res->telefono_usuarios; ?>  </td>
+		               <td> <?php echo $res->celular_usuarios; ?>  </td>
+		               <td> <?php echo $res->correo_usuarios; ?>  </td>
 		               <td> <?php echo $res->nombre_rol; ?>  </td>
 		               <td> <?php echo $res->nombre_estado; ?>  </td>
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Usuarios","index"); ?>&id_usuario=<?php echo $res->id_usuario; ?>" class="btn btn-warning">Editar</a>
+			                    <a href="<?php echo $helper->url("Usuarios","index"); ?>&id_usuarios=<?php echo $res->id_usuarios; ?>" class="btn btn-warning">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Usuarios","borrarId"); ?>&id_usuario=<?php echo $res->id_usuario; ?>" class="btn btn-danger">Borrar</a>
+			                    <a href="<?php echo $helper->url("Usuarios","borrarId"); ?>&id_usuariso=<?php echo $res->id_usuarios; ?>" class="btn btn-danger">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>

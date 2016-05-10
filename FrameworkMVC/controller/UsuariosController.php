@@ -130,11 +130,11 @@ public function index(){
 	{
 		if(isset($_GET["id_usuarios"]))
 		{
-			$id_usuario=(int)$_GET["id_usuarios"];
+			$id_usuarios=(int)$_GET["id_usuarios"];
 	
 			$usuarios=new UsuariosModel();
 				
-			$usuarios->deleteBy(" id_usuarios",$id_usuario);
+			$usuarios->deleteBy(" id_usuarios",$id_usuarios);
 				
 				
 		}
@@ -179,7 +179,7 @@ public function index(){
     	
     	{
     		$usuarios=new UsuariosModel();
-    		$_usuario = $_POST["usuario"];
+    		$_usuario = $_POST["usuarios"];
     		$_clave =   $_POST["clave"];
     		 
     		
@@ -197,11 +197,11 @@ public function index(){
     		{ 
     			foreach($result as $res) 
     			{
-    				$id_usuario  = $res->id_usuario;
-    				$usuario_usuario  = $res->usuario_usuario;
+    				$id_usuario  = $res->id_usuarios;
+    				$usuario_usuario  = $res->usuario_usuarios;
 	    			$id_rol           = $res->id_rol;
-	    			$nombre_usuario   = $res->nombre_usuario;
-	    			$correo_usuario   = $res->correo_usuario;
+	    			$nombre_usuario   = $res->nombre_usuarios;
+	    			$correo_usuario   = $res->correo_usuarios;
 	    			
     			}	
     			//obtengo ip
@@ -219,7 +219,7 @@ public function index(){
 
     			$funcion = "ins_sesiones";
     			
-    			$parametros = " '$_id_usuarios' ,'$_ip_usuario' ";
+    			$parametros = " '$_id_usuario' ,'$_ip_usuario' ";
     			$sesiones->setFuncion($funcion);
     			
     			$sesiones->setParametros($parametros);
@@ -278,16 +278,16 @@ public function index(){
 				if ( isset($_POST["guardar"]) )
 				{
 
-					$_nombre_usuario     = $_POST["nombre_usuarios"];
+					$_nombre_usuario    = $_POST["nombre_usuarios"];
 					$_clave_usuario      = $_POST["clave_usuarios"];
-					$_telefono_usuario   = $_POST["telefono_usuarios"];
+					$_telefono_usuario  = $_POST["telefono_usuarios"];
 					$_celular_usuario    = $_POST["celular_usuarios"];
 					$_correo_usuario     = $_POST["correo_usuarios"];
 					$_usuario_usuario     = $_POST["usuario_usuarios"];
 					
-					$colval   = " nombre_usuarios = '$_nombre_usuarios' , clave_usuarios = '$_clave_usuarios'   , telefono_usuarios = '$_telefono_usuarios' ,  celular_usuarios = '$_celular_usuarios' , correo_usuarios = '$_correo_usuarios' , usuario_usuarios = '$_usuario_usuarios'    ";
+					$colval   = " nombre_usuarios = '$_nombre_usuario' , clave_usuarios = '$_clave_usuario'   , telefono_usuarios = '$_telefono_usuario' ,  celular_usuarios = '$_celular_usuario' , correo_usuarios = '$_correo_usuario' , usuario_usuarios = '$_usuario_usuario'    ";
 					$tabla    = "usuarios";
-					$where    = " id_usuarios = '$_id_usuarios' ";
+					$where    = " id_usuarios = '$_id_usuario' ";
 					
 					$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
 					
