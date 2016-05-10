@@ -64,6 +64,7 @@ class Conectar{
 
 //hola soy pasante
 // comit Alex
+//commit 2 Alex
 
 // hola nuevo commit de danny....
 ?>
