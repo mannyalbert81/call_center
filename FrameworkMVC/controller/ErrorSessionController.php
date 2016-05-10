@@ -6,7 +6,7 @@ class SubCategoriasController extends ControladorBase{
 		parent::__construct();
 	}
 
-
+//pasante
 
 	public function index(){
 	
