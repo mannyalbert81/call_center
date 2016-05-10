@@ -8,6 +8,7 @@ class CartonImpresoController extends ControladorBase{
 
 //pasante
 ////manuel
+//pasanteee dosss 
 ///liena 11
 	public function index(){
 	
