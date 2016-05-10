@@ -8,6 +8,7 @@ class ClienteProveedorController extends ControladorBase{
 	}
 
 //maycol prueba
+	//maycol prueba
 
 	public function index(){
 	
