@@ -21,7 +21,7 @@ class RolesController extends ControladorBase{
 		session_start();
 
 	
-		if (isset(  $_SESSION['usuario_usuario']) )
+		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
 			$nombre_controladores = "Roles";

@@ -186,12 +186,12 @@ class EntidadBase{
     {
     	session_start();
     	
-    	$_SESSION["id_usuario"]=$id_usuario;
-    	$_SESSION["usuario_usuario"]=$usuario_usuario;
+    	$_SESSION["id_usuarios"]=$id_usuario;
+    	$_SESSION["usuario_usuarios"]=$usuario_usuario;
     	$_SESSION["id_rol"]=$id_rol;
-    	$_SESSION["nombre_usuario"]=$nombre_usuario;
-    	$_SESSION["correo_usuario"]=$correo_usuario;
-    	$_SESSION["ip_usuario"]=$ip_usuario; 	
+    	$_SESSION["nombre_usuarios"]=$nombre_usuario;
+    	$_SESSION["correo_usuarios"]=$correo_usuario;
+    	$_SESSION["ip_usuarios"]=$ip_usuario; 	
 
     	if (substr($ip_usuario, 0, 3) == "192" )
     	{

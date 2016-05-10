@@ -13,7 +13,7 @@ class PermisosRolesController extends ControladorBase{
 		session_start();
 	
 	
-		if (isset(  $_SESSION['usuario_usuario']) )
+		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 	
 			$permisos_rol = new PermisosRolesModel();
