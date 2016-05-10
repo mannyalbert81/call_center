@@ -12,6 +12,7 @@ class CartonImpresoController extends ControladorBase{
 ///liena 11
 //sdjs pasante
 //linea 14 manuel
+//lineaq15 Alex
 	public function index(){
 	
 		//Creamos el objeto usuario
