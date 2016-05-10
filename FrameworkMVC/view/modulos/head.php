@@ -40,7 +40,7 @@
  		<p> <strong> <?php echo CLIENTE?>  </strong>  </p>
  		</div>	
 		<?php  
-		//bmmnb
+		//bmmn
 			 $status = session_status();
 			 if  (isset( $_SESSION['nombre_usuario'] ))  {  
 		?>
