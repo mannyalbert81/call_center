@@ -7,7 +7,7 @@ class ClienteProveedorController extends ControladorBase{
 		parent::__construct();
 	}
 
-
+//maycol prueba
 
 	public function index(){
 	
