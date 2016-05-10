@@ -53,18 +53,10 @@ class Conectar{
             	exit();
             }
         }
-        //maycol maycol 
+       
         return $fpdo;
     }
-    //hola soy maycol
+  
 }
 
-//hola  a todos 
-// hoolaaaaaa hecho commit
-
-//hola soy pasante
-// comit Alex
-//commit 2 Alex
-
-// hola nuevo commit de danny....
 ?>
