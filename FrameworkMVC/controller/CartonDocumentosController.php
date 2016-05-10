@@ -7,7 +7,7 @@ class CartonDocumentosController extends ControladorBase{
 	}
 ///manuel
 
-
+//danny
 	public function index(){
 		
 
