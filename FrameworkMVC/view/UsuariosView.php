@@ -33,23 +33,13 @@
        
        
        
-       <script>
-    function comprobarClave(){
-    	clave_usuarios = document.f1.clave_usuarios.value
-    	clave_usuarios_r = document.f1.clave_usuarios_r.value
-
-    if (clave_usuarios == clave_usuarios_r)
-       alert("Las dos claves son iguales...\nRealizaríamos las acciones del caso positivo")
-    else
-       alert("Las dos claves son distintas...\nRealizaríamos las acciones del caso negativo")
-}
-</script> 
+       
        
         <script>
-        /*
+        
 		$(document).ready(function(){
 
-		    $("#Guardar").click(function() {
+		    $("#guardar").click(function() {
 
 
 		    	if (   $('#clave_usuarios').val()) ==  $('#clave_usuarios_r').val()) )
@@ -58,15 +48,15 @@
 	    	    }
 				else
 				{
-					
+					alert("Clave no coinciden");
+					return false;	
 				}
 				
-				alert("Clave no coinciden");
-				return false;
+				
 			  });
 			  
 		}); 
-		*/
+		
 	</script>
 	
     </head>
