@@ -20,21 +20,32 @@
         <li class="active"><a href="index.php?controller=Usuarios&action=loguear"><span class="glyphicon glyphicon-home" ><?php echo " Inicio" ;?></span> <span class="sr-only">(current)</span></a></li>
         
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-modal-window" ><?php echo " Administración" ;?> </span> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" ><?php echo " Administración" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-        	<li><a href="index.php?controller=Usuarios&action=index">Usuarios</a>
+        	<li><a href="index.php?controller=Usuarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Usuarios</span> </a>
 		    </li>
-			<li><a href="index.php?controller=Roles&action=index">Roles de Usuario</a>
+			<li><a href="index.php?controller=Roles&action=index"> <span class="glyphicon glyphicon-list-alt" aria-hidden="true"> Roles de Usuario</span> </a>
 			</li>
-			<li><a href="index.php?controller=PermisosRoles&action=index">Permisos Roles</a>
+			<li><a href="index.php?controller=PermisosRoles&action=index"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> Permisos Roles</span> </a>
+			</li>
+			<li><a href="index.php?controller=Controladores&action=index"><span class="glyphicon glyphicon-inbox" aria-hidden="true"> Controladores</span> </a>
 			</li>
 			<li><a href="index.php?controller=Entidades&action=index">Entidades</a>
 			</li>
 		    
           </ul>
         </li>
-       
-      
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Procesos" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="index.php?controller=Usuarios&action=index"><span class="glyphicon glyphicon-ok" aria-hidden="true"> Importacion de Cartera/Operaciones</span> </a>
+		    </li>
+			<li><a href="index.php?controller=Roles&action=index"><span class="glyphicon glyphicon-euro" aria-hidden="true"> Recaudacion</span> </a>
+			</li>
+			
+          </ul>
+        </li>
+      </ul>
       
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

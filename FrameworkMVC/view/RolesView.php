@@ -2,7 +2,7 @@
 <html lang="es">
      <head>
         <meta charset="utf-8"/>
-        <title>Roles - aDocument 2015</title>
+        <title>Roles - coactiva 2016</title>
    
       
         <style>
@@ -22,15 +22,17 @@
        <?php include("view/modulos/head.php"); ?>
        
        <?php include("view/modulos/menu.php"); ?>
+  <div class="container">
   
+  <div class="row">
+  
+  <div></div>
     
-      <form action="<?php echo $helper->url("Roles","InsertaRoles"); ?>" method="post" class="col-lg-5">
-            <h4>Insertar Roles</h4>
-            <hr/>
-            	
-		   		
+      <form action="<?php echo $helper->url("Roles","InsertaRoles"); ?>" method="post" class="col-lg-6">
             
-             <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+            <h4 style="color:#ec971f;">Insertar Roles</h4>
+            <hr/>
+               <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	        
 	            	Nombre Rol: <input type="text" name="nombre_rol" value="<?php echo $resEdit->nombre_rol; ?>" class="form-control"/>
 		            
@@ -46,11 +48,11 @@
           </form>
        
        
-        <div class="col-lg-7">
-            <h4>Roles de Usuario</h4>
+        <div class="col-lg-6">
+            <h4 style="color:#ec971f;">Roles de Usuario</h4>
             <hr/>
         </div>
-        <section class="col-lg-7 usuario" style="height:400px;overflow-y:scroll;">
+        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover">
 	         <tr>
 	    		<th>Id</th>

@@ -95,7 +95,7 @@ class RolesController extends ControladorBase{
 	public function InsertaRoles(){
 			
 		session_start();
-		
+		$permisos_rol = new  PermisosRolesModel();
 
 		$nombre_controladores = "Roles";
 		$id_rol= $_SESSION['id_rol'];
@@ -148,6 +148,9 @@ class RolesController extends ControladorBase{
 	{
 
 		session_start();
+		
+		$permisos_rol = new  PermisosRolesModel();
+		
 		
 		$nombre_controladores = "Roles";
 		$id_rol= $_SESSION['id_rol'];

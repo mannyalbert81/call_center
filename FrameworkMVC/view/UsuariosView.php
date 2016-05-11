@@ -7,7 +7,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Usuarios - aDocument 2015</title>
+        <title>Usuarios - coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -49,18 +49,30 @@
 			{
 		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
-		    	 
+		    	var cedula_usuario = $("#cedula_usuarios").val();
 		    	var nombre_usuario = $("#nombre_usuarios").val();
+		    	var usuario_usuario  = $("#usuario_usuarios").val();
 		    	var clave_usuario = $("#clave_usuarios").val();
 		    	var cclave_usuario = $("#cclave_usuarios").val();
 		    	var telefono_usuario = $("#telefono_usuarios").val();	
 		    	var celular_usuario = $("#celular_usuarios").val();
 		    	var correo_usuario  = $("#correo_usuarios").val();
-		    	var ccorreo_usuario  = $("#ccorreo_usuarios").val();
-		    	var cedula_usuario = $("#cedula_usuarios").val();
 		    	
 		    	
-
+		    	
+		    	
+		    	if (cedula_usuario == "")
+		    	{
+			    	
+		    		$("#mensaje_cedula").text("Introduzca una Cedula");
+		    		$("#mensaje_cedula").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_cedula").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}    
 				
 		    	if (nombre_usuario == "")
 		    	{
@@ -75,7 +87,18 @@
 		            
 				}
 		    	
-
+		    	if (usuario_usuario == "")
+		    	{
+			    	
+		    		$("#mensaje_usuario").text("Introduzca una Usuario");
+		    		$("#mensaje_usuario").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_usuario").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}   
 						    	
 				//la clave
 
@@ -121,10 +144,23 @@
 				
 
 				//los telefonos
-		    	if (telefono_usuario == "" || celular_usuario == "")
+		    	if (telefono_usuario == "" )
 		    	{
 			    	
-		    		$("#mensaje_celular").text("Al menos indique un telefono de Contacto");
+		    		$("#mensaje_telefono").text("Ingrese un Teléfono");
+		    		$("#mensaje_telefono").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_telefono").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+		    	if (celular_usuario == "" )
+		    	{
+			    	
+		    		$("#mensaje_celular").text("Ingrese un Celular");
 		    		$("#mensaje_celular").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
@@ -155,73 +191,42 @@
 		            return false;	
 			    }
 
-		    	if (ccorreo_usuario == "")
-		    	{
-					
-			    	$("#mensaje_ccorreo").text("Introduzca un correo");
-		    		$("#mensaje_ccorreo").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else if (regex.test($('#ccorreo_usuario').val().trim()))
-		    	{
-		    		$("#mensaje_ccorreo").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	else 
-		    	{
-		    		$("#mensaje_ccorreo").text("Introduzca un correo Valido");
-		    		$("#mensaje_ccorreo").fadeIn("slow"); //Muestra mensaje de error
-		            return false;	
-			    }
-		    	if (correo_usuario != ccorreo_usuario)
-		    	{
-			    	
-		    		$("#mensaje_ccorreo").text("Correos no Coinciden");
-		    		$("#mensaje_ccorreo").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
+		    	
 
-
-		    	if (cedula_usuario == "")
-		    	{
-			    	
-		    		$("#mensaje_cedula").text("Introduzca una Cedula");
-		    		$("#mensaje_cedula").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_cedula").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}    				    
+		    					    
 
 			}); 
 
 
-				
+		        $( "#cedula_usuarios" ).focus(function() {
+				  $("#mensaje_cedula").fadeOut("slow");
+			    });
 				
 				$( "#nombre_usuarios" ).focus(function() {
 					$("#mensaje_nombres").fadeOut("slow");
     			});
-				
+				$( "#usuario_usuarios" ).focus(function() {
+					$("#mensaje_usuario").fadeOut("slow");
+    			});
+    			
 				$( "#clave_usuarios" ).focus(function() {
 					$("#mensaje_clave").fadeOut("slow");
     			});
 				$( "#cclave_usuarios" ).focus(function() {
 					$("#mensaje_cclave").fadeOut("slow");
     			});
+				$( "#telefono_usuarios" ).focus(function() {
+					$("#mensaje_telefono").fadeOut("slow");
+    			});
+				$( "#celular_usuarios" ).focus(function() {
+					$("#mensaje_celular").fadeOut("slow");
+    			});
 				
 				$( "#correo_usuarios" ).focus(function() {
 					$("#mensaje_correo").fadeOut("slow");
     			});
 		
-				$( "#ccorreo_usuarios" ).focus(function() {
-					$("#mensaje_ccorreo").fadeOut("slow");
-    			});
-    			
-				$( "#cedula_usuarios" ).focus(function() {
-					$("#mensaje_cedula").fadeOut("slow");
-    			});
+				
 		
 		      
 				    
@@ -337,7 +342,7 @@
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Usuario</p>
 			  	<input type="text"  name="usuario_usuarios" id="usuario_usuarios" value="<?php echo $resEdit->usuario_usuarios; ?>" class="form-control"/> 
-			    
+			    <div id="mensaje_usuario" class="errores"></div>
 			  </div>
 			   </div>
 		    
@@ -358,7 +363,7 @@
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Teléfono Usuario </p>
 			  	<input type="text" name="telefono_usuarios" id="telefono_usuarios" value="<?php echo $resEdit->telefono_usuarios; ?>" class="form-control"/>
-			  <div id="mensaje_celular" class="errores"></div>
+			  <div id="mensaje_telefono" class="errores"></div>
 			  </div>
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Celular  Usuario</p>
@@ -375,14 +380,8 @@
 				
 				<div id="mensaje_correo" class="errores"></div>
 			  </div>
+			  
 			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Confirme Correo </p>
-			  	<input type="email"  name="ccorreo_usuarios" id="ccorreo_usuarios" value="<?php echo $resEdit->correo_usuarios; ?>" class="form-control" />	
-			  </div>
-		      </div>
-		      
-		      <div class="row">
-			    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Roles</p>
 			  	<select name="id_rol" id="id_rol"  class="form-control" >
 					<?php foreach($resultRol as $resRol) {?>
@@ -391,6 +390,10 @@
 						<?php } ?>
 				</select> 
 			  </div>
+		      </div>
+		      
+		      <div class="row">
+			    
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Estados</p>
 			  	<select name="estados" id="estados"  class="form-control" >
@@ -424,7 +427,7 @@
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Usuario</p>
 			  	<input type="text"  name="usuario_usuarios" id="usuario_usuarios" value="" class="form-control"/> 
-			    
+			    <div id="mensaje_usuario" class="errores"></div>
 			  </div>
 			   </div>
 		    
@@ -445,7 +448,7 @@
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Teléfono Usuario </p>
 			  	<input type="text" name="telefono_usuarios" id="telefono_usuarios" value="" class="form-control"/>
-			  <div id="mensaje_celular" class="errores"></div>
+			  <div id="mensaje_telefono" class="errores"></div>
 			  </div>
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Celular  Usuario</p>
@@ -463,13 +466,6 @@
 				<div id="mensaje_correo" class="errores"></div>
 			  </div>
 			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Confirme Correo </p>
-			  	<input type="email"  name="ccorreo_usuarios" id="ccorreo_usuarios" value="" class="form-control" />	
-			  </div>
-		      </div>
-		      
-		      <div class="row">
-			    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Roles</p>
 			  	<select name="id_rol" id="id_rol"  class="form-control" >
 					<?php foreach($resultRol as $resRol) {?>
@@ -477,6 +473,10 @@
 			        <?php } ?>
 				</select> 
 			  </div>
+		      </div>
+		      
+		      <div class="row">
+			    
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Estados</p>
 			  	<select name="estados" id="estados"  class="form-control" >

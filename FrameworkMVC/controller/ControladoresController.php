@@ -11,9 +11,10 @@ class ControladoresController extends ControladorBase{
 	public function index(){
 	
 		//Creamos el objeto usuario
-     	$roles=new RolesModel();
-					//Conseguimos todos los usuarios
-		$resultSet=$roles->getAll("id_rol");
+     	$controladores = new ControladoresModel(); 
+		
+	   //Conseguimos todos los usuarios
+		$resultSet=$controladores->getAll("id_controladores");
 				
 		$resultEdit = "";
 
@@ -24,35 +25,35 @@ class ControladoresController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
-			$nombre_controladores = "Roles";
+			$nombre_controladores = "Controladores";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $roles->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $controladores->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPer))
 			{
 				if (isset ($_GET["id_rol"])   )
 				{
 
-					$nombre_controladores = "Roles";
+					$nombre_controladores = "Controladores";
 					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $roles->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					$resultPer = $controladores->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
 					if (!empty($resultPer))
 					{
 					
-						$_id_rol = $_GET["id_rol"];
-						$columnas = " id_rol, nombre_rol ";
-						$tablas   = "rol";
-						$where    = "id_rol = '$_id_rol' "; 
-						$id       = "nombre_rol";
+						$_id_controladores = $_GET["id_controladores"];
+						$columnas = " id_controladores, nombre_controladores";
+						$tablas   = "controladores";
+						$where    = "id_controladores = '$_id_controladores' "; 
+						$id       = "nombre_controladores";
 							
-						$resultEdit = $roles->getCondiciones($columnas ,$tablas ,$where, $id);
+						$resultEdit = $controladores->getCondiciones($columnas ,$tablas ,$where, $id);
 
 					}
 					else
 					{
 						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Roles"
+								"resultado"=>"No tiene Permisos de Editar Controladores"
 					
 						));
 					
@@ -62,7 +63,7 @@ class ControladoresController extends ControladorBase{
 				}
 		
 				
-				$this->view("Roles",array(
+				$this->view("Controladores",array(
 						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
 			
 				));
@@ -73,7 +74,7 @@ class ControladoresController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Roles"
+						"resultado"=>"No tiene Permisos de Acceso a Controladores"
 				
 				));
 				
@@ -92,12 +93,13 @@ class ControladoresController extends ControladorBase{
 	
 	}
 	
-	public function InsertaRoles(){
+	public function InsertaControladores(){
 			
 		session_start();
 		
 
-		$nombre_controladores = "Roles";
+		$nombre_controladores = "Controladores";
+		
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
@@ -107,29 +109,29 @@ class ControladoresController extends ControladorBase{
 		
 		
 			$resultado = null;
-			$roles=new RolesModel();
+			$controladores=new ControladoresModel();
 		
 			//_nombre_categorias character varying, _path_categorias character varying
-			if (isset ($_POST["nombre_rol"])   )
+			if (isset ($_POST["nombre_controladores"])   )
 				
 			{
 				
-				$_nombre_rol = $_POST["nombre_rol"];
+				$_nombre_controladores = $_POST["nombre_controladores"];
 				
 				 
-				$funcion = "ins_rol";
-				$parametros = " '$_nombre_rol'  ";
+				$funcion = "ins_controladores";
+				$parametros = " '$_nombre_controladores'  ";
 					
-				$roles->setFuncion($funcion);
+				$controladores->setFuncion($funcion);
 		
-				$roles->setParametros($parametros);
+				$controladores->setParametros($parametros);
 		
 		
-				$resultado=$roles->Insert();
+				$resultado=$controladores->Insert();
 		
 		
 			}
-			$this->redirect("Roles", "index");
+			$this->redirect("Controladores", "index");
 
 		}
 		else

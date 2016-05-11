@@ -1,0 +1,293 @@
+@CHARSET "ISO-8859-1";
+
+
+@font-face{
+    font-family: 'fontUnique'; /*a name to be used later*/
+    src: url("../fonts/Unique.ttf");
+    
+}
+@font-face{
+    font-family: 'CalibriBold'; /*a name to be used later*/
+    src: url("../fonts/CalibriBold.ttf");
+    
+}
+@font-face{
+    font-family: 'Calibri'; /*a name to be used later*/
+    src: url("../fonts/Calibri.ttf");
+    
+}
+.titulo-fontUnique
+{
+	font-family: 'fontUnique';
+}
+.calibri-bold
+{
+	font-family: 'CalibriBold';
+}
+.calibri-bold-dos
+{
+	font-family: 'CalibriBold';
+	color:#ebe6e6;
+	 font-size: 150%;
+}
+.calibri-bold-dos:hover
+{
+	font-family: 'CalibriBold';
+	color: #f3be4c;
+}
+.calibri
+{
+	font-family: 'Calibri';
+}
+.menu-head-color
+{
+	color: #ffffff;
+	
+}
+.menu-head
+{
+	background-color: #b1b429;
+	
+}
+.menu-head:hover
+{
+	background-color: #fd9848;
+	
+}
+.servicios_titulo {
+    
+    color: #046497; 
+    font-family: Verdana;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 700;
+	line-height: 19.8px;
+	text-align: center;
+} 
+
+.servicios_titulo:hover {
+    
+    color: #d56e09; 
+    font-family: Verdana;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 700;
+	line-height: 19.8px;
+	text-align: center;
+} 
+
+.centrado {
+    
+	text-align: center;
+} 
+.justificado_blanco {
+    
+	text-align: justify;
+	color: #ffffff; 
+} 
+.titulo-central{
+	color: #4a9022;
+	font-family: Copperplate / Copperplate Gothic Light, sans-serif;
+	text-align: center;
+    
+}
+.subtitulo-central{
+	color: #e57b0d;
+	
+}
+
+.formulario-titulo
+{
+	color: #063853;
+	text-shadow: 0 1px black;
+	
+}
+.formulario-subtitulo
+{
+	color: #94989a;
+	
+}
+.formulario-subtitulo-busqueda
+{
+	font-weight: bold;
+	color: #457720;
+	font-size: 0.875em;
+	
+}
+
+.contacto
+{
+	color: #d00000;
+	font-size: 12px;
+	
+}
+
+.before-footer
+{
+	background-color: #fbfefa;
+	height: 50px;
+	
+}
+.before-footer-texto
+{
+	color: #f4f4f4;
+	font-size: 12px;
+	
+}
+.before-footer:hover
+{
+	background-color: #f18d13;
+	color: #fffdfb;
+}
+.before-footer-titulo
+{
+	width: 100%;
+	height: 30px;
+	
+	background-image: url("../images/titulo-back.png");
+	
+    background-repeat:no-repeat;
+	background-size: 100% 100%;
+	background-position:center;
+	color: #ffffff; 
+    padding-left: 15px;
+	text-align: left;
+	vertical-align: text-bottom;
+	font-size: 18px;
+	
+}
+
+
+
+.before-footer-titulo:hover
+{
+	
+	
+}
+
+.buscador_footer 
+{
+	position: absolute;
+	top: 80%;
+	left: 0%;
+	background-color: #00ff00;
+	width: 50px;
+    height: 50px;
+    border: 3px solid #73AD21;
+}
+
+.servicios-titulo
+{
+	width: 100%;
+	height: 30px;
+    background-repeat:no-repeat;
+	background-size: 100% 100%;
+	background-position:center;
+	color: #ffffff; 
+    padding-left: 15px;
+	text-align: left;
+	vertical-align: text-bottom;
+	font-size: 18px;
+	
+}
+
+.errores{
+    -webkit-boxshadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius:10px;
+    -webkit-border-radius: 10px;
+    background: red;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    display: none;
+    font-size: 12px;
+    margin-top: -40px;
+    margin-left: 150px;
+    padding: 10px;
+    position: absolute;
+     z-index: 1;
+}
+.errores:before{ /* Este es un truco para crear una flechita */
+    content: '';
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #BC1010;
+    border-left: 8px solid transparent;
+    left: -16px;
+    position: absolute;
+    top: 5px;
+    
+}
+
+.buscador_favorito {
+	width: calc(15% - 1px);
+	height: calc(15% - 1px);
+	float: right;
+	
+	
+}
+.mensaje_favorito
+{
+	border:solid 1px #DEDEDE;
+	background:#FFFFCC url("../images/icono_heart.png") 8px 6px no-repeat;
+	color:#222222;
+	padding:4px;
+	text-align:center;
+	
+}
+
+.titulos_vistasonline
+{
+	font-family: sans-serif; 
+	color:#000000; 
+	whidth: 100%; 
+	text-align: center; 
+	
+	
+}
+
+
+
+
+.select.center_pull {
+    background:#eeeeee none repeat scroll 0 0;
+    border:1px solid #7E7E7E;
+    color:#333333;
+    font-size:12px;
+    margin-bottom:4px;
+    margin-right:4px;
+    margin-top:4px;
+    width:145px;
+}
+.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 1px solid #0070A8; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00496B; border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #E1EEF4; color: #00496B; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }.datagrid table tfoot td div { border-top: 1px solid #006699;background: #E1EEF4;} .datagrid table tfoot td { padding: 0; font-size: 12px } .datagrid table tfoot td div{ padding: 2px; }.datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }.datagrid table tfoot  li { display: inline; }.datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #006699;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; }.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}div.dhtmlx_window_active, div.dhx_modal_cover_dv { position: fixed !important; }
+.hipervinculo
+{
+	font-family: calibri;
+	color:#333333;
+}
+/*
+.navbar-inverse { }
+.navbar-inverse .navbar-nav>.active>a:hover,.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus { background-color: #FFD445}
+.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.open>a,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus { background-color: #EDAC2B}
+.dropdown-menu { }
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { background-color: #CAA926}
+.navbar-inverse { background-image: none; }
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { background-image: none; }
+.navbar-inverse { }
+.navbar-inverse .navbar-brand { color: #FFFFFF}
+.navbar-inverse .navbar-brand:hover { color: #FFFFFF}
+.navbar-inverse .navbar-nav>li>a { color: #F0F0F0}
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus { color: #FFFFFF}
+.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus { color: #FFFFFF}
+.navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus { color: #FFFFFF}
+.dropdown-menu>li>a { color: #333333}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { color: #FFFFFF}
+.navbar-inverse .navbar-nav>.dropdown>a .caret { border-top-color: #999999}
+.navbar-inverse .navbar-nav>.dropdown>a:hover .caret { border-top-color: #FFFFFF}
+.navbar-inverse .navbar-nav>.dropdown>a .caret { border-bottom-color: #999999}
+.navbar-inverse .navbar-nav>.dropdown>a:hover .caret { border-bottom-color: #FFFFFF}
+*/
+
