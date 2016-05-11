@@ -28,6 +28,8 @@
 			</li>
 			<li><a href="index.php?controller=PermisosRoles&action=index">Permisos Roles</a>
 			</li>
+			<li><a href="index.php?controller=Controladores&action=index">Controladores</a>
+			</li>
 		    
           </ul>
         </li>
