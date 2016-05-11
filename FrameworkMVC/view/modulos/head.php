@@ -27,20 +27,21 @@
 </head>
 <body>
 
-<div class="container" >
+<div class="container">
   
   
-  <div  >
-  <div style="margin-top: 10px;">
+  <div class="row">
+  <div style="margin-top: 10px;"  class="col-xs-10"   >
   <img src="view/images/logo-coctiva.png" class="img-responsive" alt="Responsive image">
   </div>
-  <!-- aqui va el push derecho.... -->
-  <div class="pull-right">
- 		<div class="pull-right">
+  <!-- aqui va el la class pull-right.... -->
+  
+  <div  style="margin-top: 20px;" class="col-xs-2">
+ 		<div class="">
  		<p> <strong> <?php echo CLIENTE?>  </strong>  </p>
  		</div>	
 		<?php  
-		//bmmn
+		
 			 $status = session_status();
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
@@ -77,6 +78,8 @@
 				
 		 ?>
 			</div>  
+  
+<!-- aqui termina la class pull-right -->
   
   </div>
         

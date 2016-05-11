@@ -1,3 +1,6 @@
+<div class="container">
+<div class="row">
+<div class="col-xs-12">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -34,3 +37,6 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+</div>
+</div>
+</div>
