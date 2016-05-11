@@ -2,7 +2,7 @@
 <html lang="es">
       <head>
         <meta charset="utf-8"/>
-        <title>Permisos Rol - aDocument 2015</title>
+        <title>Permisos Rol - coactiva 2016</title>
    
   
 		
@@ -126,10 +126,14 @@
        
        <?php include("view/modulos/menu.php"); ?>
   
-    
+    <div class="container">
+  
+  <div class="row">
+  
+  <div></div>
        
-      <form action="<?php echo $helper->url("PermisosRoles","InsertaPermisosRoles"); ?>" method="post" class="col-lg-5">
-            <h4>Insertar Permisos Roles</h4>
+      <form action="<?php echo $helper->url("PermisosRoles","InsertaPermisosRoles"); ?>" method="post" class="col-lg-6">
+            <h4 style="color:#ec971f;">Insertar Permisos Roles</h4>
             <hr/>
             	
 		   		
@@ -237,7 +241,7 @@
        
        
         <div class="col-lg-7">
-            <h4>Permisos Rol</h4>
+            <h4 style="color:#ec971f;">Permisos Rol</h4>
             <hr/>
         </div>
         <section class="col-lg-7 usuario" style="height:400px;overflow-y:scroll;">
