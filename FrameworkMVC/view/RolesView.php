@@ -55,26 +55,26 @@
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover">
 	         <tr>
-	    		<th>Id</th>
-	    		<th>Nombre Rol</th>
+	    		<th style="color:#456789;font-size:80%;">Id</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Rol</th>
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
             
 	            <?php foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td> <?php echo $res->id_rol; ?>  </td>
-		               <td> <?php echo $res->nombre_rol; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_rol; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_rol; ?>     </td> 
 		               
 		               <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Roles","index"); ?>&id_rol=<?php echo $res->id_rol; ?>" class="btn btn-warning">Editar</a>
+			                    <a href="<?php echo $helper->url("Roles","index"); ?>&id_rol=<?php echo $res->id_rol; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Roles","borrarId"); ?>&id_rol=<?php echo $res->id_rol; ?>" class="btn btn-danger">Borrar</a>
+			                    <a href="<?php echo $helper->url("Roles","borrarId"); ?>&id_rol=<?php echo $res->id_rol; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>

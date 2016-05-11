@@ -97,7 +97,7 @@ public function index(){
 			
 			$_nombre_usuario     = $_POST["nombre_usuarios"];
 			
-			$_clave_usuario      = $_POST["clave_usuarios"];
+			$_clave_usuario      = $usuarios->encriptar($_POST["clave_usuarios"]);
 			
 			$_telefono_usuario   = $_POST["telefono_usuarios"];
 			$_celular_usuario    = $_POST["celular_usuarios"];
@@ -188,7 +188,7 @@ public function index(){
     	{
     		$usuarios=new UsuariosModel();
     		$_usuario = $_POST["usuarios"];
-    		$_clave =   $_POST["clave"];
+    		$_clave =   $usuarios->encriptar($_POST["clave"]);
     		 
     		
     		$where = "  usuario_usuarios = '$_usuario' AND  clave_usuarios ='$_clave' ";
