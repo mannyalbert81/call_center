@@ -41,9 +41,6 @@
         </style>
        
        
-       
-      
-       
         <script >
 		$(document).ready(function(){
 
@@ -405,6 +402,7 @@
 			  </div>
 			</div>
 		
+		 <hr>
             
             
 		     <?php } } else {?>
@@ -494,7 +492,7 @@
                	
 		     <?php } ?>
 		       <div class="row">
-			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
+			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
 			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
 			  </div>
 			</div>     
@@ -512,7 +510,7 @@
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
+	    		<th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre</th>
 	    		<th style="color:#456789;font-size:80%;">Usuario</th>
 	    		<th style="color:#456789;font-size:80%;">Correo</th>
