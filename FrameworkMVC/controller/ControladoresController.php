@@ -129,7 +129,11 @@ class ControladoresController extends ControladorBase{
 				{
 					
 					$_id_controladores = $_POST["id_controladores"];
+					$colval = " nombre_controladores = '$_nombre_controladores'   ";
+					$tabla = "controladores";
+					$where = "id_controladores = '$_id_controladores'    ";
 					
+					$resultado=$controladores->UpdateBy($colval, $tabla, $where);
 					
 				}else {
 					
