@@ -31,12 +31,13 @@
   
   
   <div class="row">
-  <div style="margin-top: 10px;"  class="col-xs-10"   >
+  <div class=""></div>
+  <div style="margin-top: 10px;"  class="col-xs-9" >
   <img src="view/images/logo-coctiva.png" class="img-responsive" alt="Responsive image">
   </div>
   <!-- aqui va el la class pull-right.... -->
   
-  <div  style="margin-top: 20px;" class="col-xs-2">
+  <div  style="margin-top: 20px;" class="col-xs-3">
  		<div class="">
  		<p> <strong> <?php echo CLIENTE?>  </strong>  </p>
  		</div>	
@@ -58,7 +59,7 @@
 				  
 			</div>
 		 	
-		 	
+	
 		 	
 		    
 		    <?php  ?> 
@@ -80,7 +81,9 @@
 			</div>  
   
 <!-- aqui termina la class pull-right -->
-  
+
+ <div class=""></div>
+ 
   </div>
         
 </div>
