@@ -81,7 +81,10 @@ public function index(){
 	}
 	
 	public function InsertaUsuarios(){
-			
+		
+		
+		
+		
 		$resultado = null;
 		$usuarios=new UsuariosModel();
 	
@@ -100,7 +103,7 @@ public function index(){
 			$_celular_usuario    = $_POST["celular_usuarios"];
 			$_correo_usuario     = $_POST["correo_usuarios"];
 		    $_id_rol             = $_POST["id_rol"];
-		    $_id_estado          = $_POST["id_estado"];
+		    $_id_estado          = $_POST["estados"];
 		    $_usuario_usuario     = $_POST["usuario_usuarios"];
 		    $_cedula_usuarios    = $_POST["cedula_usuarios"];
 	
@@ -116,6 +119,10 @@ public function index(){
 			$resultado=$usuarios->Insert();
 	
 			
+			//$this->view("Error",array(
+			//"resultado"=>"entro"
+					//));
+					
 			 //$this->view("Categorias",array(
 			 //"resultado"=>$resultado
 			 //));
