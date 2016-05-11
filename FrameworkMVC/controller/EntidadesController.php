@@ -11,9 +11,9 @@ class EntidadesController extends ControladorBase{
 	public function index(){
 	
 		//Creamos el objeto usuario
-     	$roles=new RolesModel();
+     	$Entidades=new EntidadesModel();
 					//Conseguimos todos los usuarios
-		$resultSet=$roles->getAll("id_rol");
+		$resultSet=$Entidades->getAll("id_entidades");
 				
 		$resultEdit = "";
 
@@ -21,38 +21,38 @@ class EntidadesController extends ControladorBase{
 		session_start();
 
 	
-		if (isset(  $_SESSION['usuario_usuarios']) )
+		if (isset(  $_SESSION['ruc_entidades']) )
 		{
 
-			$nombre_controladores = "Roles";
-			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $roles->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$nombre_entidades = "Entidades";
+			$id_entidades= $_SESSION['id_entidades'];
+			$resultPer = $Entidades->getPermisosVer("   entidades.nombre_entidades = '$nombre_entidades' AND id_entidades.id_entidades = '$id_entidades' " );
 			
 			if (!empty($resultPer))
 			{
-				if (isset ($_GET["id_rol"])   )
+				if (isset ($_GET["id_entidades"])   )
 				{
 
-					$nombre_controladores = "Roles";
-					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $roles->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					$nombre_entidades = "Entidades";
+					$id_entidades= $_SESSION['id_entidades'];
+					$resultPer = $entidades->getPermisosEditar("   entidades.nombre_entidades = '$nombre_entidades' AND id_entidades.id_entidades = '$id_entidades' " );
 						
 					if (!empty($resultPer))
 					{
 					
-						$_id_rol = $_GET["id_rol"];
-						$columnas = " id_rol, nombre_rol ";
-						$tablas   = "rol";
-						$where    = "id_rol = '$_id_rol' "; 
-						$id       = "nombre_rol";
+						$_id_entidades = $_GET["id_entidades"];
+						$columnas = " id_entidades, nombre_entidades ";
+						$tablas   = "entidades";
+						$where    = "id_entidades = '$_id_rol' "; 
+						$id       = "nombre_entidades";
 							
-						$resultEdit = $roles->getCondiciones($columnas ,$tablas ,$where, $id);
+						$resultEdit = $entidades->getCondiciones($columnas ,$tablas ,$where, $id);
 
 					}
 					else
 					{
 						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Roles"
+								"resultado"=>"No tiene Permisos de Editar entidades"
 					
 						));
 					
@@ -62,7 +62,7 @@ class EntidadesController extends ControladorBase{
 				}
 		
 				
-				$this->view("Roles",array(
+				$this->view("Entidades",array(
 						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
 			
 				));
@@ -73,7 +73,7 @@ class EntidadesController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Roles"
+						"resultado"=>"No tiene Permisos de Acceso a Entidades"
 				
 				));
 				
@@ -97,9 +97,9 @@ class EntidadesController extends ControladorBase{
 		session_start();
 		
 
-		$nombre_controladores = "Roles";
-		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+		$nombre_entidades = "Entidades";
+		$id_rol= $_SESSION['id_entidades'];
+		$resultPer = $entidades->getPermisosEditar("   entidades.nombre_entidades = '$nombre_entidades' AND id_entidades.id_entidades = '$id_entidades' " );
 			
 		if (!empty($resultPer))
 		{
@@ -107,41 +107,41 @@ class EntidadesController extends ControladorBase{
 		
 		
 			$resultado = null;
-			$roles=new RolesModel();
+			$entidades=new EntidadesModel();
 		
 			//_nombre_categorias character varying, _path_categorias character varying
-			if (isset ($_POST["nombre_rol"])   )
+			if (isset ($_POST["nombre_entidades"])   )
 				
 			{
 				
 				
-				$_nombre_rol = $_POST["nombre_rol"];
+				$_nombre_entidades = $_POST["nombre_entidades"];
 				
 				
 				
 				
-				$_nombre_rol = $_POST["nombre_rol"];
+				$_nombre_entidades = $_POST["nombre_entidades"];
 				
 				 
-				$funcion = "ins_rol";
-				$parametros = " '$_nombre_rol'  ";
+				$funcion = "ins_entidades";
+				$parametros = " '$_nombre_entidades'  ";
 					
-				$roles->setFuncion($funcion);
+				$entidades->setFuncion($funcion);
 		
-				$roles->setParametros($parametros);
+				$entidades->setParametros($parametros);
 		
 		
-				$resultado=$roles->Insert();
+				$resultado=$entidades->Insert();
 		
 		
 			}
-			$this->redirect("Roles", "index");
+			$this->redirect("Entidades", "index");
 
 		}
 		else
 		{
 			$this->view("Error",array(
-					"resultado"=>"No tiene Permisos de Insertar Roles"
+					"resultado"=>"No tiene Permisos de Insertar Entidades"
 		
 			));
 		
@@ -155,31 +155,31 @@ class EntidadesController extends ControladorBase{
 
 		session_start();
 		
-		$nombre_controladores = "Roles";
-		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+		$nombre_entidades = "Entidades";
+		$id_entidades= $_SESSION['id_entidades'];
+		$resultPer = $entidades->getPermisosEditar("   entidades.nombre_entidades = '$nombre_entidades' AND id_entidades.id_entidades = '$id_entidades' " );
 			
 		if (!empty($resultPer))
 		{
-			if(isset($_GET["id_rol"]))
+			if(isset($_GET["id_entidades"]))
 			{
-				$id_rol=(int)$_GET["id_rol"];
+				$id_entidades=(int)$_GET["id_entidades"];
 		
-				$roles=new RolesModel();
+				$entidades=new EntidadesModel();
 				
-				$roles->deleteBy(" id_rol",$id_rol);
+				$entidades->deleteBy(" id_entidades",$id_rol);
 				
 				
 			}
 			
-			$this->redirect("Roles", "index");
+			$this->redirect("Entidades", "index");
 			
 			
 		}
 		else
 		{
 			$this->view("Error",array(
-				"resultado"=>"No tiene Permisos de Borrar Roles"
+				"resultado"=>"No tiene Permisos de Borrar Entidades"
 			
 			));
 		}
@@ -190,7 +190,7 @@ class EntidadesController extends ControladorBase{
 	public function Reporte(){
 	
 		//Creamos el objeto usuario
-		$roles=new RolesModel();
+		$entidades=new EntidadesModel();
 		//Conseguimos todos los usuarios
 		
 	
@@ -200,8 +200,8 @@ class EntidadesController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario']) )
 		{
-			$resultRep = $roles->getByPDF("id_rol, nombre_rol", " nombre_rol != '' ");
-			$this->report("Roles",array(	"resultRep"=>$resultRep));
+			$resultRep = $roles->getByPDF("id_entidades, nombre_entidades", " nombre_entidades != '' ");
+			$this->report("Entidades",array(	"resultRep"=>$resultRep));
 	
 		}
 					
