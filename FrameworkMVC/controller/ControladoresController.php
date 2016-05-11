@@ -31,7 +31,7 @@ class ControladoresController extends ControladorBase{
 			
 			if (!empty($resultPer))
 			{
-				if (isset ($_GET["id_rol"])   )
+				if (isset ($_GET["id_controladores"])   )
 				{
 
 					$nombre_controladores = "Controladores";
@@ -100,9 +100,13 @@ class ControladoresController extends ControladorBase{
 
 		$nombre_controladores = "Controladores";
 		
+		$permisos_rol=new PermisosRolesModel();
+		
 		$id_rol= $_SESSION['id_rol'];
+		
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-			
+		
+		
 		if (!empty($resultPer))
 		{
 		
@@ -111,15 +115,28 @@ class ControladoresController extends ControladorBase{
 			$resultado = null;
 			$controladores=new ControladoresModel();
 		
-			//_nombre_categorias character varying, _path_categorias character varying
-			if (isset ($_POST["nombre_controladores"])   )
+			//_nombre_controladores
+			
+			if (isset ($_POST["nombre_controladores"]) )
 				
 			{
 				
+				
+				
 				$_nombre_controladores = $_POST["nombre_controladores"];
 				
-				 
+				if(isset($_POST["id_controladores"])) 
+				{
+					
+					$_id_controladores = $_POST["id_controladores"];
+					
+					
+				}else {
+					
+			
+				
 				$funcion = "ins_controladores";
+				
 				$parametros = " '$_nombre_controladores'  ";
 					
 				$controladores->setFuncion($funcion);
@@ -128,7 +145,7 @@ class ControladoresController extends ControladorBase{
 		
 		
 				$resultado=$controladores->Insert();
-		
+			 }
 		
 			}
 			$this->redirect("Controladores", "index");
@@ -137,7 +154,8 @@ class ControladoresController extends ControladorBase{
 		else
 		{
 			$this->view("Error",array(
-					"resultado"=>"No tiene Permisos de Insertar Roles"
+					
+					"resultado"=>"No tiene Permisos de Insertar Controladores"
 		
 			));
 		
@@ -151,31 +169,32 @@ class ControladoresController extends ControladorBase{
 
 		session_start();
 		
+		$permisos_rol=new PermisosRolesModel();
 		$nombre_controladores = "Roles";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 		if (!empty($resultPer))
 		{
-			if(isset($_GET["id_rol"]))
+			if(isset($_GET["id_controladores"]))
 			{
-				$id_rol=(int)$_GET["id_rol"];
-		
-				$roles=new RolesModel();
+				$id_controladores=(int)$_GET["id_controladores"];
 				
-				$roles->deleteBy(" id_rol",$id_rol);
+				$controladores=new ControladoresModel();
+				
+				$controladores->deleteBy(" id_controladores",$id_controladores);
 				
 				
 			}
 			
-			$this->redirect("Roles", "index");
+			$this->redirect("Controladores", "index");
 			
 			
 		}
 		else
 		{
 			$this->view("Error",array(
-				"resultado"=>"No tiene Permisos de Borrar Roles"
+				"resultado"=>"No tiene Permisos de Borrar Controladores"
 			
 			));
 		}
