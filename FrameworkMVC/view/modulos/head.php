@@ -42,17 +42,17 @@
 		<?php  
 		//bmmn
 			 $status = session_status();
-			 if  (isset( $_SESSION['nombre_usuario'] ))  {  
+			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
 		
 		 	 <div class="dropdown">
-				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><?php echo " Bienvenid@  ".$_SESSION['nombre_usuario'];?></span>
+				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><?php echo " Bienvenid@  ".$_SESSION['nombre_usuarios'];?></span>
 				  <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
 				    <li><a href="index.php?controller=Usuarios&action=cerrar_sesion">Cerrar Sesión</a></li>
 				    <li><a href="index.php?controller=Usuarios&action=Actualiza">Actualizar Datos de Usuario</a></li>
-				    <li><a href="#">Conectado desde: <?php echo $_SESSION['ip_usuario']?></a></li>
+				    <li><a href="#">Conectado desde: <?php echo $_SESSION['ip_usuarios']?></a></li>
 				  </ul>
 				  
 			</div>

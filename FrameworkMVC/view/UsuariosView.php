@@ -15,6 +15,35 @@
                 
             
         </style>
+        
+        <script>
+
+		$(document).ready(function(){
+
+		    $("#Guardar").click(function() {
+
+
+		    	//alert("sus claves no coinciden");
+		    	return false;
+		    	
+
+/*
+		    	if (   $('#clave_usuarios').val()) ==  $('#clave_usuarios_r').val()) )
+		    	{
+					
+	    	    }
+				else
+				{
+					alert('Clave no coinciden');
+					
+				}
+*/
+
+			  });
+
+		}); 
+
+	</script>
     </head>
     <body>
     
@@ -43,8 +72,8 @@
             		<th style="width: 50%">Repita Clave Usuario </th>
             	</tr>
 	            <tr>
-		            <td> <input type="password" name="clave_usuarios" value="" class="form-control"/></td>
-		            <td> <input type="password" name="clave_usuarios_r" value="" class="form-control"/></td>
+		            <td> <input type="password" name="clave_usuarios" id="clave_usuarios" value="" class="form-control"/></td>
+		            <td> <input type="password" name="clave_usuarios_r" id="clave_usuarios_r"  value="" class="form-control"/></td>
 	            </tr>
 	            <tr>
             		<th style="width: 50%">Teléfono Usuario </th>
@@ -69,7 +98,7 @@
 									
 					</td>    
                 
-                   <td> <input type="email" name="correo_usuarios" value="<?php echo $resEdit->correo_usuariso; ?>" class="form-control"/> </td>
+                   <td> <input type="email" name="correo_usuarios" value="<?php echo $resEdit->correo_usuarios; ?>" class="form-control"/> </td>
                 </tr>
                 <tr>
             		
@@ -110,8 +139,8 @@
             		<th style="width: 50%">Repita Clave Usuario </th>
             	</tr>
 	            <tr>
-		            <td> <input type="password" name="clave_usuarios" value="" class="form-control"/></td>
-		            <td> <input type="password" name="clave_usuarios_r" value="" class="form-control"/></td>
+		            <td> <input type="password" name="clave_usuarios" id="clave_usuarios" value="" class="form-control"/></td>
+		            <td> <input type="password" name="clave_usuarios_r" id="clave_usuarios_r" value="" class="form-control"/></td>
 	            </tr>
 	            <tr>
             		<th style="width: 50%">Teléfono Usuario </th>
@@ -162,7 +191,7 @@
                	
 		     <?php } ?>
 		        
-           <input type="submit" value="Guardar" class="btn btn-success"/>
+           <input type="submit" value="Guardar" id="Guardar" class="btn btn-success"/>
           </form>
        
        
@@ -203,7 +232,7 @@
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Usuarios","borrarId"); ?>&id_usuariso=<?php echo $res->id_usuarios; ?>" class="btn btn-danger">Borrar</a>
+			                    <a href="<?php echo $helper->url("Usuarios","borrarId"); ?>&id_usuarios=<?php echo $res->id_usuarios; ?>" class="btn btn-danger">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>

@@ -36,7 +36,7 @@
 		    $("#guardar").submit(function() {
 
 
-		    	if (   $('#clave_usuario').val()) ==  $('#clave_usuario_r').val()) )
+		    	if (   $('#clave_usuarios').val()) ==  $('#clave_usuario_r').val()) )
 		    	{
 					
 	    	    }
@@ -74,15 +74,15 @@
             		
             	</tr>
             	<tr>
-				   <td>	<input type="text" name="nombre_usuario" value="<?php echo $resEdit->nombre_usuario; ?>" class="form-control"/> </td>
-		           <td> <input type="text" name="usuario_usuario" value="<?php echo $resEdit->usuario_usuario; ?>" class="form-control"/> </td>
+				   <td>	<input type="text" name="nombre_usuarios" value="<?php echo $resEdit->nombre_usuarios; ?>" class="form-control"/> </td>
+		           <td> <input type="text" name="usuario_usuarios" value="<?php echo $resEdit->usuario_usuarios; ?>" class="form-control"/> </td>
 	            </tr>
 	            <tr>
             		<th style="width: 50%">Clave Usuario </th>
             		<th style="width: 50%">Repita Clave Usuario </th>
             	</tr>
 	            <tr>
-		            <td> <input type="password" name="clave_usuario"  id="clave_usuario" value="" class="form-control"/></td>
+		            <td> <input type="password" name="clave_usuarios"  id="clave_usuarios" value="" class="form-control"/></td>
 		            <td> <input type="password" name="clave_usuario_r" id="clave_usuario_r" value="" class="form-control"/></td>
 	            </tr>
 	            <tr>
@@ -90,8 +90,8 @@
             		<th style="width: 50%">Celular  Usuario </th>
             	</tr>
 	            <tr>
-	        		<td> <input type="text" name="telefono_usuario" value="<?php echo $resEdit->telefono_usuario; ?>" class="form-control"/> </td>
-            		<td> <input type="text" name="celular_usuario" value="<?php echo $resEdit->celular_usuario; ?>" class="form-control"/> </td>    
+	        		<td> <input type="text" name="telefono_usuarios" value="<?php echo $resEdit->telefono_usuarios; ?>" class="form-control"/> </td>
+            		<td> <input type="text" name="celular_usuarios" value="<?php echo $resEdit->celular_usuarios; ?>" class="form-control"/> </td>    
 	            </tr>
                 <tr>
             		<th> Correo Usuario </th>
@@ -99,7 +99,7 @@
             	</tr>
                 <tr>
                 	
-                   <td> <input type="email" name="correo_usuario" value="<?php echo $resEdit->correo_usuario; ?>" class="form-control"/> </td>
+                   <td> <input type="email" name="correo_usuarios" value="<?php echo $resEdit->correo_usuarios; ?>" class="form-control"/> </td>
                 </tr>
            	
 		    </table>        
@@ -113,15 +113,15 @@
             		
             	</tr>
             	<tr>
-				   <td>	<input type="text" name="nombre_usuario" value="" class="form-control"/> </td>
-		           <td> <input type="text" name="usuario_usuario" value="" class="form-control"/> </td>
+				   <td>	<input type="text" name="nombre_usuarios" value="" class="form-control"/> </td>
+		           <td> <input type="text" name="usuario_usuarios" value="" class="form-control"/> </td>
 	            </tr>
 	            <tr>
             		<th style="width: 50%">Clave Usuario </th>
             		<th style="width: 50%">Repita Clave Usuario </th>
             	</tr>
 	            <tr>
-		            <td> <input type="password" name="clave_usuario" id="clave_usuario" value="" class="form-control"/></td>
+		            <td> <input type="password" name="clave_usuarios" id="clave_usuarios" value="" class="form-control"/></td>
 		            <td> <input type="password" name="clave_usuario_r" id="clave_usuario_r" value="" class="form-control"/></td>
 	            </tr>
 	            <tr>
@@ -129,8 +129,8 @@
             		<th style="width: 50%">Celular  Usuario </th>
             	</tr>
 	            <tr>
-	        		<td> <input type="text" name="telefono_usuario" value="" class="form-control"/> </td>
-            		<td> <input type="text" name="celular_usuario" value="" class="form-control"/> </td>    
+	        		<td> <input type="text" name="telefono_usuarios" value="" class="form-control"/> </td>
+            		<td> <input type="text" name="celular_usuarios" value="" class="form-control"/> </td>    
 	            </tr>
                 <tr>
             		
@@ -138,7 +138,7 @@
             	</tr>
                 <tr>
                 	
-                   <td> <input type="email" name="correo_usuario" value="" class="form-control"/> </td>
+                   <td> <input type="email" name="correo_usuarios" value="" class="form-control"/> </td>
                 </tr>
             
 		    </table>        

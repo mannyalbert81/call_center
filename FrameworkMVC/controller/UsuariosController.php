@@ -106,7 +106,7 @@ public function index(){
 	
 			$funcion = "ins_usuarios";
 			
-			$parametros = " '$_nombre_usuarios' ,'$_clave_usuarios' , '$_telefono_usuarios', '$_celular_usuarios', '$_correo_usuarios' , '$_id_rol', '$_id_estado' , '$_usuario_usuarios'";
+			$parametros = " '$_nombre_usuario' ,'$_clave_usuario' , '$_telefono_usuario', '$_celular_usuario', '$_correo_usuario' , '$_id_rol', '$_id_estado' , '$_usuario_usuario'";
 			$usuarios->setFuncion($funcion);
 	
 			$usuarios->setParametros($parametros);
@@ -114,12 +114,12 @@ public function index(){
 	
 			$resultado=$usuarios->Insert();
 	
-			/*
-			 $this->view("Categorias",array(
-			 "resultado"=>$resultado
-			 ));
+			
+			 //$this->view("Categorias",array(
+			 //"resultado"=>$resultado
+			 //));
 	
-			*/
+			
 	
 		}
 		$this->redirect("Usuarios", "index");
@@ -130,11 +130,11 @@ public function index(){
 	{
 		if(isset($_GET["id_usuarios"]))
 		{
-			$id_usuarios=(int)$_GET["id_usuarios"];
+			$id_usuario=(int)$_GET["id_usuarios"];
 	
 			$usuarios=new UsuariosModel();
 				
-			$usuarios->deleteBy(" id_usuarios",$id_usuarios);
+			$usuarios->deleteBy(" id_usuarios",$id_usuario);
 				
 				
 		}
