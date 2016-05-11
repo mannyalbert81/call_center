@@ -11,9 +11,9 @@ class EntidadesController extends ControladorBase{
 	public function index(){
 	
 		//Creamos el objeto usuario
-     	$Entidades=new EntidadesModel();
+     	$entidades=new EntidadesModel();
 					//Conseguimos todos los usuarios
-		$resultSet=$Entidades->getAll("id_entidades");
+		$resultSet=$entidades->getAll("id_entidades");
 				
 		$resultEdit = "";
 
@@ -21,21 +21,21 @@ class EntidadesController extends ControladorBase{
 		session_start();
 
 	
-		if (isset(  $_SESSION['ruc_entidades']) )
+		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
-			$nombre_entidades = "Entidades";
-			$id_entidades= $_SESSION['id_entidades'];
-			$resultPer = $Entidades->getPermisosVer("   entidades.nombre_entidades = '$nombre_entidades' AND id_entidades.id_entidades = '$id_entidades' " );
+			$nombre_controladores = "Entidades";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $entidades->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPer))
 			{
 				if (isset ($_GET["id_entidades"])   )
 				{
 
-					$nombre_entidades = "Entidades";
-					$id_entidades= $_SESSION['id_entidades'];
-					$resultPer = $entidades->getPermisosEditar("   entidades.nombre_entidades = '$nombre_entidades' AND id_entidades.id_entidades = '$id_entidades' " );
+					$nombre_controladores = "Entidades";
+					$id_rol= $_SESSION['id_rol'];
+					$resultPer = $entidades->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
 					if (!empty($resultPer))
 					{
@@ -95,12 +95,13 @@ class EntidadesController extends ControladorBase{
 	public function InsertaEntidades(){
 			
 		session_start();
+		$entidades=new EntidadesModel();
 		
 
-		$nombre_entidades = "Entidades";
-		$id_rol= $_SESSION['id_entidades'];
-		$resultPer = $entidades->getPermisosEditar("   entidades.nombre_entidades = '$nombre_entidades' AND id_entidades.id_entidades = '$id_entidades' " );
-			
+		$nombre_controladores = "Entidades";
+		$id_rol= $_SESSION['id_rol'];
+		$resultPer = $entidades->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+						
 		if (!empty($resultPer))
 		{
 		
@@ -118,11 +119,6 @@ class EntidadesController extends ControladorBase{
 				$_nombre_entidades = $_POST["nombre_entidades"];
 				
 				
-				
-				
-				$_nombre_entidades = $_POST["nombre_entidades"];
-				
-				 
 				$funcion = "ins_entidades";
 				$parametros = " '$_nombre_entidades'  ";
 					
