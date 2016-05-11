@@ -66,10 +66,16 @@
        
        <?php include("view/modulos/menu.php"); ?>
   
+  <div class="container">
+  
+  <div class="row">
+  
+  <div></div>
     
+      <!-- empieza el form --> 
        
       <form action="<?php echo $helper->url("Usuarios","InsertaUsuarios"); ?>" method="post" class="col-lg-5">
-            <h4>Insertar Usuarios</h4>
+            <h4 style="color:#ec971f;">Insertar Usuarios</h4>
             <hr/>
             <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             <table class="table">
@@ -225,10 +231,10 @@
 		        
            <input type="submit" value="Guardar" id="Guardar" class="btn btn-success"/>
           </form>
-       
+       <!-- termina el form --> 
        
         <div class="col-lg-7">
-            <h4>Lista de Usuarios</h4>
+            <h4 style="color:#ec971f;">Lista de Usuarios</h4>
             <hr/>
         </div>
         <section class="col-lg-7 usuario" style="height:600px;overflow-y:scroll;">
@@ -282,6 +288,7 @@
        	</table>     
       </section>
       </div>
-       
+      </div>
+   </div>
      </body>  
     </html>   
