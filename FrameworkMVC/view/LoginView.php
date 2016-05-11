@@ -28,8 +28,9 @@
 			body {
 			
 			    /* Ubicación de la imagen */
+		 /*
 		  background-image: url(view/images/wallpaper.png);
-		
+		*/
 		  /* Nos aseguramos que la imagen de fondo este centrada vertical y
 		    horizontalmente en todo momento */
 		  background-position: center center;
@@ -58,30 +59,35 @@
      <?php include("view/modulos/head.php"); ?>
        
    
-   <div class="container" style="margin: auto;">
    
-        <form action="<?php echo $helper->url("usuarios","Loguear"); ?>" method="post"  class="col-lg-5" style=" padding-top:100px;">
-        <div   style="background:#F6FADE ;border-radius: 5px;  border: 3px solid #063B41;"  >
+        <form action="<?php echo $helper->url("usuarios","Loguear"); ?>" method="post"  class="col-lg-12" style=" padding-top:100px;">
         
-        <h4 class="text-center" >Inicio de Sesión</h4>
-        <hr/>
-        <div class="text-center"  >
-            
-            <strong>USUARIO</strong> <input type="text" name="usuarios" class="form-control"  style="text-align: center; " />
-            
-            <strong>CLAVE</strong> <input type="password" name="clave" class="form-control"  style="text-align: center; "/>
-            
-            <div class="text-center" style="height: 60px">
-            <input type="submit" value="Login" class="btn btn-warning" style="width: 50%; "/>
-            </div>
-        </div>
-            
+        <div class="row">
+        
+        
+        	<div class="col-xs-4 col-md-4">
+        	</div>
+        	<div class="col-xs-4 col-md-4">
+        	  <div   style="background:#F6FADE ;border-radius: 5px;  border: 3px solid #063B41;"  >
+     		     <h4 class="text-center" >Inicio de Sesión</h4>
+   
+        		<div class="text-center"  >
+            		<input type="text" name="usuarios" class="form-control" placeholder="usuario"  style="text-align: center; " />
+            		<input type="password" name="clave" placeholder="clave" class="form-control"  style="text-align: center; "/>
+            		<div class="text-center" style="height: 60px">
+            			<input type="submit" value="Login" class="btn btn-warning" style="width: 50%; "/>
+            		</div>
+            	</div>
+              </div>
+        	</div>
+            <div class="col-xs-4 col-md-4">
+        	</div>
+        	
           
     	</div>    
         </form>
        
    
-        </div>
         
     	<footer class="col-lg-12">
            <?php include("view/modulos/footer.php"); ?>
