@@ -1,9 +1,24 @@
+
+
+
 <!DOCTYPE HTML>
 <html lang="es">
+
       <head>
+      
         <meta charset="utf-8"/>
         <title>Usuarios - aDocument 2015</title>
-   
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		   
+          <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		  <link rel="stylesheet" href="/resources/demos/style.css">
+		
+		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
+        <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+        <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+        <script src= "Scripts/jquery-1.5.2.js" type="text/javascript"></script>
         <style>
             input{
                 margin-top:5px;
@@ -15,35 +30,45 @@
                 
             
         </style>
-        
-        <script>
+       
+       
+       
+       <script>
+    function comprobarClave(){
+    	clave_usuarios = document.f1.clave_usuarios.value
+    	clave_usuarios_r = document.f1.clave_usuarios_r.value
 
+    if (clave_usuarios == clave_usuarios_r)
+       alert("Las dos claves son iguales...\nRealizaríamos las acciones del caso positivo")
+    else
+       alert("Las dos claves son distintas...\nRealizaríamos las acciones del caso negativo")
+}
+</script> 
+       
+        <script>
+        /*
 		$(document).ready(function(){
 
 		    $("#Guardar").click(function() {
 
 
-		    	//alert("sus claves no coinciden");
-		    	return false;
-		    	
-
-/*
 		    	if (   $('#clave_usuarios').val()) ==  $('#clave_usuarios_r').val()) )
 		    	{
-					
+				
 	    	    }
 				else
 				{
-					alert('Clave no coinciden');
 					
 				}
-*/
-
+				
+				alert("Clave no coinciden");
+				return false;
 			  });
-
+			  
 		}); 
-
+		*/
 	</script>
+	
     </head>
     <body>
     
@@ -58,11 +83,19 @@
             <hr/>
             <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             <table class="table">
+            	
+            	<tr>
+            		<th style="width: 50%">Cedula Usuario </th>
+            		
+            	</tr>
+            	<tr>
+            	<td>	<input type="text" name="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>" class="form-control"/> </td>
+            	</tr>
             	<tr>
             		<th style="width: 50%">Nombres Usuario </th>
             		<th style="width: 50%">Usuario </th>
-            		
             	</tr>
+            	
             	<tr>
 				   <td>	<input type="text" name="nombre_usuarios" value="<?php echo $resEdit->nombre_usuarios; ?>" class="form-control"/> </td>
 		           <td> <input type="text" name="usuario_usuarios" value="<?php echo $resEdit->usuario_usuarios; ?>" class="form-control"/> </td>
@@ -125,11 +158,20 @@
 		     <?php } } else {?>
 		    
 		    <table class="table">
+            	
+            	<tr>
+            		<th style="width: 50%">Cedula Usuario </th>
+            		
+            	</tr>
+            	<tr>
+            	<td>	<input type="text" name="cedula_usuarios" value="" class="form-control"/> </td>
+            	</tr>
             	<tr>
             		<th style="width: 50%">Nombres Usuario </th>
             		<th style="width: 50%">Usuario </th>
             		
             	</tr>
+            	
             	<tr>
 				   <td>	<input type="text" name="nombre_usuarios" value="" class="form-control"/> </td>
 		           <td> <input type="text" name="usuario_usuarios" value="" class="form-control"/> </td>
@@ -203,6 +245,7 @@
         <table class="table table-hover">
 	         <tr>
 	    		<th>Id</th>
+	    		<th>Cedula</th>
 	    		<th>Nombre</th>
 	    		<th>Usuario</th>
 	    		<th>Teléfono</th>
@@ -217,6 +260,7 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	                   <td> <?php echo $res->id_usuarios; ?>  </td>
+	                   <td> <?php echo $res->cedula_usuarios; ?>     </td>
 		               <td> <?php echo $res->nombre_usuarios; ?>     </td> 
 		               <td> <?php echo $res->usuario_usuarios; ?>  </td>
 		               <td> <?php echo $res->telefono_usuarios; ?>  </td>
