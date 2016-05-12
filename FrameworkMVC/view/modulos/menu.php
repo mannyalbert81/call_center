@@ -42,6 +42,8 @@
 		    </li>
 			<li><a href="index.php?controller=Roles&action=index"><span class="glyphicon glyphicon-euro" aria-hidden="true"> Recaudacion</span> </a>
 			</li>
+			<li><a href="index.php?controller=AsignacionSecretarios&action=index"><span class="glyphicon glyphicon-copy" aria-hidden="true"> Asignacion Secretarios</span> </a>
+			</li>
 			
           </ul>
         </li>
