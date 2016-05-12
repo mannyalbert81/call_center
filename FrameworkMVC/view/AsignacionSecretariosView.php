@@ -141,14 +141,16 @@
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	            	
 	            	
-	            	
+	            	<div class="row">
+	            	<div class="col-xs-12 col-md-12">
 	            	Nombre Secretario: <select name="id_rol" id="id_rol"  class="form-control">
 									<?php foreach($resultRol as $resRol) {?>
 				 						<option value="<?php echo $resRol->id_rol; ?>" <?php if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $resRol->nombre_rol; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
-		   		   
+		   		   </div>
+		   		   <div class="col-xs-12 col-md-12">
 	            	 Nombre Abogado Impulsor: <select name="id_controladores" id="id_controladores"  class="form-control">
 									<?php foreach($resultCon as $resCon) {?>
 				 						<option value="<?php echo $resCon->id_controladores; ?>" <?php if ($resCon->id_controladores == $resEdit->id_controladores )  echo  ' selected="selected" '  ;  ?> ><?php echo $resCon->nombre_controladores; ?> </option>
@@ -156,34 +158,8 @@
 								    	
 									</select>
 		   		   
-		   		   <table class="table">
-		   		   	<tr>
-		   		   		<th style="width: 33.3%" > Ver</th>
-		   		   		<th style="width: 33.3%"> Editar</th>
-		   		   		<th style="width: 33.3%"> Borrar</th>
-		   		   	</tr>
-		   		   	<tr>
-					  <td> 
-		   		   		<select name="ver_permisos_rol" id="ver_permisos_rol"  class="form-control">
-										<option value="TRUE"  <?php  if ( $resEdit->ver_permisos_rol =='t')  echo ' selected="selected" ' ; ?> >Permitir </option>
-						            	<option value="FALSE" <?php  if ( $resEdit->ver_permisos_rol =='f')  echo ' selected="selected" ' ; ?> >Denegar </option>
-					    </select>
-		   		   		</td>
-		   		   		<td> 
-		   		   		<select name="editar_permisos_rol" id="editat_permisos_rol"  class="form-control">
-										<option value="TRUE"  <?php  if ( $resEdit->editar_permisos_rol =='t')  echo ' selected="selected" ' ; ?>>Permitir </option>
-						            	<option value="FALSE" <?php  if ( $resEdit->editar_permisos_rol =='f')  echo ' selected="selected" ' ; ?>  >Denegar </option>
-					    </select>
-					    </td>
-		   		   		<td>
-		   		   		<select name="borrar_permisos_rol" id="borrar_permisos_rol"  class="form-control">
-										<option value="TRUE"  <?php  if ( $resEdit->borrar_permisos_rol =='t')  echo ' selected="selected" ' ; ?> >Permitir </option>
-						            	<option value="FALSE" <?php  if ( $resEdit->borrar_permisos_rol =='f')  echo ' selected="selected" ' ; ?>  >Denegar </option>
-					    </select>
-		   		   		</td>
-		   		
-		   		   	</tr>
-		   		   </table>
+		   		    </div>
+	            	</div>
 		   		   
 		   		   <hr>
 		    
@@ -204,33 +180,7 @@
 								    	
 									</select>
 		   		   
-		    	   <table class="table">
-		   		   	<tr>
-		   		   		<th style="width: 33.3%"> Ver</th>
-		   		   		<th style="width: 33.3%"> Editar</th>
-		   		   		<th style="width: 33.3%"> Borrar</th>
-		   		   	</tr>
-		   		   	<tr>
-		   		   		<td> 
-		   		   		<select name="ver_permisos_rol" id="ver_permisos_rol"  class="form-control">
-										<option value="TRUE"  >Permitir </option>
-						            	<option value="FALSE"  >Denegar </option>
-					    </select>
-		   		   		</td>
-		   		   		<td> 
-		   		   		<select name="editar_permisos_rol" id="editat_permisos_rol"  class="form-control">
-										<option value="TRUE"  >Permitir </option>
-						            	<option value="FALSE"  >Denegar </option>
-					    </select>
-					    </td>
-		   		   		<td>
-		   		   		<select name="borrar_permisos_rol" id="borrar_permisos_rol"  class="form-control">
-										<option value="TRUE"  >Permitir </option>
-						            	<option value="FALSE"  >Denegar </option>
-					    </select>
-		   		   		</td>
-		   		   	</tr>
-		   		   </table>
+		    	   
 		        <hr>
 		     <?php } ?>
 		        
