@@ -132,11 +132,11 @@ class FirmasDigitalesController extends ControladorBase{
 		
 			//_nombre_controladores
 			
-			if (isset ($_POST["id_usuarios"]) )
+			if (isset ($_POST["nombre_secretario"]) )
 				
 			{
 				$usuarios=new UsuariosModel();
-				$_id_usuarios =  $_POST["id_usuarios"] ;
+				$_id_usuarios =  $_POST["nombre_secretario"] ;
 				
 				$firmas_digitales = new FirmasDigitalesModel();
 				$directorio = $_SERVER['DOCUMENT_ROOT'].'/uploads/';
