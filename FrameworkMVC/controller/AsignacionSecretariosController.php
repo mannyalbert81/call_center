@@ -83,13 +83,23 @@ class AsignacionSecretariosController extends ControladorBase{
 					}
 			
 					
-					$columnas = "permisos_rol.id_permisos_rol, rol.nombre_rol, permisos_rol.nombre_permisos_rol, controladores.nombre_controladores, permisos_rol.ver_permisos_rol, permisos_rol.editar_permisos_rol, permisos_rol.borrar_permisos_rol  ";
+					/*$columnas = "permisos_rol.id_permisos_rol, rol.nombre_rol, permisos_rol.nombre_permisos_rol, controladores.nombre_controladores, permisos_rol.ver_permisos_rol, permisos_rol.editar_permisos_rol, permisos_rol.borrar_permisos_rol  ";
 					$tablas   = "public.controladores,  public.permisos_rol, public.rol";
 					$where    = " controladores.id_controladores = permisos_rol.id_controladores AND permisos_rol.id_rol = rol.id_rol";
 					$id       = " permisos_rol.nombre_permisos_rol, controladores.nombre_controladores";
 						
 					$permisos_rol = new PermisosRolesModel();
-					$resultSet=$permisos_rol->getCondiciones($columnas ,$tablas ,$where, $id);
+					$resultSet=$permisos_rol->getCondiciones($columnas ,$tablas ,$where, $id);*/
+					
+					$columnas = "permisos_rol.id_permisos_rol, rol.nombre_rol, permisos_rol.nombre_permisos_rol, controladores.nombre_controladores, permisos_rol.ver_permisos_rol, permisos_rol.editar_permisos_rol, permisos_rol.borrar_permisos_rol  ";
+					$tablas   = "public.controladores,  public.permisos_rol, public.rol";
+					$where    = " controladores.id_controladores = permisos_rol.id_controladores AND permisos_rol.id_rol = rol.id_rol";
+					$id       = " permisos_rol.nombre_permisos_rol, controladores.nombre_controladores";
+					
+					
+					$asignacionSecretarios = new AsignacionSecretariosModel();
+					$resultSet=$asignacionSecretarios->getAll("id_asignacion_secretarios");
+					//$resultSet=$asignacionSecretarios->getCondiciones($columnas, $tablas, $where, $id);
 					
 					//cambio linea 86
 					//"resultCon"=>$resultCon, "resultAcc"=>$resultAcc, "resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol
@@ -124,7 +134,7 @@ class AsignacionSecretariosController extends ControladorBase{
 	}
 	
 	
-	public function InsertaPermisosRoles(){
+	public function InsertaAsignacionSecretarios(){
 
 		session_start();
 		
@@ -132,7 +142,7 @@ class AsignacionSecretariosController extends ControladorBase{
 		$permisos_rol=new PermisosRolesModel();
 	
 		
-		$nombre_controladores = "PermisosRoles";
+		$nombre_controladores = "AsignacionSecretarios";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
 		
@@ -141,29 +151,27 @@ class AsignacionSecretariosController extends ControladorBase{
 		
 		
 		//_nombre_categorias character varying, _path_categorias character varying
-		if (isset ($_POST["nombre_permisos_rol"]) && isset ($_POST["id_controladores"]) && isset ($_POST["id_rol"])  )
+		if (isset ($_POST["id_usuarioSecretario"]) && isset ($_POST["id_usuarioImpulsor"]) )
 			
 		{
-			$_nombre_permisos_rol = $_POST["nombre_permisos_rol"];
-			$_id_controladores = $_POST["id_controladores"];
-			$_ver_permisos_rol = $_POST["ver_permisos_rol"];
-			$_editar_permisos_rol = $_POST["editar_permisos_rol"];
-			$_borrar_permisos_rol = $_POST["borrar_permisos_rol"];
-			$_id_rol = $_POST["id_rol"];
-		
-			 
-			$funcion = "ins_permisos_rol";
+			$asignacionSecretarios=new AsignacionSecretariosModel();
 			
-			$parametros = " '$_nombre_permisos_rol' ,'$_id_controladores' , '$_ver_permisos_rol' , '$_editar_permisos_rol', '$_borrar_permisos_rol', '$_id_rol' ";
+			$_id_secretario = $_POST["id_usuarioSecretario"];
+			$_id_impulsor = $_POST["id_usuarioImpulsor"];
+			
+			 
+			$funcion = "ins_asignacion_secretarios";
+			
+			$parametros = "'$_id_secretario' ,'$_id_impulsor'";
 
 			try {
 				
-				$permisos_rol->setFuncion($funcion);
-				$permisos_rol->setParametros($parametros);
-				$resultado=$permisos_rol->Insert();
+				$asignacionSecretarios->setFuncion($funcion);
+				$asignacionSecretarios->setParametros($parametros);
+				$resultado=$asignacionSecretarios->Insert();
 				
 
-			$this->redirect("PermisosRoles", "index");
+			$this->redirect("AsignacionSecretarios", "index");
 			
 			}
 			catch (Exeption $Ex)
@@ -181,7 +189,7 @@ class AsignacionSecretariosController extends ControladorBase{
 		else
 		{
 			$this->view("Error",array(
-					"resultado"=>"No tiene Permisos Para Crear Permisos Roles"
+					"resultado"=>"No tiene Permisos Para Asignar Secretarios"
 		
 			));
 		
@@ -198,28 +206,28 @@ class AsignacionSecretariosController extends ControladorBase{
 
 		session_start();
 		
-		$nombre_controladores = "PermisosRoles";
+		$nombre_controladores = "AsignacionSecretarios";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosBorrar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
 		
 		if (!empty($resultPer))
 		{
-			if(isset($_GET["id_permisos_rol"]))
+			if(isset($_GET["id_asignacion_secretarios"]))
 			{
-				$id_permisos_rol=(int)$_GET["id_permisos_rol"];
+				$id_asigancionSecretarios=(int)$_GET["id_asignacion_secretarios"];
 		
-				$permisos_rol=new PermisosRolesModel();
-				
-				$permisos_rol->deleteBy(" id_permisos_rol",$id_permisos_rol);
+				$asignacionSecretario=new AsignacionSecretariosModel();
+			
+				$asignacionSecretario->deleteBy(" id_asignacion_secretarios",$id_asigancionSecretarios);
 			}
 			
-			$this->redirect("PermisosRoles", "index");
+			$this->redirect("AsignacionSecretarios", "index");
 			
 		}
 		else
 		{
 			$this->view("Error",array(
-					"resultado"=>"No tiene Permisos de Borrar Permisos Roles"
+					"resultado"=>"No tiene Permisos de Borrar la Asignacion Secretarios"
 		
 			));
 		
