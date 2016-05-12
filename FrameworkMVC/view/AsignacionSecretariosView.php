@@ -133,23 +133,23 @@
   <div></div>
        
       <form action="<?php echo $helper->url("PermisosRoles","InsertaPermisosRoles"); ?>" method="post" class="col-lg-4">
-            <h4 style="color:#ec971f;">Insertar Permisos Roles</h4>
+            <h4 style="color:#ec971f;">Insertar Asignacion Secretarios</h4>
             <hr/>
             	
 		   		
             
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	            	
-	            	Nombre Permisos Rol: <input type="text" id="nombre_permisos_rol" name="nombre_permisos_rol" value="<?php echo $resEdit->nombre_permisos_rol; ?>" class="form-control"/>
 	            	
-	            	Nombre Rol: <select name="id_rol" id="id_rol"  class="form-control">
+	            	
+	            	Nombre Secretario: <select name="id_rol" id="id_rol"  class="form-control">
 									<?php foreach($resultRol as $resRol) {?>
 				 						<option value="<?php echo $resRol->id_rol; ?>" <?php if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $resRol->nombre_rol; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
 		   		   
-	            	 Nombre Controlador: <select name="id_controladores" id="id_controladores"  class="form-control">
+	            	 Nombre Abogado Impulsor: <select name="id_controladores" id="id_controladores"  class="form-control">
 									<?php foreach($resultCon as $resCon) {?>
 				 						<option value="<?php echo $resCon->id_controladores; ?>" <?php if ($resCon->id_controladores == $resEdit->id_controladores )  echo  ' selected="selected" '  ;  ?> ><?php echo $resCon->nombre_controladores; ?> </option>
 						            <?php } ?>
@@ -189,21 +189,17 @@
 		    
 		     <?php } } else {?>
 		    
-		     		
-		     		
-		     		
-		     		Nombre Permisos Rol: <input type="text" id="nombre_permisos_rol" name="nombre_permisos_rol" value="" class="form-control"/>
 	            	
-	            	Nombre Rol: <select name="id_rol" id="id_rol"  class="form-control">
-									<?php foreach($resultRol as $resRol) {?>
-				 						<option value="<?php echo $resRol->id_rol; ?>" ><?php echo $resRol->nombre_rol; ?> </option>
+	            	Nombre Secretario: <select name="nombre_secretario" id="nombre_secretario"  class="form-control">
+									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
+				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
 		   		   
-	            	 Nombre Controlador: <select name="id_controladores" id="id_controladores"  class="form-control">
-									<?php foreach($resultCon as $resCon) {?>
-				 						<option value="<?php echo $resCon->id_controladores; ?>"  ><?php echo $resCon->nombre_controladores; ?> </option>
+	            	 Nombre Abogado Impulsor: <select name="nombre_impulsor" id="nombre_impulsor"  class="form-control">
+									<?php foreach($resultUsuarioImpulsor as $resImpulsor) {?>
+				 						<option value="<?php echo $resImpulsor->id_usuarios; ?>"  ><?php echo $resImpulsor->nombre_usuarios; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
@@ -235,7 +231,7 @@
 		   		   		</td>
 		   		   	</tr>
 		   		   </table>
-		        
+		        <hr>
 		     <?php } ?>
 		        
 		        <div class="row">
@@ -247,7 +243,7 @@
        
        
         <div class="col-lg-8">
-            <h4 style="color:#ec971f;">Permisos Rol</h4>
+            <h4 style="color:#ec971f;">Asignacion Secretarios</h4>
            
         </div>
         <section class="col-lg-8 usuario" style="height:400px;overflow-y:scroll; margin-top: 10px;">
