@@ -132,11 +132,11 @@ class FirmasDigitalesController extends ControladorBase{
 		
 			//_nombre_controladores
 			
-			if (isset ($_POST["id_usuarios"]) )
+			if (isset ($_POST["nombre_secretario"]) )
 				
 			{
 				$usuarios=new UsuariosModel();
-				$_id_usuarios =  $_POST["id_usuarios"] ;
+				$_id_usuarios =  $_POST["nombre_secretario"] ;
 				
 				$firmas_digitales = new FirmasDigitalesModel();
 				$directorio = $_SERVER['DOCUMENT_ROOT'].'/uploads/';
@@ -164,11 +164,21 @@ class FirmasDigitalesController extends ControladorBase{
 				$firmas_digitales->setFuncion($funcion);	
 				$firmas_digitales->setParametros($parametros);
 			   
-				$resultado=$firmas_digitales->Insert();
 				
-				//$this->view("Error",array(
-				//"resultado"=>"entro"
-				//));
+				try {
+				
+					$resultado=$firmas_digitales->Insert();
+					
+					
+				} catch (Exception $e) {
+					
+					$this->view("Error",array(
+							"resultado"=>$e
+					));
+					
+					
+				}
+				
 					
 				}
 				//pasante
