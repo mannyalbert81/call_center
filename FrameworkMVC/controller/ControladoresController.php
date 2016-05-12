@@ -97,10 +97,11 @@ class ControladoresController extends ControladorBase{
 			
 		session_start();
 		
+		$controladores=new ControladoresModel();
 
 		$nombre_controladores = "Controladores";
 		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+		$resultPer = $controladores->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 		
 		
 		if (!empty($resultPer))
