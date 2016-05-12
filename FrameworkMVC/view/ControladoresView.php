@@ -89,6 +89,7 @@
 		       <div class="col-xs-12 col-md-12">
 			  	<p  class="formulario-subtitulo" >Nombres Controladores</p>
 			  	<input type="text"  name="nombre_controladores" id="nombre_controladores" value="<?php echo $resEdit->nombre_controladores; ?>" class="form-control"/> 
+			  	<input type="hidden"  name="id_controladores"  value="<?php echo $resEdit->id_controladores; ?>" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			   </div>
@@ -108,6 +109,8 @@
 		   
                	
 		     <?php } ?>
+		     
+		     
 		       <div class="row">
 			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
 			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
