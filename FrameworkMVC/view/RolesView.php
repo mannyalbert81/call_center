@@ -42,10 +42,7 @@
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			   </div>
-	        <!--  
-	            	Nombre Rol: <input type="text" name="nombre_rol." value="<?php// echo $resEdit->nombre_rol; ?>" class="form-control"/>
-		            
-		    -->       
+	              
             
 		     <?php } } else {?>
 		     
@@ -58,7 +55,7 @@
 			 </div>
 		    
 		          <!--  
-	            	Nombre Rol: <input type="text" name="nombre_rol." value="<?php// echo $resEdit->nombre_rol; ?>" class="form-control"/>
+	            	Nombre Rol: <input type="text" name="nombre_rol." value="<?php // echo $resEdit->nombre_rol; ?>" class="form-control"/>
 		            
 		    -->   
 		            
@@ -113,6 +110,7 @@
   
        
        <?php include("view/modulos/footer.php"); ?>
-        
+        </div>
+      </div>
      </body>  
     </html>          

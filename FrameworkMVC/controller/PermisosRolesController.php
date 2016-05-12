@@ -33,8 +33,8 @@ class PermisosRolesController extends ControladorBase{
 					$resultCon=$controladores->getAll("nombre_controladores");
 			
 			
-					$acciones=new AccionesModel();
-					$resultAcc=$acciones->getAll("id_controladores");
+					//$acciones=new AccionesModel();
+					//$resultAcc=$acciones->getAll("id_controladores");
 		
 			
 		

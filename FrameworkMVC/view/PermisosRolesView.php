@@ -120,15 +120,15 @@
             
         </style>
     </head>
-    <body>
+    <body style="background-color: #d9e3e4;">
     
        <?php include("view/modulos/head.php"); ?>
        
        <?php include("view/modulos/menu.php"); ?>
   
-    <div class="container">
+   <div class="container">
   
-  <div class="row">
+  <div class="row" style="background-color: #ffffff;">
   
   <div></div>
        
@@ -240,11 +240,11 @@
           </form>
        
        
-        <div class="col-lg-7">
+        <div class="col-lg-6">
             <h4 style="color:#ec971f;">Permisos Rol</h4>
-            <hr/>
+           
         </div>
-        <section class="col-lg-7 usuario" style="height:400px;overflow-y:scroll;">
+        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll; margin-top: 10px;">
         <table class="table table-hover">
 	         <tr>
 	    		<th style="color:#456789;font-size:80%;">Id</th>
@@ -290,6 +290,7 @@
             
        	</table>     
       </section>
+      </div>
       </div>
        
      </body>  
