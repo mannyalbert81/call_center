@@ -29,7 +29,6 @@ $conn  = pg_connect("user=postgres port=5432 password=.Romina.2012 dbname=coacti
 if(!$conn)
 {
 	echo  "No se pudo conectar";
-	
 }
 else 
 {

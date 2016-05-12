@@ -56,8 +56,8 @@ class FirmasDigitalesController extends ControladorBase{
 					
 						$_id_firmas_digitales = $_GET["id_firmas_digitales"];
 						$columnas = " id_firmas_digitales, id_usuarios, imagen_firmas_digitales";
-						$tablas   = "firmas_digitales";
-						$where    = "firmas_digitales.id_usuarios = usuarios.id_usuarios AND firmas_digitales.id_firmas_digitales = '$_id_firmas_digitales' "; 
+						$tablas   = "firmas_digitales, usuarios";
+						$where    = "id_firmas_digitales = '$_id_firmas_digitales' "; 
 						$id       = "id_usuarios";
 							
 						$resultEdit = $firmas_digitales->getCondiciones($columnas ,$tablas ,$where, $id);
@@ -151,7 +151,7 @@ class FirmasDigitalesController extends ControladorBase{
 					
 				$data = file_get_contents($directorio.$nombre);
 					
-				$imagen_firmas_digitales = pg_escape_bytea($data);
+				$_imagen_firmas_digitales = pg_escape_bytea($data);
 					
 				
 					

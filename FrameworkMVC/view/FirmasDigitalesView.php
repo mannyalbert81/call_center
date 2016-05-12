@@ -280,7 +280,7 @@
         <table class="table table-hover">
 	         <tr>
 	    		
-	    		<th>Logo Especie</th>
+	    		
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
@@ -289,7 +289,7 @@
 	        		<tr>
 	        		   <td> <?php echo $registros; ?>  </td>
 		               <td> <?php echo $res->id_usuarios; ?>     </td> 
-		               <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_usuarios; ?>&id_nombre=id_usuarios&tabla=firmas_digitales&campo=imagen_firmas_digitales"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
+		               <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_usuarios; ?>&id_nombre=id_firmas_digitales&tabla=firmas_digitales&campo=imagen_firmas_digitales"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
 		               <td>
 			           		<div class="right">
 			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
