@@ -41,10 +41,10 @@ class EntidadesController extends ControladorBase{
 					{
 					
 						$_id_entidades = $_GET["id_entidades"];
-						$columnas = " id_entidades, nombre_entidades ";
+						$columnas = " id_entidades, ruc_entidades, nombre_entidades, telefono_entidades, direccion_entidades, ciudad_entidades ";
 						$tablas   = "entidades";
-						$where    = "id_entidades = '$_id_rol' "; 
-						$id       = "nombre_entidades";
+						$where    = "id_entidades = '$_id_entidades' "; 
+						$id       = "ruc_entidades";
 							
 						$resultEdit = $entidades->getCondiciones($columnas ,$tablas ,$where, $id);
 
@@ -115,12 +115,14 @@ class EntidadesController extends ControladorBase{
 				
 			{
 				
-				
+				$_ruc_entidades = $_POST["ruc_entidades"];
 				$_nombre_entidades = $_POST["nombre_entidades"];
-				
+				$_telefono_entidades = $_POST["telefono_entidades"];
+				$_direccion_entidades = $_POST["direccion_entidades"];
+				$_ciudad_entidades = $_POST["ciudad_entidades"];
 				
 				$funcion = "ins_entidades";
-				$parametros = " '$_nombre_entidades'  ";
+				$parametros = "'$_ruc_entidades', '$_nombre_entidades', '$_telefono_entidades', '$_direccion_entidades', '$_ciudad_entidades'";
 					
 				$entidades->setFuncion($funcion);
 		
@@ -129,7 +131,11 @@ class EntidadesController extends ControladorBase{
 		
 				$resultado=$entidades->Insert();
 		
-		
+				//$this->view("Error",array(
+				//"resultado"=>"entro"
+				//));
+				
+				
 			}
 			$this->redirect("Entidades", "index");
 
@@ -150,10 +156,10 @@ class EntidadesController extends ControladorBase{
 	{
 
 		session_start();
-		
-		$nombre_entidades = "Entidades";
-		$id_entidades= $_SESSION['id_entidades'];
-		$resultPer = $entidades->getPermisosEditar("   entidades.nombre_entidades = '$nombre_entidades' AND id_entidades.id_entidades = '$id_entidades' " );
+		$permisos_rol=new PermisosRolesModel();
+		$nombre_controladores = "Roles";
+		$id_rol= $_SESSION['id_rol'];
+		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 		if (!empty($resultPer))
 		{
@@ -163,7 +169,7 @@ class EntidadesController extends ControladorBase{
 		
 				$entidades=new EntidadesModel();
 				
-				$entidades->deleteBy(" id_entidades",$id_rol);
+				$entidades->deleteBy(" id_entidades",$id_entidades);
 				
 				
 			}
