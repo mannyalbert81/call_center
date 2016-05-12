@@ -25,7 +25,7 @@ class FirmasDigitalesController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
-			$nombre_controladores = "Firmas_Digitales";
+			$nombre_controladores = "FirmasDigitales";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $firmas_digitales->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
@@ -34,7 +34,7 @@ class FirmasDigitalesController extends ControladorBase{
 				if (isset ($_GET["id_firmas_digitales"])   )
 				{
 
-					$nombre_controladores = "Firmas_Digitales";
+					$nombre_controladores = "FirmasDigitales";
 					$id_rol= $_SESSION['id_rol'];
 					$resultPer = $firmas_digitales->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
@@ -74,7 +74,7 @@ class FirmasDigitalesController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Controladores"
+						"resultado"=>"No tiene Permisos de Acceso a Firmas Digitales"
 				
 				));
 				
@@ -98,7 +98,7 @@ class FirmasDigitalesController extends ControladorBase{
 		session_start();
 		
 
-		$nombre_controladores = "Firmas_Digitales";
+		$nombre_controladores = "FirmasDigitales";
 		
 		$firmas_digitales = new FirmasDigitalesModel(); 
 		
