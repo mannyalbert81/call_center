@@ -34,6 +34,61 @@
             
         </style>
         
+        <script>
+        
+       $(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#id_controladores").change(function() {
+
+               // obtenemos el combo de subcategorias
+                var $id_acciones = $("#id_acciones");
+               // lo vaciamos
+               
+				///obtengo el id seleccionado
+				
+
+               var id_controladores = $(this).val();
+
+
+               $id_acciones.empty();
+
+               $id_acciones.append("<option value= " +"0" +" > --TODOS--</option>");
+           
+               if(id_controladores > 0)
+               {
+            	   var datos = {
+            			   id_controladores : $(this).val()
+                   };
+
+
+            	   $.post("<?php echo $helper->url("PermisosRoles","devuelveAcciones"); ?>", datos, function(resultAcc) {
+
+            		 		$.each(resultAcc, function(index, value) {
+               		 	    $id_acciones.append("<option value= " +value.id_acciones +" >" + value.nombre_acciones  + "</option>");	
+                       		 });
+
+            		 		 	 		   
+            		  }, 'json');
+
+
+               }
+               else
+               {
+            	   $.post("<?php echo $helper->url("PermisosRoles","devuelveAllAcciones"); ?>", datos, function(resultAcc) {
+
+   		 		        $.each(resultAcc, function(index, value) {
+          		 	    $id_acciones.append("<option value= " +value.id_acciones +" >" + value.nombre_acciones  + "</option>");	
+                	  });
+     		  		}, 'json');
+
+               }
+               
+		    });
+    
+		}); 
+
+	</script>
         
          <script >
 		$(document).ready(function(){
@@ -181,11 +236,7 @@
 	        
 	            	
 	        <div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Ruc Entidades </p>
-			  	<input type="text" name="ruc_entidades" id="ruc_entidades" value="<?php echo $resEdit->ruc_entidades; ?>" class="form-control"/>
-			  <div id="mensaje_ruc" class="errores"></div>
-			  </div>
+		   
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Firma</p>
 			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" value="<?php echo $resEdit->imagen_firmas_digitales; ?>" class="form-control"/> 
@@ -199,12 +250,18 @@
             
 		     <?php } } else {?>
 		    
-		             <div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Ruc Entidades </p>
-			  	<input type="text" name="ruc_entidades" id="ruc_entidades" value="" class="form-control"/>
-			  <div id="mensaje_ruc" class="errores"></div>
-			  </div>
+		            
+		             Nombre Secretario: <select name="nombre_secretario" id="nombre_secretario"  class="form-control">
+									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
+				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
+						            <?php } ?>
+								    	
+									</select>
+		            
+		            
+		   
+									 
+									 
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Firma</p>
 			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" accept="png|jpg|jpeg" onKeyDown="return intro(event)" value="" class="form-control"/> 
@@ -227,6 +284,9 @@
             <hr/>
         </div>
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
+        
+        
+        
         <table class="table table-hover">
 	         <tr>
 	    		<th style="color:#456789;font-size:80%;">Id</th>

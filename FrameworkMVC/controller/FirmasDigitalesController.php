@@ -17,7 +17,15 @@ class FirmasDigitalesController extends ControladorBase{
 		$resultSet=$firmas_digitales->getAll("id_firmas_digitales");
 				
 		$resultEdit = "";
-
+		
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios inner join rol on(usuarios.id_rol=rol.id_rol)";
+		$id="rol.id_rol";
+		
+		$usuarios=new UsuariosModel();
+		$where="rol.nombre_rol='SECRETARIO' OR rol.nombre_rol='ABOGADO IMPULSOR' OR rol.nombre_rol='LIQUIDADOR'";
+		$resultUsuarioSecretario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+		
 		
 		session_start();
 
@@ -26,81 +34,6 @@ class FirmasDigitalesController extends ControladorBase{
 		{
 
 
-			$nombre_controladores = "Firmas_Digitales";
-			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $firmas_digitales->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-			
-			if (!empty($resultPer))
-			{
-				if (isset ($_GET["id_firmas_digitales"])   )
-				{
-
-					$nombre_controladores = "Firmas_Digitales";
-					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $firmas_digitales->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-						
-					if (!empty($resultPer))
-					{
-					
-						$_id_firmas_digitales = $_GET["id_firmas_digitales"];
-						$columnas = " id_firmas_digitales, id_usuarios, imagen_firmas_digitales";
-						$tablas   = "firmas_digitales";
-						$where    = "firmas_digitales.id_usuarios = usuarios.id_usuarios AND firmas_digitales.id_firmas_digitales = '$_id_firmas_digitales' "; 
-						$id       = "id_usuarios";
-							
-						$resultEdit = $firmas_digitales->getCondiciones($columnas ,$tablas ,$where, $id);
-
-					}
-					else
-					{
-						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Firmas Digitales"
-					
-						));
-					
-					
-					}
-					
-				}
-		
-				
-				$this->view("FirmasDigitales",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
-			
-				));
-		
-				
-				
-			}
-			else
-			{
-				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Controladores"
-				
-				));
-				
-				exit();	
-			}
-				
-		}
-		else 
-		{
-				$this->view("ErrorSesion",array(
-						"resultSet"=>""
-			
-				));
-		
-		}
-	
-	}
-	
-	public function InsertaFirmasDigitales(){
-			
-		session_start();
-		
-
-		$nombre_controladores = "Firmas_Digitales";
-
 			$nombre_controladores = "FirmasDigitales";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $firmas_digitales->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -108,9 +41,6 @@ class FirmasDigitalesController extends ControladorBase{
 			if (!empty($resultPer))
 			{
 				
-				$usuarios=new UsuariosModel();
-				$where="id_rol=5";
-				$resultUsuarioSecretario=$usuarios->getBy($where);
 				
 				
 				
@@ -147,7 +77,7 @@ class FirmasDigitalesController extends ControladorBase{
 		
 				
 				$this->view("FirmasDigitales",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultUsuarioSecretario" =>$resultUsuarioSecretario
 			
 				));
 		
@@ -157,7 +87,7 @@ class FirmasDigitalesController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Firmas Digitales"
+						"resultado"=>"No tiene Permisos de Acceso a Controladores"
 				
 				));
 				
@@ -176,6 +106,7 @@ class FirmasDigitalesController extends ControladorBase{
 	
 	}
 	
+		
 	public function InsertaFirmasDigitales(){
 			
 		session_start();
@@ -204,6 +135,9 @@ class FirmasDigitalesController extends ControladorBase{
 			if (isset ($_POST["id_usuarios"]) )
 				
 			{
+				$usuarios=new UsuariosModel();
+				$_id_usuarios =  $_POST["id_usuarios"] ;
+				
 				$firmas_digitales = new FirmasDigitalesModel();
 				$directorio = $_SERVER['DOCUMENT_ROOT'].'/uploads/';
 					
@@ -220,8 +154,7 @@ class FirmasDigitalesController extends ControladorBase{
 				$imagen_firmas_digitales = pg_escape_bytea($data);
 					
 				
-					$_id_usuarios   =  $_POST["id_usuarios"];
-					$_imagen_firmas_digitales = $imagen_firmas_digitales;
+					
 					
 					
 				$funcion = "ins_firmas_digitales";
@@ -230,8 +163,12 @@ class FirmasDigitalesController extends ControladorBase{
 				$parametros = " '$_id_usuarios' ,'{$_imagen_firmas_digitales}' ";
 				$firmas_digitales->setFuncion($funcion);	
 				$firmas_digitales->setParametros($parametros);
-			    $resultado=$firmas_digitales->Insert();
+			   
+				$resultado=$firmas_digitales->Insert();
 				
+				//$this->view("Error",array(
+				//"resultado"=>"entro"
+				//));
 					
 				}
 				
