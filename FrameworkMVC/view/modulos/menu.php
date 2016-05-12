@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-top: 15px;" >
 <div class="row">
 <div class="col-xs-12">
 <nav class="navbar navbar-default">
@@ -30,7 +30,7 @@
 			</li>
 			<li><a href="index.php?controller=Controladores&action=index"><span class="glyphicon glyphicon-inbox" aria-hidden="true"> Controladores</span> </a>
 			</li>
-			<li><a href="index.php?controller=Controladores&action=index"><span class="glyphicon glyphicon-inbox" aria-hidden="true"> Entidades</span> </a>
+			<li><a href="index.php?controller=Entidades&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entidades</span> </a>
 			</li>
           </ul>
         </li>

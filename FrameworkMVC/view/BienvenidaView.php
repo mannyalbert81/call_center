@@ -25,7 +25,6 @@
        <?php include("view/modulos/menu.php"); ?>
        
        
-       <?php include("view/modulos/slide.php"); ?>
        
        
      
