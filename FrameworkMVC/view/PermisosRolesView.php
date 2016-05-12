@@ -235,7 +235,7 @@
 		   		   		</td>
 		   		   	</tr>
 		   		   </table>
-		        <hr>
+		        
 		     <?php } ?>
 		        
 		        <div class="row">
