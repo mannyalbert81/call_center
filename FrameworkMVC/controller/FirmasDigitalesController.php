@@ -171,7 +171,7 @@ class FirmasDigitalesController extends ControladorBase{
 				//));
 					
 				}
-				
+				//pasante
 				
 				$this->redirect("FirmasDigitales", "index");
 		}
