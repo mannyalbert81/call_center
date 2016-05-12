@@ -97,12 +97,12 @@ class ControladoresController extends ControladorBase{
 			
 		session_start();
 		
-<<<<<<< HEAD
+
 		$permisos_rol=new PermisosRolesModel();
-=======
+
 		$controladores=new ControladoresModel();
 
->>>>>>> refs/remotes/origin/master
+
 		$nombre_controladores = "Controladores";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $controladores->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );

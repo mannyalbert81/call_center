@@ -44,10 +44,10 @@
 		    $("#Guardar").click(function() 
 			{
 		   
-		    	var nombre_entidades = $("#nombre_tipo_identificacion").val();
+		    	var nombre_tipo_identificacion = $("#nombre_tipo_identificacion").val();
 		    
 		   				
-		    	if (nombre_entidades == "")
+		    	if (nombre_tipo_identificacion == "")
 		    	{
 			    	
 		    		$("#mensaje_nombres").text("Introduzca un tipo de identificacion ");
@@ -70,7 +70,7 @@
 
 		 
 				
-				$( "#nombre_entidades" ).focus(function() {
+				$( "#nombre_tipo_identificacion" ).focus(function() {
 					$("#mensaje_nombres").fadeOut("slow");
     			});
 				
