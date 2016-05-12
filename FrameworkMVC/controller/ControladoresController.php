@@ -96,13 +96,25 @@ class ControladoresController extends ControladorBase{
 	public function InsertaControladores(){
 			
 		session_start();
+<<<<<<< HEAD
 		
 		$permisos_rol=new PermisosRolesModel();
 
+=======
+
+		$permisos_rol=new PermisosRolesModel();
+
+		$controladores=new ControladoresModel();
+
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 		$nombre_controladores = "Controladores";
 		$id_rol= $_SESSION['id_rol'];
+<<<<<<< HEAD
 		
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+=======
+		$resultPer = $controladores->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 		
 		
 		if (!empty($resultPer))

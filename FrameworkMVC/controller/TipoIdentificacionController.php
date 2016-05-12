@@ -96,6 +96,7 @@ class TipoIdentificacionController extends ControladorBase{
 	public function InsertaTipoIdentificacion(){
 			
 		session_start();
+<<<<<<< HEAD
 		
 
 		$nombre_controladores = "Tipo_Identificacion";
@@ -163,6 +164,77 @@ class TipoIdentificacionController extends ControladorBase{
 		}
 		
 	}
+=======
+		$tipo_identificacion=new TipoIdentificacionModel();
+
+		$nombre_controladores = "TipoIdentificacion";
+		$id_rol= $_SESSION['id_rol'];
+		$resultPer = $tipo_identificacion->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+		
+		
+		if (!empty($resultPer))
+		{
+		
+		
+		
+			$resultado = null;
+			$tipo_identificacion=new TipoIdentificacionModel();
+		
+			//_nombre_tipo_identificacion
+			
+			if (isset ($_POST["nombre_tipo_identificacion"]) )
+				
+			{
+				$_nombre_tipo_identificacion = $_POST["nombre_tipo_identificacion"];
+				
+				if(isset($_POST["id_tipo_identificacion"]))
+				{
+				$_id_tipo_identificacion = $_POST["id_tipo_identificacion"];
+				$colval = " nombre_tipo_identificacion = '$_nombre_tipo_identificacion'   ";
+				$tabla = "tipo_identificacion";
+				$where = "id_tipo_identificacion = '$_id_tipo_identificacion'    ";
+					
+				$resultado=$tipo_identificacion->UpdateBy($colval, $tabla, $where);
+					
+				}else {
+				
+				
+				$funcion = "ins_tipo_identificacion";
+				
+				$parametros = " '$_nombre_tipo_identificacion'  ";
+					
+				$tipo_identificacion->setFuncion($funcion);
+		
+				$tipo_identificacion->setParametros($parametros);
+		
+		
+				$resultado=$tipo_identificacion->Insert();
+				
+				
+				///$this->view("Error",array(
+				//"resultado"=>"entro"
+				//));
+							
+			 }
+		
+			$this->redirect("TipoIdentificacion", "index");
+
+		}
+		else
+		{
+			$this->view("Error",array(
+					
+					"resultado"=>"No tiene Permisos de Insertar tipos de identificacion"
+		
+			));
+		
+		
+		}
+		
+	}
+	}
+	
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 	
 	public function borrarId()
 	{
