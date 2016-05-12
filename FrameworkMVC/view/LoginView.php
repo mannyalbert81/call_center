@@ -60,15 +60,15 @@
        
    
    
-        <form action="<?php echo $helper->url("usuarios","Loguear"); ?>" method="post"  class="col-lg-12" style=" padding-top:100px;">
+        <form action="<?php echo $helper->url("usuarios","Loguear"); ?>" method="post"  class="col-lg-12" style=" padding-top:150px;">
         
         <div class="row">
         
         
-        	<div class="col-xs-2 col-md-4">
+        	<div class="col-xs-2 col-md-2">
         	</div>
         	<div class="col-xs-8 col-md-4">
-        		<div class="col-xs-2 col-md-2">
+        		<div class="col-xs-4 col-md-2">
         		</div>
         	    <div class="col-xs-8 col-md-8">
 		        	  <div   style="background:#d93e1b ;border-radius: 5px;  border: 1px solid #063B41;"  >
@@ -130,7 +130,7 @@
 		          <div class="col-xs-2 col-md-2">
         		  </div>
         	</div>
-            <div class="col-xs-2 col-md-4">
+            <div class="col-xs-2 col-md-2">
         	</div>
         	
           
