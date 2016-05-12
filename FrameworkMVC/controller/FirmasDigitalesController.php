@@ -31,6 +31,13 @@ class FirmasDigitalesController extends ControladorBase{
 			
 			if (!empty($resultPer))
 			{
+				
+				$usuarios=new UsuariosModel();
+				$where="id_rol=5";
+				$resultUsuarioSecretario=$usuarios->getBy($where);
+				
+				
+				
 				if (isset ($_GET["id_firmas_digitales"])   )
 				{
 
