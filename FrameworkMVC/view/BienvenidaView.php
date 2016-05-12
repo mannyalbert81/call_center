@@ -24,10 +24,6 @@
        
        <?php include("view/modulos/menu.php"); ?>
        
-       
-       
-       
-     
             
        <footer class="col-lg-12">
            <?php include("view/modulos/footer.php"); ?>
