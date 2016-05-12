@@ -28,9 +28,9 @@
 			body {
 			
 			    /* Ubicación de la imagen */
-		 /*
-		  background-image: url(view/images/wallpaper.png);
-		*/
+		 
+		  background-image: url(view/images/fondo_hd.jpg);
+		
 		  /* Nos aseguramos que la imagen de fondo este centrada vertical y
 		    horizontalmente en todo momento */
 		  background-position: center center;
@@ -55,32 +55,82 @@
    
    
    
-    <body class="img-responsive" >
+    <body class="img-responsive" style="background-color: #d9e3e4;" >
      <?php include("view/modulos/head.php"); ?>
        
    
    
-        <form action="<?php echo $helper->url("usuarios","Loguear"); ?>" method="post"  class="col-lg-12" style=" padding-top:100px;">
+        <form action="<?php echo $helper->url("usuarios","Loguear"); ?>" method="post"  class="col-lg-12" style=" padding-top:150px;">
         
         <div class="row">
         
         
-        	<div class="col-xs-4 col-md-4">
+        	<div class="col-xs-2 col-md-2">
         	</div>
-        	<div class="col-xs-4 col-md-4">
-        	  <div   style="background:#F6FADE ;border-radius: 5px;  border: 3px solid #063B41;"  >
-     		     <h4 class="text-center" >Inicio de Sesión</h4>
-   
-        		<div class="text-center"  >
-            		<input type="text" name="usuarios" class="form-control" placeholder="usuario"  style="text-align: center; " />
-            		<input type="password" name="clave" placeholder="clave" class="form-control"  style="text-align: center; "/>
-            		<div class="text-center" style="height: 60px">
-            			<input type="submit" value="Login" class="btn btn-warning" style="width: 50%; "/>
-            		</div>
-            	</div>
-              </div>
+        	<div class="col-xs-8 col-md-4">
+        		<div class="col-xs-4 col-md-2">
+        		</div>
+        	    <div class="col-xs-8 col-md-8">
+		        	  <div   style="background:#d93e1b ;border-radius: 5px;  border: 1px solid #063B41;"  >
+		     		     <div class="row">
+								<div class="col-xs-2 col-md-2">					
+									
+								</div>
+								<div class="col-xs-8 col-md-8">					
+									<h5 class="text-center" style="color: #ffffff;" >Inicio de Sesión</h5>
+								</div>
+								<div class="col-xs-2 col-md-2">					
+									
+								</div>
+						</div>            	
+		            		
+		     		     
+		     		     
+		   
+		        		<div class="text-center"  >
+							<div class="row">
+								<div class="col-xs-2 col-md-2">					
+									
+								</div>
+								<div class="col-xs-8 col-md-8">					
+									<input type="text" name="usuarios" class="form-control" placeholder="Usuario"  style="text-align: center; " />
+								</div>
+								<div class="col-xs-2 col-md-2">					
+									
+								</div>
+							</div>            	
+		            		<div class="row">
+								<div class="col-xs-2 col-md-2">					
+									
+								</div>
+								<div class="col-xs-8 col-md-8">					
+									<input type="password" name="clave" placeholder="Clave" class="form-control"  style="text-align: center; "/>
+								</div>
+								<div class="col-xs-2 col-md-2">					
+									
+								</div>
+							</div>            	
+		            		
+		            		<div class="row">
+								<div class="col-xs-2 col-md-2">					
+									
+								</div>
+								<div class="col-xs-8 col-md-8">					
+									<input type="submit" value="Login" class="btn btn-default" />
+								</div>
+								<div class="col-xs-2 col-md-2">					
+									
+								</div>
+							</div>            	
+		            		
+		            	
+		            	</div>
+		              </div>
+		          </div>
+		          <div class="col-xs-2 col-md-2">
+        		  </div>
         	</div>
-            <div class="col-xs-4 col-md-4">
+            <div class="col-xs-2 col-md-2">
         	</div>
         	
           

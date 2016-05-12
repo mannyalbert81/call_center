@@ -17,7 +17,7 @@
             
         </style>
     </head>
-      <body>
+      <body style="background-color: #d9e3e4;">
     
        <?php include("view/modulos/head.php"); ?>
        
@@ -45,7 +45,7 @@
 			  <div id="" class="errores"></div>
 			  </div>
 		    </div>
-		        <div class="row">
+		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Telefono Entidades </p>
 			  	<input type="text" name="telefono_entidades" id="telefono_entidades" value="<?php echo $resEdit->telefono_entidades; ?>" class="form-control"/>

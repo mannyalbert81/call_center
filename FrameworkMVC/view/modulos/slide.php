@@ -9,6 +9,10 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
+    
+    <form action="<?php echo $helper->url("usuarios","Loguear"); ?>" method="post"  class="col-lg-12" style=" padding-top:100px;">
+        
+   
     <div class="item active">
       <img src="view/images/banner/banner1.jpg" alt="Chania">
     </div>
