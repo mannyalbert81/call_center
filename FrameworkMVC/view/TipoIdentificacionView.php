@@ -1,10 +1,10 @@
-<!DOCTYPE HTML>
+   <!DOCTYPE HTML>
 <html lang="es">
 
       <head>
       
         <meta charset="utf-8"/>
-        <title>Controladores - aDocument 2015</title>
+        <title>Tipo de Identificacion - aDocument 2015</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -60,10 +60,10 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Controladores","InsertaControladores"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("TipoIdentificacion","InsertaTipoIdentificacion"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             
          
-        	    <h4 style="color:#ec971f;">Insertar Controladores</h4>
+        	    <h4 style="color:#ec971f;">Insertar Tipos de Identificaciones</h4>
             	<hr/>
             	
 		   		
@@ -76,9 +76,9 @@
 			   
 			   <div class="row">
 		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Nombres Controladores</p>
-			  	<input type="text"  name="nombre_controladores" id="nombre_controladores" value="<?php echo $resEdit->nombre_controladores; ?>" class="form-control"/> 
-			  	<input type="hidden"  name="id_controladores"  value="<?php echo $resEdit->id_controladores; ?>" class="form-control"/> 
+			  	<p  class="formulario-subtitulo" >Nombres tipos de Identificaciones</p>
+			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="<?php echo $resEdit->nombre_tipo_identificacion; ?>" class="form-control"/> 
+			  	<input type="hidden"  name="id_tipo_identificacion"  value="<?php echo $resEdit->id_tipo_identificacion; ?>" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			   </div>
@@ -87,8 +87,8 @@
 		    
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombres Controladores</p>
-			  	<input type="text"  name="nombre_controladores" id="nombre_controladores" value="" class="form-control"/> 
+			  	<p  class="formulario-subtitulo" >Nombres tipos de Identificaciones</p>
+			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			 </div>
@@ -113,7 +113,7 @@
        <!-- termina el form --> 
        
         <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Controladores</h4>
+            <h4 style="color:#ec971f;">Lista de Tipos de Identificacion</h4>
             <hr/>
         </div>
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
@@ -128,18 +128,18 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_controladores; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_controladores; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_tipo_identificacion; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?>     </td> 
 		              
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Controladores","index"); ?>&id_controladores=<?php echo $res->id_controladores; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("TipoIdentificacion","index"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Controladores","borrarId"); ?>&id_controladores=<?php echo $res->id_controladores; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("TipoIdentificacion","borrarId"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>
@@ -156,6 +156,5 @@
       </section>
       </div>
       </div>
-   
-     </body>  
+   </body>  
     </html>   

@@ -164,11 +164,21 @@ class FirmasDigitalesController extends ControladorBase{
 				$firmas_digitales->setFuncion($funcion);	
 				$firmas_digitales->setParametros($parametros);
 			   
-				$resultado=$firmas_digitales->Insert();
 				
-				//$this->view("Error",array(
-				//"resultado"=>"entro"
-				//));
+				try {
+				
+					$resultado=$firmas_digitales->Insert();
+					
+					
+				} catch (Exception $e) {
+					
+					$this->view("Error",array(
+							"resultado"=>$e
+					));
+					
+					
+				}
+				
 					
 				}
 				//pasante
