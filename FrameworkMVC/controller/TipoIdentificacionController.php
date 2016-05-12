@@ -96,9 +96,9 @@ class TipoIdentificacionController extends ControladorBase{
 	public function InsertaTipoIdentificacion(){
 			
 		session_start();
-		
+		$tipo_identificacion=new TipoIdentificacionModel();
 
-		$nombre_controladores = "Tipo_Identificacion";
+		$nombre_controladores = "TipoIdentificacion";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $tipo_identificacion->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 		
@@ -129,9 +129,13 @@ class TipoIdentificacionController extends ControladorBase{
 					$tabla = "tipo_identificacion";
 					$where = "id_tipo_identificacion = '$_id_tipo_identificacion'    ";
 					
-					$resultado=$controladores->UpdateBy($colval, $tabla, $where);
-					
-				}else {
+					$resultado=$tipo_identificacion->UpdateBy($colval, $tabla, $where);
+
+					//$this->view("Error",array(
+					//"resultado"=>"entro"
+					//));
+				}
+				else {
 					
 			
 				
@@ -144,11 +148,11 @@ class TipoIdentificacionController extends ControladorBase{
 				$tipo_identificacion->setParametros($parametros);
 		
 		
-				$resultado=$tipo_identificacions->Insert();
+				$resultado=$tipo_identificacion->Insert();
 			 }
 		
 			}
-			$this->redirect("tipo_identificacion", "index");
+			$this->redirect("TipoIdentificacion", "index");
 
 		}
 		else

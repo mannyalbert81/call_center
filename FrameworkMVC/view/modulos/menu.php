@@ -32,7 +32,7 @@
 			</li>
 			<li><a href="index.php?controller=Entidades&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entidades</span> </a>
 			</li>
-			<li><a href="index.php?controller=TipoIdentificacion=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Identificacion</span> </a>
+			<li><a href="index.php?controller=TipoIdentificacion&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Identificacion</span> </a>
 			</li>
           </ul>
         </li>
