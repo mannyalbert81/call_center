@@ -42,6 +42,8 @@
 		    </li>
 			<li><a href="index.php?controller=Roles&action=index"><span class="glyphicon glyphicon-euro" aria-hidden="true"> Recaudacion</span> </a>
 			</li>
+			<li><a href="index.php?controller=FirmasDigitales&action=index"><span class="glyphicon glyphicon-euro" aria-hidden="true">Firmas Digitales</span> </a>
+			</li>
 			
           </ul>
         </li>
