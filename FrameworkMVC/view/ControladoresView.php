@@ -36,18 +36,9 @@
                 
             
         </style>
-       
-       
-       
-      
-       
-        <script >
-		
 
-	   </script>
-	
     </head>
-    <body>
+    <body style="background-color: #d9e3e4;">
     
        <?php include("view/modulos/head.php"); ?>
        
@@ -65,11 +56,9 @@
   
   <div class="container">
   
-  <div class="row">
+  <div class="row" style="background-color: #ffffff;">
   
-  <div></div>
-    
-      <!-- empieza el form --> 
+       <!-- empieza el form --> 
        
       <form action="<?php echo $helper->url("Controladores","InsertaControladores"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             
@@ -117,7 +106,7 @@
 		
 		 <hr>
           
-          </form>
+       </form>
        <!-- termina el form --> 
        
         <div class="col-lg-6">

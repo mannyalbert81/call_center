@@ -28,12 +28,12 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" >
   
   
-  <div class="row">
+  <div class="row" style=" background-color:#3172b4;">
   <div class=""></div>
-  <div style="margin-top: 10px;"  class="col-xs-9" >
+  <div style=" margin-top: 10px; "   class="col-xs-9"  >
   <img src="view/images/logo-coctiva.png" class="img-responsive" alt="Responsive image">
   </div>
   <!-- aqui va el la class pull-right.... -->

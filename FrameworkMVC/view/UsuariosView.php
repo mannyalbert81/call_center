@@ -235,7 +235,7 @@
 	</script>
 	
     </head>
-    <body>
+    <body style="background-color: #d9e3e4;">
     
        <?php include("view/modulos/head.php"); ?>
        
@@ -307,7 +307,7 @@
   
   <div class="container">
   
-  <div class="row">
+  <div class="row" style="background-color: #ffffff;">
   
   <div></div>
     
