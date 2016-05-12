@@ -251,7 +251,73 @@
 		     <?php } } else {?>
 		    
 		            
-		             Nombre Secretario: <select name="id_usuarios" id="id_usuarios"  class="form-control">
+<<<<<<< HEAD
+		             Nombre Secretario: <select name="nombre_secretario" id="nombre_secretario"  class="form-control">
+									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
+				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
+						            <?php } ?>
+								    	
+									</select>
+		            
+		            
+		   
+									 
+									 
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Firma</p>
+			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" accept="png|jpg|jpeg" onKeyDown="return intro(event)" value="" class="form-control"/> 
+			 <div id="mensaje_firmas" class="errores"></div>
+			  </div>
+		    </div>
+		       
+			<hr>
+		     <?php } ?>
+		       <div class="row">
+			  <div class="col-xs-12 col-md-12" style="text-align: center;" > 
+           <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+           </div>
+            </div>
+          </form>
+       
+       
+        <div class="col-lg-6">
+            <h4 style="color:#ec971f;">Firmas</h4>
+            <hr/>
+        </div>
+        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
+        
+        
+        
+        <table class="table table-hover">
+	         <tr>
+	    		<th style="color:#456789;font-size:80%;">Id</th>
+	    		<th style="color:#456789;font-size:80%;">Ruc</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre</th>
+	    		
+	  		</tr>
+            
+	            <?php foreach($resultSet as $res) {?>
+	        		<tr>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_entidades; ?>  </td>
+		               <td style="color:#000000;font-size:80%;" > <?php echo $res->ruc_entidades; ?>     </td> 
+		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>     </td>
+		                 
+		               <td>
+			           		<div class="right">
+			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                </div>
+			            
+			             </td>
+			             <td>   
+			                	<div class="right">
+			                    <a href="<?php echo $helper->url("FirmasDigitales","borrarId"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                </div>
+			                <hr/>
+		               </td>
+		    		</tr>
+		        <?php } ?>
+
+              Nombre Secretario: <select name="id_usuarios" id="id_usuarios"  class="form-control">
 									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
 				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
 						            <?php } ?>
@@ -315,11 +381,9 @@
        	</table>     
       </section>
        </form>
-       
-       
-            
-            <?php 
-            
+
+
+<?php 
             //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
             
             ?>
@@ -327,7 +391,7 @@
        	</table>     
       </section>
        </div>
-      </div>
+ 
   
        
        <?php include("view/modulos/footer.php"); ?>

@@ -36,7 +36,53 @@
                 
             
         </style>
+       
+          <script >
+		$(document).ready(function(){
 
+		    // cada vez que se cambia el valor del combo
+		    $("#Guardar").click(function() 
+			{
+		   
+		    	var nombre_controladores = $("#nombre_controladores").val();
+		    
+		   				
+		    	if (nombre_controladores == "")
+		    	{
+			    	
+		    		$("#mensaje_nombres").text("Introduzca un tipo de controlador ");
+		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+
+			
+		    					    
+
+			}); 
+
+
+		 
+				
+				$( "#nombre_controladores" ).focus(function() {
+					$("#mensaje_nombres").fadeOut("slow");
+    			});
+				
+			
+		
+				
+		
+		      
+				    
+		}); 
+
+	</script>
     </head>
     <body style="background-color: #d9e3e4;">
     

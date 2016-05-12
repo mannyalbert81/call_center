@@ -144,17 +144,17 @@
 	            	<div class="row">
 	            	
 	            	<div class="col-xs-12 col-md-12" style="margin-top: 20px;">
-	            	Nombre Secretario: <select name="id_rol" id="id_rol"  class="form-control">
-									<?php foreach($resultRol as $resRol) {?>
-				 						<option value="<?php echo $resRol->id_rol; ?>" <?php if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $resRol->nombre_rol; ?> </option>
+	            	Nombre Secretario: <select name="id_usuarioSecretario" id="id_usuarioSecretario"  class="form-control">
+									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
+				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" <?php if ($resSecretario->id_usuarios == $resSecretario->id_usuarios )  echo  ' selected="selected" '  ;  ?> ><?php echo $resSecretario->nombre_usuarios; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
 		   		   </div>
 		   		   <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
-	            	 Nombre Abogado Impulsor: <select name="id_controladores" id="id_controladores"  class="form-control">
-									<?php foreach($resultCon as $resCon) {?>
-				 						<option value="<?php echo $resCon->id_controladores; ?>" <?php if ($resCon->id_controladores == $resEdit->id_controladores )  echo  ' selected="selected" '  ;  ?> ><?php echo $resCon->nombre_controladores; ?> </option>
+	            	 Nombre Abogado Impulsor: <select name="id_usuarioImpulsor" id="id_usuarioImpulsor"  class="form-control">
+									<?php foreach($resultUsuarioImpulsor as $resImpulsor) {?>
+				 						<option value="<?php echo $resImpulsor->id_usuarios; ?>" <?php if ($resImpulsor->id_usuarios == $resImpulsor->id_usuarios )  echo  ' selected="selected" '  ;  ?> ><?php echo $resImpulsor->nombre_usuarios; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
@@ -169,7 +169,7 @@
 	            	<div class="row">
 	            	
 	            	<div class="col-xs-12 col-md-12" style="margin-top: 20px;">
-	            	Nombre Secretario: <select name="id_usuarioSecretario" id="nombre_secretario"  class="form-control">
+	            	Nombre Secretario: <select name="id_usuarioSecretario" id="id_usuarioSecretario"  class="form-control">
 									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
 				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
 						            <?php } ?>
@@ -177,7 +177,7 @@
 									</select>
 		   		   </div>
 		   		   <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
-	            	 Nombre Abogado Impulsor: <select name="id_usuarioImpulsor" id="nombre_impulsor"  class="form-control">
+	            	 Nombre Abogado Impulsor: <select name="id_usuarioImpulsor" id="id_usuarioImpulsor"  class="form-control">
 									<?php foreach($resultUsuarioImpulsor as $resImpulsor) {?>
 				 						<option value="<?php echo $resImpulsor->id_usuarios; ?>"  ><?php echo $resImpulsor->nombre_usuarios; ?> </option>
 						            <?php } ?>
@@ -216,8 +216,8 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res-> id_asignacion_secretarios; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->id_secretario_asignacion_secretarios; ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res-> id_abogado_asignacion_secretarios; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->secretarios; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res-> impulsadores; ?>     </td> 
 		               
 		           	   <td>
 			           		<div class="right">

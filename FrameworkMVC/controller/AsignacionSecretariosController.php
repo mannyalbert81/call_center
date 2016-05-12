@@ -54,17 +54,17 @@ class AsignacionSecretariosController extends ControladorBase{
 					$resultEdit = "";
 					$resul = "";
 			
-					if (isset ($_GET["id_permisos_rol"])   )
+					if (isset ($_GET["id_asignacion_secretarios"])   )
 					{
-						$nombre_controladores = "PermisosRoles";
+						$nombre_controladores = "AsignacionSecretarios";
 						$id_rol= $_SESSION['id_rol'];
 						$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
 						if (!empty($resultPer))
 						{
-						
-							$_id_permisos_rol = $_GET["id_permisos_rol"];
-							$resultEdit = $permisos_rol->getBy("id_permisos_rol = '$_id_permisos_rol' ");
+							$asignacionSecretario=new AsignacionSecretariosModel();
+							$_id_asignacion_secretarios = $_GET["id_asignacion_secretarios"];
+							$resultEdit = $asignacionSecretario->getBy("id_asignacion_secretarios = '$_id_asignacion_secretarios' ");
 							
 						}
 						else
@@ -83,23 +83,25 @@ class AsignacionSecretariosController extends ControladorBase{
 					}
 			
 					
-					/*$columnas = "permisos_rol.id_permisos_rol, rol.nombre_rol, permisos_rol.nombre_permisos_rol, controladores.nombre_controladores, permisos_rol.ver_permisos_rol, permisos_rol.editar_permisos_rol, permisos_rol.borrar_permisos_rol  ";
-					$tablas   = "public.controladores,  public.permisos_rol, public.rol";
-					$where    = " controladores.id_controladores = permisos_rol.id_controladores AND permisos_rol.id_rol = rol.id_rol";
-					$id       = " permisos_rol.nombre_permisos_rol, controladores.nombre_controladores";
-						
-					$permisos_rol = new PermisosRolesModel();
-					$resultSet=$permisos_rol->getCondiciones($columnas ,$tablas ,$where, $id);*/
 					
-					$columnas = "permisos_rol.id_permisos_rol, rol.nombre_rol, permisos_rol.nombre_permisos_rol, controladores.nombre_controladores, permisos_rol.ver_permisos_rol, permisos_rol.editar_permisos_rol, permisos_rol.borrar_permisos_rol  ";
-					$tablas   = "public.controladores,  public.permisos_rol, public.rol";
-					$where    = " controladores.id_controladores = permisos_rol.id_controladores AND permisos_rol.id_rol = rol.id_rol";
-					$id       = " permisos_rol.nombre_permisos_rol, controladores.nombre_controladores";
+					/*
+					 Select B.id_asignacion_secretarios,
+					(select A.nombre_usuarios from usuarios A where A.id_usuarios=B.id_secretario_asignacion_secretarios) as secretarios,
+					(select A.nombre_usuarios from usuarios A where A.id_usuarios=B.id_abogado_asignacion_secretarios) as impulsadores
+					from asignacion_secretarios B
+					 */
+					
+					$columnas = "B.id_asignacion_secretarios AS id_asignacion_secretarios ,
+								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_secretario_asignacion_secretarios) AS secretarios,
+								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_abogado_asignacion_secretarios) AS impulsadores";
+					$tablas   = "asignacion_secretarios B";
+					$where    = "B.id_asignacion_secretarios>0";
+					$id       = "B.id_asignacion_secretarios";
 					
 					
 					$asignacionSecretarios = new AsignacionSecretariosModel();
-					$resultSet=$asignacionSecretarios->getAll("id_asignacion_secretarios");
-					//$resultSet=$asignacionSecretarios->getCondiciones($columnas, $tablas, $where, $id);
+					//$resultSet=$asignacionSecretarios->getAll("id_asignacion_secretarios");
+					$resultSet=$asignacionSecretarios->getCondiciones($columnas, $tablas, $where, $id);
 					
 					//cambio linea 86
 					//"resultCon"=>$resultCon, "resultAcc"=>$resultAcc, "resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol

@@ -16,6 +16,41 @@
                 
             
         </style>
+          <script>
+		$(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#Guardar").click(function() 
+			{
+		   
+		    	var nombre_permisos_rol = $("#nombre_permisos_rol").val();
+		    
+		   				
+		    	if (nombre_permisos__rol == " ")
+		    	{
+			    	
+		    		$("#mensaje_nombres").text("Introduzca nombre de rol ");
+		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		  }); 
+
+
+		 
+				
+				$( "#nombre__permisos_rol" ).focus(function() {
+					$("#mensaje_nombres").fadeOut("slow");
+    			});
+				    
+		}); 
+
+	</script>
     </head>
       <body style="background-color: #d9e3e4;">
     
