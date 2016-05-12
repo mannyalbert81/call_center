@@ -329,7 +329,7 @@
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Cedula</p>
 			  	<input type="text"  name="cedula_usuarios" id="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>" class="form-control"/> 
-			    <div id="mensaje_validar" class="errores"></div>
+			    <div id="mensaje_cedula" class="errores"></div>
 			  </div>
 			   </div>
 			   
@@ -414,7 +414,7 @@
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Cedula</p>
 			  	<input type="text"  name="cedula_usuarios" id="cedula_usuarios" value="" class="form-control"/> 
-			    <div id="mensaje_validar" class="errores"></div>
+			    <div id="mensaje_cedula" class="errores"></div>
 			  </div>
 			   </div>
 			   
