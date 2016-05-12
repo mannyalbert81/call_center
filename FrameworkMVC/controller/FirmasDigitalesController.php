@@ -153,11 +153,9 @@ class FirmasDigitalesController extends ControladorBase{
 					
 				$_imagen_firmas_digitales = pg_escape_bytea($data);
 					
-				
 					
 					
-					
-				$funcion = "ins_firmas_digitales";
+			    $funcion = "ins_firmas_digitales";
 				
 				
 				$parametros = " '$_id_usuarios' ,'{$_imagen_firmas_digitales}' ";

@@ -250,8 +250,7 @@
             
 		     <?php } } else {?>
 		    
-		            
-<<<<<<< HEAD
+
 		             Nombre Secretario: <select name="nombre_secretario" id="nombre_secretario"  class="form-control">
 									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
 				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
