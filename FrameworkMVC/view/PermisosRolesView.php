@@ -200,7 +200,9 @@
 						            <?php } ?>
 								    	
 									</select>
+		   		   <div>
 		   		   
+		   		   </div>>
 	            	 Nombre Controlador: <select name="id_controladores" id="id_controladores"  class="form-control">
 									<?php foreach($resultCon as $resCon) {?>
 				 						<option value="<?php echo $resCon->id_controladores; ?>"  ><?php echo $resCon->nombre_controladores; ?> </option>
@@ -235,7 +237,7 @@
 		   		   		</td>
 		   		   	</tr>
 		   		   </table>
-		        <hr>
+		        
 		     <?php } ?>
 		        
 		        <div class="row">
