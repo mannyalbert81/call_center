@@ -116,28 +116,19 @@ class TipoIdentificacionController extends ControladorBase{
 			if (isset ($_POST["nombre_tipo_identificacion"]) )
 				
 			{
-				
-				
-				
 				$_nombre_tipo_identificacion = $_POST["nombre_tipo_identificacion"];
 				
-				if(isset($_POST["id_tipo_identificacion"])) 
+				if(isset($_POST["id_tipo_identificacion"]))
 				{
+				$_id_tipo_identificacion = $_POST["id_tipo_identificacion"];
+				$colval = " nombre_tipo_identificacion = '$_nombre_tipo_identificacion'   ";
+				$tabla = "tipo_identificacion";
+				$where = "id_tipo_identificacion = '$_id_tipo_identificacion'    ";
 					
-					$_id_tipo_identificacion = $_POST["id_tipo_identificacion"];
-					$colval = " nombre_tipo_identificacion = '$_nombre_tipo_identificacion'   ";
-					$tabla = "tipo_identificacion";
-					$where = "id_tipo_identificacion = '$_id_tipo_identificacion'    ";
+				$resultado=$tipo_identificacion->UpdateBy($colval, $tabla, $where);
 					
-					$resultado=$tipo_identificacion->UpdateBy($colval, $tabla, $where);
-
-					//$this->view("Error",array(
-					//"resultado"=>"entro"
-					//));
-				}
-				else {
-					
-			
+				}else {
+				
 				
 				$funcion = "ins_tipo_identificacion";
 				
@@ -149,9 +140,14 @@ class TipoIdentificacionController extends ControladorBase{
 		
 		
 				$resultado=$tipo_identificacion->Insert();
+				
+				
+				///$this->view("Error",array(
+				//"resultado"=>"entro"
+				//));
+							
 			 }
 		
-			}
 			$this->redirect("TipoIdentificacion", "index");
 
 		}
@@ -167,6 +163,8 @@ class TipoIdentificacionController extends ControladorBase{
 		}
 		
 	}
+	}
+	
 	
 	public function borrarId()
 	{
