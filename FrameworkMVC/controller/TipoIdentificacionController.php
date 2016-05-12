@@ -96,7 +96,7 @@ class TipoIdentificacionController extends ControladorBase{
 	public function InsertaTipoIdentificacion(){
 			
 		session_start();
-<<<<<<< HEAD
+
 		
 
 		$nombre_controladores = "Tipo_Identificacion";
@@ -163,8 +163,8 @@ class TipoIdentificacionController extends ControladorBase{
 		
 		}
 		
-	}
-=======
+	
+
 		$tipo_identificacion=new TipoIdentificacionModel();
 
 		$nombre_controladores = "TipoIdentificacion";
@@ -233,8 +233,6 @@ class TipoIdentificacionController extends ControladorBase{
 		
 	}
 	}
-	
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 	
 	public function borrarId()
 	{
