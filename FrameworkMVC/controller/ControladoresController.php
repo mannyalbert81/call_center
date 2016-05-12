@@ -96,7 +96,9 @@ class ControladoresController extends ControladorBase{
 	public function InsertaControladores(){
 			
 		session_start();
-		
+
+		$permisos_rol=new PermisosRolesModel();
+
 		$controladores=new ControladoresModel();
 
 		$nombre_controladores = "Controladores";
