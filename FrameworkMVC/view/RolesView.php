@@ -33,14 +33,34 @@
             <h4 style="color:#ec971f;">Insertar Roles</h4>
             <hr/>
                <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-	        
-	            	Nombre Rol: <input type="text" name="nombre_rol" value="<?php echo $resEdit->nombre_rol; ?>" class="form-control"/>
+               
+               <div class="row">
+		       <div class="col-xs-12 col-md-12">
+			  	<p  class="formulario-subtitulo" >Nombres Roles</p>
+			  	<input type="text"  name="nombre_rol" id="nombre_rol" value="<?php echo $resEdit->nombre_rol; ?>" class="form-control"/> 
+			  	<input type="hidden"  name="id_rol"  value="<?php echo $resEdit->id_rol; ?>" class="form-control"/> 
+			    <div id="mensaje_nombres" class="errores"></div>
+			  </div>
+			   </div>
+	        <!--  
+	            	Nombre Rol: <input type="text" name="nombre_rol." value="<?php// echo $resEdit->nombre_rol; ?>" class="form-control"/>
 		            
-		            
+		    -->       
             
 		     <?php } } else {?>
+		     
+		      <div class="row">
+		       <div class="col-xs-12 col-md-12">
+			  	<p  class="formulario-subtitulo" >Nombres Roles</p>
+			  	<input type="text"  name="nombre_rol" id="nombre_rol" value="" class="form-control"/> 
+			    <div id="mensaje_nombres" class="errores"></div>
+			  </div>
+			 </div>
 		    
-		            Nombre Rol: <input type="text" name="nombre_rol" value="" class="form-control"/>
+		          <!--  
+	            	Nombre Rol: <input type="text" name="nombre_rol." value="<?php// echo $resEdit->nombre_rol; ?>" class="form-control"/>
+		            
+		    -->   
 		            
 		     <?php } ?>
 		        

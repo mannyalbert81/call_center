@@ -116,8 +116,20 @@ class RolesController extends ControladorBase{
 				
 				$_nombre_rol = $_POST["nombre_rol"];
 				
-				 
-				$funcion = "ins_rol";
+				
+				if(isset($_POST["id_rol"]))
+				{
+						
+					$_id_rol = $_POST["id_rol"];
+					$colval = " nombre_rol = '$_nombre_rol'   ";
+					$tabla = "rol";
+					$where = "id_rol = '$_id_rol'    ";
+						
+					$resultado=$roles->UpdateBy($colval, $tabla, $where);
+						
+				}else {
+						
+					$funcion = "ins_rol";
 				$parametros = " '$_nombre_rol'  ";
 					
 				$roles->setFuncion($funcion);
@@ -126,7 +138,8 @@ class RolesController extends ControladorBase{
 		
 		
 				$resultado=$roles->Insert();
-		
+				
+				}
 		
 			}
 			$this->redirect("Roles", "index");
