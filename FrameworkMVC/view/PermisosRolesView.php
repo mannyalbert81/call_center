@@ -132,7 +132,7 @@
   
   <div></div>
        
-      <form action="<?php echo $helper->url("PermisosRoles","InsertaPermisosRoles"); ?>" method="post" class="col-lg-6">
+      <form action="<?php echo $helper->url("PermisosRoles","InsertaPermisosRoles"); ?>" method="post" class="col-lg-4">
             <h4 style="color:#ec971f;">Insertar Permisos Roles</h4>
             <hr/>
             	
@@ -184,6 +184,8 @@
 		   		
 		   		   	</tr>
 		   		   </table>
+		   		   
+		   		   <hr>
 		    
 		     <?php } } else {?>
 		    
@@ -233,18 +235,22 @@
 		   		   		</td>
 		   		   	</tr>
 		   		   </table>
-		        
+		        <hr>
 		     <?php } ?>
 		        
+		        <div class="row">
+			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
            <input type="submit" value="Guardar" class="btn btn-success"/>
+           </div>
+           </div>
           </form>
        
        
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <h4 style="color:#ec971f;">Permisos Rol</h4>
            
         </div>
-        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll; margin-top: 10px;">
+        <section class="col-lg-8 usuario" style="height:400px;overflow-y:scroll; margin-top: 10px;">
         <table class="table table-hover">
 	         <tr>
 	    		<th style="color:#456789;font-size:80%;">Id</th>

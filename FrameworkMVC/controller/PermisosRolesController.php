@@ -78,9 +78,12 @@ class PermisosRolesController extends ControladorBase{
 					$permisos_rol = new PermisosRolesModel();
 					$resultSet=$permisos_rol->getCondiciones($columnas ,$tablas ,$where, $id);
 					
+					//cambio linea 86
+					//"resultCon"=>$resultCon, "resultAcc"=>$resultAcc, "resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol
 					
 					$this->view("PermisosRoles",array(
-							"resultCon"=>$resultCon, "resultAcc"=>$resultAcc, "resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol
+							
+							"resultCon"=>$resultCon,"resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol
 					));
 			
 			
