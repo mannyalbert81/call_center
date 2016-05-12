@@ -24,7 +24,7 @@ class TipoIdentificacionController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-
+			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "TipoIdentificacion";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $tipo_identificacion->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -96,10 +96,10 @@ class TipoIdentificacionController extends ControladorBase{
 	public function InsertaTipoIdentificacion(){
 			
 		session_start();
-<<<<<<< HEAD
-		
 
-		$nombre_controladores = "Tipo_Identificacion";
+		
+		$tipo_identificacion=new TipoIdentificacionModel();
+		$nombre_controladores = "TipoIdentificacion";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $tipo_identificacion->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 		
@@ -130,74 +130,11 @@ class TipoIdentificacionController extends ControladorBase{
 					$tabla = "tipo_identificacion";
 					$where = "id_tipo_identificacion = '$_id_tipo_identificacion'    ";
 					
-					$resultado=$controladores->UpdateBy($colval, $tabla, $where);
+					$resultado=$tipo_identificacion->UpdateBy($colval, $tabla, $where);
 					
 				}else {
 					
 			
-				
-				$funcion = "ins_tipo_identificacion";
-				
-				$parametros = " '$_nombre_tipo_identificacion'  ";
-					
-				$tipo_identificacion->setFuncion($funcion);
-		
-				$tipo_identificacion->setParametros($parametros);
-		
-		
-				$resultado=$tipo_identificacions->Insert();
-			 }
-		
-			}
-			$this->redirect("tipo_identificacion", "index");
-
-		}
-		else
-		{
-			$this->view("Error",array(
-					
-					"resultado"=>"No tiene Permisos de Insertar tipos de identificacion"
-		
-			));
-		
-		
-		}
-		
-	}
-=======
-		$tipo_identificacion=new TipoIdentificacionModel();
-
-		$nombre_controladores = "TipoIdentificacion";
-		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $tipo_identificacion->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-		
-		
-		if (!empty($resultPer))
-		{
-		
-		
-		
-			$resultado = null;
-			$tipo_identificacion=new TipoIdentificacionModel();
-		
-			//_nombre_tipo_identificacion
-			
-			if (isset ($_POST["nombre_tipo_identificacion"]) )
-				
-			{
-				$_nombre_tipo_identificacion = $_POST["nombre_tipo_identificacion"];
-				
-				if(isset($_POST["id_tipo_identificacion"]))
-				{
-				$_id_tipo_identificacion = $_POST["id_tipo_identificacion"];
-				$colval = " nombre_tipo_identificacion = '$_nombre_tipo_identificacion'   ";
-				$tabla = "tipo_identificacion";
-				$where = "id_tipo_identificacion = '$_id_tipo_identificacion'    ";
-					
-				$resultado=$tipo_identificacion->UpdateBy($colval, $tabla, $where);
-					
-				}else {
-				
 				
 				$funcion = "ins_tipo_identificacion";
 				
@@ -209,14 +146,9 @@ class TipoIdentificacionController extends ControladorBase{
 		
 		
 				$resultado=$tipo_identificacion->Insert();
-				
-				
-				///$this->view("Error",array(
-				//"resultado"=>"entro"
-				//));
-							
 			 }
 		
+			}
 			$this->redirect("TipoIdentificacion", "index");
 
 		}
@@ -232,9 +164,10 @@ class TipoIdentificacionController extends ControladorBase{
 		}
 		
 	}
-	}
+
+		
 	
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
+
 	
 	public function borrarId()
 	{
@@ -288,7 +221,7 @@ class TipoIdentificacionController extends ControladorBase{
 		if (isset(  $_SESSION['usuario']) )
 		{
 			$resultRep = $roles->getByPDF("id_rol, nombre_rol", " nombre_rol != '' ");
-			$this->report("Tipoidentificacion",array(	"resultRep"=>$resultRep));
+			$this->report("TipoIdentificacion",array(	"resultRep"=>$resultRep));
 	
 		}
 					

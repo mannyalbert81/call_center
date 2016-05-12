@@ -111,7 +111,7 @@ class EntidadesController extends ControladorBase{
 			$entidades=new EntidadesModel();
 		
 			//_nombre_categorias character varying, _path_categorias character varying
-			if (isset ($_POST["nombre_entidades"])   )
+			if (isset ($_POST["ruc_entidades"])   )
 				
 			{
 				

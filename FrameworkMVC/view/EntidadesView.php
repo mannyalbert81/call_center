@@ -183,7 +183,7 @@
 	        <div class="row">
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Ruc Entidades </p>
-			  	<input type="text" name="ruc_entidades" id="ruc_entidades" value="<?php echo $resEdit->ruc_entidades; ?>" class="form-control"/>
+			  	<input type="text" name="ruc_entidades" id="ruc_entidades" value="<?php echo $resEdit->ruc_entidades; ?>" class="form-control" readonly/>
 			  <div id="mensaje_ruc" class="errores"></div>
 			  </div>
 			  <div class="col-xs-6 col-md-6">
