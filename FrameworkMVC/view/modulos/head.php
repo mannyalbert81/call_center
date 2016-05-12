@@ -28,7 +28,7 @@
 </head>
 <body>
 
-<div class="container"  style="-webkit-box-shadow: 0px 2px 5px 12px rgba(0,0,0,0.49);-moz-box-shadow: 0px 2px 5px 12px rgba(0,0,0,0.49); box-shadow: 0px 2px 5px 12px rgba(0,0,0,0.49);">
+<div class="container"  style=" -webkit-box-shadow: 0px 2px 5px 12px rgba(0,0,0,0.49);-moz-box-shadow: 0px 2px 5px 12px rgba(0,0,0,0.49); box-shadow: 0px 2px 5px 12px rgba(0,0,0,0.49);">
   
   
   <div class="row" style=" background-color:#3172b4;">
