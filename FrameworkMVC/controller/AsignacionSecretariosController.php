@@ -24,21 +24,23 @@ class AsignacionSecretariosController extends ControladorBase{
 				
 			if (!empty($resultPer))
 			{
-					//usuarios secretarios
-					//query Select usuarios.nombre_usuarios from usuarios  inner join rol on(usuarios.id_rol=rol.id_rol) where rol.nombre_rol='SECRETARIO' order by rol.id_rol ASC
-					/*$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+					
+					//CONSULTA DE USUARIOS POR SU ROL 
+					$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
 					$tablas="usuarios inner join rol on(usuarios.id_rol=rol.id_rol)";
-					$where="rol.nombre_rol='SECRETARIO'";
 					$id="rol.id_rol";
-					*/
 					
 					$usuarios=new UsuariosModel();
-					//$resultUsuario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
-					$where="id_rol=5";
-					$resultUsuarioSecretario=$usuarios->getBy($where);
+					//$where="id_rol=5";
+					//$resultUsuarioSecretario=$usuarios->getBy($where);
+					//$where="id_rol=3";
+					//$resultUsuarioImpulsor=$usuarios->getBy($where);
+					$where="rol.nombre_rol='SECRETARIO'";
+					$resultUsuarioSecretario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
 					
-					$where="id_rol=3";
-					$resultUsuarioImpulsor=$usuarios->getBy($where);
+					$where="rol.nombre_rol='ABOGADO IMPULSOR'";
+					$resultUsuarioImpulsor=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+					
 					
 					//roles
 					$rol = new RolesModel();

@@ -25,6 +25,82 @@ class FirmasDigitalesController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
+
+			$nombre_controladores = "Firmas_Digitales";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $firmas_digitales->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			
+			if (!empty($resultPer))
+			{
+				if (isset ($_GET["id_firmas_digitales"])   )
+				{
+
+					$nombre_controladores = "Firmas_Digitales";
+					$id_rol= $_SESSION['id_rol'];
+					$resultPer = $firmas_digitales->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+						
+					if (!empty($resultPer))
+					{
+					
+						$_id_firmas_digitales = $_GET["id_firmas_digitales"];
+						$columnas = " id_firmas_digitales, id_usuarios, imagen_firmas_digitales";
+						$tablas   = "firmas_digitales";
+						$where    = "firmas_digitales.id_usuarios = usuarios.id_usuarios AND firmas_digitales.id_firmas_digitales = '$_id_firmas_digitales' "; 
+						$id       = "id_usuarios";
+							
+						$resultEdit = $firmas_digitales->getCondiciones($columnas ,$tablas ,$where, $id);
+
+					}
+					else
+					{
+						$this->view("Error",array(
+								"resultado"=>"No tiene Permisos de Editar Firmas Digitales"
+					
+						));
+					
+					
+					}
+					
+				}
+		
+				
+				$this->view("FirmasDigitales",array(
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+			
+				));
+		
+				
+				
+			}
+			else
+			{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Acceso a Controladores"
+				
+				));
+				
+				exit();	
+			}
+				
+		}
+		else 
+		{
+				$this->view("ErrorSesion",array(
+						"resultSet"=>""
+			
+				));
+		
+		}
+	
+	}
+	
+	public function InsertaFirmasDigitales(){
+			
+		session_start();
+		
+
+		$nombre_controladores = "Firmas_Digitales";
+
 			$nombre_controladores = "FirmasDigitales";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $firmas_digitales->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -106,6 +182,7 @@ class FirmasDigitalesController extends ControladorBase{
 		
 
 		$nombre_controladores = "FirmasDigitales";
+
 		
 		$firmas_digitales = new FirmasDigitalesModel(); 
 		
