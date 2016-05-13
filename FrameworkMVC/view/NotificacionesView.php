@@ -43,11 +43,8 @@
 			{
 		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
-		    	var id_notificaciones = $("#id_notificaciones").val();
-		    	var id_tipo_notificacion = $("#id_tipo_notificacion").val();
-		    	var id_tipo_notificacion = $("#id_tipo_notificacion").val();
-		    	var id_usuarios  = $("#id_usuarios").val();
-		    	
+		    	var descripcion_notificaciones = $("#descripcion_notificaciones").val();
+		    
 		    	
 		    	
 		    	
@@ -125,17 +122,29 @@
             <h4 style="color:#ec971f;">Insertar Notificaciones</h4>
             <hr/>
             	
-		   		
+            		
             
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	        
 	            	
 	        <div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Tipo Notificacion </p>
-			  	<input type="text" name="id_tipo_notificacion" id="id_tipo_notificacion" value="<?php echo $resEdit->id_tipo_notificacion; ?>" class="form-control" readonly/>
-			  <div id="mensaje_ruc" class="errores"></div>
-			  </div>
+		    <div class="col-xs-6 col-md-6" style="margin-top: 20px;">
+		
+	      Tipo Notificacion: <select name="id_tipo_notificacion" id="id_tipo_notificacion"  class="form-control">	
+									<?php foreach($resultTipoNotificacion as $resTipoNotificacion) {?>
+				 						<option value="<?php echo $resTipoNotificacion->id_tipo_notificacion; ?>" <?php if ($resTipoNotificacion->id_tipo_notificacion == $resTipoNotificacion->id_tipo_notificacion )  echo  ' selected="selected" '  ;  ?> ><?php echo $resTipoNotificacion->descripcion_notificacion; ?> </option>
+						            <?php } ?>								    	
+									</select>
+									
+		   		   </div>
+		   		   	<div class="col-xs-6 col-md-6" style="margin-top: 20px;">
+	      Usuario: <select name="id_usuario" id="id_usuario"  class="form-control">
+									<?php foreach($resultUsuarios as $resUsuarios) {?>
+				 						<option value="<?php echo $resUsuarios->id_usuarios; ?>" <?php if ($resUsuarios->id_usuarios == $resUsuarios->id_usuarios )  echo  ' selected="selected" '  ;  ?> ><?php echo $resUsuarios->nombre_usuarios; ?> </option>
+						            <?php } ?>
+								    	
+									</select>
+		   		   </div>
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Descripcion Notificaciones</p>
 			  	<input type="text" name="descripcion_notificaciones" id="descripcion_notificaciones" value="<?php echo $resEdit->descripcion_notificaciones; ?>" class="form-control"/> 
@@ -150,13 +159,27 @@
 		     <?php } } else {?>
 		    
 		<div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Tipo Notificacion </p>
-			  	<input type="text" name="id_tipo_notificacion" id="id_tipo_notificacion" value="" class="form-control" readonly/>
-			 	 <div id="" class="errores"></div>
-			  </div>
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Descripcion Notificaciones</p>
+		<div class="col-xs-6 col-md-6" style="margin-top: 20px;">
+		
+	      Tipo Notificacion: <select name="id_tipo_notificacion" id="id_tipo_notificacion"  class="form-control">	
+									<?php foreach($resultTipoNotificacion as $resTipoNotificacion) {?>
+				 						<option value="<?php echo $resTipoNotificacion->id_tipo_notificacion; ?>" <?php if ($resTipoNotificacion->id_tipo_notificacion == $resTipoNotificacion->id_tipo_notificacion )  echo  ' selected="selected" '  ;  ?> ><?php echo $resTipoNotificacion->descripcion_notificacion; ?> </option>
+						            <?php } ?>								    	
+									</select>
+									
+		   		   </div>
+		   		   	<div class="col-xs-6 col-md-6" style="margin-top: 20px;">
+	      Usuario: <select name="id_usuarios" id="id_usuarios"  class="form-control">
+									<?php foreach($resultUsuarios as $resUsuarios) {?>
+				 						<option value="<?php echo $resUsuarios->id_usuarios; ?>" <?php if ($resUsuarios->id_usuarios == $resUsuarios->id_usuarios )  echo  ' selected="selected" '  ;  ?> ><?php echo $resUsuarios->nombre_usuarios; ?> </option>
+						            <?php } ?>
+								    	
+									</select>
+		   		   </div>
+		   			<hr>
+		   				<hr>	<hr>
+		   		<div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Descripcion  de Notificaciones</p>
 			  	<input type="text" name="descripcion_notificaciones" id="descripcion_notificaciones" value="" class="form-control"/> 
 			  <div id="mensaje_nombres" class="errores"></div>
 			  </div>
@@ -184,6 +207,7 @@
 	         <tr>
 	    		<th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Tipo</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre</th>
 	    		<th style="color:#456789;font-size:80%;">Descripcion</th>
 	    		
 	  		</tr>
@@ -191,8 +215,8 @@
 	            <?php foreach($resultSet as $res) {?>
 	        		<tr>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_notificaciones; ?>  </td>
-		               <td style="color:#000000;font-size:80%;" > <?php echo $res->id_tipo_notificacion; ?>     </td> 
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->descripcion_notificaciones; ?>     </td>
+	                   <td style="color:#000000;font-size:80%;" > <?php echo $res->id_tipo_notificacion; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->descripcion_notificaciones; ?>     </td>
 		                 
 		               <td>
 			           		<div class="right">
@@ -204,6 +228,7 @@
 			                	<div class="right">
 			                    <a href="<?php echo $helper->url("Notificaciones","borrarId"); ?>&id_notificaciones=<?php echo $res->id_notificaciones; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
+			                
 			                <hr/>
 		               </td>
 		    		</tr>

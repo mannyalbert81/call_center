@@ -16,7 +16,10 @@ class NotificacionesController extends ControladorBase{
 		$resultSet=$notificaciones->getAll("id_notificaciones");
 				
 		$resultEdit = "";
-
+		$tipo_notificacion = new TipoNotificacionModel();
+		$resultTipoNotificacion=$tipo_notificacion->getAll("id_tipo_notificacion");
+		$usuarios = new UsuariosModel();
+		$resultUsuarios=$usuarios->getAll("id_usuarios");
 		
 		session_start();
 
@@ -63,7 +66,8 @@ class NotificacionesController extends ControladorBase{
 		
 				
 				$this->view("Notificaciones",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultTipoNotificacion"=>$resultTipoNotificacion,"resultUsuarios"=>$resultUsuarios
+						
 			
 				));
 		
