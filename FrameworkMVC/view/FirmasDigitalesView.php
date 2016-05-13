@@ -48,13 +48,13 @@
   
      <div class="row" style="background-color: #ffffff;">
   
-  	      <form action="<?php echo $helper->url("FirmasDigitales","InsertaFirmasDigitales"); ?>" method="post" class="col-lg-6">
+  	      <form action="<?php echo $helper->url("FirmasDigitales","InsertaFirmasDigitales"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
             <h4 style="color:#ec971f;">Insertar Firmas Digitales</h4>
             <hr/>
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	        <div class="row">
 		     <div class="col-xs-6 col-md-6">
-		             Nombre Secretario: <select name="nombre_secretario" id="nombre_secretario"  class="form-control">
+		             Nombre Secretario: <select name="abogados" id="abogados"  class="form-control">
 						<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
 							<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
 			            <?php } ?>
@@ -64,6 +64,7 @@
 		     <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Firma</p>
 			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" value="<?php echo $resEdit->imagen_firmas_digitales; ?>" class="form-control"/> 
+			 
 			  <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 		    </div>
@@ -72,7 +73,7 @@
 	        
 		     <?php } } else {?>
 		    	<div class="col-xs-6 col-md-6">
-		             Nombre Secretario: <select name="nombre_secretario" id="nombre_secretario"  class="form-control">
+		             Nombre Secretario: <select name="abogados" id="abogados"  class="form-control">
 									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
 				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
 						            <?php } ?>
@@ -114,7 +115,7 @@
 	        		<tr>
 	        		   <td> <?php echo $registros; ?>  </td>
 		               <td> <?php echo $res->nombre_usuarios; ?>     </td> 
-		               <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_usuarios; ?>&id_nombre=id_firmas_digitales&tabla=firmas_digitales&campo=imagen_firmas_digitales"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
+		               <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_firmas_digitales; ?>&id_nombre=id_firmas_digitales&tabla=firmas_digitales&campo=imagen_firmas_digitales"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
 		               <td>
 			           		<div class="right">
 			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
