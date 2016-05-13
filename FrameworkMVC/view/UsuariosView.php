@@ -51,7 +51,7 @@
 		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
 		    	var cedula_usuario = $("#cedula_usuarios").val();
 		    	var nombre_usuario = $("#nombre_usuarios").val();
-		    	var usuario_usuario  = $("#usuario_usuarios").val();
+		    	var usuario_usuario = $("#usuario_usuarios").val();
 		    	var clave_usuario = $("#clave_usuarios").val();
 		    	var cclave_usuario = $("#cclave_usuarios").val();
 		    	var telefono_usuario = $("#telefono_usuarios").val();	
@@ -505,9 +505,33 @@
        
         <div class="col-lg-6">
             <h4 style="color:#ec971f;">Lista de Usuarios</h4>
-            <hr/>
+            <!-- empieza formulario de busqueda -->
+        <div class="row">
+           <form action="<?php echo $helper->url("Usuarios","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+           
+           <div class="col-lg-4">
+           <input type="text"  name="usuario_usuarios" id="usuario_usuarios" value="" class="form-control"/>
+            </div>
+           <div class="col-lg-4">
+           <select name="id_rol" id="id_rol"  class="form-control">
+									<?php foreach($resultMenu as $val=>$desc) {?>
+				 						<option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
+						            <?php } ?>
+								    	
+									</select>
+		   </div>
+           <div class="col-lg-4">
+           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-success"/>
+           </div>
+         
+          </form>
+           <!-- termina formulario de busqueda -->
+        <hr/>
+      
+        
         </div>
-        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
+        
+        <section class="col-lg-12 usuario" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;">Id</th>
