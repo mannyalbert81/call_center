@@ -14,7 +14,12 @@ class FirmasDigitalesController extends ControladorBase{
      	$firmas_digitales = new FirmasDigitalesModel(); 
 		
 	   //Conseguimos todos los usuarios
-		$resultSet=$firmas_digitales->getAll("id_firmas_digitales");
+     	$columnas  = "firmas_digitales.id_usuarios, usuarios.nombre_usuarios, firmas_digitales.imagen_firmas_digitales, firmas_digitales.id_firmas_digitales";
+     	$tablas    = "public.firmas_digitales, public.usuarios";
+     	$where     = "usuarios.id_usuarios = firmas_digitales.id_usuarios";
+     	$id        = "usuarios.nombre_usuarios";
+     	
+		$resultSet=$firmas_digitales->getCondiciones($columnas, $tablas, $where, $id);
 				
 		$resultEdit = "";
 		
@@ -55,10 +60,11 @@ class FirmasDigitalesController extends ControladorBase{
 					{
 					
 						$_id_firmas_digitales = $_GET["id_firmas_digitales"];
-						$columnas = " id_firmas_digitales, id_usuarios, imagen_firmas_digitales";
-						$tablas   = "firmas_digitales, usuarios";
-						$where    = "id_firmas_digitales = '$_id_firmas_digitales' "; 
-						$id       = "id_usuarios";
+						$columnas  = "firmas_digitales.id_usuarios, usuarios.nombre_usuarios, firmas_digitales.imagen_firmas_digitales, firmas_digitales.id_firmas_digitales";
+						$tablas    = "public.firmas_digitales, public.usuarios";
+						$where     = "usuarios.id_usuarios = firmas_digitales.id_usuarios AND firmas_digitales.id_firmas_digitales = '$_id_firmas_digitales'";
+						$id        = "usuarios.nombre_usuarios";
+						
 							
 						$resultEdit = $firmas_digitales->getCondiciones($columnas ,$tablas ,$where, $id);
 
@@ -132,11 +138,11 @@ class FirmasDigitalesController extends ControladorBase{
 		
 			//_nombre_controladores
 			
-			if (isset ($_POST["id_usuarios"]) )
+			if (isset ($_POST["abogados"]) )
 				
 			{
 				$usuarios=new UsuariosModel();
-				$_id_usuarios =  $_POST["id_usuarios"] ;
+				$_id_usuarios =  $_POST["abogados"] ;
 				
 				$firmas_digitales = new FirmasDigitalesModel();
 				$directorio = $_SERVER['DOCUMENT_ROOT'].'/uploads/';
@@ -151,14 +157,14 @@ class FirmasDigitalesController extends ControladorBase{
 					
 				$data = file_get_contents($directorio.$nombre);
 					
-				$_imagen_firmas_digitales = pg_escape_bytea($data);
+				$imagen_firmas_digitales = pg_escape_bytea($data);
 					
 					
 					
 			    $funcion = "ins_firmas_digitales";
 				
 				
-				$parametros = " '$_id_usuarios' ,'{$_imagen_firmas_digitales}' ";
+				$parametros = " '$_id_usuarios' ,'{$imagen_firmas_digitales}' ";
 				$firmas_digitales->setFuncion($funcion);	
 				$firmas_digitales->setParametros($parametros);
 			   

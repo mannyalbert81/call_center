@@ -221,85 +221,80 @@
        
        <?php include("view/modulos/menu.php"); ?>
   
-     <div class="container">
+  <div class="container">
   
   <div class="row" style="background-color: #ffffff;">
   
   
       <form action="<?php echo $helper->url("FirmasDigitales","InsertaFirmasDigitales"); ?>" method="post" class="col-lg-6">
             <h4 style="color:#ec971f;">Insertar Firmas Digitales</h4>
-            <hr/>
-            	
-		   		
-            
-             <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-	        
-	            	
-	        <div class="row">
-		   
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Firma</p>
-			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" value="<?php echo $resEdit->imagen_firmas_digitales; ?>" class="form-control"/> 
-			  <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-		    </div>
-		    
-			
-	     	<hr>
-	            	  
-            
-		     <?php } } else {?>
-		    
-
-		             Nombre Secretario: <select name="nombre_secretario" id="nombre_secretario"  class="form-control">
-									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
-				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
-						            <?php } ?>
-								    	
-									</select>
-		            
-		            
-		   
-									 
-									 
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Firma</p>
-			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" accept="png|jpg|jpeg" onKeyDown="return intro(event)" value="" class="form-control"/> 
-			 <div id="mensaje_firmas" class="errores"></div>
-			  </div>
-		    </div>
+            <hr/>	
+           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+	  	      <div class="row">
+		     	<div class="col-xs-6 col-md-6">
+		           Nombre Secretario: <select name="abogados" id="abogados"  class="form-control">
+					<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
+						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
+			        <?php } ?>
+			       </select>
+		       	</div>				 
+			    
+		     	<div class="col-xs-6 col-md-6">
+			  		<p  class="formulario-subtitulo" >Firma</p>
+			  		<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" value="" class="form-control"/> 
+			  		<div id="mensaje_nombres" class="errores"></div>
+			  	</div>
+		      </div>
+		    	<hr>
+	         <?php } } else {?>
+		        <div class="col-xs-6 col-md-6">
+		           Nombre Secretario: <select name="abogados" id="abogados"  class="form-control">
+					<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
+						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
+			        <?php } ?>
+			       </select>
+		       	</div>				 
+			     <div class="col-xs-6 col-md-6">
+			  	     <p  class="formulario-subtitulo" >Firma</p>
+			  	     <input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" accept="png|jpg|jpeg" onKeyDown="return intro(event)" value="" class="form-control"/> 
+			         <div id="mensaje_firmas" class="errores"></div>
+			     </div>
 		       
-			<hr>
+			   <hr>
 		     <?php } ?>
-		       <div class="row">
-			  <div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
-           </div>
-            </div>
-          </form>
+		     
+		     <div class="row">
+			   <div class="col-xs-12 col-md-12" style="text-align: center;" > 
+                 <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+              </div>
+             </div>
+      </form>
+      
        
        
         <div class="col-lg-6">
             <h4 style="color:#ec971f;">Firmas</h4>
             <hr/>
         </div>
-        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
+       
+       
+     <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
         
         
         
         <table class="table table-hover">
 	         <tr>
 	    		<th style="color:#456789;font-size:80%;">Id</th>
-	    		<th style="color:#456789;font-size:80%;">Ruc</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Abogado</th>
+	    		<th style="color:#456789;font-size:80%;">Firma Abogado</th>
 	    		
 	  		</tr>
             
 	            <?php foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_entidades; ?>  </td>
-		               <td style="color:#000000;font-size:80%;" > <?php echo $res->ruc_entidades; ?>     </td> 
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>     </td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_usuarios; ?>  </td>
+		               <td style="color:#000000;font-size:80%;" > <?php echo $res->nombre_usuarios; ?>     </td> 
+		                 <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_usuarios; ?>&id_nombre=id_usuarios&tabla=firmas_digitales&campo=imagen_firmas_digitales"  alt="<?php echo $res->nombre_usuarios; ?>" width="80" height="60" >      </td>
 		                 
 		               <td>
 			           		<div class="right">
@@ -315,82 +310,11 @@
 		               </td>
 		    		</tr>
 		        <?php } ?>
-
-              Nombre Secretario: <select name="id_usuarios" id="id_usuarios"  class="form-control">
-									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
-				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
-						            <?php } ?>
-								    	
-									</select>
-		            					 
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Firma</p>
-			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" accept="png|jpg|jpeg" onKeyDown="return intro(event)" value="" class="form-control"/> 
-			 <div id="mensaje_firmas" class="errores"></div>
-			  </div>
-		    </div>
-		       
-			<hr>
-		     <?php } ?>
-		       <div class="row">
-			  <div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
-           </div>
-            </div>
-          </form>
-       
-       
-       <form action="" method="get" >
-        <section class="col-lg-6 Firmas Digitales">
-        <table class="table table-hover">
-	         <tr>
-	    		
-	    		
-	    		<th></th>
-	    		<th></th>
-	  		</tr>
-                <?php $registros = 1;?>
-                 <?php foreach($resultSet as $res) {?>
-	        		<tr>
-	        		   <td> <?php echo $registros; ?>  </td>
-		               <td> <?php echo $res->id_usuarios; ?>     </td> 
-		               <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_usuarios; ?>&id_nombre=id_firmas_digitales&tabla=firmas_digitales&campo=imagen_firmas_digitales"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
-		               <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
-			                </div>
-			            
-			             </td>
-			             <td>   
-			                	<div class="right">
-			                    <a href="<?php echo $helper->url("FirmasDigitales","borrarId"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
-			                </div>
-			                <hr/>
-		               </td>
-		    		</tr>
-		    		<?php $registros ++?>
-		        <?php } ?>
-            
-            <?php 
-            
-            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
-            
-            ?>
-            
-       	</table>     
-      </section>
-       </form>
-
-
-<?php 
-            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
-            
-            ?>
-            
+  
        	</table>     
       </section>
        </div>
- 
+ </div>
   
        
        <?php include("view/modulos/footer.php"); ?>
