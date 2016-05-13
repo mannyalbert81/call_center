@@ -135,8 +135,7 @@ class TipoIdentificacionController extends ControladorBase{
 				}else {
 					
 			
-<<<<<<< HEAD
-=======
+
 				
 				$funcion = "ins_tipo_identificacion";
 				
@@ -147,7 +146,7 @@ class TipoIdentificacionController extends ControladorBase{
 				$tipo_identificacion->setParametros($parametros);
 		
 		
-				$resultado=$tipo_identificacions->Insert();
+				$resultado=$tipo_identificacion->Insert();
 			 }
 		
 			}
@@ -200,7 +199,7 @@ class TipoIdentificacionController extends ControladorBase{
 					
 				}else {
 				
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
+
 				
 				$funcion = "ins_tipo_identificacion";
 				
@@ -230,15 +229,14 @@ class TipoIdentificacionController extends ControladorBase{
 		}
 		
 	}
-<<<<<<< HEAD
 
 		
 	
 
-=======
-	}
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
-	
+
+
+
+
 	public function borrarId()
 	{
 
