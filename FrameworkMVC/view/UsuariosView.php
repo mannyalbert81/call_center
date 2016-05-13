@@ -44,6 +44,42 @@
         <script >
 		$(document).ready(function(){
 
+			$("#Buscar").click(function(){
+
+				var contenido = $("#contenido_busqueda").val();
+				var criterio= $("#criterio_busqueda").val();
+
+				if(criterio==0 && contenido!="")
+				{
+					$("#mensaje_Menu").text("Seleccione un filtro de busqueda");
+		    		$("#mensaje_Menu").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+				}
+				else 
+		    	{
+		    		$("#mensaje_Menu").fadeOut("slow"); //Muestra mensaje de error
+		            
+				} 
+
+				if(criterio!=0 && contenido="")
+				{
+					$("#mensaje_Contenido").text("Ingrese contenido de busqueda");
+	    			$("#mensaje_Contenido").fadeIn("slow"); //Muestra mensaje de error
+	            	return false;
+				}
+				else 
+	    		{
+	    			$("#mensaje_Contenido").fadeOut("slow"); //Muestra mensaje de error
+	            
+				} 
+
+			
+
+
+				//alert(criterio);
+				
+			});
+
 		    // cada vez que se cambia el valor del combo
 		    $("#Guardar").click(function() 
 			{
@@ -226,7 +262,13 @@
 					$("#mensaje_correo").fadeOut("slow");
     			});
 		
+				$("#mensajebusqueda" ).focus(function() {
+					  $("#mensaje_Menu").fadeOut("slow");
+				    });
 				
+				$("#contenido_busqueda" ).focus(function() {
+					  $("#mensaje_Contenido").fadeOut("slow");
+				    });
 		
 		      
 				    
@@ -506,22 +548,32 @@
         <div class="col-lg-6">
             <h4 style="color:#ec971f;">Lista de Usuarios</h4>
             <!-- empieza formulario de busqueda -->
+            <hr>
         <div class="row">
            <form action="<?php echo $helper->url("Usuarios","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
            
            <div class="col-lg-4">
-           <input type="text"  name="usuario_usuarios" id="usuario_usuarios" value="" class="form-control"/>
+           <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
+           <div id="mensaje_Contenido" class="errores"></div>
             </div>
-           <div class="col-lg-4">
-           <select name="id_rol" id="id_rol"  class="form-control">
+            <div class="col-lg-1">
+		    <input type="text" id="mensajebusqueda" value="" style="visibility: hidden;"/>
+		   <div id="mensaje_Menu" class="errores"></div>
+		   </div>
+           <div class="col-lg-3">
+           <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
 									<?php foreach($resultMenu as $val=>$desc) {?>
 				 						<option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
 						            <?php } ?>
 								    	
-									</select>
+		   </select>
 		   </div>
-           <div class="col-lg-4">
-           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-success"/>
+		   <div class="col-lg-1">
+		    
+		   <div id="" class="errores"></div>
+		   </div>
+           <div class="col-lg-3">
+           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
            </div>
          
           </form>

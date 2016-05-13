@@ -12,7 +12,7 @@ public function index(){
 		{
 			//creacion menu busqueda
 			//$resultMenu=array("1"=>Nombre,"2"=>Usuario,"3"=>Correo,"4"=>Rol);
-			$resultMenu=array(1=>'Nombre', 2=>'Usuario', 3=>'Correo', 4=>'Rol');
+			$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Usuario', 3=>'Correo', 4=>'Rol');
 			
 			
 				//Creamos el objeto usuario
@@ -79,15 +79,26 @@ public function index(){
 				{
 						
 					
-						
+					/*	
 					$columnas = "documentos_legal.id_documentos_legal,  documentos_legal.fecha_documentos_legal, categorias.nombre_categorias, subcategorias.nombre_subcategorias, tipo_documentos.nombre_tipo_documentos, cliente_proveedor.nombre_cliente_proveedor, carton_documentos.numero_carton_documentos, documentos_legal.paginas_documentos_legal, documentos_legal.fecha_desde_documentos_legal, documentos_legal.fecha_hasta_documentos_legal, documentos_legal.ramo_documentos_legal, documentos_legal.numero_poliza_documentos_legal, documentos_legal.ciudad_emision_documentos_legal, soat.cierre_ventas_soat,   documentos_legal.creado  ";
 					$tablas   = "public.documentos_legal, public.categorias, public.subcategorias, public.tipo_documentos, public.carton_documentos, public.cliente_proveedor, public.soat";
 					$where    = "categorias.id_categorias = subcategorias.id_categorias AND subcategorias.id_subcategorias = documentos_legal.id_subcategorias AND tipo_documentos.id_tipo_documentos = documentos_legal.id_tipo_documentos AND carton_documentos.id_carton_documentos = documentos_legal.id_carton_documentos AND cliente_proveedor.id_cliente_proveedor = documentos_legal.id_cliente_proveedor   AND documentos_legal.id_soat = soat.id_soat ";
 					$id       = "documentos_legal.fecha_documentos_legal, carton_documentos.numero_carton_documentos";
-						
-						
+					*/	
+					
+					
+					
+					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios";
+					$tablas   = "public.rol,  public.usuarios, public.estado";
+					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado";
+					$id       = "usuarios.nombre_usuarios";
+					
+
 					$criterio = $_POST["criterio_busqueda"];
 					$contenido = $_POST["contenido_busqueda"];
+						
+					
+					//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 						
 					if ($contenido !="")
 					{
@@ -100,23 +111,23 @@ public function index(){
 							
 						switch ($criterio) {
 							case 0:
-								$where_0 = "OR cliente_proveedor.ruc_cliente_proveedor LIKE '$contenido'   OR cliente_proveedor.nombre_cliente_proveedor LIKE '$contenido'   OR carton_documentos.numero_carton_documentos LIKE '$contenido'  OR documentos_legal.numero_poliza_documentos_legal LIKE '$contenido'  OR documentos_legal.ramo_documentos_legal LIKE '$contenido'  OR documentos_legal.ciudad_emision_documentos_legal LIKE '$contenido'     ";
+								$where_0 = "OR  usuarios.nombre_usuarios LIKE '$contenido'   OR usuarios.usuario_usuarios LIKE '$contenido'  OR  usuarios.correo_usuarios LIKE '$contenido'  OR rol.nombre_rol LIKE '$contenido'";
 								break;
 							case 1:
 								//Ruc Cliente/Proveedor
-								$where_1 = " AND cliente_proveedor.ruc_cliente_proveedor LIKE '$contenido'  ";
+								$where_1 = " AND  usuarios.nombre_usuarios LIKE '$contenido'  ";
 								break;
 							case 2:
 								//Nombre Cliente/Proveedor
-								$where_2 = " AND cliente_proveedor.nombre_cliente_proveedor LIKE '$contenido'  ";
+								$where_2 = " AND usuarios.usuario_usuarios LIKE '$contenido'  ";
 								break;
 							case 3:
 								//Número Carton
-								$where_3 = " AND carton_documentos.numero_carton_documentos LIKE '$contenido' ";
+								$where_3 = " AND usuarios.correo_usuarios LIKE '$contenido' ";
 								break;
 							case 4:
 								//Número Poliza
-								$where_4 = " AND documentos_legal.numero_poliza_documentos_legal LIKE '$contenido' ";
+								$where_4 = " AND rol.nombre_rol LIKE '$contenido' ";
 								break;
 						}
 							
@@ -126,8 +137,9 @@ public function index(){
 							
 							
 						$resul = $where_to;
-							
-						$resultSet=$documentos->getCondiciones($columnas ,$tablas ,$where_to, $id);
+						
+						//Conseguimos todos los usuarios con filtros
+						$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where_to, $id);
 							
 							
 							
