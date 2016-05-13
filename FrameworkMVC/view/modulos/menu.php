@@ -36,6 +36,8 @@
 			</li>
 			<li><a href="index.php?controller=TipoNotificacion&action=index"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"> Tipo Notificacion</span> </a>
 			</li>
+			<li><a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"> Notificaciones</span> </a>
+			</li>
           </ul>
         </li>
 
