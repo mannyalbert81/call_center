@@ -146,7 +146,7 @@ class TipoIdentificacionController extends ControladorBase{
 				$tipo_identificacion->setParametros($parametros);
 		
 		
-				$resultado=$tipo_identificacions->Insert();
+				$resultado=$tipo_identificacion->Insert();
 			 }
 		
 			}
@@ -162,7 +162,7 @@ class TipoIdentificacionController extends ControladorBase{
 			));
 		
 		
-		
+		}
 	
 
 		$tipo_identificacion=new TipoIdentificacionModel();
@@ -198,7 +198,7 @@ class TipoIdentificacionController extends ControladorBase{
 					
 				}else {
 				
-				
+			
 				$funcion = "ins_tipo_identificacion";
 				
 				$parametros = " '$_nombre_tipo_identificacion'  ";
@@ -227,8 +227,10 @@ class TipoIdentificacionController extends ControladorBase{
 		}
 		
 	}
-	}
-	
+
+
+
+
 	public function borrarId()
 	{
 
