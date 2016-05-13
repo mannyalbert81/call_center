@@ -204,61 +204,7 @@ class FirmasDigitalesController extends ControladorBase{
 	
 	public function borrarId()
 	{
-
-		session_start();
-		
-		$permisos_rol=new PermisosRolesModel();
-		$nombre_controladores = "Roles";
-		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-			
-		if (!empty($resultPer))
-		{
-			if(isset($_GET["id_controladores"]))
-			{
-				$id_controladores=(int)$_GET["id_controladores"];
 				
-				$controladores=new ControladoresModel();
-				
-				$controladores->deleteBy(" id_controladores",$id_controladores);
-				
-				
-			}
-			
-			$this->redirect("Controladores", "index");
-			
-			
-		}
-		else
-		{
-			$this->view("Error",array(
-				"resultado"=>"No tiene Permisos de Borrar Controladores"
-			
-			));
-		}
-				
-	}
-	
-	
-	public function Reporte(){
-	
-		//Creamos el objeto usuario
-		$roles=new RolesModel();
-		//Conseguimos todos los usuarios
-		
-	
-	
-		session_start();
-	
-	
-		if (isset(  $_SESSION['usuario']) )
-		{
-			$resultRep = $roles->getByPDF("id_rol, nombre_rol", " nombre_rol != '' ");
-			$this->report("Roles",array(	"resultRep"=>$resultRep));
-	
-		}
-					
-	
 	}
 	
 	

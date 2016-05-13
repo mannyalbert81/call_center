@@ -49,10 +49,7 @@ public function index(){
 					}
 			
 					
-					$this->view("Usuarios",array(
-							"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst
-				
-					));
+					
 				
 			}
 			else
@@ -64,6 +61,79 @@ public function index(){
 			
 			
 			}
+			
+			
+			///si tiene permiso de ver
+			if (isset ($_POST["criterio_busqueda"])  && isset ($_POST["contenido_busqueda"])  )
+			{
+			
+			
+				$documentos = new DocumentosLegalModel();
+					
+				$columnas = "documentos_legal.id_documentos_legal,  documentos_legal.fecha_documentos_legal, categorias.nombre_categorias, subcategorias.nombre_subcategorias, tipo_documentos.nombre_tipo_documentos, cliente_proveedor.nombre_cliente_proveedor, carton_documentos.numero_carton_documentos, documentos_legal.paginas_documentos_legal, documentos_legal.fecha_desde_documentos_legal, documentos_legal.fecha_hasta_documentos_legal, documentos_legal.ramo_documentos_legal, documentos_legal.numero_poliza_documentos_legal, documentos_legal.ciudad_emision_documentos_legal, soat.cierre_ventas_soat,   documentos_legal.creado  ";
+				$tablas   = "public.documentos_legal, public.categorias, public.subcategorias, public.tipo_documentos, public.carton_documentos, public.cliente_proveedor, public.soat";
+				$where    = "categorias.id_categorias = subcategorias.id_categorias AND subcategorias.id_subcategorias = documentos_legal.id_subcategorias AND tipo_documentos.id_tipo_documentos = documentos_legal.id_tipo_documentos AND carton_documentos.id_carton_documentos = documentos_legal.id_carton_documentos AND cliente_proveedor.id_cliente_proveedor = documentos_legal.id_cliente_proveedor   AND documentos_legal.id_soat = soat.id_soat ";
+				$id       = "documentos_legal.fecha_documentos_legal, carton_documentos.numero_carton_documentos";
+					
+			
+				$criterio = $_POST["criterio_busqueda"];
+				$contenido = $_POST["contenido_busqueda"];
+					
+				if ($contenido !="")
+				{
+			
+					$where_0 = "";
+					$where_1 = "";
+					$where_2 = "";
+					$where_3 = "";
+					$where_4 = "";
+			
+					switch ($criterio) {
+						case 0:
+							$where_0 = "OR cliente_proveedor.ruc_cliente_proveedor LIKE '$contenido'   OR cliente_proveedor.nombre_cliente_proveedor LIKE '$contenido'   OR carton_documentos.numero_carton_documentos LIKE '$contenido'  OR documentos_legal.numero_poliza_documentos_legal LIKE '$contenido'  OR documentos_legal.ramo_documentos_legal LIKE '$contenido'  OR documentos_legal.ciudad_emision_documentos_legal LIKE '$contenido'     ";
+							break;
+						case 1:
+							//Ruc Cliente/Proveedor
+							$where_1 = " AND cliente_proveedor.ruc_cliente_proveedor LIKE '$contenido'  ";
+							break;
+						case 2:
+							//Nombre Cliente/Proveedor
+							$where_2 = " AND cliente_proveedor.nombre_cliente_proveedor LIKE '$contenido'  ";
+							break;
+						case 3:
+							//Número Carton
+							$where_3 = " AND carton_documentos.numero_carton_documentos LIKE '$contenido' ";
+							break;
+						case 4:
+							//Número Poliza
+							$where_4 = " AND documentos_legal.numero_poliza_documentos_legal LIKE '$contenido' ";
+							break;
+					}
+			
+			
+			
+					$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4  ;
+			
+			
+					$resul = $where_to;
+			
+					$resultSet=$documentos->getCondiciones($columnas ,$tablas ,$where_to, $id);
+			
+			
+			
+			
+				}
+			}
+			
+			$this->view("Usuarios",array(
+					"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst
+			
+			));
+			
+			
+			
+			
+			
 			
 		
 		}
@@ -332,6 +402,9 @@ public function index(){
 		
 	}
 	
+	
+	
+		
 	
 }
 ?>
