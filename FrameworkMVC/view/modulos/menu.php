@@ -34,6 +34,8 @@
 			</li>
 			<li><a href="index.php?controller=TipoIdentificacion&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Identificacion</span> </a>
 			</li>
+			<li><a href="index.php?controller=TipoNotificacion&action=index"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"> Tipo Notificacion</span> </a>
+			</li>
           </ul>
         </li>
 
