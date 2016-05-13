@@ -528,10 +528,7 @@
            <!-- termina formulario de busqueda -->
         <hr/>
       
-        
-        </div>
-        
-        <section class="col-lg-12 usuario" style="height:400px;overflow-y:scroll;">
+       <section class="col-lg-12  usuario" style="height:500px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;">Id</th>
@@ -574,7 +571,13 @@
             ?>
             
        	</table>     
+		     
       </section>
+        
+        </div>
+       
+       
+      
       </div>
       </div>
    </div>
