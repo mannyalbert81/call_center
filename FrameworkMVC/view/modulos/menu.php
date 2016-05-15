@@ -46,7 +46,7 @@
           <ul class="dropdown-menu">
         	<li><a href="index.php?controller=Usuarios&action=index"><span class="glyphicon glyphicon-ok" aria-hidden="true"> Importacion de Cartera/Operaciones</span> </a>
 		    </li>
-			<li><a href="index.php?controller=Roles&action=index"><span class="glyphicon glyphicon-euro" aria-hidden="true"> Recaudacion</span> </a>
+			<li><a href="index.php?controller=Recaudacion&action=index"><span class="glyphicon glyphicon-euro" aria-hidden="true"> Procesar Archivo de Recaudacion</span> </a>
 			</li>
 
 			<li><a href="index.php?controller=AsignacionSecretarios&action=index"><span class="glyphicon glyphicon-copy" aria-hidden="true"> Asignacion Secretarios</span> </a>
