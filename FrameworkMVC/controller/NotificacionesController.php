@@ -45,9 +45,9 @@ class NotificacionesController extends ControladorBase{
 					{
 					
 						$_id_notificaciones = $_GET["id_notificaciones"];
-						$columnas = "id_notificaciones, id_tipo_notificacion, id_usuarios, descripcion_notificaciones";
-						$tablas   = "public.notificaciones, public.tipo_notificacion, public.usuarios";
-						$where    = "id_notificaciones = '$_id_notificaciones' "; 
+						$columnas = " notificaciones.descripcion_notificaciones, notificaciones.id_tipo_notificacion, notificaciones.id_notificaciones, usuarios.nombre_usuarios, usuarios.id_usuarios, tipo_notificacion.descripcion_notificacion";
+						$tablas   = "  public.notificaciones, public.usuarios, publiyc.tipo_notificacion";
+						$where    = "  notificaciones.id_usuarios = usuarios.id_usuarios AND tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion"; 
 						$id       = "id_notificaciones";
 							
 						$resultEdit = $notificaciones->getCondiciones($columnas ,$tablas ,$where, $id);

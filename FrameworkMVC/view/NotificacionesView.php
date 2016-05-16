@@ -116,16 +116,16 @@
 			    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Tipo Notificacion</p>
 			  	<select name="id_tipo_notificacion" id="id_tipo_notificacion"  class="form-control" >
-					<?php foreach($resultTipoNotificacion as $resEst) {?>
-						<option value="<?php echo $resEst->id_tipo_notificacion; ?>" <?php if ($resEst->id_tipo_notificacion == $resEdit->id_tipo_notificacion )  echo  ' selected="selected" '  ;  ?> ><?php echo $resEst->descripcion_notificacion; ?> </option><?php } ?>
+					<?php foreach($resultTipoNotificacion as $resTipoNotificacion) {?>
+						<option value="<?php echo $resTipoNotificacion->id_tipo_notificacion; ?>" <?php if ($resTipoNotificacion->id_tipo_notificacion == $resEdit->id_tipo_notificacion )  echo  ' selected="selected" '  ;  ?> ><?php echo $resTipoNotificacion->descripcion_notificacion; ?> </option><?php } ?>
 				</select> 			  
 			  </div>
 		
 		<div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Usuarios</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-					<?php foreach($resultUsuarios as $resCiu) {?>
-						<option value="<?php echo $resCiu->id_usuarios; ?>"  <?php if ($resCiu->id_usuarios == $resEdit->id_usuarios ) echo ' selected="selected" '  ; ?> ><?php echo $resCiu->nombre_usuarios; ?> </option><?php } ?>
+					<?php foreach($resultUsuarios as $resUsuarios) {?>
+						<option value="<?php echo $resUsuarios->id_usuarios; ?>"  <?php if ($resUsuarios->id_usuarios == $resEdit->id_usuarios ) echo ' selected="selected" '  ; ?> ><?php echo $resUsuarios->nombre_usuarios; ?> </option><?php } ?>
 				</select> 			  
 			  </div>
 			  </div>
