@@ -52,8 +52,9 @@
 			<li><a href="index.php?controller=AsignacionSecretarios&action=index"><span class="glyphicon glyphicon-copy" aria-hidden="true"> Asignacion Secretarios</span> </a>
             </li>
 			<li><a href="index.php?controller=FirmasDigitales&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Firmas Digitales</span> </a>
-
-			</li>
+            </li>
+            <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Clientes</span> </a>
+            </li>
 			
           </ul>
         </li>

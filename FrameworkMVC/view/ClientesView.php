@@ -106,182 +106,51 @@
 			{
 		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
-		    	var cedula_usuario = $("#cedula_usuarios").val();
-		    	var nombre_usuario = $("#nombre_usuarios").val();
-		    	var usuario_usuario = $("#usuario_usuarios").val();
-		    	var clave_usuario = $("#clave_usuarios").val();
-		    	var cclave_usuario = $("#cclave_usuarios").val();
-		    	var telefono_usuario = $("#telefono_usuarios").val();	
-		    	var celular_usuario = $("#celular_usuarios").val();
-		    	var correo_usuario  = $("#correo_usuarios").val();
+
+		    	var identificacion_clientes = $("#identificacion_clientes").val();
+		    	var nombres_clientes = $("#nombres_clientes").val();
 		    	
-		    	
-		    	
-		    	
-		    	if (cedula_usuario == "")
+		    	if (identificacion_clientes == "")
 		    	{
 			    	
-		    		$("#mensaje_cedula").text("Introduzca una Cedula");
-		    		$("#mensaje_cedula").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_identificacion_clientes").text("Introduzca una Identificacion");
+		    		$("#mensaje_identificacion_clientes").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_cedula").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_identificacion_clientes").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}    
 				
-		    	if (nombre_usuario == "")
+		    	if (nombres_clientes == "")
 		    	{
 			    	
-		    		$("#mensaje_nombres").text("Introduzca un Nombre");
-		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_nombres_clientes").text("Introduzca un Nombre");
+		    		$("#mensaje_nombres_clientes").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_nombres_clientes").fadeOut("slow"); //Muestra mensaje de error
 		            
-				}
+				}  
 		    	
-		    	if (usuario_usuario == "")
-		    	{
-			    	
-		    		$("#mensaje_usuario").text("Introduzca una Usuario");
-		    		$("#mensaje_usuario").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_usuario").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}   
-						    	
-				//la clave
-
-		    	if (clave_usuario == "")
-		    	{
-		    		
-		    		$("#mensaje_clave").text("Introduzca una Clave");
-		    		$("#mensaje_clave").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_clave").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	
-
-		    	if (cclave_usuario == "")
-		    	{
-		    		
-		    		$("#mensaje_cclave").text("Introduzca una Clave");
-		    		$("#mensaje_cclave").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_cclave").fadeOut("slow"); 
-		            
-				}
-		    	
-		    	if (clave_usuario != cclave_usuario)
-		    	{
-			    	
-		    		$("#mensaje_cclave").text("Claves no Coinciden");
-		    		$("#mensaje_cclave").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else
-		    	{
-		    		$("#mensaje_cclave").fadeOut("slow"); 
-			        
-		    	}	
-				
-
-				//los telefonos
-		    	if (telefono_usuario == "" )
-		    	{
-			    	
-		    		$("#mensaje_telefono").text("Ingrese un Teléfono");
-		    		$("#mensaje_telefono").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_telefono").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-
-		    	if (celular_usuario == "" )
-		    	{
-			    	
-		    		$("#mensaje_celular").text("Ingrese un Celular");
-		    		$("#mensaje_celular").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_celular").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-
-				// correos
-				
-		    	if (correo_usuario == "")
-		    	{
-			    	
-		    		$("#mensaje_correo").text("Introduzca un correo");
-		    		$("#mensaje_correo").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else if (regex.test($('#correo_usuario').val().trim()))
-		    	{
-		    		$("#mensaje_correo").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	else 
-		    	{
-		    		$("#mensaje_correo").text("Introduzca un correo Valido");
-		    		$("#mensaje_correo").fadeIn("slow"); //Muestra mensaje de error
-		            return false;	
-			    }
-
 		    	
 
 		    					    
 
 			}); 
 
-
-		        $( "#cedula_usuarios" ).focus(function() {
-				  $("#mensaje_cedula").fadeOut("slow");
+		    $( "#identificacion_clientes" ).focus(function() {
+				  $("#mensaje_identificacion_clientes").fadeOut("slow");
 			    });
 				
-				$( "#nombre_usuarios" ).focus(function() {
-					$("#mensaje_nombres").fadeOut("slow");
-    			});
-				$( "#usuario_usuarios" ).focus(function() {
-					$("#mensaje_usuario").fadeOut("slow");
-    			});
-    			
-				$( "#clave_usuarios" ).focus(function() {
-					$("#mensaje_clave").fadeOut("slow");
-    			});
-				$( "#cclave_usuarios" ).focus(function() {
-					$("#mensaje_cclave").fadeOut("slow");
-    			});
-				$( "#telefono_usuarios" ).focus(function() {
-					$("#mensaje_telefono").fadeOut("slow");
-    			});
-				$( "#celular_usuarios" ).focus(function() {
-					$("#mensaje_celular").fadeOut("slow");
-    			});
+		        $( "#nombres_clientes" ).focus(function() {
+				  $("#mensaje_nombres_clientes").fadeOut("slow");
+			    });
 				
-				$( "#correo_usuarios" ).focus(function() {
-					$("#mensaje_correo").fadeOut("slow");
-    			});
+				
 		
 				
 		      
@@ -369,10 +238,10 @@
     
       <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Usuarios","InsertaUsuarios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("Clientes","InsertaClientes"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             
          
-        	    <h4 style="color:#ec971f;">Insertar Usuarios</h4>
+        	    <h4 style="color:#ec971f;">Insertar Clientes</h4>
             	<hr/>
             	
 		   		
@@ -380,187 +249,72 @@
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
             
-            
-            <div class="row">
+         <div class="row">
+		    
 		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Cedula</p>
-			  	<input type="text"  name="cedula_usuarios" id="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>" class="form-control"/> 
-			    <div id="mensaje_cedula" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Tipo Identificacion</p>
+			  	<select name="id_tipo_identificacion" id="id_tipo_identificacion"  class="form-control" >
+					<?php foreach($resultTipoIdent as $resTipoIdent) {?>
+					<option value="<?php echo $resTipoIdent->id_tipo_identificacion; ?>"  <?php if ($resTipoIdent->id_tipo_identificacion == $resEdit->id_tipo_identificacion ) echo ' selected="selected" '  ; ?> ><?php echo $resTipoIdent->nombre_tipo_identificacion; ?> </option>
+						   <?php } ?>
+				</select> 
+			  </div>
+		    
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Numero de Identificación</p>
+			  	<input type="text"  name="identificacion_clientes" id="identificacion_clientes" value="<?php echo $resEdit->identificacion_clientes; ?>" class="form-control" readonly/> 
+			    <div id="mensaje_identificacion_clientes" class="errores"></div>
+			  <input type="hidden"  name="id_clientes"  value="<?php echo $resEdit->id_clientes; ?>" class="form-control"/> 
 			  </div>
 			   </div>
 			   
-			   <div class="row">
-		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombres Usuario</p>
-			  	<input type="text"  name="nombre_usuarios" id="nombre_usuarios" value="<?php echo $resEdit->nombre_usuarios; ?>" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Usuario</p>
-			  	<input type="text"  name="usuario_usuarios" id="usuario_usuarios" value="<?php echo $resEdit->usuario_usuarios; ?>" class="form-control"/> 
-			    <div id="mensaje_usuario" class="errores"></div>
-			  </div>
-			   </div>
-		    
-		    <div class="row">
-			  <div class="col-xs-6 col-md-6">
-			  	<p class="formulario-subtitulo" >Clave Usuario </p>
-			  	<input type="password" name="clave_usuarios" id="clave_usuarios" value="" class="form-control"/>
-			 	<div id="mensaje_clave" class="errores"></div>
-			 	</div>
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Confirme Clave </p>
-			  	<input type="password" name="cclave_usuarios" id="cclave_usuarios" value="" class="form-control"/>
-			  	 <div id="mensaje_cclave" class="errores"></div>
-			  	 </div>
-			  </div>
-		    
+			   
 		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Teléfono Usuario </p>
-			  	<input type="text" name="telefono_usuarios" id="telefono_usuarios" value="<?php echo $resEdit->telefono_usuarios; ?>" class="form-control"/>
-			  <div id="mensaje_telefono" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Nombres </p>
+			  	<input type="text" name="nombres_clientes" id="nombres_clientes" value="<?php echo $resEdit->nombres_clientes; ?>" class="form-control"/>
+			  <div id="mensaje_nombres_clientes" class="errores"></div>
 			  </div>
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Celular  Usuario</p>
-			  	<input type="text" name="celular_usuarios" id="celular_usuarios" value="<?php echo $resEdit->celular_usuarios; ?>" class="form-control"/> 
-			  <div id="mensaje_celular" class="errores"></div>
-			  </div>
+			  
 		    </div>
 		    
 		    
-		    <div class="row">
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Correo </p>
-			  	<input type="email"  name="correo_usuarios" id="correo_usuarios" value="<?php echo $resEdit->correo_usuarios; ?>" class="form-control" />
-				
-				<div id="mensaje_correo" class="errores"></div>
-			  </div>
-			  
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Roles</p>
-			  	<select name="id_rol" id="id_rol"  class="form-control" >
-					<?php foreach($resultRol as $resRol) {?>
-					<option value="<?php echo $resRol->id_rol; ?>" <?php if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $resRol->nombre_rol; ?> </option>
-						            
-						<?php } ?>
-				</select> 
-			  </div>
-		      </div>
-		      
-		      <div class="row">
-			    
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Estados</p>
-			  	<select name="estados" id="estados"  class="form-control" >
-					<?php foreach($resultEst as $resEst) {?>
-						<option value="<?php echo $resEst->id_estado; ?>" <?php if ($resEst->id_estado == $resEdit->id_estado )  echo  ' selected="selected" '  ;  ?> ><?php echo $resEst->nombre_estado; ?> </option>
-						           
-			        <?php } ?>
-				</select> 			  
-			  </div>
-		
-		<div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Ciudad</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
-					<?php foreach($resultCiu as $resCiu) {?>
-						<option value="<?php echo $resCiu->id_ciudad; ?>"  <?php if ($resCiu->id_ciudad == $resEdit->id_ciudad ) echo ' selected="selected" '  ; ?> ><?php echo $resCiu->nombre_ciudad; ?> </option>
-			        <?php } ?>
-				</select> 			  
-			  </div>
-			  </div>
-		 <hr>
+		    <hr>
+		    
+         
             
             
 		     <?php } } else {?>
 		    
 		    <div class="row">
+		    
 		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Cedula</p>
-			  	<input type="text"  name="cedula_usuarios" id="cedula_usuarios" value="" class="form-control"/> 
-			    <div id="mensaje_cedula" class="errores"></div>
-			  </div>
-			   </div>
-			   
-			   <div class="row">
-		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombres Usuario</p>
-			  	<input type="text"  name="nombre_usuarios" id="nombre_usuarios" value="" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Usuario</p>
-			  	<input type="text"  name="usuario_usuarios" id="usuario_usuarios" value="" class="form-control"/> 
-			    <div id="mensaje_usuario" class="errores"></div>
-			  </div>
-			   </div>
-		    
-		    <div class="row">
-			  <div class="col-xs-6 col-md-6">
-			  	<p class="formulario-subtitulo" >Clave Usuario </p>
-			  	<input type="password" name="clave_usuarios" id="clave_usuarios" value="" class="form-control"/>
-			 	<div id="mensaje_clave" class="errores"></div>
-			 	</div>
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Confirme Clave </p>
-			  	<input type="password" name="cclave_usuarios" id="cclave_usuarios" value="" class="form-control"/>
-			  	 <div id="mensaje_cclave" class="errores"></div>
-			  	 </div>
-			  </div>
-		    
-		    <div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Teléfono Usuario </p>
-			  	<input type="text" name="telefono_usuarios" id="telefono_usuarios" value="" class="form-control"/>
-			  <div id="mensaje_telefono" class="errores"></div>
-			  </div>
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Celular  Usuario</p>
-			  	<input type="text" name="celular_usuarios" id="celular_usuarios" value="" class="form-control"/> 
-			  <div id="mensaje_celular" class="errores"></div>
-			  </div>
-		    </div>
-		    
-		    
-		    <div class="row">
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Correo </p>
-			  	<input type="email"  name="correo_usuarios" id="correo_usuarios" value="" class="form-control" />
-				
-				<div id="mensaje_correo" class="errores"></div>
-			  </div>
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Roles</p>
-			  	<select name="id_rol" id="id_rol"  class="form-control" >
-					<?php foreach($resultRol as $resRol) {?>
-						<option value="<?php echo $resRol->id_rol; ?>"  ><?php echo $resRol->nombre_rol; ?> </option>
+			  	<p  class="formulario-subtitulo" >Tipo Identificacion</p>
+			  	<select name="id_tipo_identificacion" id="id_tipo_identificacion"  class="form-control" >
+					<?php foreach($resultTipoIdent as $resTipoIdent) {?>
+						<option value="<?php echo $resTipoIdent->id_tipo_identificacion; ?>"  ><?php echo $resTipoIdent->nombre_tipo_identificacion; ?> </option>
 			        <?php } ?>
 				</select> 
 			  </div>
-		      </div>
-		      
-		      <div class="row">
-			    
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Estados</p>
-			  	<select name="estados" id="estados"  class="form-control" >
-					<?php foreach($resultEst as $resEst) {?>
-						<option value="<?php echo $resEst->id_estado; ?>"  ><?php echo $resEst->nombre_estado; ?> </option>
-			        <?php } ?>
-				</select> 			  
+		    
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Numero de Identificación</p>
+			  	<input type="text"  name="identificacion_clientes" id="identificacion_clientes" value="" class="form-control"/> 
+			    <div id="mensaje_identificacion_clientes" class="errores"></div>
+			  </div>
+			   </div>
+			   
+			   
+		    <div class="row">
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Nombres </p>
+			  	<input type="text" name="nombres_clientes" id="nombres_clientes" value="" class="form-control"/>
+			  <div id="mensaje_nombres_clientes" class="errores"></div>
 			  </div>
 			  
-			   <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Ciudad</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
-					<?php foreach($resultCiu as $resCiu) {?>
-						<option value="<?php echo $resCiu->id_ciudad; ?>"  ><?php echo $resCiu->nombre_ciudad; ?> </option>
-			        <?php } ?>
-				</select> 			  
-			  </div>
-			  
-			  
-			</div>
+		    </div>
+		    
+		    
 		    <hr>
 		    
 		   
@@ -580,13 +334,13 @@
          <!-- termina el form -->
        
         <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Usuarios</h4>
+            <h4 style="color:#ec971f;">Lista de Clientes</h4>
            
      <!-- empieza formulario de busqueda -->
      
             <hr>
         <div class="row">
-           <form action="<?php echo $helper->url("Usuarios","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+           <form action="<?php echo $helper->url("Clientes","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
            
            <div class="col-lg-4">
            <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
@@ -618,32 +372,30 @@
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;">Id</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre</th>
-	    		<th style="color:#456789;font-size:80%;">Usuario</th>
-	    		<th style="color:#456789;font-size:80%;">Correo</th>
-	    		<th style="color:#456789;font-size:80%;">Rol</th>
-	    		<th style="color:#456789;font-size:80%;">Estado</th>
+	    		<th style="color:#456789;font-size:80%;">Numero de Identifiación</th>
+	    		<th style="color:#456789;font-size:80%;">Nombres Cliente</th>
+	    		
+	    		
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_usuarios; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->usuario_usuarios; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->correo_usuarios; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_rol; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado; ?>  </td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_clientes; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
+		             
+		              
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Usuarios","index"); ?>&id_usuarios=<?php echo $res->id_usuarios; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("Clientes","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Usuarios","borrarId"); ?>&id_usuarios=<?php echo $res->id_usuarios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("Clientes","borrarId"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>

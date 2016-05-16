@@ -12,48 +12,42 @@ public function index(){
 		{
 			//creacion menu busqueda
 			//$resultMenu=array("1"=>Nombre,"2"=>Usuario,"3"=>Correo,"4"=>Rol);
-			$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Usuario', 3=>'Correo', 4=>'Rol', 5=>'Ciudad');
+			$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Identificación');
 			
 			
 				//Creamos el objeto usuario
-			$rol=new RolesModel();
-			$resultRol = $rol->getAll("nombre_rol");
 			
-			
-			$estado = new EstadoModel();
-			$resultEst = $estado->getAll("nombre_estado");
-			
-			$ciudad = new CiudadModel();
-			$resultCiu = $ciudad->getAll("nombre_ciudad");
+			$tipo_identificacion = new TipoIdentificacionModel();
+			$resultTipoIdent = $tipo_identificacion->getAll("nombre_tipo_identificacion");
 			
 	
-			$usuarios = new UsuariosModel();
+			$clientes = new ClientesModel();
 
-			$nombre_controladores = "Usuarios";
+			$nombre_controladores = "Clientes";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $usuarios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $clientes->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
 			if (!empty($resultPer))
 			{
 			
+					$columnas = " clientes.id_clientes, clientes.id_tipo_identificacion, clientes.identificacion_clientes, clientes.nombres_clientes";
+					$tablas   = "public.clientes,  public.tipo_identificacion";
+					$where    = "clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion";
+					$id       = "clientes.identificacion_clientes"; 
 			
-					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad";
-					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad";
-					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad";
-					$id       = "usuarios.nombre_usuarios"; 
-			
-					
-					//Conseguimos todos los usuarios
-					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+				
+					$resultSet=$clientes->getCondiciones($columnas ,$tablas ,$where, $id);
 					
 					
 					$resultEdit = "";
 			
-					if (isset ($_GET["id_usuarios"])   )
+					if (isset ($_GET["id_clientes"])   )
 					{
-						$_id_usuario = $_GET["id_usuarios"];
-						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuario' "; 
-						$resultEdit = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id); 
+						$_id_clientes = $_GET["id_clientes"];
+					    $where    = " clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion AND clientes.id_clientes = '$_id_clientes' "; 
+						$resultEdit = $clientes->getCondiciones($columnas ,$tablas ,$where, $id); 
+					
+						
 					}
 			
 					
@@ -63,7 +57,7 @@ public function index(){
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Usuarios"
+						"resultado"=>"No tiene Permisos de Acceso a Clientes"
 			
 				));
 			
@@ -74,7 +68,7 @@ public function index(){
 			///si tiene permiso de ver
 			//$resultPerVer = $usuarios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
-			$resultPerVer= $usuarios->getPermisosVer("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPerVer= $clientes->getPermisosVer("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPerVer))
 			{
@@ -91,11 +85,10 @@ public function index(){
 					
 					
 					
-					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad";
-					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad";
-					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad";
-					$id       = "usuarios.nombre_usuarios";
-					
+					$columnas = " clientes.id_clientes, clientes.id_tipo_identificacion, clientes.identificacion_clientes, clientes.nombres_clientes";
+					$tablas   = "public.clientes,  public.tipo_identificacion";
+					$where    = "clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion";
+					$id       = "clientes.identificacion_clientes"; 
 
 					$criterio = $_POST["criterio_busqueda"];
 					$contenido = $_POST["contenido_busqueda"];
@@ -109,45 +102,32 @@ public function index(){
 						$where_0 = "";
 						$where_1 = "";
 						$where_2 = "";
-						$where_3 = "";
-						$where_4 = "";
-						$where_5 = "";
+						
 							
 						switch ($criterio) {
 							case 0:
-								$where_0 = "OR  usuarios.nombre_usuarios LIKE '$contenido'   OR usuarios.usuario_usuarios LIKE '$contenido'  OR  usuarios.correo_usuarios LIKE '$contenido'  OR rol.nombre_rol LIKE '$contenido' OR ciudad.nombre_ciudad LIKE '$contenido'";
+								$where_0 = "OR  clientes.nombres_clientes LIKE '$contenido'   OR clientes.identifiacion_clientes LIKE '$contenido'";
 								break;
 							case 1:
 								//Ruc Cliente/Proveedor
-								$where_1 = " AND  usuarios.nombre_usuarios LIKE '$contenido'  ";
+								$where_1 = " AND  clientes.nombres_clientes LIKE '$contenido'  ";
 								break;
 							case 2:
 								//Nombre Cliente/Proveedor
-								$where_2 = " AND usuarios.usuario_usuarios LIKE '$contenido'  ";
+								$where_2 = " AND clientes.identifiacion_clientes LIKE '$contenido'  ";
 								break;
-							case 3:
-								//Número Carton
-								$where_3 = " AND usuarios.correo_usuarios LIKE '$contenido' ";
-								break;
-							case 4:
-								//Número Poliza
-								$where_4 = " AND rol.nombre_rol LIKE '$contenido' ";
-								break;
-							case 5:
-									//Número Poliza
-									$where_5 = " AND ciudad.nombre_ciudad LIKE '$contenido' ";
-									break;
+							
 						}
 							
 							
 							
-						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5;
+						$where_to  = $where .  $where_0 . $where_1 . $where_2;
 							
 							
 						$resul = $where_to;
 						
 						//Conseguimos todos los usuarios con filtros
-						$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where_to, $id);
+						$resultSet=$clientes->getCondiciones($columnas ,$tablas ,$where_to, $id);
 							
 							
 							
@@ -158,8 +138,8 @@ public function index(){
 			
 			//"resultMenu"=>$resultMenu
 			
-			$this->view("Usuarios",array(
-					"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst,"resultMenu"=>$resultMenu, "resultCiu"=>$resultCiu
+			$this->view("Clientes",array(
+					"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultMenu"=>$resultMenu, "resultTipoIdent"=> $resultTipoIdent
 			
 			));
 			
@@ -183,261 +163,100 @@ public function index(){
 		
 	}
 	
-	public function InsertaUsuarios(){
-		
-		
-		
+	public function InsertaClientes(){
 		
 		$resultado = null;
-		$usuarios=new UsuariosModel();
+		$clientes=new ClientesModel();
 	
 	
 		
 		//_nombre_categorias character varying, _path_categorias character varying
-		if (isset ($_POST["usuario_usuarios"]) && isset ($_POST["nombre_usuarios"]) && isset ($_POST["clave_usuarios"]) && isset($_POST["id_rol"])  )
+		if (isset ($_POST["identificacion_clientes"]) )
 		{
 
+			$_id_tipo_identificacion     = $_POST["id_tipo_identificacion"];
+			$_identificacion_clientes      = $_POST["identificacion_clientes"];
+			$_nombres_clientes   = $_POST["nombres_clientes"];
 			
-			$_nombre_usuario     = $_POST["nombre_usuarios"];
-			
-			$_clave_usuario      = $usuarios->encriptar($_POST["clave_usuarios"]);
-			
-			$_telefono_usuario   = $_POST["telefono_usuarios"];
-			$_celular_usuario    = $_POST["celular_usuarios"];
-			$_correo_usuario     = $_POST["correo_usuarios"];
-		    $_id_rol             = $_POST["id_rol"];
-		    $_id_estado          = $_POST["estados"];
-		    $_usuario_usuario     = $_POST["usuario_usuarios"];
-		    $_cedula_usuarios    = $_POST["cedula_usuarios"];
-		    $_id_ciudad          = $_POST["id_ciudad"];
+			if(isset($_POST["id_clientes"]))
+			{
 	
-	
-			$funcion = "ins_usuarios";
-			
-			$parametros = " '$_nombre_usuario' ,'$_clave_usuario' , '$_telefono_usuario', '$_celular_usuario', '$_correo_usuario' , '$_id_rol', '$_id_estado' , '$_usuario_usuario', '$_cedula_usuarios', '$_id_ciudad'";
-			$usuarios->setFuncion($funcion);
-	
-			$usuarios->setParametros($parametros);
-	
-	
-			$resultado=$usuarios->Insert();
-	
-			
-			//$this->view("Error",array(
-			//"resultado"=>"entro"
-					//));
+				$_id_clientes = $_POST["id_clientes"];
 					
-			 //$this->view("Categorias",array(
-			 //"resultado"=>$resultado
-			 //));
+				$colval = " id_tipo_identificacion = '$_id_tipo_identificacion',  identificacion_clientes = '$_identificacion_clientes', nombres_clientes = '$_nombres_clientes'  ";
+				$tabla = "clientes";
+				$where = "id_clientes = '$_id_clientes'    ";
+					
+				$resultado=$clientes->UpdateBy($colval, $tabla, $where);
 	
+			}
+			else{
 			
+				$funcion = "ins_clientes";
+					
+				$parametros = " '$_id_tipo_identificacion' ,'$_identificacion_clientes' , '$_nombres_clientes'";
+				$clientes->setFuncion($funcion);
+				
+				$clientes->setParametros($parametros);
+				
+				
+				$resultado=$clientes->Insert();
+				}
+				
+				$this->redirect("Clientes", "index");
 	
-		}
-		$this->redirect("Usuarios", "index");
+			}
+				
 			
+				else
+			{
+				$this->view("Error",array(
+					
+				"resultado"=>"No tiene Permisos de Insertar Controladores"
+	
+		));
+	
+	
+	}
+
 	}
 	
 	public function borrarId()
 	{
-		if(isset($_GET["id_usuarios"]))
-		{
-			$id_usuario=(int)$_GET["id_usuarios"];
-	
-			$usuarios=new UsuariosModel();
-				
-			$usuarios->deleteBy(" id_usuarios",$id_usuario);
-				
-				
-		}
-	
-		$this->redirect("Usuarios", "index");
-	}
-	
-    
-    
-    public function Login(){
-    
-    	//Creamos el objeto usuario
-    	$usuarios=new UsuariosModel();
-    
-    	//Conseguimos todos los usuarios
-    	$allusers=$usuarios->getLogin();
-    	 
-    	//Cargamos la vista index y l e pasamos valores
-    	$this->view("Login",array(
-    			"allusers"=>$allusers
-    	));
-    }
-    public function Bienvenida(){
-    
-    	//Creamos el objeto usuario
-    	$usuarios=new UsuariosModel();
-    	
-    	//Conseguimos todos los usuarios
-    	$allusers=$usuarios->getLogin();
-    	
-    	//Cargamos la vista index y l e pasamos valores
-    	$this->view("Bienvenida",array(
-    			"allusers"=>$allusers
-    	));
-    }
-    
-    
-    
-    
-    public function Loguear(){
-    	if (isset ($_POST["usuarios"]) && ($_POST["clave"] ) )
-    	
-    	{
-    		$usuarios=new UsuariosModel();
-    		$_usuario = $_POST["usuarios"];
-    		$_clave =   $usuarios->encriptar($_POST["clave"]);
-    		 
-    		
-    		$where = "  usuario_usuarios = '$_usuario' AND  clave_usuarios ='$_clave' ";
-    	
-    		$result=$usuarios->getBy($where);
-
-    		$usuario_usuarios = "";
-    		$id_rol  = "";
-    		$nombre_usuarios = "";
-    		$correo_usuarios = "";
-    		$ip_usuario = "";
-    		
-    		if ( !empty($result) )
-    		{ 
-    			foreach($result as $res) 
-    			{
-    				$id_usuario  = $res->id_usuarios;
-    				$usuario_usuario  = $res->usuario_usuarios;
-	    			$id_rol           = $res->id_rol;
-	    			$nombre_usuario   = $res->nombre_usuarios;
-	    			$correo_usuario   = $res->correo_usuarios;
-	    			
-    			}	
-    			//obtengo ip
-    			$ip_usuario = $usuarios->getRealIP();
-    			
-    			
-    			///registro sesion
-    			$usuarios->registrarSesion($id_usuario, $usuario_usuario, $id_rol, $nombre_usuario, $correo_usuario, $ip_usuario);
-    			
-    			//inserto en la tabla
-    			$_id_usuario = $_SESSION['id_usuarios'];
-    			$_ip_usuario = $_SESSION['ip_usuarios'];
-    			
-    			$sesiones = new SesionesModel();
-
-    			$funcion = "ins_sesiones";
-    			
-    			$parametros = " '$_id_usuario' ,'$_ip_usuario' ";
-    			$sesiones->setFuncion($funcion);
-    			
-    			$sesiones->setParametros($parametros);
-    			
-    			
-    			$resultado=$sesiones->Insert();
-    			
-    		    $this->view("Bienvenida",array(
-    				"allusers"=>$_usuario
-	    		));
-    		}
-    		else
-    		{
-    			
-	    		$this->view("Login",array(
-	    				"allusers"=>""
-	    		));
-    		}
-    		
-    	} 
-    	else
-    	{
-    		$this->view("Login",array(
-    				"allusers"=>""
-    		));
-    		
-    	}
-    	
-    }
-    
-	public function  cerrar_sesion ()
-	{
-		session_start();
-		session_destroy();
-		$this->redirect("Usuarios", "Loguear");
-	}
-	
-	
-	public function Actualiza ()
-	{
-		session_start();
-		if (isset(  $_SESSION['usuario_usuarios']) )
-		{
-			//Creamos el objeto usuario
-			$usuarios = new UsuariosModel();
 		
-						
-					
-				$resultEdit = "";
-					
-				$_id_usuario = $_SESSION['id_usuarios'];
-				$where    = " usuarios.id_usuarios = '$_id_usuario' ";
-				$resultEdit = $usuarios->getBy($where);
-				
-
-				if ( isset($_POST["guardar"]) )
-				{
-
-					$_nombre_usuario    = $_POST["nombre_usuarios"];
-					$_clave_usuario      = $_POST["clave_usuarios"];
-					$_telefono_usuario  = $_POST["telefono_usuarios"];
-					$_celular_usuario    = $_POST["celular_usuarios"];
-					$_correo_usuario     = $_POST["correo_usuarios"];
-					$_usuario_usuario     = $_POST["usuario_usuarios"];
-					$_cedula_usuarios     = $_POST["cedula_usuarios"];
-					$_id_ciudad           = $_POST["id_ciudad"];
-					
-					$colval   = " nombre_usuarios = '$_nombre_usuario' , clave_usuarios = '$_clave_usuario'   , telefono_usuarios = '$_telefono_usuario' ,  celular_usuarios = '$_celular_usuario' , correo_usuarios = '$_correo_usuario' , usuario_usuarios = '$_usuario_usuario', cedula_usuarios = '$_cedula_usuarios', id_ciudad = '$_id_ciudad'   ";
-					$tabla    = "usuarios";
-					$where    = " id_usuarios = '$_id_usuario' ";
-					
-					$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
-					
-					
-					$this->view("Login",array(
-							"allusers"=>""
-					));
-					
-					
-				}
-				else
-				{
-					$this->view("ActualizarUsuario",array(
-							"resultEdit" =>$resultEdit
-								
-					));
-					
-				}
-				
-				
-					
-		
+		session_start();
+		$permisos_rol=new PermisosRolesModel();
+		$nombre_controladores = "Clientes";
+		$id_rol= $_SESSION['id_rol'];
+		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
-		
-		}
-		else
+		if (!empty($resultPer))
 		{
-			$this->view("ErrorSesion",array(
-			"resultSet"=>""
-			));
-					
-		}
 		
+		if(isset($_GET["id_clientes"]))
+		{
+			$id_clientes=(int)$_GET["id_clientes"];
+	
+			$clientes=new ClientesModel();
+				
+			$clientes->deleteBy(" id_clientes",$id_clientes);
+				
+				
+		}
+	
+		$this->redirect("Clientes", "index");
+	}
+	else
+	{
+		$this->view("Error",array(
+				"resultado"=>"No tiene Permisos de Borrar Clientes"
+		
+		));
 	}
 	
-	
+	}
+    
+   
 	
 		
 	
