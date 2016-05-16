@@ -23,6 +23,7 @@ public function index(){
 			$estado = new EstadoModel();
 			$resultEst = $estado->getAll("nombre_estado");
 			
+			
 			$ciudad = new CiudadModel();
 			$resultCiu = $ciudad->getAll("nombre_ciudad");
 			
