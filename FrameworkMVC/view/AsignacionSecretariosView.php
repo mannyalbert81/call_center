@@ -93,6 +93,69 @@
 
 	</script>
 	
+	<script>
+        
+       $(document).ready(function(){
+
+    	   $("#Buscar").click(function()
+
+    				{
+
+    					var contenido = $("#ddl_busqueda").val();
+    					var criterio= $("#criterio").val();
+
+    					if (contenido != "" && criterio==0)
+    			    	{
+    						$("#mensaje_criterio").text("Seleccione filtro de busqueda");
+    			    		$("#mensaje_criterio").fadeIn("slow"); //Muestra mensaje de error
+    			            return false;
+    				    }
+    			    	else 
+    			    	{
+    			    		$("#mensaje_criterio").fadeOut("slow"); //Muestra mensaje de error
+    			    		
+    			            
+    					}    
+
+    					if (criterio !=0 && contenido=="")
+    			    	{
+
+    				    	
+    			    		$("#mensaje_contenido").text("Ingrese Contenido a buscar");
+    			    		$("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
+    			            return false;
+    				    	
+    			    		
+    				    }
+    			    	else 
+    			    	{
+    			    		$("#mensaje_contenido").fadeOut("slow"); //Muestra mensaje de error
+    			            
+    					}    
+
+
+    					
+
+    			
+    					
+    				});
+
+
+    				$( "#contenido" ).focus(function() {
+    					  $("#mensaje_contenido").fadeOut("slow");
+    				    });
+
+    				$( "#criterio" ).focus(function() {
+    					  $("#mensaje_criterio").fadeOut("slow");
+    				    });
+    			   
+    				
+    			});
+    
+		}); 
+
+	</script>
+	
       <script>
         
        $(document).ready(function(){
