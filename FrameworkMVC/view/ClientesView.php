@@ -41,6 +41,7 @@
         </style>
        
          
+        
         <script >
 		$(document).ready(function(){
 
@@ -51,29 +52,32 @@
 				var contenido = $("#contenido").val();
 				var criterio= $("#criterio").val();
 
-				if (contenido == "")
+				if (contenido != "" && criterio==0)
 		    	{
-			    	
-		    		$("#mensaje_contenido").text("Introduzca un Contenido");
-		    		$("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_contenido").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}    
-
-				if (criterio == "")
-		    	{
-			    	
-		    		$("#mensaje_criterio").text("Introduzca un Criterio");
+					$("#mensaje_criterio").text("Seleccione filtro de busqueda");
 		    		$("#mensaje_criterio").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
 		    		$("#mensaje_criterio").fadeOut("slow"); //Muestra mensaje de error
+		    		
+		            
+				}    
+
+				if (criterio !=0 && contenido=="")
+		    	{
+
+			    	
+		    		$("#mensaje_contenido").text("Ingrese Contenido a buscar");
+		    		$("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    	
+		    		
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_contenido").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}    
 
@@ -96,6 +100,9 @@
 			
 		});
 			</script >
+        
+        
+        
 			
 			
 			<script >
