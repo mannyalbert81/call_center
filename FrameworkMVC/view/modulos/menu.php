@@ -8,7 +8,7 @@
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>	
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#">Menu</a>
@@ -36,7 +36,7 @@
 			</li>
 			<li><a href="index.php?controller=TipoNotificacion&action=index"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"> Tipo Notificacion</span> </a>
 			</li>
-			<li><a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"> Notificaciones</span> </a>
+			<li><a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
 			</li>
           </ul>
         </li>
@@ -53,7 +53,7 @@
             </li>
 			<li><a href="index.php?controller=FirmasDigitales&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Firmas Digitales</span> </a>
             </li>
-            <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Clientes</span> </a>
+            <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
             </li>
 			
           </ul>
