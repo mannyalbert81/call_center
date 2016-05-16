@@ -102,13 +102,14 @@ class AsignacionSecretariosController extends ControladorBase{
 					if (isset ($_POST["ddl_resultado"]) && isset($_POST["ddl_busqueda"]))
 					{
 					
-					
+						//busqueda  WHERE  B.id_secretario_asignacion_secretarios=28
 							
 					$columnas = "B.id_asignacion_secretarios AS id_asignacion_secretarios ,
 								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_secretario_asignacion_secretarios) AS secretarios,
 								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_abogado_asignacion_secretarios) AS impulsadores";
 					$tablas   = "asignacion_secretarios B";
-					$where    = "B.id_asignacion_secretarios>0";
+					//$where    = "B.id_asignacion_secretarios>0";
+					$where="";
 					$id       = "B.id_asignacion_secretarios";
 							
 					
@@ -120,54 +121,17 @@ class AsignacionSecretariosController extends ControladorBase{
 					
 						if ($contenido ==1)
 						{
-					
-							$where_0 = "";
-							$where_1 = "";
-							$where_2 = "";
-							$where_3 = "";
-							$where_4 = "";
-							$where_5 = "";
-					
-							switch ($criterio) {
-								case 0:
-									$where_0 = "OR  usuarios.nombre_usuarios LIKE '$contenido'   OR usuarios.usuario_usuarios LIKE '$contenido'  OR  usuarios.correo_usuarios LIKE '$contenido'  OR rol.nombre_rol LIKE '$contenido' OR ciudad.nombre_ciudad LIKE '$contenido'";
-									break;
-								case 1:
-									//Ruc Cliente/Proveedor
-									$where_1 = " AND  usuarios.nombre_usuarios LIKE '$contenido'  ";
-									break;
-								case 2:
-									//Nombre Cliente/Proveedor
-									$where_2 = " AND usuarios.usuario_usuarios LIKE '$contenido'  ";
-									break;
-								case 3:
-									//Número Carton
-									$where_3 = " AND usuarios.correo_usuarios LIKE '$contenido' ";
-									break;
-								case 4:
-									//Número Poliza
-									$where_4 = " AND rol.nombre_rol LIKE '$contenido' ";
-									break;
-								case 5:
-									//Número Poliza
-									$where_5 = " AND ciudad.nombre_ciudad LIKE '$contenido' ";
-									break;
-							}
-					
-					
-					
-							$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5;
-					
-					
-							$resul = $where_to;
+							$where="B.id_secretario_asignacion_secretarios=".$criterio;					
+							
+						}elseif ($contenido ==2)
+						{
+							$where="B.id_abogado_asignacion_secretarios=".$criterio;
+						}
 					
 							//Conseguimos todos los usuarios con filtros
-							$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where_to, $id);
+					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 					
-					
-					
-					
-						}
+						
 					}
 					
 					
