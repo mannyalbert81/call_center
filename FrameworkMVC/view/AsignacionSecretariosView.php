@@ -3,40 +3,76 @@
       <head>
         <meta charset="utf-8"/>
         <title>Asignacion Secretarios - coactiva 2016</title>
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		  			   
+          <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		
+		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
+        <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+        <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+ 		
+ 		<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
    
   
 	<script>
         
        $(document).ready(function(){
 
-		    // cada vez que se cambia el valor del combo
+           //alert("entro");
+
+		    // cada vez que se cambia el valor del combo1 o busqueda
 		    $("#ddl_busqueda").change(function() {
 
-               // obtenemos el combo de subcategorias
-                var $id_acciones = $("#ddl_resultado");
+               // obtenemos el combo de resultado combo 2
+              var $ddl_resultado = $("#ddl_resultado");
+
                // lo vaciamos
-               
-				///obtengo el id seleccionado
-				
-
-               var id_controladores = $(this).val();
+              var ddl_busqueda = $(this).val();
 
 
-               $id_acciones.empty();
+               $ddl_resultado.empty();
 
-               $id_acciones.append("<option value= " +"0" +" > --TODOS--</option>");
+              
            
-               if(id_controladores > 0)
+               if(ddl_busqueda == 1)
                {
+            	   $ddl_resultado.append("<option value= " +"0" +" > --Secretarios--</option>");
+            	   
             	   var datos = {
-            			   id_controladores : $(this).val()
+                    	   
+            			   ddl_busqueda:$(this).val()
                    };
 
 
-            	   $.post("<?php echo $helper->url("PermisosRoles","devuelveAcciones"); ?>", datos, function(resultAcc) {
+            	   $.post("<?php echo $helper->url("AsignacionSecretarios","returnSecretarios"); ?>", datos, function(resultUsuarioSecretario) {
 
-            		 		$.each(resultAcc, function(index, value) {
-               		 	    $id_acciones.append("<option value= " +value.id_acciones +" >" + value.nombre_acciones  + "</option>");	
+            		 		$.each(resultUsuarioSecretario, function(index, value) {
+               		 	    $ddl_resultado.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                       		 });
+
+            		 		 	 		   
+            		  }, 'json');
+
+
+               }else if(ddl_busqueda == 2)
+
+                   {
+                   
+            	   $ddl_resultado.append("<option value= " +"0" +" > --Abg Impulsores--</option>");
+            	   
+            	   var datos = {
+                    	   
+            			   ddl_busqueda:$(this).val()
+                   };
+
+
+            	   $.post("<?php echo $helper->url("AsignacionSecretarios","returnImpulsores"); ?>", datos, function(resultUsuarioImpulsor) {
+
+            		 		$.each(resultUsuarioImpulsor, function(index, value) {
+               		 	    $ddl_resultado.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
                        		 });
 
             		 		 	 		   
@@ -46,12 +82,8 @@
                }
                else
                {
-            	   $.post("<?php echo $helper->url("PermisosRoles","devuelveAllAcciones"); ?>", datos, function(resultAcc) {
-
-   		 		        $.each(resultAcc, function(index, value) {
-          		 	    $id_acciones.append("<option value= " +value.id_acciones +" >" + value.nombre_acciones  + "</option>");	
-                	  });
-     		  		}, 'json');
+                   
+            	   $ddl_resultado.empty();
 
                }
                
