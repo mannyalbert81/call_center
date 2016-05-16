@@ -23,6 +23,7 @@ class AsignacionSecretariosController extends ControladorBase{
 			
 			$nombre_controladores = "PermisosRoles";
 			$id_rol= $_SESSION['id_rol'];
+			
 			$resultPer = $permisos_rol->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
 			if (!empty($resultPer))
@@ -84,15 +85,6 @@ class AsignacionSecretariosController extends ControladorBase{
 						
 						
 					}
-			
-					
-					
-					/*
-					 Select B.id_asignacion_secretarios,
-					(select A.nombre_usuarios from usuarios A where A.id_usuarios=B.id_secretario_asignacion_secretarios) as secretarios,
-					(select A.nombre_usuarios from usuarios A where A.id_usuarios=B.id_abogado_asignacion_secretarios) as impulsadores
-					from asignacion_secretarios B
-					 */
 					
 					$columnas = "B.id_asignacion_secretarios AS id_asignacion_secretarios ,
 								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_secretario_asignacion_secretarios) AS secretarios,
@@ -100,11 +92,84 @@ class AsignacionSecretariosController extends ControladorBase{
 					$tablas   = "asignacion_secretarios B";
 					$where    = "B.id_asignacion_secretarios>0";
 					$id       = "B.id_asignacion_secretarios";
-					
-					
+						
+						
 					$asignacionSecretarios = new AsignacionSecretariosModel();
 					//$resultSet=$asignacionSecretarios->getAll("id_asignacion_secretarios");
 					$resultSet=$asignacionSecretarios->getCondiciones($columnas, $tablas, $where, $id);
+						
+			
+					if (isset ($_POST["ddl_resultado"]) && isset($_POST["ddl_busqueda"]))
+					{
+					
+					
+							
+					$columnas = "B.id_asignacion_secretarios AS id_asignacion_secretarios ,
+								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_secretario_asignacion_secretarios) AS secretarios,
+								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_abogado_asignacion_secretarios) AS impulsadores";
+					$tablas   = "asignacion_secretarios B";
+					$where    = "B.id_asignacion_secretarios>0";
+					$id       = "B.id_asignacion_secretarios";
+							
+					
+						$criterio = $_POST["ddl_resultado"];
+						$contenido = $_POST["ddl_busqueda"];
+					
+							
+						//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+					
+						if ($contenido ==1)
+						{
+					
+							$where_0 = "";
+							$where_1 = "";
+							$where_2 = "";
+							$where_3 = "";
+							$where_4 = "";
+							$where_5 = "";
+					
+							switch ($criterio) {
+								case 0:
+									$where_0 = "OR  usuarios.nombre_usuarios LIKE '$contenido'   OR usuarios.usuario_usuarios LIKE '$contenido'  OR  usuarios.correo_usuarios LIKE '$contenido'  OR rol.nombre_rol LIKE '$contenido' OR ciudad.nombre_ciudad LIKE '$contenido'";
+									break;
+								case 1:
+									//Ruc Cliente/Proveedor
+									$where_1 = " AND  usuarios.nombre_usuarios LIKE '$contenido'  ";
+									break;
+								case 2:
+									//Nombre Cliente/Proveedor
+									$where_2 = " AND usuarios.usuario_usuarios LIKE '$contenido'  ";
+									break;
+								case 3:
+									//Número Carton
+									$where_3 = " AND usuarios.correo_usuarios LIKE '$contenido' ";
+									break;
+								case 4:
+									//Número Poliza
+									$where_4 = " AND rol.nombre_rol LIKE '$contenido' ";
+									break;
+								case 5:
+									//Número Poliza
+									$where_5 = " AND ciudad.nombre_ciudad LIKE '$contenido' ";
+									break;
+							}
+					
+					
+					
+							$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5;
+					
+					
+							$resul = $where_to;
+					
+							//Conseguimos todos los usuarios con filtros
+							$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where_to, $id);
+					
+					
+					
+					
+						}
+					}
+					
 					
 					//cambio linea 86
 					//"resultCon"=>$resultCon, "resultAcc"=>$resultAcc, "resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol
@@ -137,6 +202,7 @@ class AsignacionSecretariosController extends ControladorBase{
 		}
 	
 	}
+	
 	
 	
 	public function InsertaAsignacionSecretarios(){
@@ -282,12 +348,7 @@ class AsignacionSecretariosController extends ControladorBase{
 	
 	}
 	
-	
-	
-	
-	
-	
-	public function devuelveAllAcciones()
+ public function devuelveAllAcciones()
 	{
 		$resultAcc = array();
 	
@@ -300,7 +361,39 @@ class AsignacionSecretariosController extends ControladorBase{
 	}
 	
 
+	public function returnSecretarios()
+	{
+		
+		//CONSULTA DE USUARIOS POR SU ROL
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios inner join rol on(usuarios.id_rol=rol.id_rol)";
+		$id="rol.id_rol";
+			
+		$usuarios=new UsuariosModel();
+		
+		$where="rol.nombre_rol='SECRETARIO'";
+		$resultUsuarioSecretario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
 	
+		echo json_encode($resultUsuarioSecretario);
+	
+	}
+	
+	public function returnImpulsores()
+	{
+	
+		//CONSULTA DE USUARIOS POR SU ROL
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios inner join rol on(usuarios.id_rol=rol.id_rol)";
+		$id="rol.id_rol";
+			
+		$usuarios=new UsuariosModel();
+	
+		$where="rol.nombre_rol='ABOGADO IMPULSOR'";
+		$resultUsuarioImpulsor=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultUsuarioImpulsor);
+	
+	}
 	
 	public function Reporte(){
 	
