@@ -109,7 +109,7 @@
 			   
 			   <div class="row">
 		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Nombre Tipo Identificacion</p>
+			  	<p  class="formulario-subtitulo" >Nombre Tipo Notificación</p>
 			  	<input type="text"  name="desc_tiponotificacion" id="desc_tiponotificacion" value="<?php echo $resEdit->descripcion_notificacion; ?>" class="form-control"/> 
 			  	<input type="hidden"  name="id_tipo_notificacion"  value="<?php echo $resEdit->id_tipo_notificacion; ?>" class="form-control"/> 
 			    <div id="mensaje_notificacion" class="errores"></div>
@@ -120,7 +120,7 @@
 		    
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo">Nombre Tipo Identificacion</p>
+			  	<p  class="formulario-subtitulo">Nombre Tipo Notificación</p>
 			  	<input type="text"  name="desc_tipoNotificacion" id="desc_tipoNotificacion" value="" class="form-control"/> 
 			    <div id="mensaje_notificacion" class="errores"></div>
 			  </div>

@@ -240,6 +240,7 @@ public function index(){
 	
 	public function borrarId()
 	{
+		
 		if(isset($_GET["id_usuarios"]))
 		{
 			$id_usuario=(int)$_GET["id_usuarios"];

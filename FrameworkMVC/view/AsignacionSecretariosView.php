@@ -2,7 +2,7 @@
 <html lang="es">
       <head>
         <meta charset="utf-8"/>
-        <title>Permisos Rol - coactiva 2016</title>
+        <title>Asignacion Secretarios - coactiva 2016</title>
    
   
 		
@@ -199,6 +199,48 @@
        
         <div class="col-lg-8">
             <h4 style="color:#ec971f;">Asignacion Secretarios</h4>
+             <!-- empieza formulario de busqueda -->
+     
+            <hr>
+        <div class="row">
+           <form action="<?php echo $helper->url("Usuarios","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+           
+           <div class="col-lg-2">
+           <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
+           <div id="mensaje_contenido" class="errores"></div>
+            </div>
+            
+            <div class="col-lg-4">
+           <select name="criterio_busqueda1" id="criterio_busqueda1"  class="form-control">
+                                    <?php foreach($resultMenu as $val=>$desc) {?>
+                                         <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
+                                    <?php } ?>
+                                    </select>
+           <div id="mensaje_criterio" class="errores"></div>
+           </div>
+                                        
+            
+           <div class="col-lg-4">
+           <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
+                                    <?php foreach($resultMenu as $val=>$desc) {?>
+                                         <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
+                                    <?php } ?>
+                                        
+           </select>
+           <div id="mensaje_criterio" class="errores"></div>
+           </div>
+          
+           
+          
+           <div class="col-lg-2">
+           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
+           </div>
+         
+          </form>
+          
+       <!-- termina formulario de busqueda -->
+        <hr/>
+        </div>
            
         </div>
         <section class="col-lg-8 usuario" style="height:400px;overflow-y:scroll; margin-top: 10px;">
