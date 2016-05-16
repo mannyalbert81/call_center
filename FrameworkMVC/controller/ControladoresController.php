@@ -20,6 +20,7 @@ class ControladoresController extends ControladorBase{
 
 		
 		session_start();
+		
 
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
@@ -31,9 +32,40 @@ class ControladoresController extends ControladorBase{
 			
 			if (!empty($resultPer))
 			{
+				
+				$traza=new TrazasModel();
+				$_nombre_controladores = "Controladores";
+				$_accion_trazas  = "Vizualizar";
+				$_parametros_trazas = "Todos Los controladores";
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controladores);
+					
+					//empieza codigo para auditoria
+				
+			
+				
+				/*
+				$_id_controladores =8;
+					
+				$funcion = "ins_trazas";
+				
+				$_id_usuarios=$_SESSION['id_usuarios'];
+				
+				$_accion_trazas="Ver";
+				$_parametros_trazas="Vacio";
+				$parametros = "'$_id_usuarios', '$_id_controladores', '$_accion_trazas', '$_parametros_trazas'  ";
+				
+				$traza->setFuncion($funcion);
+					
+				$traza->setParametros($parametros);
+					
+				$resultadoT=$traza->Insert();
+				*/
+				//termina codigo àuditoria
+				
+				
 				if (isset ($_GET["id_controladores"])   )
 				{
-
+					
 					$nombre_controladores = "Controladores";
 					$id_rol= $_SESSION['id_rol'];
 					$resultPer = $controladores->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -47,8 +79,13 @@ class ControladoresController extends ControladorBase{
 						$where    = "id_controladores = '$_id_controladores' "; 
 						$id       = "nombre_controladores";
 							
+						
 						$resultEdit = $controladores->getCondiciones($columnas ,$tablas ,$where, $id);
-
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_controladores;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas);
+						
+					
 					}
 					else
 					{
