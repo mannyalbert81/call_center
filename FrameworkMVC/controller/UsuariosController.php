@@ -78,7 +78,7 @@ public function index(){
 			
 			if (!empty($resultPerVer))
 			{
-				if (isset ($_POST["criterio_busqueda"])  && isset ($_POST["contenido_busqueda"])  )
+				if (isset ($_POST["criterio"])  && isset ($_POST["contenido"])  )
 				{
 						
 					
@@ -97,8 +97,8 @@ public function index(){
 					$id       = "usuarios.nombre_usuarios";
 					
 
-					$criterio = $_POST["criterio_busqueda"];
-					$contenido = $_POST["contenido_busqueda"];
+					$criterio = $_POST["criterio"];
+					$contenido = $_POST["contenido"];
 						
 					
 					//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);

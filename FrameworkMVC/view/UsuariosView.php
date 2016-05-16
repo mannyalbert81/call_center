@@ -51,29 +51,32 @@
 				var contenido = $("#contenido").val();
 				var criterio= $("#criterio").val();
 
-				if (contenido == "")
+				if (contenido != "" && criterio==0)
 		    	{
-			    	
-		    		$("#mensaje_contenido").text("Introduzca un Contenido");
-		    		$("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_contenido").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}    
-
-				if (criterio == "")
-		    	{
-			    	
-		    		$("#mensaje_criterio").text("Introduzca un Criterio");
+					$("#mensaje_criterio").text("Seleccione filtro de busqueda");
 		    		$("#mensaje_criterio").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
 		    		$("#mensaje_criterio").fadeOut("slow"); //Muestra mensaje de error
+		    		
+		            
+				}    
+
+				if (criterio !=0 && contenido=="")
+		    	{
+
+			    	
+		    		$("#mensaje_contenido").text("Ingrese Contenido a buscar");
+		    		$("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    	
+		    		
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_contenido").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}    
 
@@ -648,10 +651,16 @@
 			                <hr/>
 		               </td>
 		    		</tr>
-		        <?php } } ?>
-            
+		        <?php } }else{ ?>
+            <tr>
+            <td></td>
+            <td></td>
+	                   <td colspan="5" style="color:#ec971f;font-size:8;"> <?php echo '<span id="snResult">No existen resultados</span>' ?></td>
+	        <td></td>
+		               
+		    		</tr>
             <?php 
-            
+		}
             //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
             
             ?>
