@@ -17,9 +17,10 @@ class NotificacionesController extends ControladorBase{
 				
 		$resultEdit = "";
 		$tipo_notificacion = new TipoNotificacionModel();
-		$resultTipoNotificacion=$tipo_notificacion->getAll("id_tipo_notificacion");
+		$resultTipoNotificacion=$tipo_notificacion->getAll("descripcion_notificacion");
+		
 		$usuarios = new UsuariosModel();
-		$resultUsuarios=$usuarios->getAll("id_usuarios");
+		$resultUsuarios=$usuarios->getAll("nombre_usuarios");
 		
 		session_start();
 
@@ -44,8 +45,8 @@ class NotificacionesController extends ControladorBase{
 					{
 					
 						$_id_notificaciones = $_GET["id_notificaciones"];
-						$columnas = " id_notificaciones, id_tipo_notificacion, id_usuarios, descripcion_notificaciones";
-						$tablas   = "notificaciones";
+						$columnas = "id_notificaciones, id_tipo_notificacion, id_usuarios, descripcion_notificaciones";
+						$tablas   = "public.notificaciones, public.tipo_notificacion, public.usuarios";
 						$where    = "id_notificaciones = '$_id_notificaciones' "; 
 						$id       = "id_notificaciones";
 							
@@ -103,6 +104,7 @@ class NotificacionesController extends ControladorBase{
 		
 
 		$nombre_controladores = "Notificaciones";
+	
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $notificaciones->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
@@ -115,18 +117,18 @@ class NotificacionesController extends ControladorBase{
 			$notificaciones=new NotificacionesModel();
 		
 			//_nombre_categorias character varying, _path_categorias character varying
-			if (isset ($_POST["id_notificaciones"])   )
+			if (isset ($_POST["id_tipo_notificacion"])   )
 				
 			{
 				
-				$_id_notificaciones = $_POST["id__notificaciones"];
+		
 				$_id_tipo_notificacion = $_POST["id_tipo_notificacion"];
 				$_id_usuarios = $_POST["id_usuarios"];
 				$_descripcion_notificaciones = $_POST["descripcion_notificaciones"];
 				
 				
 				$funcion = "ins_notificaciones";
-				$parametros = "'$_id_notificaciones', '$_id_tipo_notificacion', '$_id_usuarios', '$_descripcion_notificaciones'";
+				$parametros = "'$_id_tipo_notificacion', '$_id_usuarios', '$_descripcion_notificaciones'";
 					
 				$notificaciones->setFuncion($funcion);
 		
