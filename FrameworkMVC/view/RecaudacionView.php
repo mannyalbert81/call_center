@@ -48,14 +48,14 @@
   
      <div class="row" style="background-color: #ffffff;">
   
-  	      <form action="<?php echo $helper->url("FirmasDigitales","InsertaFirmasDigitales"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
-            <h4 style="color:#ec971f;">Insertar Firmas Digitales</h4>
+  	      <form action="<?php echo $helper->url("Recaudacion","index"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
+            <h4 style="color:#ec971f;">Procesar Archivo de Recaudacion</h4>
             <hr/>
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	       <?php } } else {?>
 		    	<div class="col-xs-6 col-md-6">
 		             <p  class="formulario-subtitulo" >Institucion Recaudadora:</p>  
-		             <select name="recaudadora_institucion" id="recaudadora_institucion"  class="form-control">
+		             <select name="nombre_recaudacion_institucion" id="nombre_recaudacion_institucion"  class="form-control">
 									<?php foreach($resultInsRec as $res) {?>
 				 						<option value="<?php echo $res->id_recaudacion_institucion; ?>" ><?php echo $res->nombre_recaudacion_institucion; ?> </option>
 						            <?php } ?>
@@ -64,22 +64,23 @@
 		         </div>
 			     <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Firma</p>
-			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" accept="png|jpg|jpeg" onKeyDown="return intro(event)" value="" class="form-control"/> 
-			   <div id="mensaje_firmas" class="errores"></div>
+			  	<input type="file" name="archivo" id="archivo" accept="txt" onKeyDown="return intro(event)" value="" class="form-control"/> 
+			   <div id="mensaje_archivo" class="errores"></div>
 			   </div>
    
 		       
 			<hr>
 		     <?php } ?>
+		
 		<div class="row">
 			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           		<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+           		<input type="submit" id="procesar" name="procesar" value="Procesar" class="btn btn-success"/>
            </div>
         </div>
     </form>
        
         <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Firmas</h4>
+            <h4 style="color:#ec971f;">Archivos Procesados</h4>
             <hr/>
         </div>
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">

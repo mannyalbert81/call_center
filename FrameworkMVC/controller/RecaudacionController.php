@@ -41,6 +41,79 @@ class RecaudacionController extends ControladorBase{
 			
 			if (!empty($resultPer))
 			{
+				if (isset ($_POST["procesar"]) )
+				{
+					$directorio = $_SERVER['DOCUMENT_ROOT'].'/recaudacion/';
+						
+					$nombre = $_FILES['archivo']['name'];
+					$tipo = $_FILES['archivo']['type'];
+					$tamano = $_FILES['archivo']['size'];
+						
+					// temporal al directorio definitivo
+							
+					move_uploaded_file($_FILES['archivo']['tmp_name'],$directorio.$nombre);
+						
+					$file = fopen($directorio.$nombre, "r") or exit("Unable to open file!");
+					
+					$contador = 0;
+					$contador_linea = 0;
+					
+					$encabezado_linea = "";
+					$contenido_linea = "";
+					$pie_linea = "";
+					
+					$lectura_linea = "";
+					
+					while(!feof($file))
+					{
+					    $contador_linea = $contador_linea + 1;
+					    
+					}
+					
+					while(!feof($file))
+					{
+						$contador = $contador + 1;
+						$line =  $line . fgets($file) ;
+						
+						if ($contador == 1) 
+						{
+							$encabezado_linea = $line;
+							
+						} 
+						elseif ($contador == $contador_linea ) 
+						{
+							$pie_linea = $line;
+						} 
+						else 
+						{
+							$pie_linea = $line;
+						}
+						
+						
+						
+					}
+		
+					
+					
+					
+					fclose($file);
+					
+					
+					
+					//$data = file_get_contents($directorio.$nombre);
+						
+					//$imagen_firmas_digitales = pg_escape_bytea($data);
+					
+					
+					
+				}
+				
+				
+				
+				
+				
+				
+				
 				$this->view("Recaudacion",array(
 						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultInsRec" =>$resultInsRec
 							
