@@ -44,43 +44,67 @@
         <script >
 		$(document).ready(function(){
 
-			$("#Buscar").click(function(){
+			$("#Buscar").click(function()
 
-				var contenido = $("#contenido_busqueda").val();
-				var criterio= $("#criterio_busqueda").val();
+			{
 
-				if(criterio==0 && contenido!="")
-				{
-					$("#mensaje_Menu").text("Seleccione un filtro de busqueda");
-		    		$("#mensaje_Menu").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-				}
-				else 
+				var contenido = $("#contenido").val();
+				var criterio= $("#criterio").val();
+
+				if (contenido != "" && criterio==0)
 		    	{
-		    		$("#mensaje_Menu").fadeOut("slow"); //Muestra mensaje de error
+					$("#mensaje_criterio").text("Seleccione filtro de busqueda");
+		    		$("#mensaje_criterio").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_criterio").fadeOut("slow"); //Muestra mensaje de error
+		    		
 		            
-				} 
+				}    
 
-				if(criterio!=0 && contenido="")
-				{
-					$("#mensaje_Contenido").text("Ingrese contenido de busqueda");
-	    			$("#mensaje_Contenido").fadeIn("slow"); //Muestra mensaje de error
-	            	return false;
-				}
-				else 
-	    		{
-	    			$("#mensaje_Contenido").fadeOut("slow"); //Muestra mensaje de error
-	            
-				} 
+				if (criterio !=0 && contenido=="")
+		    	{
 
-			
+			    	
+		    		$("#mensaje_contenido").text("Ingrese Contenido a buscar");
+		    		$("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    	
+		    		
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_contenido").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}    
 
 
-				//alert(criterio);
+				
+
+		
 				
 			});
 
+
+			$( "#contenido" ).focus(function() {
+				  $("#mensaje_contenido").fadeOut("slow");
+			    });
+
+			$( "#criterio" ).focus(function() {
+				  $("#mensaje_criterio").fadeOut("slow");
+			    });
+		   
+			
+		});
+			</script >
+			
+			
+			<script >
 		    // cada vez que se cambia el valor del combo
+		    $(document).ready(function(){
+		    
 		    $("#Guardar").click(function() 
 			{
 		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
@@ -262,14 +286,7 @@
 					$("#mensaje_correo").fadeOut("slow");
     			});
 		
-				$("#mensajebusqueda" ).focus(function() {
-					  $("#mensaje_Menu").fadeOut("slow");
-				    });
 				
-				$("#contenido_busqueda" ).focus(function() {
-					  $("#mensaje_Contenido").fadeOut("slow");
-				    });
-		
 		      
 				    
 		}); 
@@ -445,8 +462,16 @@
 			        <?php } ?>
 				</select> 			  
 			  </div>
-			</div>
 		
+		<div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Ciudad</p>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+					<?php foreach($resultCiu as $resCiu) {?>
+						<option value="<?php echo $resCiu->id_ciudad; ?>"  <?php if ($resCiu->id_ciudad == $resEdit->id_ciudad ) echo ' selected="selected" '  ; ?> ><?php echo $resCiu->nombre_ciudad; ?> </option>
+			        <?php } ?>
+				</select> 			  
+			  </div>
+			  </div>
 		 <hr>
             
             
@@ -527,6 +552,17 @@
 			        <?php } ?>
 				</select> 			  
 			  </div>
+			  
+			   <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Ciudad</p>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+					<?php foreach($resultCiu as $resCiu) {?>
+						<option value="<?php echo $resCiu->id_ciudad; ?>"  ><?php echo $resCiu->nombre_ciudad; ?> </option>
+			        <?php } ?>
+				</select> 			  
+			  </div>
+			  
+			  
 			</div>
 		    <hr>
 		    
@@ -543,43 +579,44 @@
 		 <hr>
           
           </form>
-       <!-- termina el form --> 
+       
+         <!-- termina el form -->
        
         <div class="col-lg-6">
             <h4 style="color:#ec971f;">Lista de Usuarios</h4>
-            <!-- empieza formulario de busqueda -->
+           
+     <!-- empieza formulario de busqueda -->
+     
             <hr>
         <div class="row">
            <form action="<?php echo $helper->url("Usuarios","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
            
            <div class="col-lg-4">
-           <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
-           <div id="mensaje_Contenido" class="errores"></div>
+           <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
+           <div id="mensaje_contenido" class="errores"></div>
             </div>
-            <div class="col-lg-1">
-		    <input type="text" id="mensajebusqueda" value="" style="visibility: hidden;"/>
-		   <div id="mensaje_Menu" class="errores"></div>
-		   </div>
-           <div class="col-lg-3">
-           <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
-									<?php foreach($resultMenu as $val=>$desc) {?>
-				 						<option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
-						            <?php } ?>
-								    	
-		   </select>
-		   </div>
-		   <div class="col-lg-1">
-		    
-		   <div id="" class="errores"></div>
-		   </div>
+            
+           <div class="col-lg-4">
+           <select name="criterio" id="criterio"  class="form-control">
+                                    <?php foreach($resultMenu as $val=>$desc) {?>
+                                         <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
+                                    <?php } ?>
+                                        
+           </select>
+           <div id="mensaje_criterio" class="errores"></div>
+           </div>
+          
+           
+          
            <div class="col-lg-3">
            <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
            </div>
          
           </form>
-           <!-- termina formulario de busqueda -->
+          
+       <!-- termina formulario de busqueda -->
         <hr/>
-      
+         
        <section class="col-lg-12  usuario" style="height:500px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
@@ -614,10 +651,16 @@
 			                <hr/>
 		               </td>
 		    		</tr>
-		        <?php } } ?>
-            
+		        <?php } }else{ ?>
+            <tr>
+            <td></td>
+            <td></td>
+	                   <td colspan="5" style="color:#ec971f;font-size:8;"> <?php echo '<span id="snResult">No existen resultados</span>' ?></td>
+	        <td></td>
+		               
+		    		</tr>
             <?php 
-            
+		}
             //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
             
             ?>

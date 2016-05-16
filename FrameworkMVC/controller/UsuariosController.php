@@ -12,7 +12,7 @@ public function index(){
 		{
 			//creacion menu busqueda
 			//$resultMenu=array("1"=>Nombre,"2"=>Usuario,"3"=>Correo,"4"=>Rol);
-			$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Usuario', 3=>'Correo', 4=>'Rol');
+			$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Usuario', 3=>'Correo', 4=>'Rol', 5=>'Ciudad');
 			
 			
 				//Creamos el objeto usuario
@@ -22,6 +22,9 @@ public function index(){
 			
 			$estado = new EstadoModel();
 			$resultEst = $estado->getAll("nombre_estado");
+			
+			$ciudad = new CiudadModel();
+			$resultCiu = $ciudad->getAll("nombre_ciudad");
 			
 	
 			$usuarios = new UsuariosModel();
@@ -34,9 +37,9 @@ public function index(){
 			{
 			
 			
-					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios";
-					$tablas   = "public.rol,  public.usuarios, public.estado";
-					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado";
+					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad";
+					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad";
+					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad";
 					$id       = "usuarios.nombre_usuarios"; 
 			
 					
@@ -49,7 +52,7 @@ public function index(){
 					if (isset ($_GET["id_usuarios"])   )
 					{
 						$_id_usuario = $_GET["id_usuarios"];
-						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND usuarios.id_usuarios = '$_id_usuario' "; 
+						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuario' "; 
 						$resultEdit = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id); 
 					}
 			
@@ -75,7 +78,7 @@ public function index(){
 			
 			if (!empty($resultPerVer))
 			{
-				if (isset ($_POST["criterio_busqueda"])  && isset ($_POST["contenido_busqueda"])  )
+				if (isset ($_POST["criterio"])  && isset ($_POST["contenido"])  )
 				{
 						
 					
@@ -88,14 +91,14 @@ public function index(){
 					
 					
 					
-					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios";
-					$tablas   = "public.rol,  public.usuarios, public.estado";
-					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado";
+					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad";
+					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad";
+					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad";
 					$id       = "usuarios.nombre_usuarios";
 					
 
-					$criterio = $_POST["criterio_busqueda"];
-					$contenido = $_POST["contenido_busqueda"];
+					$criterio = $_POST["criterio"];
+					$contenido = $_POST["contenido"];
 						
 					
 					//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
@@ -108,10 +111,11 @@ public function index(){
 						$where_2 = "";
 						$where_3 = "";
 						$where_4 = "";
+						$where_5 = "";
 							
 						switch ($criterio) {
 							case 0:
-								$where_0 = "OR  usuarios.nombre_usuarios LIKE '$contenido'   OR usuarios.usuario_usuarios LIKE '$contenido'  OR  usuarios.correo_usuarios LIKE '$contenido'  OR rol.nombre_rol LIKE '$contenido'";
+								$where_0 = "OR  usuarios.nombre_usuarios LIKE '$contenido'   OR usuarios.usuario_usuarios LIKE '$contenido'  OR  usuarios.correo_usuarios LIKE '$contenido'  OR rol.nombre_rol LIKE '$contenido' OR ciudad.nombre_ciudad LIKE '$contenido'";
 								break;
 							case 1:
 								//Ruc Cliente/Proveedor
@@ -129,11 +133,15 @@ public function index(){
 								//Número Poliza
 								$where_4 = " AND rol.nombre_rol LIKE '$contenido' ";
 								break;
+							case 5:
+									//Número Poliza
+									$where_5 = " AND ciudad.nombre_ciudad LIKE '$contenido' ";
+									break;
 						}
 							
 							
 							
-						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4  ;
+						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5;
 							
 							
 						$resul = $where_to;
@@ -151,7 +159,7 @@ public function index(){
 			//"resultMenu"=>$resultMenu
 			
 			$this->view("Usuarios",array(
-					"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst,"resultMenu"=>$resultMenu
+					"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst,"resultMenu"=>$resultMenu, "resultCiu"=>$resultCiu
 			
 			));
 			
@@ -201,11 +209,12 @@ public function index(){
 		    $_id_estado          = $_POST["estados"];
 		    $_usuario_usuario     = $_POST["usuario_usuarios"];
 		    $_cedula_usuarios    = $_POST["cedula_usuarios"];
+		    $_id_ciudad          = $_POST["id_ciudad"];
 	
 	
 			$funcion = "ins_usuarios";
 			
-			$parametros = " '$_nombre_usuario' ,'$_clave_usuario' , '$_telefono_usuario', '$_celular_usuario', '$_correo_usuario' , '$_id_rol', '$_id_estado' , '$_usuario_usuario', '$_cedula_usuarios'";
+			$parametros = " '$_nombre_usuario' ,'$_clave_usuario' , '$_telefono_usuario', '$_celular_usuario', '$_correo_usuario' , '$_id_rol', '$_id_estado' , '$_usuario_usuario', '$_cedula_usuarios', '$_id_ciudad'";
 			$usuarios->setFuncion($funcion);
 	
 			$usuarios->setParametros($parametros);
@@ -388,8 +397,9 @@ public function index(){
 					$_correo_usuario     = $_POST["correo_usuarios"];
 					$_usuario_usuario     = $_POST["usuario_usuarios"];
 					$_cedula_usuarios     = $_POST["cedula_usuarios"];
+					$_id_ciudad           = $_POST["id_ciudad"];
 					
-					$colval   = " nombre_usuarios = '$_nombre_usuario' , clave_usuarios = '$_clave_usuario'   , telefono_usuarios = '$_telefono_usuario' ,  celular_usuarios = '$_celular_usuario' , correo_usuarios = '$_correo_usuario' , usuario_usuarios = '$_usuario_usuario', cedula_usuarios = '$_cedula_usuarios'   ";
+					$colval   = " nombre_usuarios = '$_nombre_usuario' , clave_usuarios = '$_clave_usuario'   , telefono_usuarios = '$_telefono_usuario' ,  celular_usuarios = '$_celular_usuario' , correo_usuarios = '$_correo_usuario' , usuario_usuarios = '$_usuario_usuario', cedula_usuarios = '$_cedula_usuarios', id_ciudad = '$_id_ciudad'   ";
 					$tabla    = "usuarios";
 					$where    = " id_usuarios = '$_id_usuario' ";
 					
