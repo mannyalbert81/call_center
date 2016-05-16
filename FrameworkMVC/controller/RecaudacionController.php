@@ -95,12 +95,13 @@ class RecaudacionController extends ControladorBase{
 							$parametros = " '$_id_recaudacion_institucion' ,'$_tipo_linea_recaudacion_cabeza' , '$_tipo_nuc_recaudacion_cabeza' , '$_numero_nuc_recaudacion_cabeza' , '$_fecha_creacion_recaudacion_cabeza, '$_hora_creacion_recaudacion_cabeza', '$_cantidad_registros_recaudacion_cabeza' , '$_valor_total_sucres_recaudacion_cabeza' , '$_valor_total_dolares_recaudacion_cabeza' ";
 							$recaudacion_cabeza->setFuncion($funcion);
 							$recaudacion_cabeza->setParametros($parametros);
-							
+							/*
 							$this->view("Error",array(
 									"resultado"=>$_fecha_creacion_recaudacion_cabeza. "---" . "$_hora_creacion_recaudacion_cabeza"
 							
 							));
-							/*
+							*/
+							
 							try {
 									
 								$resultado=$recaudacion_cabeza->Insert();
@@ -114,7 +115,7 @@ class RecaudacionController extends ControladorBase{
 									
 									
 							}
-								*/	
+								
 												
 						} 
 						elseif ($contador == $contador_linea ) 
