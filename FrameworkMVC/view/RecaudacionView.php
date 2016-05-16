@@ -55,7 +55,7 @@
 	       <?php } } else {?>
 		    	<div class="col-xs-6 col-md-6">
 		             <p  class="formulario-subtitulo" >Institucion Recaudadora:</p>  
-		             <select name="nombre_recaudacion_institucion" id="nombre_recaudacion_institucion"  class="form-control">
+		             <select name="recaudacion_institucion" id="recaudacion_institucion"  class="form-control">
 									<?php foreach($resultInsRec as $res) {?>
 				 						<option value="<?php echo $res->id_recaudacion_institucion; ?>" ><?php echo $res->nombre_recaudacion_institucion; ?> </option>
 						            <?php } ?>
