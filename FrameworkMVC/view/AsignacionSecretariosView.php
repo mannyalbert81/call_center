@@ -5,7 +5,62 @@
         <title>Asignacion Secretarios - coactiva 2016</title>
    
   
-		
+	<script>
+        
+       $(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#ddl_busqueda").change(function() {
+
+               // obtenemos el combo de subcategorias
+                var $id_acciones = $("#ddl_resultado");
+               // lo vaciamos
+               
+				///obtengo el id seleccionado
+				
+
+               var id_controladores = $(this).val();
+
+
+               $id_acciones.empty();
+
+               $id_acciones.append("<option value= " +"0" +" > --TODOS--</option>");
+           
+               if(id_controladores > 0)
+               {
+            	   var datos = {
+            			   id_controladores : $(this).val()
+                   };
+
+
+            	   $.post("<?php echo $helper->url("PermisosRoles","devuelveAcciones"); ?>", datos, function(resultAcc) {
+
+            		 		$.each(resultAcc, function(index, value) {
+               		 	    $id_acciones.append("<option value= " +value.id_acciones +" >" + value.nombre_acciones  + "</option>");	
+                       		 });
+
+            		 		 	 		   
+            		  }, 'json');
+
+
+               }
+               else
+               {
+            	   $.post("<?php echo $helper->url("PermisosRoles","devuelveAllAcciones"); ?>", datos, function(resultAcc) {
+
+   		 		        $.each(resultAcc, function(index, value) {
+          		 	    $id_acciones.append("<option value= " +value.id_acciones +" >" + value.nombre_acciones  + "</option>");	
+                	  });
+     		  		}, 'json');
+
+               }
+               
+		    });
+    
+		}); 
+
+	</script>
+	
       <script>
         
        $(document).ready(function(){
@@ -203,36 +258,33 @@
      
             <hr>
         <div class="row">
-           <form action="<?php echo $helper->url("Usuarios","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+           <form action="<?php echo $helper->url("AsignacionSecretarios","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
            
-           <div class="col-lg-2">
-           <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
-           <div id="mensaje_contenido" class="errores"></div>
-            </div>
+          
             
             <div class="col-lg-4">
-           <select name="criterio_busqueda1" id="criterio_busqueda1"  class="form-control">
-                                    <?php foreach($resultMenu as $val=>$desc) {?>
-                                         <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
+           <select name="ddl_busqueda" id="ddl_busqueda"  class="form-control">
+                                    <?php foreach($resultAsignacion as $val=>$desc) {?>
+                                         <option value="<?php echo $val ?>" ><?php echo $desc ?> </option>
                                     <?php } ?>
                                     </select>
-           <div id="mensaje_criterio" class="errores"></div>
+           <div id="mensaje_ddl_busqueda" class="errores"></div>
            </div>
                                         
             
            <div class="col-lg-4">
-           <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
+           <select name="ddl_resultado" id="ddl_resultado"  class="form-control">
                                     <?php foreach($resultMenu as $val=>$desc) {?>
                                          <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
                                     <?php } ?>
                                         
            </select>
-           <div id="mensaje_criterio" class="errores"></div>
+           <div id="mensaje_ddl_resultado" class="errores"></div>
            </div>
           
            
           
-           <div class="col-lg-2">
+           <div class="col-lg-4">
            <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
            </div>
          
