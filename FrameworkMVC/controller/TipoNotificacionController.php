@@ -99,8 +99,6 @@ class TipoNotificacionController extends ControladorBase{
 		session_start();
 
 		$permisos_rol=new PermisosRolesModel();
-
-
 		$tipoNotificacion=new TipoNotificacionModel();
 
 		$nombre_controladores = "TipoNotificacion";
