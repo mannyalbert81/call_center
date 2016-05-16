@@ -43,6 +43,8 @@ class RecaudacionController extends ControladorBase{
 			{
 				if (isset ($_POST["procesar"]) )
 				{
+					$recaudacion_cabeza = new RecaudacionCabezaModel();
+					
 					$_id_recaudacion_institucion = $_POST["recaudacion_institucion"];
 					
 					$directorio = $_SERVER['DOCUMENT_ROOT'].'/recaudacion/';
@@ -74,19 +76,46 @@ class RecaudacionController extends ControladorBase{
 						$contador = $contador + 1;
 						$lectura_linea =  fgets($file) ;
 						
-						if ($contador == 1) 
+						if ($contador == 1) ///INSERTO EL ENCABEZADO
 						{
-							//$encabezado_linea = $line;
 							$funcion = "ins_recaudacion_cabeza";
-							
+		
+							//$_id_recaudacion_institucion; 
 							$_tipo_linea_recaudacion_cabeza = substr($lectura_linea,0,3);
 							$_tipo_nuc_recaudacion_cabeza   = substr($lectura_linea,3,1);
+							$_numero_nuc_recaudacion_cabeza = substr($lectura_linea,4,14);
+							//$my_date = date('m/d/y', strtotime($date));
+							$_fecha_creacion_recaudacion_cabeza = substr($lectura_linea,18,4) .".". substr($lectura_linea,22,2) .".". substr($lectura_linea,24,2);
+							$_hora_creacion_recaudacion_cabeza =  substr($lectura_linea,26,2) . ":". substr($lectura_linea,28,2) . ".". substr($lectura_linea,30,2);
+							$_cantidad_registros_recaudacion_cabeza =  intval(substr($lectura_linea,32,6));
+							$_valor_total_sucres_recaudacion_cabeza =  floatval(substr($lectura_linea,38,13). "." . substr($lectura_linea,51,2));
+							$_valor_total_dolares_recaudacion_cabeza =  floatval(substr($lectura_linea,53,13) . ":".substr($lectura_linea,66,2));
 							
+							
+							$parametros = " '$_id_recaudacion_institucion' ,'$_tipo_linea_recaudacion_cabeza' , '$_tipo_nuc_recaudacion_cabeza' , '$_numero_nuc_recaudacion_cabeza' , '$_fecha_creacion_recaudacion_cabeza, '$_hora_creacion_recaudacion_cabeza', '$_cantidad_registros_recaudacion_cabeza' , '$_valor_total_sucres_recaudacion_cabeza' , '$_valor_total_dolares_recaudacion_cabeza' ";
+							$recaudacion_cabeza->setFuncion($funcion);
+							$recaudacion_cabeza->setParametros($parametros);
 							
 							$this->view("Error",array(
-									"resultado"=>$_tipo_linea_recaudacion_cabeza . " -- ". $_tipo_nuc_recaudacion_cabeza 
-							));
+									"resultado"=>$_fecha_creacion_recaudacion_cabeza. "---" . "$_hora_creacion_recaudacion_cabeza"
 							
+							));
+							/*
+							try {
+									
+								$resultado=$recaudacion_cabeza->Insert();
+									
+									
+							} catch (Exception $e) {
+									
+								$this->view("Error",array(
+										"resultado"=>$e
+								));
+									
+									
+							}
+								*/	
+												
 						} 
 						elseif ($contador == $contador_linea ) 
 						{
@@ -138,55 +167,8 @@ class RecaudacionController extends ControladorBase{
 	}
 	
 	
-	private function InsertaEncabezadoLinea($linea, $id_recaudacion_institucion)
+	public function InsertaEncabezadoLinea($lectura_linea, $_id_recaudacion_institucion)
 	{
-		$funcion = "ins_recaudacion_cabeza";
-		
-		
-		$_id_recaudacion_institucion =   $id_recaudacion_institucion;
-		
-		$_tipo_linea_recaudacion_cabeza = substr($linea,0,3);
-		$_tipo_nuc_recaudacion_cabeza   = substr($linea,3,1);
-		
-		
-		$this->view("Error",array(
-				"resultado"=>$_tipo_linea_recaudacion_cabeza . " -- ". $_tipo_nuc_recaudacion_cabeza 
-		));
-		
-		
-		/*
-		_numero_nuc_recaudacion_cabeza character varying, 
-		_fecha_creacion_recaudacion_cabeza date, 
-		_hora_creacion_recaudacion_cabeza time without time zone, 
-		_cantidad_registros_recaudacion_cabeza integer, 
-		_valor_total_sucres_recaudacion_cabeza numeric, 
-		_valor_total_dolares_recaudacion_cabeza numeric
-		
-		
-		
-		
-		
-		
-		$parametros = " '$_id_usuarios' ,'{$imagen_firmas_digitales}' ";
-		$firmas_digitales->setFuncion($funcion);
-		$firmas_digitales->setParametros($parametros);
-		
-		
-		try {
-		
-			$resultado=$firmas_digitales->Insert();
-				
-				
-		} catch (Exception $e) {
-				
-			$this->view("Error",array(
-					"resultado"=>$e
-			));
-				
-				
-		}
-				
-		*/
 		
 	}
 	
