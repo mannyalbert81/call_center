@@ -15,6 +15,9 @@ class AsignacionSecretariosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			//creacion ddl de secretarios o abogadpos
+			$resultAsignacion=array(0=>'--Seleccione--',1=>'Secretario',2=>'Abg Impulsor');
 	
 			$permisos_rol = new PermisosRolesModel();
 			
@@ -108,7 +111,7 @@ class AsignacionSecretariosController extends ControladorBase{
 					
 					$this->view("AsignacionSecretarios",array(
 							
-							"resultCon"=>$resultCon,"resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultUsuarioSecretario"=>$resultUsuarioSecretario,"resultUsuarioImpulsor"=>$resultUsuarioImpulsor
+							"resultCon"=>$resultCon,"resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultUsuarioSecretario"=>$resultUsuarioSecretario,"resultUsuarioImpulsor"=>$resultUsuarioImpulsor,"resultAsignacion"=>$resultAsignacion
 					));
 			
 			
