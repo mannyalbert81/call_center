@@ -109,11 +109,8 @@ class TipoNotificacionController extends ControladorBase{
 		
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 		
-		
 		if (!empty($resultPer))
 		{
-		
-		
 		
 			$resultado = null;
 
@@ -126,17 +123,19 @@ class TipoNotificacionController extends ControladorBase{
 				
 				$_nombre_tipoNotificacion = $_POST["desc_tipoNotificacion"];
 				
-				
-				if(isset($_POST["id_tipo_notificacion"])) 
+				if( isset ($_POST["id_tipo_notificacion"])) 
 				{
+					
 					
 					$_id_tipoNotificacion = $_POST["id_tipo_notificacion"];
 					
-					$colval = " descripcion_notificacion = '$_nombre_tipoNotificacion'   ";
+					$colval = "descripcion_notificacion = '$_nombre_tipoNotificacion'   ";
 					$tabla = "tipo_notificacion";
-					$where = "id_tipo_notificacion = '$_id_tipoNotificacion'    ";
+					$where = "id_tipo_notificacion = '$_id_tipoNotificacion' ";
 					
 					$resultado=$tipoNotificacion->UpdateBy($colval, $tabla, $where);
+					
+					
 					
 				}else {
 					
@@ -162,7 +161,7 @@ class TipoNotificacionController extends ControladorBase{
 		{
 			$this->view("Error",array(
 					
-					"resultado"=>"No tiene Permisos de Insertar Controladores"
+					"resultado"=>"No tiene Permisos de Insertar Tipo Notificaciones"
 		
 			));
 		
