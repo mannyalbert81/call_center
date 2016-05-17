@@ -38,7 +38,7 @@
 			</li>
 			<li><a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
 			</li>
-          </ul>
+		</ul>
         </li>
 
         <li class="dropdown">
@@ -55,7 +55,10 @@
             </li>
             <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
             </li>
-			
+			<li><a href="index.php?controller=EstadosProcesales&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Procesal</span> </a>
+            </li>
+            <li><a href="index.php?controller=EtapasJuicios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Etapas Juicios</span> </a>
+            </li>
           </ul>
         </li>
       </ul>

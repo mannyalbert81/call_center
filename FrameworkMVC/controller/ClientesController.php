@@ -106,7 +106,7 @@ public function index(){
 							
 						switch ($criterio) {
 							case 0:
-								$where_0 = "OR  clientes.nombres_clientes LIKE '$contenido'   OR clientes.identifiacion_clientes LIKE '$contenido'";
+								$where_0 = "OR  clientes.nombres_clientes LIKE '$contenido'   OR clientes.identificacion_clientes LIKE '$contenido'";
 								break;
 							case 1:
 								//Ruc Cliente/Proveedor
@@ -114,7 +114,7 @@ public function index(){
 								break;
 							case 2:
 								//Nombre Cliente/Proveedor
-								$where_2 = " AND clientes.identifiacion_clientes LIKE '$contenido'  ";
+								$where_2 = " AND clientes.identificacion_clientes LIKE '$contenido'  ";
 								break;
 							
 						}
