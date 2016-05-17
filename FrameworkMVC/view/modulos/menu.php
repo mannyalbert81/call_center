@@ -55,6 +55,8 @@
             </li>
             <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
             </li>
+            <li><a href="index.php?controller=LotesTituloCredito&action=index"><span class="glyphicon glyphicon-book" aria-hidden="true"> Lotes Titulo Credito</span> </a>
+            </li>
 			
           </ul>
         </li>
