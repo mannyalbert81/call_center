@@ -55,7 +55,10 @@
             </li>
             <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
             </li>
-			
+            	<li><a href="index.php?controller=TipoJuicios&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Juicios</span> </a>
+			</li>
+			<li><a href="index.php?controller=EstadosTitulosCredito&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Estados Titulos Credito</span> </a>
+			</li>
           </ul>
         </li>
       </ul>
