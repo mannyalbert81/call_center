@@ -22,6 +22,19 @@ class NotificacionesController extends ControladorBase{
 		$usuarios = new UsuariosModel();
 		$resultUsuarios=$usuarios->getAll("nombre_usuarios");
 		
+		
+		$columnas = "B.id_tipo_notificacion AS id_tipo_notificacion ,
+								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_secretario_asignacion_secretarios) AS secretarios,
+								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_abogado_asignacion_secretarios) AS impulsadores";
+		$tablas   = "asignacion_secretarios B";
+		$where    = "B.id_asignacion_secretarios>0";
+		$id       = "B.id_asignacion_secretarios";
+		
+		
+		$notificaciones = new NotificaionesModel();
+		//$resultSet=$asignacionSecretarios->getAll("id_asignacion_secretarios");
+		$resultSet=$notificaciones->getCondiciones($columnas, $tablas, $where, $id);
+		
 		session_start();
 
 	
@@ -46,9 +59,9 @@ class NotificacionesController extends ControladorBase{
 					
 						$_id_notificaciones = $_GET["id_notificaciones"];
 						$columnas = " notificaciones.descripcion_notificaciones, notificaciones.id_tipo_notificacion, notificaciones.id_notificaciones, usuarios.nombre_usuarios, usuarios.id_usuarios, tipo_notificacion.descripcion_notificacion";
-						$tablas   = "  public.notificaciones, public.usuarios, publiyc.tipo_notificacion";
-						$where    = "  notificaciones.id_usuarios = usuarios.id_usuarios AND tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion"; 
-						$id       = "id_notificaciones";
+						$tablas   = "  public.notificaciones, public.usuarios, public.tipo_notificacion";
+						$where    = "  notificaciones.id_usuarios = usuarios.id_usuarios AND tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion AND id_notificaciones = '$_id_notificaciones' "; 
+						$id       = "descripcion_notificaciones";
 							
 						$resultEdit = $notificaciones->getCondiciones($columnas ,$tablas ,$where, $id);
 
@@ -85,6 +98,8 @@ class NotificacionesController extends ControladorBase{
 				exit();	
 			}
 				
+			
+			
 		}
 		else 
 		{
@@ -137,11 +152,11 @@ class NotificacionesController extends ControladorBase{
 		
 				$resultado=$notificaciones->Insert();
 		
-				//$this->view("Error",array(
-				//"resultado"=>"entro"
+			//$this->view("Error",array(
+				//"resultado"=>$resultado
 				//));
 				
-				
+				//exit();
 			}
 			$this->redirect("Notificaciones", "index");
 
