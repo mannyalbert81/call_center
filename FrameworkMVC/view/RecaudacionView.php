@@ -63,17 +63,22 @@
 					</select>
 		         </div>
 			     <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Firma</p>
-			  	<input type="file" name="archivo" id="archivo" accept="txt" onKeyDown="return intro(event)" value="" class="form-control"/> 
-			   <div id="mensaje_archivo" class="errores"></div>
-			   </div>
-   
+			  		<p  class="formulario-subtitulo" >Firma</p>
+			  		<input type="file" name="archivo" id="archivo" accept="txt" onKeyDown="return intro(event)" value="" class="form-control"/> 
+			   		<div id="mensaje_archivo" class="errores"></div>
+			     </div>
+   				 
 		       
 			<hr>
 		     <?php } ?>
 		
 		<div class="row">
 			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
+           		<?php if ($mensaje != "")?>
+           		<?php {?>
+           			<div class="alert alert-warning" role="alert"><?php echo $mensaje ; ?></div>
+           		<?php }?>
+           		
            		<input type="submit" id="procesar" name="procesar" value="Procesar" class="btn btn-success"/>
            </div>
         </div>
@@ -101,16 +106,15 @@
                  <?php foreach($resultSet as $res) {?>
 	        		<tr>
 	        		   <td> <?php echo $registros; ?>  </td>
-	        		   <td> <?php echo $res->recaudacion_institucion.recaudacion_cabeza.fecha_creacion_recaudacion_cabeza; ?>     </td> 
-		               <td> <?php echo $res->recaudacion_cabeza.hora_creacion_recaudacion_cabeza; ?>     </td>
-		               <td> <?php echo $res->recaudacion_institucion.nombre_recaudacion_institucion; ?>     </td>
-		               <td> <?php echo $res->recaudacion_institucion.nombre_recaudacion_institucion; ?>     </td>
-		               <td> <?php echo $res->recaudacion_cabeza.cantidad_registros_recaudacion_cabeza; ?>     </td>
-		               <td> <?php echo $res->recaudacion_cabeza.valor_total_dolares_recaudacion_cabeza; ?>     </td>
-		               <td> <?php echo $res->recaudacion_cabeza.creado; ?>     </td>
+	        		   <td> <?php echo $res->fecha_creacion_recaudacion_cabeza; ?>     </td> 
+		               <td> <?php echo $res->hora_creacion_recaudacion_cabeza; ?>     </td>
+		               <td> <?php echo $res->nombre_recaudacion_institucion; ?>     </td>
+		               <td> <?php echo $res->cantidad_registros_recaudacion_cabeza; ?>     </td>
+		               <td> <?php echo $res->valor_total_dolares_recaudacion_cabeza; ?>     </td>
+		               <td> <?php echo $res->creado; ?>     </td>
 		               <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-warning" style="font-size:65%;">Detalle</a>
+			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_recaudacion_cabeza; ?>" class="btn btn-warning" style="font-size:65%;">Detalle</a>
 			                </div>
 			            
 			             </td>

@@ -21,7 +21,7 @@
         
        $(document).ready(function(){
 
-           //alert("entro");
+        
 
 		    // cada vez que se cambia el valor del combo1 o busqueda
 		    $("#ddl_busqueda").change(function() {
@@ -94,6 +94,38 @@
 	</script>
 	
 	<script>
+	$(document).ready(function(){
+
+		
+		
+		$("#Guardar").click(function(){
+
+			var $id_impulsor=$("#id_usuarioImpulsor");
+
+			
+
+			if($id_impulsor.val()!="")
+			{
+				var datos = {id_abgImpulsor:$id_impulsor.val()};
+
+				alert($id_impulsor.val());
+			   // return false;
+				  
+				$.post("<?php echo $helper->url("AsignacionSecretarios","CompruebaImpulsores"); ?>",datos, function(ressultAsg) 
+						{
+					
+				     // return false;
+						 	 		   
+			       		}, 'json');
+			
+			}
+			 
+			
+	});
+	});
+    </script>
+	
+	<script>
         
        $(document).ready(function(){
 
@@ -151,10 +183,11 @@
     			   
     				
     			});
-    
-		}); 
+ 	 
 
 	</script>
+	
+	
 	
       <script>
         
@@ -270,13 +303,15 @@
             
         </style>
     </head>
-    <body style="background-color: #d9e3e4;">
+    
+    
+   <body style="background-color: #d9e3e4;">
     
        <?php include("view/modulos/head.php"); ?>
        
        <?php include("view/modulos/menu.php"); ?>
   
-   <div class="container">
+  <div class="container">
   
   <div class="row" style="background-color: #ffffff;">
   
@@ -339,9 +374,13 @@
 		        <hr>
 		     <?php } ?>
 		        
-		        <div class="row">
+		        <div class="row" >
+ 				<div class="col-xs-12 col-md-12" style="text-align: center; margin-bottom: 20px;" >
+           			<span id="msg_impulsor" Style="Display:none; color:#d93e1b;">ABOGADO IMPULSOR YA SE ENCUENTRA ASIGNADO</span>
+           		</div>
+           		
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
-           <input type="submit" value="Guardar" class="btn btn-success"/>
+           <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
            </div>
            </div>
           </form>
@@ -421,10 +460,17 @@
 			                <hr/>
 		               </td>
 		    		</tr>
-		        <?php } } ?>
+		        <?php } }else{	  ?>
+		        
+		        <tr>
+	                  	<td></td>
+            			<td></td>
+	                    <td colspan="5" style="color:#ec971f;font-size:8;"> <?php echo '<span id="snResult">No existen resultados</span>' ?></td>
+	       				<td></td>
+		    	</tr>
             
             <?php 
-            
+		        }
             //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
             
             ?>
@@ -432,7 +478,8 @@
        	</table>     
       </section>
       </div>
-      </div>
+
+  </div>
        
      </body>  
     </html>   

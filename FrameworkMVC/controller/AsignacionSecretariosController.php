@@ -35,10 +35,7 @@ class AsignacionSecretariosController extends ControladorBase{
 					$id="rol.id_rol";
 					
 					$usuarios=new UsuariosModel();
-					//$where="id_rol=5";
-					//$resultUsuarioSecretario=$usuarios->getBy($where);
-					//$where="id_rol=3";
-					//$resultUsuarioImpulsor=$usuarios->getBy($where);
+					
 					$where="rol.nombre_rol='SECRETARIO'";
 					$resultUsuarioSecretario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
 					
