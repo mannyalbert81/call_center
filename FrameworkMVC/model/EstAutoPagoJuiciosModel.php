@@ -1,5 +1,5 @@
 <?php
-class EtapasJuiciosModel extends ModeloBase{
+class EstAutoPagoJuiciosModel extends ModeloBase{
 	
 	private $table;
 	private $where;
@@ -38,7 +38,7 @@ class EtapasJuiciosModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="etapas_juicios";
+		$this->table="estados_auto_pago_juicios";
 		
 		parent::__construct($this->table);
 	}
