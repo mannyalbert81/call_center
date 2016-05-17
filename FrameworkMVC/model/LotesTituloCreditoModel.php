@@ -1,5 +1,5 @@
 <?php
-class EstadosProcesalesModel extends ModeloBase{
+class LotesTituloCreditoModel extends ModeloBase{
 	
 	private $table;
 	private $where;
@@ -38,7 +38,7 @@ class EstadosProcesalesModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="estados_procesales_juicios";
+		$this->table="lotes_titulos_credito";
 		
 		parent::__construct($this->table);
 	}

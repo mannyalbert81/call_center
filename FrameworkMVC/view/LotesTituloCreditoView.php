@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Estados Procesales - coactiva 2016</title>
+        <title>Lotes Titulo Credito - aDocument 2015</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -37,45 +37,37 @@
             
         </style>
        
-          <script >
-		$(document).ready(function(){
+    <script >
+    $(document).ready(function(){
 
-		    // cada vez que se cambia el valor del combo
-		    $("#Guardar").click(function() 
-			{
-		   
-		    	var nombre_estado_procesal_juicios = $("#nombre_estado_procesal_juicios").val();
-		    
-		   				
-		    	if (nombre_estado_procesal_juicios == "")
-		    	{
-			    	
-		    		$("#mensaje_nombre_estado_procesal_juicios").text("Introduzca un Estado Procesal ");
-		    		$("#mensaje_nombre_estado_procesal_juicios").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_nombre_estado_procesal_juicios").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	
-		    	
+        $("#Guardar").click(function(){
+
+        	var ltCredito = $("#nombre_ltcredito").val();
+
+			if (ltCredito == "")
+	    	{
+				$("#mensaje_nombre_ltcredito").text("INGRESE INFORMACION REQUERIDA");
+	    		$("#mensaje_nombre_ltcredito").fadeIn("slow"); //Muestra mensaje de error
+	            return false;
+		    }
+	    	else 
+	    	{
+	    		$("#mensaje_nombre_ltcredito").fadeOut("slow"); //Muestra mensaje de error
+	    		
+	            
+			}    
 
 			
-		    					    
+            });
 
-			}); 
+        $( "#nombre_ltcredito" ).focus(function() {
+			  $("#mensaje_nombre_ltcredito").fadeOut("slow");
+		    });
 
+		
 
-		 
-				
-				$( "#nombre_estado_procesal_juicios" ).focus(function() {
-					$("#mensaje_nombre_estado_procesal_juicios").fadeOut("slow");
-    			});
-				
-	}); 
-
+        });
+	
 	</script>
     </head>
     <body style="background-color: #d9e3e4;">
@@ -100,10 +92,10 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("EstadosProcesales","InsertaEstadosProcesales"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("LotesTituloCredito","InsertaLotestituloCredito"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             
          
-        	    <h4 style="color:#ec971f;">Insertar Estados Procesales</h4>
+        	    <h4 style="color:#ec971f;">Insertar Lotes Titulo Credito</h4>
             	<hr/>
             	
 		   		
@@ -116,10 +108,10 @@
 			   
 			   <div class="row">
 		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Nombre Estado Procesal</p>
-			  	<input type="text"  name="nombre_estado_procesal_juicios" id="nombre_estado_procesal_juicios" value="<?php echo $resEdit->nombre_estado_procesal_juicios; ?>" class="form-control"/> 
-			  	<input type="hidden"  name="id_estados_procesales_juicios"  value="<?php echo $resEdit->id_estados_procesales_juicios; ?>" class="form-control"/> 
-			    <div id="mensaje_nombre_estado_procesal_juicios" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Nombre Lotes Titulo Credito</p>
+			  	<input type="text"  name="nombre_ltcredito" id="nombre_ltcredito" value="<?php echo $resEdit->nombre_lotes_titulos_credito; ?>" class="form-control"/> 
+			  	<input type="hidden"  name="id_ltcredito"  value="<?php echo $resEdit->id_lotes_titulos_credito; ?>" class="form-control"/> 
+			    <div id="mensaje_nombre_ltcredito" class="errores"></div>
 			  </div>
 			   </div>
 		    
@@ -127,9 +119,9 @@
 		    
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombre Estado Procesal</p>
-			  	<input type="text"  name="nombre_estado_procesal_juicios" id="nombre_estado_procesal_juicios" value="" class="form-control"/> 
-			    <div id="mensaje_nombre_estado_procesal_juicios" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Nombre Lotes Titulo Credito</p>
+			  	<input type="text"  name="nombre_ltcredito" id="nombre_ltcredito" value="" class="form-control"/> 
+			    <div id="mensaje_nombre_ltcredito" class="errores"></div>
 			  </div>
 			 </div>
 
@@ -153,7 +145,7 @@
        <!-- termina el form --> 
        
         <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Estados Procesales</h4>
+            <h4 style="color:#ec971f;">Lista de Lotes Titulo Credito</h4>
             <hr/>
         </div>
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
@@ -168,18 +160,18 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_estados_procesales_juicios; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado_procesal_juicios; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_lotes_titulos_credito; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_lotes_titulos_credito; ?>     </td> 
 		              
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("EstadosProcesales","index"); ?>&id_estados_procesales_juicios=<?php echo $res->id_estados_procesales_juicios; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("LotesTituloCredito","index"); ?>&id_ltcredito=<?php echo $res->id_lotes_titulos_credito; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("EstadosProcesales","borrarId"); ?>&id_estados_procesales_juicios=<?php echo $res->id_estados_procesales_juicios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("LotesTituloCredito","borrarId"); ?>&id_ltcredito=<?php echo $res->id_lotes_titulos_credito; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>
