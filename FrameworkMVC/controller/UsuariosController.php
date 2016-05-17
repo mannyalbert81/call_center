@@ -36,9 +36,7 @@ public function index(){
 				
 			if (!empty($resultPer))
 			{
-			
-			
-					$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad";
+			     	$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad";
 					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad";
 					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad";
 					$id       = "usuarios.nombre_usuarios"; 
@@ -55,6 +53,15 @@ public function index(){
 						$_id_usuario = $_GET["id_usuarios"];
 						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuario' "; 
 						$resultEdit = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id); 
+				
+					
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Usuarios";
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_usuario;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+					
+					
 					}
 			
 					
@@ -200,9 +207,7 @@ public function index(){
 
 			
 			$_nombre_usuario     = $_POST["nombre_usuarios"];
-			
 			$_clave_usuario      = $usuarios->encriptar($_POST["clave_usuarios"]);
-			
 			$_telefono_usuario   = $_POST["telefono_usuarios"];
 			$_celular_usuario    = $_POST["celular_usuarios"];
 			$_correo_usuario     = $_POST["correo_usuarios"];
@@ -236,7 +241,8 @@ public function index(){
 	
 		}
 		$this->redirect("Usuarios", "index");
-			
+		
+		
 	}
 	
 	public function borrarId()
@@ -250,7 +256,11 @@ public function index(){
 				
 			$usuarios->deleteBy(" id_usuarios",$id_usuario);
 				
-				
+			$traza=new TrazasModel();
+			$_nombre_controlador = "Usuarios";
+			$_accion_trazas  = "Borrar";
+			$_parametros_trazas = $id_usuario;
+			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 		}
 	
 		$this->redirect("Usuarios", "index");
