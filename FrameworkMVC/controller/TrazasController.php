@@ -10,13 +10,20 @@ class TrazasController extends ControladorBase{
 	
 		//Creamos el objeto usuario
 		$trazas = new TrazasModel();
-	
+		$usuarios=new UsuariosModel();
 		//Conseguimos todos los usuarios
 		$resultSet=$trazas->getAll("id_trazas");
 	
+		$columnas = "trazas.id_trazas, usuarios.usuario_usuarios, trazas.nombre_controlador, trazas.accion_trazas, trazas.parametros_trazas, trazas.creado";
+		$tablas="public.trazas, public.usuarios";
+		$where="usuarios.id_usuarios = trazas.id_usuarios";
+		$id="creado";
+		$resultActi=$trazas->getCondiciones($columnas ,$tablas , $where, $id);
+		
+		
 		//$resultEdit = "";
 	
-	
+		$resultEdit = "";
 		session_start();
 	
 	
@@ -42,28 +49,22 @@ class TrazasController extends ControladorBase{
 					if (!empty($resultPer))
 					{
 							
-						$_id_etapas_juicios = $_GET["id_etapas_juicios"];
-						$columnas = " id_etapas_juicios, nombre_etapas";
-						$tablas   = "etapas_juicios";
-						$where    = "id_etapas_juicios = '$_id_etapas_juicios' ";
+						$_id_trazas = $_GET["id_trazas"];
+						$columnas = " trazas.id_trazas, usuarios.usuario_usuarios, trazas.nombre_controlador, trazas.accion_trazas, trazas.parametros_trazas, trazas.creado";
+						$tablas   = "public.trazas, public.usuarios";
+						$where    = " usuarios.id_usuarios = trazas.id_usuarios AND id_trazas = '$_id_trazas' ";
 						$id       = "nombre_etapas";
 							
 	
-						//$resultEdit = $trazas->getCondiciones($columnas ,$tablas ,$where, $id);
+						$resultset = $trazas->getCondiciones($columnas ,$tablas ,$where, $id);
 	
-	
-						$traza=new TrazasModel();
-						$_nombre_controlador = "Etapas Juicios";
-						$_accion_trazas  = "Editar";
-						$_parametros_trazas = $_id_etapas_juicios;
-						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 	
 							
 					}
 					else
 					{
 						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Etapas Juicios"
+								"resultado"=>"No tiene Permisos de Editar Trazas"
 			
 						));
 							
@@ -73,8 +74,8 @@ class TrazasController extends ControladorBase{
 				}
 	
 	
-				$this->view("EtapasJuicios",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+				$this->view("Trazas",array(
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "esultActi" =>$resultActi
 							
 				));
 	
@@ -84,7 +85,7 @@ class TrazasController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Etapas Juicios"
+						"resultado"=>"No tiene Permisos de Acceso a Trazas"
 	
 				));
 	

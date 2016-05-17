@@ -63,6 +63,8 @@
             </li>
             <li><a href="index.php?controller=EstAutoPagoJuicios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Auto de PaGO</span> </a>
             </li>
+            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Actividades</span> </a>
+            </li>
           </ul>
         </li>
       </ul>
