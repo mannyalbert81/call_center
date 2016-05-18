@@ -69,12 +69,10 @@
             </li>
             <li><a href="index.php?controller=EstAutoPagoJuicios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Auto de PaGO</span> </a>
             </li>
-<<<<<<< HEAD
 
-=======
             <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Actividades</span> </a>
             </li>
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
+
           </ul>
         </li>
       </ul>
