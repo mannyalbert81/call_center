@@ -45,10 +45,17 @@ class RecaudacionDetalleModel extends ModeloBase{
 	
 
 	public function Insert(){
-		
+		$resultado = "";
 		$query = "SELECT ".$this->funcion."(".$this->parametros.")";
 		
-		$resultado=$this->enviarFuncion($query);
+		try {
+			$resultado=$this->enviarFuncion($query);
+			
+		} catch (Exception $e) 
+		{
+			$resultado = "Error al Insertar ->".$e;
+		}
+		
 			
 			
 		return  $resultado;

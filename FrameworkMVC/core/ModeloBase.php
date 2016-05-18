@@ -76,8 +76,8 @@ class ModeloBase extends EntidadBase{
 
     	try 
     	{
-    		pg_query($this->con, $query);
-    		$resultSet= "Insertado Correctamente";
+    		$resultSet= pg_query($this->con, $query);
+    		
     	}
     	catch (Exception $Ex)
     	{
@@ -95,8 +95,16 @@ class ModeloBase extends EntidadBase{
 
     public function ConsultaSql($query){
     	$resultSet = array();
+    	try
+    	{
+    		$query=pg_query($this->con, $query);
+    	}
+    	catch (Exception $Ex)
+    	{
+    		exit();
     	
-    	$query=pg_query($this->con, $query);
+    	}
+    	
     	if($query==true)
     	{
     		if(pg_num_rows($query)>1)
