@@ -79,12 +79,16 @@ class TrazasController extends ControladorBase{
 				
 				
 				
-				if(isset($_POST["ddl_criterio"]) || ((isset($_POST["fecha_desde"])&&isset($_POST["fecha_desde"])) || isset($_POST["ddl_accion"]) || isset($_POST["contenido"]) ) )
+				if(isset($_POST["Buscar"]) )
 				{
 					//isset($_POST["ddl_criterio"])&&((isset($_POST["fecha_desde"])&&isset($_POST["fecha_desde"]))||isset($_POST["ddl_accion"])||isset($_POST["contenido"]))
+					$desde=$_POST["fecha_desde"];
+					$hasta=$_POST["fecha_hasta"];
+						
+					
 					$columnas = "trazas.id_trazas, usuarios.usuario_usuarios, trazas.nombre_controlador, trazas.accion_trazas, trazas.parametros_trazas, trazas.creado";
 					$tablas="public.trazas, public.usuarios";
-					$where="usuarios.id_usuarios = trazas.id_usuarios";
+					$where="usuarios.id_usuarios = trazas.id_usuarios AND trazas.creado BETWEEN '$desde' AND '$hasta' ";
 					$id="creado";
 					
 					$accion="";	
@@ -92,20 +96,21 @@ class TrazasController extends ControladorBase{
 					$id_accion = $_POST["ddl_accion"];
 					
 					switch ($id_accion){
-						case 0: $accion = "Guardar";
+						case 0: 
+						$accion = "Guardar";
 						break; 
-						case 1: $accion = "Editar";
+						case 1: 
+						$accion = "Editar";
 						break; 
-						case 2: $accion = "Borrar";
+						case 2: 
+						$accion = "Borrar";
 						break;
 					}
 					
 					$criterio = $_POST["ddl_criterio"];
 					$contenido = $_POST["contenido"];
 					
-					$desde=$_POST["fecha_desde"];
-					$hasta=$_POST["fecha_desde"];
-			
+					
 					
 					if ($contenido !="")
 					{
@@ -137,24 +142,28 @@ class TrazasController extends ControladorBase{
 								//Parametros
 								$where_4 = " ";
 								break;
-							case 5:
-								//Fecha
-								$where_5 = " AND trazas.creado BETWEEN '$desde' AND '$hasta' ";
-								break;
+							
 						}
 							
 							
 							
-						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 . $where_5;
+						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 ;
 							
 							
-						$resul = $where_to;
-					
+						$resul = $accion;
+						
+						$this->view("ErrorSesion",array(
+								"resultSet"=>$accion
+						
+						));
+					/*
 						//Conseguimos todos los usuarios con filtros
 						$resultActi=$trazas->getCondiciones($columnas ,$tablas , $where_to, $id);
+					*/
 					}
 				
-				}else{
+				}
+				else{
 					
 					
 					
