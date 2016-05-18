@@ -9,7 +9,7 @@ class TrazasController extends ControladorBase{
 	public function index(){
 		
 		//creamos el array de busqueda
-		$resulMenu=array(0=>'--Seleccione--',1=>'Usuario', 2=>'Controladores', 3=>'Accion', 4=>'Parametros', 5=>'Fecha');
+		$resulMenu=array(0=>'TODOS',1=>'Usuario', 2=>'Controladores', 3=>'Accion', 4=>'Parametros', 5=>'Fecha');
 	
 		//Creamos el objeto usuario
 		$trazas = new TrazasModel();
@@ -79,30 +79,32 @@ class TrazasController extends ControladorBase{
 				
 				
 				
-				if(isset($_POST["contenido"])&&isset($_POST["ddl_criterio"]))
+				if(isset($_POST["ddl_criterio"]) || ((isset($_POST["fecha_desde"])&&isset($_POST["fecha_desde"])) || isset($_POST["ddl_accion"]) || isset($_POST["contenido"]) ) )
 				{
+					//isset($_POST["ddl_criterio"])&&((isset($_POST["fecha_desde"])&&isset($_POST["fecha_desde"]))||isset($_POST["ddl_accion"])||isset($_POST["contenido"]))
 					$columnas = "trazas.id_trazas, usuarios.usuario_usuarios, trazas.nombre_controlador, trazas.accion_trazas, trazas.parametros_trazas, trazas.creado";
 					$tablas="public.trazas, public.usuarios";
 					$where="usuarios.id_usuarios = trazas.id_usuarios";
 					$id="creado";
 					
-					$accion="Editar";	
+					$accion="";	
 					
 					$id_accion = $_POST["ddl_accion"];
 					
 					switch ($id_accion){
-						case 0: $accion = "";
-						break;
-						case 1: $accion = "Guardar";
+						case 0: $accion = "Guardar";
 						break; 
-						case 2: $accion = "Editar";
+						case 1: $accion = "Editar";
 						break; 
-						case 3: $accion = "Borrar";
+						case 2: $accion = "Borrar";
 						break;
 					}
 					
 					$criterio = $_POST["ddl_criterio"];
 					$contenido = $_POST["contenido"];
+					
+					$desde=$_POST["fecha_desde"];
+					$hasta=$_POST["fecha_desde"];
 			
 					
 					if ($contenido !="")
@@ -117,7 +119,7 @@ class TrazasController extends ControladorBase{
 							
 						switch ($criterio) {
 							case 0:
-								$where_0 = " OR usuarios.usuario_usuarios LIKE '$contenido'  OR  trazas.nombre_controlador LIKE '$contenido' ";
+								$where_0 = "";
 								break;
 							case 1:
 								//USUARIO
@@ -129,7 +131,7 @@ class TrazasController extends ControladorBase{
 								break;
 							case 3:
 								//Accion
-								$where_3 = " AND trazas.accion_trazas LIKE 'Editar' ";
+								$where_3 = " AND trazas.accion_trazas LIKE '$accion' ";
 								break;
 							case 4:
 								//Parametros
@@ -137,7 +139,7 @@ class TrazasController extends ControladorBase{
 								break;
 							case 5:
 								//Fecha
-								$where_5 = " ";
+								$where_5 = " AND trazas.creado BETWEEN '$desde' AND '$hasta' ";
 								break;
 						}
 							

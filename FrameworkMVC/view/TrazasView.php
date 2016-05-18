@@ -25,54 +25,38 @@
 		
 		<script>
 
+		
+
+		</script>
+		
+		<script>
 		$(document).ready(function(){
 
-			//alert("hola");
-
-			$("#div_ddl_accion").hide();
-			$("#div_ddl_accion").hide();
-			$("#div_ddl_accion").hide();
-			
-			
-			$("#ddl_criterio").change(function(){
-
-				 var ddl_criterio = $(this).val();
-
-	              if(ddl_criterio==3){
-
-		             
-		              $("#div_contenido").hide();
-
-	            	  $("#div_ddl_accion").show();
-	            	  
-	            	  
-
-		              }else if(ddl_criterio==4)
-			              {
-
-		            	 
-
-			              }else
-				              {
-			            	  $("#div_contenido").show();
-
-			            	  $("#div_ddl_accion").hide();
-				              }
+	       $("#fecha_desde").change(function() {
 
 
-				});
-			
-			$("#ddl_accion").change(function(){
 
-	              var ddl_accion = $(this).val();
-	              var ddl_criterio = $("#ddl_criterio").val();
 
-	              alert(ddl_accion+"  "+ddl_criterio);
 
-				});
+                        var startDate = new Date($('#fecha_subida_desde').val());
 
-			});
+                        var endDate = new Date($('#fecha_subida_hasta').val());
 
+
+
+                        if (startDate > endDate){
+
+                                       $("#fecha_subida_hasta").val("");
+
+
+
+                                       alert('Fecha subida DESDE mayor a  fecha FINAL');
+
+                        }
+
+                          });
+
+        });
 		</script>
         
         
@@ -100,7 +84,7 @@
        
        <?php
        
-       $acciones=array(1=>"GUARDAR",2=>"EDITAR",3=>"ELIMINAR");
+       $acciones=array(0=>"GUARDAR",1=>"EDITAR",2=>"ELIMINAR");
       // $resultActi=array(id_trazas=>"");
        
 		   
@@ -122,16 +106,18 @@
      <div class="row">  
       
            <form action="<?php echo $helper->url("Trazas","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
-      <div class="col-lg-3"> 
+      <div class="col-lg-3" > 
       
       </div>
       
       		<div class="col-lg-3" id="div_desde">
-           <input type="date"  name="txt_desde" id="txt_desde" value="" class="form-control"/>
+      		<span>Desde:</span>
+           <input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control"/>
            <div id="mensaje_desde" class="errores"></div>
            </div>
            <div class="col-lg-3" id="div_hasta">
-           <input type="date"  name="txt_hasta" id="txt_hasta" value="" class="form-control"/>
+           <span>Hasta:</span>
+           <input type="date"  name="fecha_hasta" id="fecha_hasta" value="" class="form-control"/>
            <div id="mensaje_hasta" class="errores"></div>
            </div>
            <div class="col-lg-3" id="div_contenido">
@@ -150,7 +136,7 @@
            <div id="mensaje_ddl_accion" class="errores"></div>
            </div>
             
-           <div class="col-lg-3">
+           <div class="col-lg-3" id="div_ddl_criterio">
            
            <select name="ddl_criterio" id="ddl_criterio"  class="form-control">
                                     <?php foreach($resulMenu as $val=>$desc) {?>
