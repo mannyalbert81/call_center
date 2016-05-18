@@ -36,6 +36,48 @@
         
         
         
+         <script >
+		$(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#Guardar").click(function() 
+			{
+		   
+		    	var imagen_firmas_digitales = $("#imagen_firmas_digitales").val();
+		    
+		   				
+		    	if (imagen_firmas_digitales == "")
+		    	{
+			    	
+		    		$("#mensaje_imagen_firmas_digitales").text("Introduzca una Firma ");
+		    		$("#mensaje_imagen_firmas_digitales").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_imagen_firmas_digitales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+
+			
+		    					    
+
+			}); 
+
+
+		 
+				
+				$( "#imagen_firmas_digitales" ).focus(function() {
+					$("#mensaje_imagen_firmas_digitales").fadeOut("slow");
+    			});
+				
+	}); 
+
+	</script>
+        
+        
         
     </head>
       <body style="background-color: #d9e3e4;">
@@ -49,14 +91,18 @@
      <div class="row" style="background-color: #ffffff;">
   
   	      <form action="<?php echo $helper->url("FirmasDigitales","InsertaFirmasDigitales"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
+           
             <h4 style="color:#ec971f;">Insertar Firmas Digitales</h4>
             <hr/>
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+	       
 	        <div class="row">
 		     <div class="col-xs-6 col-md-6">
-		             Nombre Secretario: <select name="abogados" id="abogados"  class="form-control">
+		     <p  class="formulario-subtitulo" >Nombre Secretario</p>
+		             <select name="abogados" id="abogados"  class="form-control">
 						<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
-							<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
+							<option value="<?php echo $resSecretario->id_usuarios; ?>" <?php if ($resSecretario->id_usuarios == $resEdit->id_usuarios ) echo ' selected="selected" '  ; ?> ><?php echo $resSecretario->nombre_usuarios; ?> </option>
+			               
 			            <?php } ?>
 				</select>
 		     </div>
@@ -65,28 +111,34 @@
 			  	<p  class="formulario-subtitulo" >Firma</p>
 			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" value="<?php echo $resEdit->imagen_firmas_digitales; ?>" class="form-control"/> 
 			 
-			  <div id="mensaje_nombres" class="errores"></div>
+			  <div id="mensaje_imagen_firmas_digitales" class="errores"></div>
 			  </div>
 		    </div>
 		    
 	     	<hr>
 	        
 		     <?php } } else {?>
+		    	
+		   
+		    	
+		    	 <div class="row">
 		    	<div class="col-xs-6 col-md-6">
-		             Nombre Secretario: <select name="abogados" id="abogados"  class="form-control">
+		    	<p  class="formulario-subtitulo" >Nombre Secretario</p>
+		          <select name="abogados" id="abogados"  class="form-control">
 									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
 				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
 						            <?php } ?>
 								    	
 					</select>
 		         </div>
+		         
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Firma</p>
 			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" accept="png|jpg|jpeg" onKeyDown="return intro(event)" value="" class="form-control"/> 
-			   <div id="mensaje_firmas" class="errores"></div>
+			   <div id="mensaje_imagen_firmas_digitales" class="errores"></div>
 			   </div>
-   
-		       
+                </div>
+	 	       
 			<hr>
 		     <?php } ?>
 		<div class="row">
