@@ -30,13 +30,7 @@ class LotesTituloCreditoController extends ControladorBase{
 			
 			if (!empty($resultPer))
 			{
-				//codigo pa auditoria
-				$traza=new TrazasModel();
-				$_nombre_controladores = "LotesTituloCredito";
-				$_accion_trazas  = "Vizualizar";
-				$_parametros_trazas = "Todos Los controladores";
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controladores);
-				//termina codigo pa auditoria	
+					
 					
 				
 				
@@ -58,9 +52,11 @@ class LotesTituloCreditoController extends ControladorBase{
 						
 						$resultEdit = $ltCredito->getCondiciones($columnas ,$tablas ,$where, $id);
 						
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Lotes Titulo Credito";
 						$_accion_trazas  = "Editar";
 						$_parametros_trazas = $_id_lotesTituloCredito;
-						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas,$nombre_controladores);
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);;
 						
 					
 					}
@@ -164,6 +160,13 @@ class LotesTituloCreditoController extends ControladorBase{
 		
 		
 				$resultado=$ltCredito->Insert();
+				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Lotes Titulo Credito";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_nombre_ltCredito;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				
 			 }
 		
 			}
@@ -202,6 +205,11 @@ class LotesTituloCreditoController extends ControladorBase{
 				$ltCredito = new LotesTituloCreditoModel();
 				$ltCredito->deleteBy("id_lotes_titulos_credito",$id_ltCredito);
 				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Lotes Titulo Credito";
+				$_accion_trazas  = "Borrar";
+				$_parametros_trazas = $id_ltCredito;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
 			

@@ -39,7 +39,14 @@ class EstadosTitulosCreditoController extends ControladorBase{
 						$where    = "id_estados_titulos_credito = '$_id_estados_titulos_credito' "; 
 						$id       = "nombre_estados_titulos_credito";
 							
-						$resultEdit = $estados_titulos_credito->getCondiciones($columnas ,$tablas ,$where, $id);
+				   $resultEdit = $estados_titulos_credito->getCondiciones($columnas ,$tablas ,$where, $id);
+				   
+				   $traza=new TrazasModel();
+				   $_nombre_controlador = "Estados Titulos Credito";
+				   $_accion_trazas  = "Editar";
+				   $_parametros_trazas = $_id_estados_titulos_credito;
+				   $resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				   
 					}
 					else
 					{
@@ -58,9 +65,7 @@ class EstadosTitulosCreditoController extends ControladorBase{
 						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
 			
 				));
-		
-				
-				
+			
 			}
 			else
 			{
@@ -134,6 +139,13 @@ class EstadosTitulosCreditoController extends ControladorBase{
 		
 		
 				$resultado=$estados_titulos_credito->Insert();
+				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Estados Titulos Credito";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_nombre_estados_titulos_credito;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				
 			 }
 		
 			}
@@ -170,6 +182,11 @@ class EstadosTitulosCreditoController extends ControladorBase{
 				
 				$estados_titulos_credito->deleteBy(" id_estados_titulos_credito",$id_estados_titulos_credito);
 				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "EstadosTitulosCredito";
+				$_accion_trazas  = "Borrar";
+				$_parametros_trazas = $id_estados_titulos_credito;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
 			

@@ -48,6 +48,11 @@ class RegistroCartonDocumentosController extends ControladorBase{
 						
 						$resultEdit = $carton_documentos->getBy("id_carton_documentos = '$_id_carton_documentos' ") ;
 						
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Registro Carton Documentos";
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_carton_documentos;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 					
 						
 						if (isset( $_POST["genera_acta"]))
@@ -142,7 +147,12 @@ class RegistroCartonDocumentosController extends ControladorBase{
 				$carton_documentos->setFuncion($funcion);
 				$carton_documentos->setParametros($parametros);
 				$resultado=$carton_documentos->Insert();
-			
+				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Registro Carton Documentos";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_numero_carton_documentos;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			}
 		}
 			$this->redirect("RegistroCartonDocumentos", "index");

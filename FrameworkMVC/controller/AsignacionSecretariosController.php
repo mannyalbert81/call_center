@@ -67,6 +67,12 @@ class AsignacionSecretariosController extends ControladorBase{
 							$_id_asignacion_secretarios = $_GET["id_asignacion_secretarios"];
 							$resultEdit = $asignacionSecretario->getBy("id_asignacion_secretarios = '$_id_asignacion_secretarios' ");
 							
+							$traza=new TrazasModel();
+							$_nombre_controlador = "Asignacion Secretarios";
+							$_accion_trazas  = "Editar";
+							$_parametros_trazas = $_id_asignacion_secretarios;
+							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+							
 						}
 						else
 						{
@@ -94,6 +100,8 @@ class AsignacionSecretariosController extends ControladorBase{
 					$asignacionSecretarios = new AsignacionSecretariosModel();
 					//$resultSet=$asignacionSecretarios->getAll("id_asignacion_secretarios");
 					$resultSet=$asignacionSecretarios->getCondiciones($columnas, $tablas, $where, $id);
+					
+						
 						
 			
 					if (isset ($_POST["ddl_resultado"]) && isset($_POST["ddl_busqueda"]))
@@ -128,7 +136,11 @@ class AsignacionSecretariosController extends ControladorBase{
 							//Conseguimos todos los usuarios con filtros
 					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 					
-						
+					$traza=new TrazasModel();
+					$_nombre_controlador = "Asignacion Secretarios";
+					$_accion_trazas  = "Editar";
+					$_parametros_trazas = $_id_asignacion_secretarios;
+					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 					}
 					
 					
@@ -214,6 +226,12 @@ class AsignacionSecretariosController extends ControladorBase{
 							$asignacionSecretarios->setFuncion($funcion);
 							$asignacionSecretarios->setParametros($parametros);
 							$resultado=$asignacionSecretarios->Insert();
+							
+							$traza=new TrazasModel();
+							$_nombre_controlador = "Asignacion Secretarios";
+							$_accion_trazas  = "Guardar";
+							$_parametros_trazas = $_id_secretario;
+							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						
 						
 							$this->redirect("AsignacionSecretarios", "index");
@@ -271,7 +289,14 @@ class AsignacionSecretariosController extends ControladorBase{
 				$asignacionSecretario=new AsignacionSecretariosModel();
 			
 				$asignacionSecretario->deleteBy(" id_asignacion_secretarios",$id_asigancionSecretarios);
+			
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Asignacion Secretarios";
+				$_accion_trazas  = "Borrar";
+				$_parametros_trazas = $id_asigancionSecretarios;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			}
+			
 			
 			$this->redirect("AsignacionSecretarios", "index");
 			

@@ -49,6 +49,11 @@ class TipoIdentificacionController extends ControladorBase{
 							
 						$resultEdit = $tipo_identificacion->getCondiciones($columnas ,$tablas ,$where, $id);
 
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Tipo Identificacion";
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_tipo_identificacion;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 					}
 					else
 					{
@@ -147,7 +152,16 @@ class TipoIdentificacionController extends ControladorBase{
 		
 		
 				$resultado=$tipo_identificacion->Insert();
-			 }
+			 
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Tipo Identificacion";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_nombre_tipo_identificacion;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				
+				}
+			 
+			 
 		
 			}
 			$this->redirect("tipo_identificacion", "index");
@@ -251,7 +265,11 @@ class TipoIdentificacionController extends ControladorBase{
 				
 				$tipo_identificacion->deleteBy(" id_tipo_identificacion",$id_tipo_identificacion);
 				
-				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Tipo Identificacion";
+				$_accion_trazas  = "Borrar";
+				$_parametros_trazas = $id_tipo_identificacion;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			}
 			
 			$this->redirect("TipoIdentificacion", "index");

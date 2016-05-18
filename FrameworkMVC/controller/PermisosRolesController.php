@@ -53,6 +53,11 @@ class PermisosRolesController extends ControladorBase{
 							$_id_permisos_rol = $_GET["id_permisos_rol"];
 							$resultEdit = $permisos_rol->getBy("id_permisos_rol = '$_id_permisos_rol' ");
 							
+							$traza=new TrazasModel();
+							$_nombre_controlador = "Permisos Rol";
+							$_accion_trazas  = "Editar";
+							$_parametros_trazas = $_id_permisos_rol;
+							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						}
 						else
 						{
@@ -149,6 +154,12 @@ class PermisosRolesController extends ControladorBase{
 				$permisos_rol->setParametros($parametros);
 				$resultado=$permisos_rol->Insert();
 				
+				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Permisos Rol";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_nombre_permisos_rol;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 
 			$this->redirect("PermisosRoles", "index");
 			
@@ -197,8 +208,15 @@ class PermisosRolesController extends ControladorBase{
 		
 				$permisos_rol=new PermisosRolesModel();
 				
-				$permisos_rol->deleteBy(" id_permisos_rol",$id_permisos_rol);
+			$permisos_rol->deleteBy(" id_permisos_rol",$id_permisos_rol);
+			
+			$traza=new TrazasModel();
+			$_nombre_controlador = "Permisos Rol";
+			$_accion_trazas  = "Borrar";
+			$_parametros_trazas = $id_permisos_rol;
+			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			}
+			
 			
 			$this->redirect("PermisosRoles", "index");
 			

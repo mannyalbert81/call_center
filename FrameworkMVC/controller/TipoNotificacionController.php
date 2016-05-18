@@ -49,6 +49,12 @@ class TipoNotificacionController extends ControladorBase{
 						$id       = "id_tipo_notificacion";
 							
 						$resultEdit = $tipoNotificacion->getCondiciones($columnas ,$tablas ,$where, $id);
+						
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Tipo Notificacion";
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_tipo_notificacion;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 
 					}
 					else
@@ -149,7 +155,14 @@ class TipoNotificacionController extends ControladorBase{
 		
 		
 				$resultado=$tipoNotificacion->Insert();
-			 }
+			 
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Tipo Notificacion";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_nombre_tipoNotificacion;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				
+				}
 		
 			}
 			$this->redirect("TipoNotificacion", "index");
@@ -188,6 +201,11 @@ class TipoNotificacionController extends ControladorBase{
 				
 				$tipoNotificacion->deleteBy("id_tipo_notificacion",$id_tipoNotificacion);
 				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Tipo Notificacion";
+				$_accion_trazas  = "Borrar";
+				$_parametros_trazas = $id_tipoNotificacion;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
 			

@@ -67,6 +67,12 @@ class FirmasDigitalesController extends ControladorBase{
 						
 							
 						$resultEdit = $firmas_digitales->getCondiciones($columnas ,$tablas ,$where, $id);
+						
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Firmas Digitales";
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_firmas_digitales;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 
 					}
 					else
@@ -172,6 +178,12 @@ class FirmasDigitalesController extends ControladorBase{
 				try {
 				
 					$resultado=$firmas_digitales->Insert();
+					
+					$traza=new TrazasModel();
+					$_nombre_controlador = "Firmas Digitales";
+					$_accion_trazas  = "Guardar";
+					$_parametros_trazas = $_imagen_firmas_digitales;
+					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 					
 					
 				} catch (Exception $e) {

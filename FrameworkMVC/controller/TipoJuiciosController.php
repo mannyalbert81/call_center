@@ -49,6 +49,12 @@ class TipoJuiciosController extends ControladorBase{
 							
 						$resultEdit = $tipo_juicios->getCondiciones($columnas ,$tablas ,$where, $id);
 
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Tipo Jucios";
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_tipo_juicios;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+						
 					}
 					else
 					{
@@ -147,7 +153,15 @@ class TipoJuiciosController extends ControladorBase{
 		
 		
 				$resultado=$tipo_juicios->Insert();
-			 }
+			 
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Tipo Jucios";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_nombre_tipo_juicios;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				}
+			 
+			 
 			 //$this->view("Error",array(
 			 //"resultado"=>$resultado
 			 //));
@@ -257,6 +271,11 @@ class TipoJuiciosController extends ControladorBase{
 				
 				$tipo_juicios->deleteBy(" id_tipo_juicios",$id_tipo_juicios);
 				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Tipo Jucios";
+				$_accion_trazas  = "Borrar";
+				$_parametros_trazas = $id_tipo_juicios;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
 			

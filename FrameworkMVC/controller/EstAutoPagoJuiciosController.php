@@ -31,11 +31,7 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 			if (!empty($resultPer))
 			{
 				//codigo pa auditoria
-				$traza=new TrazasModel();
-				$_nombre_controladores = "EstAutoPagoJuicios";
-				$_accion_trazas  = "Vizualizar";
-				$_parametros_trazas = "Todos Los controladores";
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controladores);
+			
 				//termina codigo pa auditoria	
 					
 				
@@ -151,6 +147,7 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 					$where = "id_estados_auto_pago_juicios = '$_id_estAutoPago'    ";
 					
 					$resultado=$estdAutoP->UpdateBy($colval, $tabla, $where);
+			
 					
 				}else {
 					
@@ -166,7 +163,14 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 		
 		
 				$resultado=$estdAutoP->Insert();
-			 }
+				$traza=new TrazasModel();
+				$_nombre_controladores = "Estados Auto de Pago";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_nombre_estAutoPago;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas,$nombre_controladores);
+					
+				}
+			 
 		
 			}
 			$this->redirect("EstAutoPagoJuicios", "index");
@@ -204,6 +208,12 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 				$estdAutoP = new EstAutoPagoJuiciosModel(); 
 				$estdAutoP->deleteBy("id_estados_auto_pago_juicios",$id_estAutoPago);
 				
+				$traza=new TrazasModel();
+				$_nombre_controladores = "Estados Auto de Pago";
+				$_accion_trazas  = "Borrar";
+				$_parametros_trazas = $id_estAutoPago;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas,$nombre_controladores);
+					
 				
 			}
 			

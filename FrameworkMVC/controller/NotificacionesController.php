@@ -51,7 +51,13 @@ class NotificacionesController extends ControladorBase{
 						$id       = "id_notificaciones";
 							
 						$resultEdit = $notificaciones->getCondiciones($columnas ,$tablas ,$where, $id);
-
+						
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Notificaciones";
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_notificaciones;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+						
 					}
 					else
 					{
@@ -137,13 +143,17 @@ class NotificacionesController extends ControladorBase{
 		
 				$resultado=$notificaciones->Insert();
 		
-				//$this->view("Error",array(
-				//"resultado"=>"entro"
-				//));
-				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Notificaciones";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_descripcion_notificaciones;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				$this->view("Error",array(
+				"resultado"=>"entro"
+				));				
 				
 			}
-			$this->redirect("Notificaciones", "index");
+			//$this->redirect("Notificaciones", "index");
 
 		}
 		else
@@ -177,6 +187,11 @@ class NotificacionesController extends ControladorBase{
 				
 				$notificaciones->deleteBy(" id_notificaciones",$id_notificaciones);
 				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Notificaciones";
+				$_accion_trazas  = "Borrar";
+				$_parametros_trazas = $id_notificaciones;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
 			

@@ -47,6 +47,11 @@ public function index(){
 					    $where    = " clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion AND clientes.id_clientes = '$_id_clientes' "; 
 						$resultEdit = $clientes->getCondiciones($columnas ,$tablas ,$where, $id); 
 					
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Clientes";
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_clientes;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						
 					}
 			
@@ -201,6 +206,12 @@ public function index(){
 				
 				
 				$resultado=$clientes->Insert();
+				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Clientes";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_nombres_clientes;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				}
 				
 				$this->redirect("Clientes", "index");
@@ -240,7 +251,12 @@ public function index(){
 			$clientes=new ClientesModel();
 				
 			$clientes->deleteBy(" id_clientes",$id_clientes);
-				
+		
+			$traza=new TrazasModel();
+			$_nombre_controlador = "Clientes";
+			$_accion_trazas  = "Borrar";
+			$_parametros_trazas = $id_clientes;
+			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 		}
 	

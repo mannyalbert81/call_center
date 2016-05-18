@@ -48,6 +48,11 @@ class RolesController extends ControladorBase{
 							
 						$resultEdit = $roles->getCondiciones($columnas ,$tablas ,$where, $id);
 
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Registro Carton Documentos";
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_rol;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 					}
 					else
 					{
@@ -139,6 +144,12 @@ class RolesController extends ControladorBase{
 		
 				$resultado=$roles->Insert();
 				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Rol";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_nombre_rol;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				
 				}
 		
 			}
@@ -179,6 +190,12 @@ class RolesController extends ControladorBase{
 				
 				$roles->deleteBy(" id_rol",$id_rol);
 				
+				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Roles";
+				$_accion_trazas  = "Borrar";
+				$_parametros_trazas = $id_rol;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
 			

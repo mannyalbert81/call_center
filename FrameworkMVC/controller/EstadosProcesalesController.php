@@ -55,7 +55,7 @@ class EstadosProcesalesController extends ControladorBase{
 						
 						
 						$traza=new TrazasModel();
-						$_nombre_controlador = "Estados Procesales";
+						$_nombre_controlador = "EstadosProcesales";
 						$_accion_trazas  = "Editar";
 						$_parametros_trazas = $_id_estados_procesales_juicios;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
