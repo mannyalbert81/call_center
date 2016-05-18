@@ -304,7 +304,7 @@ class EntidadBase{
     }
     
     
-    public function AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controladores)
+    public function AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador)
     {
     
     
@@ -315,7 +315,7 @@ class EntidadBase{
     	$_id_usuarios=$_SESSION['id_usuarios'];
     
     	
-    	$parametros = "'$_id_usuarios', '$_accion_trazas', '$_parametros_trazas', '$_nombre_controladores'  ";
+    	$parametros = "'$_id_usuarios', '$_accion_trazas', '$_parametros_trazas', '$_nombre_controlador'  ";
     
     	$traza->setFuncion($funcion);
     		

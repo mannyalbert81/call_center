@@ -1,6 +1,6 @@
 <?php
 
-class ControladoresController extends ControladorBase{
+class EtapasJuiciosController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
@@ -11,10 +11,10 @@ class ControladoresController extends ControladorBase{
 	public function index(){
 	
 		//Creamos el objeto usuario
-     	$controladores = new ControladoresModel(); 
+     	$etapas_juicios = new EtapasJuiciosModel(); 
 		
 	   //Conseguimos todos los usuarios
-		$resultSet=$controladores->getAll("id_controladores");
+		$resultSet=$etapas_juicios->getAll("id_etapas_juicios");
 				
 		$resultEdit = "";
 
@@ -26,38 +26,38 @@ class ControladoresController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
-			$nombre_controladores = "Controladores";
+			$nombre_controladores = "EtapasJuicios";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $controladores->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $etapas_juicios->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPer))
 			{
 				
 				
-				if (isset ($_GET["id_controladores"])   )
+				if (isset ($_GET["id_etapas_juicios"])   )
 				{
 					
-					$nombre_controladores = "Controladores";
+					$nombre_controladores = "EtapasJuicios";
 					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $controladores->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					$resultPer = $etapas_juicios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
 					if (!empty($resultPer))
 					{
 					
-						$_id_controladores = $_GET["id_controladores"];
-						$columnas = " id_controladores, nombre_controladores";
-						$tablas   = "controladores";
-						$where    = "id_controladores = '$_id_controladores' "; 
-						$id       = "nombre_controladores";
+						$_id_etapas_juicios = $_GET["id_etapas_juicios"];
+						$columnas = " id_etapas_juicios, nombre_etapas";
+						$tablas   = "etapas_juicios";
+						$where    = "id_etapas_juicios = '$_id_etapas_juicios' "; 
+						$id       = "nombre_etapas";
 							
 						
-						$resultEdit = $controladores->getCondiciones($columnas ,$tablas ,$where, $id);
+						$resultEdit = $etapas_juicios->getCondiciones($columnas ,$tablas ,$where, $id);
 						
 						
 						$traza=new TrazasModel();
-						$_nombre_controlador = "Controladores";
+						$_nombre_controlador = "Etapas Juicios";
 						$_accion_trazas  = "Editar";
-						$_parametros_trazas = $_id_controladores;
+						$_parametros_trazas = $_id_etapas_juicios;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						
 					
@@ -65,7 +65,7 @@ class ControladoresController extends ControladorBase{
 					else
 					{
 						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Controladores"
+								"resultado"=>"No tiene Permisos de Editar Etapas Juicios"
 					
 						));
 					
@@ -75,7 +75,7 @@ class ControladoresController extends ControladorBase{
 				}
 		
 				
-				$this->view("Controladores",array(
+				$this->view("EtapasJuicios",array(
 						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
 			
 				));
@@ -86,7 +86,7 @@ class ControladoresController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Controladores"
+						"resultado"=>"No tiene Permisos de Acceso a Etapas Juicios"
 				
 				));
 				
@@ -105,28 +105,24 @@ class ControladoresController extends ControladorBase{
 	
 	}
 	
-	public function InsertaControladores(){
+	public function InsertaEtapasJuicios(){
 			
 		session_start();
 
 		$permisos_rol=new PermisosRolesModel();
 
-
-		$controladores=new ControladoresModel();
-
+		$etapas_juicios = new EtapasJuiciosModel(); 
 
 		$permisos_rol=new PermisosRolesModel();
 
-		$controladores=new ControladoresModel();
-
-
-		$nombre_controladores = "Controladores";
+		
+		$nombre_controladores = "EtapasJuicios";
 		$id_rol= $_SESSION['id_rol'];
 
 		
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 
-		$resultPer = $controladores->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+		$resultPer = $etapas_juicios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 
 		
 		
@@ -137,61 +133,61 @@ class ControladoresController extends ControladorBase{
 		
 			$resultado = null;
 			
-			$controladores=new ControladoresModel();
+			$etapas_juicios = new EtapasJuiciosModel(); 
 		
 			//_nombre_controladores
 			
-			if (isset ($_POST["nombre_controladores"]) )
+			if (isset ($_POST["nombre_etapas"]) )
 				
 			{
 				
 				
 				
-				$_nombre_controladores = $_POST["nombre_controladores"];
+				$_nombre_etapas = $_POST["nombre_etapas"];
 				
 				
-				if(isset($_POST["id_controladores"])) 
+				if(isset($_POST["id_etapas_juicios"])) 
 				{
 					
-					$_id_controladores = $_POST["id_controladores"];
+					$_id_etapas_juicios = $_POST["id_etapas_juicios"];
 					
-					$colval = " nombre_controladores = '$_nombre_controladores'   ";
-					$tabla = "controladores";
-					$where = "id_controladores = '$_id_controladores'    ";
+					$colval = " nombre_etapas = '$_nombre_etapas'   ";
+					$tabla = "etapas_juicios";
+					$where = "id_etapas_juicios = '$_id_etapas_juicios'    ";
 					
-					$resultado=$controladores->UpdateBy($colval, $tabla, $where);
+					$resultado=$etapas_juicios->UpdateBy($colval, $tabla, $where);
 					
 				}else {
 					
 			
 				
-				$funcion = "ins_controladores";
+				$funcion = "ins_etapas_juicios";
 				
-				$parametros = " '$_nombre_controladores'  ";
+				$parametros = " '$_nombre_etapas'  ";
 					
-				$controladores->setFuncion($funcion);
+				$etapas_juicios->setFuncion($funcion);
 		
-				$controladores->setParametros($parametros);
+				$etapas_juicios->setParametros($parametros);
 		
 		
-				$resultado=$controladores->Insert();
+				$resultado=$etapas_juicios->Insert();
 			
 				$traza=new TrazasModel();
-				$_nombre_controlador = "Controladores";
+				$_nombre_controlador = "Etapas Juicios";
 				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_nombre_controladores;
+				$_parametros_trazas = $_nombre_etapas;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			 }
 		
 			}
-			$this->redirect("Controladores", "index");
+			$this->redirect("EtapasJuicios", "index");
 
 		}
 		else
 		{
 			$this->view("Error",array(
 					
-					"resultado"=>"No tiene Permisos de Insertar Controladores"
+					"resultado"=>"No tiene Permisos de Insertar Etapas Juicios"
 		
 			));
 		
@@ -206,36 +202,36 @@ class ControladoresController extends ControladorBase{
 		session_start();
 		
 		$permisos_rol=new PermisosRolesModel();
-		$nombre_controladores = "Controladores";
+		$nombre_controladores = "EtapasJuicios";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 		if (!empty($resultPer))
 		{
-			if(isset($_GET["id_controladores"]))
+			if(isset($_GET["id_etapas_juicios"]))
 			{
-				$id_controladores=(int)$_GET["id_controladores"];
+				$id_etapas_juicios=(int)$_GET["id_etapas_juicios"];
 				
-				$controladores=new ControladoresModel();
+				$etapas_juicios = new EtapasJuiciosModel(); 
 				
-				$controladores->deleteBy(" id_controladores",$id_controladores);
+				$etapas_juicios->deleteBy(" id_etapas_juicios", $id_etapas_juicios);
 				
 				$traza=new TrazasModel();
-				$_nombre_controlador = "Controladores";
+				$_nombre_controlador = "Etapas Juicios";
 				$_accion_trazas  = "Borrar";
-				$_parametros_trazas = $id_controladores;
+				$_parametros_trazas = $id_etapas_juicios;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
 			
-			$this->redirect("Controladores", "index");
+			$this->redirect("EtapasJuicios", "index");
 			
 			
 		}
 		else
 		{
 			$this->view("Error",array(
-				"resultado"=>"No tiene Permisos de Borrar Controladores"
+				"resultado"=>"No tiene Permisos de Borrar Etapas Juicios"
 			
 			));
 		}
