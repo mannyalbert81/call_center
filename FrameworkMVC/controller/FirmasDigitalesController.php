@@ -182,7 +182,7 @@ class FirmasDigitalesController extends ControladorBase{
 					$traza=new TrazasModel();
 					$_nombre_controlador = "Firmas Digitales";
 					$_accion_trazas  = "Guardar";
-					$_parametros_trazas = $_imagen_firmas_digitales;
+					$_parametros_trazas = $_id_usuarios;
 					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 					
 					
@@ -216,6 +216,42 @@ class FirmasDigitalesController extends ControladorBase{
 	
 	public function borrarId()
 	{
+		session_start();
+		$permisos_rol=new PermisosRolesModel();
+		$nombre_controladores = "FirmasDigitales";
+		$id_rol= $_SESSION['id_rol'];
+		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			
+		if (!empty($resultPer))
+		{
+		
+			if(isset($_GET["id_firmas_digitales"]))
+			{
+				$id_firmas_digitales=(int)$_GET["id_firmas_digitales"];
+		
+				$firmas_digitales = new FirmasDigitalesModel();
+		
+				$firmas_digitales->deleteBy(" id_firmas_digitales",$id_firmas_digitales);
+		
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Firmas Digitales";
+				$_accion_trazas  = "Borrar";
+				$_parametros_trazas = $id_firmas_digitales;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+		
+			}
+		
+			$this->redirect("FirmasDigitales", "index");
+		}
+		else
+		{
+			$this->view("Error",array(
+					"resultado"=>"No tiene Permisos de Borrar Clientes"
+		
+			));
+		}
+		
+		
 				
 	}
 	

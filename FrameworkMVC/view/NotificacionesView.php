@@ -159,7 +159,7 @@
 		
 		<div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Usuarios</p>
-			  	<select name="id_usuario	s" id="id_usuarios"  class="form-control" >
+			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
 					<?php foreach($resultUsuarios as $resUsuarios) {?>
 						<option value="<?php echo $resUsuarios->id_usuarios; ?>"      ><?php echo $resUsuarios->nombre_usuarios; ?> </option>
 			      

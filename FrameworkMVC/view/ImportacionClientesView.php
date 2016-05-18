@@ -35,26 +35,26 @@
         </style>
         
         
-         <script >
+        <script >
 		$(document).ready(function(){
 
 		    // cada vez que se cambia el valor del combo
-		    $("#Guardar").click(function() 
+		    $("#procesar").click(function() 
 			{
 		   
-		    	var imagen_firmas_digitales = $("#imagen_firmas_digitales").val();
+		    	var archivo = $("#archivo").val();
 		    
 		   				
-		    	if (imagen_firmas_digitales == "")
+		    	if (archivo == "")
 		    	{
 			    	
-		    		$("#mensaje_imagen_firmas_digitales").text("Introduzca una Firma ");
-		    		$("#mensaje_imagen_firmas_digitales").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_archivo").text("Introduzca una Importacion de Clientes ");
+		    		$("#mensaje_archivo").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_imagen_firmas_digitales").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_archivo").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
 		    	
@@ -68,8 +68,8 @@
 
 		 
 				
-				$( "#imagen_firmas_digitales" ).focus(function() {
-					$("#mensaje_imagen_firmas_digitales").fadeOut("slow");
+				$( "#archivo" ).focus(function() {
+					$("#mensaje_archivo").fadeOut("slow");
     			});
 				
 	}); 
@@ -91,7 +91,7 @@
      <div class="row" style="background-color: #ffffff;">
   
   	      <form action="<?php echo $helper->url("Clientes","ImportacionClientes"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
-            <h4 style="color:#ec971f;">Procesar Archivo de Recaudacion</h4>
+            <h4 style="color:#ec971f;">Importar Clientes</h4>
             <hr/>
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	       <?php } } else {?>
@@ -99,7 +99,7 @@
 			     <div class="col-xs-6 col-md-6">
 			  		<p  class="formulario-subtitulo" >Firma</p>
 			  		<input type="file" name="archivo" id="archivo" accept="txt" onKeyDown="return intro(event)" value="" class="form-control"/> 
-			   		<div id="mensaje_imagen_firmas_digitales" class="errores"></div>
+			   		<div id="mensaje_archivo" class="errores"></div>
 			     </div>
    				 
 		       
