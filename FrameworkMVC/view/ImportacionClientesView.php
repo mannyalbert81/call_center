@@ -2,7 +2,7 @@
 <html lang="es">
      <head>
          <meta charset="utf-8"/>
-        <title>Firmas Digitales - coactiva 2016</title>
+        <title>Importacion Clientes - coactiva 2016</title>
         
          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -33,6 +33,8 @@
                 
             
         </style>
+        
+        
          <script >
 		$(document).ready(function(){
 
@@ -76,6 +78,7 @@
         
         
         
+        
     </head>
       <body style="background-color: #d9e3e4;">
     
@@ -87,21 +90,12 @@
   
      <div class="row" style="background-color: #ffffff;">
   
-  	      <form action="<?php echo $helper->url("Recaudacion","index"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
-          
+  	      <form action="<?php echo $helper->url("Clientes","ImportacionClientes"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
             <h4 style="color:#ec971f;">Procesar Archivo de Recaudacion</h4>
             <hr/>
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	       <?php } } else {?>
-		    	<div class="col-xs-6 col-md-6">
-		             <p  class="formulario-subtitulo" >Institucion Recaudadora:</p>  
-		             <select name="recaudacion_institucion" id="recaudacion_institucion"  class="form-control">
-									<?php foreach($resultInsRec as $res) {?>
-				 						<option value="<?php echo $res->id_recaudacion_institucion; ?>" ><?php echo $res->nombre_recaudacion_institucion; ?> </option>
-						            <?php } ?>
-								    	
-					</select>
-		         </div>
+		    	
 			     <div class="col-xs-6 col-md-6">
 			  		<p  class="formulario-subtitulo" >Firma</p>
 			  		<input type="file" name="archivo" id="archivo" accept="txt" onKeyDown="return intro(event)" value="" class="form-control"/> 
@@ -109,7 +103,7 @@
 			     </div>
    				 
 		       
-			<hr>
+			
 		     <?php } ?>
 		
 		
@@ -130,58 +124,9 @@
         </div>
     </form>
        
-        <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Archivos Procesados</h4>
-            <hr/>
-        </div>
-        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
         
-        	<table class="table table-hover">
-	         <tr>
-	    		
-	    		
-	    		<th style="font-size:85%;" >Id</th>
-	    		<th style="font-size:85%;">Fecha</th>
-	    		<th style="font-size:85%;">Hora</th>
-	    		<th style="font-size:85%;">Institucion</th>
-	    		<th style="font-size:85%;">Registros</th>
-	    		<th style="font-size:85%;" >Monto</th>
-	    		<th style="font-size:85%;">Procesado</th>
-	  		</tr>
-                <?php $registros = 1;?>
-                 <?php foreach($resultSet as $res) {?>
-	        		<tr>
-	        		   <td style="color:#000000;font-size:80%;"> <?php echo $registros; ?>  </td>
-	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_creacion_recaudacion_cabeza; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->hora_creacion_recaudacion_cabeza; ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_recaudacion_institucion; ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_registros_recaudacion_cabeza; ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->valor_total_dolares_recaudacion_cabeza; ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td>
-		               <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_recaudacion_cabeza; ?>" class="btn btn-warning" style="font-size:65%;">Detalle</a>
-			                </div>
-			            
-			             </td>
-			           
-		    		</tr>
-		    		<?php $registros ++?>
-		        <?php } ?>
-            
-            <?php 
-            
-            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
-            
-            ?>
-            
-       	</table>     
-        	
-        
-        
-        </section>
-       </div>
  
+  </div>
   </div>
        
        <?php include("view/modulos/footer.php"); ?>

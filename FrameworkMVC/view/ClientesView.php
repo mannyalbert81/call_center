@@ -40,29 +40,7 @@
             
         </style>
        
-         <script>
-         $(document).ready(function(){
-
-             $("#identificacion_clientes").keypress(function(){
-
-                 var $cedula=$("#identificacion_clientes").val();
-
-                 
-                 if($cedula.length == 10)
-                 {
-                     alert($cedula);
-                 }else
-                     {
-                     
-                     }
-
-
-                 });
-
-             });
          
-
-         </script>
         <script >
 		$(document).ready(function(){
 
@@ -137,6 +115,11 @@
 
 		    	var identificacion_clientes = $("#identificacion_clientes").val();
 		    	var nombres_clientes = $("#nombres_clientes").val();
+		    	var telefono_clientes = $("#telefono_clientes").val();
+		    	var celular_clientes = $("#celular_clientes").val();
+		    	var direccion_clientes = $("#direccion_clientes").val();
+		    	
+		    	
 		    	
 		    	if (identificacion_clientes == "")
 		    	{
@@ -163,6 +146,45 @@
 		    		$("#mensaje_nombres_clientes").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}  
+
+		    	if (telefono_clientes == "")
+		    	{
+			    	
+		    		$("#mensaje_telefono_clientes").text("Introduzca un Teléfono");
+		    		$("#mensaje_telefono_clientes").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_telefono_clientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				} 
+
+		    	if (celular_clientes == "")
+		    	{
+			    	
+		    		$("#mensaje_celular_clientes").text("Introduzca un Celular");
+		    		$("#mensaje_celular_clientes").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_celular_clientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+		    	if (direccion_clientes == "")
+		    	{
+			    	
+		    		$("#mensaje_direccion_clientes").text("Introduzca una Dirección");
+		    		$("#mensaje_direccion_clientes").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_direccion_clientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
 		    	
 		    	
 
@@ -177,7 +199,16 @@
 		        $( "#nombres_clientes" ).focus(function() {
 				  $("#mensaje_nombres_clientes").fadeOut("slow");
 			    });
-				
+
+		        $( "#telefono_clientes" ).focus(function() {
+					  $("#mensaje_telefono_clientes").fadeOut("slow");
+				    });
+		        $( "#celular_clientes" ).focus(function() {
+					  $("#mensaje_celular_clientes").fadeOut("slow");
+				    });
+		        $( "#direccion_clientes" ).focus(function() {
+					  $("#mensaje_direccion_clientes").fadeOut("slow");
+				    });
 				
 		
 				
@@ -303,9 +334,51 @@
 			  	<input type="text" name="nombres_clientes" id="nombres_clientes" value="<?php echo $resEdit->nombres_clientes; ?>" class="form-control"/>
 			  <div id="mensaje_nombres_clientes" class="errores"></div>
 			  </div>
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Teléfono</p>
+			  	<input type="text" name="telefono_clientes" id="telefono_clientes" value="<?php echo $resEdit->telefono_clientes; ?>" class="form-control"/>
+			  <div id="mensaje_telefono_clientes" class="errores"></div>
+			  </div>
+		    </div>
+		    
+		     <div class="row">
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Celular </p>
+			  	<input type="text" name="celular_clientes" id="celular_clientes" value="<?php echo $resEdit->celular_clientes; ?>" class="form-control"/>
+			  <div id="mensaje_celular_clientes" class="errores"></div>
+			  </div>
+			  
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Dirección</p>
+			  	<input type="text" name="direccion_clientes" id="direccion_clientes" value="<?php echo $resEdit->direccion_clientes; ?>" class="form-control"/>
+			  <div id="mensaje_direccion_clientes" class="errores"></div>
+			  </div>
 			  
 		    </div>
 		    
+		    
+		    <div class="row">
+		    
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Ciudad</p>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+					<?php foreach($resultCiu as $res) {?>
+						<option value="<?php echo $res->id_ciudad; ?>" <?php if ($res->id_ciudad == $resEdit->id_ciudad ) echo ' selected="selected" '  ; ?>  ><?php echo $res->nombre_ciudad; ?> </option>
+						
+			        <?php } ?>
+				</select> 
+			  </div>
+		    
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Tipo Persona</p>
+			  	<select name="id_tipo_persona" id="id_tipo_persona"  class="form-control" >
+					<?php foreach($resultTipoPer as $res) {?>
+						<option value="<?php echo $res->id_tipo_persona; ?>"  <?php if ($res->id_tipo_persona == $resEdit->id_tipo_persona ) echo ' selected="selected" '  ; ?>  ><?php echo $res->nombre_tipo_persona; ?> </option>
+						
+			        <?php } ?>
+				</select> 
+			  </div>
+		    </div>
 		    
 		    <hr>
 		    
@@ -340,9 +413,50 @@
 			  <div id="mensaje_nombres_clientes" class="errores"></div>
 			  </div>
 			  
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Teléfono</p>
+			  	<input type="text" name="telefono_clientes" id="telefono_clientes" value="" class="form-control"/>
+			  <div id="mensaje_telefono_clientes" class="errores"></div>
+			  </div>
+			  
+		    </div>
+		    
+		    <div class="row">
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Celular </p>
+			  	<input type="text" name="celular_clientes" id="celular_clientes" value="" class="form-control"/>
+			  <div id="mensaje_celular_clientes" class="errores"></div>
+			  </div>
+			  
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Dirección</p>
+			  	<input type="text" name="direccion_clientes" id="direccion_clientes" value="" class="form-control"/>
+			  <div id="mensaje_direccion_clientes" class="errores"></div>
+			  </div>
+			  
 		    </div>
 		    
 		    
+		    <div class="row">
+		    
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Ciudad</p>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+					<?php foreach($resultCiu as $res) {?>
+						<option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
+			        <?php } ?>
+				</select> 
+			  </div>
+		    
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Tipo Persona</p>
+			  	<select name="id_tipo_persona" id="id_tipo_persona"  class="form-control" >
+					<?php foreach($resultTipoPer as $res) {?>
+						<option value="<?php echo $res->id_tipo_persona; ?>"  ><?php echo $res->nombre_tipo_persona; ?> </option>
+			        <?php } ?>
+				</select> 
+			  </div>
+		      </div>
 		    <hr>
 		    
 		   
