@@ -22,8 +22,6 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" ><?php echo " Administración" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-      		 <li class="dropdown-header">Usuarios</li>
-      		 <li role="separator" class="divider"></li>
         	<li><a href="index.php?controller=Usuarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Usuarios</span> </a>
 		    </li>
 			<li><a href="index.php?controller=Roles&action=index"> <span class="glyphicon glyphicon-list-alt" aria-hidden="true"> Roles de Usuario</span> </a>
@@ -32,8 +30,6 @@
 			</li>
 			<li><a href="index.php?controller=Controladores&action=index"><span class="glyphicon glyphicon-inbox" aria-hidden="true"> Controladores</span> </a>
 			</li>
-			<li class="dropdown-header">Mantenimiento de Tablas</li>
-			<li role="separator" class="divider"></li>
 			<li><a href="index.php?controller=Entidades&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entidades</span> </a>
 			</li>
 			<li><a href="index.php?controller=TipoIdentificacion&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Identificacion</span> </a>
@@ -42,15 +38,6 @@
 			</li>
 			<li><a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
 			</li>
-			</li>
-			<li><a href="index.php?controller=EstadosProcesales&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Procesal</span> </a>
-            </li>
-            <li><a href="index.php?controller=EtapasJuicios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Etapas Juicios</span> </a>
-            </li>
-            <li><a href="index.php?controller=LotesTituloCredito&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Lotes</span> </a>
-            </li>
-            <li><a href="index.php?controller=EstAutoPagoJuicios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Auto de PagO</span> </a>
-            </li>
 		</ul>
         </li>
 
@@ -67,7 +54,6 @@
 			<li><a href="index.php?controller=FirmasDigitales&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Firmas Digitales</span> </a>
             </li>
             <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
-
             </li>
 
             	<li><a href="index.php?controller=TipoJuicios&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Juicios</span> </a>
@@ -86,10 +72,11 @@
 
             <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Actividades</span> </a>
             </li>
+
           </ul>
         </li>
       </ul>
-	  	      
+      
 
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
