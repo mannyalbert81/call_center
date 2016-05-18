@@ -40,7 +40,29 @@
             
         </style>
        
+         <script>
+         $(document).ready(function(){
+
+             $("#identificacion_clientes").keypress(function(){
+
+                 var $cedula=$("#identificacion_clientes").val();
+
+                 
+                 if($cedula.length == 10)
+                 {
+                     alert($cedula);
+                 }else
+                     {
+                     
+                     }
+
+
+                 });
+
+             });
          
+
+         </script>
         <script >
 		$(document).ready(function(){
 

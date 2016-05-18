@@ -108,7 +108,7 @@
 			{
 				var datos = {id_abgImpulsor:$id_impulsor.val()};
 
-				alert($id_impulsor.val());
+				//alert($id_impulsor.val());
 			   // return false;
 				  
 				$.post("<?php echo $helper->url("AsignacionSecretarios","CompruebaImpulsores"); ?>",datos, function(ressultAsg) 
