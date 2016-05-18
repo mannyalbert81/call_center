@@ -389,10 +389,26 @@ class AsignacionSecretariosController extends ControladorBase{
 		$id="id_asignacion_secretarios";
 			
 		$ressultAsg=$asignacionSecretarios->getCondiciones($col, $tbl, $whre, $id);
+		
+		if(empty($ressultAsg)){
+			
+			$this->view("Error",array(
+					"resultado"=>"No existen datos"
+			
+			));
+			exit();
+		}else{
+			$this->view("Error",array(
+					"resultado"=>"datos extraidos"
+		
+			));
+			exit();
+		}
 			
 		echo json_encode($ressultAsg);
 	
 	}
+	
 	public function Reporte(){
 	
 		//Creamos el objeto usuario

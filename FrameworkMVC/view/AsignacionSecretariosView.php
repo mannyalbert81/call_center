@@ -95,9 +95,7 @@
 	
 	<script>
 	$(document).ready(function(){
-
-		
-		
+	
 		$("#Guardar").click(function(){
 
 			var $id_impulsor=$("#id_usuarioImpulsor");

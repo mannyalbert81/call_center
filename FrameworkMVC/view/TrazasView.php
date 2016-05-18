@@ -23,6 +23,57 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
+		<script>
+
+		$(document).ready(function(){
+
+			//alert("hola");
+
+			$("#div_ddl_accion").hide();
+			$("#div_ddl_accion").hide();
+			$("#div_ddl_accion").hide();
+			
+			
+			$("#ddl_criterio").change(function(){
+
+				 var ddl_criterio = $(this).val();
+
+	              if(ddl_criterio==3){
+
+		             
+		              $("#div_contenido").hide();
+
+	            	  $("#div_ddl_accion").show();
+	            	  
+	            	  
+
+		              }else if(ddl_criterio==4)
+			              {
+
+		            	 
+
+			              }else
+				              {
+			            	  $("#div_contenido").show();
+
+			            	  $("#div_ddl_accion").hide();
+				              }
+
+
+				});
+			
+			$("#ddl_accion").change(function(){
+
+	              var ddl_accion = $(this).val();
+	              var ddl_criterio = $("#ddl_criterio").val();
+
+	              alert(ddl_accion+"  "+ddl_criterio);
+
+				});
+
+			});
+
+		</script>
         
         
        <style>
@@ -49,7 +100,8 @@
        
        <?php
        
-       
+       $acciones=array(1=>"GUARDAR",2=>"EDITAR",3=>"ELIMINAR");
+      // $resultActi=array(id_trazas=>"");
        
 		   
 		?>
@@ -63,6 +115,63 @@
             <h4 style="color:#ec971f;">Lista de Actividades</h4>
             
         </div>
+    <!-- empieza formulario de busqueda -->
+     
+           
+     <div class="col-lg-12" style="margin-bottom: 10px;"> 
+     <div class="row">  
+      
+           <form action="<?php echo $helper->url("Trazas","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <div class="col-lg-3"> 
+      
+      </div>
+      
+      		<div class="col-lg-3" id="div_desde">
+           <input type="date"  name="txt_desde" id="txt_desde" value="" class="form-control"/>
+           <div id="mensaje_desde" class="errores"></div>
+           </div>
+           <div class="col-lg-3" id="div_hasta">
+           <input type="date"  name="txt_hasta" id="txt_hasta" value="" class="form-control"/>
+           <div id="mensaje_hasta" class="errores"></div>
+           </div>
+           <div class="col-lg-3" id="div_contenido">
+           <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
+           <div id="mensaje_contenido" class="errores"></div>
+            </div>
+            
+            <div class="col-lg-3" id="div_ddl_accion">
+           
+           <select name="ddl_accion" id="ddl_accion"  class="form-control">
+                                    <?php foreach($acciones as $val=>$desc) {?>
+                                         <option value="<?php echo $val ?>"><?php echo $desc ?> </option>
+                                    <?php } ?>
+                                        
+           </select>
+           <div id="mensaje_ddl_accion" class="errores"></div>
+           </div>
+            
+           <div class="col-lg-3">
+           
+           <select name="ddl_criterio" id="ddl_criterio"  class="form-control">
+                                    <?php foreach($resulMenu as $val=>$desc) {?>
+                                         <option value="<?php echo $val ?>"><?php echo $desc ?> </option>
+                                    <?php } ?>
+                                        
+           </select>
+           <div id="mensaje_criterio" class="errores"></div>
+           </div>
+          
+           
+          
+           <div class="col-lg-3">
+           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
+           </div>
+         
+          </form>
+          </div>
+        </div>
+       <!-- termina formulario de busqueda -->
+       
         <section class="col-lg-12 actividades" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
@@ -88,10 +197,16 @@
 		              
 		           	  
 		    		</tr>
-		        <?php } } ?>
+		        <?php } }else{ ?>
+                <tr>
+	                  	<td></td>
+            			<td></td>
+	                    <td colspan="4" style="color:#ec971f;font-size:8;"> <?php echo '<span id="snResult">No existen resultados</span>' ?></td>
+	       				<td></td>
+		    	</tr>
             
             <?php 
-            
+		}
             //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
             
             ?>
