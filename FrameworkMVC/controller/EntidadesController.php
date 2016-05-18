@@ -47,6 +47,14 @@ class EntidadesController extends ControladorBase{
 						$id       = "ruc_entidades";
 							
 						$resultEdit = $entidades->getCondiciones($columnas ,$tablas ,$where, $id);
+						
+						
+						
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Entidades";
+						$_accion_trazas  = "Editar";
+						$_parametros_trazas = $_id_entidades;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 
 					}
 					else
@@ -135,6 +143,11 @@ class EntidadesController extends ControladorBase{
 				//"resultado"=>"entro"
 				//));
 				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Entidades";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_nombre_entidades;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 			}
 			$this->redirect("Entidades", "index");
@@ -170,6 +183,13 @@ class EntidadesController extends ControladorBase{
 				$entidades=new EntidadesModel();
 				
 				$entidades->deleteBy(" id_entidades",$id_entidades);
+				
+				
+				$traza=new TrazasModel();
+				$_nombre_controlador = "Entidades";
+				$_accion_trazas  = "Borrar";
+				$_parametros_trazas = $id_entidades;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 				
 			}

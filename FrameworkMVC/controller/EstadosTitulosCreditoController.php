@@ -41,7 +41,7 @@ class EstadosTitulosCreditoController extends ControladorBase{
 					if (!empty($resultPer))
 					{
 					
-						$_id_tipo_identificacion = $_GET["id_estados_titulos_credito"];
+						$_id_estados_titulos_credito = $_GET["id_estados_titulos_credito"];
 						$columnas = " id_estados_titulos_credito, nombre_estados_titulos_credito";
 						$tablas   = "estados_titulos_credito";
 						$where    = "id_estados_titulos_credito = '$_id_estados_titulos_credito' "; 
@@ -134,9 +134,6 @@ class EstadosTitulosCreditoController extends ControladorBase{
 					
 				}else {
 					
-			
-
-				
 				$funcion = "ins_estados_titulos_credito";
 				
 				$parametros = " '$_nombre_estados_titulos_credito'  ";
@@ -164,68 +161,6 @@ class EstadosTitulosCreditoController extends ControladorBase{
 		
 		}
 	
-
-		$estados_titulos_credito=new EstadosTitulosCreditoModel();
-
-		$nombre_controladores = "EstadosTitulosCredito";
-		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $estados_titulos_credito->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-		
-		
-		if (!empty($resultPer))
-		{
-		
-		
-		
-			$resultado = null;
-			$estados_titulos_credito=new EstadosTitulosCreditoModel();
-		
-			//_nombre_tipo_identificacion
-			
-			if (isset ($_POST["nombre_estados_titulos_credito"]) )
-				
-			{
-				$_nombre_estados_titulos_credito = $_POST["nombre_estados_titulos_credito"];
-				
-				if(isset($_POST["id_estados_titulos_credito"]))
-				{
-				$_id_estados_titulos_credito = $_POST["id_estados_titulos_credito"];
-				$colval = " nombre_estados_titulos_credito = '$_nombre_estados_titulos_credito'   ";
-				$tabla = "estados_titulos_credito";
-				$where = "id_estados_titulos_credito = '$_id_estados_titulos_credito'    ";
-					
-				$resultado=$estados_titulos_credito->UpdateBy($colval, $tabla, $where);
-					
-				}else {
-				
-			
-				$funcion = "ins_estados_titulos_credito";
-				
-				$parametros = " '$_nombre_estados_titulos_credito'  ";
-					
-				$estados_titulos_credito->setFuncion($funcion);
-		
-				$estados_titulos_credito->setParametros($parametros);
-		
-		
-				$resultado=$estados_titulos_credito->Insert();
-			 }
-		
-			}
-			$this->redirect("EstadosTitulosCredito", "index");
-
-		}
-		else
-		{
-			$this->view("Error",array(
-					
-					"resultado"=>"No tiene Permisos de Insertar Estados de Titulos de Credito"
-		
-			));
-		
-		
-		}
-		
 	}
 
 
@@ -249,7 +184,7 @@ class EstadosTitulosCreditoController extends ControladorBase{
 				
 				$estados_titulos_credito=new EstadosTitulosCreditoModel();
 				
-				$estados_titulos_credito->deleteBy(" id_estados_titulos_crediton",$id_estados_titulos_credito);
+				$estados_titulos_credito->deleteBy(" id_estados_titulos_credito",$id_estados_titulos_credito);
 				
 				
 			}

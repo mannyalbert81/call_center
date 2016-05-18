@@ -58,7 +58,7 @@
 
             	<li><a href="index.php?controller=TipoJuicios&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Juicios</span> </a>
 			</li>
-			<li><a href="index.php?controller=EstadosTitulosCredito&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Estados Titulos Credito</span> </a>
+			<li><a href="index.php?controller=EstadosTitulosCredito&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Estado Titulo Credito</span> </a>
 			</li>
 
 			<li><a href="index.php?controller=EstadosProcesales&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Procesal</span> </a>
@@ -67,14 +67,14 @@
             </li>
             <li><a href="index.php?controller=LotesTituloCredito&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Lotes</span> </a>
             </li>
-            <li><a href="index.php?controller=EstAutoPagoJuicios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Auto de PaGO</span> </a>
+            <li><a href="index.php?controller=EstAutoPagoJuicios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Auto de PagO</span> </a>
             </li>
-<<<<<<< HEAD
 
-=======
+
+
             <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Actividades</span> </a>
             </li>
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
+
           </ul>
         </li>
       </ul>

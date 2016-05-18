@@ -75,7 +75,7 @@ class TrazasController extends ControladorBase{
 	
 	
 				$this->view("Trazas",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "esultActi" =>$resultActi
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultActi" =>$resultActi
 							
 				));
 	
