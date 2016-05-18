@@ -133,7 +133,7 @@
 		    
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombres de Estadoss</p>
+			  	<p  class="formulario-subtitulo" >Nombres de Estados</p>
 			  	<input type="text"  name="nombre_estados_titulos_credito" id="nombre_estados_titulos_credito" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
