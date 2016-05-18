@@ -148,7 +148,7 @@ class NotificacionesController extends ControladorBase{
 				$_accion_trazas  = "Guardar";
 				$_parametros_trazas = $_descripcion_notificaciones;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-				
+
 				//$this->view("Error",array(
 				//"resultado"=>"entro"
 				//));				
