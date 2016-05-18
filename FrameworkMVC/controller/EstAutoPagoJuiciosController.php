@@ -11,8 +11,8 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 	public function index(){
 	
 		
-		$ltCredito = new LotesTituloCreditoModel(); //creamos objeto lotestitulocredito
-		$resultSet=$ltCredito->getAll("id_lotes_titulos_credito"); //obtenemos todos registros de lotes titulo credito
+		$estdAutoP = new EstAutoPagoJuiciosModel(); //creamos objeto lotestitulocredito
+		$resultSet=$estdAutoP->getAll("id_estados_auto_pago_juicios"); //obtenemos todos registros de lotes titulo credito
 				
 		$resultEdit = "";
 
@@ -24,15 +24,15 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
-			$nombre_controladores = "LotesTituloCredito";
+			$nombre_controladores = "EstAutoPagoJuicios";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $ltCredito->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $estdAutoP->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPer))
 			{
 				//codigo pa auditoria
 				$traza=new TrazasModel();
-				$_nombre_controladores = "LotesTituloCredito";
+				$_nombre_controladores = "EstAutoPagoJuicios";
 				$_accion_trazas  = "Vizualizar";
 				$_parametros_trazas = "Todos Los controladores";
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controladores);
@@ -40,26 +40,26 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 					
 				
 				
-				if (isset ($_GET["id_ltcredito"])   )
+				if (isset ($_GET["id_estPagoj"])   )
 				{
 
-					$resultPEdit = $ltCredito->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					$resultPEdit = $estdAutoP->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 					
 					
 					if (!empty($resultPEdit))
 					{
 					
-						$_id_lotesTituloCredito = $_GET["id_ltcredito"];
-						$columnas = " id_lotes_titulos_credito, nombre_lotes_titulos_credito";
-						$tablas   = "lotes_titulos_credito";
-						$where    = "id_lotes_titulos_credito = '$_id_lotesTituloCredito' "; 
-						$id       = "id_lotes_titulos_credito";
+						$_id_estPagojuicio = $_GET["id_estPagoj"];
+						$columnas = " id_estados_auto_pago_juicios, nombre_estados_auto_pago_juicios";
+						$tablas   = "estados_auto_pago_juicios";
+						$where    = "id_estados_auto_pago_juicios = '$_id_estPagojuicio' "; 
+						$id       = "id_estados_auto_pago_juicios";
 							
 						
-						$resultEdit = $ltCredito->getCondiciones($columnas ,$tablas ,$where, $id);
+						$resultEdit = $estdAutoP->getCondiciones($columnas ,$tablas ,$where, $id);
 						
 						$_accion_trazas  = "Editar";
-						$_parametros_trazas = $_id_lotesTituloCredito;
+						$_parametros_trazas = $_id_estPagojuicio;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas,$nombre_controladores);
 						
 					
@@ -77,7 +77,7 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 				}
 		
 				
-				$this->view("LotesTituloCredito",array(
+				$this->view("EstAutoPagoJuicios",array(
 						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
 			
 				));
@@ -88,7 +88,7 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Lotes Titulo Credito"
+						"resultado"=>"No tiene Permisos de Acceso a Estado Auto Pago Juicio"
 				
 				));
 				
@@ -107,16 +107,16 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 	
 	}
 	
-	public function InsertaLotestituloCredito(){
+	public function InsertaEstAutoPagoJuicio(){
 			
 		session_start();
 
 		$permisos_rol=new PermisosRolesModel();
 
-		$ltCredito = new LotesTituloCreditoModel();
+		$estdAutoP = new EstAutoPagoJuiciosModel(); 
 
 
-		$nombre_controladores = "LotesTituloCredito";
+		$nombre_controladores = "EstAutoPagoJuicios";
 		$id_rol= $_SESSION['id_rol'];
 
 		
@@ -130,51 +130,51 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 		
 			
 			
-			if (isset ($_POST["nombre_ltcredito"]) )
+			if (isset ($_POST["nombre_estPagoj"]) )
 				
 			{
 				
 				
 				
-				$_nombre_ltCredito = $_POST["nombre_ltcredito"];
+				$_nombre_estAutoPago = $_POST["nombre_estPagoj"];
 				
 				
-				if(isset($_POST["id_ltcredito"])) 
+				if(isset($_POST["id_estPagoj"])) 
 				{
 					
-					$_id_ltCredito = $_POST["id_ltcredito"];
+					$_id_estAutoPago = $_POST["id_estPagoj"];
 					
-					$colval = " nombre_lotes_titulos_credito = '$_nombre_ltCredito'   ";
-					$tabla = "lotes_titulos_credito";
-					$where = "id_lotes_titulos_credito = '$_id_ltCredito'    ";
+					$colval = " nombre_estados_auto_pago_juicios = '$_nombre_estAutoPago'   ";
+					$tabla = "estados_auto_pago_juicios";
+					$where = "id_estados_auto_pago_juicios = '$_id_estAutoPago'    ";
 					
-					$resultado=$ltCredito->UpdateBy($colval, $tabla, $where);
+					$resultado=$estdAutoP->UpdateBy($colval, $tabla, $where);
 					
 				}else {
 					
 			
 				
-				$funcion = "ins_lotes_titulo_credito";
+				$funcion = "ins_estados_auto_pago_juicios";
 				
-				$parametros = " '$_nombre_ltCredito'  ";
+				$parametros = " '$_nombre_estAutoPago'  ";
 					
-				$ltCredito->setFuncion($funcion);
+				$estdAutoP->setFuncion($funcion);
 		
-				$ltCredito->setParametros($parametros);
+				$estdAutoP->setParametros($parametros);
 		
 		
-				$resultado=$ltCredito->Insert();
+				$resultado=$estdAutoP->Insert();
 			 }
 		
 			}
-			$this->redirect("LotesTituloCredito", "index");
+			$this->redirect("EstAutoPagoJuicios", "index");
 
 		}
 		else
 		{
 			$this->view("Error",array(
 					
-					"resultado"=>"No tiene Permisos de Insertar Lotes Titulo Credito"
+					"resultado"=>"No tiene Permisos de Insertar Estado Auto Pago Juicio"
 		
 			));
 		
@@ -189,30 +189,30 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 		session_start();
 		
 		$permisos_rol=new PermisosRolesModel();
-		$nombre_controladores = "LotesTituloCredito";
+		$nombre_controladores = "EstAutoPagoJuicios";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 		if (!empty($resultPer))
 		{
-			if(isset($_GET["id_ltcredito"]))
+			if(isset($_GET["id_estPagoj"]))
 			{
-				$id_ltCredito=(int)$_GET["id_ltcredito"];
+				$id_estAutoPago=(int)$_GET["id_estPagoj"];
 			
-				$ltCredito = new LotesTituloCreditoModel();
-				$ltCredito->deleteBy("id_lotes_titulos_credito",$id_ltCredito);
+				$estdAutoP = new EstAutoPagoJuiciosModel(); 
+				$estdAutoP->deleteBy("id_estados_auto_pago_juicios",$id_estAutoPago);
 				
 				
 			}
 			
-			$this->redirect("LotesTituloCredito", "index");
+			$this->redirect("EstAutoPagoJuicios", "index");
 			
 			
 		}
 		else
 		{
 			$this->view("Error",array(
-				"resultado"=>"No tiene Permisos de Borrar Lotes Titulo Credito"
+				"resultado"=>"No tiene Permisos de Borrar Estado Auto Pago Juicio"
 			
 			));
 		}

@@ -72,12 +72,18 @@
 			<hr>
 		     <?php } ?>
 		
+		
 		<div class="row">
 			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           		<?php if ($mensaje != "")?>
+           		<?php if ($mensaje == "")?>
            		<?php {?>
            			<div class="alert alert-warning" role="alert"><?php echo $mensaje ; ?></div>
            		<?php }?>
+           		
+           </div>
+        </div>
+		<div class="row">
+			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
            		
            		<input type="submit" id="procesar" name="procesar" value="Procesar" class="btn btn-success"/>
            </div>
