@@ -184,39 +184,59 @@ class AsignacionSecretariosController extends ControladorBase{
 		
 		//_nombre_categorias character varying, _path_categorias character varying
 		if (isset ($_POST["id_usuarioSecretario"]) && isset ($_POST["id_usuarioImpulsor"]) )
-			
-		{
-			$asignacionSecretarios=new AsignacionSecretariosModel();
-			
-			$_id_secretario = $_POST["id_usuarioSecretario"];
-			$_id_impulsor = $_POST["id_usuarioImpulsor"];
-			
-			 
-			$funcion = "ins_asignacion_secretarios";
-			
-			$parametros = "'$_id_secretario' ,'$_id_impulsor'";
-
-			try {
 				
-				$asignacionSecretarios->setFuncion($funcion);
-				$asignacionSecretarios->setParametros($parametros);
-				$resultado=$asignacionSecretarios->Insert();
-				
-
-			$this->redirect("AsignacionSecretarios", "index");
-			
-			}
-			catch (Exeption $Ex)
 			{
-				$this->view("Error",array(
-						"resultado"=>$Ex
-				));
+				$asignacionSecretarios=new AsignacionSecretariosModel();
+				$_id_secretario = $_POST["id_usuarioSecretario"];
+				$_id_impulsor = $_POST["id_usuarioImpulsor"];
+					
+				//consultar si hay en la tabla asignacion secretario el codigo de usuario
+				
+				$col="id_abogado_asignacion_secretarios";
+				$tbl="asignacion_secretarios";
+				$whre="id_abogado_asignacion_secretarios=".$_id_impulsor;
+				$id="id_asignacion_secretarios";
+				
+				$ressultAsg=$asignacionSecretarios->getCondiciones($col, $tbl, $whre, $id);
 				
 				
-			}
 			
-	
-		}
+					if(empty($ressultAsg))
+					{
+						//asigno impulsor a secretario
+						
+						$funcion = "ins_asignacion_secretarios";
+							
+						$parametros = "'$_id_secretario' ,'$_id_impulsor'";
+						
+						try {
+						
+							$asignacionSecretarios->setFuncion($funcion);
+							$asignacionSecretarios->setParametros($parametros);
+							$resultado=$asignacionSecretarios->Insert();
+						
+						
+							$this->redirect("AsignacionSecretarios", "index");
+								
+							}
+							catch (Exeption $Ex)
+							{
+								$this->view("Error",array(
+										"resultado"=>$Ex
+								));
+							
+							
+							}
+							
+					}else
+						{
+							//$RsptaAbogado="ABOGADO IMPULSOR YA SE ENCUENTRA ASIGNADO";
+							
+							$this->redirect("AsignacionSecretarios", "index");
+							
+						}
+		
+			}
 		}
 		else
 		{
@@ -356,6 +376,23 @@ class AsignacionSecretariosController extends ControladorBase{
 	
 	}
 	
+	public function CompruebaImpulsores()
+	{
+		$resultado=0;
+		//consulta para ver si hay impulsores en la tabla asignacio secretario
+		$asignacionSecretarios=new AsignacionSecretariosModel();
+			
+		$_id_impulsor=$_POST['id_abgImpulsor'];
+		$col="id_abogado_asignacion_secretarios";
+		$tbl="asignacion_secretarios";
+		$whre="id_abogado_asignacion_secretarios=".$_id_impulsor;
+		$id="id_asignacion_secretarios";
+			
+		$ressultAsg=$asignacionSecretarios->getCondiciones($col, $tbl, $whre, $id);
+			
+		echo json_encode($ressultAsg);
+	
+	}
 	public function Reporte(){
 	
 		//Creamos el objeto usuario
