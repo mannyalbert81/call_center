@@ -58,6 +58,8 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 						
 						$resultEdit = $estdAutoP->getCondiciones($columnas ,$tablas ,$where, $id);
 						
+						$traza=new TrazasModel();
+						$_nombre_controladores = "Estados Auto de Pago";
 						$_accion_trazas  = "Editar";
 						$_parametros_trazas = $_id_estPagojuicio;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas,$nombre_controladores);
