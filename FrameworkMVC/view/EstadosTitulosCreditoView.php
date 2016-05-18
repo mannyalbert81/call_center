@@ -109,7 +109,7 @@
        
 
      <form action="<?php echo $helper->url("EstadosTitulosCredito","InsertaEstadosTitulosCredito"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
-           	    <h4 style="color:#ec971f;">Insertar Tipos de Estados Titulos de Credito</h4>
+           	    <h4 style="color:#ec971f;">Insertar Estados Titulos de Credito</h4>
             	<hr/>
             	
 		   		
@@ -122,7 +122,7 @@
 			   
 			   <div class="row">
 		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Nombres Estados Titulos Credito</p>
+			  	<p  class="formulario-subtitulo" >Nombres de Estados</p>
 			  	<input type="text"  name="nombre_estados_titulos_credito" id="nombre_estados_titulos_credito" value="<?php echo $resEdit->nombre_estados_titulos_credito; ?>" class="form-control"/> 
 			  	<input type="hidden"  name="id_estados_titulos_credito"  value="<?php echo $resEdit->id_estados_titulos_credito; ?>" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>

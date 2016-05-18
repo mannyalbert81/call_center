@@ -37,22 +37,22 @@
 		$(document).ready(function(){
 
 		    // cada vez que se cambia el valor del combo
-		    $("#Guardar").click(function() 
+		    $("#procesar").click(function() 
 			{
 		   
-		    	var imagen_firmas_digitales = $("#imagen_firmas_digitales").val();
+		    	var archivo = $("#archivo").val();
 		    
 		   				
-		    	if (imagen_firmas_digitales == "")
+		    	if (archivo == "")
 		    	{
 			    	
-		    		$("#mensaje_imagen_firmas_digitales").text("Introduzca una Firma ");
-		    		$("#mensaje_imagen_firmas_digitales").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_archivo").text("Introduzca una Recaudacion ");
+		    		$("#mensaje_archivo").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_imagen_firmas_digitales").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_archivo").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
 		    	
@@ -66,8 +66,8 @@
 
 		 
 				
-				$( "#imagen_firmas_digitales" ).focus(function() {
-					$("#mensaje_imagen_firmas_digitales").fadeOut("slow");
+				$( "#archivo" ).focus(function() {
+					$("#mensaje_archivo").fadeOut("slow");
     			});
 				
 	}); 
@@ -105,7 +105,7 @@
 			     <div class="col-xs-6 col-md-6">
 			  		<p  class="formulario-subtitulo" >Firma</p>
 			  		<input type="file" name="archivo" id="archivo" accept="txt" onKeyDown="return intro(event)" value="" class="form-control"/> 
-			   		<div id="mensaje_imagen_firmas_digitales" class="errores"></div>
+			   		<div id="mensaje_archivo" class="errores"></div>
 			     </div>
    				 
 		       
