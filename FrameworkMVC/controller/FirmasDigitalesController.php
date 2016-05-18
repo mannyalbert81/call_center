@@ -182,7 +182,7 @@ class FirmasDigitalesController extends ControladorBase{
 					$traza=new TrazasModel();
 					$_nombre_controlador = "Firmas Digitales";
 					$_accion_trazas  = "Guardar";
-					$_parametros_trazas = $_imagen_firmas_digitales;
+					$_parametros_trazas = $_id_usuarios;
 					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 					
 					
@@ -236,7 +236,7 @@ class FirmasDigitalesController extends ControladorBase{
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Firmas Digitales";
 				$_accion_trazas  = "Borrar";
-				$_parametros_trazas = $id_clientes;
+				$_parametros_trazas = $id_firmas_digitales;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 		
 			}
