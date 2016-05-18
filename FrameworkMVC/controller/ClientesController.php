@@ -313,31 +313,27 @@ public function index(){
 			$resultPer = $clientes->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			$mensaje = "";
 			$fecha_proceso_anterior = "";
+			$_id_tipo_identificacion = 0;
+			
 			if (!empty($resultPer))
 			{
 				if (isset ($_POST["procesar"]) )
 				{
-					//$recaudacion_cabeza = new RecaudacionCabezaModel();
-					//$recaudacion_detalle = new RecaudacionDetalleModel();
 					$clientes = new ClientesModel();
-					//$_id_clientes = $_POST["clientes"];
-					//$_id_recaudacion_cabeza = 0;
+					$tipo_identificacion = new TipoIdentificacionModel();
 					$directorio = $_SERVER['DOCUMENT_ROOT'].'/cartera/';
 	
 					$nombre = $_FILES['archivo']['name'];
 					$tipo = $_FILES['archivo']['type'];
 					$tamano = $_FILES['archivo']['size'];
-					// temporal al directorio definitivo
 					move_uploaded_file($_FILES['archivo']['tmp_name'],$directorio.$nombre);
-					$file = fopen($directorio.$nombre, "r") or exit("Unable to open file!");
-	
+				
 					
 					$contador = 0;
 					$contador_linea = 0;
 						
 					//$encabezado_linea = "";
 					$contenido_linea = "";
-					$pie_linea = "";
 						
 					$lectura_linea = "";
 					
@@ -345,11 +341,11 @@ public function index(){
 						
 					while(!feof($file))
 					{
+						$contador = $contador + 1;
 						
-	
 						if ($contador > 0) ///INSERTO EL ENCABEZADO
 						{
-							$contador = $contador + 1;
+							
 							$lectura_linea =  fgets($file) ;
 							//$encabezado_linea = fgets($file) ;
 							
@@ -357,23 +353,50 @@ public function index(){
 							
 							$funcion = "ins_clientes";
 	
-							$_id_tipo_identificacion =substr($lectura_linea,0,1);
+							$_identificacion =substr($lectura_linea,0,1);
+							if ($_identificacion == "R")
+							{
+								$_nombre_tipo_identificacion = "RUC";
+								
+							}
+							if ($_identificacion == "C")
+							{
+								$_nombre_tipo_identificacion = "CEDULA";
+							
+							}
+							if ($_identificacion == "P")
+							{
+								$_nombre_tipo_identificacion = "PASAPORT";
+									
+							}
+							$where = "nombre_tipo_identificacion = '$_nombre_tipo_identificacion' ";
+							
+							$resultIdent = $tipo_identificacion->getBy($where);
+
+							foreach($resultIdent as $res) 
+							{
+								
+								$_id_tipo_identificacion =   $res->id_tipo_identificacion; 
+							}
+								        		
+									    
+							if ($_id_tipo_identificacion > 0)
+							{
+							
 							$_identificacion_clientes = substr($lectura_linea,1,13);
 							$_nombres_clientes = substr($lectura_linea,14,100);
 							$_telefono_clientes = substr($lectura_linea,114,124);
 							$_celular_clientes = substr($lectura_linea,124,134);
-							$_direccion_clientes = substr($lectura_linea,134,333);
-							$_id_ciudad = substr($lectura_linea,135,139);
-							$_id_tipo_persona = substr($lectura_linea,136,136);
-							
+							$_direccion_clientes = substr($lectura_linea,134,200);
+							$_id_ciudad = substr($lectura_linea,234,5);
+							$_id_tipo_persona = substr($lectura_linea,239,1);
 								
 							$parametros = " '$_id_tipo_identificacion' ,'$_identificacion_clientes' , '$_nombres_clientes' , '$_telefono_clientes' , '$_celular_clientes', '$_direccion_clientes', '$_id_ciudad' , '$_id_tipo_persona' ";
 							$clientes->setFuncion($funcion);
 							$clientes->setParametros($parametros);
 								
-						}
-							else
-							{
+						
+							
 								try {
 	
 									$resultado=$clientes->Insert();
@@ -386,11 +409,11 @@ public function index(){
 									));
 	
 	
-								}
-							}
 								
+							  }
+							}	
 								
-							
+						}
 	
 						
 	
