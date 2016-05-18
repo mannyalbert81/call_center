@@ -100,24 +100,24 @@
 	         <tr>
 	    		
 	    		
-	    		<th>Id</th>
-	    		<th>Fecha</th>
-	    		<th>Hora</th>
-	    		<th>Institucion</th>
-	    		<th>Registros</th>
-	    		<th>Monto</th>
-	    		<th>Procesado</th>
+	    		<th style="font-size:85%;" >Id</th>
+	    		<th style="font-size:85%;">Fecha</th>
+	    		<th style="font-size:85%;">Hora</th>
+	    		<th style="font-size:85%;">Institucion</th>
+	    		<th style="font-size:85%;">Registros</th>
+	    		<th style="font-size:85%;" >Monto</th>
+	    		<th style="font-size:85%;">Procesado</th>
 	  		</tr>
                 <?php $registros = 1;?>
                  <?php foreach($resultSet as $res) {?>
 	        		<tr>
-	        		   <td> <?php echo $registros; ?>  </td>
-	        		   <td> <?php echo $res->fecha_creacion_recaudacion_cabeza; ?>     </td> 
-		               <td> <?php echo $res->hora_creacion_recaudacion_cabeza; ?>     </td>
-		               <td> <?php echo $res->nombre_recaudacion_institucion; ?>     </td>
-		               <td> <?php echo $res->cantidad_registros_recaudacion_cabeza; ?>     </td>
-		               <td> <?php echo $res->valor_total_dolares_recaudacion_cabeza; ?>     </td>
-		               <td> <?php echo $res->creado; ?>     </td>
+	        		   <td style="color:#000000;font-size:80%;"> <?php echo $registros; ?>  </td>
+	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_creacion_recaudacion_cabeza; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->hora_creacion_recaudacion_cabeza; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_recaudacion_institucion; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->cantidad_registros_recaudacion_cabeza; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->valor_total_dolares_recaudacion_cabeza; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td>
 		               <td>
 			           		<div class="right">
 			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_recaudacion_cabeza; ?>" class="btn btn-warning" style="font-size:65%;">Detalle</a>
