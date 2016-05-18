@@ -1,4 +1,3 @@
-
    <!DOCTYPE HTML>
 <html lang="es">
 
@@ -108,10 +107,9 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("EstadosTitulosCredito","InsertaEstadosTitulosCredito"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
-            
-         
-        	    <h4 style="color:#ec971f;">Insertar Tipos de Estados Titulos de Credito</h4>
+
+     <form action="<?php echo $helper->url("EstadosTitulosCredito","InsertaEstadosTitulosCredito"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+           	    <h4 style="color:#ec971f;">Insertar Tipos de Estados Titulos de Credito</h4>
             	<hr/>
             	
 		   		

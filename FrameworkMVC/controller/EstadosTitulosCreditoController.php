@@ -1,13 +1,8 @@
 <?php
-
 class EstadosTitulosCreditoController extends ControladorBase{
-
 	public function __construct() {
 		parent::__construct();
 	}
-
-
-
 	public function index(){
 	
 		//Creamos el objeto usuario
@@ -17,10 +12,8 @@ class EstadosTitulosCreditoController extends ControladorBase{
 		$resultSet=$estados_titulos_credito->getAll("id_estados_titulos_credito");
 				
 		$resultEdit = "";
-
 		
 		session_start();
-
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
@@ -33,7 +26,6 @@ class EstadosTitulosCreditoController extends ControladorBase{
 			{
 				if (isset ($_GET["id_estados_titulos_credito"])   )
 				{
-
 					$nombre_controladores = "EstadosTitulosCredito";
 					$id_rol= $_SESSION['id_rol'];
 					$resultPer = $estados_titulos_credito->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -48,7 +40,6 @@ class EstadosTitulosCreditoController extends ControladorBase{
 						$id       = "nombre_estados_titulos_credito";
 							
 						$resultEdit = $estados_titulos_credito->getCondiciones($columnas ,$tablas ,$where, $id);
-
 					}
 					else
 					{
@@ -96,7 +87,6 @@ class EstadosTitulosCreditoController extends ControladorBase{
 	public function InsertaEstadosTitulosCredito(){
 			
 		session_start();
-
 		
 		$estados_titulos_credito=new EstadosTitulosCreditoModel();
 		$nombre_controladores = "EstadosTitulosCredito";
@@ -148,7 +138,6 @@ class EstadosTitulosCreditoController extends ControladorBase{
 		
 			}
 			$this->redirect("EstadosTitulosCredito", "index");
-
 		}
 		else
 		{
@@ -162,13 +151,8 @@ class EstadosTitulosCreditoController extends ControladorBase{
 		}
 	
 	}
-
-
-
-
 	public function borrarId()
 	{
-
 		session_start();
 		
 		$permisos_rol=new PermisosRolesModel();
