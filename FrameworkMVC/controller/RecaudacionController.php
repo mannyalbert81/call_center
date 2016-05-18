@@ -83,6 +83,7 @@ class RecaudacionController extends ControladorBase{
 					{
 						$contador = $contador + 1;
 						$lectura_linea =  fgets($file) ;
+						$encabezado_linea = fgets($file) ;
 						
 						if ($contador == 1) ///INSERTO EL ENCABEZADO
 						{
@@ -158,6 +159,9 @@ class RecaudacionController extends ControladorBase{
 						
 						if ($contador == $contador_linea)
 						{
+							$this->view("Error",array(
+									"resultado"=>$contador
+							));
 							
 						}
 						elseif ($contador > 1)
@@ -219,7 +223,8 @@ class RecaudacionController extends ControladorBase{
 							} catch (Exception $e) {
 									
 								$this->view("Error",array(
-										"resultado"=>"Error al Insertar Detalle->".$e
+										"resultado"=>"Error al Insertar Detalle->".$e->getMessage()
+										
 								));
 									
 									
