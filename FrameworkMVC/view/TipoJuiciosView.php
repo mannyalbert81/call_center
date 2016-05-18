@@ -1,10 +1,11 @@
-<!DOCTYPE HTML>
+
+   <!DOCTYPE HTML>
 <html lang="es">
 
       <head>
       
         <meta charset="utf-8"/>
-        <title>Auto Pagos Jucios - aDocument 2015</title>
+        <title>Tipo de Juicios - aDocument 2015</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -36,39 +37,54 @@
                 
             
         </style>
-       
-    <script >
-    $(document).ready(function(){
+         
+         <script >
+		$(document).ready(function(){
 
-        $("#Guardar").click(function(){
-
-        	var ltCredito = $("#nombre_estPagoj").val();
-
-			if (ltCredito == "")
-	    	{
-				$("#mensaje_estPagoj").text("Ingrese la informacion requerida");
-	    		$("#mensaje_estPagoj").fadeIn("slow"); //Muestra mensaje de error
-	            return false;
-		    }
-	    	else 
-	    	{
-	    		$("#mensaje_estPagoj").fadeOut("slow"); //Muestra mensaje de error
-	    		
-	            
-			}    
+		    // cada vez que se cambia el valor del combo
+		    $("#Guardar").click(function() 
+			{
+		   
+		    	var nombre_tipo_juicios = $("#nombre_tipo_juicios").val();
+		    
+		   				
+		    	if (nombre_tipo_juicios == "")
+		    	{
+			    	
+		    		$("#mensaje_nombres").text("Introduzca un tipo de juicio");
+		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
 
 			
-            });
+		    					    
 
-        $( "#nombre_estPagoj" ).focus(function() {
-			  $("#mensaje_estPagoj").fadeOut("slow");
-		    });
+			}); 
 
+
+		 
+				
+				$( "#nombre_tipo_juicios" ).focus(function() {
+					$("#mensaje_nombres").fadeOut("slow");
+    			});
+				
+			
 		
+				
+		
+		      
+				    
+		}); 
 
-        });
-	
 	</script>
+
     </head>
     <body style="background-color: #d9e3e4;">
     
@@ -92,10 +108,10 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("EstAutoPagoJuicios","InsertaEstAutoPagoJuicio"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("TipoJuicios","InsertaTipoJuicios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             
          
-        	    <h4 style="color:#ec971f;">Insertar Estado Auto Pago Juicio</h4>
+        	    <h4 style="color:#ec971f;">Insertar Tipos de Juicios</h4>
             	<hr/>
             	
 		   		
@@ -108,10 +124,10 @@
 			   
 			   <div class="row">
 		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Nombre Lotes Titulo Credito</p>
-			  	<input type="text"  name="nombre_estPagoj" id="nombre_estPagoj" value="<?php echo $resEdit->nombre_estados_auto_pago_juicios; ?>" class="form-control"/> 
-			  	<input type="hidden"  name="id_estPagoj"  value="<?php echo $resEdit->id_estados_auto_pago_juicios; ?>" class="form-control"/> 
-			    <div id="mensaje_estPagoj" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Nombres tipos de juicios</p>
+			  	<input type="text"  name="nombre_tipo_juicios" id="nombre_tipo_juicios" value="<?php echo $resEdit->nombre_tipo_juicios; ?>" class="form-control"/> 
+			  	<input type="hidden"  name="id_tipo_juicios"  value="<?php echo $resEdit->id_tipo_juicios; ?>" class="form-control"/> 
+			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			   </div>
 		    
@@ -119,9 +135,9 @@
 		    
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombre Lotes Titulo Credito</p>
-			  	<input type="text"  name="nombre_estPagoj" id="nombre_estPagoj" value="" class="form-control"/> 
-			    <div id="mensaje_estPagoj" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Nombres tipos de Juicios</p>
+			  	<input type="text"  name="nombre_tipo_juicios" id="nombre_tipo_juicios" value="" class="form-control"/> 
+			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			 </div>
 
@@ -145,7 +161,7 @@
        <!-- termina el form --> 
        
         <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Estado Auto Pago Juicio</h4>
+            <h4 style="color:#ec971f;">Lista de Tipos de Juicios</h4>
             <hr/>
         </div>
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
@@ -160,18 +176,18 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_estados_auto_pago_juicios; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estados_auto_pago_juicios; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_tipo_juicios; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_juicios; ?>     </td> 
 		              
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("EstAutoPagoJuicios","index"); ?>&id_estPagoj=<?php echo $res->id_estados_auto_pago_juicios; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("TipoJuicios","index"); ?>&id_tipo_juicios=<?php echo $res->id_tipo_juicios; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("EstAutoPagoJuicios","borrarId"); ?>&id_estPagoj=<?php echo $res->id_estados_auto_pago_juicios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("TipoJuicios","borrarId"); ?>&id_tipo_juicios=<?php echo $res->id_tipo_juicios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>
@@ -188,6 +204,6 @@
       </section>
       </div>
       </div>
-   
-     </body>  
+   </body>  
+
     </html>   
