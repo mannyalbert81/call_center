@@ -46,11 +46,15 @@
 
                  var fin = $('#fecha_hasta').val();
 
-                 if(inicio=="" || fin==""){
-                     alert("ingrese fechas de busqueda");
-                	 return false;
-                 }
-                 
+				if((inicio=="" && fin=="")||(inicio!="" && fin!="")){
+                     
+                	 return true;
+                 }else {
+                	 alert("ingrese fechas de busqueda");
+                     return false;
+                     }
+
+                
                  });
 			});
 		</script>
