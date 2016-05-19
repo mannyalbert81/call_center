@@ -447,7 +447,7 @@
 		               
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("AsignacionSecretarios","index"); ?>&id_asignacion_secretarios=<?php echo $res->id_asignacion_secretarios ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("AsignacionSecretarios","index"); ?>&id_asignacion_secretarios=<?php echo $res->id_asignacion_secretarios ?>" class="btn btn-warning" style="font-size:65%;">Reasignar</a>
 			                </div>
 			            
 			             </td>

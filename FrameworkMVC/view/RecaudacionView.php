@@ -33,6 +33,50 @@
                 
             
         </style>
+        
+        <script>
+		$(document).ready(function(){
+			$("#Buscar").click(function(){
+				//alert("hola");
+				 var startDate = new Date($('#fecha_desde').val());
+
+                 var endDate = new Date($('#fecha_hasta').val());
+
+                 var inicio = $('#fecha_desde').val();
+
+                 var fin = $('#fecha_hasta').val();
+
+                 if(inicio=="" || fin==""){
+                     alert("ingrese fechas de busqueda");
+                	 return false;
+                 }
+                 
+                 });
+			});
+		</script>
+        
+        <script>
+		$(document).ready(function(){
+			$("#fecha_hasta").change(function(){
+				 var startDate = new Date($('#fecha_desde').val());
+
+                 var endDate = new Date($('#fecha_hasta').val());
+
+                 if (startDate > endDate){
+ 
+                    $("#mensaje_hasta").text("Fecha desde no debe ser mayor ");
+		    		$("#mensaje_hasta").fadeIn("slow"); //Muestra mensaje de error  
+		    		$("#fecha_hasta").val("");
+
+                        }
+				});
+
+			 $( "#fecha_hasta" ).focus(function() {
+				  $("#mensaje_hasta").fadeOut("slow");
+			   });
+			});
+        </script>
+        
          <script >
 		$(document).ready(function(){
 
@@ -134,6 +178,33 @@
             <h4 style="color:#ec971f;">Archivos Procesados</h4>
             <hr/>
         </div>
+         <div class="row">
+         <!-- empieza formulario busqueda -->
+         <div style="margin-bottom: 10px;">
+           <form action="<?php echo $helper->url("Recaudacion","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+           
+           <div class="col-lg-4">
+           <span>Desde:</span>
+           <input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control"/>
+           <div id="mensaje_desde" class="errores"></div>
+            </div>
+            
+           <div class="col-lg-4">
+           <span>Hasta:</span>
+           <input type="date" id="fecha_hasta" name="fecha_hasta" value=""  class="form-control">
+           <div id="mensaje_hasta" class="errores"></div>
+           </div>
+          
+           
+          
+           <div class="col-lg-3">
+           <span style="color:#ffffff;">Hasta:</span>
+           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
+           </div>
+         
+          </form>
+          </div>
+           <!-- termina formulario busqueda -->
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
         
         	<table class="table table-hover">
@@ -180,6 +251,7 @@
         
         
         </section>
+        </div>
        </div>
  
   </div>

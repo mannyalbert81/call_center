@@ -241,6 +241,59 @@ class RecaudacionController extends ControladorBase{
 					
 					
 				}
+				
+				if(isset($_POST["Buscar"])){
+					
+					$desde=$_POST["fecha_desde"];
+					$hasta=$_POST["fecha_hasta"];
+					
+					/*
+					 SELECT 
+						recaudacion_cabeza.id_recaudacion_cabeza, 
+						recaudacion_cabeza.id_recaudacion_institucion, 
+						recaudacion_institucion.nombre_recaudacion_institucion, 
+						recaudacion_cabeza.fecha_creacion_recaudacion_cabeza, 
+						recaudacion_cabeza.hora_creacion_recaudacion_cabeza,  
+						recaudacion_cabeza.cantidad_registros_recaudacion_cabeza, 
+						recaudacion_cabeza.valor_total_dolares_recaudacion_cabeza,  
+						recaudacion_cabeza.creado
+						FROM 
+						public.recaudacion_institucion, public.recaudacion_cabeza
+						WHERE 
+						recaudacion_cabeza.id_recaudacion_institucion = recaudacion_institucion.id_recaudacion_institucion
+						AND
+						recaudacion_cabeza.fecha_creacion_recaudacion_cabeza
+						BETWEEN '02/04/2016' AND '04/04/2016' 
+						ORDER BY 
+						fecha_creacion_recaudacion_cabeza , hora_creacion_recaudacion_cabeza
+					 * */
+						
+					$columnas = "recaudacion_cabeza.id_recaudacion_cabeza, 
+						recaudacion_cabeza.id_recaudacion_institucion, 
+						recaudacion_institucion.nombre_recaudacion_institucion, 
+						recaudacion_cabeza.fecha_creacion_recaudacion_cabeza, 
+						recaudacion_cabeza.hora_creacion_recaudacion_cabeza,  
+						recaudacion_cabeza.cantidad_registros_recaudacion_cabeza, 
+						recaudacion_cabeza.valor_total_dolares_recaudacion_cabeza,  
+						recaudacion_cabeza.creado";
+					$tablas="public.recaudacion_institucion, public.recaudacion_cabeza";
+					$where="recaudacion_cabeza.id_recaudacion_institucion = recaudacion_institucion.id_recaudacion_institucion
+						AND
+						recaudacion_cabeza.fecha_creacion_recaudacion_cabeza BETWEEN '$desde' AND '$hasta' ";
+					$id="fecha_creacion_recaudacion_cabeza , hora_creacion_recaudacion_cabeza";
+						
+						
+					//$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3;
+					
+					/*$this->view("Error",array(
+					 "resultado"=>$where_to
+					 	
+					 ));
+					exit();*/
+						
+					$resultSet=$recaudacion_cabeza->getCondiciones($columnas ,$tablas , $where, $id);
+					
+				}
 					
 					
 				$this->view("Recaudacion",array(
