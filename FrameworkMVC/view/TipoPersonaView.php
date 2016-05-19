@@ -1,10 +1,11 @@
-<!DOCTYPE HTML>
+
+   <!DOCTYPE HTML>
 <html lang="es">
 
       <head>
       
         <meta charset="utf-8"/>
-        <title>Tipo_Notificacion - aDocument 2015</title>
+        <title>Tipo de Persona - aDocument 2015</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -36,40 +37,54 @@
                 
             
         </style>
-       
-          <script >
+         
+         <script >
 		$(document).ready(function(){
 
 		    // cada vez que se cambia el valor del combo
 		    $("#Guardar").click(function() 
 			{
-				var descripcion_notificacion = $("#descripcion_notificacion").val();
+		   
+		    	var nombre_tipo_persona = $("#nombre_tipo_persona").val();
 		    
 		   				
-		    	if (descripcion_notificacion =="")
+		    	if (nombre_tipo_persona == "")
 		    	{
 			    	
-		    		$("#mensaje_descripcion_notificacion").text("Introduzca un tipo de notificacion ");
-		    		$("#mensaje_descripcion_notificacion").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_nombres").text("Introduzca un tipo de Persona ");
+		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_descripcion_notificacion").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
-		   
+		    	
+		    	
+
+			
+		    					    
+
 			}); 
 
-	
-				$("#descripcion_notificacion").focus(function() {
-					
-					$("#mensaje_descripcion_notificacion").fadeOut("slow");
+
+		 
+				
+				$( "#nombre_tipo_persona" ).focus(function() {
+					$("#mensaje_nombres").fadeOut("slow");
     			});
-
-			}); 
+				
+			
+		
+				
+		
+		      
+				    
+		}); 
 
 	</script>
+
     </head>
     <body style="background-color: #d9e3e4;">
     
@@ -93,10 +108,10 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("TipoNotificacion","InsertaTipoNotificacion"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("TipoPersona","InsertaTipoPersona"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             
          
-        	    <h4 style="color:#ec971f;">Insertar Tipo Notificaciones</h4>
+        	    <h4 style="color:#ec971f;">Insertar Tipos de Persona</h4>
             	<hr/>
             	
 		   		
@@ -109,10 +124,10 @@
 			   
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombre Tipo Notificación</p>
-			  	<input type="text"  name="descripcion_notificacion" id="descripcion_notificacion" value="<?php echo $resEdit->descripcion_notificacion; ?>" class="form-control"/> 
-			  	<input type="hidden"  name="id_tipo_notificacion"  value="<?php echo $resEdit->id_tipo_notificacion; ?>" class="form-control"/> 
-			    <div id="mensaje_descripcion_notificacion" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Nombres tipos de Personas</p>
+			  	<input type="text"  name="nombre_tipo_persona" id="nombre_tipo_persona" value="<?php echo $resEdit->nombre_tipo_persona; ?>" class="form-control"/> 
+			  	<input type="hidden"  name="id_tipo_persona"  value="<?php echo $resEdit->id_tipo_persona; ?>" class="form-control"/> 
+			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			   </div>
 		    
@@ -120,9 +135,9 @@
 		    
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo">Nombre Tipo Notificación</p>
-			  	<input type="text"  name="descripcion_notificacion" id="descripcion_notificacion" value="" class="form-control"/> 
-			    <div id="mensaje_descripcion_notificacion" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Nombres tipos de Personas</p>
+			  	<input type="text"  name="nombre_tipo_persona" id="nombre_tipo_persona" value="" class="form-control"/> 
+			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			 </div>
 
@@ -146,14 +161,14 @@
        <!-- termina el form --> 
        
         <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Tipo Notificaciones</h4>
+            <h4 style="color:#ec971f;">Lista de Tipos de Personas</h4>
             <hr/>
         </div>
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Descripcion</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre</th>
 	    		
 	    		<th></th>
 	    		<th></th>
@@ -161,18 +176,18 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_tipo_notificacion; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->descripcion_notificacion; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_tipo_persona; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_persona; ?>     </td> 
 		              
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("TipoNotificacion","index"); ?>&id_tipo_notificacion=<?php echo $res->id_tipo_notificacion; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("TipoPersona","index"); ?>&id_tipo_persona=<?php echo $res->id_tipo_persona; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("TipoNotificacion","borrarId"); ?>&id_tipo_notificacion=<?php echo $res->id_tipo_notificacion; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                	<a href="<?php echo $helper->url("TipoPersona","borrarId"); ?>&id_tipo_persona=<?php echo $res->id_tipo_persona; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>
@@ -189,6 +204,6 @@
       </section>
       </div>
       </div>
-   
-     </body>  
+   </body>  
+
     </html>   

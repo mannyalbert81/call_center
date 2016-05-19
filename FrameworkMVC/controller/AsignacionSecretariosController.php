@@ -145,12 +145,7 @@ class AsignacionSecretariosController extends ControladorBase{
 							//Conseguimos todos los usuarios con filtros
 					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 					
-					$traza=new TrazasModel();
-					$_nombre_controlador = "Asignacion Secretarios";
-					$_accion_trazas  = "Editar";
-					$_parametros_trazas = $_id_asignacion_secretarios;
-					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-					}
+						}
 					
 					
 					//cambio linea 86
