@@ -46,7 +46,7 @@ class TipoNotificacionController extends ControladorBase{
 						$columnas = " id_tipo_notificacion, descripcion_notificacion";
 						$tablas   = "tipo_notificacion";
 						$where    = "id_tipo_notificacion = '$_id_tipo_notificacion' "; 
-						$id       = "id_tipo_notificacion";
+						$id       = "descripcion_notificacion";
 							
 						$resultEdit = $tipoNotificacion->getCondiciones($columnas ,$tablas ,$where, $id);
 						
@@ -121,11 +121,11 @@ class TipoNotificacionController extends ControladorBase{
 		
 			//_nombre_tipoNotificacion
 			
-			if (isset ($_POST["desc_tipoNotificacion"]) )
+			if (isset ($_POST["descripcion_notificacion"]) )
 				
 			{
 				
-				$_nombre_tipoNotificacion = $_POST["desc_tipoNotificacion"];
+				$_descripcion_notificacion = $_POST["descripcion_notificacion"];
 				
 				if( isset ($_POST["id_tipo_notificacion"])) 
 				{
@@ -133,7 +133,7 @@ class TipoNotificacionController extends ControladorBase{
 					
 					$_id_tipoNotificacion = $_POST["id_tipo_notificacion"];
 					
-					$colval = "descripcion_notificacion = '$_nombre_tipoNotificacion'   ";
+					$colval = "descripcion_notificacion = '$_descripcion_notificacion'   ";
 					$tabla = "tipo_notificacion";
 					$where = "id_tipo_notificacion = '$_id_tipoNotificacion' ";
 					
@@ -147,7 +147,7 @@ class TipoNotificacionController extends ControladorBase{
 				
 				$funcion = "ins_tipo_notificacion";
 				
-				$parametros = " '$_nombre_tipoNotificacion'  ";
+				$parametros = " '$_descripcion_notificacion'  ";
 					
 				$tipoNotificacion->setFuncion($funcion);
 		
@@ -187,7 +187,7 @@ class TipoNotificacionController extends ControladorBase{
 		session_start();
 		
 		$permisos_rol=new PermisosRolesModel();
-		$nombre_controladores = "TipoNotificacion";
+		$nombre_controladores = "Roles";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
