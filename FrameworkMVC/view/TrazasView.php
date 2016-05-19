@@ -59,7 +59,6 @@
 
                  var fin = $('#fecha_hasta').val();
 
-                //alert(inicio+"  "+fin);
                  if(inicio=="" || fin==""){
                      alert("ingrese fechas de busqueda");
                 	 return false;
