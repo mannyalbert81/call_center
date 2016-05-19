@@ -9,7 +9,7 @@ class TrazasController extends ControladorBase{
 	public function index(){
 		
 		//creamos el array de busqueda
-		$resulMenu=array(0=>'TODOS',1=>'Usuario', 2=>'Controladores', 3=>'Accion', 4=>'Parametros', 5=>'Fecha');
+		$resulMenu=array(0=>'TODOS',1=>'Usuario', 2=>'Controladores', 3=>'Accion');
 	
 		//Creamos el objeto usuario
 		$trazas = new TrazasModel();
@@ -110,21 +110,15 @@ class TrazasController extends ControladorBase{
 					$criterio = $_POST["ddl_criterio"];
 					$contenido = $_POST["contenido"];
 					
-					
-					
-					if ($contenido !="")
-					{
-							
+						
 						$where_0 = "";
 						$where_1 = "";
 						$where_2 = "";
 						$where_3 = "";
-						$where_4 = "";
-						$where_5 = "";
-							
-						switch ($criterio) {
+						switch ($criterio) 
+						{
 							case 0:
-								$where_0 = "";
+								$where_0 = " ";
 								break;
 							case 1:
 								//USUARIO
@@ -138,29 +132,26 @@ class TrazasController extends ControladorBase{
 								//Accion
 								$where_3 = " AND trazas.accion_trazas LIKE '$accion' ";
 								break;
-							case 4:
-								//Parametros
-								$where_4 = " ";
-								break;
+							
 							
 						}
 							
 							
 							
-						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3 . $where_4 ;
+						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3;
 							
 							
 						$resul = $accion;
 						
-						$this->view("ErrorSesion",array(
-								"resultSet"=>$accion
-						
+						/*$this->view("Error",array(
+								"resultado"=>$where_to
+									
 						));
-					/*
-						//Conseguimos todos los usuarios con filtros
+						exit();*/
+					
 						$resultActi=$trazas->getCondiciones($columnas ,$tablas , $where_to, $id);
-					*/
-					}
+					
+					
 				
 				}
 				else{

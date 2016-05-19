@@ -22,43 +22,80 @@
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
 		</script>
-		
-		<script>
+	<script>
+	$(document).ready(function(){
 
+		//alert("hola");
+		$("#div_ddl_accion").hide();
+
+		$("#ddl_criterio").change(function(){
+
+			var ddl_criterio=$(this).val();
+
+			if(ddl_criterio==3){
+				//alert("hola");
+				$("#div_ddl_accion").show();
+				$("#div_contenido").hide();
+				}else{
+					$("#div_ddl_accion").hide();
+					$("#div_contenido").show();
+					}
+
+			});
 		
+		});
 
 		</script>
 		
 		<script>
 		$(document).ready(function(){
+			$("#Buscar").click(function(){
+				//alert("hola");
+				 var startDate = new Date($('#fecha_desde').val());
 
-	       $("#fecha_desde").change(function() {
+                 var endDate = new Date($('#fecha_hasta').val());
 
+                 var inicio = $('#fecha_desde').val();
 
+                 var fin = $('#fecha_hasta').val();
 
+                 if(inicio=="" || fin==""){
+                     alert("ingrese fechas de busqueda");
+                	 return false;
+                 }
+                 
+                 });
+			});
+		</script>
+        
+		
+		<script>
+		$(document).ready(function(){
 
+	       $("#fecha_hasta").change(function() {
 
-                        var startDate = new Date($('#fecha_subida_desde').val());
+                var startDate = new Date($('#fecha_desde').val());
 
-                        var endDate = new Date($('#fecha_subida_hasta').val());
+                 var endDate = new Date($('#fecha_hasta').val());
 
-
-
-                        if (startDate > endDate){
-
-                                       $("#fecha_subida_hasta").val("");
-
-
-
-                                       alert('Fecha subida DESDE mayor a  fecha FINAL');
+                 if (startDate > endDate){
+ 
+                    $("#mensaje_hasta").text("Fecha desde no debe ser mayor ");
+		    		$("#mensaje_hasta").fadeIn("slow"); //Muestra mensaje de error  
+		    		$("#fecha_hasta").val("");
 
                         }
 
-                          });
+               });
+
+	       $( "#fecha_hasta" ).focus(function() {
+				  $("#mensaje_hasta").fadeOut("slow");
+			   });
 
         });
 		</script>
-        
+		
+		
         
        <style>
             input{
@@ -106,10 +143,7 @@
      <div class="row">  
       
            <form action="<?php echo $helper->url("Trazas","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
-      <div class="col-lg-3" > 
-      
-      </div>
-      
+     
       		<div class="col-lg-3" id="div_desde">
       		<span>Desde:</span>
            <input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control"/>
@@ -120,13 +154,14 @@
            <input type="date"  name="fecha_hasta" id="fecha_hasta" value="" class="form-control"/>
            <div id="mensaje_hasta" class="errores"></div>
            </div>
-           <div class="col-lg-3" id="div_contenido">
+           <div class="col-lg-2" id="div_contenido">
+           <span>Contenido de busqueda:</span>
            <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
            <div id="mensaje_contenido" class="errores"></div>
             </div>
             
-            <div class="col-lg-3" id="div_ddl_accion">
-           
+           <div class="col-lg-2" id="div_ddl_accion">
+           <span>Accion:</span>
            <select name="ddl_accion" id="ddl_accion"  class="form-control">
                                     <?php foreach($acciones as $val=>$desc) {?>
                                          <option value="<?php echo $val ?>"><?php echo $desc ?> </option>
@@ -136,8 +171,8 @@
            <div id="mensaje_ddl_accion" class="errores"></div>
            </div>
             
-           <div class="col-lg-3" id="div_ddl_criterio">
-           
+           <div class="col-lg-2" id="div_ddl_criterio">
+           <span>Criterio:</span>
            <select name="ddl_criterio" id="ddl_criterio"  class="form-control">
                                     <?php foreach($resulMenu as $val=>$desc) {?>
                                          <option value="<?php echo $val ?>"><?php echo $desc ?> </option>
@@ -149,7 +184,8 @@
           
            
           
-           <div class="col-lg-3">
+           <div class="col-lg-1">
+           <span style="color:#ffffff;">Buscar:</span>
            <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
            </div>
          
