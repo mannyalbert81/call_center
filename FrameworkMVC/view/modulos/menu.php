@@ -74,6 +74,8 @@
             </li>
             <li><a href="index.php?controller=Clientes&action=ImportacionClientes"><span class="glyphicon glyphicon-user" aria-hidden="true"> Importacion Clientes</span> </a>
             </li>
+            <li><a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Personas</span> </a>
+			</li>
           </ul>
         </li>
       </ul>
