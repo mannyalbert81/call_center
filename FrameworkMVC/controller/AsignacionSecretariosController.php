@@ -65,7 +65,16 @@ class AsignacionSecretariosController extends ControladorBase{
 						{
 							$asignacionSecretario=new AsignacionSecretariosModel();
 							$_id_asignacion_secretarios = $_GET["id_asignacion_secretarios"];
-							$resultEdit = $asignacionSecretario->getBy("id_asignacion_secretarios = '$_id_asignacion_secretarios' ");
+							
+							$columnas = "B.id_asignacion_secretarios AS id_asignacion_secretarios ,B.id_secretario_asignacion_secretarios AS id_secretario,B.id_abogado_asignacion_secretarios AS id_abogado,
+								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_secretario_asignacion_secretarios) AS secretarios,
+								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_abogado_asignacion_secretarios) AS impulsadores";
+							$tablas   = "asignacion_secretarios B";
+							$where    = "B.id_asignacion_secretarios='$_id_asignacion_secretarios'";
+							$id       = "B.id_asignacion_secretarios";
+							
+							$resultEdit=$asignacionSecretario->getCondiciones($columnas, $tablas, $where, $id);
+							
 							
 							$traza=new TrazasModel();
 							$_nombre_controlador = "Asignacion Secretarios";
@@ -89,7 +98,7 @@ class AsignacionSecretariosController extends ControladorBase{
 						
 					}
 					
-					$columnas = "B.id_asignacion_secretarios AS id_asignacion_secretarios ,
+					$columnas = "B.id_asignacion_secretarios AS id_asignacion_secretarios ,B.id_secretario_asignacion_secretarios AS id_secreatrio,B.id_abogado_asignacion_secretarios AS id_abogado,
 								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_secretario_asignacion_secretarios) AS secretarios,
 								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_abogado_asignacion_secretarios) AS impulsadores";
 					$tablas   = "asignacion_secretarios B";
@@ -193,6 +202,9 @@ class AsignacionSecretariosController extends ControladorBase{
 		if (isset ($_POST["id_usuarioSecretario"]) && isset ($_POST["id_usuarioImpulsor"]) )
 				
 			{
+				
+				
+				
 				$asignacionSecretarios=new AsignacionSecretariosModel();
 				$_id_secretario = $_POST["id_usuarioSecretario"];
 				$_id_impulsor = $_POST["id_usuarioImpulsor"];
@@ -241,15 +253,28 @@ class AsignacionSecretariosController extends ControladorBase{
 							
 							}
 							
-					}else
+					}else if(isset ($_POST["id_asignacion_secretarios_hidden"]))
+						
 						{
-							//$RsptaAbogado="ABOGADO IMPULSOR YA SE ENCUENTRA ASIGNADO";
+							$_id_asig_secretario = $_POST["id_asignacion_secretarios_hidden"];
+							$_id_impulsor = $_POST["id_usuarioImpulsor"];
+							$_id_secretario = $_POST["id_usuarioSecretario"];
 							
+							$colval = " id_secretario_asignacion_secretarios = '$_id_secretario'   ";
+							$tabla = "asignacion_secretarios";
+							$where = "id_asignacion_secretarios = '$_id_asig_secretario'";
+								
+							$resultado=$asignacionSecretarios->UpdateBy($colval, $tabla, $where);
 							$this->redirect("AsignacionSecretarios", "index");
 							
+							
+							
+						}else{
+							//$RsptaAbogado="ABOGADO IMPULSOR YA SE ENCUENTRA ASIGNADO";
+							$this->redirect("AsignacionSecretarios", "index");
 						}
 		
-			}
+			}//termina if de validar ddl 
 		}
 		else
 		{

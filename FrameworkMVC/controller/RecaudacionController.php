@@ -241,6 +241,45 @@ class RecaudacionController extends ControladorBase{
 					
 					
 				}
+				
+				if(isset($_POST["Buscar"])){
+					
+					$desde=$_POST["fecha_desde"];
+					$hasta=$_POST["fecha_hasta"];
+					
+					$where="";
+						
+					$columnas = "recaudacion_cabeza.id_recaudacion_cabeza, 
+						recaudacion_cabeza.id_recaudacion_institucion, 
+						recaudacion_institucion.nombre_recaudacion_institucion, 
+						recaudacion_cabeza.fecha_creacion_recaudacion_cabeza, 
+						recaudacion_cabeza.hora_creacion_recaudacion_cabeza,  
+						recaudacion_cabeza.cantidad_registros_recaudacion_cabeza, 
+						recaudacion_cabeza.valor_total_dolares_recaudacion_cabeza,  
+						recaudacion_cabeza.creado";
+					$tablas="public.recaudacion_institucion, public.recaudacion_cabeza";
+					
+					$id="fecha_creacion_recaudacion_cabeza , hora_creacion_recaudacion_cabeza";
+						
+					if($desde==null && $hasta==null){
+						$where="recaudacion_cabeza.id_recaudacion_institucion = recaudacion_institucion.id_recaudacion_institucion";
+					}else{
+						$where="recaudacion_cabeza.id_recaudacion_institucion = recaudacion_institucion.id_recaudacion_institucion
+						AND
+						recaudacion_cabeza.fecha_creacion_recaudacion_cabeza BETWEEN '$desde' AND '$hasta' ";
+					}
+					
+					$asd=$desde."  ".$hasta;
+					/*
+					$this->view("Error",array(
+							"resultado"=>$where
+					));
+					exit();*/
+					
+						
+					$resultSet=$recaudacion_cabeza->getCondiciones($columnas ,$tablas , $where, $id);
+					
+				}
 					
 					
 				$this->view("Recaudacion",array(

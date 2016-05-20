@@ -53,7 +53,12 @@
             </li>
 			<li><a href="index.php?controller=FirmasDigitales&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Firmas Digitales</span> </a>
             </li>
-            <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
+                     </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+                    <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
             </li>
 
             	<li><a href="index.php?controller=TipoJuicios&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Juicios</span> </a>
@@ -78,6 +83,7 @@
 			</li>
           </ul>
         </li>
+
          <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Consultas" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -97,6 +103,7 @@
             </li>
             <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Citaciones</span> </a>
             </li>
+
       </ul>
       
 

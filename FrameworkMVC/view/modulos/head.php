@@ -23,9 +23,8 @@
 		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
- 
-	
-	
+		
+        
 	
 	
 	
@@ -43,8 +42,10 @@
   </div>
   <!-- aqui va el la class pull-right.... -->
   
+  
   <div  style="margin-top: 20px;" class="col-xs-3 col-md-3">
  		<div class="">
+ 		
  		<p> <strong> <?php echo CLIENTE?>  </strong>  </p>
  		</div>	
 		<?php  
@@ -52,6 +53,8 @@
 			 $status = session_status();
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
+		
+		
 		
 		 	 <div class="dropdown">
 				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><?php echo " Bienvenid@  ".$_SESSION['nombre_usuarios'];?></span>
@@ -65,8 +68,8 @@
 				  
 			</div>
 		 	
-	
 		 	
+
 		    
 		    <?php  ?> 
 		<?php 
@@ -80,12 +83,13 @@
 					  
 					  </button>
 					  
-				</div>
+		    </div>
 		<?php }
 				
 		 ?>
    </div>  
   
+
 <!-- aqui termina la class pull-right -->
 
  
@@ -93,6 +97,7 @@
         
 </div>
 
+   
 </body>
 </html>
 
