@@ -14,8 +14,6 @@
 		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
- 
-   
         <style>
             input{
                 margin-top:5px;
@@ -24,34 +22,10 @@
             .right{
                 float:right;
             }
-                
-            
+        
         </style>
-        
-        
-       	<script>
-
-		$(document).ready(function(){
-
-		    $("#guardar").submit(function() {
-
-
-		    	if (   $('#clave_usuarios').val()) ==  $('#clave_usuario_r').val()) )
-		    	{
-					
-	    	    }
-				else
-				{
-					alert('Clave no coinciden');
-					
-				}
-
-
-			  });
-
-		}); 
-
-	</script>
+       
+       	
         
         
     </head>
@@ -98,8 +72,7 @@
             		
             	</tr>
                 <tr>
-                	
-                   <td> <input type="email" name="correo_usuarios" value="<?php echo $resEdit->correo_usuarios; ?>" class="form-control"/> </td>
+                	 <td> <input type="email" name="correo_usuarios" value="<?php echo $resEdit->correo_usuarios; ?>" class="form-control"/> </td>
                 </tr>
            	
 		    </table>        

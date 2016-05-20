@@ -17,42 +17,29 @@
  		<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
    
   
-  
-  <script >
+ 
+ 
+        <script >
 		$(document).ready(function(){
 
 		    // cada vez que se cambia el valor del combo
-		    $("#ciudad").change(function() {
+		    $("#id_ciudad").change(function() {
 				
                // 
-                var $usuarios = $("#usuarios");
-
-               // lo vaciamos
-               
-				///obtengo el id seleccionado
-				
-
+               var $secretarios = $("#id_secretarios");
+               $secretarios.empty();	
                var id_ciudad = $(this).val();
-
-
-               $usuarios.empty();
-
-               
                if(id_ciudad > 0)
                {
-            	   
             	   var datos = {
             			   id_ciudad : $(this).val()
                    };
 
-            	   $usuarios.append("<option value= " +"0" +" > --SIN ESPECIFICAR--</option>");
-            	           
-                   
-                  
-            	   $.post("<?php echo $helper->url("AsignacionSecretarios","devuelveUsuarios"); ?>", datos, function(resultUsu) {
+            	  
+            	   $.post("<?php echo $helper->url("Secretarios","returnSecretariosbyciudad"); ?>", datos, function(resultUsuarioSecretarioC) {
 
-            		 		$.each(resultUsu, function(index, value) {
-            		 			$usuarios.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+            		 		$.each(resultUsuarioSecretarioC, function(index, value) {
+            		 		$secretarios.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
                        		 });
 
             		 		 	 		   
@@ -73,9 +60,52 @@
 		    
 		}); 
 
-	</script>
+	   </script>
+   
   
   
+        <script >
+		$(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#id_ciudad").change(function() {
+				
+               // 
+               var $impulsores = $("#id_impulsores");
+               $impulsores.empty();	
+               var id_ciudad = $(this).val();
+               if(id_ciudad > 0)
+               {
+            	   var datos = {
+            			   id_ciudad : $(this).val()
+                   };
+
+            	  
+            	   $.post("<?php echo $helper->url("Secretarios","returnImpulsoresbyciudad"); ?>", datos, function(resultUsuarioImpulsor) {
+
+            		 		$.each(resultUsuarioImpulsor, function(index, value) {
+            		 		$impulsores.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                       		 });
+
+            		 		 	 		   
+            		  }, 'json');
+
+
+               }
+               else
+               {
+            	  
+               }
+               
+		    });
+
+
+		   
+		   
+		    
+		}); 
+
+	   </script>
   
   
   
@@ -518,8 +548,46 @@
 		    
 		     <?php } } else {?>
 		    
-		    <div class="row">
+		   
+		   
+		   
+		   <div class="row">
+			  	
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Ciudad </p>
+			  		<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+					<?php foreach($resultCiu as $resCiu) {?>
+						<option value="<?php echo $resCiu->id_ciudad; ?>"  ><?php echo $resCiu->nombre_ciudad; ?> </option>
+			        <?php } ?>
+				</select> 
+				<div id="mensaje_provincia" class="errores"></div>
+			  </div>
+			  
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Secretarios </p>
+			  	<select name="id_secretarios" id="id_secretarios"  class="form-control" >
+					<option value="0"  > -- SIN ESPECIFICAR -- </option>			
+		    	</select>
+				<div id="mensaje_canton" class="errores"></div>	
+			  </div>
+		   </div>
+		   
+		   
+		   <div class="row">
+		   <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Impulsores </p>
+			  	<select name="id_impulsores" id="id_impulsores"  class="form-control" >
+					<option value="0"  > -- SIN ESPECIFICAR -- </option>			
+		    	</select>
+				<div id="mensaje_canton" class="errores"></div>	
+			  </div>
+		    </div>
+		   
+		   
+		   
 		    
+<<<<<<< HEAD
+=======
 		    
 		    <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
 	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control">
@@ -534,6 +602,7 @@
 		   
 		    
 		      </div>
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 		    
 		    
 	            	<div class="row">

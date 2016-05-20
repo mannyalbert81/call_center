@@ -266,29 +266,9 @@ public function index(){
 	
 	
 	
-		//Creamos el objeto usuario
-		//$recaudacion_cabeza = new RecaudacionCabezaModel();
-		//$recaudacion_institucion = new RecaudacionInstitucionModel();
-	
 		$clientes = new ClientesModel();
-	
-	
-		//$columnas = "recaudacion_cabeza.id_recaudacion_cabeza, recaudacion_cabeza.id_recaudacion_institucion, recaudacion_institucion.nombre_recaudacion_institucion, recaudacion_cabeza.fecha_creacion_recaudacion_cabeza, recaudacion_cabeza.hora_creacion_recaudacion_cabeza,  recaudacion_cabeza.cantidad_registros_recaudacion_cabeza, recaudacion_cabeza.valor_total_dolares_recaudacion_cabeza,  recaudacion_cabeza.creado";
-		//$tablas   = "public.recaudacion_institucion, public.recaudacion_cabeza";
-		//$where    = "recaudacion_cabeza.id_recaudacion_institucion = recaudacion_institucion.id_recaudacion_institucion";
-		//$id = "fecha_creacion_recaudacion_cabeza , hora_creacion_recaudacion_cabeza";
-		//$id_dos = "nombre_recaudacion_institucion";
-	
-	//	$resultSet=$recaudacion_cabeza->getCondiciones($columnas, $tablas, $where, $id);
-		//$resultInsRec = $recaudacion_institucion->getAll($id_dos);
-	
-	
-	
-		$resultEdit = "";
-	
-	
-		session_start();
-	
+	    $resultEdit = "";
+	    session_start();
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
@@ -306,7 +286,9 @@ public function index(){
 				if (isset ($_POST["procesar"]) )
 				{
 					$clientes = new ClientesModel();
+					$ciudad = new CiudadModel();
 					$tipo_identificacion = new TipoIdentificacionModel();
+					$tipo_persona= new TipoPersonaModel();
 					$directorio = $_SERVER['DOCUMENT_ROOT'].'/cartera/';
 	
 					$nombre = $_FILES['archivo']['name'];
@@ -337,18 +319,18 @@ public function index(){
 							
 							$funcion = "ins_clientes";
 	
-							$_identificacion =substr($lectura_linea,0,1);
-							if ($_identificacion == "C")
+							$_id_tipo_identificacion =substr($lectura_linea,0,1);
+							if ($_id_tipo_identificacion == "C")
 							{
 								$_nombre_tipo_identificacion = "CEDULA";
 								
 							}
-							if ($_identificacion == "R")
+							if ($_id_tipo_identificacion == "R")
 							{
 								$_nombre_tipo_identificacion = "RUC";
 							
 							}
-							if ($_identificacion == "P")
+							if ($_id_tipo_identificacion == "P")
 							{
 								$_nombre_tipo_identificacion = "PASAPORTE";
 									
@@ -371,11 +353,59 @@ public function index(){
 							
 							$_identificacion_clientes = substr($lectura_linea,1,13);
 							$_nombres_clientes = substr($lectura_linea,14,100);
-							$_telefono_clientes = substr($lectura_linea,114,124);
-							$_celular_clientes = substr($lectura_linea,238,248);
-							$_direccion_clientes = substr($lectura_linea,486,686);
-							$_id_ciudad = substr($lectura_linea,1172,1173);
-							$_id_tipo_persona = substr($lectura_linea,2345,2346);
+							$_telefono_clientes = substr($lectura_linea,114,10);
+							$_celular_clientes = substr($lectura_linea,124,10);
+							$_direccion_clientes = substr($lectura_linea,134,200);
+							
+							
+							$_id_ciudad =substr($lectura_linea,334,5);
+							
+							
+								
+							$where = "codigo_ciudad = '$_id_ciudad' ";
+								
+								
+							$resultCiu = $ciudad->getBy($where);
+							
+							foreach($resultCiu as $res)
+							{
+							
+								$_id_ciudad =   $res->id_ciudad;
+							}
+							
+							
+							
+							$_id_tipo_persona = substr($lectura_linea,339,1);
+							if ($_id_tipo_persona == "N")
+							{
+								$_nombre_tipo_persona = "Natural";
+									
+							}
+							if ($_id_tipo_persona == "J")
+							{
+								$_nombre_tipo_persona = "Juridica";
+									
+							}
+								
+							
+							$where = "nombre_tipo_persona = '$_nombre_tipo_persona' ";
+							
+							
+							$resultTipoPer = $tipo_persona->getBy($where);
+								
+							foreach($resultTipoPer as $res)
+							{
+									
+								$_id_tipo_persona =   $res->id_tipo_persona;
+							}
+							
+							
+							
+							
+							
+							
+							
+							
 								
 							$parametros = " '$_id_tipo_identificacion' ,'$_identificacion_clientes' , '$_nombres_clientes' , '$_telefono_clientes' , '$_celular_clientes', '$_direccion_clientes', '$_id_ciudad' , '$_id_tipo_persona' ";
 							$clientes->setFuncion($funcion);
