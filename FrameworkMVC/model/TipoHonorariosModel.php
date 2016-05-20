@@ -1,4 +1,5 @@
 <?php
+
 class TipoHonorariosModel extends ModeloBase{
 	
 	private $table;
@@ -39,6 +40,7 @@ class TipoHonorariosModel extends ModeloBase{
 	
 	public function __construct(){
 		$this->table="tipo_honorarios";
+
 		
 		parent::__construct($this->table);
 	}
@@ -53,7 +55,6 @@ class TipoHonorariosModel extends ModeloBase{
 			
 		return  $resultado;
 	}
-	
 	
 	
 }

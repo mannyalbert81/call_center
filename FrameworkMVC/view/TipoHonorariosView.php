@@ -1,10 +1,11 @@
-<!DOCTYPE HTML>
+
+   <!DOCTYPE HTML>
 <html lang="es">
 
       <head>
       
         <meta charset="utf-8"/>
-        <title>Tipo Honorarios - aDocument 2015</title>
+        <title>Tipo de Honorarios - aDocument 2015</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -36,39 +37,54 @@
                 
             
         </style>
-       
-    <script >
-    $(document).ready(function(){
+         
+         <script >
+		$(document).ready(function(){
 
-        $("#Guardar").click(function(){
-
-        	var ltCredito = $("#nombre_ltcredito").val();
-
-			if (ltCredito == "")
-	    	{
-				$("#mensaje_nombre_ltcredito").text("INGRESE INFORMACION REQUERIDA");
-	    		$("#mensaje_nombre_ltcredito").fadeIn("slow"); //Muestra mensaje de error
-	            return false;
-		    }
-	    	else 
-	    	{
-	    		$("#mensaje_nombre_ltcredito").fadeOut("slow"); //Muestra mensaje de error
-	    		
-	            
-			}    
+		    // cada vez que se cambia el valor del combo
+		    $("#Guardar").click(function() 
+			{
+		   
+		    	var descripcion_tipo_honorarios = $("#descripcion_tipo_honorarios").val();
+		    
+		   				
+		    	if (nombre_tipo_honorarios == "")
+		    	{
+			    	
+		    		$("#mensaje_nombres").text("Introduzca un tipo de Honorarios ");
+		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
 
 			
-            });
+		    					    
 
-        $( "#nombre_ltcredito" ).focus(function() {
-			  $("#mensaje_nombre_ltcredito").fadeOut("slow");
-		    });
+			}); 
 
+
+		 
+				
+				$( "#nombre_tipo_honorarios" ).focus(function() {
+					$("#mensaje_nombres").fadeOut("slow");
+    			});
+				
+			
 		
+				
+		
+		      
+				    
+		}); 
 
-        });
-	
 	</script>
+
     </head>
     <body style="background-color: #d9e3e4;">
     
@@ -95,7 +111,7 @@
       <form action="<?php echo $helper->url("TipoHonorarios","InsertaTipoHonorarios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             
          
-        	    <h4 style="color:#ec971f;">Insertar Lotes Titulo Credito</h4>
+        	    <h4 style="color:#ec971f;">Insertar Tipos de Honorarios</h4>
             	<hr/>
             	
 		   		
@@ -108,10 +124,10 @@
 			   
 			   <div class="row">
 		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Nombre Tipo Honorario</p>
-			  	<input type="text"  name="nombre_tipohonorario" id="nombre_tipohonorario" value="<?php echo $resEdit->nombre_lotes_titulos_credito; ?>" class="form-control"/> 
-			  	<input type="hidden"  name="id_tipoHonorario"  value="<?php echo $resEdit->id_lotes_titulos_credito; ?>" class="form-control"/> 
-			    <div id="mensaje_tipoHonorario" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Nombres tipos de Honorarios</p>
+			  	<input type="text"  name="descripcion_tipo_honorarios" id="descripcion_tipo_honorarios" value="<?php echo $resEdit->descripcion_tipo_honorarios; ?>" class="form-control"/> 
+			  	<input type="hidden"  name="id_tipo_honorarios"  value="<?php echo $resEdit->id_tipo_honorarios; ?>" class="form-control"/> 
+			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			   </div>
 		    
@@ -119,9 +135,9 @@
 		    
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombre Tipo Honorario</p>
-			  	<input type="text"  name="nombre_tipohonorario" id="nombre_tipohonorario" value="" class="form-control"/> 
-			    <div id="mensaje_tipoHonorario" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Nombres tipos de Honorarios</p>
+			  	<input type="text"  name="descripcion_tipo_honorarios" id="descripcion_tipo_honorarios" value="" class="form-control"/> 
+			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			 </div>
 
@@ -145,7 +161,7 @@
        <!-- termina el form --> 
        
         <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Lotes Titulo Credito</h4>
+            <h4 style="color:#ec971f;">Lista de Tipos de Honorarios</h4>
             <hr/>
         </div>
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
@@ -160,18 +176,18 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_lotes_titulos_credito; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_lotes_titulos_credito; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_tipo_honorarios; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->descripcion_tipo_honorarios; ?>     </td> 
 		              
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("TipoHonorarios","index"); ?>&id_tipoHonorario=<?php echo $res->id_lotes_titulos_credito; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("TipoHonorarios","index"); ?>&id_tipo_honorarios=<?php echo $res->id_tipo_honorarios; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("TipoHonorarios","borrarId"); ?>&id_tipoHonorario=<?php echo $res->id_lotes_titulos_credito; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("TipoHonorarios","borrarId"); ?>&id_tipo_honorarios=<?php echo $res->id_tipo_honorarios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>
@@ -188,6 +204,6 @@
       </section>
       </div>
       </div>
-   
-     </body>  
+   </body>  
+
     </html>   

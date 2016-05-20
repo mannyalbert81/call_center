@@ -155,6 +155,58 @@
 
 	</script>
 	
+	<!-- script para ddl ciudad -->
+	<script>
+	$(document).ready(function(){
+		$("#id_ciudad").change(function(){
+
+            // obtenemos el combo de resultado combo 2
+           var $ddl_secretario = $("#id_usuarioSecretario");
+       	
+
+            // lo vaciamos
+           var ddl_ciudad = $(this).val();
+
+          
+            $ddl_secretario.empty();
+
+          
+            if(ddl_ciudad != 0)
+            {
+            	
+            	 var datos = {
+                   	   
+           			   ciudad:$(this).val()
+                  };
+             	alert("hola");
+            	
+
+
+         	   $.post("<?php echo $helper->url("AsignacionSecretarios","returnSecretariosbyciudad"); ?>", datos, function(resultUsuarioSecretarioC) {
+
+         		 		$.each(resultUsuarioSecretarioC, function(index, value) {
+            		 	    $ddl_resultado.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_resultado.empty();
+
+            }
+		//alert("hola;");
+		});
+		});
+	
+       
+
+	</script>
+	
 	<script>
 	$(document).ready(function(){
 	
@@ -168,8 +220,8 @@
 			{
 				var datos = {id_abgImpulsor:$id_impulsor.val()};
 
-				//alert($id_impulsor.val());
-			   // return false;
+				alert($id_impulsor.val());
+			    return false;
 				  
 				$.post("<?php echo $helper->url("AsignacionSecretarios","CompruebaImpulsores"); ?>",datos, function(ressultAsg) 
 						{
@@ -389,10 +441,11 @@
 	            	<div class="col-xs-12 col-md-12" style="margin-top: 20px;">
 	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control">
 									<?php foreach($resultCiu as $resCiudad) {?>
-				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" ><?php if ($resCiudad->id_ciudad == $resEdit->id_usuario )  echo  ' selected="selected" '  ;  ?> ><?php echo $resCiudad->nombre_ciudad; ?> </option>
+				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" > <?php echo $resCiudad->nombre_ciudad; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
+					
 		   		   </div>
 	            	 </div>
 	            	
@@ -425,20 +478,16 @@
 		    
 		    
 		    <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
-	            	Cuidad: <select name="ciudad" id="ciudad"  class="form-control">
+	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control">
 									<?php foreach($resultCiu as $resCiudad) {?>
 				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" ><?php echo $resCiudad->nombre_ciudad; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
 		   		   </div>
+		   		   <hr>
 		    
-		    <div class="col-xs-6 col-md-3">
-				  	<p   class="formulario-subtitulo" >secretarios </p>
-					<select name="usuarios" id="usuarios"  class="form-control" style="	width: 200px;">
-						<option value="0"  > -- SIN ESPECIFICAR -- </option>
-					</select>
-			   	  </div>
+		   
 		    
 		      </div>
 		    
@@ -480,6 +529,7 @@
        
         <div class="col-lg-8">
             <h4 style="color:#ec971f;">Asignacion Secretarios</h4>
+           
              <!-- empieza formulario de busqueda -->
      
             <hr>
@@ -517,6 +567,7 @@
           </form>
           
        <!-- termina formulario de busqueda -->
+       
         <hr/>
         </div>
            
