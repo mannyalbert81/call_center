@@ -154,7 +154,7 @@ class TipoHonorariosController extends ControladorBase{
 				$resultado=$tipo_honorarios->Insert();
 			 
 				$traza=new TrazasModel();
-				$_nombre_controlador = "Tipo Descripcion";
+				$_nombre_controlador = "Tipo Honorarios";
 				$_accion_trazas  = "Guardar";
 				$_parametros_trazas = $_descripcion_tipo_honorarios;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);

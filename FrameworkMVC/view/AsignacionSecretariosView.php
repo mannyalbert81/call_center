@@ -178,14 +178,14 @@
                    	   
            			   ciudad:$(this).val()
                   };
-             	alert("hola");
+             
             	
 
 
          	   $.post("<?php echo $helper->url("AsignacionSecretarios","returnSecretariosbyciudad"); ?>", datos, function(resultUsuarioSecretarioC) {
 
          		 		$.each(resultUsuarioSecretarioC, function(index, value) {
-            		 	    $ddl_resultado.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+            		 	    $ddl_secretario.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
                     		 });
 
          		 		 	 		   
@@ -197,6 +197,50 @@
             {
                 
          	   $ddl_resultado.empty();
+
+            }
+		//alert("hola;");
+		});
+
+		$("#id_ciudad").change(function(){
+
+            // obtenemos el combo de resultado combo 2
+           var $ddl_impulsor = $("#id_usuarioImpulsor");
+       	
+
+            // lo vaciamos
+           var ddl_ciudad = $(this).val();
+
+          
+            $ddl_impulsor.empty();
+
+          
+            if(ddl_ciudad != 0)
+            {
+            	
+            	 var datos = {
+                   	   
+           			   ciudad:$(this).val()
+                  };
+             
+            	
+
+
+         	   $.post("<?php echo $helper->url("AsignacionSecretarios","returnImpulsorbyciudad"); ?>", datos, function(resultUsuarioImpulC) {
+
+         		 		$.each(resultUsuarioImpulC, function(index, value) {
+            		 	    $ddl_impulsor.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_impulsor.empty();
 
             }
 		//alert("hola;");
@@ -438,8 +482,8 @@
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	            	
 	            	<div class="row">
-	            	<div class="col-xs-12 col-md-12" style="margin-top: 20px;">
-	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control">
+	            	<div class="col-xs-12 col-md-12" style="margin-top: 20px; ">
+	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control" disabled>
 									<?php foreach($resultCiu as $resCiudad) {?>
 				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" > <?php echo $resCiudad->nombre_ciudad; ?> </option>
 						            <?php } ?>

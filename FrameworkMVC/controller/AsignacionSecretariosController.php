@@ -398,6 +398,24 @@ class AsignacionSecretariosController extends ControladorBase{
 		echo json_encode($resultAcc);
 	
 	}
+	
+	public function returnImpulsorbyciudad()
+	{
+	
+		//CONSULTA DE USUARIOS POR SU ROL
+		$idciudad=(int)$_POST["ciudad"];
+		$usuarios=new UsuariosModel();
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios,ciudad,rol";
+		$id="rol.id_rol";
+	
+		$where="rol.id_rol=usuarios.id_rol AND usuarios.id_ciudad=ciudad.id_ciudad
+		AND rol.nombre_rol='ABOGADO IMPULSOR' AND ciudad.id_ciudad='$idciudad'";
+	
+		$resultUsuarioImpulC=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultUsuarioImpulC);
+	}
 		public function returnSecretariosbyciudad()
 	{
 		
