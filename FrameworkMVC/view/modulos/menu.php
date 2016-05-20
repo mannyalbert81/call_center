@@ -81,6 +81,12 @@
             </li>
             <li><a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Personas</span> </a>
 			</li>
+
+			<li><a href="index.php?controller=OrigenCartera&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Origen de Cartera</span> </a>
+			</li>
+			<li><a href="index.php?controller=Ciudad&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Ciudades</span> </a>
+			</li>
+
           </ul>
         </li>
 
