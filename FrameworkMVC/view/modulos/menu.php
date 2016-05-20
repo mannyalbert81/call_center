@@ -53,7 +53,12 @@
             </li>
 			<li><a href="index.php?controller=FirmasDigitales&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Firmas Digitales</span> </a>
             </li>
-            <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
+                     </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+                    <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
             </li>
 
             	<li><a href="index.php?controller=TipoJuicios&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Juicios</span> </a>
@@ -76,12 +81,45 @@
             </li>
             <li><a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Personas</span> </a>
 			</li>
+
 			<li><a href="index.php?controller=OrigenCartera&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Origen de Cartera</span> </a>
 			</li>
 			<li><a href="index.php?controller=Ciudad&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Ciudades</span> </a>
 			</li>
+
           </ul>
         </li>
+        
+         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Consultas" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Convenios</span> </a>
+           </li>
+           <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Juicios</span> </a>
+            </li>
+            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Pagos</span> </a>
+            </li>
+            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Pagos Detalle</span> </a>
+            </li>
+            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Operaciones Coactiva</span> </a>
+            </li>
+            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Titulos Asignados Vencidos</span> </a>
+            </li>
+            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Citaciones</span> </a>
+            </li>
+            
+               
+           
+          </ul>
+                
+        </li>
+          
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Auditoria" ;?> </span> <span class="caret"></span></a>
+             <ul class="dropdown-menu">
+
+              <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Actividades</span> </a>
+             </li>  
       </ul>
       
 

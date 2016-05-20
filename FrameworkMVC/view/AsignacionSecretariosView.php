@@ -325,19 +325,19 @@
 	            	
 	            	
 	            	<div class="row">
-	            	
+	            	<input type="hidden" id="id_asignacion_secretarios_hidden" name="id_asignacion_secretarios_hidden" value="<?php echo $resEdit->id_asignacion_secretarios ?>">
 	            	<div class="col-xs-12 col-md-12" style="margin-top: 20px;">
 	            	Nombre Secretario: <select name="id_usuarioSecretario" id="id_usuarioSecretario"  class="form-control">
 									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
-				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" <?php if ($resSecretario->id_usuarios == $resSecretario->id_usuarios )  echo  ' selected="selected" '  ;  ?> ><?php echo $resSecretario->nombre_usuarios; ?> </option>
+				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" <?php if ($resSecretario->id_usuarios == $resEdit->id_secretario )  echo  ' selected="selected" '  ;  ?> ><?php echo $resSecretario->nombre_usuarios; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
 		   		   </div>
 		   		   <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
 	            	 Nombre Abogado Impulsor: <select name="id_usuarioImpulsor" id="id_usuarioImpulsor"  class="form-control">
-									<?php foreach($resultUsuarioImpulsor as $resImpulsor) {?>
-				 						<option value="<?php echo $resImpulsor->id_usuarios; ?>" <?php if ($resImpulsor->id_usuarios == $resImpulsor->id_usuarios )  echo  ' selected="selected" '  ;  ?> ><?php echo $resImpulsor->nombre_usuarios; ?> </option>
+									<?php foreach($resultEdit as $resEdit) {?>
+				 						<option value="<?php echo $resEdit->id_abogado; ?>" <?php if ($resEdit->id_asignacion_secretarios == $resEdit->id_asignacion_secretarios )  echo  ' selected="selected" '  ;  ?> ><?php echo $resEdit->impulsadores; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
@@ -447,7 +447,7 @@
 		               
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("AsignacionSecretarios","index"); ?>&id_asignacion_secretarios=<?php echo $res->id_asignacion_secretarios; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("AsignacionSecretarios","index"); ?>&id_asignacion_secretarios=<?php echo $res->id_asignacion_secretarios ?>" class="btn btn-warning" style="font-size:65%;">Reasignar</a>
 			                </div>
 			            
 			             </td>

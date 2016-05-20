@@ -43,28 +43,28 @@
 		    // cada vez que se cambia el valor del combo
 		    $("#Guardar").click(function() 
 			{
-				var nombre_notificacion = $("#desc_tipoNotificacion").val();
+				var descripcion_notificacion = $("#descripcion_notificacion").val();
 		    
 		   				
-		    	if (nombre_notificacion =="")
+		    	if (descripcion_notificacion =="")
 		    	{
 			    	
-		    		$("#mensaje_notificacion").text("Introduzca un tipo de notificacion ");
-		    		$("#mensaje_notificacion").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_descripcion_notificacion").text("Introduzca un tipo de notificacion ");
+		    		$("#mensaje_descripcion_notificacion").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_notificacion").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_descripcion_notificacion").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
 		   
 			}); 
 
 	
-				$("#mensaje_notificacion").focus(function() {
+				$("#descripcion_notificacion").focus(function() {
 					
-					$("#mensaje_notificacion").fadeOut("slow");
+					$("#mensaje_descripcion_notificacion").fadeOut("slow");
     			});
 
 			}); 
@@ -108,11 +108,11 @@
         
 			   
 			   <div class="row">
-		       <div class="col-xs-12 col-md-12">
+		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Nombre Tipo Notificación</p>
-			  	<input type="text"  name="desc_tiponotificacion" id="desc_tiponotificacion" value="<?php echo $resEdit->descripcion_notificacion; ?>" class="form-control"/> 
+			  	<input type="text"  name="descripcion_notificacion" id="descripcion_notificacion" value="<?php echo $resEdit->descripcion_notificacion; ?>" class="form-control"/> 
 			  	<input type="hidden"  name="id_tipo_notificacion"  value="<?php echo $resEdit->id_tipo_notificacion; ?>" class="form-control"/> 
-			    <div id="mensaje_notificacion" class="errores"></div>
+			    <div id="mensaje_descripcion_notificacion" class="errores"></div>
 			  </div>
 			   </div>
 		    
@@ -121,8 +121,8 @@
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo">Nombre Tipo Notificación</p>
-			  	<input type="text"  name="desc_tipoNotificacion" id="desc_tipoNotificacion" value="" class="form-control"/> 
-			    <div id="mensaje_notificacion" class="errores"></div>
+			  	<input type="text"  name="descripcion_notificacion" id="descripcion_notificacion" value="" class="form-control"/> 
+			    <div id="mensaje_descripcion_notificacion" class="errores"></div>
 			  </div>
 			 </div>
 
