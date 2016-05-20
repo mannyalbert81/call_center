@@ -103,7 +103,7 @@ class OrigenCarteraController extends ControladorBase{
 		session_start();
 
 		
-		$tipo_persona=new OrigenCarteraModel();
+		$origen_cartera=new OrigenCarteraModel();
 		$nombre_controladores = "OrigenCartera";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $origen_cartera->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
