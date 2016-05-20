@@ -345,13 +345,7 @@ class AsignacionSecretariosController extends ControladorBase{
 	}
 	
 	
-	
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
-	
-	
+
 	
 	public function devuelveAcciones()
 	{

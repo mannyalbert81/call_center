@@ -585,10 +585,7 @@
 		   
 		   
 		   
-		    
-<<<<<<< HEAD
-=======
-		    
+
 		    <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
 	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control">
 									<?php foreach($resultCiu as $resCiudad) {?>
@@ -602,7 +599,7 @@
 		   
 		    
 		      </div>
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
+
 		    
 		    
 	            	<div class="row">
