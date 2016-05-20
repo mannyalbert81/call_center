@@ -24,14 +24,11 @@ class AsignacionSecretariosController extends ControladorBase{
 			$nombre_controladores = "PermisosRoles";
 			$id_rol= $_SESSION['id_rol'];
 			
-			$ciudad=new CiudadModel();
+			$ciudad = new CiudadModel();
 			$resultCiu = $ciudad->getAll("nombre_ciudad");
 			
-			$secretarios=new UsuariosModel();
-			$resultSecre = $secretarios->getAll("nombre_usuarios");
-			
-			$impulsores=new UsuariosModel();
-			$resultImp = $impulsores->getAll("nombre_usuarios");
+			$usuarios=new UsuariosModel();
+			$resultUsu = $usuarios->getAll("nombre_usuarios");
 			
 			$resultPer = $permisos_rol->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
@@ -165,7 +162,7 @@ class AsignacionSecretariosController extends ControladorBase{
 					
 					$this->view("AsignacionSecretarios",array(
 							
-							"resultCon"=>$resultCon,"resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultUsuarioSecretario"=>$resultUsuarioSecretario,"resultUsuarioImpulsor"=>$resultUsuarioImpulsor,"resultAsignacion"=>$resultAsignacion,"resultCiu"=>$resultCiu,"resultSecre"=>$resultSecre,"resultImp"=>$resultImp 
+							"resultCon"=>$resultCon,"resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultUsuarioSecretario"=>$resultUsuarioSecretario,"resultUsuarioImpulsor"=>$resultUsuarioImpulsor,"resultAsignacion"=>$resultAsignacion, "resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu
 					));
 			
 			
@@ -344,7 +341,11 @@ class AsignacionSecretariosController extends ControladorBase{
 		
 	}
 	
-
+	
+	
+	
+	
+	
 	public function devuelveAcciones()
 	{
 		$resultAcc = array();
