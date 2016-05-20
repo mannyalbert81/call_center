@@ -24,11 +24,14 @@ class AsignacionSecretariosController extends ControladorBase{
 			$nombre_controladores = "PermisosRoles";
 			$id_rol= $_SESSION['id_rol'];
 			
-			$ciudad = new CiudadModel();
+			$ciudad=new CiudadModel();
 			$resultCiu = $ciudad->getAll("nombre_ciudad");
 			
-			$usuarios=new UsuariosModel();
-			$resultUsu = $usuarios->getAll("nombre_usuarios");
+			$secretarios=new UsuariosModel();
+			$resultSecre = $secretarios->getAll("nombre_usuarios");
+			
+			$impulsores=new UsuariosModel();
+			$resultImp = $impulsores->getAll("nombre_usuarios");
 			
 			$resultPer = $permisos_rol->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
@@ -159,7 +162,7 @@ class AsignacionSecretariosController extends ControladorBase{
 					
 					$this->view("AsignacionSecretarios",array(
 							
-							"resultCon"=>$resultCon,"resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultUsuarioSecretario"=>$resultUsuarioSecretario,"resultUsuarioImpulsor"=>$resultUsuarioImpulsor,"resultAsignacion"=>$resultAsignacion, "resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu
+							"resultCon"=>$resultCon,"resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultUsuarioSecretario"=>$resultUsuarioSecretario,"resultUsuarioImpulsor"=>$resultUsuarioImpulsor,"resultAsignacion"=>$resultAsignacion,"resultCiu"=>$resultCiu,"resultSecre"=>$resultSecre,"resultImp"=>$resultImp 
 					));
 			
 			
@@ -341,55 +344,7 @@ class AsignacionSecretariosController extends ControladorBase{
 	
 	
 	
-	public function devuelveUsuarios()
-	{
-		session_start();
-		$resultUsu = array();
 	
-		if(isset($_POST["id_ciudad"]))
-		{
-	
-			$id_ciudad=(int)$_POST["id_ciudad"];
-	
-			$usuarios= new UsuariosModel();
-			//$ciudad =new CiudadModel();
-			//$provincias=new ProvinciasModel();
-	
-			$resultUsu = $usuarios->getBy(" id_ciudad = '$id_ciudad'  ");
-	
-	
-		}
-	
-		echo json_encode($resultCiu);
-	
-	}
-	
-	
-	
-	public function devuelveSecretarios()
-	{
-		session_start();
-		$resultSecret = array();
-	
-	
-		if(isset($_POST["id_usuarios"]))
-		{
-	
-			$id_usuarios=(int)$_POST["id_usuarios"];
-	
-			$secretarios= new UusariosModel();
-			//$canton=new CantonModel();
-	
-			$resultSecret = $secretarios->getBy(" id_usuarios = '$id_usuarios'  ");
-	
-	
-		}
-	
-			
-		echo json_encode($resultSecret);
-	
-	}
-		
 	
 	
 	
