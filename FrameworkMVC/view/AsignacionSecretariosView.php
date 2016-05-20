@@ -518,9 +518,50 @@
 		    
 		     <?php } } else {?>
 		    
+
+		   
+		   
+		   
+		   <div class="row">
+			  	
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Ciudad </p>
+			  		<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+					<?php foreach($resultCiu as $resCiu) {?>
+						<option value="<?php echo $resCiu->id_ciudad; ?>"  ><?php echo $resCiu->nombre_ciudad; ?> </option>
+			        <?php } ?>
+				</select> 
+				<div id="mensaje_provincia" class="errores"></div>
+			  </div>
+			  
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Secretarios </p>
+			  	<select name="id_secretarios" id="id_secretarios"  class="form-control" >
+					<option value="0"  > -- SIN ESPECIFICAR -- </option>			
+		    	</select>
+				<div id="mensaje_canton" class="errores"></div>	
+			  </div>
+		   </div>
+		   
+		   
+		   <div class="row">
+		   <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Impulsores </p>
+			  	<select name="id_impulsores" id="id_impulsores"  class="form-control" >
+					<option value="0"  > -- SIN ESPECIFICAR -- </option>			
+		    	</select>
+				<div id="mensaje_canton" class="errores"></div>	
+			  </div>
+		    </div>
+		   
+		   
+		   
+
+
 		    <div class="row">
 		    
 		    
+
 		    <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
 	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control">
 									<?php foreach($resultCiu as $resCiudad) {?>
@@ -534,6 +575,7 @@
 		   
 		    
 		      </div>
+
 		    
 		    
 	            	<div class="row">

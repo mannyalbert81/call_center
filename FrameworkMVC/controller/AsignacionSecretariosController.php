@@ -342,9 +342,10 @@ class AsignacionSecretariosController extends ControladorBase{
 	}
 	
 	
+
 	
 	
-	
+
 	
 	public function devuelveAcciones()
 	{

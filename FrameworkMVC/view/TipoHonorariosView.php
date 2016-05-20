@@ -23,6 +23,7 @@
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
 		</script>
+
 	
         
         
@@ -41,7 +42,26 @@
          <script >
 		$(document).ready(function(){
 //pasante
-		    // cada vez que se cambia el valor del combo
+
+		
+        
+        
+       <style>
+            input{
+                margin-top:5px;
+                margin-bottom:5px;
+            }
+            .right{
+                float:right;
+            }
+                
+            
+        </style>
+         
+         <script >
+		$(document).ready(function(){
+
+
 		    $("#Guardar").click(function() 
 			{
 		   
