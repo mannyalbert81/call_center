@@ -17,6 +17,68 @@
  		<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
    
   
+  
+  <script >
+		$(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#ciudad").change(function() {
+				
+               // 
+                var $usuarios = $("#usuarios");
+
+               // lo vaciamos
+               
+				///obtengo el id seleccionado
+				
+
+               var id_ciudad = $(this).val();
+
+
+               $usuarios.empty();
+
+               
+               if(id_ciudad > 0)
+               {
+            	   
+            	   var datos = {
+            			   id_ciudad : $(this).val()
+                   };
+
+            	   $usuarios.append("<option value= " +"0" +" > --SIN ESPECIFICAR--</option>");
+            	           
+                   
+                  
+            	   $.post("<?php echo $helper->url("AsignacionSecretarios","devuelveUsuarios"); ?>", datos, function(resultUsu) {
+
+            		 		$.each(resultUsu, function(index, value) {
+            		 			$usuarios.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                       		 });
+
+            		 		 	 		   
+            		  }, 'json');
+
+
+               }
+               else
+               {
+            	  
+               }
+               
+		    });
+
+
+		   
+		   
+		    
+		}); 
+
+	</script>
+  
+  
+  
+  
+  
 	<script>
         
        $(document).ready(function(){
@@ -323,6 +385,16 @@
             
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	            	
+	            	<div class="row">
+	            	<div class="col-xs-12 col-md-12" style="margin-top: 20px;">
+	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control">
+									<?php foreach($resultCiu as $resCiudad) {?>
+				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" ><?php if ($resCiudad->id_ciudad == $resEdit->id_usuario )  echo  ' selected="selected" '  ;  ?> ><?php echo $resCiudad->nombre_ciudad; ?> </option>
+						            <?php } ?>
+								    	
+									</select>
+		   		   </div>
+	            	 </div>
 	            	
 	            	<div class="row">
 	            	<input type="hidden" id="id_asignacion_secretarios_hidden" name="id_asignacion_secretarios_hidden" value="<?php echo $resEdit->id_asignacion_secretarios ?>">
@@ -348,6 +420,28 @@
 		   		   <hr>
 		    
 		     <?php } } else {?>
+		    
+		    <div class="row">
+		    
+		    
+		    <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
+	            	Cuidad: <select name="ciudad" id="ciudad"  class="form-control">
+									<?php foreach($resultCiu as $resCiudad) {?>
+				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" ><?php echo $resCiudad->nombre_ciudad; ?> </option>
+						            <?php } ?>
+								    	
+									</select>
+		   		   </div>
+		    
+		    <div class="col-xs-6 col-md-3">
+				  	<p   class="formulario-subtitulo" >secretarios </p>
+					<select name="usuarios" id="usuarios"  class="form-control" style="	width: 200px;">
+						<option value="0"  > -- SIN ESPECIFICAR -- </option>
+					</select>
+			   	  </div>
+		    
+		      </div>
+		    
 		    
 	            	<div class="row">
 	            	

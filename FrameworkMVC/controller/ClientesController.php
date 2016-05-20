@@ -13,9 +13,7 @@ public function index(){
 			//creacion menu busqueda
 			//$resultMenu=array("1"=>Nombre,"2"=>Usuario,"3"=>Correo,"4"=>Rol);
 			$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Identificación');
-			
-			
-				//Creamos el objeto usuario
+			//Creamos el objeto usuario
 			
 			$tipo_identificacion = new TipoIdentificacionModel();
 			$resultTipoIdent = $tipo_identificacion->getAll("nombre_tipo_identificacion");
@@ -25,8 +23,7 @@ public function index(){
 			
 			$ciudad = new CiudadModel();
 			$resultCiu = $ciudad->getAll("nombre_ciudad");
-	
-			
+	        
 			$clientes = new ClientesModel();
 
 			$nombre_controladores = "Clientes";
@@ -60,9 +57,6 @@ public function index(){
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						
 					}
-			
-					
-					
 				
 			}
 			else
@@ -71,7 +65,6 @@ public function index(){
 						"resultado"=>"No tiene Permisos de Acceso a Clientes"
 			
 				));
-			
 			
 			}
 			
@@ -130,9 +123,7 @@ public function index(){
 						//Conseguimos todos los usuarios con filtros
 						$resultSet=$clientes->getCondiciones($columnas ,$tablas ,$where_to, $id);
 							
-							
-							
-							
+								
 					}
 				}
 			}
@@ -145,11 +136,6 @@ public function index(){
 			));
 			
 			
-			
-			
-			
-			
-		
 		}
 		else 
 		{
@@ -331,7 +317,6 @@ public function index(){
 					
 					$contador = 0;
 					$contador_linea = 0;
-						
 					//$encabezado_linea = "";
 					$contenido_linea = "";
 						
@@ -350,26 +335,27 @@ public function index(){
 							//$encabezado_linea = fgets($file) ;
 							
 							
-							
 							$funcion = "ins_clientes";
 	
 							$_identificacion =substr($lectura_linea,0,1);
-							if ($_identificacion == "R")
-							{
-								$_nombre_tipo_identificacion = "RUC";
-								
-							}
 							if ($_identificacion == "C")
 							{
 								$_nombre_tipo_identificacion = "CEDULA";
+								
+							}
+							if ($_identificacion == "R")
+							{
+								$_nombre_tipo_identificacion = "RUC";
 							
 							}
 							if ($_identificacion == "P")
 							{
-								$_nombre_tipo_identificacion = "PASAPORT";
+								$_nombre_tipo_identificacion = "PASAPORTE";
 									
 							}
+							
 							$where = "nombre_tipo_identificacion = '$_nombre_tipo_identificacion' ";
+							
 							
 							$resultIdent = $tipo_identificacion->getBy($where);
 
@@ -386,10 +372,10 @@ public function index(){
 							$_identificacion_clientes = substr($lectura_linea,1,13);
 							$_nombres_clientes = substr($lectura_linea,14,100);
 							$_telefono_clientes = substr($lectura_linea,114,124);
-							$_celular_clientes = substr($lectura_linea,124,134);
-							$_direccion_clientes = substr($lectura_linea,134,200);
-							$_id_ciudad = substr($lectura_linea,234,5);
-							$_id_tipo_persona = substr($lectura_linea,239,1);
+							$_celular_clientes = substr($lectura_linea,238,248);
+							$_direccion_clientes = substr($lectura_linea,486,686);
+							$_id_ciudad = substr($lectura_linea,1172,1173);
+							$_id_tipo_persona = substr($lectura_linea,2345,2346);
 								
 							$parametros = " '$_id_tipo_identificacion' ,'$_identificacion_clientes' , '$_nombres_clientes' , '$_telefono_clientes' , '$_celular_clientes', '$_direccion_clientes', '$_id_ciudad' , '$_id_tipo_persona' ";
 							$clientes->setFuncion($funcion);
