@@ -238,6 +238,12 @@
 			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_recaudacion_cabeza; ?>" class="btn btn-warning" style="font-size:65%;">Detalle</a>
 			                </div>
 			            
+			           </td>
+			            <td>
+			           		<div class="right">
+			                    <a href="<?php echo $helper->url("RecaudacionDetalle","index"); ?>&id_recaudacion_cabeza=<?php echo $res->id_recaudacion_cabeza; ?>" class="btn btn-warning" style="font-size:65%;">Ver Detalle</a>
+			                </div>
+			            
 			             </td>
 			           
 		    		</tr>

@@ -185,6 +185,102 @@
 
 	</script>
 	
+	<!-- script para ddl ciudad -->
+	<script>
+	$(document).ready(function(){
+		$("#id_ciudad").change(function(){
+
+            // obtenemos el combo de resultado combo 2
+           var $ddl_secretario = $("#id_usuarioSecretario");
+       	
+
+            // lo vaciamos
+           var ddl_ciudad = $(this).val();
+
+          
+            $ddl_secretario.empty();
+
+          
+            if(ddl_ciudad != 0)
+            {
+            	
+            	 var datos = {
+                   	   
+           			   ciudad:$(this).val()
+                  };
+             
+            	
+
+
+         	   $.post("<?php echo $helper->url("AsignacionSecretarios","returnSecretariosbyciudad"); ?>", datos, function(resultUsuarioSecretarioC) {
+
+         		 		$.each(resultUsuarioSecretarioC, function(index, value) {
+            		 	    $ddl_secretario.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_resultado.empty();
+
+            }
+		//alert("hola;");
+		});
+
+		$("#id_ciudad").change(function(){
+
+            // obtenemos el combo de resultado combo 2
+           var $ddl_impulsor = $("#id_usuarioImpulsor");
+       	
+
+            // lo vaciamos
+           var ddl_ciudad = $(this).val();
+
+          
+            $ddl_impulsor.empty();
+
+          
+            if(ddl_ciudad != 0)
+            {
+            	
+            	 var datos = {
+                   	   
+           			   ciudad:$(this).val()
+                  };
+             
+            	
+
+
+         	   $.post("<?php echo $helper->url("AsignacionSecretarios","returnImpulsorbyciudad"); ?>", datos, function(resultUsuarioImpulC) {
+
+         		 		$.each(resultUsuarioImpulC, function(index, value) {
+            		 	    $ddl_impulsor.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_impulsor.empty();
+
+            }
+		//alert("hola;");
+		});
+		});
+	
+       
+
+	</script>
+	
 	<script>
 	$(document).ready(function(){
 	
@@ -198,8 +294,8 @@
 			{
 				var datos = {id_abgImpulsor:$id_impulsor.val()};
 
-				//alert($id_impulsor.val());
-			   // return false;
+				alert($id_impulsor.val());
+			    return false;
 				  
 				$.post("<?php echo $helper->url("AsignacionSecretarios","CompruebaImpulsores"); ?>",datos, function(ressultAsg) 
 						{
@@ -416,13 +512,14 @@
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	            	
 	            	<div class="row">
-	            	<div class="col-xs-12 col-md-12" style="margin-top: 20px;">
-	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control">
+	            	<div class="col-xs-12 col-md-12" style="margin-top: 20px; ">
+	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control" disabled>
 									<?php foreach($resultCiu as $resCiudad) {?>
-				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" ><?php if ($resCiudad->id_ciudad == $resEdit->id_usuario )  echo  ' selected="selected" '  ;  ?> ><?php echo $resCiudad->nombre_ciudad; ?> </option>
+				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" > <?php echo $resCiudad->nombre_ciudad; ?> </option>
 						            <?php } ?>
 								    	
 									</select>
+					
 		   		   </div>
 	            	 </div>
 	            	
@@ -489,6 +586,23 @@
 		   
 		   
 		    
+<<<<<<< HEAD
+=======
+		    
+		    <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
+	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control">
+									<?php foreach($resultCiu as $resCiudad) {?>
+				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" ><?php echo $resCiudad->nombre_ciudad; ?> </option>
+						            <?php } ?>
+								    	
+									</select>
+		   		   </div>
+		   		   <hr>
+		    
+		   
+		    
+		      </div>
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 		    
 		    
 	            	<div class="row">
@@ -528,6 +642,7 @@
        
         <div class="col-lg-8">
             <h4 style="color:#ec971f;">Asignacion Secretarios</h4>
+           
              <!-- empieza formulario de busqueda -->
      
             <hr>
@@ -565,6 +680,7 @@
           </form>
           
        <!-- termina formulario de busqueda -->
+       
         <hr/>
         </div>
            

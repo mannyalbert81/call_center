@@ -109,7 +109,11 @@
             </li>
             <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Citaciones</span> </a>
             </li>
-
+            <li><a href="index.php?controller=Honorarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Honorarios</span> </a>
+            </li>
+            <li><a href="index.php?controller=TipoHonorarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Tipo de Honorarios</span> </a>
+            </li>
+</ul>
       </ul>
       
 

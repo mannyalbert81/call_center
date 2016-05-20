@@ -45,6 +45,9 @@ class AsignacionSecretariosController extends ControladorBase{
 					
 					$usuarios=new UsuariosModel();
 					
+					$where="rol.nombre_rol='CIUDAD'";
+					$resultCiudad=$ciudad->getCondiciones($columnas ,$tablas , $where, $id);
+					
 					$where="rol.nombre_rol='SECRETARIO'";
 					$resultUsuarioSecretario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
 					
@@ -188,8 +191,7 @@ class AsignacionSecretariosController extends ControladorBase{
 		}
 	
 	}
-	
-	
+	 
 	
 	public function InsertaAsignacionSecretarios(){
 
@@ -344,7 +346,10 @@ class AsignacionSecretariosController extends ControladorBase{
 	
 	
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 	
 	
 	
@@ -401,9 +406,46 @@ class AsignacionSecretariosController extends ControladorBase{
 	
 	}
 	
-
+	public function returnImpulsorbyciudad()
+	{
+	
+		//CONSULTA DE USUARIOS POR SU ROL
+		$idciudad=(int)$_POST["ciudad"];
+		$usuarios=new UsuariosModel();
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios,ciudad,rol";
+		$id="rol.id_rol";
+	
+		$where="rol.id_rol=usuarios.id_rol AND usuarios.id_ciudad=ciudad.id_ciudad
+		AND rol.nombre_rol='ABOGADO IMPULSOR' AND ciudad.id_ciudad='$idciudad'";
+	
+		$resultUsuarioImpulC=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultUsuarioImpulC);
+	}
+		public function returnSecretariosbyciudad()
+	{
+		
+		//CONSULTA DE USUARIOS POR SU ROL
+		$idciudad=(int)$_POST["ciudad"];
+		$usuarios=new UsuariosModel();
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios,ciudad,rol";
+		$id="rol.id_rol";
+		
+		$where="rol.id_rol=usuarios.id_rol AND usuarios.id_ciudad=ciudad.id_ciudad
+		AND rol.nombre_rol='SECRETARIO' AND ciudad.id_ciudad='$idciudad'";
+		
+		$resultUsuarioSecretarioC=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultUsuarioSecretarioC);
+	}
+	
+	
+	
 	public function returnSecretarios()
 	{
+	
 		
 		//CONSULTA DE USUARIOS POR SU ROL
 		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
@@ -499,4 +541,4 @@ class AsignacionSecretariosController extends ControladorBase{
 
 	
 }
-?>
+?>      
