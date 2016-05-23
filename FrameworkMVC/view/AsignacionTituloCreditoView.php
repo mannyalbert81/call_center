@@ -339,22 +339,18 @@
   
   <div></div>
     
-      <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("AsignacionTituloCredito","InsertaAsignacionTituloCredito"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-4">
+      <form action="<?php echo $helper->url("AsignacionTituloCredito","InsertaAsignacionTituloCredito"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
             
          
         	    <h4 style="color:#ec971f;">Asignar Titulos Credito</h4>
             	<hr/>
             	
             	
-            	
-		   		
-            
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
             <div class="row">
-	            	<div class="col-xs-6 col-md-6" style="margin-top: 20px; ">
+	            	<div class="col-xs-2 col-md-2" style="margin-top: 20px; ">
 	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control" disabled>
 									<?php foreach($resultCiu as $resCiudad) {?>
 				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" > <?php echo $resCiudad->nombre_ciudad; ?> </option>
@@ -366,7 +362,7 @@
 		   		   </div>
 		   		   
 	            	<div class="row" style="margin-top: 20px;>
-	            	<div class="col-xs-6 col-md-6">
+	            	<div class="col-xs-2 col-md-2">
 			         <p  class="formulario-subtitulo" >Abogado(a)</p>
 	            	 <select name="id_usuarioImpulsor" id="id_usuarioImpulsor"  class="form-control">
 						<option value="0"  > -- SIN ESPECIFICAR -- </option>			
@@ -381,7 +377,7 @@
 		     <?php } } else {?>
 		     
 		    <div class="row">
-		   <div class="col-xs-6 col-md-6">
+		   <div class="col-xs-2 col-md-2">
 			  	<p  class="formulario-subtitulo" >Ciudad</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
 					<?php foreach($resultCiu as $resCiu) {?>
@@ -391,9 +387,9 @@
 			  </div>
 			  
 			  
-		    </div>
-		    <div class="row" style="margin-top: 20px;">
-		    <div class="col-xs-6 col-md-6">
+		
+		  
+		    <div class="col-xs-2 col-md-2">
 			  <p  class="formulario-subtitulo" >Abogado(a)</p>
 	            	 <select name="id_usuarioImpulsor" id="id_usuarioImpulsor"  class="form-control">
 						<option value="0"  > -- SIN ESPECIFICAR -- </option>			
@@ -401,38 +397,29 @@
 									</select>
 		   		   
 		    	    </div>
-		    	    </div>
+		    	    <div class="row" >
+			  
+			  <div class="col-xs-2 col-md-2" >
+			  <p  class="formulario-subtitulo" >-----</p>
+			
+			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+			  </div>
+			</div> 
+		    	       </div>
 		   
 		   	   <hr>
                	
 		     <?php } ?>
-		       <div class="row">
-			  <div class="col-xs-6 col-md-6" style="text-align: center;" >
-			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
-			  </div>
-			</div>     
-               
-		
-		 <hr>
-        
+		      
        
-         <!-- termina el form -->
-       
-        <div class="col-lg-8">
-            <h4 style="color:#ec971f;"></h4>
-           
-     <!-- empieza formulario de busqueda -->
-     
-           
-        <div class="row">
-           <form action="<?php echo $helper->url("AsignacionTituloCredito","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
-           
-           <div class="col-lg-4">
+      <div class="row" aling="center">
+          
+           <div class="col-lg-2">
            <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
            <div id="mensaje_contenido" class="errores"></div>
             </div>
             
-           <div class="col-lg-4">
+           <div class="col-lg-2">
            <select name="criterio" id="criterio"  class="form-control">
                                     <?php foreach($resultMenu as $val=>$desc) {?>
                                          <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
@@ -444,16 +431,14 @@
           
            
           
-           <div class="col-lg-3">
+           <div class="col-lg-2">
            <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
            </div>
-         
-         
-          
-       <!-- termina formulario de busqueda -->
+          </div>
+
         <hr/>
          
-       <section class="col-lg-12  usuario" style="height:500px;overflow-y:scroll;">
+       <section class="col-lg-2" style="height:500px; width:1153px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th> </th>
@@ -483,23 +468,16 @@
 		             
 		              
 		           	   <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("AsignacionTituloCredito","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
-			                </div>
-			            
-			             </td>
-			             <td>   
-			                	<div class="right">
-			                    <a href="<?php echo $helper->url("AsignacionTituloCredito","borrarId"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
-			                </div>
+			           		
 			                <hr/>
 		               </td>
 		    		</tr>
 		        <?php } } ?>
-            
+		        
+      
+        
             <?php 
-            
-            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
+          
             
             ?>
             
@@ -509,11 +487,10 @@
         
           
           </form>
-        </div>
+  
        
        
-      
-      </div>
+  
       </div>
    </div>
      </body>  
