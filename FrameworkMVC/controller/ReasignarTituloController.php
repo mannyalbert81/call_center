@@ -1,6 +1,6 @@
 <?php
 
-class HonorariosController extends ControladorBase{
+class ReasignarTituloController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
@@ -26,11 +26,21 @@ class HonorariosController extends ControladorBase{
 	
 		$resultSet=$honorarios->getCondiciones($columna, $tabla, $wheres, $id);
 		
+		//CONSULTA DE USUARIOS POR SU ROL
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios inner join rol on(usuarios.id_rol=rol.id_rol)";
+		$id="rol.id_rol";
+			
+		$usuarios=new UsuariosModel();
+		
+		$where="rol.nombre_rol='ABOGADO IMPULSOR'";
+		$resultUsuarioImpulsor=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+		
 		if (isset(  $_SESSION['usuario_usuarios']))
 		{
 			
 
-			$nombre_controladores = "Honorarios";
+			$nombre_controladores = "ReasignarTitulo";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $honorarios->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
@@ -68,8 +78,8 @@ class HonorariosController extends ControladorBase{
 				
 				
 				
-				$this->view("Honorarios",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit,"rsTipoHonorario"=>$rsTipoHonorario
+				$this->view("ReasignarTitulo",array(
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit,"resultUsuarioImpulsor"=>$resultUsuarioImpulsor
 			
 				));
 		
@@ -79,7 +89,7 @@ class HonorariosController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Honorarios"
+						"resultado"=>"No tiene Permisos de Acceso a Reasignacion Lotes Credito"
 				
 				));
 				
@@ -98,7 +108,7 @@ class HonorariosController extends ControladorBase{
 	
 	}
 	
-	public function InsertaHonorarios(){
+	public function InsertaRasignacionTitulo(){
 			
 		session_start();
 
@@ -107,7 +117,7 @@ class HonorariosController extends ControladorBase{
 		$honorarios=new HonorariosModel();
 
 
-		$nombre_controladores = "Honorarios";
+		$nombre_controladores = "ReasignarTitulo";
 		$id_rol= $_SESSION['id_rol'];
 
 		
@@ -165,7 +175,7 @@ class HonorariosController extends ControladorBase{
 				$resultado=$honorarios->Insert();
 				
 				$traza=new TrazasModel();
-				$_nombre_controlador = "Honorarios";
+				$_nombre_controlador = "ReasignarTitulo";
 				$_accion_trazas  = "Guardar";
 				$_parametros_trazas = $_nombre_ltCredito;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
@@ -174,7 +184,7 @@ class HonorariosController extends ControladorBase{
 		
 			}
 			
-			$this->redirect("Honorarios", "index");
+			$this->redirect("ReasignarTitulo", "index");
 
 		}
 		else
