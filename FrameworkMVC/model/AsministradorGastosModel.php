@@ -1,5 +1,8 @@
 <?php
-class ProductosModel extends ModeloBase{
+
+
+
+class AdministradorGastosModel extends ModeloBase{
 	
 	private $table;
 	private $where;
@@ -38,7 +41,8 @@ class ProductosModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="productos";
+		$this->table="administrador_gastos";
+
 		
 		parent::__construct($this->table);
 	}
@@ -53,7 +57,6 @@ class ProductosModel extends ModeloBase{
 			
 		return  $resultado;
 	}
-	
 	
 	
 }

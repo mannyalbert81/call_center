@@ -42,27 +42,8 @@
          <script >
 		$(document).ready(function(){
 //pasante
-
-		
         
-        
-       <style>
-            input{
-                margin-top:5px;
-                margin-bottom:5px;
-            }
-            .right{
-                float:right;
-            }
-                
-            
-        </style>
-         
-         <script >
-		$(document).ready(function(){
-
-
-		    $("#Guardar").click(function() 
+      		    $("#Guardar").click(function() 
 			{
 		   
 		    	var descripcion_tipo_honorarios = $("#descripcion_tipo_honorarios").val();
