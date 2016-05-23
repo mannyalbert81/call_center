@@ -414,8 +414,7 @@
                
 		
 		 <hr>
-          
-          </form>
+        
        
          <!-- termina el form -->
        
@@ -449,7 +448,7 @@
            <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
            </div>
          
-          </form>
+         
           
        <!-- termina formulario de busqueda -->
         <hr/>
@@ -508,6 +507,8 @@
 		     
       </section>
         
+          
+          </form>
         </div>
        
        

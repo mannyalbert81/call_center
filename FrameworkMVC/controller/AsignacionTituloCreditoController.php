@@ -207,75 +207,58 @@ class AsignacionTituloCreditoController extends ControladorBase{
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $asignacion_titulo_credito->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
 		
-		
 		if (!empty($resultPer))
 		{
-		
-		
-		
 			$resultado = null;
 			$asignacion_titulo_credito = new AsignacionTitulosCreditoModel();
-		
-			//_nombre_categorias character varying, _path_categorias character varying
+
 			if (isset ($_POST["id_titulo_credito"])   )
 		
 			{
-				
 				
 				
 				$_array_titulo_credito = $_POST["id_titulo_credito"];
 				$_id_ciudad = $_POST["id_ciudad"];
 				$_id_usuarios = $_POST["id_usuarioImpulsor"];
 				
-		
-				foreach($_array_titulo_credito  as $id => $id_new )
+				foreach($_array_titulo_credito  as $id  )
 				{
-					if (!empty($id_new) )
+						if (!empty($id) )
 					{
 						//busco si exties este nuevo id
-				
-						try {
-						
+						try 
+						{
 							$_id_titulo_credito = $id;
 							
-				
 							$funcion = "ins_asignacion_titulo_credito";
 							$parametros = "'$_id_titulo_credito', '$_id_ciudad', '$_id_usuarios'";
-								
 							$asignacion_titulo_credito->setFuncion($funcion);
-							
 							$asignacion_titulo_credito->setParametros($parametros);
-							
-							
 							$resultado=$asignacion_titulo_credito->Insert();
-							
-							
-						} catch (Exception $e) {
-				
+										
+						} catch (Exception $e) 
+						{
+							$this->view("Error",array(
+									"resultado"=>"Eror al Asignar ->". $id
+							));
 						}
-				
 							
 					}
 					 
-					 
 				}
-				
-				
-				
-				
-				$this->view("Error",array(
-				"resultado"=>"entro"
-				));
-		
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Entidades";
 				$_accion_trazas  = "Guardar";
 				$_parametros_trazas = $_id_titulo_credito;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 		
+				
 			}
-			//$this->redirect("AsignacionTituloCredito", "index");
 		
+
+			$this->redirect("AsignacionTituloCredito", "index");
+				
+			
 		}
 		else
 		{
