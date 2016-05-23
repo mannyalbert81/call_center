@@ -213,9 +213,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 			$asignacion_titulo_credito = new AsignacionTitulosCreditoModel();
 
 			if (isset ($_POST["id_titulo_credito"])   )
-		
 			{
-				
 				
 				$_array_titulo_credito = $_POST["id_titulo_credito"];
 				$_id_ciudad = $_POST["id_ciudad"];

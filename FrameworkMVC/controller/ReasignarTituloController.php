@@ -14,17 +14,9 @@ class ReasignarTituloController extends ControladorBase{
 			
 		$resultEdit = "";
 		
-		$honorarios = new HonorariosModel();
-		$columna="*";
-		$tabla="public.honorarios,public.tipo_honorarios";
-		$wheres="tipo_honorarios.id_tipo_honorarios = honorarios.id_tipo_honorarios";
-		$id="honorarios.id_tipo_honorarios";
+		$resultSet=array();
 		
-		$tipohonorarios=new TipoHonorariosModel();
-		$rsTipoHonorario=$tipohonorarios->getAll("id_tipo_honorarios");
-		
-	
-		$resultSet=$honorarios->getCondiciones($columna, $tabla, $wheres, $id);
+		$reasignar_titulo = new ReasignarTituloModel();
 		
 		//CONSULTA DE USUARIOS POR SU ROL
 		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
@@ -42,36 +34,103 @@ class ReasignarTituloController extends ControladorBase{
 
 			$nombre_controladores = "ReasignarTitulo";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $honorarios->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $reasignar_titulo->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
 			if (!empty($resultPer))
 			{
 										
-				$resultPEdit = $honorarios->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+				$resultPEdit = $reasignar_titulo->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 					
 				
 				if (!empty($resultPEdit)  )
 				{
-					if (isset ($_GET["id_honorario"]) )
+					if (isset ($_POST["buscar"]) )
 					{
+						
+						$id_usuario=$_POST["abogado_asignado"];
 					
-						$_id_lotesTituloCredito = $_GET["id_ltcredito"];
-						$columnas = " id_lotes_titulos_credito, nombre_lotes_titulos_credito";
-						$tablas   = "lotes_titulos_credito";
-						$where    = "id_lotes_titulos_credito = '$_id_lotesTituloCredito' "; 
-						$id       = "id_lotes_titulos_credito";
-							
+						$columnaTitulo="
+						 asignacion_titulo_credito.id_asignacion_titulo_credito, 
+						  titulo_credito.id_titulo_credito, 
+						  clientes.identificacion_clientes, 
+						  clientes.nombres_clientes, 
+						  titulo_credito.total, 
+						  titulo_credito.fecha_corte";
+						$tblTitulo=" 
+							  public.asignacion_titulo_credito, 
+							  public.titulo_credito, 
+							  public.clientes";
+											
+						$whereTitulo="
+						titulo_credito.id_titulo_credito = asignacion_titulo_credito.id_titulo_credito AND
+  						clientes.id_clientes = titulo_credito.id_clientes AND asignacion_titulo_credito.id_usuarios='$id_usuario'";
 						
-						$resultEdit = $honorarios->getCondiciones($columnas ,$tablas ,$where, $id);
+						$idTitulo="titulo_credito.id_titulo_credito";
 						
-						$traza=new TrazasModel();
-						$_nombre_controlador = "Lotes Titulo Credito";
-						$_accion_trazas  = "Editar";
-						$_parametros_trazas = $_id_lotesTituloCredito;
-						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);;
+						$resultSet=$reasignar_titulo->getCondiciones($columnaTitulo, $tblTitulo, $whereTitulo, $idTitulo);
 						
 					
 					}
+					
+					
+					if (isset ($_POST["reasignar"]) )
+					{
+						
+							
+						if (isset ($_POST["id_titulo_credito"])   )
+						{
+							
+							$_array_titulo_credito = $_POST["id_titulo_credito"];
+							
+							$_id_abogado = $_POST["abogado_reasignar"];
+							
+							
+							foreach($_array_titulo_credito  as $id_titulo  )
+							{
+
+								
+									
+								
+								if (!empty($id_titulo) )
+								{
+									
+									
+									//busco si exties este nuevo id
+									try
+									{
+										$_id_titulo_credito = $id_titulo;
+										
+										$colval="id_usuarios='$_id_abogado'";
+										$tabla="asignacion_titulo_credito";
+										$where="id_titulo_credito='$_id_titulo_credito'";
+										
+										
+										$resultado=$reasignar_titulo->UpdateBy($colval, $tabla, $where);
+										
+						
+									} catch (Exception $e)
+									{
+										$this->view("Error",array(
+												"resultado"=>"Eror al Asignar ->". $id_titulo
+										));
+									}
+										
+								}
+						
+							}
+							
+							$traza=new TrazasModel();
+							$_nombre_controlador = "Reasignar Titulos";
+							$_accion_trazas  = "Reasignar";
+							$_parametros_trazas = "";
+							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+						
+						
+						}
+						
+						
+					}
+					
 					
 					
 				}
@@ -114,9 +173,8 @@ class ReasignarTituloController extends ControladorBase{
 
 		$permisos_rol=new PermisosRolesModel();
 
-		$honorarios=new HonorariosModel();
-
-
+		$reasignarTitulo=new ReasignarTituloModel();
+		
 		$nombre_controladores = "ReasignarTitulo";
 		$id_rol= $_SESSION['id_rol'];
 
@@ -129,59 +187,25 @@ class ReasignarTituloController extends ControladorBase{
 			$resultado = null;
 			
 			
-			if (isset ($_POST["Guardar"]) )
+			if (isset ($_POST["reasignar"]) )
 			{
-				$_id_honorario = $_POST["id_honorario"];
-				$id_tipoHonorario=$_POST["tipo_honorario"];
-				$descripcion = $_POST["descripcion"];
-				$desde=$_POST["desde_honorarios"];
-				$hasta=$_POST["hasta_honorarios"];
-				$x_base_baja["x_base_fija"];
-				$x_exceso["x_exceso"];
+				$_id_titulo_credito=0;
+				$_id_usuario = $_POST["Abogado_reasignar"];
+				//$_id_titulo_credito=$_POST["id_titulo_credito"];
 				
+				$colval="id_usuarios='$_id_usuario'";
+				$tabla="asignacion_titulo_credito";
+				$where="id_titulo_credito='$_id_titulo_credito'";
+				/*
+				$this->view("Error",array(
+							
+						"resultado"=>$_id_titulo_credito."hola"
 				
-				if(isset($_POST["id_honorario"])) 
-				{
-					
-					$_id_honorario = $_POST["id_honorario"];
-					
-					$colval = " descripcion_honorarios = '$descripcion',id_tipo_honorarios = '$id_tipoHonorario', desde_honorarios = '$desde',hasta_honorarios = '$hasta',por_base_pocion_baja = '$x_base_baja',por_exceso_porcentaje = '$x_exceso'  ";
-					$tabla = "honorarios";
-					$where = "id_honorarios = '$_id_honorario' ";
-					
-					$resultado=$honorarios->UpdateBy($colval, $tabla, $where);
-					
-					$traza=new TrazasModel();
-					$_nombre_controlador = "Honorarios";
-					$_accion_trazas  = "Editar";
-					$_parametros_trazas = $_nombre_ltCredito;
-					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-					
-					
-				}else {
-					
-			
-				//_id_tipo_honorarios integer, _descripcion_honorarios character varying, _desde_honorarios numeric, _hasta_honorarios numeric, _por_base_pocion_baja numeric, _por_exceso_porcentaje numeric
+				));
+				exit();*/
 				
-				$funcion = "ins_honorarios";
+				//$resultado=$reasignarTitulo->UpdateBy($colval, $tabla, $where);
 				
-				$parametros = " '$id_tipoHonorario', '$descripcion', '$desde', '$hasta','$x_base_baja','$x_exceso' ";
-					
-				$ltCredito->setFuncion($funcion);
-		
-				$ltCredito->setParametros($parametros);
-		
-		
-				$resultado=$honorarios->Insert();
-				
-				$traza=new TrazasModel();
-				$_nombre_controlador = "ReasignarTitulo";
-				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_nombre_ltCredito;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-				
-			 	}
-		
 			}
 			
 			$this->redirect("ReasignarTitulo", "index");
@@ -199,6 +223,7 @@ class ReasignarTituloController extends ControladorBase{
 		}
 		
 	}
+	
 	
 	public function borrarId()
 	{

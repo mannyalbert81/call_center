@@ -38,7 +38,7 @@ class ReasignarTituloModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="honorarios";
+		$this->table="asignacion_titulo_credito";
 		
 		parent::__construct($this->table);
 	}

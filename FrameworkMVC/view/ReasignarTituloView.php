@@ -38,67 +38,124 @@
         </style>
        
     <script >
-    
+    $(document).ready(function(){
+        
+   	
+        $("#marcar_todo").change(function () {
+            if ($(this).is(':checked')) {
+               
+                $(".marcados").prop('checked', true); 
+            } else {
+                
+                $("input:checkbox").prop('checked', false);
+                $("input[type=checkbox]").prop('checked', false);
+            }
+        });
+        });
 	</script>
+	
+	<script >
+$(document).ready(function() {
+		
+		$('#reasignar').click(function(){
+	        var selected = '';  
+	          
+	        $('.marcados').each(function(){
+	            if (this.checked) {
+	                selected +=$(this)+' esta '+$(this).val()+', ';
+	            }
+	        }); 
+
+	        if (selected != '') {
+	            return true;
+	        }
+	        else{
+	            alert('Debes seleccionar al menos una opción.');
+	            return false;
+	        }
+
+	      
+	    }); 
+
+	});
+	</script>
+	
+	
     </head>
     <body style="background-color: #d9e3e4;">
+    <?php /*
+    $("#hola").click(function(){
+	    	
+		    });    */ ?>
     
        <?php include("view/modulos/head.php"); ?>
        
        <?php include("view/modulos/menu.php"); ?>
        
+ <?php
+       
+       
+ $nuevo_usuario="";
+  		   $sel_id_abogado_asignado = "";
+  		   
+		   if ($nuevo_usuario)
+		   {
+		   	
+		   }
+		   else 
+		   {
+			   	if($_SERVER['REQUEST_METHOD']=='POST' )
+			   	{
+			   		//$sel_foto_fichas_fotos = $_FILES['foto_fichas_fotos'];
+			   		
+			   		$sel_id_abogado_asignado = $_POST['abogado_asignado'];
+			   		
 
+			   	}
+			   
+			   	if($_SERVER['REQUEST_METHOD']=='GET' )
+			   	{
+			   		//$sel_foto_fichas_fotos = $_FILES['foto_fichas_fotos'];
+			   		if ($resultEdit !="" ) {
+			   			
+			   		}
+			   		else 
+			   		{
+				   		$sel_id_abogado_asignado = $_GET['abogado_asignado'];
+				   		
+			   		}
+			   		
+			   	}
+			
+		   }
+		   
+		   
+		   	
+		   
+		?>
   
   <div class="container">
   
   <div class="row" style="background-color: #ffffff;">
   
        <!-- empieza el form --> 
-       
-      <form action="<?php echo $helper->url("ReasignarTitulo","InsertaRasignacionTitulo"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
-            
-         
-        	    <h4 style="color:#ec971f;">Reasignación de Abogado a los Títulos de Crédito </h4>
-            	<hr/>
+  <form  action="<?php echo $helper->url("ReasignarTitulo","Index"); ?>" method="post"   class="col-lg-12">   
             	
 		   		
             
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-            
-              
-			   <div class="row">
-			   
-			   <div class="col-xs-12 col-md-6">
-			  	<p  class="formulario-subtitulo" >Abogado:</p>
-			  	<select name="tipo_honorario" id="tipo_honorario"  class="form-control" >
-					<?php foreach($resultUsuarioImpulsor as $resAbg) {?>
-						<option value="<?php echo $resAbg->id_usuarios; ?>" ><?php echo $resAbg->nombre_usuarios; ?> </option>
-						           
-			        <?php } ?>
-				</select> 
-				<div id="mensaje_tipo_honorario" class="errores"></div>			  
-			  </div>
-			  
-			  <div class="col-xs-12 col-md-6">
-			  	<p  class="formulario-subtitulo" >Reasignar al abogado:</p>
-			  	<select name="tipo_honorario" id="tipo_honorario"  class="form-control" >
-					<?php foreach($resultUsuarioImpulsor as $resAbg) {?>
-						<option value="<?php echo $resAbg->id_usuarios; ?>"><?php echo $resAbg->descripcion_tipo_honorarios; ?> </option>
-						           
-			        <?php } ?>
-				</select> 
-				<div id="mensaje_tipo_honorario" class="errores"></div>			  
-			  </div>
-			  
-			   </div>
+            <?php //no hay edicion de registros ?>
+		   <?php } } else {?>
 		    
-		     <?php } } else {?>
-		    
-			    <div class="row">
-			    
-			    <div class="col-xs-12 col-md-6">
+
+			     
+			   <div class="col-lg-6">
+			   <h4 style="color:#ec971f;">Reasignación de Abogado a los Títulos de Crédito </h4>
+            	<hr/>
+			   
+			   <div class="col-xs-12 col-md-12">
 			  	<p  class="formulario-subtitulo" >Abogado:</p>
-			  	<select name="tipo_honorario" id="tipo_honorario"  class="form-control" >
+			  	<select name="abogado_asignado" id="abogado_asignado"  class="form-control" >
 					<?php foreach($resultUsuarioImpulsor as $resAbg) {?>
 						<option value="<?php echo $resAbg->id_usuarios; ?>" ><?php echo $resAbg->nombre_usuarios; ?> </option>
 						           
@@ -107,81 +164,72 @@
 				<div id="mensaje_tipo_honorario" class="errores"></div>			  
 			  </div>
 			  
-			  <div class="col-xs-12 col-md-6">
+			  <div class="col-xs-12 col-md-12" style="text-align: center; margin-top: 20px;" >
+			  	<input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-default"/>
+			  </div>
+			  
+			  
+			   <div class="col-xs-12 col-md-12">
 			  	<p  class="formulario-subtitulo" >Reasignar al abogado:</p>
-			  	<select name="tipo_honorario" id="tipo_honorario"  class="form-control" >
+			  	<select name="abogado_reasignar" id="abogado_reasignar"  class="form-control" >
 					<?php foreach($resultUsuarioImpulsor as $resAbg) {?>
-						<option value="<?php echo $resAbg->id_usuarios; ?>" ><?php echo $resAbg->nombre_usuarios; ?> </option>
+						<option value="<?php echo $resAbg->id_usuarios; ?>"><?php echo $resAbg->nombre_usuarios; ?> </option>
 						           
 			        <?php } ?>
 				</select> 
 				<div id="mensaje_tipo_honorario" class="errores"></div>			  
 			  </div>
-			   
+			  
+			  <div class="col-xs-12 col-md-12" style="text-align: center; margin-top: 20px;" >
+			  	<input type="submit" id="reasignar" name="reasignar" value="Reasignar" class="btn btn-default"/>
+			  </div>   
+			 
+			  
+			  <div class=" col-lg-12" style="margin-top: 30px;">
+			  	<p  >Cantidad de registros: <?php  echo count($resultSet); ?></p>
+			  	
+						  
+			  </div>
 			   </div>
 		    
 		         	
 		     <?php } ?>
 		     
 		     
-		       <div class="row" style="margin-top: 20px;">
-			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
-			  	<input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-default"/>
-			  </div>
-			   <div class="col-xs-12 col-md-6" style="text-align: center;" >
-			  	<input type="submit" id="reasignar" name="reasignar" value="Reasignar" class="btn btn-default"/>
-			  </div>
-			</div>     
-               
-		
-		 <hr>
-          
-       </form>
+
+
        <!-- termina el form --> 
-       
+       <div class="row">
         <div class="col-lg-6">
             <h4 style="color:#ec971f;">Lista de titulo</h4>
             <hr/>
         </div>
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
+
         <table class="table table-hover ">
 	         <tr >
-	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Tipo</b></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Descripcion</b></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Desde</b></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Hasta</b></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Por la Base Porcion Fija</b></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Por Exceso Porcentaje</b></th>
-	    		
-	    		
+	            <th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" name="marcar_todo" class="checkbox"></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Nº Titulo</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Nº Juicio</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Identificacion</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Nombres Cliente</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Total</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Fecha Corte</b></th>
+	    	
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_honorarios; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->descripcion_tipo_honorarios; ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->descripcion_honorarios; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->desde_honorarios; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->hasta_honorarios; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->por_base_pocion_baja; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->por_exceso_porcentaje; ?></td>
-		                 
+	        		   <th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_titulo_credito[]" name="id_titulo_credito[]" value="<?php echo $res->id_titulo_credito; ?>" class="marcados"></th>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo "0"; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_corte; ?>     </td>
 		              
-		           	   <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Honorarios","index"); ?>&id_honorarios=<?php echo $res->id_honorarios; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
-			                </div>
-			            
-			             </td>
-			             <td>   
-			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Honorarios","borrarId"); ?>&id_honorarios=<?php echo $res->id_honorarios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
-			                </div>
-			                <hr/>
-		               </td>
 		    		</tr>
 		        <?php } } ?>
             
@@ -191,10 +239,14 @@
             
             ?>
             
-       	</table>     
+       	</table>
+       
       </section>
       </div>
+       </form>
       </div>
+      </div>
+   
    
      </body>  
     </html>   
