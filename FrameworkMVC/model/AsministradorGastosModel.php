@@ -1,5 +1,8 @@
 <?php
-class ReasignarTituloModel extends ModeloBase{
+
+
+
+class AdministradorGastosModel extends ModeloBase{
 	
 	private $table;
 	private $where;
@@ -38,7 +41,8 @@ class ReasignarTituloModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="asignacion_titulo_credito";
+		$this->table="administrador_gastos";
+
 		
 		parent::__construct($this->table);
 	}
@@ -53,7 +57,6 @@ class ReasignarTituloModel extends ModeloBase{
 			
 		return  $resultado;
 	}
-	
 	
 	
 }

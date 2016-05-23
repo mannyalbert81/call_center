@@ -38,6 +38,7 @@
 			</li>
 			<li><a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
 			</li>
+			
 		</ul>
         </li>
 
@@ -117,6 +118,12 @@
             </li>
             <li><a href="index.php?controller=TipoHonorarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Tipo de Honorarios</span> </a>
             </li>
+            <li><a href="index.php?controller=Productos&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Productos</span> </a>
+            </li>
+            <li><a href="index.php?controller=TipoGastos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Gastos</span> </a>
+			</li>
+			<li><a href="index.php?controller=AdministradorGastos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Administrador de Gastos</span> </a>
+			</li>
 </ul>
       </ul>
       
