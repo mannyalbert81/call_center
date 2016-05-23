@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Honorarios - aDocument 2015</title>
+        <title>Reasignar Titulo - aDocument 2015</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -38,36 +38,7 @@
         </style>
        
     <script >
-    $(document).ready(function(){
-
-        $("#Guardar").click(function(){
-
-        	var ltCredito = $("#nombre_ltcredito").val();
-
-			if (ltCredito == "")
-	    	{
-				$("#mensaje_nombre_ltcredito").text("INGRESE INFORMACION REQUERIDA");
-	    		$("#mensaje_nombre_ltcredito").fadeIn("slow"); //Muestra mensaje de error
-	            return false;
-		    }
-	    	else 
-	    	{
-	    		$("#mensaje_nombre_ltcredito").fadeOut("slow"); //Muestra mensaje de error
-	    		
-	            
-			}    
-
-			
-            });
-
-        $( "#nombre_ltcredito" ).focus(function() {
-			  $("#mensaje_nombre_ltcredito").fadeOut("slow");
-		    });
-
-		
-
-        });
-	
+    
 	</script>
     </head>
     <body style="background-color: #d9e3e4;">
@@ -84,10 +55,10 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Honorarios","InsertaHonorarios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("ReasignarTitulo","InsertaRasignacionTitulo"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             
          
-        	    <h4 style="color:#ec971f;">Insertar Honorarios</h4>
+        	    <h4 style="color:#ec971f;">Reasignación de Abogado a los Títulos de Crédito </h4>
             	<hr/>
             	
 		   		
@@ -97,102 +68,68 @@
               
 			   <div class="row">
 			   
-			   <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Tipo Honorario</p>
+			   <div class="col-xs-12 col-md-6">
+			  	<p  class="formulario-subtitulo" >Abogado:</p>
 			  	<select name="tipo_honorario" id="tipo_honorario"  class="form-control" >
-					<?php foreach($rsTipoHonorario as $resTipoH) {?>
-						<option value="<?php echo $resTipoH->id_tipo_honorarios; ?>" <?php if ($resTipoH->id_tipo_honorarios == $resTipoH->id_tipo_honorarios )  echo  ' selected="selected" '  ;  ?> ><?php echo $resTipoH->descripcion_tipo_honorarios; ?> </option>
+					<?php foreach($resultUsuarioImpulsor as $resAbg) {?>
+						<option value="<?php echo $resAbg->id_usuarios; ?>" ><?php echo $resAbg->nombre_usuarios; ?> </option>
 						           
 			        <?php } ?>
 				</select> 
 				<div id="mensaje_tipo_honorario" class="errores"></div>			  
 			  </div>
 			  
-			   <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Descripcion</p>
-			  	<input type="text"  name="descripcion" id="descripcion" value="" class="form-control"/> 
-			  	<input type="hidden"  name="id_honorario" id="id_honorario" value="" class="form-control"/>
-			    <div id="mensaje_descripcion" class="errores"></div>
+			  <div class="col-xs-12 col-md-6">
+			  	<p  class="formulario-subtitulo" >Reasignar al abogado:</p>
+			  	<select name="tipo_honorario" id="tipo_honorario"  class="form-control" >
+					<?php foreach($resultUsuarioImpulsor as $resAbg) {?>
+						<option value="<?php echo $resAbg->id_usuarios; ?>"><?php echo $resAbg->descripcion_tipo_honorarios; ?> </option>
+						           
+			        <?php } ?>
+				</select> 
+				<div id="mensaje_tipo_honorario" class="errores"></div>			  
 			  </div>
 			  
-			   <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Desde</p>
-			  	<input type="text"  name="desde_honorarios" id="desde_honorarios" value="" class="form-control"/> 
-			    <div id="mensaje_desde_honorarios" class="errores"></div>
-			  </div>
-			  
-		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Hasta</p>
-			  	<input type="text"  name="hasta_honorarios" id="hasta_honorarios" value="" class="form-control"/> 
-			  	<div id="mensaje_hasta_honorarios" class="errores"></div>
-			  </div>
-			  
-			  <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Por la Base Porcion Fija</p>
-			  	<input type="text"  name="x_base_fija" id="x_base_fija" value="" class="form-control"/> 
-			  	<div id="mensaje_x_base_fija" class="errores"></div>
-			  </div>
-			  
-			  <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Por el Exceso Porcentaje</p>
-			  	<input type="text"  name="x_exceso" id="x_exceso" value="" class="form-control"/> 
-			  	<div id="mensaje_x_exceso" class="errores"></div>
-			  </div>
 			   </div>
 		    
 		     <?php } } else {?>
 		    
 			    <div class="row">
-			   
-			   <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Tipo Honorario</p>
-			  	<select name="estados" id="estados"  class="form-control" >
-					<?php foreach($rsTipoHonorario as $resTipoH) {?>
-						<option value="<?php echo $resTipoH->id_tipo_honorarios; ?>"><?php echo $resTipoH->descripcion_tipo_honorarios; ?> </option>
+			    
+			    <div class="col-xs-12 col-md-6">
+			  	<p  class="formulario-subtitulo" >Abogado:</p>
+			  	<select name="tipo_honorario" id="tipo_honorario"  class="form-control" >
+					<?php foreach($resultUsuarioImpulsor as $resAbg) {?>
+						<option value="<?php echo $resAbg->id_usuarios; ?>" ><?php echo $resAbg->nombre_usuarios; ?> </option>
 						           
 			        <?php } ?>
-				</select>
-				<div id="mensaje_tipo_honorario" class="errores"></div>	 			  
+				</select> 
+				<div id="mensaje_tipo_honorario" class="errores"></div>			  
 			  </div>
 			  
-			   <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Descripcion</p>
-			  	<input type="text"  name="descripcion" id="descripcion" value="" class="form-control"/> 
-			  	<div id="mensaje_descripcion" class="errores"></div>
+			  <div class="col-xs-12 col-md-6">
+			  	<p  class="formulario-subtitulo" >Reasignar al abogado:</p>
+			  	<select name="tipo_honorario" id="tipo_honorario"  class="form-control" >
+					<?php foreach($resultUsuarioImpulsor as $resAbg) {?>
+						<option value="<?php echo $resAbg->id_usuarios; ?>" ><?php echo $resAbg->nombre_usuarios; ?> </option>
+						           
+			        <?php } ?>
+				</select> 
+				<div id="mensaje_tipo_honorario" class="errores"></div>			  
 			  </div>
-			  
-			   <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Desde</p>
-			  	<input type="text"  name="desde" id="desde" value="" class="form-control"/> 
-			    <div id="mensaje_desde_honorarios" class="errores"></div>
-			  </div>
-			  
-		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Hasta</p>
-			  	<input type="text"  name="hasta" id="hasta" value="" class="form-control"/> 
-			  	<div id="mensaje_hasta_honorarios" class="errores"></div>
-			  </div>
-			  
-			  <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Por la Base Porcion Fija</p>
-			  	<input type="text"  name="x_base_fija" id="x_base_fija" value="" class="form-control"/> 
-			  	<div id="mensaje_x_base_fija" class="errores"></div>
-			  </div>
-			  
-			  <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Por el Exceso Porcentaje</p>
-			  	<input type="text"  name="x_exceso" id="x_exceso" value="" class="form-control"/> 
-			  	<div id="mensaje_x_exceso" class="errores"></div>
-			  </div>
+			   
 			   </div>
 		    
 		         	
 		     <?php } ?>
 		     
 		     
-		       <div class="row">
+		       <div class="row" style="margin-top: 20px;">
 			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
-			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+			  	<input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-default"/>
+			  </div>
+			   <div class="col-xs-12 col-md-6" style="text-align: center;" >
+			  	<input type="submit" id="reasignar" name="reasignar" value="Reasignar" class="btn btn-default"/>
 			  </div>
 			</div>     
                
@@ -203,7 +140,7 @@
        <!-- termina el form --> 
        
         <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Honorarios</h4>
+            <h4 style="color:#ec971f;">Lista de titulo</h4>
             <hr/>
         </div>
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
