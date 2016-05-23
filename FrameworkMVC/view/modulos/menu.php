@@ -53,7 +53,7 @@
             </li>
 			<li><a href="index.php?controller=FirmasDigitales&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Firmas Digitales</span> </a>
             </li>
-             <li><a href="index.php?controller=AsignarTituloCredito&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Asignar Titulo Credito</span> </a>
+             <li><a href="index.php?controller=AsignacionTituloCredito&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Asignar Titulo Credito</span> </a>
             </li>
             <li><a href="index.php?controller=ReasignarTitulo&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Reasignar Titulo Credito</span> </a>
             </li>
