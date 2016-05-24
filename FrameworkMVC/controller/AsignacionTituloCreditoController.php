@@ -126,6 +126,64 @@ class AsignacionTituloCreditoController extends ControladorBase{
 						
 					}
 					
+					if(isset($_POST["buscar"])){
+					
+						$criterio_busqueda=$_POST["criterio_busqueda"];
+						$contenido_busqueda=$_POST["contenido_busqueda"];
+					
+						$asignacion_titulo_credito = new AsignacionTitulosCreditoModel();
+							
+							
+						$columnas = " clientes.id_clientes,
+							  titulo_credito.id_titulo_credito,
+							  clientes.identificacion_clientes,
+							  clientes.nombres_clientes,
+							  clientes.celular_clientes,
+							  titulo_credito.total,
+							  titulo_credito.fecha_corte,
+							  titulo_credito.id_ciudad,
+							  ciudad.nombre_ciudad";
+					
+						$tablas   = "public.titulo_credito,
+							  public.clientes,
+							  public.ciudad";
+					
+						$where    = "clientes.id_clientes = titulo_credito.id_clientes AND
+	                         ciudad.id_ciudad = titulo_credito.id_ciudad";
+					
+						$id       = "titulo_credito.id_titulo_credito";
+							
+					
+					
+						$where_0 = "";
+						$where_1 = "";
+						$where_2 = "";
+					
+						switch ($criterio_busqueda) {
+							case 0:
+								$where_0 = " ";
+								break;
+							case 1:
+								// identificacion de cliente
+								$where_1 = " AND  clientes.identificacion_clientes LIKE '$contenido_busqueda'  ";
+								break;
+							case 2:
+								//id_titulo de credito
+								$where_2 = " AND  titulo_credito.id_titulo_credito = '$contenido_busqueda'  ";
+								break;
+					
+						}
+					
+					
+					
+						$where_to  = $where .  $where_0 . $where_1 . $where_2;
+						
+							
+						$resultDatos=$asignacion_titulo_credito->getCondiciones($columnas ,$tablas ,$where_to, $id);
+					
+							
+					}
+					
 					
 			
 					if (isset ($_POST["ddl_resultado"]) && isset($_POST["ddl_busqueda"]))
@@ -163,8 +221,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 						}
 					
 					
-					//cambio linea 86
-					//"resultCon"=>$resultCon, "resultAcc"=>$resultAcc, "resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol
+					
 					
 					$this->view("AsignacionTituloCredito",array(
 							
@@ -252,7 +309,8 @@ class AsignacionTituloCreditoController extends ControladorBase{
 		
 				
 			}
-		
+			
+			
 
 			$this->redirect("AsignacionTituloCredito", "index");
 				
