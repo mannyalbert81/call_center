@@ -123,6 +123,7 @@ class RecaudacionController extends ControladorBase{
 								}
 								
 							}
+								
 							else /// no encontro el cliente notificar
 							{
 								$_origen_errores_importacion   = 'IMPORTACION DE OPERACIONES' ; 
