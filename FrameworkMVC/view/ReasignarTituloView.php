@@ -93,9 +93,9 @@ $(document).ready(function() {
        <?php include("view/modulos/menu.php"); ?>
        
  <?php
-       
-       
+ 
  $nuevo_usuario="";
+ 
   		   $sel_id_abogado_asignado = "";
   		   
 		   if ($nuevo_usuario)
@@ -106,33 +106,14 @@ $(document).ready(function() {
 		   {
 			   	if($_SERVER['REQUEST_METHOD']=='POST' )
 			   	{
-			   		//$sel_foto_fichas_fotos = $_FILES['foto_fichas_fotos'];
-			   		
 			   		$sel_id_abogado_asignado = $_POST['abogado_asignado'];
-			   		
-
+			   
 			   	}
 			   
-			   	if($_SERVER['REQUEST_METHOD']=='GET' )
-			   	{
-			   		//$sel_foto_fichas_fotos = $_FILES['foto_fichas_fotos'];
-			   		if ($resultEdit !="" ) {
-			   			
-			   		}
-			   		else 
-			   		{
-				   		$sel_id_abogado_asignado = $_GET['abogado_asignado'];
-				   		
-			   		}
-			   		
-			   	}
+			   	
 			
 		   }
-		   
-		   
-		   	
-		   
-		?>
+	?>
   
   <div class="container">
   
@@ -157,7 +138,7 @@ $(document).ready(function() {
 			  	<p  class="formulario-subtitulo" >Abogado:</p>
 			  	<select name="abogado_asignado" id="abogado_asignado"  class="form-control" >
 					<?php foreach($resultUsuarioImpulsor as $resAbg) {?>
-						<option value="<?php echo $resAbg->id_usuarios; ?>" ><?php echo $resAbg->nombre_usuarios; ?> </option>
+						<option value="<?php echo $resAbg->id_usuarios; ?>"  <?php if($sel_id_abogado_asignado==$resAbg->id_usuarios){echo "selected";}?>><?php echo $resAbg->nombre_usuarios; ?> </option>
 						           
 			        <?php } ?>
 				</select> 
