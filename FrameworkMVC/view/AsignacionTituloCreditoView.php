@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE HTML>
 <html lang="es">
 
@@ -199,10 +196,8 @@
 		});
 			</script >
         
-        
-        
-			
-			
+    
+    		
 			<script >
 		    // cada vez que se cambia el valor del combo
 		    $(document).ready(function(){
@@ -317,6 +312,50 @@
 
 	</script>
 	
+    <script>
+    $(document).ready(function(){
+        $("#marcar_todo").change(function () {
+            if ($(this).is(':checked')) {
+               
+                $(".marcados").prop('checked', true); 
+            } else {
+                
+                $("input:checkbox").prop('checked', false);
+                $("input[type=checkbox]").prop('checked', false);
+            }
+        });
+        });
+    </script>
+    
+    <script>
+    $(document).ready(function(){
+        
+ 		$("#buscar").click(function () {
+             
+             var criterio = $("#criterio_busqueda").val();
+             var contenido = $("#contenido_busqueda").val();
+             if(criterio!=0 && contenido==""){
+          	   $("#mensaje_contenido").text("Ingrese contenido");
+  	    	   $("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
+                 return false;
+                 }else if(criterio==0 && contenido!=""){
+               $("#mensaje_criterio").text("Selecione una busqueda");
+        	   $("#mensaje_criterio").fadeIn("slow");
+        	     return false;
+                 }else{
+                	 return true;
+                     }
+          });
+          
+          $( "#contenido_busqueda" ).focus(function() {
+  			  $("#mensaje_contenido").fadeOut("slow");
+  		    });
+          $( "#criterio_busqueda" ).focus(function() {
+  			  $("#mensaje_criterio").fadeOut("slow");
+  		    });
+        });
+    </script>
+    
     </head>
     <body style="background-color: #d9e3e4;">
     
@@ -328,7 +367,7 @@
        
        <?php
        
-     
+     	$resultMenu_busqueda=array(0=>"Todos",1=>"Identificacion",2=>"Titulo Credito");
 		   
 		?>
  
@@ -337,47 +376,20 @@
   
   <div class="row" style="background-color: #ffffff;">
   
-  <div></div>
-    
-       
+     
       <form action="<?php echo $helper->url("AsignacionTituloCredito","InsertaAsignacionTituloCredito"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
-            
-         
-        	    <h4 style="color:#ec971f;">Asignar Titulos Credito</h4>
-            	<hr/>
-            	
-            	
-          <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-            
-            <div class="row">
-	            	<div class="col-xs-2 col-md-2" style="margin-top: 20px; ">
-	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control" disabled>
-									<?php foreach($resultCiu as $resCiudad) {?>
-				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" > <?php echo $resCiudad->nombre_ciudad; ?> </option>
-						            <?php } ?>
-								    	
-									</select>
-					
-		   		   </div>
-		   		   </div>
-		   		   
-	            	<div class="row" style="margin-top: 20px;>
-	            	<div class="col-xs-2 col-md-2">
-			         <p  class="formulario-subtitulo" >Abogado(a)</p>
-	            	 <select name="id_usuarioImpulsor" id="id_usuarioImpulsor"  class="form-control">
-						<option value="0"  > -- SIN ESPECIFICAR -- </option>			
-								    	
-									</select>
-		   		   
-		    	    </div>
-		    	    </div>
-		   		   <hr>
+    
+    <div class="col-lg-5">
+    <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+           <?php //no hay datos para editar?>
         
             
 		     <?php } } else {?>
 		     
-		    <div class="row">
-		   <div class="col-xs-2 col-md-2">
+		 
+		    <h4 style="color:#ec971f;">Asignar Titulos Credito</h4>
+            	<hr/>
+		   	<div class="col-xs-5">
 			  	<p  class="formulario-subtitulo" >Ciudad</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
 					<?php foreach($resultCiu as $resCiu) {?>
@@ -389,59 +401,67 @@
 			  
 		
 		  
-		    <div class="col-xs-2 col-md-2">
+		    <div class="col-xs-5">
 			  <p  class="formulario-subtitulo" >Abogado(a)</p>
 	            	 <select name="id_usuarioImpulsor" id="id_usuarioImpulsor"  class="form-control">
 						<option value="0"  > -- SIN ESPECIFICAR -- </option>			
 								    	
 									</select>
 		   		   
-		    	    </div>
-		    	    <div class="row" >
+		    </div>
 			  
-			  <div class="col-xs-2 col-md-2" >
-			  <p  class="formulario-subtitulo" >-----</p>
+			  <div class="col-xs-5" >
+			  <p style="color:#ffffff;" >-----</p>
 			
 			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
 			  </div>
-			</div> 
-		    	       </div>
-		   
-		   	   <hr>
-               	
+			 
+			<div class="col-xs-1"  style="width: 400px;">
+			<hr>
+			</div>
+			 
+			
+			
+      
+             	
 		     <?php } ?>
-		      
-       
-      <div class="row" aling="center">
-          
-           <div class="col-lg-2">
-           <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
+    </div>
+    
+    
+    <div  class="col-lg-7">
+     <h4 style="color:#ec971f;">Lista de titulo</h4>
+            <hr/>
+    		<div class="col-xs-4">
+			
+           <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
            <div id="mensaje_contenido" class="errores"></div>
             </div>
             
-           <div class="col-lg-2">
-           <select name="criterio" id="criterio"  class="form-control">
-                                    <?php foreach($resultMenu as $val=>$desc) {?>
+           <div class="col-xs-4">
+           <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
+                                    <?php foreach($resultMenu_busqueda as $val=>$desc) {?>
                                          <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
                                     <?php } ?>
                                         
            </select>
            <div id="mensaje_criterio" class="errores"></div>
            </div>
-          
            
-          
-           <div class="col-lg-2">
-           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
-           </div>
-          </div>
+           <div class="col-xs-4" >
+		
+			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("AsignacionTituloCredito","Index"); ?>'" value="buscar" class="btn btn-default"/>
+			</div>
+		<div class="col-xs-12" style="margin: 10px;">	
 
-        <hr/>
-         
-       <section class="col-lg-2" style="height:500px; width:1153px;overflow-y:scroll;">
+	</div>
+	<div class="col-xs-12">
+      
+      
+        
+       <section   style="height:400px;overflow-y:scroll;width: 655px;">
         <table class="table table-hover ">
 	         <tr >
-	    		<th> </th>
+	    		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" class="checkbox"> </th>
 	    		<th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Numero de Identifiación</th>
 	    		<th style="color:#456789;font-size:80%;">Nombres Cliente</th>
@@ -456,7 +476,7 @@
             
 	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
 	        		<tr>
-	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_titulo_credito[]"   name="id_titulo_credito[]"  value="<?php echo $res->id_titulo_credito; ?>" class="form-control"></th>
+	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_titulo_credito[]"   name="id_titulo_credito[]"  value="<?php echo $res->id_titulo_credito; ?>" class="marcados"></th>
 	                 
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
@@ -485,13 +505,13 @@
 		     
       </section>
         
-          
-          </form>
+        </div>
+    </div>
+    
+    </form>
   
-       
-       
-  
-      </div>
+
+    </div>
    </div>
      </body>  
     </html>   

@@ -124,6 +124,12 @@
 			</li>
 			<li><a href="index.php?controller=AdministradorGastos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Administrador de Gastos</span> </a>
 			</li>
+			<li><a href="index.php?controller=TipoVehiculos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Tipo de Vehiculos </span> </a>
+			</li>
+			<li><a href="index.php?controller=MarcaVehiculos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Marca de Vehiculos </span> </a>
+			</li>
+			<li><a href="index.php?controller=VehiculosEmbargados&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Vehiculos Embargados </span> </a>
+			</li>
 </ul>
       </ul>
       
