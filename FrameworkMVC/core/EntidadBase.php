@@ -327,6 +327,31 @@ class EntidadBase{
     }
     
   
+
+    public function InsertaErroresImportacion( $_origen_errores_importacion , $_error_errores_importacion, $_detalle_errores_importacion)
+    {
+    
+    	//ins_errores_importacion(_origen_errores_importacion , _error_errores_importacion , _detalle_errores_importacion , _id_usuarios)
+    
+    	$errores_importacion = new ErroresImportacionModel();
+    	
+    
+    	$funcion = "ins_errores_importacion";
+    
+    	$_id_usuarios=$_SESSION['id_usuarios'];
+    
+    	 
+    	$parametros = " '$_origen_errores_importacion' , '$_error_errores_importacion' , '$_detalle_errores_importacion' ,  '$_id_usuarios'  ";
+    
+    	$traza->setFuncion($funcion);
+    
+    	$traza->setParametros($parametros);
+    
+    	$resultadoT=$errores_importacion->Insert();
+    
+    }
+    
+    
     function myFunctionErrorHandler($errno, $errstr, $errfile, $errline)
     {
     	/* Según el típo de error, lo procesamos */

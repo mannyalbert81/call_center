@@ -65,15 +65,68 @@ class OperacionesController extends ControladorBase{
 					{
 						$contador = $contador + 1;
 						$lectura_linea =  fgets($file) ;
-						$encabezado_linea = fgets($file) ;
 						
-						if ($contador > 1) ///inserto
-						{
 							$funcion = "ins_operaciones";
-						/*	
-							//
-							$_id_clientes integer, 
 							
+							//
+							///buscamos el cliente
+							$_tipo_identificacion_cliente =  substr($lectura_linea,0,1);
+							$_identificacion_cliente =  substr($lectura_linea,1,13);
+							$_id_clientes = 0;
+							
+							$columnas = "clientes.id_clientes";
+						    $tablas   = "public.clientes, public.tipo_identificacion";
+						    $where    = "tipo_identificacion.id_tipo_identificacion = clientes.id_tipo_identificacion 
+  										 AND substr(tipo_identificacion.nombre_tipo_identificacion,1,1) = '$_tipo_identificacion_cliente' 
+  										 AND clientes.identificacion_clientes = '$_identificacion_cliente'";
+						    $id		 = "clientes.id_clientes";	
+							
+							$resultCli = $operaciones->getCondiciones($columnas, $tablas, $where, $id);
+							foreach($resultCli as $res)
+							{
+								$_id_clientes  = $res->id_clientes;
+									
+							}
+							if ($_id_clientes > 0)   //encontro el cliente
+							{
+								
+								$_numero_operaciones           			= substr($lectura_linea,14,20);
+								$_descripcion_operaciones      			= substr($lectura_linea,24,124);
+								$_fecha_inicio_operaciones     			= substr($lectura_linea,128,4) .".". substr($lectura_linea,132,2) .".". substr($lectura_linea,134,2);
+								$_fecha_finalizacion_operaciones 		= substr($lectura_linea,136,4) .".". substr($lectura_linea,140,2) .".". substr($lectura_linea,142,2); 
+								$_fecha_vencimiento_operaciones  		= substr($lectura_linea,144,4) .".". substr($lectura_linea,148,2) .".". substr($lectura_linea,150,2); 
+								$_fecha_liquidacion_operaciones  		= substr($lectura_linea,152,4) .".". substr($lectura_linea,156,2) .".". substr($lectura_linea,158,2);
+								$_valor_capital_operaciones      		= floatval(substr($lectura_linea,160,13). "." . substr($lectura_linea,173,2));
+								$_valor_interes_ordinario_operaciones  	= floatval(substr($lectura_linea,175,13). "." . substr($lectura_linea,188,2));
+								$_valor_interes_mora_operaciones       	= floatval(substr($lectura_linea,190,13). "." . substr($lectura_linea,203,2));
+								$_valor_comision_operaciones           	= floatval(substr($lectura_linea,205,13). "." . substr($lectura_linea,218,2));
+								$_valor_total_operaciones              	= floatval(substr($lectura_linea,220,13). "." . substr($lectura_linea,233,2));;
+								
+								$_codigo_ciudad                        	= substr($lectura_linea,235,5);
+								$_id_ciudad    = 0;
+								
+								$resultCiu = $ciudad->getBy($whereCiu);
+								
+								foreach($resultCli as $res)
+								{
+									$_id_clientes  = $res->id_clientes;
+										
+								}
+								
+							}
+								
+							else /// no encontro el cliente notificar
+							{
+								$_origen_errores_importacion   = 'IMPORTACION DE OPERACIONES' ; 
+								$_error_errores_importacion    = 'No fue Posible encontrar un cliente' ;
+								$_detalle_errores_importacion  = 'Tipo Identificacion-> '.$_tipo_identificacion_cliente . ' Identificacion->'.$_tipo_identificacion_cliente ;
+								$operaciones->InsertaErroresImportacion($_origen_errores_importacion, $_error_errores_importacion, $_detalle_errores_importacion);
+								
+							}
+							
+							//$_id_clientes integer, 
+						
+							/*
 							$_numero_operaciones character varying, 
 							$_descripcion_operaciones character varying, 
 							$_fecha_inicio_operaciones date, 
@@ -104,7 +157,7 @@ class OperacionesController extends ControladorBase{
 							$recaudacion_cabeza->setParametros($parametros);
 						
 							*/
-						}
+						
 					}
 								
 					fclose ($file);
