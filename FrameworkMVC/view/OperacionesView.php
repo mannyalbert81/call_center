@@ -90,7 +90,7 @@
   
      <div class="row" style="background-color: #ffffff;">
   
-  	      <form action="<?php echo $helper->url("Operaciones","Index"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
+  	      <form action="<?php echo $helper->url("Operaciones","index"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
             <h4 style="color:#ec971f;">Importar Operaciones</h4>
             <hr/>
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>

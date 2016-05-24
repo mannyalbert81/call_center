@@ -343,9 +343,9 @@ class EntidadBase{
     	 
     	$parametros = " '$_origen_errores_importacion' , '$_error_errores_importacion' , '$_detalle_errores_importacion' ,  '$_id_usuarios'  ";
     
-    	$traza->setFuncion($funcion);
+    	$errores_importacion->setFuncion($funcion);
     
-    	$traza->setParametros($parametros);
+    	$errores_importacion->setParametros($parametros);
     
     	$resultadoT=$errores_importacion->Insert();
     

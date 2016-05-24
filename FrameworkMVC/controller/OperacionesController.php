@@ -11,7 +11,7 @@ class OperacionesController extends ControladorBase{
 
 	public function index(){
 	
-
+		$errores = new ErroresImportacionModel(); 
 		$operaciones = new OperacionesModel();
 		$clientes = new ClientesModel();
 		$ciudad = new CiudadModel();
@@ -31,7 +31,7 @@ class OperacionesController extends ControladorBase{
 			{
 				if (isset ($_POST["procesar"]) )
 				{
-					$_id_recaudacion_institucion = $_POST["recaudacion_institucion"];
+					//$_id_recaudacion_institucion = $_POST["recaudacion_institucion"];
 					
 					$directorio = $_SERVER['DOCUMENT_ROOT'].'/cartera/';
 						
@@ -82,6 +82,7 @@ class OperacionesController extends ControladorBase{
 						    $id		 = "clientes.id_clientes";	
 							
 							$resultCli = $operaciones->getCondiciones($columnas, $tablas, $where, $id);
+							
 							foreach($resultCli as $res)
 							{
 								$_id_clientes  = $res->id_clientes;
@@ -91,73 +92,69 @@ class OperacionesController extends ControladorBase{
 							{
 								
 								$_numero_operaciones           			= substr($lectura_linea,14,20);
-								$_descripcion_operaciones      			= substr($lectura_linea,24,124);
-								$_fecha_inicio_operaciones     			= substr($lectura_linea,128,4) .".". substr($lectura_linea,132,2) .".". substr($lectura_linea,134,2);
-								$_fecha_finalizacion_operaciones 		= substr($lectura_linea,136,4) .".". substr($lectura_linea,140,2) .".". substr($lectura_linea,142,2); 
-								$_fecha_vencimiento_operaciones  		= substr($lectura_linea,144,4) .".". substr($lectura_linea,148,2) .".". substr($lectura_linea,150,2); 
-								$_fecha_liquidacion_operaciones  		= substr($lectura_linea,152,4) .".". substr($lectura_linea,156,2) .".". substr($lectura_linea,158,2);
-								$_valor_capital_operaciones      		= floatval(substr($lectura_linea,160,13). "." . substr($lectura_linea,173,2));
-								$_valor_interes_ordinario_operaciones  	= floatval(substr($lectura_linea,175,13). "." . substr($lectura_linea,188,2));
-								$_valor_interes_mora_operaciones       	= floatval(substr($lectura_linea,190,13). "." . substr($lectura_linea,203,2));
-								$_valor_comision_operaciones           	= floatval(substr($lectura_linea,205,13). "." . substr($lectura_linea,218,2));
-								$_valor_total_operaciones              	= floatval(substr($lectura_linea,220,13). "." . substr($lectura_linea,233,2));;
+								$_descripcion_operaciones      			= substr($lectura_linea,34,100);
+								$_fecha_inicio_operaciones     			= substr($lectura_linea,134,4) .".". substr($lectura_linea,138,2) .".". substr($lectura_linea,140,2);
+								$_fecha_finalizacion_operaciones 		= substr($lectura_linea,142,4) .".". substr($lectura_linea,146,2) .".". substr($lectura_linea,148,2); 
+								$_fecha_vencimiento_operaciones  		= substr($lectura_linea,150,4) .".". substr($lectura_linea,154,2) .".". substr($lectura_linea,156,2); 
+								$_fecha_liquidacion_operaciones  		= substr($lectura_linea,158,4) .".". substr($lectura_linea,162,2) .".". substr($lectura_linea,164,2);
+								$_valor_capital_operaciones      		= floatval(substr($lectura_linea,166,13). "." . substr($lectura_linea,179,2));
+								$_valor_interes_ordinario_operaciones  	= floatval(substr($lectura_linea,181,13). "." . substr($lectura_linea,194,2));
+								$_valor_interes_mora_operaciones       	= floatval(substr($lectura_linea,196,13). "." . substr($lectura_linea,209,2));
+								$_valor_comision_operaciones           	= floatval(substr($lectura_linea,211,13). "." . substr($lectura_linea,224,2));
+								$_valor_total_operaciones              	= floatval(substr($lectura_linea,226,13). "." . substr($lectura_linea,239,2));;
+								//$_id_ciudad                             = substr($lectura_linea,235,5);
+								$_codigo_ciudad                        	= substr($lectura_linea,241,5);
 								
-								$_codigo_ciudad                        	= substr($lectura_linea,235,5);
 								$_id_ciudad    = 0;
-								
+							
+								$whereCiu = "codigo_ciudad = '$_codigo_ciudad' ";
 								$resultCiu = $ciudad->getBy($whereCiu);
 								
-								foreach($resultCli as $res)
+								
+								
+								if (!empty($resultCiu))   //encontro el cliente  -.. $_id_ciudad > 0
 								{
-									$_id_clientes  = $res->id_clientes;
+									
+								
+								foreach($resultCiu as $res)
+								{
 										
+									$_id_ciudad =   $res->id_ciudad;
 								}
+											//_id_clientes integer, _numero_operaciones character varying, _descripcion_operaciones character varying, _fecha_inicio_operaciones date, _fecha_finalizacion_operaciones date, _fecha_vencimiento_operaciones date, _fecha_liquidacion_operaciones date, _valor_capital_operaciones numeric, _valor_interes_ordinario_operaciones numeric, _valor_interes_mora_operaciones numeric, _valor_comision_operaciones numeric, _valor_total_operaciones numeric, _id_ciudad integer
+								$parametros = " '$_id_clientes', '$_numero_operaciones' , '$_descripcion_operaciones' , '$_fecha_inicio_operaciones',  '$_fecha_finalizacion_operaciones', '$_fecha_vencimiento_operaciones', '$_fecha_liquidacion_operaciones' , '$_valor_capital_operaciones', '$_valor_interes_ordinario_operaciones', '$_valor_interes_mora_operaciones', '$_valor_comision_operaciones', '$_valor_total_operaciones', '$_id_ciudad' ";
+								//$parametros = " '$_id_clientes' ,'$_identificacion_cliente' , '$_numero_operaciones' , '$_descripcion_operaciones' , '$_fecha_inicio_operaciones',  '$_fecha_finalizacion_operaciones', '$_fecha_vencimiento_operaciones', '$_fecha_liquidacion_operaciones' , '$_valor_capital_operaciones', '$_valor_interes_ordinario_operaciones', '$_valor_interes_mora_operaciones', '$_valor_comision_operaciones', '$_valor_total_operaciones', '$_id_ciudad' ";
+								$operaciones->setFuncion($funcion);
+								$operaciones->setParametros($parametros);
+								
+								$resultado=$operaciones->Insert();
+								
+								}else {
+									
+									$errores_importacion = new ErroresImportacionModel();
+									$_origen_errores_importacion   = 'IMPORTACION DE OPERACIONES' ;
+									$_error_errores_importacion    = 'No fue Posible encontrar una ciudad' ;
+									$_detalle_errores_importacion  = 'Ciudad-> '.$_id_ciudad . ' Identificacion->'.$_tipo_identificacion_cliente ;
+									$resultado = $errores_importacion->InsertaErroresImportacion($_origen_errores_importacion, $_error_errores_importacion, $_detalle_errores_importacion);
+									
+									
+								}
+								
+							
 								
 							}
 								
 							else /// no encontro el cliente notificar
 							{
+								$errores_importacion = new ErroresImportacionModel();
 								$_origen_errores_importacion   = 'IMPORTACION DE OPERACIONES' ; 
 								$_error_errores_importacion    = 'No fue Posible encontrar un cliente' ;
 								$_detalle_errores_importacion  = 'Tipo Identificacion-> '.$_tipo_identificacion_cliente . ' Identificacion->'.$_tipo_identificacion_cliente ;
-								$operaciones->InsertaErroresImportacion($_origen_errores_importacion, $_error_errores_importacion, $_detalle_errores_importacion);
+								$resultado = $errores_importacion->InsertaErroresImportacion($_origen_errores_importacion, $_error_errores_importacion, $_detalle_errores_importacion);
 								
 							}
 							
-							//$_id_clientes integer, 
-						
-							/*
-							$_numero_operaciones character varying, 
-							$_descripcion_operaciones character varying, 
-							$_fecha_inicio_operaciones date, 
-							$_fecha_finalizacion_operaciones date, 
-							$_fecha_vencimiento_operaciones date, 
-							$_fecha_liquidacion_operaciones date, 
-							$_valor_capital_operaciones numeric, 
-							$_valor_interes_ordinario_operaciones numeric, 
-							$_valor_interes_mora_operaciones numeric, 
-							$_valor_comision_operaciones numeric, 
-							$_valor_total_operaciones numeric, 
-							$_id_ciudad integer)
 							
-							//$_id_recaudacion_institucion; 
-							$_tipo_linea_recaudacion_cabeza = substr($lectura_linea,0,3);
-							$_tipo_nuc_recaudacion_cabeza   = substr($lectura_linea,3,1);
-							$_numero_nuc_recaudacion_cabeza = substr($lectura_linea,4,14);
-							//$my_date = date('m/d/y', strtotime($date));
-							$_fecha_creacion_recaudacion_cabeza = substr($lectura_linea,18,4) .".". substr($lectura_linea,22,2) .".". substr($lectura_linea,24,2);
-							$_hora_creacion_recaudacion_cabeza =  substr($lectura_linea,26,2) . ":". substr($lectura_linea,28,2) . ":". substr($lectura_linea,30,2);
-							$_cantidad_registros_recaudacion_cabeza =  intval(substr($lectura_linea,32,6));
-							$_valor_total_sucres_recaudacion_cabeza =  floatval(substr($lectura_linea,38,13). "." . substr($lectura_linea,51,2));
-							$_valor_total_dolares_recaudacion_cabeza =  floatval(substr($lectura_linea,53,13) . ":".substr($lectura_linea,66,2));
-							
-							
-							$parametros = " '$_id_recaudacion_institucion' ,'$_tipo_linea_recaudacion_cabeza' , '$_tipo_nuc_recaudacion_cabeza' , '$_numero_nuc_recaudacion_cabeza' , '$_fecha_creacion_recaudacion_cabeza', '$_hora_creacion_recaudacion_cabeza', '$_cantidad_registros_recaudacion_cabeza' , '$_valor_total_sucres_recaudacion_cabeza' , '$_valor_total_dolares_recaudacion_cabeza' ";
-							$recaudacion_cabeza->setFuncion($funcion);
-							$recaudacion_cabeza->setParametros($parametros);
-						
-							*/
-						
 					}
 								
 					fclose ($file);
@@ -171,7 +168,7 @@ class OperacionesController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Controladores"
+						"resultado"=>"No tiene Permisos de Acceso a Operaciones"
 				
 				));
 				
