@@ -399,20 +399,10 @@ public function index(){
 								$_id_tipo_persona =   $res->id_tipo_persona;
 							}
 							
-							
-							
-							
-							
-							
-							
-							
-								
 							$parametros = " '$_id_tipo_identificacion' ,'$_identificacion_clientes' , '$_nombres_clientes' , '$_telefono_clientes' , '$_celular_clientes', '$_direccion_clientes', '$_id_ciudad' , '$_id_tipo_persona' ";
 							$clientes->setFuncion($funcion);
 							$clientes->setParametros($parametros);
-								
 						
-							
 								try {
 	
 									$resultado=$clientes->Insert();
@@ -424,22 +414,15 @@ public function index(){
 											"resultado"=>$e
 									));
 	
-	
-								
 							  }
 							}	
 								
 						}
 	
-						
-	
 					}
 						
 					fclose ($file);
-						
-						
 				}
-					
 					
 				$this->view("ImportacionClientes",array(
 						"resultEdit" =>$resultEdit, "mensaje"=>$mensaje
@@ -467,8 +450,6 @@ public function index(){
 		}
 	
 	}
-	
-		
 	
 }
 ?>

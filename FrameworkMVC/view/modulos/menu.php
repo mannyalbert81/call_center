@@ -45,7 +45,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Procesos" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-        	<li><a href="index.php?controller=Usuarios&action=index"><span class="glyphicon glyphicon-ok" aria-hidden="true"> Importacion de Cartera/Operaciones</span> </a>
+        	<li><a href="index.php?controller=Operaciones&action=index"><span class="glyphicon glyphicon-ok" aria-hidden="true"> Importacion de Cartera/Operaciones</span> </a>
 		    </li>
 			<li><a href="index.php?controller=Recaudacion&action=index"><span class="glyphicon glyphicon-euro" aria-hidden="true"> Procesar Archivo de Recaudacion</span> </a>
 			</li>

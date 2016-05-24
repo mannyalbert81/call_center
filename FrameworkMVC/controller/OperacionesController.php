@@ -1,6 +1,6 @@
 <?php
 
-class RecaudacionController extends ControladorBase{
+class OperacionesController extends ControladorBase{
 
 	
 	public function __construct() {
@@ -12,23 +12,17 @@ class RecaudacionController extends ControladorBase{
 	public function index(){
 	
 
-		
 		$operaciones = new OperacionesModel();
 		$clientes = new ClientesModel();
 		$ciudad = new CiudadModel();
 		
-		
 		$resultEdit = "";	
-		
-		
+		$resultSet = "";
 		session_start();
 
-	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-
-
-			$nombre_controladores = "Operaciones";
+            $nombre_controladores = "Operaciones";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $operaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			$mensaje = "";
@@ -60,12 +54,9 @@ class RecaudacionController extends ControladorBase{
 					while(!feof($file))
 					{
 						if ($linea = fgets($file)){
-							//acumulo una en la variable número de líneas
 							$contador_linea ++;
-							
 						}    
-						
-					}
+				}
 					fclose ($file);
 					
 					$file = fopen($directorio.$nombre, "r") or exit("Unable to open file!");
@@ -118,14 +109,10 @@ class RecaudacionController extends ControladorBase{
 								
 					fclose ($file);
 					
-					
 				}
-				
-						
 					
 				$this->view("Operaciones",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultInsRec" =>$resultInsRec, "mensaje"=>$mensaje
-							
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "mensaje"=>$mensaje			
 				));
 			}
 			else

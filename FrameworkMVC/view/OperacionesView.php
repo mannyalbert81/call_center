@@ -2,7 +2,7 @@
 <html lang="es">
      <head>
          <meta charset="utf-8"/>
-        <title>Importacion Clientes - coactiva 2016</title>
+        <title>Importacion Operaciones - coactiva 2016</title>
         
          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -48,7 +48,7 @@
 		    	if (archivo == "")
 		    	{
 			    	
-		    		$("#mensaje_archivo").text("Introduzca una Importacion de Clientes ");
+		    		$("#mensaje_archivo").text("Introduzca una Operacion ");
 		    		$("#mensaje_archivo").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
@@ -90,8 +90,8 @@
   
      <div class="row" style="background-color: #ffffff;">
   
-  	      <form action="<?php echo $helper->url("Clientes","ImportacionClientes"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
-            <h4 style="color:#ec971f;">Importar Clientes</h4>
+  	      <form action="<?php echo $helper->url("Operaciones","Index"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
+            <h4 style="color:#ec971f;">Importar Operaciones</h4>
             <hr/>
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	       <?php } } else {?>
