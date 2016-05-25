@@ -1,6 +1,6 @@
 <?php
 
-class AutoPagosController extends ControladorBase{
+class AprobacionAutoPagoController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
@@ -15,13 +15,14 @@ class AutoPagosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$resultDatos=array();
 			
 			//creacion ddl de secretarios o abogadpos
 			$resultAsignacion=array(0=>'--Seleccione--',1=>'Secretario',2=>'Abg Impulsor');
 	
 			$permisos_rol = new PermisosRolesModel();
 			
-			$nombre_controladores = "AutoPagos";
+			$nombre_controladores = "AprobacionAutoPago";
 			$id_rol= $_SESSION['id_rol'];
 			
 			$ciudad = new CiudadModel();
@@ -32,32 +33,6 @@ class AutoPagosController extends ControladorBase{
 			
 			$estado=new EstadoModel();
 			$resultEstado=$estado->getBy("nombre_estado='PENDIENTE'");
-			
-			$asignacion_titulo_credito = new AsignacionTitulosCreditoModel();
-			
-			
-			$columnas = " clientes.id_clientes, 
-						  titulo_credito.id_titulo_credito, 
-						  clientes.identificacion_clientes, 
-						  clientes.nombres_clientes, 
-						  clientes.celular_clientes, 
-						  titulo_credito.total, 
-						  titulo_credito.fecha_corte, 
-						  titulo_credito.id_ciudad, 
-						  ciudad.nombre_ciudad";
-			
-			$tablas   = "public.titulo_credito, 
-						  public.clientes, 
-						  public.ciudad";
-			
-			$where    = "clientes.id_clientes = titulo_credito.id_clientes AND
-                         ciudad.id_ciudad = titulo_credito.id_ciudad";
-			
-			$id       = "titulo_credito.id_titulo_credito";
-				
-			
-			$resultDatos=$asignacion_titulo_credito->getCondiciones($columnas ,$tablas ,$where, $id);
-			
 			
 			$resultPer = $permisos_rol->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
@@ -96,7 +71,7 @@ class AutoPagosController extends ControladorBase{
 			
 					if (isset ($_GET["id_asignacion_secretarios"])   )
 					{
-						$nombre_controladores = "AutoPagos";
+						$nombre_controladores = "AprobacionAutoPago";
 						$id_rol= $_SESSION['id_rol'];
 						$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
@@ -108,7 +83,7 @@ class AutoPagosController extends ControladorBase{
 							
 							
 							$traza=new TrazasModel();
-							$_nombre_controlador = "AutoPagos";
+							$_nombre_controlador = "AprobacionAutoPagos";
 							$_accion_trazas  = "Editar";
 							$_parametros_trazas = $_id_asignacion_secretarios;
 							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
@@ -117,7 +92,7 @@ class AutoPagosController extends ControladorBase{
 						else
 						{
 							$this->view("Error",array(
-									"resultado"=>"No tiene Permisos de Editar Asignacion Secretarios"
+									"resultado"=>"No tiene Permisos de Editar Aprobacion Auto de Pago"
 						
 									
 							));
@@ -134,43 +109,41 @@ class AutoPagosController extends ControladorBase{
 						$criterio_busqueda=$_POST["criterio_busqueda"];
 						$contenido_busqueda=$_POST["contenido_busqueda"];
 					
-						$asignacion_titulo_credito = new AsignacionTitulosCreditoModel();
+						$aprobacion_auto_pago = new AutoPagosModel();
 							
 							
-						$columnas = " clientes.id_clientes,
-							  titulo_credito.id_titulo_credito,
-							  clientes.identificacion_clientes,
-							  clientes.nombres_clientes,
-							  clientes.celular_clientes,
-							  titulo_credito.total,
-							  titulo_credito.fecha_corte,
-							  titulo_credito.id_ciudad,
-							  ciudad.nombre_ciudad";
+						$columnas = " auto_pagos.id_auto_pagos, 
+						  auto_pagos.id_titulo_credito, 
+						  clientes.identificacion_clientes, 
+						  clientes.nombres_clientes, 
+						  usuarios.nombre_usuarios, 
+						  auto_pagos.fecha_asiganacion_auto_pagos, 
+						  estado.nombre_estado";
 					
-						$tablas   = "public.titulo_credito,
-							  public.clientes,
-							  public.ciudad";
+						$tablas   = "public.auto_pagos, 
+								  public.usuarios, 
+								  public.titulo_credito, 
+								  public.estado, 
+								  public.clientes";
 					
-						$where    = "clientes.id_clientes = titulo_credito.id_clientes AND
-	                         ciudad.id_ciudad = titulo_credito.id_ciudad";
+						$where    = "usuarios.id_usuarios = auto_pagos.id_usuario_impulsor AND
+								  titulo_credito.id_titulo_credito = auto_pagos.id_titulo_credito AND
+								  estado.id_estado = auto_pagos.id_estado AND
+								  clientes.id_clientes = titulo_credito.id_clientes";
 					
 						$id       = "titulo_credito.id_titulo_credito";
 							
 					
-					
-						$where_0 = "";
 						$where_1 = "";
 						$where_2 = "";
 					
 						switch ($criterio_busqueda) {
+							
 							case 0:
-								$where_0 = " ";
-								break;
-							case 1:
 								// identificacion de cliente
 								$where_1 = " AND  clientes.identificacion_clientes LIKE '$contenido_busqueda'  ";
 								break;
-							case 2:
+							case 1:
 								//id_titulo de credito
 								$where_2 = " AND  titulo_credito.id_titulo_credito = '$contenido_busqueda'  ";
 								break;
@@ -179,56 +152,22 @@ class AutoPagosController extends ControladorBase{
 					
 					
 					
-						$where_to  = $where .  $where_0 . $where_1 . $where_2;
+						$where_to  = $where . $where_1 . $where_2;
 						
 							
-						$resultDatos=$asignacion_titulo_credito->getCondiciones($columnas ,$tablas ,$where_to, $id);
+						$resultDatos=$aprobacion_auto_pago->getCondiciones($columnas ,$tablas ,$where_to, $id);
 					
 							
 					}
 					
 					
 			
-					if (isset ($_POST["ddl_resultado"]) && isset($_POST["ddl_busqueda"]))
-					{
 					
-						//busqueda  WHERE  B.id_secretario_asignacion_secretarios=28
+				
+					
+					$this->view("AprobacionAutoPago",array(
 							
-					$columnas = "B.id_asignacion_secretarios AS id_asignacion_secretarios ,
-								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_secretario_asignacion_secretarios) AS secretarios,
-								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_abogado_asignacion_secretarios) AS impulsadores";
-					$tablas   = "asignacion_secretarios B";
-					//$where    = "B.id_asignacion_secretarios>0";
-					$where="";
-					$id       = "B.id_asignacion_secretarios";
-							
-					
-						$criterio = $_POST["ddl_resultado"];
-						$contenido = $_POST["ddl_busqueda"];
-					
-							
-						//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
-					
-						if ($contenido ==1)
-						{
-							$where="B.id_secretario_asignacion_secretarios=".$criterio;					
-							
-						}elseif ($contenido ==2)
-						{
-							$where="B.id_abogado_asignacion_secretarios=".$criterio;
-						}
-					
-							//Conseguimos todos los usuarios con filtros
-					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
-					
-						}
-					
-					
-					
-					
-					$this->view("AutoPagos",array(
-							
-							"resultCon"=>$resultCon, "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultUsuarioSecretario"=>$resultUsuarioSecretario,"resultUsuarioImpulsor"=>$resultUsuarioImpulsor,"resultAsignacion"=>$resultAsignacion, "resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu, "resultDatos"=>$resultDatos,"resultEstado"=>$resultEstado
+							 "resultEdit"=>$resultEdit,"resultRol"=>$resultRol, "resultDatos"=>$resultDatos
 					));
 			
 			
@@ -255,6 +194,40 @@ class AutoPagosController extends ControladorBase{
 	
 	}
 	 
+	public function ActualizarAutoPago(){
+		session_start();
+		
+		$resultado = null;
+		$permisos_rol = new PermisosRolesModel();
+		$aprobacion_auto_pago = new AutoPagosModel();
+		$nombre_controladores = "AprobacionAutoPago";
+		$id_rol= $_SESSION['id_rol'];
+		$resultPer = $permisos_rol->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
+		
+		if (!empty($resultPer))
+		{
+			if(isset($_GET["id_auto_pagos"])){
+				
+				$estado=new EstadoModel();
+				$resultEstado=$estado->getBy("nombre_estado='APROBADO'");
+				
+				$id_estado=$resultEstado[0]->id_estado;
+				$colval="id_estado='$id_estado'";
+				$id_auto_pago=$_GET["id_auto_pagos"];
+				
+				$tabla="auto_pagos";
+				
+				$where="id_auto_pagos='$id_auto_pago'";
+				
+				
+				$resultado=$aprobacion_auto_pago->UpdateBy($colval, $tabla, $where);
+				
+			}
+			
+			$this->redirect("AprobacionAutoPago", "index");
+		}
+		
+	}
 	
 	public function InsertaAutoPagos(){
 

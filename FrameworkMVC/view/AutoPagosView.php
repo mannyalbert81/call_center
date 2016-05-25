@@ -256,6 +256,26 @@
        <?php
        
      	$resultMenu_busqueda=array(0=>"Todos",1=>"Identificacion",2=>"Titulo Credito");
+     	
+     	
+     	$sel_id_usuarioAgente = "";
+     	$sel_id_usuarioImpulsor="";
+     	$sel_id_ciudad="";
+     	$sel_fecha_asignacion="";
+   
+     		
+     	if($_SERVER['REQUEST_METHOD']=='POST' )
+     		{
+     			$sel_id_usuarioAgente = $_POST['id_usuarioAgente'];
+     			$sel_id_usuarioImpulsor=$_POST['id_usuarioImpulsor'];
+     			$sel_id_ciudad=$_POST['id_ciudad'];
+     			$sel_fecha_asignacion=$_POST['fecha_asignacion'];
+     	
+     		}
+     	
+     		 
+     			
+     	
 		   
 		?>
  
@@ -265,7 +285,7 @@
   <div class="row" style="background-color: #ffffff;">
   
      
-      <form action="<?php echo $helper->url("AsignacionTituloCredito","InsertaAsignacionTituloCredito"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("AutoPagos","InsertaAutoPagos"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
     
     <div class="col-lg-5">
     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
@@ -275,12 +295,12 @@
 		     <?php } } else {?>
 		     
 		 
-		    <h4 style="color:#ec971f;">Asignar Titulos Credito</h4>
+		    <h4 style="color:#ec971f;">Auto Pagos</h4>
             	<hr/>
             	
             <div class="col-xs-5">
 			  <p  class="formulario-subtitulo" >Fecha de Asignacion </p>
-	          <input type="date" id="fecha_asignacion" name="fecha_asignacion" class="form-control">
+	          <input type="date" id="fecha_asignacion" name="fecha_asignacion" class="form-control" value="<?php echo $sel_fecha_asignacion;?>">
 		   		   
 		    </div>
             	
@@ -288,7 +308,7 @@
 			  	<p  class="formulario-subtitulo" >Ciudad</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
 					<?php foreach($resultCiu as $resCiu) {?>
-						<option value="<?php echo $resCiu->id_ciudad; ?>"  ><?php echo $resCiu->nombre_ciudad; ?> </option>
+						<option value="<?php echo $resCiu->id_ciudad; ?>" <?php if($sel_id_ciudad==$resCiu->id_ciudad){echo "selected";}?> ><?php echo $resCiu->nombre_ciudad; ?> </option>
 			        <?php } ?>
 				</select> 			  
 			  </div>
@@ -301,8 +321,7 @@
 		    <div class="col-xs-5">
 			  <p  class="formulario-subtitulo" >Abogado(a) Impulsor</p>
 	            	 <select name="id_usuarioImpulsor" id="id_usuarioImpulsor"  class="form-control">
-						<option value="0"  > -- SIN ESPECIFICAR -- </option>			
-								    	
+						<option value="0"  > -- SIN ESPECIFICAR -- </option>
 									</select>
 		   		   
 		    </div>
@@ -310,9 +329,21 @@
 			   <div class="col-xs-5">
 			  <p  class="formulario-subtitulo" >Agente Judicial </p>
 	            	 <select name="id_usuarioAgente" id="id_usuarioAgente"  class="form-control">
-						<option value="0"  > -- SIN ESPECIFICAR -- </option>			
+						<option value="0" > -- SIN ESPECIFICAR -- </option>			
 								    	
 									</select>
+		   		   
+		    </div>
+		    <div class="col-xs-1"  style="width: 400px;">
+			<hr>
+			</div>
+			
+			<div class="col-xs-5">
+			  <p  class="formulario-subtitulo" >Estado </p>
+	            	 <select name="id_estado" id="id_estado"  class="form-control">
+						<?php foreach($resultEstado as $resEst) {?>
+						<option value="<?php echo $resEst->id_estado; ?>"  ><?php echo $resEst->nombre_estado; ?> </option>
+			        <?php } ?>		</select>
 		   		   
 		    </div>
 		    <div class="col-xs-1"  style="width: 400px;">
@@ -321,7 +352,7 @@
 		    
 		    
 		    
-			  <div class="col-xs-12" style="text-align: center;" >
+			  <div class="col-xs-10" style="text-align: center;" >
 			  <p style="color:#ffffff;" >-----</p>
 			
 			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
@@ -340,7 +371,7 @@
     
     
     <div  class="col-lg-7">
-     <h4 style="color:#ec971f;">Lista de titulo</h4>
+     <h4 style="color:#ec971f;">Lista de titulo credito</h4>
             <hr/>
     		<div class="col-xs-4">
 			
@@ -360,7 +391,7 @@
            
            <div class="col-xs-4" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("AsignacionTituloCredito","Index"); ?>'" value="buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("AutoPagos","Index"); ?>'" value="buscar" class="btn btn-default"/>
 			</div>
 		<div class="col-xs-12" style="margin: 10px;">	
 
