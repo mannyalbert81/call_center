@@ -151,7 +151,7 @@
 		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado; ?>  </td>
 		              <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("AprobacionAutoPago","ActualizarAutoPago"); ?>&id_auto_pagos=<?php echo $res->id_auto_pagos; ?>" class="btn btn-warning" style="font-size:65%;">Aprobar</a>
+			                    <a href="<?php echo $helper->url("AprobacionAutoPago","ActualizarAutoPago"); ?>&id_auto_pagos=<?php echo $res->id_auto_pagos; ?>" class="btn btn-success" style="font-size:65%;">Aprobar</a>
 			                </div>
 			            
 			          </td>  

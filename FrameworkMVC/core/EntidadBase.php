@@ -326,6 +326,28 @@ class EntidadBase{
     
     }
     
+    public function InsertaJuicio($id_entidades,$id_ciudad,$juicio_referido_titulo_credito,$id_usuarios,$id_titulo_credito,$id_clientes,$id_etapas_juicios,$id_tipo_juicios,$descipcion_auto_pago_juicios,$id_estados_procesales_juicios,$id_estados_auto_pago_juicios,$nombre_archivado_juicios)
+    {
+    	//ins_juicios->FUNCION
+    	//_id_entidades , _id_ciudad , _juicio_referido_titulo_credito  , _id_usuarios , _id_titulo_credito , _id_clientes , _id_etapas_juicios , _id_tipo_juicios , _descipcion_auto_pago_juicios  , _id_estados_procesales_juicios , _id_estados_auto_pago_juicios , _nombre_archivado_juicios
+    	
+    	$juicio=new JuiciosModel();
+    	$funcion="ins_juicios";
+    	$parametros="'$id_entidades','$id_ciudad','$juicio_referido_titulo_credito','$id_usuarios','$id_titulo_credito','$id_clientes','$id_etapas_juicios','$id_tipo_juicios','$descipcion_auto_pago_juicios','$id_estados_procesales_juicios','$id_estados_auto_pago_juicios','$nombre_archivado_juicios'";
+    	$juicio->setFuncion($funcion);
+    	$juicio->setParametros($parametros);
+    	$juicio->Insert();
+    	
+    	//actualizar los prefijos
+    	$prefijos=new PrefijosModel();
+    	$colval="consecutivo=consecutivo+1";
+    	$tabla="prefijos";
+    	$where="id_prefijos='1'";
+    	
+    	$resultado=$prefijos->UpdateBy($colval, $tabla, $where);
+    }
+    
+ 
   
 
     public function InsertaErroresImportacion( $_origen_errores_importacion , $_error_errores_importacion, $_detalle_errores_importacion)
