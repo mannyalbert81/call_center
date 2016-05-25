@@ -58,6 +58,8 @@
             </li>
             <li><a href="index.php?controller=ReasignarTitulo&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Reasignar Titulo Credito</span> </a>
             </li>
+            <li><a href="index.php?controller=AutoPagos&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Auto Pagos</span> </a>
+            </li>
                      </ul>
         </li>
         <li class="dropdown">
