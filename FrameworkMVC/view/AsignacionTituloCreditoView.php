@@ -65,7 +65,7 @@
             	
 
 
-         	   $.post("<?php echo $helper->url("AsignacionSecretarios","returnSecretariosbyciudad"); ?>", datos, function(resultUsuarioSecretarioC) {
+         	   $.post("<?php echo $helper->url("AsignacionTituloCredito","returnSecretariosbyciudad"); ?>", datos, function(resultUsuarioSecretarioC) {
 
          		 		$.each(resultUsuarioSecretarioC, function(index, value) {
             		 	    $ddl_secretario.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
@@ -109,7 +109,7 @@
             	
 
 
-         	   $.post("<?php echo $helper->url("AsignacionSecretarios","returnImpulsorbyciudad"); ?>", datos, function(resultUsuarioImpulC) {
+         	   $.post("<?php echo $helper->url("AsignacionTituloCredito","returnImpulsorbyciudad"); ?>", datos, function(resultUsuarioImpulC) {
 
          		 		$.each(resultUsuarioImpulC, function(index, value) {
             		 	    $ddl_impulsor.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
