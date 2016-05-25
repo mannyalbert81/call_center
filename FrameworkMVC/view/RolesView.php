@@ -70,7 +70,7 @@
                <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
                
                <div class="row">
-		       <div class="col-xs-12 col-md-12">
+		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Nombres Roles</p>
 			  	<input type="text"  name="nombre_rol" id="nombre_rol" value="<?php echo $resEdit->nombre_rol; ?>" class="form-control"/> 
 			  	<input type="hidden"  name="id_rol"  value="<?php echo $resEdit->id_rol; ?>" class="form-control"/> 
@@ -82,13 +82,13 @@
 		     <?php } } else {?>
 		     
 		      <div class="row">
-		       <div class="col-xs-12 col-md-12">
+		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Nombres Roles</p>
 			  	<input type="text"  name="nombre_rol" id="nombre_rol" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			 </div>
-		    
+		    <hr>
 		          <!--  
 	            	Nombre Rol: <input type="text" name="nombre_rol." value="<?php // echo $resEdit->nombre_rol; ?>" class="form-control"/>
 		            
@@ -96,8 +96,12 @@
 		            
 		     <?php } ?>
 		        
-           <input type="submit" value="Guardar" class="btn btn-success"/>
-          </form>
+		         <div class="row" margin-top= "20px">
+		          <div class="col-xs-6 col-md-6" style="text-align: center;" >
+                  <input type="submit" value="Guardar" class="btn btn-success"/>
+                  </div>
+                  </div>
+                  </form>
        
        
         <div class="col-lg-6">
