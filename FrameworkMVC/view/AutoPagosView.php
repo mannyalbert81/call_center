@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Asignacion Titulo Credito - coactiva 2016</title>
+        <title>Auto Pagos - coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -44,14 +44,14 @@
 		$("#id_ciudad").change(function(){
 
             // obtenemos el combo de resultado combo 2
-           var $ddl_secretario = $("#id_usuarioSecretario");
+           var $ddl_agente = $("#id_usuarioAgente");
        	
 
             // lo vaciamos
            var ddl_ciudad = $(this).val();
 
           
-            $ddl_secretario.empty();
+           $ddl_agente.empty();
 
           
             if(ddl_ciudad != 0)
@@ -65,10 +65,10 @@
             	
 
 
-         	   $.post("<?php echo $helper->url("AsignacionTituloCredito","returnSecretariosbyciudad"); ?>", datos, function(resultUsuarioSecretarioC) {
+         	   $.post("<?php echo $helper->url("AutoPagos","returnAgentesbyciudad"); ?>", datos, function(resultUsuarioAgenteC) {
 
-         		 		$.each(resultUsuarioSecretarioC, function(index, value) {
-            		 	    $ddl_secretario.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+         		 		$.each(resultUsuarioAgenteC, function(index, value) {
+         		 			$ddl_agente.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
                     		 });
 
          		 		 	 		   
@@ -109,7 +109,7 @@
             	
 
 
-         	   $.post("<?php echo $helper->url("AsignacionTituloCredito","returnImpulsorbyciudad"); ?>", datos, function(resultUsuarioImpulC) {
+         	   $.post("<?php echo $helper->url("AutoPagos","returnImpulsorbyciudad"); ?>", datos, function(resultUsuarioImpulC) {
 
          		 		$.each(resultUsuarioImpulC, function(index, value) {
             		 	    $ddl_impulsor.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
@@ -198,119 +198,7 @@
         
     
     		
-			<script >
-		    // cada vez que se cambia el valor del combo
-		    $(document).ready(function(){
-		    
-		    $("#Guardar").click(function() 
-			{
-		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
-
-		    	var identificacion_clientes = $("#identificacion_clientes").val();
-		    	var nombres_clientes = $("#nombres_clientes").val();
-		    	var telefono_clientes = $("#telefono_clientes").val();
-		    	var celular_clientes = $("#celular_clientes").val();
-		    	var direccion_clientes = $("#direccion_clientes").val();
-		    	
-		    	
-		    	
-		    	if (identificacion_clientes == "")
-		    	{
-			    	
-		    		$("#mensaje_identificacion_clientes").text("Introduzca una Identificacion");
-		    		$("#mensaje_identificacion_clientes").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_identificacion_clientes").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}    
-				
-		    	if (nombres_clientes == "")
-		    	{
-			    	
-		    		$("#mensaje_nombres_clientes").text("Introduzca un Nombre");
-		    		$("#mensaje_nombres_clientes").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_nombres_clientes").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}  
-
-		    	if (telefono_clientes == "")
-		    	{
-			    	
-		    		$("#mensaje_telefono_clientes").text("Introduzca un Teléfono");
-		    		$("#mensaje_telefono_clientes").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_telefono_clientes").fadeOut("slow"); //Muestra mensaje de error
-		            
-				} 
-
-		    	if (celular_clientes == "")
-		    	{
-			    	
-		    		$("#mensaje_celular_clientes").text("Introduzca un Celular");
-		    		$("#mensaje_celular_clientes").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_celular_clientes").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-
-		    	if (direccion_clientes == "")
-		    	{
-			    	
-		    		$("#mensaje_direccion_clientes").text("Introduzca una Dirección");
-		    		$("#mensaje_direccion_clientes").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_direccion_clientes").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	
-		    	
-
-		    					    
-
-			}); 
-
-		    $( "#identificacion_clientes" ).focus(function() {
-				  $("#mensaje_identificacion_clientes").fadeOut("slow");
-			    });
-				
-		        $( "#nombres_clientes" ).focus(function() {
-				  $("#mensaje_nombres_clientes").fadeOut("slow");
-			    });
-
-		        $( "#telefono_clientes" ).focus(function() {
-					  $("#mensaje_telefono_clientes").fadeOut("slow");
-				    });
-		        $( "#celular_clientes" ).focus(function() {
-					  $("#mensaje_celular_clientes").fadeOut("slow");
-				    });
-		        $( "#direccion_clientes" ).focus(function() {
-					  $("#mensaje_direccion_clientes").fadeOut("slow");
-				    });
-				
-		
-				
-		      
-				    
-		}); 
-
-	</script>
+			
 	
     <script>
     $(document).ready(function(){
@@ -368,6 +256,26 @@
        <?php
        
      	$resultMenu_busqueda=array(0=>"Todos",1=>"Identificacion",2=>"Titulo Credito");
+     	
+     	
+     	$sel_id_usuarioAgente = "";
+     	$sel_id_usuarioImpulsor="";
+     	$sel_id_ciudad="";
+     	$sel_fecha_asignacion="";
+   
+     		
+     	if($_SERVER['REQUEST_METHOD']=='POST' )
+     		{
+     			$sel_id_usuarioAgente = $_POST['id_usuarioAgente'];
+     			$sel_id_usuarioImpulsor=$_POST['id_usuarioImpulsor'];
+     			$sel_id_ciudad=$_POST['id_ciudad'];
+     			$sel_fecha_asignacion=$_POST['fecha_asignacion'];
+     	
+     		}
+     	
+     		 
+     			
+     	
 		   
 		?>
  
@@ -377,7 +285,7 @@
   <div class="row" style="background-color: #ffffff;">
   
      
-      <form action="<?php echo $helper->url("AsignacionTituloCredito","InsertaAsignacionTituloCredito"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("AutoPagos","InsertaAutoPagos"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
     
     <div class="col-lg-5">
     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
@@ -387,30 +295,64 @@
 		     <?php } } else {?>
 		     
 		 
-		    <h4 style="color:#ec971f;">Asignar Titulos Credito</h4>
+		    <h4 style="color:#ec971f;">Auto Pagos</h4>
             	<hr/>
+            	
+            <div class="col-xs-5">
+			  <p  class="formulario-subtitulo" >Fecha de Asignacion </p>
+	          <input type="date" id="fecha_asignacion" name="fecha_asignacion" class="form-control" value="<?php echo $sel_fecha_asignacion;?>">
+		   		   
+		    </div>
+            	
 		   	<div class="col-xs-5">
 			  	<p  class="formulario-subtitulo" >Ciudad</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
 					<?php foreach($resultCiu as $resCiu) {?>
-						<option value="<?php echo $resCiu->id_ciudad; ?>"  ><?php echo $resCiu->nombre_ciudad; ?> </option>
+						<option value="<?php echo $resCiu->id_ciudad; ?>" <?php if($sel_id_ciudad==$resCiu->id_ciudad){echo "selected";}?> ><?php echo $resCiu->nombre_ciudad; ?> </option>
 			        <?php } ?>
 				</select> 			  
 			  </div>
 			  
-			  
+			  <div class="col-xs-1"  style="width: 400px;">
+			<hr>
+			</div>
 		
 		  
 		    <div class="col-xs-5">
-			  <p  class="formulario-subtitulo" >Abogado(a)</p>
+			  <p  class="formulario-subtitulo" >Abogado(a) Impulsor</p>
 	            	 <select name="id_usuarioImpulsor" id="id_usuarioImpulsor"  class="form-control">
-						<option value="0"  > -- SIN ESPECIFICAR -- </option>			
+						<option value="0"  > -- SIN ESPECIFICAR -- </option>
+									</select>
+		   		   
+		    </div>
+		    
+			   <div class="col-xs-5">
+			  <p  class="formulario-subtitulo" >Agente Judicial </p>
+	            	 <select name="id_usuarioAgente" id="id_usuarioAgente"  class="form-control">
+						<option value="0" > -- SIN ESPECIFICAR -- </option>			
 								    	
 									</select>
 		   		   
 		    </div>
-			  
-			  <div class="col-xs-5" >
+		    <div class="col-xs-1"  style="width: 400px;">
+			<hr>
+			</div>
+			
+			<div class="col-xs-5">
+			  <p  class="formulario-subtitulo" >Estado </p>
+	            	 <select name="id_estado" id="id_estado"  class="form-control">
+						<?php foreach($resultEstado as $resEst) {?>
+						<option value="<?php echo $resEst->id_estado; ?>"  ><?php echo $resEst->nombre_estado; ?> </option>
+			        <?php } ?>		</select>
+		   		   
+		    </div>
+		    <div class="col-xs-1"  style="width: 400px;">
+			<hr>
+			</div>
+		    
+		    
+		    
+			  <div class="col-xs-10" style="text-align: center;" >
 			  <p style="color:#ffffff;" >-----</p>
 			
 			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
@@ -429,7 +371,7 @@
     
     
     <div  class="col-lg-7">
-     <h4 style="color:#ec971f;">Lista de titulo</h4>
+     <h4 style="color:#ec971f;">Lista de titulo credito</h4>
             <hr/>
     		<div class="col-xs-4">
 			
@@ -449,7 +391,7 @@
            
            <div class="col-xs-4" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("AsignacionTituloCredito","Index"); ?>'" value="buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("AutoPagos","Index"); ?>'" value="buscar" class="btn btn-default"/>
 			</div>
 		<div class="col-xs-12" style="margin: 10px;">	
 

@@ -106,12 +106,10 @@ class NotificacionesController extends ControladorBase{
 	public function InsertaNotificaciones(){
 			
 		session_start();
-		$notificaciones=new NotificacionesModel();
 		
-
+		$notificaciones=new NotificacionesModel();
 		$nombre_controladores = "Notificaciones";
-	
-		$id_rol= $_SESSION['id_rol'];
+        $id_rol= $_SESSION['id_rol'];
 		$resultPer = $notificaciones->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
 		if (!empty($resultPer))
@@ -135,10 +133,8 @@ class NotificacionesController extends ControladorBase{
 				
 				$funcion = "ins_notificaciones";
 				$parametros = "'$_id_tipo_notificacion', '$_id_usuarios', '$_descripcion_notificaciones'";
-					
 				$notificaciones->setFuncion($funcion);
-		
-				$notificaciones->setParametros($parametros);
+		        $notificaciones->setParametros($parametros);
 		
 		
 				$resultado=$notificaciones->Insert();
