@@ -16,8 +16,14 @@ class VehiculosEmbargadosController extends ControladorBase{
 	   //Conseguimos todos los usuarios
 		$resultSet=$vehiculos_embargados->getAll("id_vehiculos_embargados");
 				
+		
 		$resultEdit = "";
+		
+		$tipo_vehiculos = new TipoVehiculosModel();
+		$resultTipoVehiculos=$tipo_vehiculos->getAll("nombre_tipo_vehiculos");
 
+		$marca_vehiculos = new MarcaVehiculosModel();
+		$resultMarcaVehiculos=$marca_vehiculos->getAll("nombre_marca_vehiculos");
 		
 		session_start();
 
@@ -41,11 +47,11 @@ class VehiculosEmbargadosController extends ControladorBase{
 					if (!empty($resultPer))
 					{
 					
-						$_id_tipo_identificacion = $_GET["id_vehiculos_embargados"];
-						$columnas = " id_vehiculos_embargados, observaciones_vehiculos_embargados, placa_vehiculos_embargados ,modelo_vehiculos_embargados";
-						$tablas   = "vehiculos_embargados";
-						$where    = "id_vehiculos_embargados= '$_id_vehiculos_embargados' "; 
-						$id       = "observaciones_vehiculos_embargados";
+						$_id_vehiculos_embargados = $_GET["id_vehiculos_embargados"];
+						$columnas = " vehiculos_embargados.id_vehiculos_embargados, vehiculos_embargados.placa_vehiculos_embargados, vehiculos_embargados.modelo_vehiculos_embargados, vehiculos_embargados.observacion_vehiculos_embargados, vehiculos_embargados.fecha_ingreso_vehiculos_embargados, vehiculos_embargados.id_tipo_vehiculos, vehiculos_embargados.id_marca_vehiculos, vehiculos_embargados.id_clientes, clientes.id_clientes, clientes.nombres_clientes, tipo_vehiculos.id_tipo_vehiculos, tipo_vehiculos.nombre_tipo_vehiculos, marca_vehiculos.id_marca_vehiculos, marca_vehiculos.nombre_marca_vehiculos";
+			            $tablas   = " public.vehiculos_embargados, public.tipo_vehiculos, public.marca_vehiculos, public.clientes";
+						$where    = "tipo_vehiculos.id_tipo_vehiculos = vehiculos_embargados.id_vehiculos_embargados AND marca_vehiculos.id_marca_vehiculos = vehiculos_embargados.id_vehiculos_embargados AND clientes.id_clientes = vehiculos_embargados.id_vehiculos_embargados;= '$_id_vehiculos_embargados' "; 
+						$id       = "vehiculos_embargados.observaciones_vehiculos_embargados";
 							
 						$resultEdit = $vehiculos_embargados->getCondiciones($columnas ,$tablas ,$where, $id);
 
@@ -69,7 +75,7 @@ class VehiculosEmbargadosController extends ControladorBase{
 		
 				
 				$this->view("VehiculosEmbargados",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultTipoVehiculos"=>$resultTipoVehiculos, "resultMarcaVehiculos"=>$resultMarcaVehiculos
 			
 				));
 		
@@ -122,10 +128,12 @@ class VehiculosEmbargadosController extends ControladorBase{
 			if (isset ($_POST["observaciones_vehiculos_embargados"]) )
 				
 			{
-				
-				
-				
+				$_id_tipo_vehiculos = $_POST["id_tipo_vehiculos"];
+				$_id_marca_vehiculos = $_POST["id_marca_vehiculos"];
+				$_placa_vehiculos_embargados  = $_POST["placa_vehiculos_embargados"];
+				$_modelo_vehiculos_embargados = $_POST["modelo_vehiculos_embargados"];
 				$_observaciones_vehiculos_embargados= $_POST["observaciones_vehiculos_embargados"];
+				$_fecha_ingreso_vehiculos_embargados= $_POST["fecha_ingreso_vehiculos_embargados"];
 				
 				if(isset($_POST["id_vehiculos_embargados"])) 
 				{
@@ -144,7 +152,7 @@ class VehiculosEmbargadosController extends ControladorBase{
 				
 				$funcion = "ins_vehiculos_embargados";
 				
-				$parametros = " '$_observaciones_vehiculos_embargados'  ";
+				$parametros = " '$_observaciones_vehiculos_embargados','$_id_tipo_vehiculos','$_id_marca_notificacion','$_placa_vehiculos_embargados','$_modelo_vehiculos_embargados' ";
 					
 				$vehiculos_embargados->setFuncion($funcion);
 		

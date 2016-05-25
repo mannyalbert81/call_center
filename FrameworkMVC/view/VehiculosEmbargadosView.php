@@ -107,57 +107,118 @@
   <div class="row" style="background-color: #ffffff;">
   
        <!-- empieza el form --> 
-       
-      <form action="<?php echo $helper->url("VehiculosEmbargados","InsertaVehiculosEmbargados"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
-            
-         
-        	    <h4 style="color:#ec971f;">Insertar Tipos de Vehiculos Embargados</h4>
-            	<hr/>
+     
+      <form action="<?php echo $helper->url("VehiculosEmbargados","InsertaVehiculosEmbargados"); ?>" method="post" class="col-lg-6">
+            <h4 style="color:#ec971f;">Insertar Vehiculos Embargados</h4>
+            <hr/>
             	
-		   		
+            		
             
-          <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-            
-            
-            
-        
-			   
-			   <div class="row">
-		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Nombres tipos de Eehiculos Embargados</p>
-			  	<input type="text"  name="observaciones_vehiculos_embargados" id="observaciones_vehiculos_embargados" value="<?php echo $resEdit->observaciones_vehiculos_embargados; ?>" class="form-control"/> 
-			  	<input type="hidden"  name="id_vehiculos_embargados"  value="<?php echo $resEdit->id_vehiculos_embargados; ?>" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+             <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+	        
+	       <div class="row">
+			    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Tipo Vehiculos</p>
+			  	<select name="id_tipo_vehiculos" id="id_tipo_vehiculos"  class="form-control" >
+					<?php foreach($resultTipoVehiculos as $resTipoVehiculos) {?>
+						<option value="<?php echo $resTipoVehiculos->id_tipo_vehiculos; ?>" <?php if ($resTipoVehiculos->id_tipo_vehiculos == $resEdit->id_tipo_vehiculos)  echo  ' selected="selected" '  ;  ?> ><?php echo $resTipoVehiculos->nombre_tipo_vehiculos; ?> </option><?php } ?>
+				</select> 			  
+			  </div>
+		
+		<div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Marca</p>
+			  	<select name="id_marca_vehiculos" id="id_marca_vehiculos"  class="form-control" >
+					<?php foreach($resultMarcaVehiculos as $resMarcaVehiculos) {?>
+						<option value="<?php echo $resMarcaVehiculos->id_marca_vehiculos; ?>"  <?php if ($resMarcaVehiculos->id_marca_vehiculos == $resEdit->id_marca_vehiculos ) echo ' selected="selected" '  ; ?> ><?php echo $resMarcaVehiculos->nombre_marca_vehiculos; ?> </option><?php } ?>
+				</select> 			  
+			  </div>
+			 
+			  </div>
+			  <div class="row">
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Placa</p>
+			  	<input type="text"  name="placa_vehiculos_embargados" id="placa_vehiculos_embargados" value="<?php echo $resEdit->placa_vehiculos_embargados; ?>" class="form-control"/> 
+			    <div id="mensaje_cedula" class="errores"></div>
+			  </div>
+			
+			 
+			
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Modelo</p>
+			  	<input type="text"  name=",modelo_vehiculos_embargados" id="modelo_vehiculos_embargados" value="<?php echo $resEdit->modelo_vehiculos_embargados; ?>" class="form-control"/> 
+			    <div id="mensaje_cedula" class="errores"></div>
 			  </div>
 			   </div>
+			 
 		    
-		     <?php } } else {?>
-		    
-			   <div class="row">
-		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombres tipos de Vehiculos Embargados</p>
-			  	<input type="text"  name="observaciones_vehiculos_embargados" id="observaciones_vehiculos_embargados" value="" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+		    <div class="row">
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Observaciones</p>
+			  	<input type="text" name="observacion_vehiculos_embargados" id="observacion_vehiculos_embargados" value="<?php echo $resEdit->observacion_vehiculos_embargados; ?>" class="form-control"/> 
+			  <div id="mensaje_nombres" class="errores"></div>
 			  </div>
-			 </div>
-
-		    <hr>
-		    
+		    </div>
 		   
-               	
-		     <?php } ?>
-		     
-		     
-		       <div class="row">
-			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
-			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+	     	
+	     	<hr>
+	            	  
+            
+		     <?php } } 
+		     else {?>
+		    
+		<div class="row">
+			    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Tipo Vehiculos</p>
+			  	<select name="id_tipo_vehiculos" id="id_tipo_vehiculos"  class="form-control" >
+					<?php foreach($resultTipoVehiculos as $resTipoVehiculos) {?>
+						<option value="<?php echo $resTipoVehiculos->id_tipo_vehiculos; ?>" ><?php echo $resTipoVehiculos->nombre_tipo_vehiculos; ?> </option><?php } ?>
+				</select> 			  
 			  </div>
-			</div>     
-               
 		
-		 <hr>
-          
-       </form>
+		<div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Marca</p>
+			  	<select name="id_marca_vehiculos" id="id_marca_vehiculos"  class="form-control" >
+					<?php foreach($resultMarcaVehiculos as $resMarcaVehiculos) {?>
+						<option value="<?php echo $resMarcaVehiculos->id_marca_vehiculos; ?>" ><?php echo $resMarcaVehiculos->nombre_marca_vehiculos; ?> </option><?php } ?>
+				</select> 			  
+			  </div>
+			  </div>
+			   <div class="row">
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Placa</p>
+			  	<input type="text"  name="placa_vehiculos_embargados" id="placa_vehiculos_embargados" class="form-control"/> 
+			    <div id="mensaje_cedula" class="errores"></div>
+			  </div>
+			
+			 
+			
+		    <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Modelo</p>
+			  	<input type="text"  name=",modelo_vehiculos_embargados" id="modelo_vehiculos_embargados" class="form-control"/> 
+			    <div id="mensaje_cedula" class="errores"></div>
+			  </div>
+			   </div>
+			
+		    
+		     <div class="row">
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Observaciones</p>
+			  	<input type="text" name="observacion_vehiculos_embargados" id="observacion_vehiculos_embargados" class="form-control"/> 
+			  <div id="mensaje_nombres" class="errores"></div>
+			  </div>
+		    </div>
+		   
+			
+			<hr>
+		     <?php } ?>
+		       <div class="row">
+			  <div class="col-xs-12 col-md-12" style="text-align: center;" > 
+           <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+           </div>
+            </div>
+            
+          </form>  
+     
        <!-- termina el form --> 
        
         <div class="col-lg-6">
@@ -168,7 +229,10 @@
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Nombre</th>
+	    		<th style="color:#456789;font-size:80%;">Tipo</th>
+	    		<th style="color:#456789;font-size:80%;">Marca</th>
+	    		<th style="color:#456789;font-size:80%;">Observacion</th>
+	    		    		
 	    		
 	    		<th></th>
 	    		<th></th>
@@ -177,7 +241,9 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_vehiculos_embargados; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->observaciones_vehiculos_embargados; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_tipo_vehiculos; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_marca_vehiculos; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->observacion_vehiculos_embargados; ?>     </td> 
 		              
 		           	   <td>
 			           		<div class="right">
