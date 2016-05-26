@@ -49,7 +49,7 @@
        
        
        <?php
-       $resultMenu=array(0=>"Identificacion",1=>"Titulo Credito");
+       $resultMenu=array(0=>"Identificacion",1=>"Titulo Credito",2=>"Juicio");
      	 		 
      			
      	
@@ -62,7 +62,7 @@
   <div class="row" style="background-color: #ffffff;">
   
      
-      <form action="<?php echo $helper->url("AprobacionAutoPago","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("RegistroVehiculosEmbargados","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
     
     <div class="col-lg-5">
     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
@@ -70,7 +70,7 @@
         
             <?php } } else {?>
 		     
-		      <h4 style="color:#ec971f;">Aprobacion Auto Pagos</h4>
+		      <h4 style="color:#ec971f;">Registro Vehiculos Embargados</h4>
             	<hr/>
 		     
 		     <div class="row">
@@ -126,13 +126,12 @@
         <table class="table table-hover ">
 	         <tr >
 	    		
-	    		<th style="color:#456789;font-size:80%;">Id Auto Pagos</th>
-	    		<th style="color:#456789;font-size:80%;">Id Titulo Credito</th>
-	    		<th style="color:#456789;font-size:80%;">Numero de Identifiación</th>
-	    		<th style="color:#456789;font-size:80%;">Nombres Cliente</th>
-	    		<th style="color:#456789;font-size:80%;">Abogado Impulsor</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Asignada</th>
-	    		<th style="color:#456789;font-size:80%;">Estado</th>
+	    		
+	    		<th style="color:#456789;font-size:80%;">Titulo Credito</th>
+	    		<th style="color:#456789;font-size:80%;">Juicio</th>
+	    		<th style="color:#456789;font-size:80%;">Tipo Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Nombres</th>
 	    		<th style="color:#456789;font-size:80%;"></th>
 	    		
 	    		<th></th>
@@ -141,17 +140,15 @@
             
 	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
 	        		<tr>
-	        		
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_auto_pagos; ?></td>
+	        
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>  </td>
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_asiganacion_auto_pagos; ?>  </td>
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado; ?>  </td>
-		              <td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>  </td>
+		                <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
+		           <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("AprobacionAutoPago","ActualizarAutoPago"); ?>&id_auto_pagos=<?php echo $res->id_auto_pagos; ?>" class="btn btn-warning" style="font-size:65%;">Aprobar</a>
+			                    <a href="<?php echo $helper->url("VehiculosEmbargados","index"); ?>&id_auto_pagos=<?php echo $res->id_auto_pagos; ?>" class="btn btn-warning" style="font-size:65%;">VER</a>
 			                </div>
 			            
 			          </td>  

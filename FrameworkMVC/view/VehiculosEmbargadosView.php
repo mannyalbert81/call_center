@@ -108,7 +108,7 @@
   
        <!-- empieza el form --> 
      
-      <form action="<?php echo $helper->url("VehiculosEmbargados","InsertaVehiculosEmbargados"); ?>" method="post" class="col-lg-6">
+      <form action="<?php echo $helper->url("RegistroVehiculosEmbargados","InsertaVehiculos"); ?>" method="post" class="col-lg-6">
             <h4 style="color:#ec971f;">Insertar Vehiculos Embargados</h4>
             <hr/>
             	
@@ -157,9 +157,13 @@
 			  	<input type="text" name="observacion_vehiculos_embargados" id="observacion_vehiculos_embargados" value="<?php echo $resEdit->observacion_vehiculos_embargados; ?>" class="form-control"/> 
 			  <div id="mensaje_nombres" class="errores"></div>
 			  </div>
-		    </div>
-		   
-	     	
+		  
+		   <div class="col-lg-3" id="div_desde">
+      		<span>Fecha:</span>
+           <input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control"/>
+           <div id="mensaje_desde" class="errores"></div>
+           </div>
+	     	  </div>
 	     	<hr>
 	            	  
             
@@ -206,8 +210,13 @@
 			  	<input type="text" name="observacion_vehiculos_embargados" id="observacion_vehiculos_embargados" class="form-control"/> 
 			  <div id="mensaje_nombres" class="errores"></div>
 			  </div>
-		    </div>
-		   
+		  
+		   <div class="col-lg-3" id="div_desde">
+      		<span>Fecha:</span>
+           <input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control"/>
+           <div id="mensaje_desde" class="errores"></div>
+           </div>
+             </div>
 			
 			<hr>
 		     <?php } ?>

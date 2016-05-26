@@ -24,9 +24,22 @@ class VehiculosEmbargadosController extends ControladorBase{
 		$marca_vehiculos = new MarcaVehiculosModel();
 		$resultMarcaVehiculos=$marca_vehiculos->getAll("nombre_marca_vehiculos");
 		
-		session_start();
-
 	
+	
+		session_start();
+		
+		$clientes = new ClientesModel();
+	    $_GET["id_clientes"];
+	    
+	    
+		
+		
+		
+		
+		
+		
+		
+		 
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$permisos_rol = new PermisosRolesModel();
