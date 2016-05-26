@@ -31,8 +31,7 @@ class RecaudacionDetalleController extends ControladorBase{
 		
 		//creamos array con la consulta de registros
 		$resultSet=$recaudacion_cabeza->getCondiciones($columnas, $tablas, $where, $id);
-	
-		$resultEdit = "";
+			$resultEdit = "";
 
 		
 	

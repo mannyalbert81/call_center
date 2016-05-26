@@ -108,11 +108,41 @@
   
        <!-- empieza el form --> 
      
-      <form action="<?php echo $helper->url("RegistroVehiculosEmbargados","InsertaVehiculos"); ?>" method="post" class="col-lg-6">
+      <form action="<?php echo $helper->url("VehiculosEmbargados","InsertaVehiculosEmbargados"); ?>" method="post" class="col-lg-12">
             <h4 style="color:#ec971f;">Insertar Vehiculos Embargados</h4>
-            <hr/>
+   
             	
-            		
+            		<div class="col-lg-12">
+     
+           
+        </div>
+        <section class="col-lg-12 usuario" style="height:100px;overflow-y:scroll;">
+        <table class="table table-hover ">
+	         <tr >
+	    		<th style="color:#456789;font-size:80%;"><b>Juicio</b></th>
+	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Nombres Clientes</th>
+	    		<th style="color:#456789;font-size:80%;">Titulo Credito</th>
+	    		    	           
+	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
+	        		<tr>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?>     </td> 
+		              
+		           	   
+		    		
+		        <?php } } ?>
+            
+            <?php 
+            
+            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
+            
+            ?>
+            
+       	</table>     
+      </section>
             
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	        
@@ -145,7 +175,7 @@
 			
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Modelo</p>
-			  	<input type="text"  name=",modelo_vehiculos_embargados" id="modelo_vehiculos_embargados" value="<?php echo $resEdit->modelo_vehiculos_embargados; ?>" class="form-control"/> 
+			  	<input type="text"  name="modelo_vehiculos_embargados" id="modelo_vehiculos_embargados" value="<?php echo $resEdit->modelo_vehiculos_embargados; ?>" class="form-control"/> 
 			    <div id="mensaje_cedula" class="errores"></div>
 			  </div>
 			   </div>
@@ -160,7 +190,7 @@
 		  
 		   <div class="col-lg-3" id="div_desde">
       		<span>Fecha:</span>
-           <input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control"/>
+           <input type="date"  name="fecha_ingreso_vehiculos_embargados" id="fecha_ingreso_vehiculos_embargados" value="" class="form-control"/>
            <div id="mensaje_desde" class="errores"></div>
            </div>
 	     	  </div>
@@ -169,6 +199,9 @@
             
 		     <?php } } 
 		     else {?>
+		    
+		       
+		    
 		    
 		<div class="row">
 			    <div class="col-xs-6 col-md-6">
@@ -190,6 +223,8 @@
 			   <div class="row">
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Placa</p>
+			  	<input type="hidden"  name="id_clientes" id="id_clientes" value="<?php echo $id_clientes;?>" class="form-control"/>
+			  	<input type="hidden"  name="id_titulo_credito" id="id_titulo_credito" value="<?php echo $id_titulo_credito;?>" class="form-control"/>
 			  	<input type="text"  name="placa_vehiculos_embargados" id="placa_vehiculos_embargados" class="form-control"/> 
 			    <div id="mensaje_cedula" class="errores"></div>
 			  </div>
@@ -198,7 +233,7 @@
 			
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Modelo</p>
-			  	<input type="text"  name=",modelo_vehiculos_embargados" id="modelo_vehiculos_embargados" class="form-control"/> 
+			  	<input type="text"  name="modelo_vehiculos_embargados" id="modelo_vehiculos_embargados" class="form-control"/> 
 			    <div id="mensaje_cedula" class="errores"></div>
 			  </div>
 			   </div>
@@ -213,7 +248,7 @@
 		  
 		   <div class="col-lg-3" id="div_desde">
       		<span>Fecha:</span>
-           <input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control"/>
+           <input type="date"  name="fecha_ingreso_vehiculos_embargados" id="fecha_ingreso_vehiculos_embargados" value="" class="form-control"/>
            <div id="mensaje_desde" class="errores"></div>
            </div>
              </div>
@@ -230,53 +265,7 @@
      
        <!-- termina el form --> 
        
-        <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Tipos de Vehiculos Embargados</h4>
-            <hr/>
-        </div>
-        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
-        <table class="table table-hover ">
-	         <tr >
-	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Tipo</th>
-	    		<th style="color:#456789;font-size:80%;">Marca</th>
-	    		<th style="color:#456789;font-size:80%;">Observacion</th>
-	    		    		
-	    		
-	    		<th></th>
-	    		<th></th>
-	  		</tr>
-            
-	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
-	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_vehiculos_embargados; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_tipo_vehiculos; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_marca_vehiculos; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->observacion_vehiculos_embargados; ?>     </td> 
-		              
-		           	   <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("VehiculosEmbargados","index"); ?>&id_vehiculos_embargados=<?php echo $res->id_vehiculos_embargados; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
-			                </div>
-			            
-			             </td>
-			             <td>   
-			                	<div class="right">
-			                    <a href="<?php echo $helper->url("VehiculosEmbargados","borrarId"); ?>&id_vehiculos_embargados=<?php echo $res->id_vehiculos_embargados; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
-			                </div>
-			                <hr/>
-		               </td>
-		    		</tr>
-		        <?php } } ?>
-            
-            <?php 
-            
-            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
-            
-            ?>
-            
-       	</table>     
-      </section>
+        
       </div>
       </div>
    </body>  

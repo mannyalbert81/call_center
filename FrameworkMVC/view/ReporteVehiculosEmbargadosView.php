@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Registro Vehiculos Embargados- coactiva 2016</title>
+        <title>Reporte Vehiculos Embargados- coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -70,30 +70,25 @@
         
             <?php } } else {?>
 		     
-		      <h4 style="color:#ec971f;">Registro Vehiculos Embargados</h4>
+		      <h4 style="color:#ec971f;">Reporte Vehiculos Embargados</h4>
             	<hr/>
 		     
+		     
 		     <div class="row">
-			    
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Selecione filtro</p>
-			  	<select name="criterio_busqueda" id="criterio_busqueda"  class="form-control" >
-					<?php foreach($resultMenu as $val=>$desc) {?>
-						<option value="<?php echo $val; ?>"  ><?php echo $desc ?> </option>
-			        <?php } ?>
-				</select> 			  
+			 <div class="col-xs-4 col-md-4">
+			  	<span>PLACA</span>	  
 			  </div>
 		    
 		     
              	
              	
-		    <div class="col-xs-6 col-md-6">
+		    <div class="col-xs-4 col-md-4">
 		    	<p  class="formulario-subtitulo" style="color: #ffffff;" >--</p>
 			  <input type="text" name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
 			  <div id="mensaje_contenido_busqueda" class="errores"></div>
 			  </div>
 			  
-			<div class="col-xs-12 col-md-12" style="margin-top: 20px; text-align: center;" >
+			<div class="col-xs-4 col-md-4" style="margin-top: 20px; text-align: center;" >
 		
 			  	<input type="submit" id="buscar" name="buscar"  value="buscar" class="btn btn-default"/>
 			</div>
