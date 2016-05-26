@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Impresion Auto Pago - coactiva 2016</title>
+        <title>Impresion Auto Pago- coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -49,11 +49,15 @@
        
        
        <?php
-       $resultMenu=array(0=>"Identificacion",1=>"Titulo Credito");
-     	   
+       $resultMenu=array(0=>"Identificacion",1=>"Titulo Credito",2=>"Juicio");
+     	 		 
+     			
+     	
+		   
 		?>
  
- <div class="container">
+  
+  <div class="container">
   
   <div class="row" style="background-color: #ffffff;">
   
@@ -66,12 +70,12 @@
         
             <?php } } else {?>
 		     
-		      <h4 style="color:#ec971f;">Impresion Auto Pagos</h4>
+		      <h4 style="color:#ec971f;">Impresion Auto Pago</h4>
             	<hr/>
 		     
 		     <div class="row">
 			    
-			  <div class="col-xs-6 col-md-6">
+			  <div class="col-xs-4 col-md-4">
 			  	<p  class="formulario-subtitulo" >Selecione filtro</p>
 			  	<select name="criterio_busqueda" id="criterio_busqueda"  class="form-control" >
 					<?php foreach($resultMenu as $val=>$desc) {?>
@@ -107,13 +111,13 @@
     
     
     <div  class="col-lg-7">
-     <h4 style="color:#ec971f;">Lista de Impresion</h4>
+     <h4 style="color:#ec971f;">Lista de titulo</h4>
             <hr/>
     		
 		<div class="col-xs-12" style="margin: 5px;">	
 
 	</div>
-	<?php if(!empty($resultDatos)){?>
+	
 	<div class="col-xs-12">
       
       
@@ -122,13 +126,16 @@
         <table class="table table-hover ">
 	         <tr >
 	    		
-	    		<th style="color:#456789;font-size:80%;">Id Auto Pagos</th>
-	    		<th style="color:#456789;font-size:80%;">Id Titulo Credito</th>
-	    		<th style="color:#456789;font-size:80%;">Numero de Identifiación</th>
-	    		<th style="color:#456789;font-size:80%;">Nombres Cliente</th>
-	    		<th style="color:#456789;font-size:80%;">Abogado Impulsor</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Asignada</th>
-	    		<th style="color:#456789;font-size:80%;">Estado</th>
+	    		
+	    		<th style="color:#456789;font-size:80%;">Titulo Credito</th>
+	    		<th style="color:#456789;font-size:80%;">Juicio</th>
+	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Nombres Clientes</th>
+	    		<th style="color:#456789;font-size:80%;">Total</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Corte</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Emision</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Estado</th>
+	    		<th style="color:#456789;font-size:80%;">Usuario Asignado</th>
 	    		<th style="color:#456789;font-size:80%;"></th>
 	    		
 	    		<th></th>
@@ -137,20 +144,24 @@
             
 	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
 	        		<tr>
-	        		
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_auto_pagos; ?></td>
+	        
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_corte; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_emision; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>  </td>
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_asiganacion_auto_pagos; ?>  </td>
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado; ?>  </td>
-		              <td>
+		            <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("AprobacionAutoPago","ActualizarAutoPago"); ?>&id_auto_pagos=<?php echo $res->id_auto_pagos; ?>" class="btn btn-success" style="font-size:65%;">Aprobar</a>
+			                    <a href="<?php echo $helper->url("ImpresionAutoPago","ReporteImpresionAutoPago"); ?>&id_auto_pagos=<?php echo $res->id_titulo_credito; ?>" class="btn btn-warning" style="font-size:65%;">VER</a>
 			                </div>
 			            
 			          </td>  
+		          
+		          
 		    		</tr>
 		        <?php } } ?>
 		        
@@ -163,10 +174,7 @@
       </section>
         
         </div>
-        <?php 
-		}
-            
-          ?>
+       
         
     </div>
     
