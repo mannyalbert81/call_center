@@ -58,9 +58,7 @@
             </li>
             <li><a href="index.php?controller=ReasignarTitulo&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Reasignar Titulo Credito</span> </a>
             </li>
-            <li><a href="index.php?controller=RegistroVehiculosEmbargados=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Registro Vehiculos Embargados</span> </a>
-            </li>
-            
+           
                      </ul>
         </li>
         <li class="dropdown">
@@ -131,8 +129,7 @@
 			</li>
 			<li><a href="index.php?controller=MarcaVehiculos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Marca de Vehiculos </span> </a>
 			</li>
-			<li><a href="index.php?controller=VehiculosEmbargados&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Vehiculos Embargados </span> </a>
-			</li>
+			
 </ul>
 
           <li class="dropdown">
@@ -142,6 +139,8 @@
          <li><a href="index.php?controller=AutoPagos&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Auto Pagos</span> </a>
             </li>
             <li><a href="index.php?controller=AprobacionAutoPago&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Aprobacion Auto Pagos</span> </a>
+            </li>
+            <li><a href="index.php?controller=RegistroVehiculosEmbargados&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Registro Vehiculos Embargados</span> </a>
             </li>
              
           
