@@ -1,5 +1,7 @@
 <?php
 
+require_once 'config/global.php';
+
 class AprobacionAutoPagoController extends ControladorBase{
 
 	public function __construct() {
@@ -294,8 +296,8 @@ class AprobacionAutoPagoController extends ControladorBase{
 					$id_estados_auto_pago_juicios=$result_auto_pago_juicios[0]->id_estados_auto_pago_juicios;
 					
 					//para archivos
-					$nombre_archivado_juicios="Archivo Registrado";
-					
+					$prefijo=CLIENTE;
+					$nombre_archivado_juicios=$prefijo."-".$juicio_referido_titulo_credito;
 					//para entidad
 					$id_entidades=10;
 					
