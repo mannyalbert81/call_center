@@ -7,7 +7,6 @@ class VehiculosEmbargadosController extends ControladorBase{
 	}
 
 
-
 	public function index(){
 	
 		//Creamos el objeto usuario

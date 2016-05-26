@@ -5,8 +5,6 @@ class RecaudacionDetalleController extends ControladorBase{
 		parent::__construct();
 	}
 
-
-
 	public function index(){
 		
 		session_start();
@@ -20,7 +18,6 @@ class RecaudacionDetalleController extends ControladorBase{
 	
 		}else
 		{
-			
 			$id_cabecera=$_POST["id_cabecera"];
 		}
 		

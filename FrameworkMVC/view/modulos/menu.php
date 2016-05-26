@@ -144,6 +144,8 @@
             <li><a href="index.php?controller=AprobacionAutoPago&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Aprobacion Auto Pagos</span> </a>
             </li>
              
+             <li><a href="index.php?controller=ImpresionAutoPago&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Impresion Auto Pagos</span> </a>
+            </li>
           
           
            </ul>
