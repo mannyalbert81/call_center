@@ -208,6 +208,8 @@ class AprobacionAutoPagoController extends ControladorBase{
 		{
 			if(isset($_GET["id_auto_pagos"])){
 				
+			
+				
 				$estado=new EstadoModel();
 				$resultEstado=$estado->getBy("nombre_estado='APROBADO'");
 				
@@ -219,12 +221,51 @@ class AprobacionAutoPagoController extends ControladorBase{
 				
 				$where="id_auto_pagos='$id_auto_pago'";
 				
+				try {
+					
+					$resultado=$aprobacion_auto_pago->UpdateBy($colval, $tabla, $where);
+					
+					//juicio-referido
+					$anio=date("Y"); 
+					
+					//aqui va insertado de juicio
+
+					$id_entidades="";
+					$id_ciudad="";
+					$juicio_referido_titulo_credito="";
+					$id_usuarios="";
+					$id_titulo_credito="";
+					$id_clientes="";
+					$id_etapas_juicios="";
+					$id_tipo_juicios="";
+					$descipcion_auto_pago_juicios="";
+					$id_estados_procesales_juicios="";
+					$id_estados_auto_pago_juicios="";
+					$nombre_archivado_juicios="";
+					$id_ciudad="";
+					
+					$resultadojuicio=$aprobacion_auto_pago->InsertaJuicio($id_entidades, $id_ciudad, $juicio_referido_titulo_credito, $id_usuarios, $id_titulo_credito, $id_clientes, $id_etapas_juicios, $id_tipo_juicios, $descipcion_auto_pago_juicios, $id_estados_procesales_juicios, $id_estados_auto_pago_juicios, $nombre_archivado_juicios, $id_ciudad);
+					
+					
+					
+				} catch (Exception $e) {
+					
+					$this->view("Error",array(
+							"resultado"=>"Eror al Aprobar Auto pago ->". $id_auto_pago
+					));
+					
+				}
 				
-				$resultado=$aprobacion_auto_pago->UpdateBy($colval, $tabla, $where);
+				
+				
+				
+				
+				
 				
 			}
 			
 			$this->redirect("AprobacionAutoPago", "index");
+		
 		}
 		
 	}
