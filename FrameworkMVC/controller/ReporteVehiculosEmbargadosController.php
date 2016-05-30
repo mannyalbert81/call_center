@@ -29,11 +29,7 @@ class ReporteVehiculosEmbargadosController extends ControladorBase{
 				
 			if (!empty($resultPer))
 			{
-				
-				
-			
-			
-			 
+	
 					$rol = new RolesModel();
 					$resultRol=$rol->getAll("nombre_rol");
 					
@@ -122,11 +118,11 @@ class ReporteVehiculosEmbargadosController extends ControladorBase{
 						switch ($criterio_busqueda) {
 							
 							case 0:
-								// identificacion de cliente
+							
 								$where_1 = " AND  clientes.identificacion_clientes LIKE '$contenido_busqueda'  ";
 								break;
 							case 1:
-								//id_titulo de credito
+							
 								$where_2 = " AND  vehiculos_embargados.placa_vehiculos_embargados = '$contenido_busqueda'  ";
 								break;
 								    
@@ -175,12 +171,5 @@ class ReporteVehiculosEmbargadosController extends ControladorBase{
 		}
 	
 	}
-	 
-	
-	
-	
-	
-
-	
 }
 ?>      

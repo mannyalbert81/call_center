@@ -45,10 +45,10 @@
 		    $("#Guardar").click(function() 
 			{
 		   
-		    	var observaciones_vehiculos_embargados= $("#observaciones_vehiculos_embargados").val();
+		    	var observacion_vehiculos_embargados= $("#observacion_vehiculos_embargados").val();
 		    
 		   				
-		    	if (nombre_vehiculos_embargados== "")
+		    	if (observacion_vehiculos_embargados== "")
 		    	{
 			    	
 		    		$("#mensaje_nombres").text("Introduzca un tipo de vehiculos embargados");
@@ -71,7 +71,7 @@
 
 		 
 				
-				$( "#observaciones_vehiculos_embargados" ).focus(function() {
+				$( "#observacion_vehiculos_embargados" ).focus(function() {
 					$("#mensaje_nombres").fadeOut("slow");
     			});
 				

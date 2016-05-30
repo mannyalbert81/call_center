@@ -37,7 +37,7 @@
             
         </style>
        
-    
+ 
     
     </head>
     <body style="background-color: #d9e3e4;">
@@ -50,10 +50,9 @@
        
        <?php
        $resultMenu=array(0=>"Identificacion",1=>"Placa Vehiculo");
-       $fecha_actual= Date("Y-m-d"); 		 
-       		
-     	
-		   
+  
+       $fecha_actual = strtotime(Date("Y-m-d"));
+         
 		?>
  
   
@@ -76,7 +75,7 @@
 		     <div class="row">
 			    
 			  <div class="col-xs-4 col-md-4">
-			  	<p  class="formulario-subtitulo" >Selecione filtro</p>
+			  	<p  class="formulario-subtitulo" >Seleccione</p>
 			  	<select name="criterio_busqueda" id="criterio_busqueda"  class="form-control" >
 					<?php foreach($resultMenu as $val=>$desc) {?>
 						<option value="<?php echo $val; ?>"  ><?php echo $desc ?> </option>
@@ -99,15 +98,8 @@
 			</div>
 			
 			  </div>
-             	
-             	
-             	
-             	
-             	
-             	
-             	
-		     <?php } ?>
-    </div>
+              <?php } ?>
+              </div>
     
     
     <div  class="col-lg-7">
@@ -127,7 +119,7 @@
 	         <tr >
 	    		
 	    		
-	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Identificación</th>
 	    		<th style="color:#456789;font-size:80%;">Nombres Clientes</th>
 	    		<th style="color:#456789;font-size:80%;">Tipo Vehiculo</th>
 	    		<th style="color:#456789;font-size:80%;">Placa</th>
@@ -135,7 +127,7 @@
 	    		<th style="color:#456789;font-size:80%;">Marca</th>
 	    		<th style="color:#456789;font-size:80%;">Fecha Ingreso</th>
 	    		<th style="color:#456789;font-size:80%;">Nº Dias Retenido</th>
-	    	    <th style="color:#456789;font-size:80%;"></th>
+	    
 	    		
 	    		<th></th>
 	    		<th></th>
@@ -151,31 +143,21 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->modelo_vehiculos_embargados; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_marca_vehiculos; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_ingreso_vehiculos_embargados; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->$interval->format('%R%a días'); ?>  </td>
-		               
-		               
-		          
-		          
+		               <td style="color:#000000;font-size:80%;"> <?php $fecha_ingreso=strtotime("$res->fecha_ingreso_vehiculos_embargados"); $diferencia=$fecha_actual-$fecha_ingreso; echo $diferencia/86400; ?>  </td>
+		     
 		    		</tr>
 		        <?php } } ?>
-		        
       
-        
-            
-            
        	</table>     
 		     
       </section>
         
         </div>
        
-        
     </div>
     
     </form>
-  
-
-    </div>
+ </div>
    </div>
      </body>  
     </html>   
