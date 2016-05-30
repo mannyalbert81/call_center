@@ -37,7 +37,26 @@
             
         </style>
        
-    
+    <script>
+	$(document).ready(function(){
+		$("#buscar").click(function(){
+			var criterio=$("#criterio_busqueda").val();
+			var contenido=$("#contenido_busqueda").val();
+
+			if(contenido==''){
+				$("#mensaje_contenido_busqueda").text("Ingrese Contenido a buscar");
+	    		$("#mensaje_contenido_busqueda").fadeIn("slow"); 
+	            return false;
+				}else{
+				return true;
+					}
+			});
+		$( "#contenido_busqueda" ).focus(function() {
+			  $("#mensaje_contenido_busqueda").fadeOut("slow");
+		    });
+	
+		});
+    </script>
     
     </head>
     <body style="background-color: #d9e3e4;">
@@ -67,7 +86,7 @@
         
             <?php } } else {?>
 		     
-		      <h4 style="color:#ec971f;">Aprobacion Auto Pagos</h4>
+		      <h4 style="color:#ec971f;">Seguimiento Juicios</h4>
             	<hr/>
 		
 			    
@@ -101,14 +120,14 @@
      
       <div class="col-lg-12">
       
-      <h4 style="color:#ec971f;">Lista de titulo</h4>
-            <hr/>
+     
     		
 		<div class="col-lg-12" style="margin: 5px;">	
 
 	<?php if(!empty($resultSet)){?>
 
-      
+       <h4 style="color:#ec971f;">Lista de Juicios</h4>
+            <hr/>
       
         
        <section   style="height:400px;overflow-y:scroll;">
@@ -168,9 +187,7 @@
       </section>
     
         <?php 
-		}
-            
-          ?>
+		} ?>
       </div>
      
      </div>
