@@ -37,16 +37,17 @@
   
   <div class="row" style=" background-color:#d93e1b;">
   
-  <div style=" margin-top: 10px; "   class="col-xs-6 col-md-6"  >
+  <div style=" margin-top: 10px; "   class="col-xs-9 col-md-9"  >
   <img src="view/images/logo-coctiva.png" class="img-responsive" alt="Responsive image">
   </div>
   <!-- aqui va el la class pull-right.... -->
-  <div class="row">
-  		<div  style="margin-top: 20px;" class="col-xs-3 col-md-3">
- 			<div class="">
+  
+  
+  <div  style="margin-top: 20px;" class="col-xs-3 col-md-3">
+ 		<div class="">
  		
- 				<p> <strong> <?php echo CLIENTE?>  </strong>  </p>
- 			</div>	
+ 		<p> <strong> <?php //echo CLIENTE?>  </strong>  </p>
+ 		</div>	
 		<?php  
 		
 			 $status = session_status();
@@ -86,37 +87,12 @@
 		<?php }
 				
 		 ?>
-
+		 
 		 
    </div>  
-  	
-    		<div  style="margin-top: 50px;" class="col-xs-2 col-md-2">
- 			
-		
-		 	 <div class="dropdown">
-				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><?php echo " Bienvenid@  ".$_SESSION['nombre_usuarios'];?></span>
-				  <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu">
-				    <li><a href="index.php?controller=Usuarios&action=cerrar_sesion">Cerrar Sesión</a></li>
-				    <li><a href="index.php?controller=Usuarios&action=Actualiza">Actualizar Datos de Usuario</a></li>
-				    <li><a href="#">Conectado desde: <?php echo $_SESSION['ip_usuarios']?></a></li>
-				  </ul>
-				  
-			</div>
-		 	
-		 	
-
-		    
-		 
-
-		 
-   </div> 	
   
-  		
-  </div> 
-  
-  <!-- aqui termina la class pull-right -->
+
+<!-- aqui termina la class pull-right -->
 
  
   </div>
@@ -126,5 +102,3 @@
    
 </body>
 </html>
-
-

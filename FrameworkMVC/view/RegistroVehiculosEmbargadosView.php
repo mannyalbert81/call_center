@@ -148,7 +148,7 @@
 		                <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
 		           <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("VehiculosEmbargados","index"); ?>&id_auto_pagos=<?php echo $res->id_auto_pagos; ?>" class="btn btn-warning" style="font-size:65%;">VER</a>
+			                    <a href="<?php echo $helper->url("VehiculosEmbargados","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>&id_titulo_credito=<?php echo $res->id_titulo_credito; ?>" class="btn btn-warning" style="font-size:65%;">VER</a>
 			                </div>
 			            
 			          </td>  

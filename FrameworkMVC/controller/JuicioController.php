@@ -88,11 +88,15 @@ class JuicioController extends ControladorBase{
 							
 							case 0:
 								// identificacion de cliente
-								//$where_1 = " AND  clientes.identificacion_clientes LIKE '$contenido_busqueda'  ";
+								$where_1 = " AND  clientes.identificacion_clientes LIKE '$contenido_busqueda'  ";
 								break;
 							case 1:
 								//id_titulo de credito
-								//$where_2 = " AND  titulo_credito.id_titulo_credito = '$contenido_busqueda'  ";
+								$where_2 = " AND  titulo_credito.id_titulo_credito = '$contenido_busqueda'  ";
+								break;
+							case 2:
+									//id_titulo de credito
+								$where_2 = " AND  juicios.juicio_referido_titulo_credito LIKE '$contenido_busqueda'  ";
 								break;
 					
 						}

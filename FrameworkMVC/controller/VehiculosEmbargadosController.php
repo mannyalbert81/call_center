@@ -11,12 +11,31 @@ class VehiculosEmbargadosController extends ControladorBase{
 	
 		//Creamos el objeto usuario
      	$vehiculos_embargados= new VehiculosEmbargadosModel(); 
-		
+     	$clientes = new ClientesModel();
+     	
+     	
 	   //Conseguimos todos los usuarios
-		$resultSet=$vehiculos_embargados->getAll("id_vehiculos_embargados");
+		   $columnas = "juicios.juicio_referido_titulo_credito,
+					  clientes.identificacion_clientes,
+					  clientes.nombres_clientes,
+					  titulo_credito.id_titulo_credito";
+		   $tablas   = "public.clientes,
+					  public.juicios,
+					  public.titulo_credito";
+		   $where    = " clientes.id_clientes = titulo_credito.id_clientes AND
+		   juicios.id_clientes = clientes.id_clientes AND
+		   juicios.id_titulo_credito = titulo_credito.id_titulo_credito ";
+		   $id = "juicios.juicio_referido_titulo_credito";
+		   
+		   //creamos array con la consulta de registros
+		   $resultSet=$clientes->getCondiciones($columnas, $tablas, $where, $id);
+	
 				
 		
 		$resultEdit = "";
+		
+		$id_clientes = "";
+		$id_titulo_credito = "";
 		
 		$tipo_vehiculos = new TipoVehiculosModel();
 		$resultTipoVehiculos=$tipo_vehiculos->getAll("nombre_tipo_vehiculos");
@@ -28,18 +47,28 @@ class VehiculosEmbargadosController extends ControladorBase{
 	
 		session_start();
 		
-		$clientes = new ClientesModel();
-	    $_GET["id_clientes"];
+		
+		
+		if(isset($_GET["id_clientes"]) && isset($_GET["id_titulo_credito"]))
+		{
+		   $id_clientes = $_GET["id_clientes"];
+		   $id_titulo_credito = $_GET["id_titulo_credito"];
+		   
+		   $where    = " clientes.id_clientes = titulo_credito.id_clientes AND
+		   juicios.id_clientes = clientes.id_clientes AND
+		   juicios.id_titulo_credito = titulo_credito.id_titulo_credito AND titulo_credito.id_titulo_credito='$id_titulo_credito'";
+		   
+		   //creamos array con la consulta de registros
+		   $resultSet=$clientes->getCondiciones($columnas, $tablas, $where, $id);
+		   	
+		}
+		else
+		{
+			
+		
+		}
 	    
-	    
-		
-		
-		
-		
-		
-		
-		
-		 
+	   
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$permisos_rol = new PermisosRolesModel();
@@ -87,7 +116,7 @@ class VehiculosEmbargadosController extends ControladorBase{
 		
 				
 				$this->view("VehiculosEmbargados",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultTipoVehiculos"=>$resultTipoVehiculos, "resultMarcaVehiculos"=>$resultMarcaVehiculos
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultTipoVehiculos"=>$resultTipoVehiculos, "resultMarcaVehiculos"=>$resultMarcaVehiculos,"id_clientes"=>$id_clientes
 			
 				));
 		
@@ -137,15 +166,16 @@ class VehiculosEmbargadosController extends ControladorBase{
 		
 			//_nombre_tipo_identificacion
 			
-			if (isset ($_POST["observaciones_vehiculos_embargados"]) )
+			if (isset ($_POST["Guardar"]) )
 				
 			{
 				$_id_tipo_vehiculos = $_POST["id_tipo_vehiculos"];
 				$_id_marca_vehiculos = $_POST["id_marca_vehiculos"];
 				$_placa_vehiculos_embargados  = $_POST["placa_vehiculos_embargados"];
 				$_modelo_vehiculos_embargados = $_POST["modelo_vehiculos_embargados"];
-				$_observaciones_vehiculos_embargados= $_POST["observaciones_vehiculos_embargados"];
+				$_observaciones_vehiculos_embargados= $_POST["observacion_vehiculos_embargados"];
 				$_fecha_ingreso_vehiculos_embargados= $_POST["fecha_ingreso_vehiculos_embargados"];
+				$_id_clientes= $_POST["id_clientes"];
 				
 				if(isset($_POST["id_vehiculos_embargados"])) 
 				{
@@ -163,9 +193,17 @@ class VehiculosEmbargadosController extends ControladorBase{
 
 				
 				$funcion = "ins_vehiculos_embargados";
+				//ins_vehiculos_embargados(_placa_vehiculos_embargados character varying, _modelo_vehiculos_embargados character varying, _observacion_vehiculos_embargados character varying, _fecha_ingreso_vehiculos_embargados date, _id_clientes integer, _id_tipo_vehiculos integer, _id_marca_vehiculos integer)
 				
-				$parametros = " '$_observaciones_vehiculos_embargados','$_id_tipo_vehiculos','$_id_marca_notificacion','$_placa_vehiculos_embargados','$_modelo_vehiculos_embargados' ";
-					
+				$parametros = " '$_placa_vehiculos_embargados','$_modelo_vehiculos_embargados','$_observaciones_vehiculos_embargados','$_fecha_ingreso_vehiculos_embargados ','$_id_clientes','$_id_tipo_vehiculos ','$_id_marca_vehiculos' ";
+				
+				//$this->view("Error",array(
+							
+					//"resultado"=>$parametros
+				
+				//));
+				//exit();
+				
 				$vehiculos_embargados->setFuncion($funcion);
 		
 				$vehiculos_embargados->setParametros($parametros);
@@ -174,7 +212,7 @@ class VehiculosEmbargadosController extends ControladorBase{
 				$resultado=$vehiculos_embargados->Insert();
 			 
 				$traza=new TrazasModel();
-				$_nombre_controlador = "Vehiculos Embargados";
+				$_nombre_controlador = "VehiculosEmbargados";
 				$_accion_trazas  = "Guardar";
 				$_parametros_trazas = $_observaciones_vehiculos_embargados;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
@@ -184,7 +222,7 @@ class VehiculosEmbargadosController extends ControladorBase{
 			 
 		
 			}
-			$this->redirect("vehiculos_embargados", "index");
+			$this->redirect("VehiculosEmbargados", "index");
 
 		}
 		else

@@ -145,10 +145,16 @@
             </li>
             <li><a href="index.php?controller=RegistroVehiculosEmbargados&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Registro Vehiculos Embargados</span> </a>
             </li>
+
+            <li><a href="index.php?controller=ReporteVehiculosEmbargados&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Reporte Vehiculos Embargados</span> </a>
+			</li>
+			 
+
             
              
              <li><a href="index.php?controller=ImpresionAutoPago&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Impresion Auto Pagos</span> </a>
             </li>
+
           
           
            </ul>

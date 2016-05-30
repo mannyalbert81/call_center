@@ -243,12 +243,10 @@
          	   $ddl_impulsor.empty();
 
             }
-		//alert("hola;");
+		
 		});
 		});
 	
-       
-
 	</script>
 	
 	<script>
@@ -258,19 +256,14 @@
 
 			var $id_impulsor=$("#id_usuarioImpulsor");
 
-			
-
 			if($id_impulsor.val()!="")
 			{
 				var datos = {id_abgImpulsor:$id_impulsor.val()};
 
-				alert($id_impulsor.val());
-			    return false;
 				  
 				$.post("<?php echo $helper->url("AsignacionSecretarios","CompruebaImpulsores"); ?>",datos, function(ressultAsg) 
 						{
 					
-				     // return false;
 						 	 		   
 			       		}, 'json');
 			

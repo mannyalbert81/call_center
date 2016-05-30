@@ -161,6 +161,13 @@ class ControladoresController extends ControladorBase{
 					
 					$resultado=$controladores->UpdateBy($colval, $tabla, $where);
 					
+					//$this->view("Error",array(
+								
+						//	"resultado"=>$resultado[0]
+					
+					//));
+					//exit();
+					
 				}else {
 					
 			
@@ -175,6 +182,13 @@ class ControladoresController extends ControladorBase{
 		
 		
 				$resultado=$controladores->Insert();
+				
+				//$this->view("Error",array(
+							
+						//"resultado"=>$resultado[0]
+				
+				//));
+				//exit();
 			
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Controladores";

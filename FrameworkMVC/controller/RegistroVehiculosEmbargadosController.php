@@ -117,7 +117,8 @@ class RegistroVehiculosEmbargadosController extends ControladorBase{
 										  juicios.juicio_referido_titulo_credito, 
 										  tipo_identificacion.nombre_tipo_identificacion, 
 										  clientes.identificacion_clientes, 
-										  clientes.nombres_clientes";
+										  clientes.nombres_clientes,
+								          clientes.id_clientes";
 					
 						$tablas   = "public.titulo_credito, 
 									  public.juicios, 
@@ -127,7 +128,7 @@ class RegistroVehiculosEmbargadosController extends ControladorBase{
 						$where    = "titulo_credito.id_titulo_credito = juicios.id_titulo_credito AND
 										  juicios.id_clientes = titulo_credito.id_clientes AND
 										  clientes.id_clientes = juicios.id_clientes AND
-										  clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion";
+										  clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion ";
 					
 						$id       = "titulo_credito.id_titulo_credito";
 							

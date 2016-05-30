@@ -105,7 +105,6 @@
  	 	 <table class="table table-hover">
 	         <tr>
 	    		
-	    		
 	    		<th style="font-size:85%;" >Id</th>
 	    		<th style="font-size:85%;">Fecha</th>
 	    		<th style="font-size:85%;">Hora</th>
