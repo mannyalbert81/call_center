@@ -31,7 +31,6 @@ class JuicioController extends ControladorBase{
 			if (!empty($resultPer))
 			{
 				
-			
 					
 					if(isset($_POST["buscar"])){
 					

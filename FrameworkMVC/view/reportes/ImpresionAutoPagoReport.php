@@ -205,7 +205,7 @@ $html =
 '</div>'.
 '</div>'.
 		
-  
+
   '</body></html>' .
  
 '<html>'.
@@ -279,6 +279,14 @@ en la ciudad de Quito, José Luis Tamayo 935 y Foch, teléfono 026015479 ext. 52
 $dompdf = new DOMPDF();
 $dompdf->load_html($html);
 $dompdf->set_paper("letter", "portrait");
+		
+	
+  
+  '</body></html>';
+ 
+$dompdf = new DOMPDF();
+$dompdf->load_html($html);
+
 $dompdf->render();
 
 $dompdf->stream($identificacion_clientes .'.pdf',array('Attachment'=>0));

@@ -228,6 +228,30 @@ class NotificacionesController extends ControladorBase{
 	
 	}
 	
+	function actualizaNotificaciones(){
+		
+		session_start();
+		
+		$id_notificaciones=$_GET['id_notificaciones'];
+		$notificaciones= new NotificacionesModel();
+		$colval="visto_notificaciones=1";
+		$tabla="notificaciones";
+		$where="id_notificaciones='$id_notificaciones'";
+		$resultado=$notificaciones->UpdateBy($colval, $tabla, $where);
+		
+		$_usuario=$_SESSION['usuario_usuarios'];
+		
+		$id_usuario=$_SESSION['id_usuarios'];
+		$result_notificaciones=$notificaciones->verNotificaciones($id_usuario);
+		
+	
+		$this->view("Bienvenida",array(
+    				"allusers"=>$_usuario,"result_notificaciones"=>$result_notificaciones
+	    		));
+		 
+	}
+	
+	
 	
 	
 }

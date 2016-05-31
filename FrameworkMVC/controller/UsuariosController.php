@@ -348,11 +348,16 @@ public function index(){
     			
     			$sesiones->setParametros($parametros);
     			
+    			//empieza las notificaciones
+    			$result_notificaciones="";
     			
+    			$result_notificaciones=$usuarios->verNotificaciones();
+    			//termina notificaciones
+    		
     			$resultado=$sesiones->Insert();
-    			
+    			//aumento de array de result_notificaciones
     		    $this->view("Bienvenida",array(
-    				"allusers"=>$_usuario
+    				"allusers"=>$_usuario,"result_notificaciones"=>$result_notificaciones
 	    		));
     		}
     		else
