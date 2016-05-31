@@ -40,7 +40,7 @@
   <div style=" margin-top: 10px; "   class="col-xs-9 col-md-9"  >
   <img src="view/images/logo-coctiva.png" class="img-responsive" alt="Responsive image">
   </div>
-  <!-- aqui va el la class pull-right.... -->
+  <!-- aqui va la class pull-right.... -->
   
   
   <div  style="margin-top: 20px;" class="col-xs-3 col-md-3">
@@ -49,8 +49,11 @@
  		<p> <strong> <?php //echo CLIENTE?>  </strong>  </p>
  		</div>	
 		<?php  
+		$status = session_status();
 		
-			 $status = session_status();
+		
+		
+			
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
 		
@@ -65,13 +68,24 @@
 				    <li><a href="index.php?controller=Usuarios&action=Actualiza">Actualizar Datos de Usuario</a></li>
 				    <li><a href="#">Conectado desde: <?php echo $_SESSION['ip_usuarios']?></a></li>
 				  </ul>
+								  
+			</div>
+			
+			<!-- empieza notificacion -->
+			
+			<div class="dropdown">
+				   <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Notificacion <span class="badge"><?php if(empty($result_notificaciones)){echo 0;}else{echo count($result_notificaciones);?></span></button>
+				  <ul class="dropdown-menu">
+				  <?php foreach ($result_notificaciones as $res){ ?>
+				  
+				    <li><a href="<?php echo $helper->url("Notificaciones","actualizaNotificaciones"); ?>&id_notificaciones=<?php echo $res->id_notificaciones; ?>"><?php echo  $res->descripcion_notificaciones;?></a></li>
+				  
+				  <?php }}?>
+				  </ul>
 				  
 			</div>
-		 	
-		 	
-
-		    
-		    <?php  ?> 
+			
+		 	 <?php  ?> 
 		<?php 
 			 }
 			 else 
