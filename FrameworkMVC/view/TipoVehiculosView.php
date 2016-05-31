@@ -51,13 +51,13 @@
 		    	if (nombre_tipo_vehiculos== "")
 		    	{
 			    	
-		    		$("#mensaje_nombres").text("Introduzca un tipo de vehiculos");
-		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_vehiculos").text("Introduzca un tipo de vehiculos");
+		    		$("#mensaje_vehiculos").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_vehiculos").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
 		    	
@@ -72,7 +72,7 @@
 		 
 				
 				$( "#nombre_tipo_vehiculos" ).focus(function() {
-					$("#mensaje_nombres").fadeOut("slow");
+					$("#mensaje_vehiculos").fadeOut("slow");
     			});
 				
 			
@@ -127,7 +127,7 @@
 			  	<p  class="formulario-subtitulo" >Nombres tipos de Vehiculos</p>
 			  	<input type="text"  name="nombre_tipo_vehiculos" id="nombre_tipo_vehiculos" value="<?php echo $resEdit->nombre_tipo_vehiculos; ?>" class="form-control"/> 
 			  	<input type="hidden"  name="id_tipo_vehiculos"  value="<?php echo $resEdit->id_tipo_vehiculos; ?>" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+			    <div id="mensaje_vehiculos" class="errores"></div>
 			  </div>
 			   </div>
 		    
@@ -137,7 +137,7 @@
 		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Nombres tipos de Vehiculos</p>
 			  	<input type="text"  name="nombre_tipo_vehiculos" id="nombre_tipo_vehiculos" value="" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+			    <div id="mensaje_vehiculos" class="errores"></div>
 			  </div>
 			 </div>
 

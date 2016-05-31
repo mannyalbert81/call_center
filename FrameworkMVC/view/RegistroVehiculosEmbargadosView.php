@@ -36,7 +36,52 @@
                 
             
         </style>
-       
+          <script >
+		$(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#buscar").click(function() 
+			{
+		   
+		    	var contenido_busqueda= $("#contenido_busqueda").val();
+		    
+		   				
+		    	if (contenido_busqueda== "")
+		    	{
+			    	
+		    		$("#mensaje_nombres").text("Introduzca un tipo de busqueda");
+		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+
+			
+		    					    
+
+			}); 
+
+
+		 
+				
+				$( "#contenido_busqueda" ).focus(function() {
+					$("#mensaje_nombres").fadeOut("slow");
+    			});
+				
+			
+		
+				
+		
+		      
+				    
+		}); 
+
+	</script>
     
     
     </head>
@@ -90,12 +135,12 @@
 		    <div class="col-xs-6 col-md-6">
 		    	<p  class="formulario-subtitulo" style="color: #ffffff;" >--</p>
 			  <input type="text" name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
-			  <div id="mensaje_contenido_busqueda" class="errores"></div>
+			  <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			  
 			<div class="col-xs-12 col-md-12" style="margin-top: 20px; text-align: center;" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  value="buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-default"/>
 			</div>
 			
 			  </div>

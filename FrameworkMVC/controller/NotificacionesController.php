@@ -11,7 +11,7 @@ class NotificacionesController extends ControladorBase{
 	public function index(){
 	
 		//Creamos el objeto usuario
-     	$notificaciones=new NotificacionesModel();
+  	$notificaciones=new NotificacionesModel();
 					//Conseguimos todos los usuarios
 		$resultSet=$notificaciones->getAll("id_notificaciones");
 				
@@ -146,7 +146,7 @@ class NotificacionesController extends ControladorBase{
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 
 				//$this->view("Error",array(
-				//"resultado"=>"entro"
+				//"resultado"=>$parametros
 				//));				
 				
 			}

@@ -53,8 +53,8 @@
 		    	if (id_administrador_gastos == "")
 		    	{
 			    	
-		    		$("#mensaje_nombres").text("Introduzca un tipo de administrador");
-		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_ruc").text("Introduzca un tipo de administrador");
+		    		$("#mensaje_ruc").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
@@ -66,8 +66,8 @@
 		    	if (nombre_administrador_gastos == "")
 		    	{
 			    	
-		    		$("#mensaje_nombres").text("Introduzca una administrador de gastos ");
-		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_ruc").text("Introduzca una administrador de gastos ");
+		    		$("#mensaje_ruc").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
@@ -78,12 +78,12 @@
 		    }); 
 
 
-		        $( "#id_administrador_gastos" ).focus(function() {
+		        $( "#nombre_administrador_gastos" ).focus(function() {
 				  $("#mensaje_ruc").fadeOut("slow");
 			    });
 				
 				$( "#nombre_administrador_gastos" ).focus(function() {
-					$("#mensaje_nombres").fadeOut("slow");
+					$("#mensaje_ruc").fadeOut("slow");
     			});
 				
 					    
@@ -126,7 +126,7 @@
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Nombre Administrador de Gastos</p>
 			  	<input type="text" name="nombre_administrador_gastos" id="nombre_administrador_gastos" value="<?php echo $resEdit->nombre_administrador_gastos; ?>" class="form-control"/> 
-			  <div id="mensaje_nombres" class="errores"></div>
+			  <div id="mensaje_ruc" class="errores"></div>
 			  </div>
 		    </div>
 		   
@@ -162,7 +162,7 @@
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Nombre Administrador Gastos</p>
 			  	<input type="text" name="nombre_administrador_gastos" id="nombre_admininistrador_gastos"  class="form-control"/> 
-			  <div id="mensaje_nombres" class="errores"></div>
+			  <div id="mensaje_ruc" class="errores"></div>
 			  </div>
 		    </div>
 		   
