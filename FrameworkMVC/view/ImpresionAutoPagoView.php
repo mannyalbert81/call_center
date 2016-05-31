@@ -201,11 +201,11 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>  </td>
 		            <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("ImpresionAutoPago","ReporteImpresionAutoPago"); ?>&id_auto_pagos=<?php echo $res->id_titulo_credito; ?>" class="btn btn-warning" style="font-size:65%;">VER</a>
+			                    <a href="" onclick="window.open('<?php echo $helper->url("ImpresionAutoPago","ReporteImpresionAutoPago"); ?>')" class="btn btn-warning" style="font-size:65%;">VER</a>
 			                </div>
 			            
 			          </td>  
-		          
+		          <!-- <?php //echo $helper->url("ImpresionAutoPago","ReporteImpresionAutoPago"); ?>&id_auto_pagos=<?php //echo $res->id_titulo_credito; ?>" -->
 		          
 		    		</tr>
 		        <?php } } ?>
