@@ -46,7 +46,7 @@
   <div  style="margin-top: 20px;" class="col-xs-3 col-md-3">
  		<div class="">
  		
- 		<p> <strong> <?php echo CLIENTE?>  </strong>  </p>
+ 		<p> <strong> <?php //echo CLIENTE?>  </strong>  </p>
  		</div>	
 		<?php  
 		
@@ -102,5 +102,3 @@
    
 </body>
 </html>
-
-
