@@ -31,7 +31,7 @@
                 margin-top:5px;
                 margin-bottom:5px;
             }
-            .right{
+            .right{ 
                 float:right;
             }
                 
@@ -51,7 +51,7 @@
 		    	if (nombre_origen_cartera == "")
 		    	{
 			    	
-		    		$("#mensaje_nombres").text("Introduzca un origen de carters ");
+		    		$("#mensaje_nombres").text("Introduzca un origen de cartera ");
 		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }

@@ -153,7 +153,7 @@
 		
 		<div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Marca</p>
-			  	<select name="id_marca_vehiculos" id="id_marca_vehiculos"  class="form-control" >
+			  	<select name="id_marca_vehiculos" id="id_marca_vehiculos"  class="form-control">
 					<?php foreach($resultMarcaVehiculos as $resMarcaVehiculos) {?>
 						<option value="<?php echo $resMarcaVehiculos->id_marca_vehiculos; ?>"  <?php if ($resMarcaVehiculos->id_marca_vehiculos == $resEdit->id_marca_vehiculos ) echo ' selected="selected" '  ; ?> ><?php echo $resMarcaVehiculos->nombre_marca_vehiculos; ?> </option><?php } ?>
 				</select> 			  
