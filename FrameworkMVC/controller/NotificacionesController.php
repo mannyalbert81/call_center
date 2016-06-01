@@ -9,9 +9,11 @@ class NotificacionesController extends ControladorBase{
 
 
 	public function index(){
+		
+		session_start();
 	
 		//Creamos el objeto usuario
-  	$notificaciones=new NotificacionesModel();
+  	    $notificaciones=new NotificacionesModel();
 					//Conseguimos todos los usuarios
 		$resultSet=$notificaciones->getAll("id_notificaciones");
 				
@@ -22,8 +24,9 @@ class NotificacionesController extends ControladorBase{
 		$usuarios = new UsuariosModel();
 		$resultUsuarios=$usuarios->getAll("nombre_usuarios");
 		
-		session_start();
-
+		$result_notificaciones=array();
+		//$result_notificaciones=$notificaciones->verNotificaciones();
+		
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
@@ -73,7 +76,7 @@ class NotificacionesController extends ControladorBase{
 		
 				
 				$this->view("Notificaciones",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultTipoNotificacion"=>$resultTipoNotificacion,"resultUsuarios"=>$resultUsuarios
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultTipoNotificacion"=>$resultTipoNotificacion,"resultUsuarios"=>$resultUsuarios,"result_notificaciones"=>$result_notificaciones
 						
 			
 				));
@@ -226,6 +229,23 @@ class NotificacionesController extends ControladorBase{
 		}
 					
 	
+	}
+	
+	function iniciaNotificaciones(){
+		//ver notificaciones
+		$notificaciones=new NotificacionesModel();
+		$result_notificaciones="";
+		$result_notificaciones=$notificaciones->verNotificaciones();
+		
+		if(empty($result_notificaciones)){$this->view("Error",array(
+				"resultado"=>"No hay datos"
+			
+		)); exit();}else{$this->view("Error",array(
+				"resultado"=>"array lleno"
+			
+		)); exit();}
+		
+		return $result_notificaciones;
 	}
 	
 	function actualizaNotificaciones(){

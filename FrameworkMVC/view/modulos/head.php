@@ -24,7 +24,31 @@
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 		
-        
+ 
+ <script type=text/javascript>
+//setTimeout("document.location=document.location",2000);
+$(document).ready(function(){
+
+	var $divcontenedor = $("#div_head");
+
+	$divcontenedor.empty();
+
+    var idnotificacion=1;
+
+
+	 var result=  $.post("<?php echo $helper->url("VerNotificaciones","iniciaNotificaciones"); ?>",  "json");
+
+	 result.done(function( string_out ) {
+		    
+		    $divcontenedor.append(string_out);
+		  });
+ 
+
+});  
+	
+
+
+</script>       
 	
 	
 	
@@ -72,8 +96,8 @@
 			</div>
 			
 			<!-- empieza notificacion -->
-			
-			<div class="dropdown">
+			<form action="<?php echo $helper->url("VerNotificaciones","startNotificaciones"); ?>" method="post" id="form_head">
+			<div class="dropdown" id="div_head">
 				   <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Notificacion <span class="badge"><?php if(empty($result_notificaciones)){echo 0;}else{echo count($result_notificaciones);?></span></button>
 				  <ul class="dropdown-menu">
 				  <?php foreach ($result_notificaciones as $res){ ?>
@@ -84,6 +108,7 @@
 				  </ul>
 				  
 			</div>
+			</form>
 			
 		 	 <?php  ?> 
 		<?php 

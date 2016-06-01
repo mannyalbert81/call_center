@@ -34,7 +34,7 @@ class AsignacionSecretariosController extends ControladorBase{
 				
 			if (!empty($resultPer))
 			{
-					
+								
 					//CONSULTA DE USUARIOS POR SU ROL 
 					$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
 					$tablas="usuarios inner join rol on(usuarios.id_rol=rol.id_rol)";
