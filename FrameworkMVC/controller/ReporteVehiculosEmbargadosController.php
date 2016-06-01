@@ -17,19 +17,48 @@ class ReporteVehiculosEmbargadosController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$resultDatos=array();
-			
-			
+
+			//creacion ddl de secretarios o abogadpos
+			$resultAsignacion=array(0=>'--Seleccione--',1=>'Secretario',2=>'Abg Impulsor');
+	
 			$permisos_rol = new PermisosRolesModel();
 			
 			$nombre_controladores = "ReporteVehiculosEmbargados";
 			$id_rol= $_SESSION['id_rol'];
 			
+			$ciudad = new CiudadModel();
+			$resultCiu = $ciudad->getAll("nombre_ciudad");
+			
+			$usuarios=new UsuariosModel();
+			$resultUsu = $usuarios->getAll("nombre_usuarios");
+			
+			$estado=new EstadoModel();
+			$resultEstado=$estado->getBy("nombre_estado='PENDIENTE'");
 			
 			$resultPer = $permisos_rol->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
 			if (!empty($resultPer))
 			{
-	
+					
+				
+					//CONSULTA DE USUARIOS POR SU ROL 
+					$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+					$tablas="usuarios inner join rol on(usuarios.id_rol=rol.id_rol)";
+					$id="rol.id_rol";
+					
+					$usuarios=new UsuariosModel();
+					
+					$where="rol.nombre_rol='CIUDAD'";
+					$resultCiudad=$ciudad->getCondiciones($columnas ,$tablas , $where, $id);
+					
+					$where="rol.nombre_rol='SECRETARIO'";
+					$resultUsuarioSecretario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+					
+					$where="rol.nombre_rol='ABOGADO IMPULSOR'";
+					$resultUsuarioImpulsor=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+					
+					
+					//roles
 					$rol = new RolesModel();
 					$resultRol=$rol->getAll("nombre_rol");
 					
@@ -49,8 +78,6 @@ class ReporteVehiculosEmbargadosController extends ControladorBase{
 						
 						if (!empty($resultPer))
 						{
-							
-							
 							
 							
 							$resultEdit=$asignacionSecretario->getCondiciones($columnas, $tablas, $where, $id);
@@ -87,18 +114,14 @@ class ReporteVehiculosEmbargadosController extends ControladorBase{
 							
 							
 						$columnas = "   vehiculos_embargados.id_vehiculos_embargados, 
-								          tipo_vehiculos.id_tipo_vehiculos,
-								          tipo_vehiculos.nombre_tipo_vehiculos, 
+										  tipo_vehiculos.nombre_tipo_vehiculos, 
 										  marca_vehiculos.nombre_marca_vehiculos, 
-								           vehiculos_embargados.id_marca_vehiculos,
 										  vehiculos_embargados.placa_vehiculos_embargados, 
 										  vehiculos_embargados.modelo_vehiculos_embargados, 
 										  vehiculos_embargados.fecha_ingreso_vehiculos_embargados, 
-										  clientes.id_clientes,
-								          clientes.nombres_clientes, 
+										  clientes.nombres_clientes, 
 										  clientes.identificacion_clientes";
 						
-					
 						$tablas   = "public.vehiculos_embargados, 
 									  public.clientes, 
 									  public.tipo_vehiculos, 
@@ -113,20 +136,20 @@ class ReporteVehiculosEmbargadosController extends ControladorBase{
 					
 						$where_1 = "";
 						$where_2 = "";
-						
+					
 					
 						switch ($criterio_busqueda) {
 							
 							case 0:
-							
+								// identificacion de cliente
 								$where_1 = " AND  clientes.identificacion_clientes LIKE '$contenido_busqueda'  ";
 								break;
 							case 1:
-							
+								//id_titulo de credito
 								$where_2 = " AND  vehiculos_embargados.placa_vehiculos_embargados = '$contenido_busqueda'  ";
 								break;
-								    
-							}
+						
+						}
 					
 					
 					
@@ -171,5 +194,37 @@ class ReporteVehiculosEmbargadosController extends ControladorBase{
 		}
 	
 	}
+	 
+	
+	
+	
+	public function Reporte(){
+	
+		//Creamos el objeto usuario
+		$subcategorias=new SubCategoriasModel();
+		//Conseguimos todos los usuarios
+	
+	
+		$columnas = " subcategorias.id_subcategorias, categorias.nombre_categorias, subcategorias.nombre_subcategorias, subcategorias.path_subcategorias";
+		$tablas   = "public.subcategorias, public.categorias";
+		$where    = "subcategorias.id_categorias = categorias.id_categorias";
+		$id       = "categorias.nombre_categorias,subcategorias.nombre_subcategorias";
+		
+	
+		session_start();
+	
+	
+		if (isset(  $_SESSION['usuario']) )
+		{
+			$resultRep = $subcategorias->getCondicionesPDF($columnas, $tablas, $where, $id);
+			
+			$this->report("SubCategorias",array(	"resultRep"=>$resultRep));
+	
+		}
+			
+	
+	}
+	
+
 }
 ?>      
