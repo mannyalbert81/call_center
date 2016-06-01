@@ -1,4 +1,11 @@
 <?php
+ini_set('memory_limit','128M');
+
+require_once 'class/phpjasperxml/class/tcpdf/tcpdf.php';
+require_once 'class/phpjasperxml/class/PHPJasperXML.inc.php';
+
+//include_once('setting.php');//no se puede enviar nada mas que el reporte, NINGUN espacio o caracter previo al repote
+
 class UsuariosController extends ControladorBase{
     
     public function __construct() {
@@ -162,9 +169,31 @@ public function index(){
 							
 					}
 				}
+				
+				if (isset ($_POST["Imprimir"])   )
+
+				{
+					$server  = "186.4.241.148:5433";
+					$user    = "postgres";
+					$pass    = ".Romina.2012";
+					$db      = "coactiva";
+				
+					$PHPJasperXML = new PHPJasperXML(); 
+					$PHPJasperXML->debugsql=false;
+					
+					
+					//$xml =  simplexml_load_file("view/ireports/UsuariosReport.jrxml");
+					$xml = simplexml_load_file("view/ireports/UsuariosReport.jrxml");
+					
+					$PHPJasperXML->xml_dismantle($xml);
+					$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db);
+					$PHPJasperXML->outpage("I");
+					
+					
+				}	
+				
 			}
 			
-			//"resultMenu"=>$resultMenu
 			
 			$this->view("Usuarios",array(
 					"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst,"resultMenu"=>$resultMenu, "resultCiu"=>$resultCiu

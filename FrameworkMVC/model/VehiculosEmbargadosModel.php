@@ -12,7 +12,7 @@ class VehiculosEmbargadosModel extends ModeloBase{
 	public function getWhere() {
 		return $this->where;
 	}
-	
+	//maycol
 	public function setWhere($where) {
 		$this->where = $where;
 	}
