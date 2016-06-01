@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-01T06:45:42 -->
+<!-- 2016-06-01T12:41:17 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RepUsuarios" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8e15d519-eab3-497d-b483-a5c1caac3ee0">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="Y2l1ZGFkIEFTICw0MTgsMzA5LDM3ZGIxZDc0LThhMGEtNGZlOS1hMDAxLWFlNzFhMWQ2Y2M0NTty&#xA;b2wgQVMgLDQ1NSw0NSw3N2Q2N2MyNy04OGY0LTQ5YjYtYmI5Yy04NTdlYTlmYzk5ZmY7dXN1YXJp&#xA;b3MgQVMgLDI2Miw0OSxhYTE4Nzc1ZC1hZjc3LTQxOGMtYjNjYy0zMmMyNWNkMjRiOGU7ZXN0YWRv&#xA;IEFTICw0ODksMjI3LGFiMGIzODU0LThjOGMtNGI4NC1hOWVkLWMzOWY2NzgwOGMwODs="/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\DataAdapterCoactiva.xml"/>

@@ -194,7 +194,6 @@ public function index(){
 				
 			}
 			
-			//"resultMenu"=>$resultMenu
 			
 			$this->view("Usuarios",array(
 					"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst,"resultMenu"=>$resultMenu, "resultCiu"=>$resultCiu

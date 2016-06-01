@@ -8,9 +8,14 @@
 		. id_usuario_asigna
 		. id_usuario_impulsor
         . id_usuario_agente
-		. id_estado (Asignado, Sin Aignar)
+		. id_estado (Aprobado, Pendiente)
 		
 3. hacer tabla titulo creditos con los campos que tiene la tabl de sql
+
+4.crear la impresion de autos de pago siempre que esten aprobados
+
+5. crear la aprobaion de auto de pago
+
 
 
 		
