@@ -36,7 +36,7 @@
                 
             
         </style>
-<<<<<<< HEAD
+
            <script >
 		$(document).ready(function(){
 
@@ -102,6 +102,10 @@
 		?>
  
   
+  
+	
+ 
+  
   <div class="container">
   
   <div class="row" style="background-color: #ffffff;">
@@ -140,68 +144,8 @@
 			  
 			<div class="col-xs-12 col-md-12" style="margin-top: 20px; text-align: center;" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-default"/>
-=======
-       
- 
-    
-    </head>
-    <body style="background-color: #d9e3e4;">
-    
-       <?php include("view/modulos/head.php"); ?>
-       
-       <?php include("view/modulos/menu.php"); ?>
-       
-       
-       
-       <?php
-       $resultMenu=array(0=>"Identificacion",1=>"Placa Vehiculo");
-  
-       $fecha_actual = strtotime(Date("Y-m-d"));
-         
-		?>
- 
-  
-  <div class="container">
-  
-  <div class="row" style="background-color: #ffffff;">
-  
-     
-      <form action="<?php echo $helper->url("ReporteVehiculosEmbargados","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
-    
-    <div class="col-lg-5">
-    <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-           <?php //no hay datos para editar?>
-        
-            <?php } } else {?>
-		     
-		      <h4 style="color:#ec971f;">Reporte Vehiculos Embargados</h4>
-            	<hr/>
-		     
-		     <div class="row">
-			    
-			  <div class="col-xs-4 col-md-4">
-			  	<p  class="formulario-subtitulo" >Seleccione</p>
-			  	<select name="criterio_busqueda" id="criterio_busqueda"  class="form-control" >
-					<?php foreach($resultMenu as $val=>$desc) {?>
-						<option value="<?php echo $val; ?>"  ><?php echo $desc ?> </option>
-			        <?php } ?>
-				</select> 			  
-			  </div>
-		    
-		     
-             	
-             	
-		    <div class="col-xs-6 col-md-6">
-		    	<p  class="formulario-subtitulo" style="color: #ffffff;" >--</p>
-			  <input type="text" name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
-			  <div id="mensaje_contenido_busqueda" class="errores"></div>
-			  </div>
-			  
-			<div class="col-xs-12 col-md-12" style="margin-top: 20px; text-align: center;" >
-		
 			  	<input type="submit" id="buscar" name="buscar"  value="buscar" class="btn btn-default"/>
->>>>>>> refs/remotes/origin/master
+
 			</div>
 			
 			  </div>
