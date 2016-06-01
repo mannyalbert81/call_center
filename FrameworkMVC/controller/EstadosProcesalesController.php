@@ -5,7 +5,7 @@ class EstadosProcesalesController extends ControladorBase{
 	public function __construct() {
 		parent::__construct();
 	}
-
+	//maycol
 
 
 	public function index(){
