@@ -400,5 +400,16 @@ class EntidadBase{
     	}
     }
     
+    function verNotificaciones(){
+    	
+    	$id_usuario=$_SESSION['id_usuarios'];
+    	$notificaciones=new NotificacionesModel();
+    	$where_notificacion = " id_usuarios = '$id_usuario' AND visto_notificaciones=0";
+    	$result_notificaciones=$notificaciones->getBy($where_notificacion);
+    	
+    	return $result_notificaciones;
+    }
+    
+      
 }
 ?>

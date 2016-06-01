@@ -1,0 +1,22 @@
+1. crear un perfil de usuario como agente judicial
+
+2  crear el formulario de generacion de autos de pago y asignacion de autos de pago
+	- crear campos de la tabla
+		. id
+		. id_titulo de credito
+		. fecha_asisgnacion
+		. id_usuario_asigna
+		. id_usuario_impulsor
+        . id_usuario_agente
+		. id_estado (Aprobado, Pendiente)
+		
+3. hacer tabla titulo creditos con los campos que tiene la tabl de sql
+
+4.crear la impresion de autos de pago siempre que esten aprobados
+
+5. crear la aprobaion de auto de pago
+
+
+
+		
+		

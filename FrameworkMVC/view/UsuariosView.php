@@ -659,12 +659,12 @@
         <div class="row">
            <form action="<?php echo $helper->url("Usuarios","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
            
-           <div class="col-lg-4">
+           <div class="col-lg-3">
            <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
            <div id="mensaje_contenido" class="errores"></div>
             </div>
             
-           <div class="col-lg-4">
+           <div class="col-lg-3">
            <select name="criterio" id="criterio"  class="form-control">
                                     <?php foreach($resultMenu as $val=>$desc) {?>
                                          <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
@@ -676,8 +676,12 @@
           
            
           
-           <div class="col-lg-3">
+           <div class="col-lg-2">
            <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
+           </div>
+           <div class="col-lg-2">
+           
+           <input type="submit" id="Imprimir" name="Imprimir" value="Imprimir" class="btn btn-default"/>
            </div>
          
           </form>
