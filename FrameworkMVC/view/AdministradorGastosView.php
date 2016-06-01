@@ -34,62 +34,56 @@
             
         </style>
         
-        
-         <script >
+     
+           <script >
 		$(document).ready(function(){
 
 		    // cada vez que se cambia el valor del combo
 		    $("#Guardar").click(function() 
 			{
-		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
-		    	var nombre_administrador_gastos = $("#nombre_administrador_gastos").val();
+		   
+		    	var nombre_administrador_gastos= $("#nombre_administrador_gastos").val();
 		    
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	if (id_administrador_gastos == "")
+		   				
+		    	if (nombre_administrador_gastos== "")
 		    	{
 			    	
-		    		$("#mensaje_ruc").text("Introduzca un tipo de administrador");
-		    		$("#mensaje_ruc").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_busqueda").text("Introduzca un nombre");
+		    		$("#mensaje_busqueda").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_ruc").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}    
-				
-		    	if (nombre_administrador_gastos == "")
-		    	{
-			    	
-		    		$("#mensaje_ruc").text("Introduzca una administrador de gastos ");
-		    		$("#mensaje_ruc").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_busqueda").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
-		    }); 
+		    	
+		    	
+
+			
+		    					    
+
+			}); 
 
 
-		        $( "#nombre_administrador_gastos" ).focus(function() {
-				  $("#mensaje_ruc").fadeOut("slow");
-			    });
+		 
 				
 				$( "#nombre_administrador_gastos" ).focus(function() {
-					$("#mensaje_ruc").fadeOut("slow");
+					$("#mensaje_busqueda").fadeOut("slow");
     			});
 				
-					    
+			
+		
+				
+		
+		      
+				    
 		}); 
 
 	</script>
+ 
+        
+
         
           
     </head>
@@ -126,7 +120,7 @@
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Nombre Administrador de Gastos</p>
 			  	<input type="text" name="nombre_administrador_gastos" id="nombre_administrador_gastos" value="<?php echo $resEdit->nombre_administrador_gastos; ?>" class="form-control"/> 
-			  <div id="mensaje_ruc" class="errores"></div>
+			  <div id="mensaje_busqueda" class="errores"></div>
 			  </div>
 		    </div>
 		   
@@ -161,8 +155,8 @@
 		    <div class="row">
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Nombre Administrador Gastos</p>
-			  	<input type="text" name="nombre_administrador_gastos" id="nombre_admininistrador_gastos"  class="form-control"/> 
-			  <div id="mensaje_ruc" class="errores"></div>
+			  	<input type="text" name="nombre_administrador_gastos" id="nombre_administrador_gastos" value="" class="form-control"/> 
+			  <div id="mensaje_busqueda" class="errores"></div>
 			  </div>
 		    </div>
 		   

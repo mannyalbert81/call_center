@@ -36,10 +36,8 @@
                 
             
         </style>
-       
-       
-       
-     <script>
+     
+       <script>
 	$(document).ready(function(){
 		$("#id_ciudad").change(function(){
 
@@ -133,23 +131,19 @@
        
 
 	</script>
-    
-         
-         
-         
-        <script >
+      <script >
 		$(document).ready(function(){
 
-			$("#Buscar").click(function()
+			$("#Guardar").click(function()
 
 			{
 
 				var contenido = $("#contenido").val();
-				var criterio= $("#criterio").val();
+				var fecha_asignacion= $("#fecha_asignacion").val();
 
-				if (contenido != "" && criterio==0)
+				if (contenido != "" && fecha_asignacion==0)
 		    	{
-					$("#mensaje_criterio").text("Seleccione filtro de busqueda");
+					$("#mensaje_criterio").text("Seleccione una fecha");
 		    		$("#mensaje_criterio").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
@@ -160,7 +154,7 @@
 		            
 				}    
 
-				if (criterio !=0 && contenido=="")
+				if (criterio !=0 && fecha_asignacion=="")
 		    	{
 
 			    	
@@ -220,13 +214,13 @@
         
  		$("#buscar").click(function () {
              
-             var criterio = $("#criterio_busqueda").val();
+             var fecha_asignacion = $("#fecha_asignacion").val();
              var contenido = $("#contenido_busqueda").val();
-             if(criterio!=0 && contenido==""){
+             if(fecha_asignacion!=0 && contenido==""){
           	   $("#mensaje_contenido").text("Ingrese contenido");
   	    	   $("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
                  return false;
-                 }else if(criterio==0 && contenido!=""){
+                 }else if(fecha_asignacion==0 && contenido!=""){
                $("#mensaje_criterio").text("Selecione una busqueda");
         	   $("#mensaje_criterio").fadeIn("slow");
         	     return false;
@@ -238,7 +232,7 @@
           $( "#contenido_busqueda" ).focus(function() {
   			  $("#mensaje_contenido").fadeOut("slow");
   		    });
-          $( "#criterio_busqueda" ).focus(function() {
+          $( "#fecha_asignacion" ).focus(function() {
   			  $("#mensaje_criterio").fadeOut("slow");
   		    });
         });
@@ -301,7 +295,7 @@
             <div class="col-xs-5">
 			  <p  class="formulario-subtitulo" >Fecha de Asignacion </p>
 	          <input type="date" id="fecha_asignacion" name="fecha_asignacion" class="form-control" value="<?php echo $sel_fecha_asignacion;?>">
-		   		   
+		   	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
             	
 		   	<div class="col-xs-5">
