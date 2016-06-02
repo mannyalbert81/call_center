@@ -158,8 +158,7 @@
 		 <hr>
           
        </form>
-       <!-- termina el form --> 
-       
+          
         <div class="col-lg-6">
             <h4 style="color:#ec971f;">Lista de Tipos de Identificacion</h4>
             <hr/>

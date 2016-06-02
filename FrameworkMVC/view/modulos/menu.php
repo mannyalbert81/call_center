@@ -160,7 +160,7 @@
           
           <li><a href="index.php?controller=DistribucionGastos&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Distribucion Gastos</span> </a>
             </li>
-             <li><a href="index.php?controller=Oficios&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Oficio s</span> </a>
+             <li><a href="index.php?controller=Oficios&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Oficios</span> </a>
             </li>
 
 
