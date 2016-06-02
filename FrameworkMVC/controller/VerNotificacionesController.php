@@ -27,17 +27,7 @@ class VerNotificacionesController extends ControladorBase{
 			
 			if (!empty($resultPer))
 			{
-				
-				
-				
-				
-				/*$this->view("Notificaciones",array(
-						
-						
-			
-				));*/
-		
-				
+							
 				
 			}
 			else
@@ -72,9 +62,11 @@ class VerNotificacionesController extends ControladorBase{
 				//$result_notificaciones="";
 				//$result_notificaciones=$notificaciones->verNotificaciones();
 				
+				$result_notificaciones=array();
+				
 				$id_usuario=$_SESSION['id_usuarios'];
 				$notificaciones=new NotificacionesModel();
-				$where_notificacion = " id_usuarios = '$id_usuario' AND visto_notificaciones=0";
+				$where_notificacion = " id_usuarios = '$id_usuario' AND visto_notificaciones=false";
 				$result_notificaciones=$notificaciones->getBy($where_notificacion);
 				
 				
@@ -96,8 +88,9 @@ class VerNotificacionesController extends ControladorBase{
 				}
 				
 				$string_out=0;
-		echo json_encode($string_out);
+		echo json_encode($result_notificaciones);
 	}
+	
 	
 	function startNotificaciones(){
 		//ver notificaciones
@@ -119,15 +112,6 @@ class VerNotificacionesController extends ControladorBase{
 		$where="id_notificaciones='$id_notificaciones'";
 		$resultado=$notificaciones->UpdateBy($colval, $tabla, $where);
 		
-		$_usuario=$_SESSION['usuario_usuarios'];
-		
-		$id_usuario=$_SESSION['id_usuarios'];
-		$result_notificaciones=$notificaciones->verNotificaciones($id_usuario);
-		
-	
-		$this->view("Bienvenida",array(
-    				"allusers"=>$_usuario,"result_notificaciones"=>$result_notificaciones
-	    		));
 		 
 	}
 	

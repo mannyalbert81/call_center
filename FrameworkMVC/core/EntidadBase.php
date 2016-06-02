@@ -401,7 +401,7 @@ class EntidadBase{
     }
     
     function verNotificaciones(){
-    	session_start();
+    	//session_start();
     	$id_usuario=$_SESSION['id_usuarios'];
     	$notificaciones=new NotificacionesModel();
     	$where_notificacion = " id_usuarios = '$id_usuario' AND visto_notificaciones=0";
