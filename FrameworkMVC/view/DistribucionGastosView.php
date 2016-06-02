@@ -153,6 +153,8 @@
 			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
+			  </div>
+			   <div class="row">
 			  <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Valor ($):</p>
 			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
@@ -162,25 +164,25 @@
 			  	<p  class="formulario-subtitulo" >Gastos Por:</p>
 			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-			  
-			  
-			 </div>
-			  
+			  </div>  
+			   </div> 
+			  		  
 			   <div class="row">
 		       <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Entidad:</p>
 			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
-			  
+			   
+			  					  
 			   <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Nº Juicio:</p>
 			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
+			   </div>
 			  <div class="col-xs-3 col-md-3">
-			  	<p  class="formulario-subtitulo" >Identificacionhes :cliente</p>
+			  	<p  class="formulario-subtitulo" >Identificacion cliente</p>
 			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
@@ -188,12 +190,52 @@
 			  	<p  class="formulario-subtitulo" >Fecha Recepcion:</p>
 			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-			  
+			  </div>		  
 			 </div>
 
 		    <hr>
-		    
+		        <div class="col-lg-6">
+            <h4 style="color:#ec971f;">Lista de Tipos de Identificacion</h4>
+            <hr/>
+        </div>
+        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
+        <table class="table table-hover ">
+	         <tr >
+	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
+	    		<th style="color:#456789;font-size:80%;">Nombre</th>
+	    		
+	    		<th></th>
+	    		<th></th>
+	  		</tr>
+            
+	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
+	        		<tr>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_tipo_identificacion; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?>     </td> 
+		              
+		           	   <td>
+			           		<div class="right">
+			                    <a href="<?php echo $helper->url("TipoIdentificacion","index"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                </div>
+			            
+			             </td>
+			             <td>   
+			                	<div class="right">
+			                    <a href="<?php echo $helper->url("TipoIdentificacion","borrarId"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                </div>
+			                <hr/>
+		               </td>
+		    		</tr>
+		        <?php } } ?>
+            
+            <?php 
+            
+            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
+            
+            ?>
+            
+       	</table>     
+      </section>
 		   
                	
 		     <?php } ?>

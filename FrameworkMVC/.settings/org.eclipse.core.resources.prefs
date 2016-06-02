@@ -1,2 +1,7 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
+=======
+encoding//class/phpjasperxml/sample1.jrxml=UTF-8
+encoding//view/ireports/UsuariosReport.jrxml=UTF-8
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 encoding/<project>=UTF-8
