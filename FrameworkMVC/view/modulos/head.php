@@ -53,7 +53,7 @@ $(document).ready(function(){
 		  $.post("<?php echo $helper->url("VerNotificaciones","iniciaNotificaciones"); ?>", datos, function(resultNotificaciones) {
 
 		 		$.each(resultNotificaciones, function(index, value) {
-			 	    $ul.append('<li class="restaNotificaciones" id="'+value.id_notificaciones+'"><a href="">'+ value.descripcion_notificaciones+'</a></li>');	
+			 	    $ul.append('<li  ><a href="index.php?controller=VerNotificaciones&action=actualizaNotificaciones&id_notificaciones='+value.id_notificaciones+'&controlador='+value.controlador_tipo_notificacion+'&acciones='+value.accion_tipo_notificacion+'">'+value.descripcion_notificacion+'->'+ value.descripcion_notificaciones+'</a></li>');	
 	      		 });
 
 		 		 	 		   
@@ -114,16 +114,8 @@ $(document).ready(function(){
 			</div>
 			
 			<!-- empieza notificacion -->
-			<form action="" method="post" >
+			<form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
 			<div class="dropdown" id="div_head">
-				   <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Notificacion <span class="badge"><?php if(empty($result_notificaciones)){echo 0;}else{echo count($result_notificaciones);?></span></button>
-				  <ul class="dropdown-menu">
-				  <?php foreach ($result_notificaciones as $res){ ?>
-				  
-				    <li><a href="<?php echo $helper->url("Notificaciones","actualizaNotificaciones"); ?>&id_notificaciones=<?php echo $res->id_notificaciones; ?>"><?php echo  $res->descripcion_notificaciones;?></a></li>
-				  
-				  <?php }}?>
-				  </ul>
 				  
 			</div>
 			</form>
