@@ -208,7 +208,7 @@
         });
         });
     </script>
-    
+
     <script>
     $(document).ready(function(){
         
@@ -236,6 +236,7 @@
   			  $("#mensaje_criterio").fadeOut("slow");
   		    });
         });
+
     </script>
     
     </head>
@@ -249,7 +250,7 @@
        
        <?php
        
-     	$resultMenu_busqueda=array(0=>"Todos",1=>"Identificacion",2=>"Titulo Credito");
+     	$resultMenu_busqueda=array(0=>"Identificacion",1=>"Titulo Credito");
      	
      	
      	$sel_id_usuarioAgente = "";
@@ -370,7 +371,7 @@
     		<div class="col-xs-4">
 			
            <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
-           <div id="mensaje_contenido" class="errores"></div>
+           <div id="mensaje_contenido_busqueda" class="errores"></div>
             </div>
             
            <div class="col-xs-4">
@@ -385,7 +386,7 @@
            
            <div class="col-xs-4" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("AutoPagos","Index"); ?>'" value="buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("AutoPagos","index"); ?>'" value="buscar" class="btn btn-default"/>
 			</div>
 		<div class="col-xs-12" style="margin: 10px;">	
 
