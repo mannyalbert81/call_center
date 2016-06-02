@@ -17,7 +17,7 @@ $PHPJasperXML = new PHPJasperXML();
 $PHPJasperXML->arrayParameter=array("parameter1"=>1);
 $PHPJasperXML->load_xml_file("sample2.jrxml");
 
-$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db); //* use this line if you want to connect with mysql
+//$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db); //* use this line if you want to connect with mysql
 
 //if you want to use universal odbc connection, please create a dsn connection in odbc first
 //$PHPJasperXML->transferDBtoArray($server,"odbcuser","odbcpass","phpjasperxml","odbc"); //odbc = connect to odbc

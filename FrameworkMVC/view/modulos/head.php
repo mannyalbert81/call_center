@@ -56,9 +56,6 @@
 			
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
-		
-		
-		
 		 	 <div class="dropdown">
 				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><?php echo " Bienvenid@  ".$_SESSION['nombre_usuarios'];?></span>
 				  <span class="caret"></span>
