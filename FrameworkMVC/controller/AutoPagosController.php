@@ -289,7 +289,7 @@ class AutoPagosController extends ControladorBase{
 				{
 						if (!empty($id) )
 					{
-						//busco si exties este nuevo id
+						//busco si existe este nuevo id
 						try 
 						{
 							$_id_titulo_credito = $id;
@@ -299,6 +299,27 @@ class AutoPagosController extends ControladorBase{
 							$auto_pagos->setFuncion($funcion);
 							$auto_pagos->setParametros($parametros);
 							$resultado=$auto_pagos->Insert();
+							
+							$controlador="AprobacionAutoPago";
+							$tipo_notificacion = new TipoNotificacionModel();
+							$resul_tipo_notificacion=$tipo_notificacion->getBy("controlador_tipo_notificacion='$controlador'");
+							
+							
+							//inserta las notificacion
+							$notificaciones = new NotificacionesModel();							
+							$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;
+							
+							//dirigir notificacion
+							$id_impulsor=$_SESSION['id_usuarios'];
+							$asignacion_secreatario= new AsignacionSecretariosModel();
+							$result_asg_secretario=$asignacion_secreatario->getBy("id_abogado_asignacion_secretarios='$id_impulsor'");
+							$id_usuarios_dirigido_notificacion=$result_asg_secretario[0]->id_secretario_asignacion_secretarios;
+							
+							//descripcion de notificacion
+							$descripcion_notificaciones="Auto Pago Pendiente del titulo de credito (".$_id_titulo_credito.") ";
+							
+							$result_notificaciones=$notificaciones->InsertaNotificaciones($id_tipo_notificacion, $id_usuarios_dirigido_notificacion, $descripcion_notificaciones);
+							
 										
 						} catch (Exception $e) 
 						{
@@ -319,7 +340,6 @@ class AutoPagosController extends ControladorBase{
 				
 			}
 			
-			
 
 			$this->redirect("AutoPagos", "index");
 				
@@ -328,7 +348,7 @@ class AutoPagosController extends ControladorBase{
 		else
 		{
 			$this->view("Error",array(
-					"resultado"=>"No tiene Permisos de Asignacion Titulo Credito"
+					"resultado"=>"No tiene Permisos de Editar Auto Pagos"
 		
 			));
 		
