@@ -164,6 +164,8 @@
             </li>
              <li><a href="index.php?controller=Gastos&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Gastos</span> </a>
             </li>
+            <li><a href="index.php?controller=SeguimientoGastos&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Seguimiento Gastos</span> </a>
+            </li>
 
 </ul>
       </ul>

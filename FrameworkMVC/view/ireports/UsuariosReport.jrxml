@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-03T12:45:58 -->
+<!-- 2016-06-03T16:31:19 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
@@ -65,25 +65,24 @@
 	usuarios.celular_usuarios,
 	usuarios.correo_usuarios,
 	rol.nombre_rol,
-	ciudad.nombre_ciudad,
-	estado.nombre_estado
+	estado.nombre_estado,
+	ciudad.nombre_ciudad
 FROM usuarios
 	INNER JOIN ciudad ON 
 	 usuarios.id_ciudad = ciudad.id_ciudad 
-	INNER JOIN rol ON 
-	 usuarios.id_rol = rol.id_rol 
 	INNER JOIN estado ON 
-	 usuarios.id_estado = estado.id_estado
-	 WHERE usuario_usuarios=$P{BUSQUEDA}]]>
+	 usuarios.id_estado = estado.id_estado 
+	INNER JOIN rol ON 
+	 usuarios.id_rol = rol.id_rol]]>
 	</queryString>
 	<field name="nombre_usuarios" class="java.lang.String"/>
 	<field name="celular_usuarios" class="java.lang.String"/>
 	<field name="correo_usuarios" class="java.lang.String"/>
 	<field name="nombre_rol" class="java.lang.String"/>
-	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="nombre_estado" class="java.lang.String"/>
+	<field name="nombre_ciudad" class="java.lang.String"/>
 	<title>
-		<band height="93" splitType="Stretch">
+		<band height="81" splitType="Stretch">
 			<line>
 				<reportElement x="0" y="80" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -94,14 +93,14 @@ FROM usuarios
 				<reportElement x="415" y="10" width="50" height="20" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right"/>
-				<text><![CDATA[Fecha:]]></text>
+				<text><![CDATA[Date:]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="465" y="10" width="84" height="20" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<image hAlign="Center">
-				<reportElement x="0" y="20" width="92" height="40" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
+				<reportElement x="0" y="0" width="92" height="30" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
 				<imageExpression><![CDATA["invoice_logo.png"]]></imageExpression>
 			</image>
 			<textField pattern="EEEEE dd MMMMM yyyy">
@@ -141,92 +140,92 @@ FROM usuarios
 	<columnHeader>
 		<band height="20">
 			<staticText>
-				<reportElement style="Column header" positionType="Float" x="0" y="0" width="92" height="20" forecolor="#000000" uuid="813e2c56-bffc-4b58-b9d0-4ef54479c3e0"/>
+				<reportElement style="Column header" positionType="Float" x="0" y="0" width="92" height="20" forecolor="#000000" uuid="944b004c-273b-4cd6-87d5-e1bdbc9a2f09"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" positionType="Float" x="92" y="0" width="92" height="20" forecolor="#000000" uuid="6a160c73-e40f-4151-96ca-b0ccf2ce4af6"/>
+				<reportElement style="Column header" positionType="Float" x="92" y="0" width="92" height="20" forecolor="#000000" uuid="ef67542a-7f14-499f-986b-a8ffec3202b6"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Celular]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" positionType="Float" x="184" y="0" width="92" height="20" forecolor="#000000" uuid="da4f77c0-c6d7-4271-8cb9-ed07cf1848bc"/>
+				<reportElement style="Column header" positionType="Float" x="184" y="0" width="92" height="20" forecolor="#000000" uuid="a6d08575-f8af-4838-976d-d82a59ebec6c"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Correo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" positionType="Float" x="276" y="0" width="92" height="20" forecolor="#000000" uuid="75705d8b-2f62-404d-8a96-566cf4107cbe"/>
+				<reportElement style="Column header" positionType="Float" x="276" y="0" width="92" height="20" forecolor="#000000" uuid="fcdebfba-8240-4e60-87aa-4123edae1622"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Rol]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" positionType="Float" x="368" y="0" width="92" height="20" forecolor="#000000" uuid="350bb262-0aa1-4544-bd8b-aa815af676ed"/>
-				<textElement>
-					<font fontName="Arial" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Ciudad]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" positionType="Float" x="460" y="0" width="92" height="20" forecolor="#000000" uuid="f5c78715-f82c-48a4-9e0c-6aa42b81a6af"/>
+				<reportElement style="Column header" positionType="Float" x="368" y="0" width="92" height="20" forecolor="#000000" uuid="3c2280c2-4179-4424-a5cf-9fbc3c2e2fb8"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="460" y="0" width="92" height="20" forecolor="#000000" uuid="40ff5b55-f9e0-49cd-8312-c7ff42f9882e"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ciudad]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Detail" positionType="Float" x="0" y="0" width="92" height="20" uuid="044438ef-3330-478b-ba4d-c80daa2dea04"/>
+				<reportElement style="Detail" positionType="Float" x="0" y="0" width="92" height="20" uuid="d236da10-0199-46a4-b55d-47180e6fc1db"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Detail" positionType="Float" x="92" y="0" width="92" height="20" uuid="0543d639-a9e0-4368-aab7-905397a8368e"/>
+				<reportElement style="Detail" positionType="Float" x="92" y="0" width="92" height="20" uuid="869f8d9a-9ed3-409d-9bb9-cdf75dde899a"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{celular_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Detail" positionType="Float" x="184" y="0" width="92" height="20" uuid="5fa6c46b-d2a2-41f3-95bc-fc48374721ff"/>
+				<reportElement style="Detail" positionType="Float" x="184" y="0" width="92" height="20" uuid="66c88432-d473-4d49-8d52-be0523338d74"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{correo_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Detail" positionType="Float" x="276" y="0" width="92" height="20" uuid="ae02e361-9f98-47c4-a81c-050ed0526936"/>
+				<reportElement style="Detail" positionType="Float" x="276" y="0" width="92" height="20" uuid="0af835a7-6629-4d14-9e12-9af0bfce4fb0"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_rol}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Detail" positionType="Float" x="368" y="0" width="92" height="20" uuid="ccb0e6ae-7fb5-4186-ac97-ef49a0fb844a"/>
-				<textElement>
-					<font fontName="Arial" size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Detail" positionType="Float" x="460" y="0" width="92" height="20" uuid="a87db06b-2a0e-4761-a740-776e1117888d"/>
+				<reportElement style="Detail" positionType="Float" x="368" y="0" width="92" height="20" uuid="d14f9655-9396-465f-930a-9d16204e49bf"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_estado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="460" y="0" width="92" height="20" uuid="752eecb1-1f90-47dd-bd58-8eb5325183d7"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
