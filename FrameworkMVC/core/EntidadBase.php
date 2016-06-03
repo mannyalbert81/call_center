@@ -410,6 +410,29 @@ class EntidadBase{
     	return $result_notificaciones;
     }
     
+public function InsertaNotificaciones($id_tipo_notificacion , $id_usuarios , $descripcion_notificaciones )
+    {
+    
+    
+    	$notificaciones=new NotificacionesModel();
+    		
+    	$funcion = "ins_notificaciones";
+    
+    	$_id_usuarios=$_SESSION['id_usuarios'];
+    	
+    	$resultUsuario=$notificaciones->getById($id);
+    
+    	
+    	$parametros = "'$_id_usuarios', '$_accion_trazas', '$_parametros_trazas', '$_nombre_controlador'  ";
+    
+    	$traza->setFuncion($funcion);
+    		
+    	$traza->setParametros($parametros);
+    		
+    	$resultadoT=$traza->Insert();
+    
+    }
+    
       
 }
 ?>
