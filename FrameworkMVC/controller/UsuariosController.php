@@ -4,12 +4,12 @@ ini_set('display_errors',1);
 ini_set('display_startup_erros',1);
 
 
-include_once('class/phpjasperxml/class/tcpdf/tcpdf.php');
-include_once("class/phpjasperxml/class/PHPJasperXML.inc.php");
+//include_once('class/phpjasperxml/class/tcpdf/tcpdf.php');
+//include_once("class/phpjasperxml/class/PHPJasperXML.inc.php");
 
-include_once ('class/phpjasperxml/setting.php');
+//include_once ('class/phpjasperxml/setting.php');
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+
 
 //include_once('setting.php');//no se puede enviar nada mas que el reporte, NINGUN espacio o caracter previo al repote
 
