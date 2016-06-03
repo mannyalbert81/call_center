@@ -66,6 +66,11 @@ class DistribucionGastosController extends ControladorBase{
 					}
 					
 				}
+				
+				if (isset($_POST["buscar"])){
+					
+					
+				}
 		
 				
 				$this->view("DistribucionGastos",array(
