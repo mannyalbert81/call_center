@@ -121,7 +121,7 @@
             </li>
             <li><a href="index.php?controller=Productos&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Productos</span> </a>
             </li>
-            <li><a href="index.php?controller=TipoGastos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Gastos</span> </a>
+            <li><a href="index.php?controller=TipoGastos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Tipo Gastos</span> </a>
 			</li>
 			<li><a href="index.php?controller=AdministradorGastos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Administrador de Gastos</span> </a>
 			</li>
@@ -162,7 +162,8 @@
             </li>
              <li><a href="index.php?controller=Oficios&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Oficios</span> </a>
             </li>
-
+             <li><a href="index.php?controller=Gastos&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Gastos</span> </a>
+            </li>
 
 </ul>
       </ul>

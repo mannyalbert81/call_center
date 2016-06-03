@@ -12,8 +12,6 @@ class CiudadController extends ControladorBase{
 	
 		//Creamos el objeto usuario
      	$ciudad= new CiudadModel(); 
-		
-	   //Conseguimos todos los usuarios
 		$resultSet=$ciudad->getAll("id_ciudad");
 				
 		$resultEdit = "";
