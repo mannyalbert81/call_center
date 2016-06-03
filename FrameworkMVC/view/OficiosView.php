@@ -51,7 +51,7 @@
 		    	if (nombre_oficios == "")
 		    	{
 			    	
-		    		$("#mensaje_nombres").text("Introduzca un Juicio");
+		    		$("#mensaje_nombres").text("Introduzca Información para el Oficio");
 		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
@@ -88,6 +88,32 @@
         });
         });
     </script>
+    
+    <script >
+$(document).ready(function() {
+		
+		$('#Guardar').click(function(){
+	        var selected = '';  
+	          
+	        $('.marcados').each(function(){
+	            if (this.checked) {
+	                selected +=$(this)+' esta '+$(this).val()+', ';
+	            }
+	        }); 
+
+	        if (selected != '') {
+	            return true;
+	        }
+	        else{
+	            alert('Debes seleccionar un juicio.');
+	            return false;
+	        }
+
+	      
+	    }); 
+
+	});
+	</script>
 
     </head>
     <body style="background-color: #d9e3e4;">

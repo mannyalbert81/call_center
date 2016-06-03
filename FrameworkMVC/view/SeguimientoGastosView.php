@@ -22,13 +22,13 @@
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
 		</script>
+	
 	<script>
 	$(document).ready(function(){
 
 		//alert("hola");
 		$("#div_ddl_accion").hide();
-
-		$("#ddl_criterio").change(function(){
+        $("#ddl_criterio").change(function(){
 
 			var ddl_criterio=$(this).val();
 
@@ -42,6 +42,30 @@
 					}
 
 			});
+		
+		});
+
+		</script>
+		
+		<script>
+	    $(document).ready(function(){
+
+	   
+		$("#div_ddl_accion").hide();
+
+		$("#ddl_criterio").change(function(){
+
+			var ddl_criterio=$(this).val();
+
+			if(ddl_criterio==4){
+				
+				$("#div_ddl_accion").show();
+				$("#div_contenido").hide();
+				}else{
+					$("#div_ddl_accion").hide();
+					$("#div_contenido").show();
+					}
+        });
 		
 		});
 
@@ -142,14 +166,14 @@
      <div class="col-lg-12" style="margin-bottom: 10px;"> 
      <div class="row">  
       
-           <form action="<?php echo $helper->url("SeguimientoGastos","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+           <form action="<?php echo $helper->url("SeguimientoGastos","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
      
-      		<div class="col-lg-3" id="div_desde">
+      		<div class="col-lg-2" id="div_desde">
       		<span>Desde:</span>
            <input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control"/>
            <div id="mensaje_desde" class="errores"></div>
            </div>
-           <div class="col-lg-3" id="div_hasta">
+           <div class="col-lg-2" id="div_hasta">
            <span>Hasta:</span>
            <input type="date"  name="fecha_hasta" id="fecha_hasta" value="" class="form-control"/>
            <div id="mensaje_hasta" class="errores"></div>
@@ -183,7 +207,6 @@
            </div>
           
            
-          
            <div class="col-lg-1">
            <span style="color:#ffffff;">Buscar:</span>
            <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
@@ -229,8 +252,6 @@
             
             <?php 
 		}
-            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
-            
             ?>
             
        	</table>     

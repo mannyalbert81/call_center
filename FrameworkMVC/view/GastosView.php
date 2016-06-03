@@ -116,20 +116,7 @@
         });
     </script>
     
-    <script>
-    $(document).ready(function(){
-        $("#marcar_oficios").change(function () {
-            if ($(this).is(':checked')) {
-               
-                $(".marcados_oficios").prop('checked', true); 
-            } else {
-                
-             
-                $("input[type=checkbox]").prop('checked', false);
-            }
-        });
-        });
-    </script>
+    
 
     <script>
     $(document).ready(function(){
@@ -160,7 +147,31 @@
         });
 
     </script>
-    
+    <script >
+       $(document).ready(function() {
+		
+		$('#Guardar').click(function(){
+	        var selected = '';  
+	          
+	        $('.marcados_clientes').each(function(){
+	            if (this.checked) {
+	                selected +=$(this)+' esta '+$(this).val()+', ';
+	            }
+	        }); 
+
+	        if (selected != '') {
+	            return true;
+	        }
+	        else{
+	            alert('Debes seleccionar un Oficio.');
+	            return false;
+	        }
+
+	      
+	    }); 
+
+	});
+	</script>
     </head>
     <body style="background-color: #d9e3e4;">
     
@@ -171,9 +182,8 @@
        
        <?php
        
-     	 $resultClientes=array(0=>"Identificacion",1=>"Juicio");
-     	 $resultOficios=array(0=>"Numero de Oficio");
-     	
+     	 $resultClientes=array(0=>"Todos",1=> "Identificacion", 2=>"Juicio", 3=>"Numero Oficios");
+     
      	
      	$sel_id_entidades="";
      
@@ -271,14 +281,16 @@
       
       
         
-       <section   style="height:150px;overflow-y:scroll;width: 655px;">
+       <section   style="height:400px;overflow-y:scroll;width: 655px;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_clientes" class="checkbox"> </th>
 	    		<th style="color:#456789;font-size:80%;">Id</th>
+	    		<th style="color:#456789;font-size:80%;">Número Oficio</th>
+	    		<th style="color:#456789;font-size:80%;">Juicio</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
 	            <th style="color:#456789;font-size:80%;">Nombres Cliente</th>
-	    		<th style="color:#456789;font-size:80%;">Juicio</th>
+	    		
 	    		
 	    		
 	    		<th></th>
@@ -287,12 +299,13 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_clientes[]"   name="id_clientes[]"  value="<?php echo $res->id_clientes; ?>" class="marcados_clientes"></th>
+	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_oficios[]"   name="id_oficios[]"  value="<?php echo $res->id_oficios; ?>" class="marcados_clientes"></th>
 	                 
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_clientes; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_oficios; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_oficios; ?>  </td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>  </td>
 		               
 		             
 		              
@@ -316,76 +329,6 @@
         
         </div>
   
-    
-     <h4 style="color:#ec971f;">Lista de Oficios</h4>
-            <hr/>
-    		<div class="col-xs-4">
-			
-           <input type="text"  name="contenido_oficios" id="contenido_oficios" value="" class="form-control"/>
-           <div id="mensaje_contenido_busqueda" class="errores"></div>
-            </div>
-            
-           <div class="col-xs-4">
-           <select name="criterio_oficios" id="criterio_oficios"  class="form-control">
-                                    <?php foreach($resultOficios as $val=>$desc) {?>
-                                         <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
-                                    <?php } ?>
-                                        
-           </select>
-           <div id="mensaje_criterio" class="errores"></div>
-           </div>
-           
-           <div class="col-xs-4" >
-		
-			  	<input type="submit" id="buscar_oficios" name="buscar_oficios"  onclick="this.form.action='<?php echo $helper->url("Gastos","index"); ?>'" value="buscar" class="btn btn-default"/>
-			</div>
-		<div class="col-xs-12" style="margin: 10px;">	
-
-	</div>
-	<div class="col-xs-12">
-      
-      
-        
-       <section   style="height:150px;overflow-y:scroll;width: 655px;">
-        <table class="table table-hover ">
-	         <tr >
-	    		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_oficios" class="checkbox"> </th>
-	    		<th style="color:#456789;font-size:80%;">Id</th>
-	    		<th style="color:#456789;font-size:80%;">Numero de Oficios</th>
-	    		
-	    		
-	    		<th></th>
-	    		<th></th>
-	  		</tr>
-            
-	            <?php if (!empty($resultOfi)) {  foreach($resultOfi as $res) {?>
-	        		<tr>
-	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_oficios[]"   name="id_oficios[]"  value="<?php echo $res->id_oficios; ?>" class="marcados_oficios"></th>
-	                 
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_oficios; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_oficios; ?>     </td> 
-		               
-		             
-		              
-		           	   <td>
-			           		
-			                <hr/>
-		               </td>
-		    		</tr>
-		        <?php } } ?>
-		        
-      
-        
-            <?php 
-          
-            
-            ?>
-            
-       	</table>     
-		     
-      </section>
-        
-        </div>
     </div>
     
     </form>

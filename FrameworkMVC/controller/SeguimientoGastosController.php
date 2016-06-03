@@ -1,6 +1,6 @@
 <?php
 
-class SeguiminetoGastosController extends ControladorBase{
+class SeguimientoGastosController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
@@ -9,10 +9,11 @@ class SeguiminetoGastosController extends ControladorBase{
 	public function index(){
 		
 		//creamos el array de busqueda
-		$resulMenu=array(0=>'TODOS',1=>'Usuario', 2=>'Controladores', 3=>'Accion');
+		$resulMenu=array(0=>'Todos',1=>'Numero Juicio', 2=>'Numero Titulo', 3=>'Tipo Gastos' , 4=>'Gastos Por');
 	
 		//Creamos el objeto usuario
 		$distribucion_gastos = new DistribucionGastosModel();
+		$trazas = new TrazasModel();
 		$usuarios=new UsuariosModel();
 		//Conseguimos todos los usuarios
 		$resultSet=$distribucion_gastos->getAll("id_distribucion_gastos");
@@ -35,9 +36,9 @@ class SeguiminetoGastosController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 	
-			$nombre_controladores = "Trazas";
+			$nombre_controladores = "SeguimientoGastos";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $trazas->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $distribucion_gastos->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
 			if (!empty($resultPer))
 			{
@@ -46,9 +47,9 @@ class SeguiminetoGastosController extends ControladorBase{
 				if (isset ($_GET["id_trazas"])   )
 				{
 						
-					$nombre_controladores = "Trazas";
+					$nombre_controladores = "SeguimientoGastos";
 					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $trazas->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+					$resultPer = $distribucion_gastos->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 	
 					if (!empty($resultPer))
 					{
@@ -60,7 +61,7 @@ class SeguiminetoGastosController extends ControladorBase{
 						$id       = "nombre_etapas";
 							
 	
-						$resultset = $trazas->getCondiciones($columnas ,$tablas ,$where, $id);
+						$resultset = $distribucion_gastos->getCondiciones($columnas ,$tablas ,$where, $id);
 	
 	
 							
@@ -68,7 +69,7 @@ class SeguiminetoGastosController extends ControladorBase{
 					else
 					{
 						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Trazas"
+								"resultado"=>"No tiene Permisos de Editar Seguimeinto de Gastos"
 			
 						));
 							
@@ -91,11 +92,11 @@ class SeguiminetoGastosController extends ControladorBase{
 					$where="usuarios.id_usuarios = trazas.id_usuarios AND trazas.creado BETWEEN '$desde' AND '$hasta' ";
 					$id="creado";
 					
-					$accion="";	
+					$TipoGastos="";	
 					
-					$id_accion = $_POST["ddl_accion"];
+					$id_tipo_gastos = $_POST["ddl_TipoGastos"];
 					
-					switch ($id_accion){
+					switch ($id_tipo_gastos){
 						case 0: 
 						$accion = "Guardar";
 						break; 
@@ -105,6 +106,22 @@ class SeguiminetoGastosController extends ControladorBase{
 						case 2: 
 						$accion = "Borrar";
 						break;
+					}
+					
+					$Gastos_por="";
+						
+					$id_gastos_por = $_POST["ddl_gastos_por"];
+						
+					switch (ddl_gastos_por){
+						case 0:
+							$accion = "Guardar";
+							break;
+						case 1:
+							$accion = "Editar";
+							break;
+						case 2:
+							$accion = "Borrar";
+							break;
 					}
 					
 					$criterio = $_POST["ddl_criterio"];
@@ -149,7 +166,7 @@ class SeguiminetoGastosController extends ControladorBase{
 						));
 						exit();*/
 					
-						$resultActi=$trazas->getCondiciones($columnas ,$tablas , $where_to, $id);
+						$resultActi=$distribucion_gastos->getCondiciones($columnas ,$tablas , $where_to, $id);
 					
 					
 				
@@ -173,11 +190,11 @@ class SeguiminetoGastosController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Trazas"
+						"resultado"=>"No tiene Permisos de Acceso a Seguimiento de Gastos"
 	
 				));
 	
-				exit();
+				
 			}
 	
 		}

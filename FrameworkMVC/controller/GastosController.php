@@ -20,29 +20,25 @@ class GastosController extends ControladorBase{
 		$clientes = new ClientesModel();
 		
 		
-		$columnas = "clientes.id_clientes,
-				    clientes.identificacion_clientes,
-				     clientes.nombres_clientes, 
-                     juicios.juicio_referido_titulo_credito";
+		$columnas = "oficios.id_oficios, 
+					  oficios.numero_oficios, 
+					  juicios.juicio_referido_titulo_credito, 
+					  clientes.identificacion_clientes, 
+					  clientes.nombres_clientes";
+		
 		$tablas   = "public.clientes, 
-                     public.juicios";
-		$where    = "juicios.id_clientes = clientes.id_clientes";
+					  public.juicios, 
+					  public.oficios";
+		
+		$where    = "juicios.id_clientes = clientes.id_clientes AND
+  						oficios.id_juicios = juicios.id_juicios";
+		
 		$id = "juicios.juicio_referido_titulo_credito";
 		 
 	
 		$resultSet=$clientes->getCondiciones($columnas, $tablas, $where, $id);
 		
-		$oficios = new OficiosModel();
 		
-		
-		$columnas = "oficios.id_oficios, 
-                     oficios.numero_oficios";
-		$tablas   = "public.oficios";
-		
-		$id = "oficios.numero_oficios";
-			
-		
-		$resultOfi=$oficios->getAll($id);
 		
 		
 		session_start();
@@ -107,39 +103,53 @@ class GastosController extends ControladorBase{
 					$clientes = new ClientesModel();
 						
 						
-					$columnas = "clientes.id_clientes,
-					clientes.identificacion_clientes,
-				     clientes.nombres_clientes,
-                     juicios.juicio_referido_titulo_credito";
-					$tablas   = "public.clientes,
-                                 public.juicios";
-					$where    = "juicios.id_clientes = clientes.id_clientes";
+					$columnas = "oficios.id_oficios, 
+								  oficios.numero_oficios, 
+								  juicios.juicio_referido_titulo_credito, 
+								  clientes.identificacion_clientes, 
+								  clientes.nombres_clientes";
+					
+					$tablas   = "public.clientes, 
+								  public.juicios, 
+								  public.oficios";
+					
+					$where    = "juicios.id_clientes = clientes.id_clientes AND
+ 								 oficios.id_juicios = juicios.id_juicios";
 					
 					$id = "juicios.juicio_referido_titulo_credito";
 						
-					
+					$where_0 = "";
 					$where_1 = "";
 					$where_2 = "";
-					
+					$where_3 = "";
 						
 					switch ($criterio_busqueda) {
 							
 						case 0:
 							// identificacion de cliente
+							$where_0 = "";
+							break;
+							
+						case 1:
+								// identificacion de cliente
 							$where_1 = " AND  clientes.identificacion_clientes LIKE '$contenido_busqueda'  ";
 							break;
-						case 1:
+							
+						case 2:
 							//id_titulo de credito
 							$where_2 = " AND  juicios.juicio_referido_titulo_credito = '$contenido_busqueda'  ";
 							break;
 				
-					
+						case 3:
+								//id_titulo de credito
+							$where_3 = " AND   oficios.numero_oficios = '$contenido_busqueda'  ";
+							break;
 								
 					}
 						
 						
 						
-					$where_to  = $where . $where_1 . $where_2 ;
+					$where_to  = $where .$where_0 . $where_1 . $where_2 . $where_3 ;
 				
 					$resultSet=$clientes->getCondiciones($columnas, $tablas, $where_to, $id);
 					
@@ -149,49 +159,8 @@ class GastosController extends ControladorBase{
 				
 				
 				
-				
-				if(isset($_POST["buscar_oficios"])){
-				
-					$criterio_busqueda=$_POST["criterio_oficios"];
-					$contenido_busqueda=$_POST["contenido_oficios"];
-				
-					$oficios = new OficiosModel();
-					
-					
-					$columnas = "oficios.id_oficios,
-                                oficios.numero_oficios";
-					$tablas   = "public.oficios";
-					
-					$id = "oficios.numero_oficios";
-						
-					
-					$where_1 = "";
-				
-				
-					switch ($criterio_busqueda) {
-							
-						case 0:
-							// identificacion de cliente
-							$where_1 = " AND  oficios.numero_oficios = '$contenido_busqueda'  ";
-							break;
-					}
-				   
-				
-				
-					$where_to  = $where_1;
-				
-				
-					//$resultOfi=$oficios->getCondiciones($columnas ,$tablas , $where_to, $id);
-					$resultOfi=$oficios->getAll($id);
-				
-				
-				}
-				
-				
-				
-				
 				$this->view("Gastos",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultEnti" =>$resultEnti , "resultOfi" =>$resultOfi
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultEnti" =>$resultEnti 
 			
 				));
 		
@@ -234,53 +203,56 @@ class GastosController extends ControladorBase{
 		if (!empty($resultPer))
 		{
 		
-		
-		
 			$resultado = null;
 			$gastos=new GastosModel();
 			
-			if (isset ($_POST["nombre_ciudad"]) )
-				
-			{
-				$_nombre_ciudad = $_POST["nombre_ciudad"];
-				
-				if(isset($_POST["id_ciudad"])) 
-				{
-					$_id_ciudad = $_POST["id_ciudad"];
-					$colval = " nombre_ciudad = '$_nombre_ciudad'   ";
-					$tabla = "ciudad";
-					$where = "id_ciudad = '$_id_ciudad'";
-					
-					$resultado=$ciudad->UpdateBy($colval, $tabla, $where);
-					
-				}else {
-					
+			if (isset ($_POST["Guardar"]) )
 			
-
+			{
+				$_id_entidades = $_POST["id_entidades"];
+				$_array_oficios = $_POST["id_oficios"];
 				
-				$funcion = "ins_ciudad";
-				
-				$parametros = " '$_nombre_ciudad'  ";
+			
+				foreach($_array_oficios  as $id  )
+				{
+					if (!empty($id) )
+					{
+						//busco si exties este nuevo id
+						try
+						{
+							$_id_oficios = $id;
+			
+							
+							$funcion = "ins_gastos";
+							$parametros = "'$_id_oficios','$_id_entidades' ";
+							$gastos->setFuncion($funcion);
+							$gastos->setParametros($parametros);
+							$resultado=$gastos->Insert();
+							
+			
+						} catch (Exception $e)
+						{
+							$this->view("Error",array(
+									"resultado"=>"Eror al Asignar ->". $id
+							));
+						}
+			
+					}
+						
+				}
 					
-				$ciudad->setFuncion($funcion);
-		
-				$ciudad->setParametros($parametros);
-		
-		
-				$resultado=$ciudad->Insert();
-			 
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Gastos";
 				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_nombre_ciudad;
+				$_parametros_trazas = $_id_oficios;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-				
-				}
-			 
-			 
-		
+			
 			}
+			
 			$this->redirect("Gastos", "index");
+		
+			
+			
 
 		}
 		else
