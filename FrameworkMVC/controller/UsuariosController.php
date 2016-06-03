@@ -212,8 +212,6 @@ public function index(){
 	public function InsertaUsuarios(){
 		
 		
-		
-		
 		$resultado = null;
 		$usuarios=new UsuariosModel();
 	
