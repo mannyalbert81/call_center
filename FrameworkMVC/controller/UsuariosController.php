@@ -174,21 +174,10 @@ public function index(){
 				
 				if (isset ($_POST["Imprimir"])   )
      			{
-					
-					$PHPJasperXML = new PHPJasperXML(); 
-					//$PHPJasperXML->debugsql=true;
-					
-					
-					//$xml =  simplexml_load_file("view/ireports/UsuariosReport.jrxml");
-					$xml = simplexml_load_file("view/ireports/UsuariosReport.jrxml");
-					
-					$PHPJasperXML->xml_dismantle($xml);
-					$PHPJasperXML->transferDBtoArray("192.168.100.3","postgres",".Romina.2012","coactiva" ,"psql"); //(default:mysql, accept value=mysql,odbc,psql)
-					
-					$PHPJasperXML->outpage("I");
-					
-					echo "Entro";
-					
+     				//ContUsuariosReport.php
+				   $this->ireport("ContUsuarios", "");
+				   exit();
+				   
 					
 				}	
 				
@@ -221,8 +210,6 @@ public function index(){
 	}
 	
 	public function InsertaUsuarios(){
-		
-		
 		
 		
 		$resultado = null;
