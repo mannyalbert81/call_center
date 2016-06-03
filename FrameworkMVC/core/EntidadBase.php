@@ -410,26 +410,32 @@ class EntidadBase{
     	return $result_notificaciones;
     }
     
-public function InsertaNotificaciones($id_tipo_notificacion , $id_usuarios , $descripcion_notificaciones )
+	public function InsertaNotificaciones($id_tipo_notificacion ,$id_usuarios_dirigido_notificacion, $descripcion_notificaciones )
     {
     
     
     	$notificaciones=new NotificacionesModel();
+    	
+    	$usuarios = new UsuariosModel();
     		
     	$funcion = "ins_notificaciones";
     
-    	$_id_usuarios=$_SESSION['id_usuarios'];
+    	$id_usuarios=$_SESSION['id_usuarios'];
     	
-    	$resultUsuario=$notificaciones->getById($id);
+    	$resultUsuario=$usuarios->getBy("id_usuarios='$id_usuarios'");
+    	
+    	$descripcion_notificaciones.=" (".$resultUsuario[0]->usuario_usuarios.")";
     
     	
-    	$parametros = "'$_id_usuarios', '$_accion_trazas', '$_parametros_trazas', '$_nombre_controlador'  ";
-    
-    	$traza->setFuncion($funcion);
+    	$parametros = "'$id_tipo_notificacion','$id_usuarios_dirigido_notificacion', '$descripcion_notificaciones'";
+    	
+    	    
+    	$notificaciones->setFuncion($funcion);
     		
-    	$traza->setParametros($parametros);
+    	$notificaciones->setParametros($parametros);
     		
-    	$resultadoT=$traza->Insert();
+    	$resultadoN=$notificaciones->Insert();
+    	
     
     }
     

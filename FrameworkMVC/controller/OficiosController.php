@@ -19,6 +19,24 @@ class OficiosController extends ControladorBase{
 		$resultEdit = "";
 
 		
+		$oficios= new OficiosModel();
+		
+		
+		$columnas = " clientes.id_clientes,
+				juicios.id_juicios,
+								  clientes.identificacion_clientes,
+								  clientes.nombres_clientes,
+								  juicios.juicio_referido_titulo_credito";
+		
+		$tablas   = " public.clientes,
+                                  public.juicios";
+		
+		$where    = "juicios.id_clientes = clientes.id_clientes";
+		
+		$id       = "juicios.juicio_referido_titulo_credito";
+		
+		$resultDatos=$oficios->getCondiciones($columnas ,$tablas ,$where, $id);
+		
 		session_start();
 
 	
@@ -68,9 +86,67 @@ class OficiosController extends ControladorBase{
 					
 				}
 		
+				if(isset($_POST["buscar"])){
+						
+					$criterio_busqueda=$_POST["criterio_busqueda"];
+					$contenido_busqueda=$_POST["contenido_busqueda"];
+						
+					$oficios= new OficiosModel(); 
+						
+						
+					$columnas = " clientes.id_clientes,
+							juicios.id_juicios,
+								  clientes.identificacion_clientes, 
+								  clientes.nombres_clientes, 
+								  juicios.juicio_referido_titulo_credito";
+						
+					$tablas   = " public.clientes, 
+                                  public.juicios";
+						
+					$where    = "juicios.id_clientes = clientes.id_clientes";
+						
+					$id       = "juicios.juicio_referido_titulo_credito";
+						
+						
+					$where_0 = "";
+					$where_1 = "";
+					$where_2 = "";
+					
+						
+					switch ($criterio_busqueda) {
+							
+						case 0:
+							// identificacion de cliente
+							$where_0 = " ";
+							break;
+						case 1:
+							// identificacion de cliente
+							$where_1 = " AND  clientes.identificacion_clientes LIKE '$contenido_busqueda'  ";
+							break;
+						case 2:
+							//id_titulo de credito
+							$where_2 = " AND  juicios.juicio_referido_titulo_credito = '$contenido_busqueda'  ";
+							break;
+				
+						
+								
+					}
+						
+						
+						
+					$where_to  = $where . $where_0 . $where_1 . $where_2 ;
+				
+						
+					$resultDatos=$oficios->getCondiciones($columnas ,$tablas ,$where_to, $id);
+						
+						
+				}
+				
+				
+				
 				
 				$this->view("Oficios",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultDatos" =>$resultDatos
 			
 				));
 		
@@ -112,67 +188,55 @@ class OficiosController extends ControladorBase{
 		
 		if (!empty($resultPer))
 		{
-		
-		
-		
-			$resultado = null;
+		$resultado = null;
 			$oficios=new OficiosModel();
 				
-			if (isset ($_POST["nombre_oficios"]) )
+			if (isset ($_POST["Guardar"]) )
 				
 			{
+			 $_array_juicios = $_POST["id_juicios"];
+			 $_nombre_oficios = $_POST["nombre_oficios"];
 				
-				
-				
-				$_nombre_oficios = $_POST["nombre_oficios"];
-				
-				if(isset($_POST["id_oficios"])) 
-				{
+					foreach($_array_juicios  as $id  )
+					{
+						if (!empty($id) )
+						{
+							//busco si exties este nuevo id
+							try
+							{
+								$_id_juicios = $id;
+								
+								$anio=date("Y");
+								$col_prefijo="prefijos.id_prefijos,prefijos.nombre_prefijos,prefijos.consecutivo";
+								$tbl_prefijo="public.prefijos";
+								$whre_prefijo="prefijos.nombre_prefijos='OFI'";
+								
+								$resultprefijo=$oficios->getCondiciones($col_prefijo, $tbl_prefijo, $whre_prefijo, "prefijos.id_prefijos");
+								
+								$id_prefijo=$resultprefijo[0]->id_prefijos;
+								
+								$consecutivo_oficio=(int)$resultprefijo[0]->consecutivo;
+								$consecutivo_oficio=$consecutivo_oficio+1;
+								$numero_oficio=$consecutivo_oficio."-".$anio;
+								
+								$funcion = "ins_oficios";
+								$parametros = "'$_nombre_oficios','$numero_oficio', '$_id_juicios' ";
+								$oficios->setFuncion($funcion);
+		                        $oficios->setParametros($parametros);
+					            $resultado=$oficios->Insert();
+					            
+		                      
+							} catch (Exception $e)
+							{
+								$this->view("Error",array(
+										"resultado"=>"Eror al Asignar ->". $id
+								));
+							}
+								
+						}
 					
-					$_id_oficios = $_POST["id_oficios"];
-					$colval = " nombre_oficios = '$_nombre_oficios'   ";
-					$tabla = "oficios";
-					$where = "id_oficios = '$_id_oficios'    ";
+					}
 					
-					$resultado=$oficios->UpdateBy($colval, $tabla, $where);
-					
-				}else {
-					
-				$anio=date("Y");
-				$col_prefijo="prefijos.id_prefijos,prefijos.nombre_prefijos,prefijos.consecutivo";
-				$tbl_prefijo="public.prefijos";
-				$whre_prefijo="prefijos.nombre_prefijos='OFI'";
-				
-				$resultprefijo=$oficios->getCondiciones($col_prefijo, $tbl_prefijo, $whre_prefijo, "prefijos.id_prefijos");
-				
-				$id_prefijo=$resultprefijo[0]->id_prefijos;
-				
-				$consecutivo_oficio=(int)$resultprefijo[0]->consecutivo;
-				$consecutivo_oficio=$consecutivo_oficio+1;
-				$numero_oficio=$consecutivo_oficio."-".$anio;
-				
-						
-				$funcion = "ins_oficios";
-				
-				$parametros = " '$_nombre_oficios','$numero_oficio' ";
-					
-				$oficios->setFuncion($funcion);
-		
-				$oficios->setParametros($parametros);
-					
-		
-				$resultado=$oficios->Insert();
-				
-				
-				if(!empty($resultado)){
-					
-					$colval="consecutivo=consecutivo+1";
-					$tabla="prefijos";
-					$where="id_prefijos='$id_prefijo'";
-					 
-					$resultado=$oficios->UpdateBy($colval, $tabla, $where);
-				}
-			 
 				$traza=new TrazasModel();
 				$_nombre_controlador = "Oficios";
 				$_accion_trazas  = "Guardar";
@@ -181,10 +245,7 @@ class OficiosController extends ControladorBase{
 				
 				}
 			 
-			 
-		
-			}
-			$this->redirect("oficios", "index");
+			$this->redirect("Oficios", "index");
 
 		}
 		else
@@ -199,63 +260,7 @@ class OficiosController extends ControladorBase{
 		}
 	
 
-		$oficios=new OficiosModel();
-
-		$nombre_controladores = "Oficios";
-		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $oficios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 		
-		
-		if (!empty($resultPer))
-		{
-		
-		
-		
-			$resultado = null;
-			$oficios =new OficiosModel();
-			if (isset ($_POST["nombre_oficios"]) )
-				
-			{
-				$_nombre_oficios= $_POST["nombre_oficios"];
-				
-				if(isset($_POST["id_oficios"]))
-				{
-				$_id_oficios = $_POST["id_oficios"];
-				$colval = " nombre_oficios= '$_nombre_oficios'   ";
-				$tabla = "oficios";
-				$where = "id_oficios = '$_id_oficios'    ";
-					
-				$resultado=$oficios->UpdateBy($colval, $tabla, $where);
-					
-				}else {
-				
-			
-				$funcion = "ins_oficios";
-				
-				$parametros = " '$_nombre_oficios'  ";
-					
-				$oficios->setFuncion($funcion);
-		
-				$oficios->setParametros($parametros);
-		
-		
-				$resultado=$oficios->Insert();
-			 }
-		
-			}
-			$this->redirect("Oficios", "index");
-
-		}
-		else
-		{
-			$this->view("Error",array(
-					
-					"resultado"=>"No tiene Permisos de Insertar oficios"
-		
-			));
-		
-		
-		}
 		
 	}
 

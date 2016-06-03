@@ -169,24 +169,21 @@
        <?php include("view/modulos/menu.php"); ?>
        
        
-       
        <?php
        
-     	$resultMenu_busqueda=array(0=>"Identificacion",1=>"Titulo Credito");
+     	 $resultClientes=array(0=>"Identificacion",1=>"Juicio");
+     	 $resultOficios=array(0=>"Numero de Oficio");
      	
      	
-     	$sel_id_usuarioAgente = "";
-     	$sel_id_usuarioImpulsor="";
      	$sel_id_entidades="";
-     	$sel_fecha_asignacion="";
+     
    
      		
      	if($_SERVER['REQUEST_METHOD']=='POST' )
      		{
-     			$sel_id_usuarioAgente = $_POST['id_usuarioAgente'];
-     			$sel_id_usuarioImpulsor=$_POST['id_usuarioImpulsor'];
+     			
      			$sel_id_entidades=$_POST['id_entidades'];
-     			$sel_fecha_asignacion=$_POST['fecha_asignacion'];
+     			
      	
      		}
      	
@@ -249,13 +246,13 @@
             <hr/>
     		<div class="col-xs-4">
 			
-           <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
+           <input type="text"  name="contenido_clientes" id="contenido_clientes" value="" class="form-control"/>
            <div id="mensaje_contenido_busqueda" class="errores"></div>
             </div>
             
            <div class="col-xs-4">
-           <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
-                                    <?php foreach($resultMenu_busqueda as $val=>$desc) {?>
+           <select name="criterio_clientes" id="criterio_clientes"  class="form-control">
+                                    <?php foreach($resultClientes as $val=>$desc) {?>
                                          <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
                                     <?php } ?>
                                         
@@ -265,7 +262,7 @@
            
            <div class="col-xs-4" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("Gastos","index"); ?>'" value="buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar_clientes" name="buscar_clientes"  onclick="this.form.action='<?php echo $helper->url("Gastos","index"); ?>'" value="buscar" class="btn btn-default"/>
 			</div>
 		<div class="col-xs-12" style="margin: 10px;">	
 
@@ -279,6 +276,7 @@
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_clientes" class="checkbox"> </th>
 	    		<th style="color:#456789;font-size:80%;">Id</th>
+	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
 	            <th style="color:#456789;font-size:80%;">Nombres Cliente</th>
 	    		<th style="color:#456789;font-size:80%;">Juicio</th>
 	    		
@@ -292,6 +290,7 @@
 	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_clientes[]"   name="id_clientes[]"  value="<?php echo $res->id_clientes; ?>" class="marcados_clientes"></th>
 	                 
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_clientes; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>  </td>
 		               
@@ -322,13 +321,13 @@
             <hr/>
     		<div class="col-xs-4">
 			
-           <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
+           <input type="text"  name="contenido_oficios" id="contenido_oficios" value="" class="form-control"/>
            <div id="mensaje_contenido_busqueda" class="errores"></div>
             </div>
             
            <div class="col-xs-4">
-           <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
-                                    <?php foreach($resultMenu_busqueda as $val=>$desc) {?>
+           <select name="criterio_oficios" id="criterio_oficios"  class="form-control">
+                                    <?php foreach($resultOficios as $val=>$desc) {?>
                                          <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
                                     <?php } ?>
                                         
@@ -338,7 +337,7 @@
            
            <div class="col-xs-4" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("Gastos","index"); ?>'" value="buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar_oficios" name="buscar_oficios"  onclick="this.form.action='<?php echo $helper->url("Gastos","index"); ?>'" value="buscar" class="btn btn-default"/>
 			</div>
 		<div class="col-xs-12" style="margin: 10px;">	
 
