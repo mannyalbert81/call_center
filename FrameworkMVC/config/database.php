@@ -7,5 +7,6 @@ return array(
     "database"  =>"",
     "charset"   =>"utf8",
 	"port"   =>"5432"
+		
 );
 ?>

@@ -1,11 +1,15 @@
 <?php
 ini_set('memory_limit','128M');
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
 
 
 include_once('class/phpjasperxml/class/tcpdf/tcpdf.php');
 include_once("class/phpjasperxml/class/PHPJasperXML.inc.php");
 
 include_once ('class/phpjasperxml/setting.php');
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 //include_once('setting.php');//no se puede enviar nada mas que el reporte, NINGUN espacio o caracter previo al repote
 
@@ -55,7 +59,6 @@ public function index(){
 					//Conseguimos todos los usuarios
 					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 					
-					
 					$resultEdit = "";
 			
 					if (isset ($_GET["id_usuarios"])   )
@@ -73,10 +76,6 @@ public function index(){
 					
 					
 					}
-			
-					
-					
-				
 			}
 			else
 			{
@@ -174,19 +173,21 @@ public function index(){
 				}
 				
 				if (isset ($_POST["Imprimir"])   )
-
-				{
+     			{
 					
 					$PHPJasperXML = new PHPJasperXML(); 
-					$PHPJasperXML->debugsql=false;
+					//$PHPJasperXML->debugsql=true;
 					
 					
 					//$xml =  simplexml_load_file("view/ireports/UsuariosReport.jrxml");
 					$xml = simplexml_load_file("view/ireports/UsuariosReport.jrxml");
 					
 					$PHPJasperXML->xml_dismantle($xml);
-					$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db);
+					$PHPJasperXML->transferDBtoArray("192.168.100.3","postgres",".Romina.2012","coactiva" ,"psql"); //(default:mysql, accept value=mysql,odbc,psql)
+					
 					$PHPJasperXML->outpage("I");
+					
+					echo "Entro";
 					
 					
 				}	
