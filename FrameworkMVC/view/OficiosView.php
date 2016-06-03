@@ -61,29 +61,33 @@
 		            
 				}
 		    	
-		    	
-
-			
-		    					    
-
 			}); 
 
-
-		 
 				
 				$( "#nombre_oficios" ).focus(function() {
 					$("#mensaje_nombres").fadeOut("slow");
     			});
 				
-			
-		
-				
-		
-		      
+			 
 				    
 		}); 
 
 	</script>
+	
+	<script>
+    $(document).ready(function(){
+        $("#marcar_todo").change(function () {
+            if ($(this).is(':checked')) {
+               
+                $(".marcados").prop('checked', true); 
+            } else {
+                
+                $("input:checkbox").prop('checked', false);
+                $("input[type=checkbox]").prop('checked', false);
+            }
+        });
+        });
+    </script>
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -96,7 +100,20 @@
        
        <?php
        
+       $resultMenu=array(0=>"Todos",1=>"Identificacion",2=>"Juicio");
        
+     
+       $sel_nombre_oficios="";
+        
+        
+        
+       if($_SERVER['REQUEST_METHOD']=='POST' )
+       {
+       
+       	$sel_nombre_oficios=$_POST['nombre_oficios'];
+       
+       
+       }
        
 		   
 		?>
@@ -108,35 +125,24 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Oficios","InsertaOficios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("Oficios","InsertaOficios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
             
-         
-        	    <h4 style="color:#ec971f;">Insertar Oficios </h4>
-            	<hr/>
+               
+        	    
             	
 		   		
+            <div class="col-lg-5">
             
+            <h4 style="color:#ec971f;">Insertar Oficios </h4>
+            	<hr/>
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
-            
-            
-        
-			   
-			   <div class="row">
-		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Nombres Oficios</p>
-			  	<textarea id="nombre_oficios" name="nombre_oficios" rows="17" cols="70" class="form-control"><?php echo $resEdit->nombre_oficios; ?></textarea> 
-			  	<input type="hidden"  name="id_oficios"  value="<?php echo $resEdit->id_oficios; ?>" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-			   </div>
-		    
 		     <?php } } else {?>
 		    
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" ></p>
-			  <textarea id="nombre_oficios" name="nombre_oficios" rows="17" cols="70"></textarea>
+			  <textarea id="nombre_oficios" name="nombre_oficios" value="<?php echo $sel_nombre_oficios; ?>" rows="17" cols="60"></textarea>
 		    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			 </div>
@@ -155,41 +161,61 @@
                
 		
 		 <hr>
-          
-       </form>
-       <!-- termina el form --> 
+          </div>
        
-        <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Oficios</h4>
+       
+        <div class="col-lg-7">
+            <h4 style="color:#ec971f;">Lista de Clientes - Jucios</h4>
             <hr/>
-        </div>
-        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
+            <div class="col-xs-4">
+			
+           <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
+           <div id="mensaje_contenido_busqueda" class="errores"></div>
+            </div>
+            
+           <div class="col-xs-4">
+           <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
+                                    <?php foreach($resultMenu as $val=>$desc) {?>
+                                         <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
+                                    <?php } ?>
+                                        
+           </select>
+           <div id="mensaje_criterio" class="errores"></div>
+           </div>
+           
+           <div class="col-xs-4" >
+		
+			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("Oficios","index"); ?>'" value="buscar" class="btn btn-default"/>
+			</div>
+		<div class="col-xs-12" style="margin: 10px;">	
+
+	</div>
+	
+	<div class="col-xs-12">
+        
+        <section class="col-lg-12 usuario" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
+	            <th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" class="checkbox"> </th>
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Numero de Oficio</th>
+	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Clientes</th>
+	    		<th style="color:#456789;font-size:80%;">Juicio</th>
 	    		
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
             
-	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
+	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_oficios; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_oficios; ?>     </td> 
-		              
-		           	   <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Oficios","index"); ?>&id_oficios=<?php echo $res->id_oficios; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
-			                </div>
+	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_juicios[]"   name="id_juicios[]"  value="<?php echo $res->id_juicios; ?>" class="marcados"></th>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_juicios; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
+		              <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
+		              <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+		             
+		           	   
 			            
-			             </td>
-			             <td>   
-			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Oficios","borrarId"); ?>&id_oficios=<?php echo $res->id_oficios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
-			                </div>
-			                <hr/>
-		               </td>
 		    		</tr>
 		        <?php } } ?>
             
@@ -203,6 +229,11 @@
       </section>
       </div>
       </div>
+       </form>
+       <!-- termina el form --> 
+      </div>
+      </div>
+     
    </body>  
 
     </html>   

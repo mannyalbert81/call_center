@@ -20,8 +20,8 @@ class GastosController extends ControladorBase{
 		$clientes = new ClientesModel();
 		
 		
-		//Conseguimos todos los usuarios
 		$columnas = "clientes.id_clientes,
+				    clientes.identificacion_clientes,
 				     clientes.nombres_clientes, 
                      juicios.juicio_referido_titulo_credito";
 		$tablas   = "public.clientes, 
@@ -29,20 +29,19 @@ class GastosController extends ControladorBase{
 		$where    = "juicios.id_clientes = clientes.id_clientes";
 		$id = "juicios.juicio_referido_titulo_credito";
 		 
-		//creamos array con la consulta de registros
+	
 		$resultSet=$clientes->getCondiciones($columnas, $tablas, $where, $id);
 		
 		$oficios = new OficiosModel();
 		
 		
-		//Conseguimos todos los usuarios
 		$columnas = "oficios.id_oficios, 
                      oficios.numero_oficios";
 		$tablas   = "public.oficios";
 		
 		$id = "oficios.numero_oficios";
 			
-		//creamos array con la consulta de registros
+		
 		$resultOfi=$oficios->getAll($id);
 		
 		
@@ -102,44 +101,26 @@ class GastosController extends ControladorBase{
 				
 				if(isset($_POST["buscar_clientes"])){
 						
-					$criterio_busqueda=$_POST["criterio_busqueda"];
-					$contenido_busqueda=$_POST["contenido_busqueda"];
+					$criterio_busqueda=$_POST["criterio_clientes"];
+					$contenido_busqueda=$_POST["contenido_clientes"];
 						
 					$clientes = new ClientesModel();
 						
 						
-					$columnas = " auto_pagos.id_auto_pagos,
-									  titulo_credito.id_titulo_credito,
-									  juicios.juicio_referido_titulo_credito,
-									  clientes.identificacion_clientes,
-									  clientes.nombres_clientes,
-									  titulo_credito.total,
-									  titulo_credito.fecha_corte,
-									  titulo_credito.fecha_emision,
-									  titulo_credito.fecha_juicio_titulo_credito,
-									  estado.nombre_estado,
-									  auto_pagos.id_usuario_asigna,
-									  usuarios.nombre_usuarios";
+					$columnas = "clientes.id_clientes,
+					clientes.identificacion_clientes,
+				     clientes.nombres_clientes,
+                     juicios.juicio_referido_titulo_credito";
+					$tablas   = "public.clientes,
+                                 public.juicios";
+					$where    = "juicios.id_clientes = clientes.id_clientes";
+					
+					$id = "juicios.juicio_referido_titulo_credito";
 						
-					$tablas   = " public.clientes,
-									  public.titulo_credito,
-									  public.juicios,
-									  public.auto_pagos,
-									  public.estado,
-									  public.usuarios";
-						
-					$where    = "clientes.id_clientes = titulo_credito.id_clientes AND
-									  titulo_credito.id_titulo_credito = juicios.id_titulo_credito AND
-									  auto_pagos.id_titulo_credito = titulo_credito.id_titulo_credito AND
-									  auto_pagos.id_estado = estado.id_estado AND estado.nombre_estado = 'APROBADO' AND
-									  usuarios.id_usuarios = auto_pagos.id_usuario_asigna";
-						
-					$id       = "titulo_credito.id_titulo_credito";
-						
-						
+					
 					$where_1 = "";
 					$where_2 = "";
-					$where_3 = "";
+					
 						
 					switch ($criterio_busqueda) {
 							
@@ -149,25 +130,65 @@ class GastosController extends ControladorBase{
 							break;
 						case 1:
 							//id_titulo de credito
-							$where_2 = " AND  titulo_credito.id_titulo_credito = '$contenido_busqueda'  ";
+							$where_2 = " AND  juicios.juicio_referido_titulo_credito = '$contenido_busqueda'  ";
 							break;
 				
-						case 2:
-							//id_titulo de credito
-							$where_3 = " AND  juicios.juicio_referido_titulo_credito = '$contenido_busqueda'  ";
-							break;
+					
 								
 					}
 						
 						
 						
-					$where_to  = $where . $where_1 . $where_2 . $where_3;
+					$where_to  = $where . $where_1 . $where_2 ;
 				
-						
-					$resultDatos=$impresion_auto_pago->getCondiciones($columnas ,$tablas ,$where_to, $id);
+					$resultSet=$clientes->getCondiciones($columnas, $tablas, $where_to, $id);
+					
 						
 						
 				}
+				
+				
+				
+				
+				if(isset($_POST["buscar_oficios"])){
+				
+					$criterio_busqueda=$_POST["criterio_oficios"];
+					$contenido_busqueda=$_POST["contenido_oficios"];
+				
+					$oficios = new OficiosModel();
+					
+					
+					$columnas = "oficios.id_oficios,
+                                oficios.numero_oficios";
+					$tablas   = "public.oficios";
+					
+					$id = "oficios.numero_oficios";
+						
+					
+					$where_1 = "";
+				
+				
+					switch ($criterio_busqueda) {
+							
+						case 0:
+							// identificacion de cliente
+							$where_1 = " AND  oficios.numero_oficios = '$contenido_busqueda'  ";
+							break;
+					}
+				   
+				
+				
+					$where_to  = $where_1;
+				
+				
+					//$resultOfi=$oficios->getCondiciones($columnas ,$tablas , $where_to, $id);
+					$resultOfi=$oficios->getAll($id);
+				
+				
+				}
+				
+				
+				
 				
 				$this->view("Gastos",array(
 						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultEnti" =>$resultEnti , "resultOfi" =>$resultOfi
