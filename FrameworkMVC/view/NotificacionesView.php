@@ -162,8 +162,7 @@
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
 					<?php foreach($resultUsuarios as $resUsuarios) {?>
 						<option value="<?php echo $resUsuarios->id_usuarios; ?>"      ><?php echo $resUsuarios->nombre_usuarios; ?> </option>
-			      
-			        <?php } ?>
+			            <?php } ?>
 				</select> 			  
 			  </div>
 			  </div>
