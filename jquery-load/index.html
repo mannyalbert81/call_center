@@ -1,0 +1,42 @@
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<script language='JavaScript' type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+<title>Display Page</title>
+
+<script>
+$(document).ready(function(){
+$("#getdata").click(function(){
+
+	
+	$.ajax({
+			url: 'getdata.php',
+			type:'POST',
+			dataType: 'json',
+			success: function(output_string){
+					$("#result_table").append(output_string);
+				} // Fin de success
+			}); // Fin de la llamada al ajax
+	
+	
+	$output_string = '<table border="1">\n'+ '</table>\n';
+	
+	$("#result_table").append($output_string);
+	
+	alert("hola");
+});
+
+});
+</script>
+
+</head>
+ 
+<body>
+<button type="button" name="getdata" id="getdata">Get Data.</button>
+ 
+<div id="result_table">
+hola a 
+
+</div>
+</body>
+</html>

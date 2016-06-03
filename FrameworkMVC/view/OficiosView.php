@@ -5,7 +5,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Tipo de Identificacion - aDocument 2015</title>
+        <title>Oficios - Coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -45,13 +45,13 @@
 		    $("#Guardar").click(function() 
 			{
 		   
-		    	var nombre_tipo_identificacion = $("#nombre_tipo_identificacion").val();
+		    	var nombre_oficios= $("#nombre_oficios").val();
 		    
 		   				
-		    	if (nombre_tipo_identificacion == "")
+		    	if (nombre_oficios == "")
 		    	{
 			    	
-		    		$("#mensaje_nombres").text("Introduzca un tipo de identificacion ");
+		    		$("#mensaje_nombres").text("Introduzca un Juicio");
 		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
@@ -71,7 +71,7 @@
 
 		 
 				
-				$( "#nombre_tipo_identificacion" ).focus(function() {
+				$( "#nombre_oficios" ).focus(function() {
 					$("#mensaje_nombres").fadeOut("slow");
     			});
 				
@@ -108,10 +108,10 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("TipoIdentificacion","InsertaTipoIdentificacion"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("Oficios","InsertaOficios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             
          
-        	    <h4 style="color:#ec971f;">Insertar Tipos de Identificaciones</h4>
+        	    <h4 style="color:#ec971f;">Insertar Oficios </h4>
             	<hr/>
             	
 		   		
@@ -124,9 +124,9 @@
 			   
 			   <div class="row">
 		       <div class="col-xs-12 col-md-12">
-			  	<p  class="formulario-subtitulo" >Nombres tipos de Identificaciones</p>
-			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="<?php echo $resEdit->nombre_tipo_identificacion; ?>" class="form-control"/> 
-			  	<input type="hidden"  name="id_tipo_identificacion"  value="<?php echo $resEdit->id_tipo_identificacion; ?>" class="form-control"/> 
+			  	<p  class="formulario-subtitulo" >Nombres Oficios</p>
+			  	<textarea id="nombre_oficios" name="nombre_oficios" rows="17" cols="70" class="form-control"><?php echo $resEdit->nombre_oficios; ?></textarea> 
+			  	<input type="hidden"  name="id_oficios"  value="<?php echo $resEdit->id_oficios; ?>" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			   </div>
@@ -135,13 +135,12 @@
 		    
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombres tipos de Identificaciones</p>
-			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+			  	<p  class="formulario-subtitulo" ></p>
+			  <textarea id="nombre_oficios" name="nombre_oficios" rows="17" cols="70"></textarea>
+		    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			 </div>
-
-		    <hr>
+			  <hr>
 		    
 		   
                	
@@ -158,16 +157,17 @@
 		 <hr>
           
        </form>
-          
+       <!-- termina el form --> 
+       
         <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Tipos de Identificacion</h4>
+            <h4 style="color:#ec971f;">Lista de Oficios</h4>
             <hr/>
         </div>
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Nombre</th>
+	    		<th style="color:#456789;font-size:80%;">Numero de Oficio</th>
 	    		
 	    		<th></th>
 	    		<th></th>
@@ -175,18 +175,18 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_tipo_identificacion; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_oficios; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_oficios; ?>     </td> 
 		              
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("TipoIdentificacion","index"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("Oficios","index"); ?>&id_oficios=<?php echo $res->id_oficios; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("TipoIdentificacion","borrarId"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("Oficios","borrarId"); ?>&id_oficios=<?php echo $res->id_oficios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>

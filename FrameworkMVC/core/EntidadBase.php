@@ -401,13 +401,36 @@ class EntidadBase{
     }
     
     function verNotificaciones(){
-    	session_start();
+    	//session_start();
     	$id_usuario=$_SESSION['id_usuarios'];
     	$notificaciones=new NotificacionesModel();
-    	$where_notificacion = " id_usuarios = '$id_usuario' AND visto_notificaciones=0";
+    	$where_notificacion = " id_usuarios = '$id_usuario' AND visto_notificaciones=false";
     	$result_notificaciones=$notificaciones->getBy($where_notificacion);
     	
     	return $result_notificaciones;
+    }
+    
+public function InsertaNotificaciones($id_tipo_notificacion , $id_usuarios , $descripcion_notificaciones )
+    {
+    
+    
+    	$notificaciones=new NotificacionesModel();
+    		
+    	$funcion = "ins_notificaciones";
+    
+    	$_id_usuarios=$_SESSION['id_usuarios'];
+    	
+    	$resultUsuario=$notificaciones->getById($id);
+    
+    	
+    	$parametros = "'$_id_usuarios', '$_accion_trazas', '$_parametros_trazas', '$_nombre_controlador'  ";
+    
+    	$traza->setFuncion($funcion);
+    		
+    	$traza->setParametros($parametros);
+    		
+    	$resultadoT=$traza->Insert();
+    
     }
     
       

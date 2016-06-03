@@ -33,25 +33,49 @@ $(document).ready(function(){
 
 	$divcontenedor.empty();
 
-    var idnotificacion=1;
+    var datos=1;
 
 
 	 var result=  $.post("<?php echo $helper->url("VerNotificaciones","iniciaNotificaciones"); ?>",  "json");
 
-	 result.done(function( string_out ) {
-		    
-		    $divcontenedor.append(string_out);
-		  });
+	 result.done(function( result_notificaciones ) {
+		 
+		 cantidad_notificaciones = JSON.parse(result_notificaciones);
+		 
+		 var notificaciones ='<button type="button" id="boton_notificacion" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Notificacion <span class="badge">'+cantidad_notificaciones.length+'</span></button>';
+
+		 notificaciones=notificaciones+'<ul class="dropdown-menu" id="ul_notificacion">'+'</ul>';
+
+		  $divcontenedor.append(notificaciones);
+
+		  var $ul=$("#ul_notificacion");
+
+		  $.post("<?php echo $helper->url("VerNotificaciones","iniciaNotificaciones"); ?>", datos, function(resultNotificaciones) {
+
+		 		$.each(resultNotificaciones, function(index, value) {
+			 	    $ul.append('<li  ><a href="index.php?controller=VerNotificaciones&action=actualizaNotificaciones&id_notificaciones='+value.id_notificaciones+'&controlador='+value.controlador_tipo_notificacion+'&acciones='+value.accion_tipo_notificacion+'">'+value.descripcion_notificacion+'->'+ value.descripcion_notificaciones+'</a></li>');	
+	      		 });
+
+		 		 	 		   
+		  }, 'json');
+		  
+	 });
+
+});
+	
+
+</script>  
+
+<script>
+$(document).ready(function(){
+	$("46").click(function(){
+		alert("hola");
+
+		});
+});
+
+</script>
  
-
-});  
-	
-
-
-</script>       
-	
-	
-	
 	
 </head>
 <body>
@@ -75,9 +99,6 @@ $(document).ready(function(){
 		<?php  
 		$status = session_status();
 		
-		
-		
-			
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
 		 	 <div class="dropdown">
@@ -93,16 +114,8 @@ $(document).ready(function(){
 			</div>
 			
 			<!-- empieza notificacion -->
-			<form action="<?php echo $helper->url("VerNotificaciones","startNotificaciones"); ?>" method="post" id="form_head">
+			<form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
 			<div class="dropdown" id="div_head">
-				   <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Notificacion <span class="badge"><?php if(empty($result_notificaciones)){echo 0;}else{echo count($result_notificaciones);?></span></button>
-				  <ul class="dropdown-menu">
-				  <?php foreach ($result_notificaciones as $res){ ?>
-				  
-				    <li><a href="<?php echo $helper->url("Notificaciones","actualizaNotificaciones"); ?>&id_notificaciones=<?php echo $res->id_notificaciones; ?>"><?php echo  $res->descripcion_notificaciones;?></a></li>
-				  
-				  <?php }}?>
-				  </ul>
 				  
 			</div>
 			</form>
