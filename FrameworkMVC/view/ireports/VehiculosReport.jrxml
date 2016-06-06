@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-06T17:49:22 -->
+<!-- 2016-06-06T17:53:01 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VehiculosReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="27c53b1e-13d5-427b-b3c3-bb0bec583059">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="dGlwb192ZWhpY3Vsb3MgQVMgLDY1MCwxMTIsNDM5MDU5YzQtMzkzNS00MGIzLTk1MWEtN2Q4NGEw&#xA;ZjE0NTcyO3ZlaGljdWxvc19lbWJhcmdhZG9zIEFTICw1MTIsMzI4LGRkN2YxZmEyLTM5MzAtNGZl&#xA;MC1hNGFhLTU5ZWMxY2I5NWU1MTtjbGllbnRlcyBBUyAsMTcwLDgzLDI1MmRhYzVkLWE4NzQtNDc5&#xA;My1iOTJmLWEyNWVhODRmMTZjNTtjaXVkYWQgQVMgLDUxOCwxNiwwNjgzMTlhMC1iODdlLTRkODEt&#xA;YjU0YS0wNWQ2YzcxZjExMWM7"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-06-06T17:50:12 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VehivulosReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3aba9d3f-b88a-45ec-8f6a-dc3dcfcb819f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="bWFyY2FfdmVoaWN1bG9zIEFTICwzNzcsNDUxLDdmMGQyNTYyLTBmNDYtNDZjMy1hNjU0LTYyNGY5&#xA;N2RlYTk3YTt0aXBvX3ZlaGljdWxvcyBBUyAsNTE0LDkyLDVjZjc4MGYwLTI2YWEtNDJlYS1iOGQ1&#xA;LTBmZTc0NDA5ODZjOTt2ZWhpY3Vsb3NfZW1iYXJnYWRvcyBBUyAsMTE1LDE0Miw4Njc5ZTUxYi0y&#xA;MmVlLTRkMDEtODFhNS0xYjQyOWVhNDk5M2I7Y2l1ZGFkIEFTICw4NDIsMjI3LGRhZjdkNjgwLTkw&#xA;NGYtNGMzNy1hNjhkLTRjNjc2NDYyMDgwNTtjbGllbnRlcyBBUyAsNTkyLDI3NSw1YzkyMDhmZS0x&#xA;YjUzLTQ2OTEtYTFmMC03NjhmYTdmNTkwOGU7"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactivaDataAdapter"/>
+	<queryString>
+		<![CDATA[SELECT clientes.identificacion_clientes,
+	clientes.nombres_clientes,
+	ciudad.nombre_ciudad,
+	tipo_vehiculos.nombre_tipo_vehiculos,
+	marca_vehiculos.nombre_marca_vehiculos,
+	vehiculos_embargados.placa_vehiculos_embargados,
+	vehiculos_embargados.modelo_vehiculos_embargados,
+	vehiculos_embargados.observacion_vehiculos_embargados,
+	vehiculos_embargados.fecha_ingreso_vehiculos_embargados
+FROM vehiculos_embargados
+	INNER JOIN tipo_vehiculos ON 
+	 vehiculos_embargados.id_tipo_vehiculos = tipo_vehiculos.id_tipo_vehiculos 
+	INNER JOIN clientes ON 
+	 vehiculos_embargados.id_clientes = clientes.id_clientes 
+	INNER JOIN ciudad ON 
+	 clientes.id_ciudad = ciudad.id_ciudad 
+	INNER JOIN marca_vehiculos ON 
+	 vehiculos_embargados.id_marca_vehiculos = marca_vehiculos.id_marca_vehiculos]]>
+	</queryString>
+	<field name="identificacion_clientes" class="java.lang.String"/>
+	<field name="nombres_clientes" class="java.lang.String"/>
+	<field name="nombre_ciudad" class="java.lang.String"/>
+	<field name="nombre_tipo_vehiculos" class="java.lang.String"/>
+	<field name="nombre_marca_vehiculos" class="java.lang.String"/>
+	<field name="placa_vehiculos_embargados" class="java.lang.String"/>
+	<field name="modelo_vehiculos_embargados" class="java.lang.String"/>
+	<field name="observacion_vehiculos_embargados" class="java.lang.String"/>
+	<field name="fecha_ingreso_vehiculos_embargados" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="70" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="100" height="30" uuid="01aab363-ae37-41f1-af60-b720067221ec"/>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="30" uuid="f3f53223-5740-4c5b-b0e9-119bd9f04499"/>
+					<text><![CDATA["Text Field"]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="58" y="17" width="100" height="30" uuid="3591a5f9-d67c-41ff-8a4b-0b8503117876"/>
+				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
