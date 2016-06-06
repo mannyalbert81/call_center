@@ -1,10 +1,10 @@
-<!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html lang="es">
 
       <head>
       
         <meta charset="utf-8"/>
-        <title>Seguimiento Gastos - coactiva 2016</title>
+        <title>Distribucion Gastos - coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -22,104 +22,8 @@
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
 		</script>
-	
-	<script>
-	$(document).ready(function(){
-
-		//alert("hola");
-		$("#div_ddl_accion").hide();
-        $("#ddl_criterio").change(function(){
-
-			var ddl_criterio=$(this).val();
-
-			if(ddl_criterio==3){
-				//alert("hola");
-				$("#div_ddl_accion").show();
-				$("#div_contenido").hide();
-				}else{
-					$("#div_ddl_accion").hide();
-					$("#div_contenido").show();
-					}
-
-			});
 		
-		});
-
-		</script>
-		
-		<script>
-	    $(document).ready(function(){
-
-	   
-		$("#div_ddl_accion").hide();
-
-		$("#ddl_criterio").change(function(){
-
-			var ddl_criterio=$(this).val();
-
-			if(ddl_criterio==4){
-				
-				$("#div_ddl_accion").show();
-				$("#div_contenido").hide();
-				}else{
-					$("#div_ddl_accion").hide();
-					$("#div_contenido").show();
-					}
-        });
-		
-		});
-
-		</script>
-		
-		<script>
-		$(document).ready(function(){
-			$("#Buscar").click(function(){
-				//alert("hola");
-				 var startDate = new Date($('#fecha_desde').val());
-
-                 var endDate = new Date($('#fecha_hasta').val());
-
-                 var inicio = $('#fecha_desde').val();
-
-                 var fin = $('#fecha_hasta').val();
-
-                 if(inicio=="" || fin==""){
-                     alert("ingrese fechas de busqueda");
-                	 return false;
-                 }
-                 
-                 });
-			});
-		</script>
         
-		
-		<script>
-		$(document).ready(function(){
-
-	       $("#fecha_hasta").change(function() {
-
-                var startDate = new Date($('#fecha_desde').val());
-
-                 var endDate = new Date($('#fecha_hasta').val());
-
-                 if (startDate > endDate){
- 
-                    $("#mensaje_hasta").text("Fecha desde no debe ser mayor ");
-		    		$("#mensaje_hasta").fadeIn("slow"); //Muestra mensaje de error  
-		    		$("#fecha_hasta").val("");
-
-                        }
-
-               });
-
-	       $( "#fecha_hasta" ).focus(function() {
-				  $("#mensaje_hasta").fadeOut("slow");
-			   });
-
-        });
-		</script>
-		
-		
         
        <style>
             input{
@@ -132,8 +36,67 @@
                 
             
         </style>
-       
-          
+         
+         <script >
+		$(document).ready(function(){
+
+		$("#tipo_gasto").change(function(){
+
+
+           var $valor_tipo_gasto = $("#valor_a_distribuir");
+
+           var id_tipo_gasto = $(this).val();
+
+           $valor_tipo_gasto.empty();
+
+           
+           if(id_tipo_gasto > 0)
+           {
+        	  var datos = {id_tipo_gasto : $(this).val() };
+  
+        	  var resultTipogasto= $.post("<?php echo $helper->url("DistribucionGastos","devuelveTipoGasto"); ?>", datos, function(resultTipo_gasto) {
+        		  }, "json");    		  
+
+        	  resultTipogasto.done(function(resultTipo_gasto ) {
+
+        		  $.each(resultTipo_gasto, function(index, value) {
+        			  $valor_tipo_gasto.val(value.valor_tipo_gasto);
+  			 	     });
+            	  });
+
+           }
+           else
+           {
+        	  
+           }
+
+			});  
+				    
+		});
+
+	</script>
+	<script>
+	$(document).ready(function(){
+			$("#fecha_hasta").change(function(){
+				 var startDate = new Date($('#fecha_desde').val());
+
+                 var endDate = new Date($('#fecha_hasta').val());
+
+                 if (startDate > endDate){
+ 
+                    $("#mensaje_fecha_hasta").text("Fecha desde no debe ser mayor ");
+		    		$("#mensaje_fecha_hasta").fadeIn("slow"); //Muestra mensaje de error  
+		    		$("#fecha_hasta").val("");
+
+                        }
+				});
+
+			 $( "#fecha_hasta" ).focus(function() {
+				  $("#mensaje_fecha_hasta").fadeOut("slow");
+			   });
+			});
+        </script>
+
     </head>
     <body style="background-color: #d9e3e4;">
     
@@ -141,14 +104,11 @@
        
        <?php include("view/modulos/menu.php"); ?>
        
-       
-       
        <?php
-       
-       $acciones=array(0=>"GUARDAR",1=>"EDITAR",2=>"ELIMINAR");
-      // $resultActi=array(id_trazas=>"");
-       
-		   
+       $resultMenu=array(1=>"Cheque",2=>"Reembolso");
+       $resultGastos=array(1=>"Oficios",2=>"Citaciones",3=>"Otros");
+       $resultTipoDocumento=array(0=>"--Seleccione--",1=>"Cheque",2=>"Factura",3=>"NA");
+      
 		?>
  
   
@@ -156,108 +116,125 @@
   
   <div class="row" style="background-color: #ffffff;">
   
-   <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Actividades</h4>
-            
-        </div>
-    <!-- empieza formulario de busqueda -->
-     
-           
-     <div class="col-lg-12" style="margin-bottom: 10px;"> 
-     <div class="row">  
-      
-           <form action="<?php echo $helper->url("SeguimientoGastos","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
-     
-      		<div class="col-lg-2" id="div_desde">
-      		<span>Desde:</span>
-           <input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control"/>
-           <div id="mensaje_desde" class="errores"></div>
-           </div>
-           <div class="col-lg-2" id="div_hasta">
-           <span>Hasta:</span>
-           <input type="date"  name="fecha_hasta" id="fecha_hasta" value="" class="form-control"/>
-           <div id="mensaje_hasta" class="errores"></div>
-           </div>
-           <div class="col-lg-2" id="div_contenido">
-           <span>Contenido de busqueda:</span>
-           <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
-           <div id="mensaje_contenido" class="errores"></div>
-            </div>
-            
-           <div class="col-lg-2" id="div_ddl_accion">
-           <span>Accion:</span>
-           <select name="ddl_accion" id="ddl_accion"  class="form-control">
-                                    <?php foreach($acciones as $val=>$desc) {?>
-                                         <option value="<?php echo $val ?>"><?php echo $desc ?> </option>
-                                    <?php } ?>
-                                        
-           </select>
-           <div id="mensaje_ddl_accion" class="errores"></div>
-           </div>
-            
-           <div class="col-lg-2" id="div_ddl_criterio">
-           <span>Criterio:</span>
-           <select name="ddl_criterio" id="ddl_criterio"  class="form-control">
-                                    <?php foreach($resulMenu as $val=>$desc) {?>
-                                         <option value="<?php echo $val ?>"><?php echo $desc ?> </option>
-                                    <?php } ?>
-                                        
-           </select>
-           <div id="mensaje_criterio" class="errores"></div>
-           </div>
-          
-           
-           <div class="col-lg-1">
-           <span style="color:#ffffff;">Buscar:</span>
-           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
-           </div>
-         
-          </form>
-          </div>
-        </div>
-       <!-- termina formulario de busqueda -->
+       <!-- empieza el form --> 
        
-        <section class="col-lg-12 actividades" style="height:400px;overflow-y:scroll;">
+      <form action="<?php echo $helper->url("SeguimientoGastos","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+         
+         <!-- comienxza busqueda  -->
+         <div class="col-lg-12" style="margin-top: 10px">
+         
+       	 <h4 style="color:#ec971f;">Distribucion Gastos</h4>
+       	 
+       	 
+       	 <div class="panel panel-default">
+  			<div class="panel-body">
+  			
+  			<div class="col-xs-2">
+			  	<p  class="formulario-subtitulo" style="" >Gastos Por:</p>
+			  	<select name="gastos_por" id="gastos_por"  class="form-control" >
+					<?php foreach($resultGastos as $val=>$desc) {?>
+						<option value="<?php echo $val ?>"><?php echo $desc ?> </option>
+			            <?php } ?>
+				</select>
+					
+		 </div>
+		   			
+          <div class="col-xs-2">
+			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
+					<?php foreach($resultCiudad as $res) {?>
+						<option value="<?php echo $res->id_ciudad; ?>"><?php echo $res->nombre_ciudad;  ?> </option>
+			            <?php } ?>
+				</select>
+		 </div>
+		 
+		  <div class="col-xs-2 ">
+			  	<p  class="formulario-subtitulo" >Nº Juicio:</p>
+			  	<input type="text"  name="numero_juicio" id="numero_juicio" value="" class="form-control"/> 
+			    <div id="mensaje_nombres" class="errores"></div>
+
+         </div>
+          <div class="col-xs-2 ">
+			  	<p  class="formulario-subtitulo" >Nº Titulo:</p>
+			  	<input type="text"  name="numero_titulo" id="numero_titulo" value="" class="form-control"/> 
+			    <div id="mensaje_numero_titulo" class="errores"></div>
+
+         </div>
+         
+         <div class="col-xs-2 ">
+         		<p class="formulario-subtitulo" >Desde:</p>
+			  	<input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control "/> 
+			    <div id="mensaje_fecha_desde" class="errores"></div>
+		</div>
+         
+          <div class="col-xs-2 ">
+          		<p class="formulario-subtitulo" >Hasta:</p>
+			  	<input type="date"  name="fecha_hasta" id="fecha_hasta" value="" class="form-control "/> 
+			    <div id="mensaje_fecha_hasta" class="errores"></div>
+		</div>
+		 
+  			</div>
+  		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
+		 <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-warning " style="margin-top: 10px;"/> 	
+		 </div>
+		</div>
+        	
+		 </div>
+		 
+		 
+		 <div class="col-lg-12">
+		 
+	
+		 <span class="form-control">registros:<?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
+		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
+	            
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Usuario</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre del Controlador</th>
-	    		<th style="color:#456789;font-size:80%;">Acción</th>
-	    		<th style="color:#456789;font-size:80%;">Parámetros</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha</th>
-	    		
+	    		<th style="color:#456789;font-size:80%;">Nº Titulo Credito</th>
+	    		<th style="color:#456789;font-size:80%;">Nº Juicio</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Diligencia</th>
+	    		<th style="color:#456789;font-size:80%;">Tipo Gasto</th>
+	    		<th style="color:#456789;font-size:80%;">Diligencia</th>
+	    		<th style="color:#456789;font-size:80%;">Estado</th>
+	    		<th style="color:#456789;font-size:80%;">Valor</th>
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
             
-	            <?php if (!empty($resultActi)) {  foreach($resultActi as $res) {?>
+	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_trazas; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->usuario_usuarios; ?></td> 
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_controlador; ?></td> 
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->accion_trazas; ?></td> 
-		                  <td style="color:#000000;font-size:80%;"> <?php echo $res->parametros_trazas; ?></td> 
-		                  <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?></td> 
+	        		
+	        		  
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_distribucion_gastos; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_gastos; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->descripcion_distribucion_gastos; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->valor_tipo_gasto; ?>     </td> 
 		              
-		           	  
 		    		</tr>
-		        <?php } }else{ ?>
-                <tr>
-	                  	<td></td>
-            			<td></td>
-	                    <td colspan="4" style="color:#ec971f;font-size:8;"> <?php echo '<span id="snResult">No existen resultados</span>' ?></td>
-	       				<td></td>
-		    	</tr>
-            
-            <?php 
-		}
-            ?>
-            
+		        <?php } }  ?>
+           
        	</table>     
       </section>
+		 
+		 		 
+		 </div>
+		 
+		
+		
+      
+       </form>
+     
       </div>
-      </div>
-   
-     </body>  
+     
+  </div>
+      <!-- termina
+       busqueda  -->
+   </body>  
+
     </html>   
