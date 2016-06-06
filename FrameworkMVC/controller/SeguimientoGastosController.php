@@ -15,8 +15,10 @@ class SeguimientoGastosController extends ControladorBase{
 		$distribucion_gastos = new DistribucionGastosModel();
 		$trazas = new TrazasModel();
 		$usuarios=new UsuariosModel();
+		$ciudad = new CiudadModel();
+		$resultCiudad= $ciudad->getAll("nombre_ciudad");
 		//Conseguimos todos los usuarios
-		$resultSet=$distribucion_gastos->getAll("id_distribucion_gastos");
+		$resultSet="";
 	
 		$columnas = "trazas.id_trazas, usuarios.usuario_usuarios, trazas.nombre_controlador, trazas.accion_trazas, trazas.parametros_trazas, trazas.creado";
 		$tablas="public.trazas, public.usuarios";
@@ -43,130 +45,62 @@ class SeguimientoGastosController extends ControladorBase{
 			if (!empty($resultPer))
 			{
 	
-	
-				if (isset ($_GET["id_trazas"])   )
-				{
-						
-					$nombre_controladores = "SeguimientoGastos";
-					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $distribucion_gastos->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-	
-					if (!empty($resultPer))
-					{
-							
-						$_id_trazas = $_GET["id_trazas"];
-						$columnas = " trazas.id_trazas, usuarios.usuario_usuarios, trazas.nombre_controlador, trazas.accion_trazas, trazas.parametros_trazas, trazas.creado";
-						$tablas   = "public.trazas, public.usuarios";
-						$where    = " usuarios.id_usuarios = trazas.id_usuarios AND id_trazas = '$_id_trazas' ";
-						$id       = "nombre_etapas";
-							
-	
-						$resultset = $distribucion_gastos->getCondiciones($columnas ,$tablas ,$where, $id);
-	
-	
-							
-					}
-					else
-					{
-						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Seguimeinto de Gastos"
-			
-						));
-							
-							
-					}
-						
-				}
-				
-				
 				
 				if(isset($_POST["Buscar"]) )
 				{
-					//isset($_POST["ddl_criterio"])&&((isset($_POST["fecha_desde"])&&isset($_POST["fecha_desde"]))||isset($_POST["ddl_accion"])||isset($_POST["contenido"]))
-					$desde=$_POST["fecha_desde"];
-					$hasta=$_POST["fecha_hasta"];
+					$id_ciudad=$_POST['id_ciudad'];
+					$numero_juicio=$_POST['numero_juicio'];
+					$titulo_credito=$_POST['numero_titulo'];
+					$fechadesde=$_POST['fecha_desde'];
+					$fechahasta=$_POST['fecha_hasta'];
+					
+					$columnas="distribucion_gastos.id_distribucion_gastos, 
+							  titulo_credito.id_titulo_credito, 
+							  juicios.juicio_referido_titulo_credito, 
+							  distribucion_gastos.creado, 
+							  tipo_gastos.nombre_tipo_gastos, 
+							  distribucion_gastos.descripcion_distribucion_gastos, 
+							  estado.nombre_estado, 
+							  tipo_gastos.valor_tipo_gasto,juicios.id_ciudad";
+					$tablas="public.clientes, 
+							  public.distribucion_gastos, 
+							  public.juicios, 
+							  public.oficios, 
+							  public.estado, 
+							  public.titulo_credito, 
+							  public.tipo_gastos,
+							  public.ciudad";
+					$where="clientes.id_clientes = juicios.id_clientes AND
+							  distribucion_gastos.id_oficios = oficios.id_oficios AND
+							  juicios.id_titulo_credito = titulo_credito.id_titulo_credito AND
+							  oficios.id_juicios = juicios.id_juicios AND
+							  estado.id_estado = distribucion_gastos.id_estado AND
+							  tipo_gastos.id_tipo_gastos = distribucion_gastos.id_tipo_gastos
+							AND ciudad.id_ciudad = juicios.id_ciudad ";
+					$id="distribucion_gastos.id_distribucion_gastos";
+					
+					
+					
+					$where_0="";
+					$where_1="";
+					$where_2="";
+					$where_3="";
+					$where_4="";
 						
-					
-					$columnas = "trazas.id_trazas, usuarios.usuario_usuarios, trazas.nombre_controlador, trazas.accion_trazas, trazas.parametros_trazas, trazas.creado";
-					$tablas="public.trazas, public.usuarios";
-					$where="usuarios.id_usuarios = trazas.id_usuarios AND trazas.creado BETWEEN '$desde' AND '$hasta' ";
-					$id="creado";
-					
-					$TipoGastos="";	
-					
-					$id_tipo_gastos = $_POST["ddl_TipoGastos"];
-					
-					switch ($id_tipo_gastos){
-						case 0: 
-						$accion = "Guardar";
-						break; 
-						case 1: 
-						$accion = "Editar";
-						break; 
-						case 2: 
-						$accion = "Borrar";
-						break;
-					}
-					
-					$Gastos_por="";
+					if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
 						
-					$id_gastos_por = $_POST["ddl_gastos_por"];
+					if($numero_juicio!=""){$where_1=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
 						
-					switch (ddl_gastos_por){
-						case 0:
-							$accion = "Guardar";
-							break;
-						case 1:
-							$accion = "Editar";
-							break;
-						case 2:
-							$accion = "Borrar";
-							break;
-					}
-					
-					$criterio = $_POST["ddl_criterio"];
-					$contenido = $_POST["contenido"];
-					
+					if($titulo_credito!=""){$where_2=" AND titulo_credito.id_titulo_credito='$titulo_credito'";}
 						
-						$where_0 = "";
-						$where_1 = "";
-						$where_2 = "";
-						$where_3 = "";
-						switch ($criterio) 
-						{
-							case 0:
-								$where_0 = " ";
-								break;
-							case 1:
-								//USUARIO
-								$where_1 = " AND  usuarios.usuario_usuarios LIKE '$contenido'  ";
-								break;
-							case 2:
-								//Controladores
-								$where_2 = " AND trazas.nombre_controlador LIKE '$contenido'  ";
-								break;
-							case 3:
-								//Accion
-								$where_3 = " AND trazas.accion_trazas LIKE '$accion' ";
-								break;
-							
-							
-						}
-							
-							
-							
-						$where_to  = $where .  $where_0 . $where_1 . $where_2 . $where_3;
-							
-							
-						$resul = $accion;
+					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  distribucion_gastos.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
 						
-						/*$this->view("Error",array(
-								"resultado"=>$where_to
-									
-						));
-						exit();*/
-					
-						$resultActi=$distribucion_gastos->getCondiciones($columnas ,$tablas , $where_to, $id);
+						
+					$where_to=$where.$where_0.$where_1.$where_2.$where_3.$where_4;
+						
+						
+						
+					$resultSet=$distribucion_gastos->getCondiciones($columnas, $tablas, $where_to,$id);
 					
 					
 				
@@ -180,7 +114,7 @@ class SeguimientoGastosController extends ControladorBase{
 	
 	
 				$this->view("SeguimientoGastos",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultActi" =>$resultActi,"resulMenu"=>$resulMenu
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultActi" =>$resultActi,"resulMenu"=>$resulMenu,"resultCiudad"=>$resultCiudad
 							
 				));
 	
