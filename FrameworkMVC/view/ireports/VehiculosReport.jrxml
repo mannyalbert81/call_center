@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-07T16:00:17 -->
+<!-- 2016-06-07T16:02:02 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VehiculosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="145b4fda-797a-4587-b501-68c566b725c6">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="Y2l1ZGFkIEFTICwzMzEsNTcsZDg3NDBjYmItNzM5Yi00NDY5LThjMzctOWY1OGNiYWUyNTQwO3Rp&#xA;cG9fdmVoaWN1bG9zIEFTICwzNjMsMjUwLGE2YTIyYzRmLTZjZjMtNDllNi05YjgwLWY1YzVkNTM1&#xA;OGU2OTtjbGllbnRlcyBBUyAsNzIsMTAzLDllMDZmMTM1LWE0MDItNDE3OC05ODI1LWVmNTI5OWY5&#xA;Y2Q3YjttYXJjYV92ZWhpY3Vsb3MgQVMgLDM5Niw0MDgsMzUzZDVmYzgtY2UwNS00ZmYxLWE0ZDMt&#xA;YzA0NzFmYTRkMmQxO3ZlaGljdWxvc19lbWJhcmdhZG9zIEFTICw1MTAsNjYsYzZhY2QzOGMtYjU5&#xA;OC00N2ZiLTg5M2YtNjczODY3YzUyZWE2Ow=="/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
