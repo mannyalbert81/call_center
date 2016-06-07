@@ -16,7 +16,7 @@ $driver  = driver;
 ini_set('display_errors', 0);
   
 #aqu� va el reporte
-$xml =  simplexml_load_file("Usuarios.jrxml");
+$xml =  simplexml_load_file("Usuarios3.jrxml");
   
 $PHPJasperXML = new PHPJasperXML();
 $PHPJasperXML->xml_dismantle($xml); 
