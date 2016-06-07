@@ -107,7 +107,7 @@
   <div class="row" style="background-color: #ffffff;">
   
      
-      <form action="<?php echo $helper->url("AprobacionAutoPago","index"); ?>" method="post"  class="col-lg-12">
+      <form action="<?php echo $helper->url("AprobacionDistribucionGastos","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
     
     <div class="col-lg-5">
     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
@@ -196,7 +196,7 @@
 		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado; ?>  </td>
 		              <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("AprobacionAutoPago","ActualizarAutoPago"); ?>&id_auto_pagos=<?php echo $res->id_auto_pagos; ?>&id_titulo_credito=<?php echo  $res->id_titulo_credito ?>" class="btn btn-success" style="font-size:65%;">Aprobar</a>
+			                    <a href="<?php echo $helper->url("AprobacionDistribucionGastos","ActualizarDistribucionGastos"); ?>&id_auto_pagos=<?php echo $res->id_auto_pagos; ?>&id_titulo_credito=<?php echo  $res->id_titulo_credito ?>" class="btn btn-success" style="font-size:65%;">Aprobar</a>
 			                </div>
 			            
 			          </td>  
