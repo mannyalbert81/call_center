@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-07T13:03:59 -->
+<!-- 2016-06-07T13:15:10 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0973e8df-e10e-470e-b827-2abd3200f962">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="dXN1YXJpb3MgQVMgLDczLDgwLGMxMTY2YWQ4LTZjZWEtNDJkNy1iOTEzLWJiMjA1YWExZDUzYztj&#xA;aXVkYWQgQVMgLDM1NCw4MCw2NGMxZDNhMi1jM2Q0LTRmODgtODBhMC05NzQwZTY4YWJlNDM7"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
@@ -287,12 +287,15 @@ FROM usuarios
 			<staticText>
 				<reportElement positionType="Float" mode="Opaque" x="0" y="147" width="556" height="30" forecolor="#FCF7F7" backcolor="#171616" uuid="b104281f-17af-4a07-b8e4-8d265456aeac"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="9" isItalic="true"/>
+					<font fontName="Serif" size="13" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[DESARROLLADO POR "MASOFT"]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="450" y="160" width="105" height="20" uuid="54841080-9a16-42b6-ad69-bb954dd1b142"/>
+				<reportElement x="450" y="160" width="105" height="20" forecolor="#FFFFFF" uuid="54841080-9a16-42b6-ad69-bb954dd1b142"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
