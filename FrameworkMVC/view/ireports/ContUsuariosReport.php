@@ -18,14 +18,8 @@ ini_set('display_errors', 0);
 #aqu� va el reporte
 
 $xml =  simplexml_load_file("UsuariosReport.jrxml");
-<<<<<<< HEAD
-
-=======
 
 
-
-  
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 $PHPJasperXML = new PHPJasperXML();
 $PHPJasperXML->xml_dismantle($xml); 
 
