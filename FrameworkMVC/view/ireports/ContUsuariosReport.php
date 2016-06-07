@@ -16,9 +16,6 @@ ini_set('display_errors', 0);
 
 $xml =  simplexml_load_file("VehiculosReport.jrxml");
 
-
-$xml =  simplexml_load_file("UsuariosReport.jrxml");
-
 $PHPJasperXML = new PHPJasperXML();
 $PHPJasperXML->xml_dismantle($xml); 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
