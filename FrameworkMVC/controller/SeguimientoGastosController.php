@@ -98,8 +98,6 @@ class SeguimientoGastosController extends ControladorBase{
 						
 					$where_to=$where.$where_0.$where_1.$where_2.$where_3.$where_4;
 						
-						
-						
 					$resultSet=$distribucion_gastos->getCondiciones($columnas, $tablas, $where_to,$id);
 					
 					
