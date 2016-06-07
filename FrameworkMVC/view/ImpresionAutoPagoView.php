@@ -120,7 +120,7 @@
 		     
 		     <div class="row">
 			    
-			  <div class="col-xs-4 col-md-4">
+			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Selecione filtro</p>
 			  	<select name="criterio_busqueda" id="criterio_busqueda"  class="form-control" >
 					<?php foreach($resultMenu as $val=>$desc) {?>

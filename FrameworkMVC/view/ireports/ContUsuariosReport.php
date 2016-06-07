@@ -17,9 +17,9 @@ ini_set('display_errors', 0);
   
 #aqu� va el reporte
 
-$xml =  simplexml_load_file("VehiculosReport.jrxml");
+$xml =  simplexml_load_file("UsuariosReport.jrxml");
 
-$xml =  simplexml_load_file("Usuarios2.jrxml");
+
 
   
 $PHPJasperXML = new PHPJasperXML();
