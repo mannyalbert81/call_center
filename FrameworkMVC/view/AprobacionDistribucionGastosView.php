@@ -44,6 +44,7 @@
 			{
 		   
 		    	var contenido_busqueda= $("#contenido_busqueda").val();
+		    	var criterio_busqueda= $("#criterio_busqueda").val();
 		    
 		   				
 		    	if (contenido_busqueda== "")
@@ -58,7 +59,12 @@
 		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
-		    	
+
+		    	if(criterio_busqueda==0 && contenido_busqueda!=""){
+		    		$("#mensaje_criterio").text("Seleccione una busqueda");
+		    		$("#mensaje_criterio").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    	}
 		    	
 
 			
@@ -71,6 +77,10 @@
 				
 				$( "#contenido_busqueda" ).focus(function() {
 					$("#mensaje_nombres").fadeOut("slow");
+    			});
+
+				$( "#criterio_busqueda" ).focus(function() {
+					$("#mensaje_criterio").fadeOut("slow");
     			});
 				
 			
@@ -94,7 +104,7 @@
        
        
        <?php
-       $resultMenu=array(0=>"Identificacion",1=>"Titulo Credito");
+       $resultMenu=array(0=>"--seleccione--",1=>"Identificacion",2=>"Titulo Credito",3=>"Oficio");
      	 		 
      			
      	
@@ -110,12 +120,12 @@
       <form action="<?php echo $helper->url("AprobacionDistribucionGastos","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
     
     <div class="col-lg-5">
-    <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+    <?php if ( $resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
            <?php //no hay datos para editar?>
         
             <?php } } else {?>
 		     
-		      <h4 style="color:#ec971f;">Aprobacion Auto Pagos</h4>
+		      <h4 style="color:#ec971f;">Aprobacion Distribucion Gastos</h4>
             	<hr/>
 		     
 		     <div class="row">
@@ -126,7 +136,8 @@
 					<?php foreach($resultMenu as $val=>$desc) {?>
 						<option value="<?php echo $val; ?>"  ><?php echo $desc ?> </option>
 			        <?php } ?>
-				</select> 			  
+				</select> 
+				 <div id="mensaje_criterio" class="errores"></div>			  
 			  </div>
 		    
 		     
@@ -156,7 +167,7 @@
     
     
     <div  class="col-lg-7">
-     <h4 style="color:#ec971f;">Lista de titulo</h4>
+     <h4 style="color:#ec971f;">Lista de Distribucion Gastos</h4>
             <hr/>
     		
 		<div class="col-xs-12" style="margin: 5px;">	
@@ -171,41 +182,47 @@
         <table class="table table-hover ">
 	         <tr >
 	    		
-	    		<th style="color:#456789;font-size:80%;">Id Auto Pagos</th>
-	    		<th style="color:#456789;font-size:80%;">Id Titulo Credito</th>
-	    		<th style="color:#456789;font-size:80%;">Numero de Identifiación</th>
-	    		<th style="color:#456789;font-size:80%;">Nombres Cliente</th>
-	    		<th style="color:#456789;font-size:80%;">Abogado Impulsor</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Asignada</th>
+	    		<th style="color:#456789;font-size:80%;">Id </th>
+	    		<th style="color:#456789;font-size:80%;">Juicio</th>
+	    	    <th style="color:#456789;font-size:80%;">Fecha Gasto</th>
+	    	    <th style="color:#456789;font-size:80%;">Tipo Gasto</th>
+	    		<th style="color:#456789;font-size:80%;">Diligencia</th>
 	    		<th style="color:#456789;font-size:80%;">Estado</th>
-	    		<th style="color:#456789;font-size:80%;"></th>
+	    		<th style="color:#456789;font-size:80%;">Valor</th>
+	    		<th style="color:#456789;font-size:80%;">Oficio</th>
+	    		<th style="color:#456789;font-size:80%;">Documento Soporte</th>
+	    		<th style="color:#456789;font-size:80%;">Numero Documento</th>
+	    		<th style="color:#456789;font-size:80%;">Afavor de</th>
+
 	    		
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
             
-	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
+	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	        		
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_auto_pagos; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>  </td>
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_asiganacion_auto_pagos; ?>  </td>
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado; ?>  </td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_distribucion_gastos; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_gastos; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->descripcion_distribucion_gastos; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->valor_tipo_gasto; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_oficios; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->documento_soporte_distribucion_gastos; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_documento_distribucion_gastos; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->a_favor_de_distribucion_gastos; ?>  </td>
+		               
+		               
 		              <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("AprobacionDistribucionGastos","ActualizarDistribucionGastos"); ?>&id_auto_pagos=<?php echo $res->id_auto_pagos; ?>&id_titulo_credito=<?php echo  $res->id_titulo_credito ?>" class="btn btn-success" style="font-size:65%;">Aprobar</a>
+			                    <a href="<?php echo $helper->url("AprobacionDistribucionGastos","ActualizarDistribucionGastos"); ?>&id_distribucion_gastos=<?php echo $res->id_distribucion_gastos;?>" class="btn btn-success" style="font-size:65%;">Aprobar</a>
 			                </div>
 			            
 			          </td>  
 		    		</tr>
-		        <?php } } ?>
-		        
-      
-        
-            
+		        <?php } } ?>   
             
        	</table>     
 		     
