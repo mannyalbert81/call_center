@@ -84,6 +84,22 @@
 		}); 
 
 	</script>
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+			     <script>
+			$(window).load(function () {
+			$('#cargando').hide();
+			});
+			</script>
+			
+						<style type="text/css">
+			#cargando {
+			width:1000px;
+			height:1000px;
+			clear:both;
+			background-color:#FFFF00;
+			color:#CC0000;
+			}
+			</style>
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -143,18 +159,17 @@
 
 		    <hr>
 		    
-		   
-               	
-		     <?php } ?>
+		    <?php } ?>
 		     
-		     
-		       <div class="row">
+		      <div class="row">
 			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
-			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+			  <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
 			  </div>
-			</div>     
-               
-		
+			  </div>     
+              
+            <div class="row">
+			<div id="cargando"><h3>Cargando página ...</h3> Sea paciente, los datos demoran en ser importados.</div> 
+		    </div>
 		 <hr>
           
        </form>
