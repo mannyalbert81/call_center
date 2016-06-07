@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-07T12:11:11 -->
+<!-- 2016-06-07T12:25:28 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0973e8df-e10e-470e-b827-2abd3200f962">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="dXN1YXJpb3MgQVMgLDczLDgwLGMxMTY2YWQ4LTZjZWEtNDJkNy1iOTEzLWJiMjA1YWExZDUzYztj&#xA;aXVkYWQgQVMgLDM1NCw4MCw2NGMxZDNhMi1jM2Q0LTRmODgtODBhMC05NzQwZTY4YWJlNDM7"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
@@ -136,7 +136,7 @@ FROM usuarios
 	<title>
 		<band height="79" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="556" height="79" backcolor="#FFFFFF" uuid="76678627-2ac8-4c39-bc64-27f1675cdd91"/>
+				<reportElement x="0" y="0" width="556" height="79" backcolor="#FF9966" uuid="76678627-2ac8-4c39-bc64-27f1675cdd91"/>
 				<graphicElement>
 					<pen lineColor="#000000"/>
 				</graphicElement>
@@ -162,8 +162,8 @@ FROM usuarios
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<image>
-				<reportElement x="16" y="10" width="56" height="65" uuid="c71a7104-a4a0-4230-a1e2-aa1ca17899b9"/>
-				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/images.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="111" height="54" uuid="5aea83a5-7297-4b00-851d-cbc4805a591b"/>
+				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/logo-coctiva.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
