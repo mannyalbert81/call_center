@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-06-07T16:02:33 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VehiculosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="145b4fda-797a-4587-b501-68c566b725c6">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="Y2l1ZGFkIEFTICwzMzEsNTcsZDg3NDBjYmItNzM5Yi00NDY5LThjMzctOWY1OGNiYWUyNTQwO3Rp&#xA;cG9fdmVoaWN1bG9zIEFTICwzNjMsMjUwLGE2YTIyYzRmLTZjZjMtNDllNi05YjgwLWY1YzVkNTM1&#xA;OGU2OTtjbGllbnRlcyBBUyAsNzIsMTAzLDllMDZmMTM1LWE0MDItNDE3OC05ODI1LWVmNTI5OWY5&#xA;Y2Q3YjttYXJjYV92ZWhpY3Vsb3MgQVMgLDM5Niw0MDgsMzUzZDVmYzgtY2UwNS00ZmYxLWE0ZDMt&#xA;YzA0NzFmYTRkMmQxO3ZlaGljdWxvc19lbWJhcmdhZG9zIEFTICw1MTAsNjYsYzZhY2QzOGMtYjU5&#xA;OC00N2ZiLTg5M2YtNjczODY3YzUyZWE2Ow=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="VehiculosReport" uuid="faeb14cd-4e32-4caf-a7c8-ef1c89150363">
+		<property name="com.jaspersoft.studio.data.sql.tables" value="dmVoaWN1bG9zX2VtYmFyZ2Fkb3MgQVMgLDcxNCwyNDksODMwNzQ1ZTctZjg1Yy00NGUzLWIxOWMt&#xA;NzY4OWM4NGJkYjk5O21hcmNhX3ZlaGljdWxvcyBBUyAsNTI2LDE0Myw5MTJjN2EwOS0yYzA5LTRl&#xA;ODAtODM1Yy1kYWNiNzNkNTZkM2I7Y2l1ZGFkIEFTICwzNjMsMzcsOWYzZTNiYjAtM2FkOS00OWE4&#xA;LWI2Y2YtMWY5ZGNmYTI5ZWIyO2NsaWVudGVzIEFTICwxMDAsNDAsMWUxNjQ3YzAtY2I2Ni00ZTli&#xA;LTg1YTQtZjFjYjU1ZGE0NzYyO3RpcG9fdmVoaWN1bG9zIEFTICw3NzAsNjcsZmE4YmYwNmEtY2Vh&#xA;Yi00MjIzLWI1ZTEtN2QwNDA0ZmM5ZjNmOw=="/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
+		<queryString>
+			<![CDATA[SELECT vehiculos_embargados.modelo_vehiculos_embargados,
+	vehiculos_embargados.observacion_vehiculos_embargados,
+	vehiculos_embargados.placa_vehiculos_embargados,
+	tipo_vehiculos.nombre_tipo_vehiculos,
+	marca_vehiculos.nombre_marca_vehiculos,
+	ciudad.nombre_ciudad,
+	clientes.identificacion_clientes,
+	clientes.nombres_clientes
+FROM vehiculos_embargados
+	INNER JOIN clientes ON 
+	 vehiculos_embargados.id_clientes = clientes.id_clientes 
+	INNER JOIN tipo_vehiculos ON 
+	 vehiculos_embargados.id_tipo_vehiculos = tipo_vehiculos.id_tipo_vehiculos 
+	INNER JOIN marca_vehiculos ON 
+	 vehiculos_embargados.id_marca_vehiculos = marca_vehiculos.id_marca_vehiculos 
+	INNER JOIN ciudad ON 
+	 clientes.id_ciudad = ciudad.id_ciudad]]>
+		</queryString>
+		<field name="modelo_vehiculos_embargados" class="java.lang.String"/>
+		<field name="observacion_vehiculos_embargados" class="java.lang.String"/>
+		<field name="placa_vehiculos_embargados" class="java.lang.String"/>
+		<field name="nombre_tipo_vehiculos" class="java.lang.String"/>
+		<field name="nombre_marca_vehiculos" class="java.lang.String"/>
+		<field name="nombre_ciudad" class="java.lang.String"/>
+		<field name="identificacion_clientes" class="java.lang.String"/>
+		<field name="nombres_clientes" class="java.lang.String"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT marca_vehiculos.nombre_marca_vehiculos,
+	tipo_vehiculos.nombre_tipo_vehiculos,
+	vehiculos_embargados.placa_vehiculos_embargados,
+	vehiculos_embargados.modelo_vehiculos_embargados,
+	vehiculos_embargados.observacion_vehiculos_embargados,
+	ciudad.nombre_ciudad,
+	clientes.identificacion_clientes,
+	clientes.nombres_clientes
+FROM vehiculos_embargados
+	INNER JOIN clientes ON 
+	 vehiculos_embargados.id_clientes = clientes.id_clientes 
+	INNER JOIN ciudad ON 
+	 clientes.id_ciudad = ciudad.id_ciudad 
+	INNER JOIN marca_vehiculos ON 
+	 vehiculos_embargados.id_marca_vehiculos = marca_vehiculos.id_marca_vehiculos 
+	INNER JOIN tipo_vehiculos ON 
+	 vehiculos_embargados.id_tipo_vehiculos = tipo_vehiculos.id_tipo_vehiculos]]>
+	</queryString>
+	<field name="nombre_marca_vehiculos" class="java.lang.String"/>
+	<field name="nombre_tipo_vehiculos" class="java.lang.String"/>
+	<field name="placa_vehiculos_embargados" class="java.lang.String"/>
+	<field name="modelo_vehiculos_embargados" class="java.lang.String"/>
+	<field name="observacion_vehiculos_embargados" class="java.lang.String"/>
+	<field name="nombre_ciudad" class="java.lang.String"/>
+	<field name="identificacion_clientes" class="java.lang.String"/>
+	<field name="nombres_clientes" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="800" height="70" backcolor="#000000" uuid="19c40b95-7d6b-412e-b98d-e301bb0bc1cd"/>
+			</rectangle>
+			<image>
+				<reportElement x="0" y="0" width="100" height="70" uuid="aa490d5c-472a-43a7-9049-d81fe2c9149f"/>
+				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/logo-coctiva.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="260" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="800" height="260" uuid="7ef0fe19-169c-4190-9352-b4942abc2256">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="VehiculosReport" uuid="d6827bf9-d5dd-4fd2-9cd6-4d5b1f99365d">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="100" uuid="0f7ae57e-f30f-4f40-acf5-2cc597d7e797">
+						<jr:tableHeader style="Table_TH" height="30"/>
+						<jr:tableFooter style="Table_TH" height="30"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="74bfdcbb-2ad2-40cb-90ae-190f5a5bde85"/>
+								<text><![CDATA[modelo_vehiculos_embargados]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table_CH" height="30"/>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="19cc7062-6ac1-4f7e-8c85-5a30149c5482"/>
+								<textFieldExpression><![CDATA[$F{modelo_vehiculos_embargados}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="aa23b0ce-e35d-457b-830f-c2cc38082f92">
+						<jr:tableHeader style="Table_TH" height="30"/>
+						<jr:tableFooter style="Table_TH" height="30"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="0bbd09d6-811c-49ab-b3fd-35649199f214"/>
+								<text><![CDATA[observacion_vehiculos_embargados]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table_CH" height="30"/>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="f774065d-b7ff-4023-a126-d8224fc1ade4"/>
+								<textFieldExpression><![CDATA[$F{observacion_vehiculos_embargados}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="2cc8ff1f-e382-4ce4-a7db-485d82c2618c">
+						<jr:tableHeader style="Table_TH" height="30"/>
+						<jr:tableFooter style="Table_TH" height="30"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="39316bc4-9ba6-463f-be8e-3b286912a441"/>
+								<text><![CDATA[placa_vehiculos_embargados]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table_CH" height="30"/>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="4c22836e-caf5-448e-a20e-593437139e13"/>
+								<textFieldExpression><![CDATA[$F{placa_vehiculos_embargados}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="94e872ca-3112-4d81-be54-f351be3a4372">
+						<jr:tableHeader style="Table_TH" height="30"/>
+						<jr:tableFooter style="Table_TH" height="30"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="e513808b-8892-4805-92c1-974818eebf0c"/>
+								<text><![CDATA[nombre_tipo_vehiculos]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table_CH" height="30"/>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="ddcb1774-f780-482c-8a58-8c6812432df4"/>
+								<textFieldExpression><![CDATA[$F{nombre_tipo_vehiculos}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="2828292c-b1de-4b2e-b4f6-0e19586fb2c0">
+						<jr:tableHeader style="Table_TH" height="30"/>
+						<jr:tableFooter style="Table_TH" height="30"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="a2076f5a-8e05-49ea-8323-308fdc14d97b"/>
+								<text><![CDATA[nombre_marca_vehiculos]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table_CH" height="30"/>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="3d59f7f4-a9b9-49c6-a264-cc780f6b32eb"/>
+								<textFieldExpression><![CDATA[$F{nombre_marca_vehiculos}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="5b1da7b6-27a7-45ae-b100-ac96ec0201c8">
+						<jr:tableHeader style="Table_TH" height="30"/>
+						<jr:tableFooter style="Table_TH" height="30"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="46008e01-fcc5-4237-8e67-eb7ca16b3039"/>
+								<text><![CDATA[nombre_ciudad]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table_CH" height="30"/>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="a4385edb-5baa-467e-9360-e046bf8c0fb6"/>
+								<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="7a44197e-6886-408d-bece-47b1a1fc5fc0">
+						<jr:tableHeader style="Table_TH" height="30"/>
+						<jr:tableFooter style="Table_TH" height="30"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="b048b00e-2a9e-4f79-b8a1-0828c50005d9"/>
+								<text><![CDATA[identificacion_clientes]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table_CH" height="30"/>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="b11f70ad-a747-4454-afe6-4d7fecf6d251"/>
+								<textFieldExpression><![CDATA[$F{identificacion_clientes}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="808c464c-1bc8-4b8e-a910-91c0436e9508">
+						<jr:tableHeader style="Table_TH" height="30"/>
+						<jr:tableFooter style="Table_TH" height="30"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="d216f849-3e6c-4324-a7b2-9342dfb9d1ea"/>
+								<text><![CDATA[nombres_clientes]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="Table_CH" height="30"/>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="dcfdf1d2-7e48-4b2a-86dc-cec2ae5358a7"/>
+								<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="56" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="800" height="56" forecolor="#000000" backcolor="#000000" uuid="439aee07-9b11-410a-9a10-bd14c8f5cce1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="249" y="10" width="331" height="37" forecolor="#FFFFFF" uuid="0ff8e33a-75ec-4ced-a844-75458cc81ab8"/>
+				<textElement textAlignment="Center">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ELABORADO POR "MASOFT"]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="700" y="26" width="100" height="30" uuid="1c7061a4-7781-4898-a248-7d5636420371"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
