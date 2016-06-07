@@ -15,6 +15,9 @@ class OficiosController extends ControladorBase{
 		
 	   //Conseguimos todos los usuarios
 		$resultSet=$oficios->getAll("id_oficios");
+		
+		$entidades = new EntidadesModel();
+		$resultEnt = $entidades->getAll("nombre_entidades");
 				
 		$resultEdit = "";
 
@@ -146,7 +149,7 @@ class OficiosController extends ControladorBase{
 				
 				
 				$this->view("Oficios",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultDatos" =>$resultDatos
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultDatos" =>$resultDatos, "resultEnt" =>$resultEnt
 			
 				));
 		
@@ -196,6 +199,7 @@ class OficiosController extends ControladorBase{
 			{
 			 $_array_juicios = $_POST["id_juicios"];
 			 $_nombre_oficios = $_POST["nombre_oficios"];
+			 $_id_entidades = $_POST["id_entidades"];
 				
 					foreach($_array_juicios  as $id  )
 					{
@@ -219,12 +223,19 @@ class OficiosController extends ControladorBase{
 								$consecutivo_oficio=$consecutivo_oficio+1;
 								$numero_oficio=$consecutivo_oficio."-".$anio;
 								
+								
 								$funcion = "ins_oficios";
-								$parametros = "'$_nombre_oficios','$numero_oficio', '$_id_juicios' ";
+								$parametros = "'$_nombre_oficios','$numero_oficio', '$_id_juicios', '$_id_entidades' ";
 								$oficios->setFuncion($funcion);
 		                        $oficios->setParametros($parametros);
 					            $resultado=$oficios->Insert();
 					            
+					            $prefijos=new PrefijosModel();
+					            $colval="consecutivo=consecutivo+1";
+					            $tabla="prefijos";
+					            $where="id_prefijos='$id_prefijo'";
+					             
+					            $resultado=$prefijos->UpdateBy($colval, $tabla, $where);
 		                      
 							} catch (Exception $e)
 							{

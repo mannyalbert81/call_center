@@ -1,8 +1,5 @@
 <?php 
-
-
-
-
+#<?php 
 #Importas la librer�a PhpJasperLibrary
 include_once('PhpJasperLibrary/class/tcpdf/tcpdf.php');
 include_once("PhpJasperLibrary/class/PHPJasperXML.inc.php");
@@ -16,14 +13,9 @@ $driver  = driver;
 ini_set('display_errors', 0);
   
 #aqu� va el reporte
-$xml =  simplexml_load_file("Usuarios3.jrxml");
-  
+$xml =  simplexml_load_file("UsuariosReport.jrxml");
 $PHPJasperXML = new PHPJasperXML();
 $PHPJasperXML->xml_dismantle($xml); 
-
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
-
 $PHPJasperXML->outpage("I");
-
-
 ?>

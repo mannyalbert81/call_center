@@ -162,7 +162,7 @@
 		<div class="col-xs-12" style="margin: 5px;">	
 
 	</div>
-	<?php if(!empty($resultDatos)){?>
+	
 	<div class="col-xs-12">
       
       
@@ -209,10 +209,7 @@
       </section>
         
         </div>
-        <?php 
-		}
-            
-          ?>
+       
         
     </div>
     

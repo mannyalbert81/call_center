@@ -160,11 +160,11 @@
           
           <li><a href="index.php?controller=DistribucionGastos&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Distribucion Gastos</span> </a>
             </li>
+          <li><a href="index.php?controller=AprobacionDistribucionGastos&action=index"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"> Aprobacion Gastos</span> </a>
+           </li>
              <li><a href="index.php?controller=Oficios&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Oficios</span> </a>
             </li>
-             <li><a href="index.php?controller=Gastos&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Gastos</span> </a>
-            </li>
-            <li><a href="index.php?controller=SeguimientoGastos&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Seguimiento Gastos</span> </a>
+             <li><a href="index.php?controller=SeguimientoGastos&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Seguimiento Gastos</span> </a>
             </li>
 
 </ul>

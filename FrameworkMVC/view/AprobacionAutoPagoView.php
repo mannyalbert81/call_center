@@ -107,7 +107,7 @@
   <div class="row" style="background-color: #ffffff;">
   
      
-      <form action="<?php echo $helper->url("AprobacionAutoPago","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("AprobacionAutoPago","index"); ?>" method="post"  class="col-lg-12">
     
     <div class="col-lg-5">
     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
@@ -162,7 +162,7 @@
 		<div class="col-xs-12" style="margin: 5px;">	
 
 	</div>
-	<?php if(!empty($resultDatos)){?>
+	
 	<div class="col-xs-12">
       
       
@@ -213,7 +213,7 @@
         
         </div>
         <?php 
-		}
+		
             
           ?>
         

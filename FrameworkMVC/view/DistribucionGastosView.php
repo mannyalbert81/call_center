@@ -40,49 +40,62 @@
          <script >
 		$(document).ready(function(){
 
-		    // cada vez que se cambia el valor del combo
-		    $("#Guardar").click(function() 
-			{
-		   
-		    	var nombre_tipo_identificacion = $("#nombre_tipo_identificacion").val();
-		    
-		   				
-		    	if (nombre_tipo_identificacion == "")
-		    	{
-			    	
-		    		$("#mensaje_nombres").text("Introduzca un Gasto");
-		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	
-		    	
-
-			
-		    					    
-
-			}); 
+		$("#tipo_gasto").change(function(){
 
 
-		 
-				
-				$( "#nombre_tipo_identificacion" ).focus(function() {
-					$("#mensaje_nombres").fadeOut("slow");
-    			});
-				
-			
-		
-				
-		
-		      
+           var $valor_tipo_gasto = $("#valor_a_distribuir");
+
+           var id_tipo_gasto = $(this).val();
+
+           $valor_tipo_gasto.empty();
+
+           
+           if(id_tipo_gasto > 0)
+           {
+        	  var datos = {id_tipo_gasto : $(this).val() };
+  
+        	  var resultTipogasto= $.post("<?php echo $helper->url("DistribucionGastos","devuelveTipoGasto"); ?>", datos, function(resultTipo_gasto) {
+        		  }, "json");    		  
+
+        	  resultTipogasto.done(function(resultTipo_gasto ) {
+
+        		  $.each(resultTipo_gasto, function(index, value) {
+        			  $valor_tipo_gasto.val(value.valor_tipo_gasto);
+  			 	     });
+            	  });
+
+           }
+           else
+           {
+        	  
+           }
+
+			});  
 				    
-		}); 
+		});
 
 	</script>
+	<script>
+	$(document).ready(function(){
+			$("#fecha_hasta").change(function(){
+				 var startDate = new Date($('#fecha_desde').val());
+
+                 var endDate = new Date($('#fecha_hasta').val());
+
+                 if (startDate > endDate){
+ 
+                    $("#mensaje_fecha_hasta").text("Fecha desde no debe ser mayor ");
+		    		$("#mensaje_fecha_hasta").fadeIn("slow"); //Muestra mensaje de error  
+		    		$("#fecha_hasta").val("");
+
+                        }
+				});
+
+			 $( "#fecha_hasta" ).focus(function() {
+				  $("#mensaje_fecha_hasta").fadeOut("slow");
+			   });
+			});
+        </script>
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -94,6 +107,10 @@
        <?php
        $resultMenu=array(1=>"Cheque",2=>"Reembolso");
        $resultGastos=array(1=>"Oficios",2=>"Citaciones",3=>"Otros");
+       $resultTipoDocumento=array(0=>"--Seleccione--",1=>"Cheque",2=>"Factura",3=>"NA");
+       if(empty($result_tipo_gasto)){
+       	echo  "no hay datos";
+       }
 		?>
  
   
@@ -179,36 +196,37 @@
   			
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Entidad:</p>
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-					<?php foreach($resultGastos as $val=>$desc) {?>
-						<option value="<?php echo $val ?>"><?php echo $desc ?> </option>
+			  	<select name="id_entidad" id="id_entidad"  class="form-control" >
+			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
+					<?php foreach($resultEntidad as $res) {?>
+						<option value="<?php echo $res->id_entidades; ?>"><?php echo $res->nombre_entidades;  ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>
 		 
 		  <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Nº Juicio:</p>
-			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
+			  	<input type="text"  name="numero_juicio" id="numero_juicio" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 
          </div>
           <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Identificacion:</p>
-			  	<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
+			  	<input type="text"  name="identificacion" id="identificacion" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 
          </div>
          
          <div class="col-xs-2 ">
          		<p class="formulario-subtitulo" >Desde:</p>
-			  	<input type="date"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control "/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+			  	<input type="date"  name="fecha_desde" id="fecha_desde" value="" class="form-control "/> 
+			    <div id="mensaje_fecha_desde" class="errores"></div>
 		</div>
          
           <div class="col-xs-2 ">
           		<p class="formulario-subtitulo" >Hasta:</p>
-			  	<input type="date"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control "/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+			  	<input type="date"  name="fecha_hasta" id="fecha_hasta" value="" class="form-control "/> 
+			    <div id="mensaje_fecha_hasta" class="errores"></div>
 		</div>
 		 
   			</div>
@@ -226,40 +244,40 @@
          </div>
 		<div class="col-xs-6 ">
          		
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-					<?php foreach($resultGastos as $val=>$desc) {?>
-						<option value="<?php echo $val ?>"><?php echo $desc ?> </option>
+			  	<select name="tipo_gasto" id="tipo_gasto"  class="form-control" >
+					<?php foreach($result_tipo_gasto as $restipo_gasto) { ?>
+						<option value="<?php echo $restipo_gasto->id_tipo_gastos;?>"><?php echo  $restipo_gasto->nombre_tipo_gastos; ?> </option>
 			            <?php } ?>
 				</select> 
-			    <div id="mensaje_nombres" class="errores"></div>
+			    <div id="mensaje_tipo_gasto" class="errores"></div>
 		</div>
 		
 		<div class="col-xs-4 ">
          		<p class="formulario-subtitulo" >Descripcion Diligencia:</p>
          </div>
 		<div class="col-xs-6 ">
-         		<textarea id="nombre_oficios" name="nombre_oficios"  rows="1" class="form-control" ></textarea>
-			    <div id="mensaje_nombres" class="errores"></div>
+         		<textarea id="descripcion_diligencia" name="descripcion_diligencia"  rows="1" class="form-control" ></textarea>
+			    <div id="mensaje_descripcion" class="errores"></div>
 		</div>
 		
 		<div class="col-xs-4 ">
          		<p class="formulario-subtitulo" >Valor($) a distribuir:</p>
          </div>
 		<div class="col-xs-6 ">
-         		<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+         		<input type="text"  name="valor_a_distribuir" id="valor_a_distribuir" value="" class="form-control"  disabled/> 
+			    <div id="mensaje_valor" class="errores"></div>
 		</div>
 		<div class="col-xs-10 ">
 		 <hr>
 		 </div>
 		 
 		 <div class="col-xs-4 ">
-         		<p class="formulario-subtitulo" >Tipo Gasto:</p>
+         		<p class="formulario-subtitulo" >Documento/soporte:</p>
          </div>
 		<div class="col-xs-6 ">
          		
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-					<?php foreach($resultGastos as $val=>$desc) {?>
+			  	<select name="tipo_documento" id="tipo_documento"  class="form-control" >
+					<?php foreach($resultTipoDocumento as $val=>$desc) {?>
 						<option value="<?php echo $val ?>"><?php echo $desc ?> </option>
 			            <?php } ?>
 				</select> 
@@ -267,27 +285,29 @@
 		</div>
 		
 		<div class="col-xs-4 ">
-         		<p class="formulario-subtitulo" >Descripcion Diligencia:</p>
+         		<p class="formulario-subtitulo" >Nº Documento:</p>
          </div>
 		<div class="col-xs-6 ">
-         		<textarea id="nombre_oficios" name="nombre_oficios"  rows="1" class="form-control" ></textarea>
-			    <div id="mensaje_nombres" class="errores"></div>
+         		<textarea id="numero_documento" name="numero_documento"  rows="1" class="form-control" ></textarea>
+			    <div id="mensaje_numero_documento" class="errores"></div>
 		</div>
 		
 		<div class="col-xs-4 ">
-         		<p class="formulario-subtitulo" >Valor($) a distribuir:</p>
+         		<p class="formulario-subtitulo" >A favor de:</p>
          </div>
 		<div class="col-xs-6 ">
-         		<input type="text"  name="nombre_tipo_identificacion" id="nombre_tipo_identificacion" value="" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+         		<input type="text"  name="a_favor_de" id="a_favor_de" value="" class="form-control"/> 
+			    <div id="mensaje_a_favor_de" class="errores"></div>
 		</div>
 		 
 		 </div>
 		 
 		 <div class="col-lg-7">
+		 <span class="form-control">registros:<?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
+	            <th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" name="marcar_todo" class="checkbox"></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Nº Oficio</th>
 	    		<th style="color:#456789;font-size:80%;">Nº Juicio</th>
@@ -300,21 +320,15 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_tipo_identificacion; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?>     </td> 
+	        		
+	        		   <td style="color:#000000;font-size:80%;"><input type="checkbox" id="id_oficios[]" name="id_oficios[]" value="<?php echo $res->id_oficios; ?>" class="marcados"></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_oficios; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_oficios; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_emision_juicios; ?>     </td> 
 		              
-		           	   <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("TipoIdentificacion","index"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
-			                </div>
-			            
-			             </td>
-			             <td>   
-			                	<div class="right">
-			                    <a href="<?php echo $helper->url("TipoIdentificacion","borrarId"); ?>&id_tipo_identificacion=<?php echo $res->id_tipo_identificacion; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
-			                </div>
-			                <hr/>
-		               </td>
 		    		</tr>
 		        <?php } }  ?>
            
@@ -330,15 +344,10 @@
 		 </div>
 		 
 		 <div class="col-lg-5" style="text-align: center;">
-		 <div class="col-lg-4" style="text-align: center;">
-		 <input type="submit" id="Buscar" name="Buscar" value="Reasignar" class="btn btn-default form-control" style="margin-top: 10px;"/> 
+		 <div class="col-lg-12" style="text-align: center;">
+		 <input type="submit" id="Asignar" name="Asignar" value="Asignar" onclick="this.form.action='<?php echo $helper->url("DistribucionGastos","AsignarDistribucionGasto"); ?>'" class="btn btn-success " style="margin-top: 10px;"/> 
 		 </div>
-		 <div class="col-lg-3" style="text-align: center;">			
-		<input type="submit" id="Buscar" name="Buscar" value="Cancelar" class="btn btn-default form-control" style="margin-top: 10px;"/> 			
-		</div>
-		<div class="col-lg-5" style="text-align: center;">
-		<input type="submit" id="Buscar" name="Buscar" value="Nuevo Gasto" class="btn btn-default form-control" style="margin-top: 10px;"/> 			
-		</div>
+				
 		 </div>
 		 <div class="col-lg-3">
 		 
@@ -357,10 +366,10 @@
 		 <span>Total detalle de gasto ($):</span>
 		 </div>
 		 <div class="col-lg-4">
-		 <input type="text" id="Buscar" name="Buscar" value="" class=" form-control" style="margin-top: 10px;"/> 
+		 <input type="text" id="detalle_gasto" name="detalle_gasto" value="" class=" form-control" style="margin-top: 10px;"/> 
 		 </div>
 		 <div class="col-lg-4">
-		 <input type="submit" id="Buscar" name="Buscar" value="Imprimir" class="btn btn-default form-control" style="margin-top: 10px;"/> 	
+		 <input type="submit" id="Imprimir" name="Imprimir" value="Imprimir" class="btn btn-default form-control" style="margin-top: 10px;"/> 	
 		 </div>
 		 </div>
       

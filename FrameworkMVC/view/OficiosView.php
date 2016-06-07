@@ -165,6 +165,17 @@ $(document).ready(function() {
             
 		     <?php } } else {?>
 		    
+			  <div class="row">
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Entidad:</p>
+			  	<select name="id_entidades" id="id_entidades"  class="form-control" >
+					<?php foreach($resultEnt as $res) {?>
+						<option value="<?php echo $res->id_entidades; ?>"  ><?php echo $res->nombre_entidades; ?> </option>
+			        <?php } ?>
+				</select> 			  
+			  </div>
+			  </div>
+			  
 			   <div class="row">
 		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" ></p>
