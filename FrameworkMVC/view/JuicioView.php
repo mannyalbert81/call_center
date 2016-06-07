@@ -90,8 +90,8 @@
             	<hr/>
 		
 			    
-			  <div class="col-lg-4">
-			  	<p  class="formulario-subtitulo" >Selecione filtro</p>
+			  <div class="col-lg-3">
+			  	<p  class="formulario-subtitulo" >Selecione filtro:</p>
 			  	<select name="criterio_busqueda" id="criterio_busqueda"  class="form-control" >
 					<?php foreach($resultMenu as $val=>$desc) {?>
 						<option value="<?php echo $val; ?>"  ><?php echo $desc ?> </option>
@@ -102,7 +102,7 @@
 		     
              	
              	
-		    <div class="col-lg-4">
+		    <div class="col-lg-3">
 		    	<p  class="formulario-subtitulo" style="color: #ffffff;" >--</p>
 			  <input type="text" name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
 			  <div id="mensaje_contenido_busqueda" class="errores"></div>
@@ -110,7 +110,7 @@
 			  
 			<div class="col-lg-2" style="text-align: center;" >
 				<p  class="formulario-subtitulo" style="color: #ffffff;" >--</p>	
-			  	<input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-warning"/>
 			</div>
 			
               	
@@ -120,15 +120,12 @@
      
       <div class="col-lg-12">
       
-     
+     <div style="">
+     </div>
     		
 		<div class="col-lg-12" style="margin: 5px;">	
 
-	<?php if(!empty($resultSet)){?>
-
-       <h4 style="color:#ec971f;">Lista de Juicios</h4>
-            <hr/>
-      
+	
         
        <section   style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
@@ -186,8 +183,6 @@
 		     
       </section>
     
-        <?php 
-		} ?>
       </div>
      
      </div>
