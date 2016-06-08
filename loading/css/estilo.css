@@ -1,0 +1,10 @@
+#cargando {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #fff url(bitmaps/ajax-loader.gif) no-repeat center;
+}
+
+#gatos{
+	width: 100%;
+}
