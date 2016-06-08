@@ -26,7 +26,11 @@
        
        <?php include("view/modulos/menu.php"); ?>
        
-            
+      
+    	<?php include("view/modulos/slide.php"); ?>
+   		 
+   		 
+   		      
        <footer class="col-lg-12">
            <?php include("view/modulos/footer.php"); ?>
         </footer>

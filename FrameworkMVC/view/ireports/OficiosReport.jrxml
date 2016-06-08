@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-07T17:45:53 -->
+<!-- 2016-06-08T12:37:31 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OficiosReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a05f6057-98bb-4cf0-9d01-983ddd31e057">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="dGl0dWxvX2NyZWRpdG8gLDgyMCwxNDEsZGRjZDE0ZDktMTViNC00NTI4LWE1YmItOGRkNTVkYTk4&#xA;ZWY4O2NsaWVudGVzICwxMTY1LDcxMCw0ZWFiODA4My1lN2ZlLTRhOTctYWUwYi1jZTY4YzdhYTY2&#xA;ODk7ZW50aWRhZGVzICwxMTY1LDIwLGU1ZmI2OGE4LWFkMWQtNDJjNS05MGYyLWE3ZDNhZGViMzc3&#xA;Mjtyb2wgLDQxOSw1MDcsNTRhNjRhNGQtYzNjOS00ZWE2LWJjNmEtNmMxYTE5ZmQ0Nzk1O2p1aWNp&#xA;b3MgLDIwLDU2MCwxMTY3YTUzYy0zODgxLTQzN2ItODExYy1iZWIwYmEyN2U3Y2Y7Y2l1ZGFkICwx&#xA;MzYzLDc4OSwzY2E4OTBiOS0yMWIyLTQwYTAtYWY3ZC0wNjI1Yjc4ZGE3MDg7dXN1YXJpb3MgLDI2&#xA;MCwzODksZDc5YTQ3MzYtN2MyOC00ZDJkLThhODEtNTg1OGY1ZmNhODI5O2FzaWduYWNpb25fc2Vj&#xA;cmV0YXJpb3MgLDU0Niw0OTMsZDVhMmI2MTYtY2UzMS00NWI1LWEwMTEtYTQxN2EzM2E0OWZkOw=="/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -47,12 +47,7 @@ FROM juicios
 		<band height="79" splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch">
-			<textField>
-				<reportElement x="20" y="5" width="100" height="30" uuid="2bbe336c-7468-482e-a405-afb23bcdd194"/>
-				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="61" splitType="Stretch"/>
