@@ -110,6 +110,7 @@ class AprobacionAutoPagoController extends ControladorBase{
 					
 						$criterio_busqueda=$_POST["criterio_busqueda"];
 						$contenido_busqueda=$_POST["contenido_busqueda"];
+						$id_estado=$resultEstado[0]->id_estado;
 					
 						$aprobacion_auto_pago = new AutoPagosModel();
 							
@@ -131,7 +132,8 @@ class AprobacionAutoPagoController extends ControladorBase{
 						$where    = "usuarios.id_usuarios = auto_pagos.id_usuario_impulsor AND
 								  titulo_credito.id_titulo_credito = auto_pagos.id_titulo_credito AND
 								  estado.id_estado = auto_pagos.id_estado AND
-								  clientes.id_clientes = titulo_credito.id_clientes";
+								  clientes.id_clientes = titulo_credito.id_clientes AND
+								   estado.id_estado ='$id_estado'";
 					
 						$id       = "titulo_credito.id_titulo_credito";
 							

@@ -96,6 +96,68 @@
 			   });
 			});
         </script>
+       
+       <script>
+       $(document).ready(function(){
+
+    	   $("#tipo_gasto").prop("disabled","disabled");
+    	   $("#descripcion_diligencia").prop("disabled","disabled");
+           $("#tipo_documento").prop("disabled","disabled");
+           $("#numero_documento").prop("disabled","disabled");
+           $("#a_favor_de").prop("disabled","disabled");
+ 
+
+            $(".marcados").click(function(){
+
+            	var cant = $("input:checked").length;
+            	
+                if(cant!=0)
+                {
+            	 $("#tipo_gasto").prop("disabled","");
+          	     $("#descripcion_diligencia").prop("disabled","");
+                 $("#tipo_documento").prop("disabled","");
+                 $("#numero_documento").prop("disabled","");
+                 $("#a_favor_de").prop("disabled","");
+                }else
+                    {
+                	  $("#tipo_gasto").prop("disabled","disabled");
+               	      $("#descripcion_diligencia").prop("disabled","disabled");
+                      $("#tipo_documento").prop("disabled","disabled");
+                      $("#numero_documento").prop("disabled","disabled");
+                      $("#a_favor_de").prop("disabled","disabled");
+                    }
+                
+                });
+ 	 });
+       </script>
+       
+        <script >
+    $(document).ready(function(){
+        
+        $("#marcar_todo").change(function () {
+            if ($(this).is(':checked')) {
+               
+                $(".marcados").prop('checked', true); 
+                $("#tipo_gasto").prop("disabled","");
+         	     $("#descripcion_diligencia").prop("disabled","");
+                $("#tipo_documento").prop("disabled","");
+                $("#numero_documento").prop("disabled","");
+                $("#a_favor_de").prop("disabled","");
+
+                
+            } else {
+                
+                $("input:checkbox").prop('checked', false);
+                $("input[type=checkbox]").prop('checked', false);
+                $("#tipo_gasto").prop("disabled","disabled");
+         	      $("#descripcion_diligencia").prop("disabled","disabled");
+                $("#tipo_documento").prop("disabled","disabled");
+                $("#numero_documento").prop("disabled","disabled");
+                $("#a_favor_de").prop("disabled","disabled");
+            }
+        });
+        });
+	</script>
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -226,25 +288,29 @@
           <div class="col-xs-2 ">
           		<p class="formulario-subtitulo" >Hasta:</p>
 			  	<input type="date"  name="fecha_hasta" id="fecha_hasta" value="" class="form-control "/> 
-			    <div id="mensaje_fecha_hasta" class="errores"></div>
+	     <div id="mensaje_fecha_hasta" class="errores"></div>
 		</div>
 		 
-  			</div>
+  		</div>
 		</div>
         	
 		 </div>
 		 
+		 
+		 
 		 <div class="col-lg-12">
 		 
-		 
+		  <!-- comienza lateral izd -->
+		 <?php //if(!empty($resultSet)){?>
 		 <div class="col-lg-5">
 		 
-		 <div class="col-xs-4 ">
+		 <div class="col-xs-4 " style="margin-top: 5px;">
          		<p class="formulario-subtitulo" >Tipo Gasto:</p>
          </div>
-		<div class="col-xs-6 ">
+		<div class="col-xs-6 "  style="margin-top: 5px;">
          		
 			  	<select name="tipo_gasto" id="tipo_gasto"  class="form-control" >
+			  			<option value="0">--Seleccione</option>
 					<?php foreach($result_tipo_gasto as $restipo_gasto) { ?>
 						<option value="<?php echo $restipo_gasto->id_tipo_gastos;?>"><?php echo  $restipo_gasto->nombre_tipo_gastos; ?> </option>
 			            <?php } ?>
@@ -252,29 +318,29 @@
 			    <div id="mensaje_tipo_gasto" class="errores"></div>
 		</div>
 		
-		<div class="col-xs-4 ">
+		<div class="col-xs-4 "  style="margin-top: 5px;">
          		<p class="formulario-subtitulo" >Descripcion Diligencia:</p>
          </div>
-		<div class="col-xs-6 ">
+		<div class="col-xs-6 "  style="margin-top: 5px;">
          		<textarea id="descripcion_diligencia" name="descripcion_diligencia"  rows="1" class="form-control" ></textarea>
 			    <div id="mensaje_descripcion" class="errores"></div>
 		</div>
 		
-		<div class="col-xs-4 ">
+		<div class="col-xs-4 "  style="margin-top: 5px;">
          		<p class="formulario-subtitulo" >Valor($) a distribuir:</p>
          </div>
-		<div class="col-xs-6 ">
+		<div class="col-xs-6 "  style="margin-top: 5px;">
          		<input type="text"  name="valor_a_distribuir" id="valor_a_distribuir" value="" class="form-control"  disabled/> 
 			    <div id="mensaje_valor" class="errores"></div>
 		</div>
-		<div class="col-xs-10 ">
+		<div class="col-xs-10 "  style="margin-top: 5px;">
 		 <hr>
 		 </div>
 		 
-		 <div class="col-xs-4 ">
+		 <div class="col-xs-4 "  style="margin-top: 5px;">
          		<p class="formulario-subtitulo" >Documento/soporte:</p>
          </div>
-		<div class="col-xs-6 ">
+		<div class="col-xs-6 "  style="margin-top: 5px;">
          		
 			  	<select name="tipo_documento" id="tipo_documento"  class="form-control" >
 					<?php foreach($resultTipoDocumento as $val=>$desc) {?>
@@ -284,23 +350,25 @@
 			    <div id="mensaje_nombres" class="errores"></div>
 		</div>
 		
-		<div class="col-xs-4 ">
+		<div class="col-xs-4 "  style="margin-top: 5px;">
          		<p class="formulario-subtitulo" >Nº Documento:</p>
          </div>
-		<div class="col-xs-6 ">
+		<div class="col-xs-6 "  style="margin-top: 5px;">
          		<textarea id="numero_documento" name="numero_documento"  rows="1" class="form-control" ></textarea>
 			    <div id="mensaje_numero_documento" class="errores"></div>
 		</div>
 		
-		<div class="col-xs-4 ">
+		<div class="col-xs-4 "  style="margin-top: 5px;">
          		<p class="formulario-subtitulo" >A favor de:</p>
          </div>
-		<div class="col-xs-6 ">
+		<div class="col-xs-6 "  style="margin-top: 5px;">
          		<input type="text"  name="a_favor_de" id="a_favor_de" value="" class="form-control"/> 
 			    <div id="mensaje_a_favor_de" class="errores"></div>
 		</div>
 		 
 		 </div>
+		 <?php  //}?>
+		 <!-- termina lateral izd -->
 		 
 		 <div class="col-lg-7">
 		 <span class="form-control">registros:<?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
@@ -338,6 +406,7 @@
 		 </div>
 		 		 
 		 </div>
+		
 		 
 		 <div class="col-lg-12">
 		 <div class="col-lg-3">
@@ -353,25 +422,9 @@
 		 
 		 </div>
 		 </div>
+		  
 		 
-		 <div class="col-lg-12" style="margin-top: 20px;">
-		 <div class="panel panel-default">
-  			<div class="panel-body">
-  		</div>
-  		</div>
-		 </div>
 		 
-		  <div class="col-lg-12" style="margin-top: 20px;">
-		 <div class="col-lg-4">
-		 <span>Total detalle de gasto ($):</span>
-		 </div>
-		 <div class="col-lg-4">
-		 <input type="text" id="detalle_gasto" name="detalle_gasto" value="" class=" form-control" style="margin-top: 10px;"/> 
-		 </div>
-		 <div class="col-lg-4">
-		 <input type="submit" id="Imprimir" name="Imprimir" value="Imprimir" class="btn btn-default form-control" style="margin-top: 10px;"/> 	
-		 </div>
-		 </div>
       
        </form>
      
