@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-06-08T16:08:00 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OficiosReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b71cc022-3c17-4e00-9af9-3b00339ea7f9">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
+	<queryString>
+		<![CDATA[SELECT 
+  entidades.nombre_entidades, 
+  juicios.juicio_referido_titulo_credito, 
+  oficios.creado, 
+  juicios.creado, 
+  titulo_credito.id_titulo_credito, 
+  clientes.identificacion_clientes, 
+  clientes.nombres_clientes, 
+  clientes.direccion_clientes, 
+  ciudad.nombre_ciudad, 
+  asignacion_secretarios_view.secretarios, 
+  asignacion_secretarios_view.impulsores, 
+  asignacion_secretarios_view.liquidador
+FROM 
+  public.oficios, 
+  public.juicios, 
+  public.titulo_credito, 
+  public.entidades, 
+  public.clientes, 
+  public.ciudad, 
+  public.asignacion_secretarios_view
+WHERE 
+  oficios.id_juicios = juicios.id_juicios AND
+  juicios.id_usuarios = asignacion_secretarios_view.id_abogado AND
+  titulo_credito.id_titulo_credito = juicios.id_titulo_credito AND
+  entidades.id_entidades = oficios.id_entidades AND
+  clientes.id_clientes = juicios.id_clientes AND
+  ciudad.id_ciudad = juicios.id_ciudad]]>
+	</queryString>
+	<field name="nombre_entidades" class="java.lang.String"/>
+	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
+	<field name="creado" class="java.sql.Timestamp"/>
+	<field name="COLUMN_4" class="java.sql.Timestamp"/>
+	<field name="id_titulo_credito" class="java.lang.Integer"/>
+	<field name="identificacion_clientes" class="java.lang.String"/>
+	<field name="nombres_clientes" class="java.lang.String"/>
+	<field name="direccion_clientes" class="java.lang.String"/>
+	<field name="nombre_ciudad" class="java.lang.String"/>
+	<field name="secretarios" class="java.lang.String"/>
+	<field name="impulsores" class="java.lang.String"/>
+	<field name="liquidador" class="java.lang.String"/>
+	<group name="nombre_entidades">
+		<groupExpression><![CDATA[$F{nombre_entidades}]]></groupExpression>
+	</group>
+	<group name="juicio_referido_titulo_credito">
+		<groupExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></groupExpression>
+	</group>
+	<group name="creado">
+		<groupExpression><![CDATA[$F{creado}]]></groupExpression>
+	</group>
+	<group name="COLUMN_4">
+		<groupExpression><![CDATA[$F{COLUMN_4}]]></groupExpression>
+	</group>
+	<group name="id_titulo_credito">
+		<groupExpression><![CDATA[$F{id_titulo_credito}]]></groupExpression>
+	</group>
+	<group name="identificacion_clientes">
+		<groupExpression><![CDATA[$F{identificacion_clientes}]]></groupExpression>
+	</group>
+	<group name="nombres_clientes">
+		<groupExpression><![CDATA[$F{nombres_clientes}]]></groupExpression>
+	</group>
+	<group name="direccion_clientes">
+		<groupExpression><![CDATA[$F{direccion_clientes}]]></groupExpression>
+	</group>
+	<group name="nombre_ciudad">
+		<groupExpression><![CDATA[$F{nombre_ciudad}]]></groupExpression>
+	</group>
+	<group name="secretarios">
+		<groupExpression><![CDATA[$F{secretarios}]]></groupExpression>
+	</group>
+	<group name="impulsores">
+		<groupExpression><![CDATA[$F{impulsores}]]></groupExpression>
+	</group>
+	<group name="liquidador">
+		<groupExpression><![CDATA[$F{liquidador}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="13" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="-1" width="100" height="30" uuid="6959d738-dbc6-4581-a9b4-231a3e362be4"/>
+				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
