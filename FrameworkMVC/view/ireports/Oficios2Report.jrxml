@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-09T10:57:22 -->
+<!-- 2016-06-09T11:43:50 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Oficios2Report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="adae3722-326b-4d7f-95b5-2321a3d02998">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -95,72 +95,112 @@ WHERE
 		<band height="5" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="407" splitType="Stretch">
+		<band height="258" splitType="Stretch">
 			<textField>
-				<reportElement x="90" y="0" width="120" height="13" uuid="50a50d77-02d7-424b-b9f7-01534e35e7d3"/>
+				<reportElement x="50" y="0" width="120" height="13" uuid="50a50d77-02d7-424b-b9f7-01534e35e7d3"/>
 				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="70" y="0" width="20" height="19" uuid="8f5c4991-edef-4b81-bfd1-d14f97b9d77c"/>
+				<reportElement x="30" y="0" width="20" height="19" uuid="8f5c4991-edef-4b81-bfd1-d14f97b9d77c"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[A:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="18" width="60" height="16" uuid="88bb2fc0-3210-40f7-9fbf-f47c0753cd30"/>
+				<reportElement x="30" y="18" width="60" height="16" uuid="88bb2fc0-3210-40f7-9fbf-f47c0753cd30"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[OFICIO No.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="130" y="18" width="100" height="16" uuid="ede56628-b88e-4712-9ac1-061eb9ebadc7"/>
+				<reportElement x="90" y="18" width="100" height="16" uuid="ede56628-b88e-4712-9ac1-061eb9ebadc7"/>
 				<textFieldExpression><![CDATA[$F{numero_oficios}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="70" y="48" width="375" height="15" uuid="84d2289a-df39-4e91-9539-7f1f4782ee31"/>
+				<reportElement x="30" y="48" width="375" height="15" uuid="84d2289a-df39-4e91-9539-7f1f4782ee31"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Se le hace saber que dentro del presente juicio coactivo se encuentra lo siguiente:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="78" width="140" height="18" uuid="d27bcaf4-9ddb-4935-8162-44fdd08fdd66"/>
+				<reportElement x="30" y="78" width="140" height="18" uuid="d27bcaf4-9ddb-4935-8162-44fdd08fdd66"/>
 				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[JUICIO COACTIVO No.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="180" y="78" width="153" height="18" uuid="7f786c81-909a-4143-bb0d-3effaa564edd"/>
+				<reportElement x="140" y="78" width="153" height="18" uuid="7f786c81-909a-4143-bb0d-3effaa564edd"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="70" y="108" width="90" height="20" uuid="1a7aae3f-bb90-47ac-ab5a-d080490e91d8"/>
+				<reportElement x="30" y="108" width="90" height="20" uuid="1a7aae3f-bb90-47ac-ab5a-d080490e91d8"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="160" y="108" width="100" height="14" uuid="bf6229c0-9928-46b7-84c5-6c547ff7987e"/>
+				<reportElement x="120" y="108" width="100" height="14" uuid="bf6229c0-9928-46b7-84c5-6c547ff7987e"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="76" y="150" width="404" height="18" uuid="c0b3491f-5ef3-430d-9d68-00e12cb350c4"/>
-				<text><![CDATA[VISTOS: Del (los) título (s) de crédito No. (s)       que ha (n) sido expedido (s) por el]]></text>
+				<reportElement x="36" y="150" width="488" height="18" uuid="c0b3491f-5ef3-430d-9d68-00e12cb350c4"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[VISTOS: Del (los) título (s) de crédito No. (s)                              que ha (n) sido expedido (s) por el]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="280" y="150" width="20" height="13" uuid="1b6b9517-d319-4825-beeb-fc7353c8a436"/>
-				<textElement>
+				<reportElement x="273" y="150" width="20" height="13" uuid="1b6b9517-d319-4825-beeb-fc7353c8a436"/>
+				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id_titulo_credito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="168" width="488" height="18" uuid="bee33d57-62a4-422b-9db2-e33b27c4edac"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[Banco Nacional del Fomento S.A. en Liquidación, y emitido (s) en fecha                  , de conformidad con la]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="186" width="488" height="18" uuid="7f5a1ade-b728-410f-bec4-68bb07a6ec5d"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[(s) liquidación (es) que se manda (n) agregar a los autos aparece que ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="204" width="488" height="18" uuid="d186662a-6b1c-415f-a770-74a7bb290537"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[con C.I. 0904033735, adeuda (n) a esta Institución Bancaria en Liquidación la]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="222" width="488" height="18" uuid="364cda7a-5a98-4c2f-a852-94c1b7d80de1"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[suma de USD$ 700.55 ( SETECIENTOS 55/100 DOLARES DE LOS ESTADOS UNIDOS DE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="240" width="488" height="18" uuid="1937dae4-d6d1-47e9-b143-abde7e4b1e63"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[AMÉRICA), más los intereses y costas y gastos judiciales que se generen hasta la fecha de pago]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="362" y="167" width="58" height="14" uuid="8ec2bd36-4bc2-4a2c-896b-e3e38f130ce3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{creado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="186" width="174" height="14" uuid="681820d2-812b-423f-879e-99d6e5036cad"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
