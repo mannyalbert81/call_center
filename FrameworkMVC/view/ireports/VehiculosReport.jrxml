@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-08T15:58:35 -->
+<!-- 2016-06-09T11:39:35 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VehiculosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5955712-b99a-4538-ad86-41065f296b63">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -11,7 +11,9 @@
 	vehiculos_embargados.placa_vehiculos_embargados,
 	clientes.identificacion_clientes,
 	clientes.nombres_clientes,
-	ciudad.nombre_ciudad
+	ciudad.nombre_ciudad,
+	vehiculos_embargados.fecha_ingreso_vehiculos_embargados,
+	age(now(),vehiculos_embargados.fecha_ingreso_vehiculos_embargados) AS dias
 FROM vehiculos_embargados
 	INNER JOIN clientes ON 
 	 vehiculos_embargados.id_clientes = clientes.id_clientes 
@@ -27,124 +29,151 @@ FROM vehiculos_embargados
 	<field name="identificacion_clientes" class="java.lang.String"/>
 	<field name="nombres_clientes" class="java.lang.String"/>
 	<field name="nombre_ciudad" class="java.lang.String"/>
+	<field name="fecha_ingreso_vehiculos_embargados" class="java.lang.String"/>
+	<field name="dias" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="81" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="800" height="70" forecolor="#000000" backcolor="#000000" uuid="e4690d77-0fd5-4b2f-aeea-e21f851f2bde"/>
+				<reportElement x="0" y="-2" width="800" height="70" forecolor="#000000" backcolor="#000000" uuid="e4690d77-0fd5-4b2f-aeea-e21f851f2bde"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="0" y="20" width="800" height="50" forecolor="#FFFFFF" uuid="a2cbe124-466e-40dd-8f91-ceeae43a482a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" size="25" isBold="true" isItalic="false"/>
+					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Reporte Vehiculos Embargados]]></text>
+				<text><![CDATA[REPORTE VEHICULOS EMBARGADOS]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="685" y="50" width="115" height="20" forecolor="#FFFFFF" uuid="f0546d6a-6288-41c6-8c87-3082028f97ad"/>
 				<textElement>
-					<font fontName="Rockwell Extra Bold" size="12" isBold="true"/>
+					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="633" y="50" width="50" height="20" forecolor="#FFFFFF" uuid="1f470ad0-c5fa-4950-9a73-da2b75151a69"/>
+				<reportElement x="633" y="49" width="50" height="20" forecolor="#FFFFFF" uuid="1f470ad0-c5fa-4950-9a73-da2b75151a69"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right">
-					<font fontName="Rockwell Extra Bold" size="12" isBold="true"/>
+					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="79" splitType="Stretch">
+		<band height="44" splitType="Stretch">
 			<rectangle>
 				<reportElement x="9" y="0" width="782" height="30" forecolor="#999999" backcolor="#999999" uuid="588acfe6-7c8e-4a14-bdc6-0a34baa9660d"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="16" y="10" width="111" height="30" forecolor="#FFFFFF" uuid="2eea8030-e615-4e2b-8e36-426b331bb69f"/>
+				<reportElement x="33" y="8" width="111" height="29" forecolor="#FFFFFF" uuid="2eea8030-e615-4e2b-8e36-426b331bb69f"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
-				<text><![CDATA[IDENTIFICACION]]></text>
+				<text><![CDATA[Identificacion]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="130" y="10" width="100" height="29" forecolor="#FFFFFF" uuid="77e6b7c5-6503-4d47-9902-771ad7a50ced"/>
+				<reportElement x="144" y="8" width="100" height="29" forecolor="#FFFFFF" uuid="77e6b7c5-6503-4d47-9902-771ad7a50ced"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
-				<text><![CDATA[NOMBRE]]></text>
+				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="240" y="10" width="100" height="29" forecolor="#FFFFFF" uuid="6f74d458-c531-4cbb-a855-f9cc4e5c9e45"/>
+				<reportElement x="245" y="8" width="100" height="29" forecolor="#FFFFFF" uuid="6f74d458-c531-4cbb-a855-f9cc4e5c9e45"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
-				<text><![CDATA[PLACA]]></text>
+				<text><![CDATA[Placa]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="346" y="8" width="100" height="29" forecolor="#FFFFFF" uuid="92e41c93-b05d-4bbe-9adf-27091332d5ce"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="445" y="8" width="135" height="29" forecolor="#FFFFFF" uuid="ba48800c-8906-4b2e-9ffb-747299ba1b14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="8" width="100" height="29" forecolor="#FFFFFF" uuid="f0e7134b-57a3-454e-90a9-cdafaea192f4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ciudad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="680" y="8" width="100" height="29" forecolor="#FFFFFF" uuid="4c662b48-b156-45ea-b8db-62acd047b71d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dias Retenidos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="16" y="49" width="101" height="20" uuid="9e2cb07c-f40f-40ee-942d-48dd336a743d"/>
+				<reportElement x="33" y="0" width="111" height="20" uuid="9e2cb07c-f40f-40ee-942d-48dd336a743d"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Raavi"/>
+					<font fontName="Raavi" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{identificacion_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="130" y="49" width="100" height="20" uuid="aee44296-e9ee-4bb3-b695-e75db99e7a65"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="144" y="0" width="101" height="20" uuid="aee44296-e9ee-4bb3-b695-e75db99e7a65"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="240" y="49" width="100" height="20" uuid="4592b595-49d0-4731-a06b-21f758ac5f5d"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="245" y="0" width="100" height="20" uuid="4592b595-49d0-4731-a06b-21f758ac5f5d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{placa_vehiculos_embargados}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="351" y="10" width="100" height="29" forecolor="#FFFFFF" uuid="92e41c93-b05d-4bbe-9adf-27091332d5ce"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
-				</textElement>
-				<text><![CDATA[MODELO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="460" y="10" width="210" height="29" forecolor="#FFFFFF" uuid="ba48800c-8906-4b2e-9ffb-747299ba1b14"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
-				</textElement>
-				<text><![CDATA[OBSERVACION]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="680" y="10" width="100" height="29" forecolor="#FFFFFF" uuid="f0e7134b-57a3-454e-90a9-cdafaea192f4"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
-				</textElement>
-				<text><![CDATA[CUIDAD]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="351" y="50" width="100" height="20" uuid="eecc91d0-90a9-438b-ab49-be4156a17e26"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="345" y="0" width="100" height="20" uuid="eecc91d0-90a9-438b-ab49-be4156a17e26"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{modelo_vehiculos_embargados}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="460" y="50" width="210" height="20" uuid="420b956c-ae66-40b5-9ad7-3d202fc9b6b9"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="446" y="0" width="134" height="20" uuid="420b956c-ae66-40b5-9ad7-3d202fc9b6b9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{observacion_vehiculos_embargados}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="680" y="50" width="100" height="20" uuid="dd3a7cd8-72b0-4c6c-abd7-4463ceea287f"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="580" y="0" width="101" height="20" uuid="dd3a7cd8-72b0-4c6c-abd7-4463ceea287f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="680" y="5" width="100" height="19" uuid="06e0fab3-8e24-431b-8e04-3baae21acfe1"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dias}]]></textFieldExpression>
+			</textField>
 		</band>
-	</pageHeader>
-	<columnHeader>
-		<band height="34" splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="125" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
@@ -158,16 +187,16 @@ FROM vehiculos_embargados
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="250" y="44" width="320" height="12" forecolor="#FFFFFF" uuid="3004ec7d-78ec-42aa-854a-906c68005077"/>
+				<reportElement x="250" y="46" width="320" height="12" forecolor="#FFFFFF" uuid="3004ec7d-78ec-42aa-854a-906c68005077"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" size="11" isBold="true" isItalic="false"/>
+					<font fontName="Arial" size="8" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[DESARROLLADO POR MASOFT]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="760" y="44" width="40" height="20" forecolor="#FFFFFF" uuid="e7992d52-a10e-4ccb-b966-156a67185876"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
