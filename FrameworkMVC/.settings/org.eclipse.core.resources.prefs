@@ -3,10 +3,9 @@
 >>>>>>>=branch 'master' of https\://github.com/mannyalbert81/coactiva.git
 eclipse.preferences.version=1
 encoding//view/ireports/Invoice.jrxml=UTF-8
-<<<<<<< HEAD
+encoding//view/ireports/OficiosReport.jrxml=UTF-8
+encoding//view/ireports/OficiosSubreport.jrxml=UTF-8
+encoding//view/ireports/Subreporte.jrxml=UTF-8
 encoding//view/ireports/UsuariosReport.jrxml=UTF-8
-=======
-encoding//view/ireports/Oficios2Report.jrxml=UTF-8
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 encoding//view/ireports/VehiculosReport.jrxml=UTF-8
 encoding/<project>=UTF-8
