@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-09T11:46:55 -->
+<!-- 2016-06-09T12:26:04 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -35,7 +35,7 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
+		<band height="94" splitType="Stretch">
 			<rectangle>
 				<reportElement x="0" y="0" width="800" height="70" forecolor="#000000" backcolor="#000000" uuid="309f92f9-0c25-4218-b476-9f1c452ca0f7"/>
 			</rectangle>

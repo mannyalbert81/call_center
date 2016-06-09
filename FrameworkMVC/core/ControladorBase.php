@@ -36,11 +36,8 @@ class ControladorBase{
     }
     
 
-    public function ireport($vista,$datos){
-    	foreach ($datos as $id_assoc => $valor) {
-    		${$id_assoc}=$valor;
-    	}
-    
+    public function ireport($vista){
+    	
     	require_once 'core/AyudaVistas.php';
     	$helper=new AyudaVistas();
     

@@ -451,5 +451,21 @@ public function index(){
 	
 	}
 	
+	
+	public function ReporteClientes(){
+	
+		session_start();
+		/*
+		include_once('view/ireports/PhpJasperLibrary/class/tcpdf/tcpdf.php');
+		include_once("view/ireports/PhpJasperLibrary/class/PHPJasperXML.inc.php");
+		include_once ('view/ireports/conexion.php');
+		*/
+		
+		
+		
+		$this->ireport("ContClientes");
+	
+	}
+	
 }
 ?>

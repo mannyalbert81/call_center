@@ -228,64 +228,7 @@
        
        
        <?php
-       
-       
-       /*
-  		   $sel_id_usuario = "";
-  		   $sel_nombre_usuario = "";
-  		   $sel_usuario_usuario = "";
-  		   $sel_telefono_usuario = "";
-  		   $sel_celular_usuario = ""; 
-  		   $sel_correo_usuario = ""; 
-  		   $sel_id_rol = ""; 
-  		   $sel_id_estado = "";
-  		   $sel_cedula_usuario = "";
-		   if ($nuevo_usuario)
-		   {
-		   	
-		   }
-		   else 
-		   {
-			   	if($_SERVER['REQUEST_METHOD']=='POST' )
-			   	{
-			   		//$sel_foto_fichas_fotos = $_FILES['foto_fichas_fotos'];
-			   		
-			   		$sel_id_usuario = $_POST['id_usuarios'];
-			   		$sel_nombres_usuario = $_POST['nombre_usuarios'];
-			   	    $sel_telefono_usuario = $_POST['telefono_usuarios'];
-			   		$sel_celular_usuario = $_POST['celular_usuarios'];
-			   		$sel_correo_usuario = $_POST['correo_usuarios'];
-			   		$sel_id_rol = $_POST['roles'];
-			   		$sel_id_estado = $_POST['estados'];
-			   		$sel_cedula_usuario = $_POST['cedula_usuarios'];
-
-			   	}
-			   
-			   	if($_SERVER['REQUEST_METHOD']=='GET' )
-			   	{
-			   		//$sel_foto_fichas_fotos = $_FILES['foto_fichas_fotos'];
-			   		if ($resultEdit !="" ) {
-			   			
-			   		}
-			   		else 
-			   		{
-				   		$sel_id_usuario = $_GET['id_usuarios'];
-				   		$sel_nombre_usuario = $_GET['nombres_usuarios'];
-				   		$sel_telefono_usuario = $_GET['telefono_usuarios'];
-				   		$sel_celular_usuario = $_GET['celular_usuarios'];
-				   		$sel_correo_usuario = $_GET['correo_usuarios'];
-				   		$sel_id_rol = $_GET['roles'];
-				   		$sel_id_estado = $_GET['estados'];
-				   		$sel_cedula_usuario = $_GET['cedula_usuarios'];
-			   		}
-			   		
-			   	}
-			
-		   }
-		   
-		   
-		   		*/
-		   
+    
 		?>
  
   
@@ -539,7 +482,14 @@
 			                	<div class="right">
 			                    <a href="<?php echo $helper->url("Clientes","borrarId"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
-			                <hr/>
+			              
+		               </td>
+		               
+		               <td>   
+			                	<div class="right">
+			                    <a href="<?php echo $helper->url("Clientes","ReporteClientes"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-success" style="font-size:65%;">Reporte</a>
+			                </div>
+			               <hr/>
 		               </td>
 		    		</tr>
 		        <?php } } ?>
