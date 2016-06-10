@@ -3,8 +3,8 @@
 #Importas la librer�a PhpJasperLibrary
 ob_end_clean(); //add this line here
 
-include_once('view/ireports/PhpJasperLibrary/class/tcpdf/tcpdf.php');
-include_once("view/ireports/PhpJasperLibrary/class/PHPJasperXML.inc.php");
+include_once('PhpJasperLibrary/class/tcpdf/tcpdf.php');
+include_once("PhpJasperLibrary/class/PHPJasperXML.inc.php");
 
 include_once 'conexion.php';
 
