@@ -1,4 +1,4 @@
-<?php
+    <?php
 $server="localhost";
 $db="phpjasperxml";
 $user="root";

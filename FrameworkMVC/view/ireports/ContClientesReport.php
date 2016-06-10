@@ -16,7 +16,8 @@ $pass    = pass;
 $db      = db;
 $driver  = driver;
 ini_set('display_errors', 0);
-  
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+$PHPJasperXML->debugsql=false;
 #aqu� va el reporte
 
 $PHPJasperXML->arrayParameter=array("_id_clientes"=>80);
