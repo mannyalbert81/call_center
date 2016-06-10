@@ -28,8 +28,8 @@ $PHPJasperXML->arrayParameter=array("_id_clientes"=>$id);
 $PHPJasperXML->load_xml_file("ClientesReport.jrxml");
 
 
-//$PHPJasperXML = new PHPJasperXML();
-//$PHPJasperXML->xml_dismantle($xml); 
+////$PHPJasperXML = new PHPJasperXML();
+////$PHPJasperXML->xml_dismantle($xml); 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $PHPJasperXML->outpage("I");
 
