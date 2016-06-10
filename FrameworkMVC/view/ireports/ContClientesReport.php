@@ -19,12 +19,16 @@ ini_set('display_errors', 0);
   
 #aqu� va el reporte
 
-$PHPJasperXML->arrayParameter=array("_id_clientes"=>80);
 
-$xml =  simplexml_load_file("ClientesReport.jrxml");
+$id=$_GET['id_clientes'];
+$PHPJasperXML = new PHPJasperXML("en","TCPDF");
+$PHPJasperXML->debugsql=false;
+$PHPJasperXML->arrayParameter=array("_id_clientes"=>$id);
+$PHPJasperXML->load_xml_file("ClientesReport.jrxml");
 
-$PHPJasperXML = new PHPJasperXML();
-$PHPJasperXML->xml_dismantle($xml); 
+
+//$PHPJasperXML = new PHPJasperXML();
+//$PHPJasperXML->xml_dismantle($xml); 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $PHPJasperXML->outpage("I");
 
