@@ -19,6 +19,7 @@ ini_set('display_errors', 0);
   
 #aqu� va el reporte
 
+$PHPJasperXML->arrayParameter=array("_id_clientes"=>80);
 
 $xml =  simplexml_load_file("ClientesReport.jrxml");
 
