@@ -460,10 +460,12 @@ public function index(){
 		include_once("view/ireports/PhpJasperLibrary/class/PHPJasperXML.inc.php");
 		include_once ('view/ireports/conexion.php');
 		*/
-		echo "<a href='tuArchivo.php' target='tuArchivo' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\"> Contrato </a>";
+		$id_clientes=$_GET['id_clientes'];
+		echo "<a href='/FrameworkMVC/view/ireports/ContClientesReport.php?id_clientes=".$id_clientes."' target='/FrameworkMVC/view/ireports/ContClientesReport.php' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
 		    //echo "<a href='tuArchivo.php?variablePorURL=".$variablePorURL."' target='tuArchivo' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\"> Contrato </a>";
 		
 		//$this->ireport("ContClientes");
+		
 	
 	}
 	

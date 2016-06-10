@@ -6,7 +6,7 @@ ob_end_clean(); //add this line here
 include_once('PhpJasperLibrary/class/tcpdf/tcpdf.php');
 include_once("PhpJasperLibrary/class/PHPJasperXML.inc.php");
 
-include_once 'conexion.php';
+include_once ('conexion.php');
 
 
 #Conectas a la base de datos 
@@ -19,10 +19,9 @@ ini_set('display_errors', 0);
   
 #aqu� va el reporte
 
+
 $xml =  simplexml_load_file("ClientesReport.jrxml");
 
-
-	
 $PHPJasperXML = new PHPJasperXML();
 $PHPJasperXML->xml_dismantle($xml); 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);

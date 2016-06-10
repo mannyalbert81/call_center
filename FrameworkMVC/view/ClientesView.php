@@ -34,8 +34,9 @@
         
         <script>
 			function abrir() {
-			open('/FrameworkMVC/view/ireports/ContClientesReport.php','','top=1000,left=1000,width=1000,height=1000') ;
-
+			//open('/FrameworkMVC/view/ireports/ContClientesReport.php','','top=500,left=500,width=500,height=500') ;
+			open('','','top=500,left=500,width=500,height=500') ;
+            
 			}
 			</script>
 			
@@ -499,8 +500,11 @@
 		               
 		               <td>   
 			                	<div class="right">
-			                	<a href="javascript:abrir('/FrameworkMVC/view/ireports/ContClientesReport.php')" class="btn btn-success" style="font-size:65%;">Reporte</a>
 			                	
+			                	 <!-- <a href="<?php echo $helper->url("Clientes","ReporteClientes"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-danger" style="font-size:65%;">Reporte</a>
+			                   -->
+			                	<a href="/FrameworkMVC/view/ireports/ContClientesReport.php?id_clientes=<?php echo $res->id_clientes; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-danger" style="font-size:65%;">Reporte</a>
+			                      
 			                </div>
 			                
 			                
@@ -512,6 +516,7 @@
             <?php 
             
             //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
+            //<a href="javascript:abrir('/FrameworkMVC/view/ireports/ContClientesReport.php')" class="btn btn-success" style="font-size:65%;">Reporte</a>
             
             ?>
             
