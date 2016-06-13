@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-10T12:09:48 -->
+<!-- 2016-06-13T11:16:57 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
-	<parameter name="imagen" class="java.lang.String"/>
+	<parameter name="_id_clientes" class="java.lang.Integer">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
 	<queryString>
-		<![CDATA[SELECT rol.nombre_rol,
-	ciudad.nombre_ciudad,
-	usuarios.nombre_usuarios,
-	usuarios.telefono_usuarios,
-	usuarios.celular_usuarios,
-	usuarios.correo_usuarios,
-	usuarios.cedula_usuarios,
-	estado.nombre_estado,
-	firmas_digitales.imagen_firmas_digitales
-FROM ciudad,
-	rol,
-	estado,
-	firmas_digitales
-	INNER JOIN usuarios ON 
-	 firmas_digitales.id_usuarios = usuarios.id_usuarios 
+		<![CDATA[SELECT 
+ tipo_identificacion.nombre_tipo_identificacion, 
+  ciudad.nombre_ciudad, 
+  tipo_persona.nombre_tipo_persona, 
+  clientes.identificacion_clientes, 
+  clientes.nombres_clientes, 
+  clientes.telefono_clientes, 
+  clientes.celular_clientes, 
+  clientes.direccion_clientes, 
+  clientes.creado
+FROM 
+ public.clientes, 
+  public.ciudad, 
+  public.tipo_persona, 
+  public.tipo_identificacion
 WHERE 
-	 ciudad.id_ciudad = usuarios.id_ciudad 
-	 AND rol.id_rol = usuarios.id_rol 
-	 AND estado.id_estado = usuarios.id_estado]]>
+ clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion AND
+  ciudad.id_ciudad = clientes.id_ciudad AND
+  tipo_persona.id_tipo_persona = clientes.id_tipo_persona 
+  AND clientes.id_clientes =  $P{_id_clientes}]]>
 	</queryString>
-	<field name="nombre_rol" class="java.lang.String"/>
+	<field name="nombre_tipo_identificacion" class="java.lang.String"/>
 	<field name="nombre_ciudad" class="java.lang.String"/>
-	<field name="nombre_usuarios" class="java.lang.String"/>
-	<field name="telefono_usuarios" class="java.lang.String"/>
-	<field name="celular_usuarios" class="java.lang.String"/>
-	<field name="correo_usuarios" class="java.lang.String"/>
-	<field name="cedula_usuarios" class="java.lang.String"/>
-	<field name="nombre_estado" class="java.lang.String"/>
+	<field name="nombre_tipo_persona" class="java.lang.String"/>
+	<field name="identificacion_clientes" class="java.lang.String"/>
+	<field name="nombres_clientes" class="java.lang.String"/>
+	<field name="telefono_clientes" class="java.lang.String"/>
+	<field name="celular_clientes" class="java.lang.String"/>
+	<field name="direccion_clientes" class="java.lang.String"/>
+	<field name="creado" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -47,7 +51,7 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[REPORTE USUARIOS]]></text>
+				<text><![CDATA[REPORTE DE CLIENTES]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="633" y="49" width="50" height="20" forecolor="#FFFFFF" uuid="ff8ac2a3-a816-49c1-83bb-5cddfe9fe680"/>
@@ -65,64 +69,71 @@ WHERE
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="1" y="0" width="209" height="69" uuid="8f583d6a-14c2-417d-9289-d62e7abaeac1"/>
+				<reportElement x="1" y="0" width="209" height="69" uuid="2e71147d-46b9-4a83-91b2-71e2e8c89be3"/>
 				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="50" splitType="Stretch">
+		<band height="57" splitType="Stretch">
 			<rectangle>
 				<reportElement x="9" y="6" width="782" height="30" forecolor="#999999" backcolor="#999999" uuid="315890a9-2ddd-4a73-9a66-543a6e06826c"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="334" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="094cf221-b2b7-4cc5-8017-f8673eb3ad9c"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Correo]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="130" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="71d7bcbb-e8a7-4f13-bea8-af9f356c0afd"/>
+				<reportElement x="10" y="15" width="60" height="21" forecolor="#FFFFFF" uuid="f6a509eb-8679-4bf1-94ba-45b56f6f5a5e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Telefono]]></text>
+				<text><![CDATA[Ciudad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="20" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="f6a509eb-8679-4bf1-94ba-45b56f6f5a5e"/>
+				<reportElement x="105" y="15" width="60" height="21" forecolor="#FFFFFF" uuid="d9462914-91b9-48b5-8a41-c961e97b8082"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nombre]]></text>
+				<text><![CDATA[Nombres]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="251" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="298967ea-3c37-4152-befa-5e01f9f1485d"/>
+				<reportElement x="227" y="15" width="68" height="21" forecolor="#FFFFFF" uuid="3044fd5b-3e45-4891-bded-d9c0c4459b31"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CI / RUC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="15" width="90" height="21" forecolor="#FFFFFF" uuid="bcd25db7-690a-4c27-b109-1b4d44606cce"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Persona]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="737" y="10" width="50" height="21" forecolor="#FFFFFF" uuid="0e2ea34c-180b-42e9-be40-36d817e1c7e9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Registro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="544" y="15" width="60" height="21" forecolor="#FFFFFF" uuid="7543dca8-5a43-4e75-a119-d7337538768f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teléfono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="640" y="15" width="60" height="21" forecolor="#FFFFFF" uuid="e89b413d-97cb-4444-9f84-5be2cf35275f"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Celular]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="460" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="a32d0926-18f8-45d8-838b-c294ed6ae26d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Rol]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="602" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="af14e1ac-21f7-49cb-9882-b4ea4cef463f"/>
+				<reportElement x="428" y="15" width="70" height="21" forecolor="#FFFFFF" uuid="a17b235b-f5d2-4a1e-af7f-b808b7d4faa0"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Estado]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="687" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="fb3bf942-6bc8-40ef-a8c7-77484949ecfb"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Cedula]]></text>
+				<text><![CDATA[Dirección]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -132,53 +143,36 @@ WHERE
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="687" y="0" width="111" height="20" uuid="c57bb7a9-10ef-4a5f-a808-c74b5776ab7e"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Raavi"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{cedula_usuarios}]]></textFieldExpression>
+				<reportElement x="12" y="4" width="60" height="16" uuid="1a8532e3-6510-42ed-aa1e-7a1a3684f270"/>
+				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="597" y="0" width="111" height="20" uuid="0db44d44-67f1-4f71-8251-f7441629ccd0"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Raavi" isItalic="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_estado}]]></textFieldExpression>
+				<reportElement x="80" y="4" width="138" height="16" uuid="3c6c7084-2c74-4014-b290-05b7d65558f2"/>
+				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="464" y="1" width="111" height="20" uuid="30eeb45b-a07f-4f3c-9104-f6883de54243"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Raavi"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_rol}]]></textFieldExpression>
+				<reportElement x="225" y="4" width="90" height="16" uuid="126379b3-77d6-487d-aad7-7788c37687db"/>
+				<textFieldExpression><![CDATA[$F{identificacion_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="351" y="1" width="111" height="20" uuid="cc331f3c-9f14-4188-beb6-9dc3b08bcbdf"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Raavi"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{correo_usuarios}]]></textFieldExpression>
+				<reportElement x="336" y="4" width="48" height="16" uuid="d6141f27-2746-4b4c-a893-3e60090e3864"/>
+				<textFieldExpression><![CDATA[$F{nombre_tipo_persona}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="240" y="0" width="111" height="20" uuid="a191bb6a-a8db-48b2-a745-f6546f647f52"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Raavi"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{celular_usuarios}]]></textFieldExpression>
+				<reportElement x="548" y="4" width="48" height="16" uuid="641ccdf6-1cae-4bfa-9374-0310a936d11e"/>
+				<textFieldExpression><![CDATA[$F{telefono_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="130" y="0" width="111" height="20" uuid="114dd61f-db45-4b0a-81a3-607f45c639e8"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Raavi"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{telefono_usuarios}]]></textFieldExpression>
+				<reportElement x="640" y="4" width="54" height="16" uuid="df8c5e74-8d0b-4378-95ad-21a3b06a68d9"/>
+				<textFieldExpression><![CDATA[$F{celular_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="20" y="1" width="111" height="20" uuid="867d6afa-8b26-4095-ada4-4f764095d8f5"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Raavi"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
+				<reportElement x="730" y="3" width="56" height="16" uuid="f04b7d77-9bd0-4673-b0e0-0164c1099565"/>
+				<textFieldExpression><![CDATA[$F{creado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="4" width="130" height="16" uuid="0bd94fad-852c-4eda-a194-afe2dbe748b7"/>
+				<textFieldExpression><![CDATA[$F{direccion_clientes}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -9,8 +9,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-
-     
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -112,7 +110,6 @@ $(document).ready(function(){
 				  </ul>
 								  
 			</div>
-			
 			<!-- empieza notificacion -->
 			<form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
 			<div class="dropdown" id="div_head">

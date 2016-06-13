@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-09T11:46:54 -->
+<!-- 2016-06-13T12:18:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VehiculosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5955712-b99a-4538-ad86-41065f296b63">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
+	<parameter name="_id_vehiculos_embargados" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT marca_vehiculos.nombre_marca_vehiculos,
 	vehiculos_embargados.observacion_vehiculos_embargados,
@@ -20,7 +21,8 @@ FROM vehiculos_embargados
 	INNER JOIN marca_vehiculos ON 
 	 vehiculos_embargados.id_marca_vehiculos = marca_vehiculos.id_marca_vehiculos 
 	INNER JOIN ciudad ON 
-	 clientes.id_ciudad = ciudad.id_ciudad]]>
+	 clientes.id_ciudad = ciudad.id_ciudad AND
+	vehiculos_embargados. id_vehiculos_embargados = $P{_id_vehiculos_embargados}]]>
 	</queryString>
 	<field name="nombre_marca_vehiculos" class="java.lang.String"/>
 	<field name="observacion_vehiculos_embargados" class="java.lang.String"/>
@@ -125,14 +127,14 @@ FROM vehiculos_embargados
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="33" y="0" width="111" height="20" uuid="9e2cb07c-f40f-40ee-942d-48dd336a743d"/>
+				<reportElement x="35" y="0" width="111" height="20" uuid="9e2cb07c-f40f-40ee-942d-48dd336a743d"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Raavi" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{identificacion_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="144" y="0" width="101" height="20" uuid="aee44296-e9ee-4bb3-b695-e75db99e7a65"/>
+				<reportElement x="140" y="0" width="101" height="20" uuid="aee44296-e9ee-4bb3-b695-e75db99e7a65"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>

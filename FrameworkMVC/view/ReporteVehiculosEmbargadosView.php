@@ -186,7 +186,7 @@
             
 	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
 	        		<tr>
-	        
+	       
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_vehiculos; ?>  </td>
@@ -196,6 +196,12 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_ingreso_vehiculos_embargados; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php $fecha_ingreso=strtotime("$res->fecha_ingreso_vehiculos_embargados"); $diferencia=$fecha_actual-$fecha_ingreso; echo $diferencia/86400; ?>  </td>
 		     
+		             <td>   
+			                	<div class="right">
+			                	<a href="/FrameworkMVC/view/ireports/ContVehiculosSubReport.php?id_vehiculos_embargados=<?php echo $res->id_vehiculos_embargados; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-success" style="font-size:65%;">Reporte</a>
+			                 </div>
+			              
+		               </td>
 		    		</tr>
 		        <?php } } ?>
       

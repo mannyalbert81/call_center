@@ -500,14 +500,8 @@
 		               
 		               <td>   
 			                	<div class="right">
-			                	
-			                	 <!-- <a href="<?php echo $helper->url("Clientes","ReporteClientes"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-danger" style="font-size:65%;">Reporte</a>
-			                   -->
-			                	<a href="/FrameworkMVC/view/ireports/ContClientesReport.php?id_clientes=<?php echo $res->id_clientes; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-danger" style="font-size:65%;">Reporte</a>
-			                      
-			                </div>
-			                
-			                
+			                	<a href="/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=<?php echo $res->id_clientes; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-success" style="font-size:65%;">Reporte</a>
+			                 </div>
 			               <hr/>
 		               </td>
 		    		</tr>
