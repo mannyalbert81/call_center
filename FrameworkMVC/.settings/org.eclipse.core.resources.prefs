@@ -2,9 +2,13 @@
 <<<<<<<=HEAD
 >>>>>>>=branch 'master' of https\://github.com/mannyalbert81/coactiva.git
 eclipse.preferences.version=1
+encoding//view/ireports/AsignacionSecretariosReport.jrxml=UTF-8
+encoding//view/ireports/AsignacionSecretariosSubReport.jrxml=UTF-8
 encoding//view/ireports/ClientesReport.jrxml=UTF-8
 encoding//view/ireports/ClientesSubReport.jrxml=UTF-8
+encoding//view/ireports/HonorariosReport.jrxml=UTF-8
 encoding//view/ireports/Invoice.jrxml=UTF-8
+encoding//view/ireports/NotificacionesReport.jrxml=UTF-8
 encoding//view/ireports/OficiosReport.jrxml=UTF-8
 encoding//view/ireports/UsuariosSubReport.jrxml=UTF-8
 encoding//view/ireports/VehiculosSubReport.jrxml=UTF-8
