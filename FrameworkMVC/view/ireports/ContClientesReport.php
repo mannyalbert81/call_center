@@ -16,7 +16,8 @@ $pass    = pass;
 $db      = db;
 $driver  = driver;
 ini_set('display_errors', 0);
-  
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+$PHPJasperXML->debugsql=false;
 #aqu� va el reporte
 
 
@@ -27,8 +28,8 @@ $PHPJasperXML->arrayParameter=array("_id_clientes"=>$id);
 $PHPJasperXML->load_xml_file("ClientesReport.jrxml");
 
 
-//$PHPJasperXML = new PHPJasperXML();
-//$PHPJasperXML->xml_dismantle($xml); 
+////$PHPJasperXML = new PHPJasperXML();
+////$PHPJasperXML->xml_dismantle($xml); 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $PHPJasperXML->outpage("I");
 
