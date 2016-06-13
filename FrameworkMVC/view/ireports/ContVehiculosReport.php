@@ -16,10 +16,15 @@ ini_set('display_errors', 0);
 
 $xml =  simplexml_load_file("VehiculosReport.jrxml");
 
-//$PHPJasperXML = new PHPJasperXML("en","XLS");
-$PHPJasperXML = new PHPJasperXML();
+$PHPJasperXML = new PHPJasperXML("en","XLS");
+//$PHPJasperXML = new PHPJasperXML();
 $PHPJasperXML->xml_dismantle($xml); 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 //$PHPJasperXML->outpage("I");
-$PHPJasperXML->outpage("I","sample9.xls");
+
+$PHPJasperXML->outpage("I","sample9.XLS"); 
+
+
+
+
 ?>
