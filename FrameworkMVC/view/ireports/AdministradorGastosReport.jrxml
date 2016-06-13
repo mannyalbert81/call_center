@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-06-13T17:26:08 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AdministradorGastos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0a144fcb-1efa-4266-bcc8-d3103919b782">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="YWRtaW5pc3RyYWRvcl9nYXN0b3MgQVMgLDI3NCwxMzUsMzJkOTVhN2QtNjU5Ni00ZDE0LTk5ODct&#xA;ODk1ODY0ZTc0Y2M5O3RpcG9fZ2FzdG9zIEFTICw2NzMsMTUwLDM3YzQ1OTQ4LWEyYTUtNDJlZC04&#xA;NjQ2LTI2MjgyMWQzZmE3Yjs="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
+	<queryString>
+		<![CDATA[SELECT administrador_gastos.nombre_administrador_gastos,
+	administrador_gastos.estado,
+	tipo_gastos.nombre_tipo_gastos,
+	tipo_gastos.valor_tipo_gasto
+FROM administrador_gastos
+	INNER JOIN tipo_gastos ON 
+	 administrador_gastos.id_tipo_gastos = tipo_gastos.id_tipo_gastos]]>
+	</queryString>
+	<field name="nombre_administrador_gastos" class="java.lang.String"/>
+	<field name="estado" class="java.lang.Boolean"/>
+	<field name="nombre_tipo_gastos" class="java.lang.String"/>
+	<field name="valor_tipo_gasto" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="560" height="70" forecolor="#000000" backcolor="#000000" uuid="3397af4b-852c-47f3-a342-2f87f2cdb3bb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="119" y="10" width="281" height="50" forecolor="#FFFFFF" uuid="96a77707-9719-48b1-a370-14bb932f53ff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE HONORARIOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="49" width="99" height="20" forecolor="#FFFFFF" uuid="eae636ad-042c-4f84-a790-c3bc825b0106"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="440" y="50" width="120" height="20" forecolor="#FFFFFF" uuid="96e20c06-a428-46d8-808a-378c489c4cc8"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="4" y="29" width="126" height="40" uuid="96cb94ef-c6d1-4a5a-9e5c-2fc849186153"/>
+				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39" splitType="Stretch">
+			<rectangle>
+				<reportElement x="9" y="4" width="536" height="30" forecolor="#999999" backcolor="#999999" uuid="ed4b2eb9-8892-4a62-8577-de5e0bce8b82"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="180" y="9" width="140" height="30" forecolor="#FFFFFF" uuid="d4efb7ff-97ee-4dd1-af59-ea5babeb9174"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion de Gasto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="9" width="140" height="30" forecolor="#FFFFFF" uuid="8b2849de-c49b-4753-b073-59cd700f7382"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Gasto ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="9" width="71" height="30" forecolor="#FFFFFF" uuid="1a6deb30-7679-4d83-8699-af8dcacfd9b4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="436" y="9" width="71" height="30" forecolor="#FFFFFF" uuid="3e57460b-a83d-4879-9d98-c48f1c96a689"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="4" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="0" width="140" height="20" uuid="45f9d7f7-bc6f-4f10-950b-f7438909e7fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_administrador_gastos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="140" height="20" uuid="f054e786-05a4-4221-8ae8-22fe4910a643"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_tipo_gastos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="71" height="20" uuid="db85e667-6fa5-4259-9d96-68c040fb32f5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="0" width="71" height="20" uuid="cc6c08e0-80e1-429d-8e15-5ec9e11def19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_tipo_gasto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="62" splitType="Stretch">
+			<rectangle>
+				<reportElement x="4" y="42" width="540" height="20" forecolor="#000000" backcolor="#000000" uuid="d8eb589a-6db1-4fab-9330-1ed9bf9c04d6"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="204" y="46" width="150" height="12" forecolor="#FFFFFF" uuid="54580795-58f6-489f-9c37-ca3196bf3f50"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[DESARROLLADO POR MASOFT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="505" y="42" width="40" height="20" forecolor="#FFFFFF" uuid="3fa73a0d-349b-4ed7-9ab7-c9ff210db38d"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
