@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<<<<<<< HEAD
 <!-- 2016-06-14T09:30:30 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -214,6 +215,210 @@ WHERE
 			</staticText>
 			<textField>
 				<reportElement x="759" y="4" width="40" height="20" forecolor="#FFFFFF" uuid="ed4aca62-ea38-4be5-ba43-26b182d33185"/>
+=======
+<!-- 2016-06-10T15:43:19 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
+	<parameter name="imagen" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT rol.nombre_rol,
+	ciudad.nombre_ciudad,
+	usuarios.nombre_usuarios,
+	usuarios.telefono_usuarios,
+	usuarios.celular_usuarios,
+	usuarios.correo_usuarios,
+	usuarios.cedula_usuarios,
+	estado.nombre_estado,
+	firmas_digitales.imagen_firmas_digitales
+FROM ciudad,
+	rol,
+	estado,
+	firmas_digitales
+	INNER JOIN usuarios ON 
+	 firmas_digitales.id_usuarios = usuarios.id_usuarios 
+WHERE 
+	 ciudad.id_ciudad = usuarios.id_ciudad 
+	 AND rol.id_rol = usuarios.id_rol 
+	 AND estado.id_estado = usuarios.id_estado]]>
+	</queryString>
+	<field name="nombre_rol" class="java.lang.String"/>
+	<field name="nombre_ciudad" class="java.lang.String"/>
+	<field name="nombre_usuarios" class="java.lang.String"/>
+	<field name="telefono_usuarios" class="java.lang.String"/>
+	<field name="celular_usuarios" class="java.lang.String"/>
+	<field name="correo_usuarios" class="java.lang.String"/>
+	<field name="cedula_usuarios" class="java.lang.String"/>
+	<field name="nombre_estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="800" height="70" forecolor="#000000" backcolor="#000000" uuid="309f92f9-0c25-4218-b476-9f1c452ca0f7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="20" width="800" height="50" forecolor="#FFFFFF" uuid="781e5b1d-811f-4c57-8cab-7e9bf7d317df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[REPORTE USUARIOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="633" y="49" width="50" height="20" forecolor="#FFFFFF" uuid="ff8ac2a3-a816-49c1-83bb-5cddfe9fe680"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="685" y="50" width="115" height="20" forecolor="#FFFFFF" uuid="4e00e112-e8b5-45e2-a300-1f240cfec482"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="1" y="0" width="209" height="69" uuid="8f583d6a-14c2-417d-9289-d62e7abaeac1"/>
+				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="50" splitType="Stretch">
+			<rectangle>
+				<reportElement x="9" y="6" width="782" height="30" forecolor="#999999" backcolor="#999999" uuid="315890a9-2ddd-4a73-9a66-543a6e06826c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="334" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="094cf221-b2b7-4cc5-8017-f8673eb3ad9c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="71d7bcbb-e8a7-4f13-bea8-af9f356c0afd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="f6a509eb-8679-4bf1-94ba-45b56f6f5a5e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="251" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="298967ea-3c37-4152-befa-5e01f9f1485d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="a32d0926-18f8-45d8-838b-c294ed6ae26d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rol]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="602" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="af14e1ac-21f7-49cb-9882-b4ea4cef463f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="687" y="15" width="111" height="30" forecolor="#FFFFFF" uuid="fb3bf942-6bc8-40ef-a8c7-77484949ecfb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cedula]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="687" y="0" width="111" height="20" uuid="c57bb7a9-10ef-4a5f-a808-c74b5776ab7e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cedula_usuarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="597" y="0" width="111" height="20" uuid="0db44d44-67f1-4f71-8251-f7441629ccd0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Raavi" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="464" y="1" width="111" height="20" uuid="30eeb45b-a07f-4f3c-9104-f6883de54243"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_rol}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="351" y="1" width="111" height="20" uuid="cc331f3c-9f14-4188-beb6-9dc3b08bcbdf"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{correo_usuarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="111" height="20" uuid="a191bb6a-a8db-48b2-a745-f6546f647f52"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{celular_usuarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="111" height="20" uuid="114dd61f-db45-4b0a-81a3-607f45c639e8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono_usuarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="1" width="111" height="20" uuid="867d6afa-8b26-4095-ada4-4f764095d8f5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="64" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="42" width="781" height="20" forecolor="#000000" backcolor="#000000" uuid="714d6caa-7d00-4e79-a356-f5cbad9e819e"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="250" y="46" width="320" height="12" forecolor="#FFFFFF" uuid="06086859-e1f8-4e0f-9b1d-49d985ae4241"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ Coactivas  - AllCoercive 2016 - www.masoft.net  Copyright 2016]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="760" y="44" width="40" height="20" forecolor="#FFFFFF" uuid="ed4aca62-ea38-4be5-ba43-26b182d33185"/>
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 				<textElement>
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>

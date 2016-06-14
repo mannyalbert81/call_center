@@ -10,7 +10,16 @@ encoding//view/ireports/HonorariosReport.jrxml=UTF-8
 encoding//view/ireports/Invoice.jrxml=UTF-8
 encoding//view/ireports/NotificacionesReport.jrxml=UTF-8
 encoding//view/ireports/OficiosReport.jrxml=UTF-8
+<<<<<<< HEAD
 encoding//view/ireports/UsuariosReport.jrxml=UTF-8
+=======
+<<<<<<< HEAD
+encoding//view/ireports/PhpJasperLibrary/sample1.jrxml=UTF-8
+encoding//view/ireports/TrazasReport.jrxml=UTF-8
+encoding//view/ireports/UsuariosReport.jrxml=UTF-8
+=======
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 encoding//view/ireports/UsuariosSubReport.jrxml=UTF-8
 encoding//view/ireports/VehiculosReport.jrxml=UTF-8
 encoding//view/ireports/VehiculosSubReport.jrxml=UTF-8

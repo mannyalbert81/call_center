@@ -103,18 +103,9 @@
 		    		$("#mensaje_archivo").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
-		    	
-		    	
-
-			
-		    					    
-
+		    
 			}); 
-
-
-		 
-				
-				$( "#archivo" ).focus(function() {
+                    $( "#archivo" ).focus(function() {
 					$("#mensaje_archivo").fadeOut("slow");
     			});
 				
