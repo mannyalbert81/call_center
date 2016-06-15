@@ -202,32 +202,6 @@ class RegistroVehiculosEmbargadosController extends ControladorBase{
 	
 	
 	
-	public function Reporte(){
-	
-		//Creamos el objeto usuario
-		$subcategorias=new SubCategoriasModel();
-		//Conseguimos todos los usuarios
-	
-	
-		$columnas = " subcategorias.id_subcategorias, categorias.nombre_categorias, subcategorias.nombre_subcategorias, subcategorias.path_subcategorias";
-		$tablas   = "public.subcategorias, public.categorias";
-		$where    = "subcategorias.id_categorias = categorias.id_categorias";
-		$id       = "categorias.nombre_categorias,subcategorias.nombre_subcategorias";
-		
-	
-		session_start();
-	
-	
-		if (isset(  $_SESSION['usuario']) )
-		{
-			$resultRep = $subcategorias->getCondicionesPDF($columnas, $tablas, $where, $id);
-			
-			$this->report("SubCategorias",array(	"resultRep"=>$resultRep));
-	
-		}
-			
-	
-	}
 	
 
 	
