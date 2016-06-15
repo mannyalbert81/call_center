@@ -15,10 +15,7 @@ ini_set('display_errors', 0);
 #aqu� va el reporte
 
 $xml =  simplexml_load_file("VehiculosReport.jrxml");
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/master
 
 
 $PHPJasperXML = new PHPJasperXML();
@@ -34,9 +31,5 @@ $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 //$PHPJasperXML->outpage("I");
 
 $PHPJasperXML->outpage("I","sample9.XLS"); 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> refs/remotes/origin/master
 ?>
