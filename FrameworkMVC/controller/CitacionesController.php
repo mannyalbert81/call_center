@@ -239,9 +239,9 @@ class CitacionesController extends ControladorBase{
 					            //$resultado=$citaciones->Insert();
 					         
 		                        $this->view("Error",array(
-		                        		"resultado"=>"Eror al Asignar ->". $id
+		                        		"resultado"=>entro
 		                        ));
-		                        
+		                        exit();
 		                        
 							} catch (Exception $e)
 							{
