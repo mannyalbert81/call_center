@@ -1,6 +1,6 @@
 <?php
 
-class RegistroVehiculosEmbargadosController extends ControladorBase{
+class RegistroConvenioPagoSolicitudController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
@@ -23,7 +23,7 @@ class RegistroVehiculosEmbargadosController extends ControladorBase{
 	
 			$permisos_rol = new PermisosRolesModel();
 			
-			$nombre_controladores = "RegistroVehiculosEmbargados";
+			$nombre_controladores = "RegistroConvenioPagoSolicitud";
 			$id_rol= $_SESSION['id_rol'];
 			
 			$ciudad = new CiudadModel();
@@ -72,7 +72,7 @@ class RegistroVehiculosEmbargadosController extends ControladorBase{
 			
 					if (isset ($_GET["id_asignacion_secretarios"])   )
 					{
-						$nombre_controladores = "RegistroVehiculosEmbargados";
+						$nombre_controladores = "RegistroConvenioPagoSolicitud";
 						$id_rol= $_SESSION['id_rol'];
 						$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
@@ -84,7 +84,7 @@ class RegistroVehiculosEmbargadosController extends ControladorBase{
 							
 							
 							$traza=new TrazasModel();
-							$_nombre_controlador = "RegistroVehiculosEmbargados";
+							$_nombre_controlador = "RegistroConvenioPagoSolicitud";
 							$_accion_trazas  = "Editar";
 							$_parametros_trazas = $_id_asignacion_secretarios;
 							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
@@ -93,7 +93,7 @@ class RegistroVehiculosEmbargadosController extends ControladorBase{
 						else
 						{
 							$this->view("Error",array(
-									"resultado"=>"No tiene Permisos de Editar Aprobacion Auto de Pago"
+									"resultado"=>"No tiene Permisos de Editar Registro Convenio Pago Solicitud"
 						
 									
 							));
@@ -170,7 +170,7 @@ class RegistroVehiculosEmbargadosController extends ControladorBase{
 					
 				
 					
-					$this->view("RegistroVehiculosEmbargados",array(
+					$this->view("RegistroConvenioPagoSolicitud",array(
 							
 							 "resultEdit"=>$resultEdit,"resultRol"=>$resultRol, "resultDatos"=>$resultDatos
 					));
@@ -180,7 +180,7 @@ class RegistroVehiculosEmbargadosController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Registro Vehiculos Embargados"
+						"resultado"=>"No tiene Permisos de Acceso a Registro Convenio Pago Solicitud"
 			
 				));
 			

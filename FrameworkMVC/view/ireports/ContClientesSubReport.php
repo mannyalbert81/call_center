@@ -25,8 +25,7 @@ $id=$_GET['id_clientes'];
 $PHPJasperXML = new PHPJasperXML("en","TCPDF");
 $PHPJasperXML->debugsql=false;
 $PHPJasperXML->arrayParameter=array("_id_clientes"=>$id);
-$PHPJasperXML->xml_dismantle($xml);
-$PHPJasperXML->load_xml_file("ClientesReport.jrxml");
+$PHPJasperXML->load_xml_file("ClientesSubReport.jrxml");
 
 
 ////$PHPJasperXML = new PHPJasperXML();

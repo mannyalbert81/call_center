@@ -16,6 +16,10 @@
 		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		
 		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
+		
+		
+	
+		
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
  		
@@ -28,6 +32,15 @@
 		
         
         
+        <script>
+			function abrir() {
+			//open('/FrameworkMVC/view/ireports/ContClientesReport.php','','top=500,left=500,width=500,height=500') ;
+			open('','','top=500,left=500,width=500,height=500') ;
+            
+			}
+			</script>
+			
+			
        <style>
             input{
                 margin-top:5px;
@@ -219,7 +232,7 @@
 	</script>
 	
     </head>
-    <body style="background-color: #d9e3e4;">
+    <body style="background-color: #d9e3e4;" >
     
        <?php include("view/modulos/head.php"); ?>
        
@@ -487,8 +500,8 @@
 		               
 		               <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Clientes","ReporteClientes"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-success" style="font-size:65%;">Reporte</a>
-			                </div>
+			                	<a href="/FrameworkMVC/view/ireports/ContClientesXLSReport.php?id_clientes=<?php echo $res->id_clientes; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-success" style="font-size:65%;">Reporte</a>
+			                 </div>
 			               <hr/>
 		               </td>
 		    		</tr>
@@ -497,6 +510,7 @@
             <?php 
             
             //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
+            //<a href="javascript:abrir('/FrameworkMVC/view/ireports/ContClientesReport.php')" class="btn btn-success" style="font-size:65%;">Reporte</a>
             
             ?>
             

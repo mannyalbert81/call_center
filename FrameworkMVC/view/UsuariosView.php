@@ -659,12 +659,12 @@
         <div class="row">
            <form action="<?php echo $helper->url("Usuarios","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
            
-           <div class="col-lg-3">
+           <div class="col-lg-4">
            <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
            <div id="mensaje_contenido" class="errores"></div>
             </div>
             
-           <div class="col-lg-3">
+           <div class="col-lg-4">
            <select name="criterio" id="criterio"  class="form-control">
                                     <?php foreach($resultMenu as $val=>$desc) {?>
                                          <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
@@ -679,17 +679,14 @@
            <div class="col-lg-2">
            <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
            </div>
-           <div class="col-lg-2">
            
-           <input type="submit" id="Imprimir" name="Imprimir" value="Imprimir" class="btn btn-default"/>
-           </div>
          
           </form>
           
        <!-- termina formulario de busqueda -->
         <hr/>
          
-       <section class="col-lg-12  usuario" style="height:500px;overflow-y:scroll;">
+       <section class="col-lg-12  usuario" style="height:450px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;">Id</th>
@@ -720,7 +717,12 @@
 			                	<div class="right">
 			                    <a href="<?php echo $helper->url("Usuarios","borrarId"); ?>&id_usuarios=<?php echo $res->id_usuarios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
-			                <hr/>
+			           </td>
+		               <td>   
+			                	<div class="right">
+			                	<a href="/FrameworkMVC/view/ireports/ContUsuariosSubReport.php?id_usuarios=<?php echo $res->id_usuarios; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-success" style="font-size:65%;">Reporte</a>
+			                 </div>
+			               <hr/>
 		               </td>
 		    		</tr>
 		        <?php } }else{ ?>

@@ -13,12 +13,15 @@ $driver  = driver;
 ini_set('display_errors', 0);
   
 #aqu� va el reporte
-
 $xml =  simplexml_load_file("VehiculosReport.jrxml");
-
-
 $PHPJasperXML = new PHPJasperXML();
 $PHPJasperXML->xml_dismantle($xml); 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $PHPJasperXML->outpage("I");
+$PHPJasperXML = new PHPJasperXML("en","XLS");
+//$PHPJasperXML = new PHPJasperXML();
+$PHPJasperXML->xml_dismantle($xml); 
+$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
+//$PHPJasperXML->outpage("I");
+$PHPJasperXML->outpage("I","sample9.XLS"); 
 ?>

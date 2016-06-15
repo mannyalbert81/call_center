@@ -174,8 +174,12 @@ public function index(){
 				
 				if (isset ($_POST["Imprimir"])   )
      			{
+     					
+     				 
+     				
      				//ContUsuariosReport.php
 				   $this->ireport("ContUsuarios", "");
+				   
 				   exit();
 				   
 					

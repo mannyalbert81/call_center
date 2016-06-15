@@ -609,17 +609,20 @@
            
         </div>
         <section class="col-lg-8 usuario" style="height:400px;overflow-y:scroll; margin-top: 10px;">
+       
         <table class="table table-hover">
 	         <tr>
 	    		<th style="color:#456789;font-size:80%;">Id</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Secretario</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Abogado Impulsor</th>
-	    		<th style="color:#456789;font-size:80%;">Editar</th>
-	    		<th style="color:#456789;font-size:80%;">Borrar</th>
-	    		<th></th>
+	    			    		<th></th>
 	    		<th></th>
 	  		</tr>
-            
+	  							 <td>
+	                         <div class="right">
+			                	<a href="/FrameworkMVC/view/ireports/ContAsignacionSecretariosReport.php?id_asignacion_secretarios=<?php echo $res->id_asignacion_secretarios; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-success" style="font-size:65%;">Reporte</a>
+			                 </div>
+			       				  </td>
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res-> id_asignacion_secretarios; ?>  </td>
@@ -636,9 +639,15 @@
 			                	<div class="right">
 			                    <a href="<?php echo $helper->url("AsignacionSecretarios","borrarId"); ?>&id_asignacion_secretarios=<?php echo $res->id_asignacion_secretarios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
 			                </div>
-			                <hr/>
+	
 		               </td>
-		    		</tr>
+		               <td>
+	                         <div class="right">
+			                	<a href="/FrameworkMVC/view/ireports/ContAsignacionSecretariosSubReport.php?id_asignacion_secretarios=<?php echo $res->id_asignacion_secretarios; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-success" style="font-size:65%;">Reporte</a>
+			                 </div>
+			           
+		               </td>
+		    		</tr>	    
 		        <?php } }else{	  ?>
 		        
 		        <tr>

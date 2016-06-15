@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Reporte Vehiculos Embargados- coactiva 2016</title>
+        <title>Registro Convenio Pago Solicitud- coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -36,8 +36,7 @@
                 
             
         </style>
-
-           <script >
+          <script >
 		$(document).ready(function(){
 
 		    // cada vez que se cambia el valor del combo
@@ -50,13 +49,13 @@
 		    	if (contenido_busqueda== "")
 		    	{
 			    	
-		    		$("#mensaje_busqueda").text("Introduzca un tipo de busqueda");
-		    		$("#mensaje_busqueda").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_nombres").text("Introduzca un tipo de busqueda");
+		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_busqueda").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
 		    	
@@ -71,7 +70,7 @@
 		 
 				
 				$( "#contenido_busqueda" ).focus(function() {
-					$("#mensaje_busqueda").fadeOut("slow");
+					$("#mensaje_nombres").fadeOut("slow");
     			});
 				
 			
@@ -83,7 +82,7 @@
 		}); 
 
 	</script>
- 
+    
     
     </head>
     <body style="background-color: #d9e3e4;">
@@ -95,15 +94,12 @@
        
        
        <?php
-       $resultMenu=array(0=>"Identificacion",1=>"Placa Vehiculo");
-  
-       $fecha_actual = strtotime(Date("Y-m-d"));
-         
+       $resultMenu=array(0=>"Identificacion",1=>"Titulo Credito",2=>"Juicio");
+     	 		 
+     			
+     	
+		   
 		?>
- 
-  
-  
-	
  
   
   <div class="container">
@@ -111,7 +107,7 @@
   <div class="row" style="background-color: #ffffff;">
   
      
-      <form action="<?php echo $helper->url("ReporteVehiculosEmbargados","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("RegistroConvenioPagoSolicitud","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
     
     <div class="col-lg-5">
     <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
@@ -119,13 +115,13 @@
         
             <?php } } else {?>
 		     
-		      <h4 style="color:#ec971f;">Reporte Vehiculos Embargados</h4>
+		      <h4 style="color:#ec971f;">Convenio Pago Solicitud</h4>
             	<hr/>
 		     
 		     <div class="row">
 			    
-			  <div class="col-xs-4 col-md-6">
-			  	<p  class="formulario-subtitulo" >Seleccione</p>
+			  <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Selecione filtro</p>
 			  	<select name="criterio_busqueda" id="criterio_busqueda"  class="form-control" >
 					<?php foreach($resultMenu as $val=>$desc) {?>
 						<option value="<?php echo $val; ?>"  ><?php echo $desc ?> </option>
@@ -139,22 +135,28 @@
 		    <div class="col-xs-6 col-md-6">
 		    	<p  class="formulario-subtitulo" style="color: #ffffff;" >--</p>
 			  <input type="text" name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
-			  <div id="mensaje_busqueda" class="errores"></div>
+			  <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			  
 			<div class="col-xs-12 col-md-12" style="margin-top: 20px; text-align: center;" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  value="buscar" class="btn btn-default"/>
-
+			  	<input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-default"/>
 			</div>
 			
 			  </div>
-              <?php } ?>
-              </div>
+             	
+             	
+             	
+             	
+             	
+             	
+             	
+		     <?php } ?>
+    </div>
     
     
     <div  class="col-lg-7">
-     <h4 style="color:#ec971f;">Lista Vehiculos Embargados</h4>
+     <h4 style="color:#ec971f;">Titulo Credito</h4>
             <hr/>
     		
 		<div class="col-xs-12" style="margin: 5px;">	
@@ -170,15 +172,12 @@
 	         <tr >
 	    		
 	    		
-	    		<th style="color:#456789;font-size:80%;">Identificación</th>
-	    		<th style="color:#456789;font-size:80%;">Nombres Clientes</th>
-	    		<th style="color:#456789;font-size:80%;">Tipo Vehiculo</th>
-	    		<th style="color:#456789;font-size:80%;">Placa</th>
-	    		<th style="color:#456789;font-size:80%;">Modelo</th>
-	    		<th style="color:#456789;font-size:80%;">Marca</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Ingreso</th>
-	    		<th style="color:#456789;font-size:80%;">Nº Dias Retenido</th>
-	    
+	    		<th style="color:#456789;font-size:80%;">Titulo Credito</th>
+	    		<th style="color:#456789;font-size:80%;">Juicio</th>
+	    		<th style="color:#456789;font-size:80%;">Tipo Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Nombres</th>
+	    		<th style="color:#456789;font-size:80%;"></th>
 	    		
 	    		<th></th>
 	    		<th></th>
@@ -186,35 +185,38 @@
             
 	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
 	        		<tr>
-	       
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_vehiculos; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->placa_vehiculos_embargados; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->modelo_vehiculos_embargados; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_marca_vehiculos; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_ingreso_vehiculos_embargados; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php $fecha_ingreso=strtotime("$res->fecha_ingreso_vehiculos_embargados"); $diferencia=$fecha_actual-$fecha_ingreso; echo $diferencia/86400; ?>  </td>
-		     
-		             <td>   
-			                	<div class="right">
-			                	<a href="/FrameworkMVC/view/ireports/ContVehiculosSubReport.php?id_vehiculos_embargados=<?php echo $res->id_vehiculos_embargados; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-success" style="font-size:65%;">Reporte</a>
-			                 </div>
-			              
-		               </td>
+	        
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>  </td>
+		                <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
+		           <td>
+			           		<div class="right">
+			                    <a href="<?php echo $helper->url("ConvenioPagoSolicitud","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>&id_titulo_credito=<?php echo $res->id_titulo_credito; ?>" class="btn btn-warning" style="font-size:65%;">Seleccionar</a>
+			                </div>
+			            
+			          </td>  
 		    		</tr>
 		        <?php } } ?>
+		        
       
+        
+            
+            
        	</table>     
 		     
       </section>
         
         </div>
        
+        
     </div>
     
     </form>
- </div>
+  
+
+    </div>
    </div>
      </body>  
     </html>   

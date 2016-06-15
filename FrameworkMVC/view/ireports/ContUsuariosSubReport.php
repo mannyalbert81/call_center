@@ -21,12 +21,11 @@ $PHPJasperXML->debugsql=false;
 #aqu� va el reporte
 
 
-$id=$_GET['id_clientes'];
+$id=$_GET['id_usuarios'];
 $PHPJasperXML = new PHPJasperXML("en","TCPDF");
 $PHPJasperXML->debugsql=false;
-$PHPJasperXML->arrayParameter=array("_id_clientes"=>$id);
-$PHPJasperXML->xml_dismantle($xml);
-$PHPJasperXML->load_xml_file("ClientesReport.jrxml");
+$PHPJasperXML->arrayParameter=array("_id_usuarios"=>$id);
+$PHPJasperXML->load_xml_file("UsuariosSubReport.jrxml");
 
 
 ////$PHPJasperXML = new PHPJasperXML();

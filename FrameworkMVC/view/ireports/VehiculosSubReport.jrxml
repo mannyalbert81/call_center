@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-15T15:40:30 -->
+<!-- 2016-06-13T15:39:42 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VehiculosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5955712-b99a-4538-ad86-41065f296b63">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
+	<parameter name="_id_vehiculos_embargados" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT marca_vehiculos.nombre_marca_vehiculos,
 	vehiculos_embargados.observacion_vehiculos_embargados,
@@ -20,7 +21,8 @@ FROM vehiculos_embargados
 	INNER JOIN marca_vehiculos ON 
 	 vehiculos_embargados.id_marca_vehiculos = marca_vehiculos.id_marca_vehiculos 
 	INNER JOIN ciudad ON 
-	 clientes.id_ciudad = ciudad.id_ciudad]]>
+	 clientes.id_ciudad = ciudad.id_ciudad AND
+	vehiculos_embargados. id_vehiculos_embargados = $P{_id_vehiculos_embargados}]]>
 	</queryString>
 	<field name="nombre_marca_vehiculos" class="java.lang.String"/>
 	<field name="observacion_vehiculos_embargados" class="java.lang.String"/>

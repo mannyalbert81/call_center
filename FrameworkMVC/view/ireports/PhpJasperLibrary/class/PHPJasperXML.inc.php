@@ -1394,7 +1394,7 @@ $font=$data->textElement->font["fontName"];
 
         if(!$this->connect($host,$user,$password,$db_or_dsn_name,$cndriver))	//connect database
         {
-            echo "Fail to connect database";
+            echo "No fue posible realizar una conexion a la bse de datos";
             exit(0);
         }
         if($this->debugsql==true) {
