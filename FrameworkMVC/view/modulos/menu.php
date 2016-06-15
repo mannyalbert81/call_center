@@ -133,6 +133,7 @@
 			</li>
 			
 </ul>
+</li>
 
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Juicios" ;?> </span> <span class="caret"></span></a>
@@ -154,7 +155,7 @@
             </li>
 
            </ul>
-
+           </li>
 
 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Gastos" ;?> </span> <span class="caret"></span></a>
@@ -170,12 +171,23 @@
             </li>
 
 </ul>
+</li>
+
+<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Convenios" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+           
+            <li><a href="index.php?controller=RegistroConvenioPagoSolicitud&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Convenio Pago Solicitud</span> </a>
+            </li>          
+      </ul>
+      </li>
+      
 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Reportes" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
                      
       </ul>
-      
+      </li>
 
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
