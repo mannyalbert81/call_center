@@ -236,12 +236,9 @@ class CitacionesController extends ControladorBase{
 								$parametros = "'$_id_juicios', '$_fecha_citaciones', '$_id_ciudad', '$_id_tipo_citaciones', '$_nombre_persona_recibe_citaciones', '$_relacion_cliente_citaciones', '$_id_usuarios' ";
 								$citaciones->setFuncion($funcion);
 		                        $citaciones->setParametros($parametros);
-					            //$resultado=$citaciones->Insert();
+					            $resultado=$citaciones->Insert();
 					         
-		                        $this->view("Error",array(
-		                        		"resultado"=>entro
-		                        ));
-		                        exit();
+		                       
 		                        
 							} catch (Exception $e)
 							{
