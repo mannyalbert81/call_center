@@ -3,8 +3,7 @@
 <html lang="es">
 
       <head>
-      
-        <meta charset="utf-8"/>
+      <meta charset="utf-8"/>
         <title>Convenio Pago Solicitud- coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -18,15 +17,11 @@
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
  		
  		<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
-		
 		<script>
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
 		</script>
-		
-        
-        
-       <style>
+		<style>
             input{
                 margin-top:5px;
                 margin-bottom:5px;
@@ -92,9 +87,7 @@
        
        <?php
        
-       
-       
-		   
+        
 		?>
  
   
@@ -105,7 +98,8 @@
        <!-- empieza el form --> 
      
       <form action="<?php echo $helper->url("ConvenioPagoSolicitud","InsertaConvenioPagoSolicitud"); ?>" method="post" class="col-lg-12">
-            <h4 style="color:#ec971f;">Insertar Vehiculos Embargados</h4>
+            
+            <h4 style="color:#ec971f;">Convenio Pago Solicitud</h4>
    
             	
             		<div class="col-lg-12">
@@ -142,55 +136,7 @@
             
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	        
-	       <div class="row">
-			    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Tipo Vehiculos</p>
-			  	<select name="id_tipo_vehiculos" id="id_tipo_vehiculos"  class="form-control" >
-					<?php foreach($resultTipoVehiculos as $resTipoVehiculos) {?>
-						<option value="<?php echo $resTipoVehiculos->id_tipo_vehiculos; ?>" <?php if ($resTipoVehiculos->id_tipo_vehiculos == $resEdit->id_tipo_vehiculos)  echo  ' selected="selected" '  ;  ?> ><?php echo $resTipoVehiculos->nombre_tipo_vehiculos; ?> </option><?php } ?>
-				</select> 			  
-			  </div>
-		
-		<div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Marca</p>
-			  	<select name="id_marca_vehiculos" id="id_marca_vehiculos"  class="form-control">
-					<?php foreach($resultMarcaVehiculos as $resMarcaVehiculos) {?>
-						<option value="<?php echo $resMarcaVehiculos->id_marca_vehiculos; ?>"  <?php if ($resMarcaVehiculos->id_marca_vehiculos == $resEdit->id_marca_vehiculos ) echo ' selected="selected" '  ; ?> ><?php echo $resMarcaVehiculos->nombre_marca_vehiculos; ?> </option><?php } ?>
-				</select> 			  
-			  </div>
-			 
-			  </div>
-			  <div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Placa</p>
-			  	<input type="text"  name="placa_vehiculos_embargados" id="placa_vehiculos_embargados" value="<?php echo $resEdit->placa_vehiculos_embargados; ?>" class="form-control"/> 
-			    <div id="mensaje_cedula" class="errores"></div>
-			  </div>
-			
-			 
-			
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Modelo</p>
-			  	<input type="text"  name="modelo_vehiculos_embargados" id="modelo_vehiculos_embargados" value="<?php echo $resEdit->modelo_vehiculos_embargados; ?>" class="form-control"/> 
-			    <div id="mensaje_cedula" class="errores"></div>
-			  </div>
-			   </div>
-			 
-		    
-		    <div class="row">
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Observaciones</p>
-			  	<input type="text" name="observacion_vehiculos_embargados" id="observacion_vehiculos_embargados" value="<?php echo $resEdit->observacion_vehiculos_embargados; ?>" class="form-control"/> 
-			  <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-		  
-		   <div class="col-lg-3" id="div_desde">
-      		<span>Fecha:</span>
-           <input type="date"  name="fecha_ingreso_vehiculos_embargados" id="fecha_ingreso_vehiculos_embargados" value="" class="form-control"/>
-           <div id="mensaje_desde" class="errores"></div>
-           </div>
-	     	  </div>
-	     	<hr>
+	      
 	            	  
             
 		     <?php } } 
@@ -198,59 +144,9 @@
 		    
 		       
 		    
-		    
-		<div class="row">
-			    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Tipo Vehiculos</p>
-			  	<select name="id_tipo_vehiculos" id="id_tipo_vehiculos"  class="form-control" >
-					<?php foreach($resultTipoVehiculos as $resTipoVehiculos) {?>
-						<option value="<?php echo $resTipoVehiculos->id_tipo_vehiculos; ?>" ><?php echo $resTipoVehiculos->nombre_tipo_vehiculos; ?> </option><?php } ?>
-				</select> 			  
-			  </div>
-		
-		<div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Marca</p>
-			  	<select name="id_marca_vehiculos" id="id_marca_vehiculos"  class="form-control" >
-					<?php foreach($resultMarcaVehiculos as $resMarcaVehiculos) {?>
-						<option value="<?php echo $resMarcaVehiculos->id_marca_vehiculos; ?>" ><?php echo $resMarcaVehiculos->nombre_marca_vehiculos; ?> </option><?php } ?>
-				</select> 			  
-			  </div>
-			  </div>
-			   <div class="row">
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Placa</p>
-			  	<input type="hidden"  name="id_clientes" id="id_clientes" value="<?php echo $id_clientes;?>" class="form-control"/>
-			  	<input type="hidden"  name="id_titulo_credito" id="id_titulo_credito" value="<?php echo $id_titulo_credito;?>" class="form-control"/>
-			  	<input type="text"  name="placa_vehiculos_embargados" id="placa_vehiculos_embargados" class="form-control"/> 
-			    <div id="mensaje_cedula" class="errores"></div>
-			  </div>
-			
-			 
-			
-		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Modelo</p>
-			  	<input type="text"  name="modelo_vehiculos_embargados" id="modelo_vehiculos_embargados" class="form-control"/> 
-			    <div id="mensaje_cedula" class="errores"></div>
-			  </div>
-			   </div>
-			
-		    
-		     <div class="row">
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Observaciones</p>
-			  	<input type="text" name="observacion_vehiculos_embargados" id="observacion_vehiculos_embargados" class="form-control"/> 
-			  <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-		  
-		   <div class="col-lg-3" id="div_desde">
-      		<span>Fecha:</span>
-           <input type="date"  name="fecha_ingreso_vehiculos_embargados" id="fecha_ingreso_vehiculos_embargados" value="" class="form-control"/>
-           <div id="mensaje_desde" class="errores"></div>
-           </div>
-             </div>
-			
-			<hr>
 		     <?php } ?>
+		     
+		     
 		       <div class="row">
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" > 
            <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>

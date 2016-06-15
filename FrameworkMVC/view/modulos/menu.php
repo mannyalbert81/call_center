@@ -183,9 +183,11 @@
       </li>
       
 <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Reportes" ;?> </span> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Citaciones" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-                     
+            
+          <li><a href="index.php?controller=Citaciones&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Generar Citaciones</span> </a>
+            </li>           
       </ul>
       </li>
 
