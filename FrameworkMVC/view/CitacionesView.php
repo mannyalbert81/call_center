@@ -138,7 +138,7 @@ $(document).ready(function() {
        {
        
        	$sel_id_ciudad=$_POST['id_ciudad'];
-       	$sel_fecha_citacion=$_POST['fecha_citacion'];
+       	$sel_fecha_citacion=$_POST['fecha_citaciones'];
        	$sel_id_usuarios=$_POST['id_usuarios'];
        	$sel_id_tipo_citaciones=$_POST['id_tipo_citaciones'];
        }
@@ -203,14 +203,14 @@ $(document).ready(function() {
 			  </div>
 			  </div>
 			  
-			  <div class="row">
-		       <div class="col-xs-6 col-md-6">
+			  <div class="row" >
+		       <div class="col-xs-6 col-md-6" style="margin-top:20px;">
 			  	<p  class="formulario-subtitulo" >Nombre Persona Recibe</p>
 			  	<input type="text"  name="nombre_persona_recibe_citaciones" id="nombre_persona_recibe_citaciones" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			  
-			   <div class="col-xs-6 col-md-6">
+			   <div class="col-xs-6 col-md-6" style="margin-top:20px;">
 			  	<p  class="formulario-subtitulo" >Relacion con Cliente</p>
 			  	<input type="text"  name="relacion_cliente_citaciones" id="relacion_cliente_citaciones" value="" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
