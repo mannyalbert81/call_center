@@ -38,37 +38,76 @@
             
         </style>
          
-         <script >
-		$(document).ready(function(){
-
+       <script >
 		    // cada vez que se cambia el valor del combo
+		    $(document).ready(function(){
+		    
 		    $("#Guardar").click(function() 
 			{
-		   
-		    	var nombre_oficios= $("#nombre_oficios").val();
 		    
-		   				
-		    	if (nombre_oficios == "")
+		    	var fecha_citaciones= $("#fecha_citaciones").val();
+		     	var nombre_persona_recibe_citaciones = $("#nombre_persona_recibe_citaciones").val();
+		    	var relacion_cliente_citaciones = $("#relacion_cliente_citaciones").val();
+		    	 	
+		    		    	
+		    	
+		    	if (fecha_citaciones == "")
 		    	{
 			    	
-		    		$("#mensaje_nombres").text("Introduzca Información para el Oficio");
-		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_fecha").text("Introduzca una Fecha");
+		    		$("#mensaje_fecha").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_fecha").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}    
+				
+		    	if (nombre_persona_recibe_citaciones == "")
+		    	{
+			    	
+		    		$("#mensaje_recibe").text("Introduzca un Nombre");
+		    		$("#mensaje_recibe").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_recibe").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
 		    	
+		    	if (relacion_cliente_citaciones == "")
+		    	{
+			    	
+		    		$("#mensaje_relacion").text("Introduzca una Relacion con el Cliente");
+		    		$("#mensaje_relacion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_relacion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}   
+		
 			}); 
 
+
+		        $( "#fecha_citaciones" ).focus(function() {
+				  $("#mensaje_fecha").fadeOut("slow");
+			    });
 				
-				$( "#nombre_oficios" ).focus(function() {
-					$("#mensaje_nombres").fadeOut("slow");
+				$( "#nombre_persona_recibe_citaciones" ).focus(function() {
+					$("#mensaje_recibe").fadeOut("slow");
     			});
+				$( "#relacion_cliente_citaciones" ).focus(function() {
+					$("#mensaje_relacion").fadeOut("slow");
+    			});
+    			
 				
-			 
+		
+				
+		      
 				    
 		}); 
 
@@ -170,7 +209,7 @@ $(document).ready(function() {
 		    <div class="col-xs-6 col-md-6">
 			  <p  class="formulario-subtitulo" >Fecha de Citacion </p>
 	          <input type="date" id="fecha_citaciones" name="fecha_citaciones" class="form-control" value="<?php echo $sel_fecha_citacion;?>">
-		   	<div id="mensaje_criterio" class="errores"></div>	   
+		   	<div id="mensaje_fecha" class="errores"></div>	   
 		    </div>
             	
 		   	<div class="col-xs-6 col-md-6">
@@ -178,7 +217,7 @@ $(document).ready(function() {
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
 					<?php foreach($resultCiu as $resCiu) {?>
 						<option value="<?php echo $resCiu->id_ciudad; ?>" <?php if($sel_id_ciudad==$resCiu->id_ciudad){echo "selected";}?> ><?php echo $resCiu->nombre_ciudad; ?> </option>
-			        <?php } ?>
+				        <?php } ?>
 				</select> 			  
 			  </div>
 			  </div>
@@ -207,13 +246,13 @@ $(document).ready(function() {
 		       <div class="col-xs-6 col-md-6" style="margin-top:20px;">
 			  	<p  class="formulario-subtitulo" >Nombre Persona Recibe</p>
 			  	<input type="text"  name="nombre_persona_recibe_citaciones" id="nombre_persona_recibe_citaciones" value="" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+			    <div id="mensaje_recibe" class="errores"></div>
 			  </div>
 			  
 			   <div class="col-xs-6 col-md-6" style="margin-top:20px;">
 			  	<p  class="formulario-subtitulo" >Relacion con Cliente</p>
 			  	<input type="text"  name="relacion_cliente_citaciones" id="relacion_cliente_citaciones" value="" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+			    <div id="mensaje_relacion" class="errores"></div>
 			  </div>
 			 </div>
 			  
