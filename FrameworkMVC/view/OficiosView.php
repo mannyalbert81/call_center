@@ -176,13 +176,7 @@ $(document).ready(function() {
 			  </div>
 			  </div>
 			  
-			   <div class="row">
-		       <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" ></p>
-			  <textarea id="nombre_oficios" name="nombre_oficios" rows="17" cols="60"></textarea>
-		      <div id="mensaje_nombres" class="errores"></div>
-			  </div>
-			 </div>
+			   
 			  <hr>
 		    
 		   
