@@ -128,20 +128,7 @@ $(document).ready(function() {
        
        $resultMenu=array(0=>"Todos",1=>"Identificacion",2=>"Juicio");
        
-     
-       $sel_nombre_oficios="";
         
-        
-        
-       if($_SERVER['REQUEST_METHOD']=='POST' )
-       {
-       
-       	$sel_nombre_oficios=$_POST['nombre_oficios'];
-       
-       
-       }
-       
-		   
 		?>
  
   

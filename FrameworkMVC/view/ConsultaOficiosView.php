@@ -185,7 +185,7 @@
 		 <div class="col-lg-12">
 		 
 	
-		 <span class="form-control">registros:<?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
+		 <span class="form-control"><strong>Registros:</strong><?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
