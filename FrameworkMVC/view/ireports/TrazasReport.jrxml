@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-16T16:43:22 -->
+<!-- 2016-06-16T17:50:26 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TrazasReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b22c1a24-4d1c-4b61-89d5-ee7bf3f6eb11">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -112,7 +112,7 @@ ORDER BY   	trazas.creado ASC]]>
 		<band height="1" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="22" splitType="Stretch">
+		<band height="43" splitType="Stretch">
 			<textField>
 				<reportElement x="20" y="0" width="84" height="20" uuid="f946a11b-61c2-4191-b6b7-4d5598faceb7"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -158,7 +158,7 @@ ORDER BY   	trazas.creado ASC]]>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="28" splitType="Stretch">
+		<band height="32" splitType="Stretch">
 			<rectangle>
 				<reportElement x="4" y="2" width="540" height="20" forecolor="#000000" backcolor="#000000" uuid="3cef4f85-7a8f-47de-8e01-deaaca5fb515"/>
 				<graphicElement>
@@ -171,6 +171,27 @@ ORDER BY   	trazas.creado ASC]]>
 					<font fontName="Arial" size="8" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="6" width="20" height="20" forecolor="#FFFFFF" uuid="3e23a819-d14e-4a25-9125-865a7f912cc2"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="480" y="6" width="40" height="20" forecolor="#FFFFFF" uuid="e4caf226-f289-4374-9aee-a4cb6bee0493"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="460" y="5" width="20" height="20" forecolor="#FFFFFF" uuid="ea283a15-ab36-4e71-b91c-5505b89c85ec"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
 			</staticText>
 		</band>
 	</pageFooter>
