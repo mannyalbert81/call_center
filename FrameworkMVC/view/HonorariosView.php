@@ -97,7 +97,7 @@
               
 			   <div class="row">
 			   
-			   <div class="col-xs-12 col-md-12">
+			   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Tipo Honorario</p>
 			  	<select name="tipo_honorario" id="tipo_honorario"  class="form-control" >
 					<?php foreach($rsTipoHonorario as $resTipoH) {?>
@@ -108,32 +108,32 @@
 				<div id="mensaje_tipo_honorario" class="errores"></div>			  
 			  </div>
 			  
-			   <div class="col-xs-12 col-md-12">
+			   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Descripcion</p>
 			  	<input type="text"  name="descripcion" id="descripcion" value="" class="form-control"/> 
 			  	<input type="hidden"  name="id_honorario" id="id_honorario" value="" class="form-control"/>
 			    <div id="mensaje_descripcion" class="errores"></div>
 			  </div>
 			  
-			   <div class="col-xs-12 col-md-12">
+			   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Desde</p>
 			  	<input type="text"  name="desde_honorarios" id="desde_honorarios" value="" class="form-control"/> 
 			    <div id="mensaje_desde_honorarios" class="errores"></div>
 			  </div>
 			  
-		       <div class="col-xs-12 col-md-12">
+		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Hasta</p>
 			  	<input type="text"  name="hasta_honorarios" id="hasta_honorarios" value="" class="form-control"/> 
 			  	<div id="mensaje_hasta_honorarios" class="errores"></div>
 			  </div>
 			  
-			  <div class="col-xs-12 col-md-12">
+			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Por la Base Porcion Fija</p>
 			  	<input type="text"  name="x_base_fija" id="x_base_fija" value="" class="form-control"/> 
 			  	<div id="mensaje_x_base_fija" class="errores"></div>
 			  </div>
 			  
-			  <div class="col-xs-12 col-md-12">
+			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Por el Exceso Porcentaje</p>
 			  	<input type="text"  name="x_exceso" id="x_exceso" value="" class="form-control"/> 
 			  	<div id="mensaje_x_exceso" class="errores"></div>
@@ -144,7 +144,7 @@
 		    
 			    <div class="row">
 			   
-			   <div class="col-xs-12 col-md-12">
+			   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Tipo Honorario</p>
 			  	<select name="estados" id="estados"  class="form-control" >
 					<?php foreach($rsTipoHonorario as $resTipoH) {?>
@@ -155,31 +155,31 @@
 				<div id="mensaje_tipo_honorario" class="errores"></div>	 			  
 			  </div>
 			  
-			   <div class="col-xs-12 col-md-12">
+			   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Descripcion</p>
 			  	<input type="text"  name="descripcion" id="descripcion" value="" class="form-control"/> 
 			  	<div id="mensaje_descripcion" class="errores"></div>
 			  </div>
 			  
-			   <div class="col-xs-12 col-md-12">
+			   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Desde</p>
 			  	<input type="text"  name="desde" id="desde" value="" class="form-control"/> 
 			    <div id="mensaje_desde_honorarios" class="errores"></div>
 			  </div>
 			  
-		       <div class="col-xs-12 col-md-12">
+		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Hasta</p>
 			  	<input type="text"  name="hasta" id="hasta" value="" class="form-control"/> 
 			  	<div id="mensaje_hasta_honorarios" class="errores"></div>
 			  </div>
 			  
-			  <div class="col-xs-12 col-md-12">
+			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Por la Base Porcion Fija</p>
 			  	<input type="text"  name="x_base_fija" id="x_base_fija" value="" class="form-control"/> 
 			  	<div id="mensaje_x_base_fija" class="errores"></div>
 			  </div>
 			  
-			  <div class="col-xs-12 col-md-12">
+			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Por el Exceso Porcentaje</p>
 			  	<input type="text"  name="x_exceso" id="x_exceso" value="" class="form-control"/> 
 			  	<div id="mensaje_x_exceso" class="errores"></div>
@@ -190,8 +190,8 @@
 		     <?php } ?>
 		     
 		     
-		       <div class="row">
-			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
+		       <div class="row" style="margin-top:20px">
+			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
 			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
 			  </div>
 			</div>     
@@ -214,8 +214,8 @@
 	    		<th style="color:#456789;font-size:80%;"><b>Descripcion</b></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Desde</b></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Hasta</b></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Por la Base Porcion Fija</b></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Por Exceso Porcentaje</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Base Porcion Fija</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Exceso Porcentaje</b></th>
 	    		
 	    		
 	    		<th></th>
