@@ -456,8 +456,8 @@
     
    <body style="background-color: #d9e3e4;">
     
+       <?php include("view/modulos/modal.php"); ?>
        <?php include("view/modulos/head.php"); ?>
-       
        <?php include("view/modulos/menu.php"); ?>
   
   <div class="container">
