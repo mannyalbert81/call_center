@@ -36,6 +36,80 @@
                 
             
         </style>
+          <script >
+		    // cada vez que se cambia el valor del combo
+		    $(document).ready(function(){
+		    
+		    $("#Asignar").click(function() 
+			{
+		    
+		    	var descripcion_diligencia= $("#descripcion_diligencia").val();
+		     	var numero_documento = $("#numero_documento").val();
+		    	var a_favor_de= $("#a_favor_de").val();
+		    	 	
+		    		    	
+		    	
+		    	if (descripcion_diligencia == "")
+		    	{
+			    	
+		    		$("#mensaje_descripcion").text("Introduzca una Descripcion");
+		    		$("#mensaje_descripcion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_descripcion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}    
+				
+		    	if (numero_documento == "")
+		    	{
+			    	
+		    		$("#mensaje_numero_documento").text("Introduzca un Numero de Documento");
+		    		$("#mensaje_numero_documento").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_numero_documento").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	if (a_favor_de== "")
+		    	{
+			    	
+		    		$("#mensaje_a_favor_de").text("Introduzca un Dato");
+		    		$("#mensaje_a_favor_de").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_a_favor_de").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}   
+		
+			}); 
+
+
+		        $( "#descripcion_diligencia" ).focus(function() {
+				  $("#mensaje_descripcion").fadeOut("slow");
+			    });
+				
+				$( "#numero_documento" ).focus(function() {
+					$("#mensaje_numero_documento").fadeOut("slow");
+    			});
+				$( "#a_favor_de" ).focus(function() {
+					$("#mensaje_a_favor_de").fadeOut("slow");
+    			});
+    			
+				
+		
+				
+		      
+				    
+		}); 
+
+	</script>
          
          <script >
 		$(document).ready(function(){
@@ -252,9 +326,12 @@
 						<option value="<?php echo $val ?>"><?php echo $desc ?> </option>
 			            <?php } ?>
 				</select>
+				 <div class="col-lg-12" style="text-align: center;">
+		         <div class="col-lg-12" style="text-align: center;">
 			<input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default form-control" style="margin-top: 10px;"/> 			
 		 </div>
-		 
+		 </div>
+		</div> 
   			
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Entidad:</p>
@@ -269,7 +346,7 @@
 		  <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Nº Juicio:</p>
 			  	<input type="text"  name="numero_juicio" id="numero_juicio" value="" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+			    <div id="mensaje_juicio" class="errores"></div>
 
          </div>
           <div class="col-xs-2 ">
