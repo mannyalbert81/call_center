@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-13T17:06:24 -->
+<!-- 2016-06-16T13:38:41 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HonorariosReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3d4e328b-0390-4a0a-8464-619c91a1179f">
-	<property name="com.jaspersoft.studio.data.sql.tables" value="dGlwb19ob25vcmFyaW9zIEFTICw2ODIsMTc4LDk1MjZkYzVlLWY4MWYtNGMxNi04ZGU0LWY2NmJh&#xA;NTdkODFlYjtob25vcmFyaW9zIEFTICwyNTksMTMyLDE2ZThiNDc1LTA0NGYtNDk3OS1iYmE2LTg0&#xA;ZWQ0MTU1MzUzODs="/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
 	<queryString>
 		<![CDATA[SELECT tipo_honorarios.descripcion_tipo_honorarios,
@@ -17,10 +17,10 @@ FROM honorarios
 	</queryString>
 	<field name="descripcion_tipo_honorarios" class="java.lang.String"/>
 	<field name="descripcion_honorarios" class="java.lang.String"/>
-	<field name="desde_honorarios" class="java.math.BigDecimal"/>
-	<field name="hasta_honorarios" class="java.math.BigDecimal"/>
-	<field name="por_base_pocion_baja" class="java.math.BigDecimal"/>
-	<field name="por_exceso_porcentaje" class="java.math.BigDecimal"/>
+	<field name="desde_honorarios" class="java.lang.String"/>
+	<field name="hasta_honorarios" class="java.lang.String"/>
+	<field name="por_base_pocion_baja" class="java.lang.String"/>
+	<field name="por_exceso_porcentaje" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -30,7 +30,7 @@ FROM honorarios
 				<reportElement x="0" y="0" width="560" height="70" forecolor="#000000" backcolor="#000000" uuid="e5ec411d-24fd-40b6-9236-25fc89bab470"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="119" y="10" width="281" height="50" forecolor="#FFFFFF" uuid="0c8712fd-1ae1-4e9a-8693-87597790ff99"/>
+				<reportElement x="124" y="14" width="281" height="50" forecolor="#FFFFFF" uuid="0c8712fd-1ae1-4e9a-8693-87597790ff99"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
 				</textElement>
@@ -52,7 +52,7 @@ FROM honorarios
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="4" y="29" width="126" height="40" uuid="2b467f73-4fb1-4f7d-8d3a-de49a59e2d79"/>
+				<reportElement x="4" y="17" width="126" height="40" uuid="2b467f73-4fb1-4f7d-8d3a-de49a59e2d79"/>
 				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
 			</image>
 		</band>
@@ -126,21 +126,21 @@ FROM honorarios
 				<textFieldExpression><![CDATA[$F{descripcion_honorarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="190" y="0" width="71" height="20" uuid="50b2aacf-037a-464d-8885-0d97f2d4435c"/>
+				<reportElement x="185" y="0" width="80" height="20" uuid="50b2aacf-037a-464d-8885-0d97f2d4435c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{desde_honorarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="261" y="0" width="71" height="20" uuid="2b9c7226-62bd-4268-8e83-a44c77fb9c42"/>
+				<reportElement x="254" y="0" width="88" height="20" uuid="2b9c7226-62bd-4268-8e83-a44c77fb9c42"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hasta_honorarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="332" y="0" width="108" height="20" uuid="825c6866-eaaf-4f93-b3b6-442e4f962a60"/>
+				<reportElement x="347" y="0" width="86" height="20" uuid="825c6866-eaaf-4f93-b3b6-442e4f962a60"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
@@ -167,11 +167,11 @@ FROM honorarios
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="204" y="46" width="150" height="12" forecolor="#FFFFFF" uuid="594dc099-0d1e-4d47-a564-473b618e1b40"/>
+				<reportElement x="130" y="46" width="280" height="12" forecolor="#FFFFFF" uuid="594dc099-0d1e-4d47-a564-473b618e1b40"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[DESARROLLADO POR MASOFT]]></text>
+				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="505" y="42" width="40" height="20" forecolor="#FFFFFF" uuid="1ad6e6d1-a75c-4995-95b1-54517da789cc"/>
