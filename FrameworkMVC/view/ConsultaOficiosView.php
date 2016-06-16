@@ -118,7 +118,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Citaciones","consulta"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("Oficios","consulta"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
@@ -132,11 +132,11 @@
   			
 		   			
           <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+			  	<p  class="formulario-subtitulo" style="" >Entidad:</p>
+			  	<select name="id_entidad" id="id_entidad"  class="form-control" >
 			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
-					<?php foreach($resultCiu as $res) {?>
-						<option value="<?php echo $res->id_ciudad; ?>"><?php echo $res->nombre_ciudad;  ?> </option>
+					<?php foreach($resultEntidad as $res) {?>
+						<option value="<?php echo $res->id_entidades; ?>"><?php echo $res->nombre_entidades;  ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>
@@ -191,16 +191,13 @@
 	         <tr >
 	            
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Oficio</th>
+	    		<th style="color:#456789;font-size:80%;">Creado</th>
+	    		<th style="color:#456789;font-size:80%;">Nº Oficio</th>
 	    		<th style="color:#456789;font-size:80%;">Nº Juicio</th>
-	    		<th style="color:#456789;font-size:80%;">Nº Juicio Referido</th>
 	    		<th style="color:#456789;font-size:80%;">Cliente</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Citacion</th>
-	    		<th style="color:#456789;font-size:80%;">Ciudad</th>
-	    		<th style="color:#456789;font-size:80%;">Tipo Citacion</th>
-	    		<th style="color:#456789;font-size:80%;">Persona Recibe</th>
-	    		<th style="color:#456789;font-size:80%;">Relacion</th>
-	    		<th style="color:#456789;font-size:80%;">Citador Judicial</th>
+	    		<th style="color:#456789;font-size:80%;">Entidad</th>
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
@@ -209,19 +206,16 @@
 	        		<tr>
 	        		
 	        		  
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_citaciones; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->id_juicios; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_oficios; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_oficios; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_oficios; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_citaciones; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_citaciones; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_persona_recibe_citaciones; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->relacion_cliente_citaciones; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContCitacionesReport.php?id_citaciones=<?php echo $res->id_citaciones; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" style="font-size:65%;">Reporte</a>
+		               <a href="/FrameworkMVC/view/ireports/ContOficiosReport.php?id_oficios=<?php echo $res->id_oficios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" style="font-size:65%;">Reporte</a>
 		               </td> 
 		    		</tr>
 		        <?php } }  ?>

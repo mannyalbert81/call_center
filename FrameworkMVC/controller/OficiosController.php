@@ -326,8 +326,8 @@ class OficiosController extends ControladorBase{
 		//Creamos el objeto usuario
 		$resultSet="";
 	
-		$ciudad = new CiudadModel();
-		$resultCiu = $ciudad->getAll("nombre_ciudad");
+		$entidades = new EntidadesModel();
+		$resultEntidad = $entidades->getAll("nombre_entidades");
 	
 		$oficios = new OficiosModel();
 	
@@ -337,51 +337,44 @@ class OficiosController extends ControladorBase{
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "Oficios";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $citaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $oficios->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 	
 			if (!empty($resultPer))
 			{
 					
 				if(isset($_POST["buscar"])){
 	
-					$id_ciudad=$_POST['id_ciudad'];
+					$id_entidad=$_POST['id_entidad'];
 					$identificacion=$_POST['identificacion'];
 					$numero_juicio=$_POST['numero_juicio'];
 					$titulo_credito=$_POST['numero_titulo'];
 					$fechadesde=$_POST['fecha_desde'];
 					$fechahasta=$_POST['fecha_hasta'];
 	
-					$citaciones= new CitacionesModel();
-	
-	
-					$columnas = "citaciones.id_citaciones,
+					$oficios= new OficiosModel();
+					
+					$columnas = "oficios.id_oficios,
+					oficios.nombre_oficios,
+					oficios.creado,
+					oficios.numero_oficios,
 					juicios.id_juicios,
-  					juicios.juicio_referido_titulo_credito,
- 					clientes.nombres_clientes,
-  					clientes.identificacion_clientes,
-  					citaciones.fecha_citaciones,
-  					ciudad.nombre_ciudad,
-  					ciudad.id_ciudad,
-  					tipo_citaciones.id_tipo_citaciones,
-  					tipo_citaciones.nombre_tipo_citaciones,
-  					citaciones.nombre_persona_recibe_citaciones,
-  					citaciones.relacion_cliente_citaciones,
-  					usuarios.nombre_usuarios";
+					juicios.juicio_referido_titulo_credito,
+					juicios.id_titulo_credito,
+					clientes.nombres_clientes,
+					clientes.identificacion_clientes,
+					entidades.id_entidades,
+					entidades.nombre_entidades";
 	
-					$tablas=" public.citaciones,
-  					public.juicios,
-  					public.ciudad,
-  					public.tipo_citaciones,
-  					public.usuarios,
-  					public.clientes";
+					$tablas="public.oficios,
+					public.juicios,
+					public.entidades,
+					public.clientes";
 	
-					$where="juicios.id_juicios = citaciones.id_juicios AND
-  					ciudad.id_ciudad = citaciones.id_ciudad AND
-  					tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones AND
-  					usuarios.id_usuarios = citaciones.id_usuarios AND
-  					clientes.id_clientes = juicios.id_clientes";
+					$where="juicios.id_juicios = oficios.id_juicios AND
+					entidades.id_entidades = oficios.id_entidades AND
+					clientes.id_clientes = juicios.id_clientes";
 	
-					$id="citaciones.id_citaciones";
+					$id="oficios.id_oficios";
 						
 						
 					$where_0 = "";
@@ -391,7 +384,7 @@ class OficiosController extends ControladorBase{
 					$where_4 = "";
 	
 	
-					if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
+					if($id_entidad!=0){$where_0=" AND entidades.id_entidades='$id_entidad'";}
 						
 					if($numero_juicio!=""){$where_1=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
 						
@@ -405,7 +398,7 @@ class OficiosController extends ControladorBase{
 					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;
 	
 	
-					$resultSet=$citaciones->getCondiciones($columnas ,$tablas , $where_to, $id);
+					$resultSet=$oficios->getCondiciones($columnas ,$tablas , $where_to, $id);
 	
 	
 				}
@@ -414,7 +407,7 @@ class OficiosController extends ControladorBase{
 	
 	
 				$this->view("ConsultaOficios",array(
-						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu
+						"resultSet"=>$resultSet,"resultEntidad"=>$resultEntidad
 							
 				));
 	
