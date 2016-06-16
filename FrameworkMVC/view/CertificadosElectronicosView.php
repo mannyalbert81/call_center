@@ -108,7 +108,7 @@
           	
           	<div class="row">
 			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           		<input type="submit" id="aceptar" name="aceptar" value="Aceptar" onclick="this.form.action='<?php echo $helper->url("Firmas","InsertaFirmas"); ?>'" class="btn btn-success"/>
+           		<input type="submit" id="aceptar" name="aceptar" value="Aceptar" onclick="this.form.action='<?php echo $helper->url("CertificadosElectronicos","InsertaFirmas"); ?>'" class="btn btn-success"/>
            </div>
            </div>
           	
