@@ -64,8 +64,8 @@
     </head>
     <body style="background-color: #d9e3e4;">
     
+       <?php include("view/modulos/modal.php"); ?>
        <?php include("view/modulos/head.php"); ?>
-       
        <?php include("view/modulos/menu.php"); ?>
     
  		<?php $resultMenu=array(0=>"--Seleccione--",1=>"Nombre Tercero",2=>"Numero Tercero",3=>"Valor Movimiento"); ?>
