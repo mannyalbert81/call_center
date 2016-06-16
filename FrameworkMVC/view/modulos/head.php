@@ -100,7 +100,7 @@ $(document).ready(function(){
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
 		
-		<div class="col-xs-7 col-md-8">
+		<div class="col-xs-7 col-md-9">
 		
 		 	 <div class="dropdown">
 				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><?php echo " ".$_SESSION['nombre_usuarios'];?></span>
