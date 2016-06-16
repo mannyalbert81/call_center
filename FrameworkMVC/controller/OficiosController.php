@@ -354,7 +354,6 @@ class OficiosController extends ControladorBase{
 					$oficios= new OficiosModel();
 					
 					$columnas = "oficios.id_oficios,
-					oficios.nombre_oficios,
 					oficios.creado,
 					oficios.numero_oficios,
 					juicios.id_juicios,

@@ -83,13 +83,13 @@ $(document).ready(function(){
   
   <div class="row" style=" background-color:#d93e1b;">
   
-  <div style=" margin-top: 10px; "   class="col-xs-9 col-md-9"  >
+  <div style=" margin-top: 10px; "   class="col-xs-6 col-md-9"  >
   <img src="view/images/logo-coctiva.png" class="img-responsive" alt="Responsive image">
   </div>
   <!-- aqui va la class pull-right.... -->
   
   
-  <div  style="margin-top: 20px;" class="col-xs-3 col-md-3">
+  <div  style="margin-top: 20px;" class="col-xs-6 col-md-3">
  		<div class="">
  		
  		<p> <strong> <?php //echo CLIENTE?>  </strong>  </p>
@@ -100,7 +100,7 @@ $(document).ready(function(){
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
 		
-		<div class="col-xs-8 col-md-8">
+		<div class="col-xs-7 col-md-8">
 		
 		 	 <div class="dropdown">
 				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><?php echo " ".$_SESSION['nombre_usuarios'];?></span>

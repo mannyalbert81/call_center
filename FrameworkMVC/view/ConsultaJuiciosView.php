@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Consulta Oficios - coactiva 2016</title>
+        <title>Juicios - coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -118,12 +118,12 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Oficios","consulta"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("Juicio","consulta"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
          
-       	 <h4 style="color:#ec971f;">Consulta Citaciones</h4>
+       	 <h4 style="color:#ec971f;">Consulta Juicios</h4>
        	 
        	 
        	 <div class="panel panel-default">
@@ -132,11 +132,11 @@
   			
 		   			
           <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo" style="" >Entidad:</p>
-			  	<select name="id_entidad" id="id_entidad"  class="form-control" >
+			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
 			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
-					<?php foreach($resultEntidad as $res) {?>
-						<option value="<?php echo $res->id_entidades; ?>"><?php echo $res->nombre_entidades;  ?> </option>
+					<?php foreach($resultCiu as $res) {?>
+						<option value="<?php echo $res->id_ciudad; ?>"><?php echo $res->nombre_ciudad;  ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>
@@ -191,12 +191,16 @@
 	         <tr >
 	            
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Creado</th>
-	    		<th style="color:#456789;font-size:80%;">Nº Oficio</th>
-	    		<th style="color:#456789;font-size:80%;">Nº Juicio</th>
-	    		<th style="color:#456789;font-size:80%;">Cliente</th>
+	    		<th style="color:#456789;font-size:80%;">Coactivad@</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
-	    		<th style="color:#456789;font-size:80%;">Entidad</th>
+	    		<th style="color:#456789;font-size:80%;">Ciudad</th>
+	    		<th style="color:#456789;font-size:80%;">Tipo Persona</th>
+	    		<th style="color:#456789;font-size:80%;">Nº Juicio</th>
+	    		<th style="color:#456789;font-size:80%;">Abogado</th>
+	    		<th style="color:#456789;font-size:80%;">Etapa</th>
+	    		<th style="color:#456789;font-size:80%;">Tipo Juicio</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Emision</th>
+	    		<th style="color:#456789;font-size:80%;">Total</th>
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
@@ -205,15 +209,19 @@
 	        		<tr>
 	        		
 	        		  
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_oficios; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_oficios; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_clientes; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_persona; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_etapas; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_juicios; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContOficiosReport.php?id_oficios=<?php echo $res->id_oficios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" style="font-size:80%;">Reporte</a>
+		               <a href="/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=<?php echo $res->id_clientes; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" style="font-size:80%;">Reporte</a>
 		               </td> 
 		    		</tr>
 		        <?php } }  ?>
