@@ -188,8 +188,17 @@
             <li><a href="/FrameworkMVC/view/ireports/ContCitacionesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Citaciones</span> </a>
             </li>   
             
-            <li><a href="/FrameworkMVC/view/ireports/ContAdministradorGastosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Citaciones</span> </a>
+            <li><a href="/FrameworkMVC/view/ireports/ContAdministradorGastosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Administrador de Gastos</span> </a>
             </li> 
+            
+            <li><a href="/FrameworkMVC/view/ireports/ContHonorariosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Honorarios</span> </a>
+            </li>
+            
+            <li><a href="/FrameworkMVC/view/ireports/ContNotificacionesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Notificaciones</span> </a>
+            </li>
+            
+            <li><a href="/FrameworkMVC/view/ireports/ContAsignacionSecretariosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Asignacion Secretarios</span> </a>
+            </li>
       </ul>
       </li>
 </ul>

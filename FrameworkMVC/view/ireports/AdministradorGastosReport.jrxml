@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-13T17:26:08 -->
+<!-- 2016-06-16T13:29:21 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AdministradorGastos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0a144fcb-1efa-4266-bcc8-d3103919b782">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="YWRtaW5pc3RyYWRvcl9nYXN0b3MgQVMgLDI3NCwxMzUsMzJkOTVhN2QtNjU5Ni00ZDE0LTk5ODct&#xA;ODk1ODY0ZTc0Y2M5O3RpcG9fZ2FzdG9zIEFTICw2NzMsMTUwLDM3YzQ1OTQ4LWEyYTUtNDJlZC04&#xA;NjQ2LTI2MjgyMWQzZmE3Yjs="/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -26,11 +26,11 @@ FROM administrador_gastos
 				<reportElement x="0" y="0" width="560" height="70" forecolor="#000000" backcolor="#000000" uuid="3397af4b-852c-47f3-a342-2f87f2cdb3bb"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="119" y="10" width="281" height="50" forecolor="#FFFFFF" uuid="96a77707-9719-48b1-a370-14bb932f53ff"/>
+				<reportElement x="126" y="14" width="281" height="50" forecolor="#FFFFFF" uuid="96a77707-9719-48b1-a370-14bb932f53ff"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[REPORTE DE HONORARIOS]]></text>
+				<text><![CDATA[REPORTE ADMINISTRADOR DE GASTOS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="340" y="49" width="99" height="20" forecolor="#FFFFFF" uuid="eae636ad-042c-4f84-a790-c3bc825b0106"/>
@@ -48,7 +48,7 @@ FROM administrador_gastos
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="4" y="29" width="126" height="40" uuid="96cb94ef-c6d1-4a5a-9e5c-2fc849186153"/>
+				<reportElement x="4" y="18" width="126" height="40" uuid="96cb94ef-c6d1-4a5a-9e5c-2fc849186153"/>
 				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
 			</image>
 		</band>
@@ -135,11 +135,11 @@ FROM administrador_gastos
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="204" y="46" width="150" height="12" forecolor="#FFFFFF" uuid="54580795-58f6-489f-9c37-ca3196bf3f50"/>
+				<reportElement x="145" y="46" width="270" height="12" forecolor="#FFFFFF" uuid="54580795-58f6-489f-9c37-ca3196bf3f50"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[DESARROLLADO POR MASOFT]]></text>
+				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="505" y="42" width="40" height="20" forecolor="#FFFFFF" uuid="3fa73a0d-349b-4ed7-9ab7-c9ff210db38d"/>
