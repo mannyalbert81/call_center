@@ -130,6 +130,8 @@
 			</li>
 			<li><a href="index.php?controller=MarcaVehiculos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Marca de Vehiculos </span> </a>
 			</li>
+			<li><a href="index.php?controller=MarcaVehiculos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Reportes</span> </a>
+			</li>
 			
 </ul>
 </li>
