@@ -111,11 +111,13 @@ $(document).ready(function(){
 								  
 			</div>
 			<!-- empieza notificacion -->
-			<form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
+
+<form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
 			<div class="dropdown" id="div_head">
 				  
 			</div>
 			</form>
+
 			
 		 	 <?php  ?> 
 		<?php 
@@ -139,6 +141,8 @@ $(document).ready(function(){
   
 
 <!-- aqui termina la class pull-right -->
+
+
 
  
   </div>
