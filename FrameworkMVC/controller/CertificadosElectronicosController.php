@@ -1,7 +1,7 @@
 <?php
 
 
-class FirmasController extends ControladorBase{
+class CertificadosElectronicosController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();

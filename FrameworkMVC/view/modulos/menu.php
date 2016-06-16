@@ -53,7 +53,7 @@
             </li>
 			<li><a href="index.php?controller=FirmasDigitales&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Firmas Digitales</span> </a>
             </li>
-            <li><a href="index.php?controller=Firmas&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Firmar</span> </a>
+            <li><a href="index.php?controller=CertificadosElectronicos&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Registrar Certificado Electronico</span> </a>
             </li>
              <li><a href="index.php?controller=AsignacionTituloCredito&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Asignar Titulo Credito</span> </a>
             </li>
