@@ -59,7 +59,8 @@
             </li>
             <li><a href="index.php?controller=ReasignarTitulo&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Reasignar Titulo Credito</span> </a>
             </li>
-           
+          	<li><a href="index.php?controller=Clientes&action=ImportacionClientes"><span class="glyphicon glyphicon-user" aria-hidden="true"> Importacion Clientes</span> </a>
+            </li> 
                      </ul>
         </li>
         <li class="dropdown">
@@ -84,8 +85,7 @@
 
             <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Actividades</span> </a>
             </li>
-            <li><a href="index.php?controller=Clientes&action=ImportacionClientes"><span class="glyphicon glyphicon-user" aria-hidden="true"> Importacion Clientes</span> </a>
-            </li>
+            
             <li><a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Personas</span> </a>
 			</li>
 
