@@ -51,7 +51,7 @@ $(document).ready(function(){
 		  $.post("<?php echo $helper->url("VerNotificaciones","iniciaNotificaciones"); ?>", datos, function(resultNotificaciones) {
 
 		 		$.each(resultNotificaciones, function(index, value) {
-			 	    $ul.append('<li  ><a href="index.php?controller=VerNotificaciones&action=actualizaNotificaciones&id_notificaciones='+value.id_notificaciones+'&controlador='+value.controlador_tipo_notificacion+'&acciones='+value.accion_tipo_notificacion+'">'+value.descripcion_notificacion+'->'+ value.descripcion_notificaciones+'</a></li>');	
+			 	    $ul.append('<li  ><a href="index.php?controller=VerNotificaciones&action=actualizaNotificaciones&id_notificaciones='+value.id_notificaciones+'&controlador='+value.controlador_tipo_notificacion+'&acciones='+value.accion_tipo_notificacion+'">'+ value.descripcion_notificaciones+'</a></li>');	
 	      		 });
 
 		 		 	 		   
