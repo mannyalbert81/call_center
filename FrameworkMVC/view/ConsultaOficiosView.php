@@ -215,7 +215,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_entidades; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContOficiosReport.php?id_oficios=<?php echo $res->id_oficios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" style="font-size:65%;">Reporte</a>
+		               <a href="/FrameworkMVC/view/ireports/ContOficiosReport.php?id_oficios=<?php echo $res->id_oficios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" style="font-size:80%;">Reporte</a>
 		               </td> 
 		    		</tr>
 		        <?php } }  ?>
