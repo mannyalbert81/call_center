@@ -4,7 +4,7 @@
 
 <?php require_once 'config/global.php';?> 
 
-  <title>aDocument</title>
+  <title>AllCoercive</title>
   <link rel="shortcut icon" href="view/favicon.ico" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,7 +100,7 @@ $(document).ready(function(){
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
 		 	 <div class="dropdown">
-				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><?php echo " Bienvenid@  ".$_SESSION['nombre_usuarios'];?></span>
+				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><?php echo " ".$_SESSION['nombre_usuarios'];?></span>
 				  <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
