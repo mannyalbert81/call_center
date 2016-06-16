@@ -117,7 +117,8 @@ class CertificadosElectronicosController extends ControladorBase{
 			
 			if(!empty($resultFirmas)){
 				
-				$id_firma=$resultFirmas[0]->id_firmas_digitales;
+			$id_firma=$resultFirmas[0]->id_firmas_digitales;
+			$alias=$_POST['alias'];
 			$numero_serie=$_POST['numero_serie'];
 			$emitido_por=$_POST['emitido_por'];
 			$emitido_para=$_POST['emitido_para'];
@@ -129,7 +130,7 @@ class CertificadosElectronicosController extends ControladorBase{
 			
 			// character varying,  character varying,  character varying,  integer _mac_certificado_digital character varying, _id_usuarios integer)
 			
-			$parametros = " '$numero_serie' ,'$emitido_por' , '$emitido_para' , '$id_firma' , '$macaddress' , '$id_usuario','$fecha_expira' ";
+			$parametros = " '$numero_serie' ,'$emitido_por' , '$emitido_para' , '$id_firma' , '$macaddress' , '$id_usuario','$fecha_expira','$alias'";
 			$certificados->setFuncion($funcion);
 			
 			$certificados->setParametros($parametros);
@@ -143,7 +144,7 @@ class CertificadosElectronicosController extends ControladorBase{
 			$_parametros_trazas = $macaddress;
 			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			
-			$this->redirect("Firmas","index");
+			$this->redirect("CertificadosElectronicos","index");
 			}else {
 				$this->view("Error",array(
 							

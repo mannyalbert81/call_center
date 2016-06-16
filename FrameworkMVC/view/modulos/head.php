@@ -103,7 +103,7 @@ $(document).ready(function(){
 		<div class="col-xs-7 col-md-9">
 		
 		 	 <div class="dropdown">
-				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><?php echo " ".$_SESSION['nombre_usuarios'];?></span>
+				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><FONT  SIZE=2><?php echo " ".$_SESSION['nombre_usuarios'];?></FONT></span>
 				  <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
