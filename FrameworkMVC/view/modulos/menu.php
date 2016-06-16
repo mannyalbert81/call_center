@@ -112,7 +112,7 @@
             </li>
            <li><a href="index.php?controller=Oficios&action=consulta"><span class="glyphicon glyphicon-copy" aria-hidden="true"> Oficios</span> </a>
             </li>
-            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"> Operaciones Coactiva</span> </a>
+            <li><a href="index.php?controller=Juicio&action=consulta"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"> Juicios</span> </a>
             </li>
             <li><a href="index.php?controller=Trazas&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Titulos Credito</span> </a>
             </li>      
@@ -188,11 +188,10 @@
             <li><a href="/FrameworkMVC/view/ireports/ContCitacionesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class=" glyphicon glyphicon-book" aria-hidden="true"> Citaciones</span> </a>
             </li>   
             
-
             <li><a href="/FrameworkMVC/view/ireports/ContAdministradorGastosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Administrador de Gastos</span> </a>
-
+             </li>
+             
             <li><a href="/FrameworkMVC/view/ireports/ContAdministradorGastosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-tags" aria-hidden="true"> Citaciones</span> </a>
-
             </li> 
             
             <li><a href="/FrameworkMVC/view/ireports/ContHonorariosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Honorarios</span> </a>
