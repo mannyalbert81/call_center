@@ -64,10 +64,10 @@ class OficiosController extends ControladorBase{
 					
 						$_id_oficios = $_GET["id_oficios"];
 						
-						$columnas = " id_oficios, nombre_oficios";
+						$columnas = " id_oficios";
 						$tablas   = "oficios";
 						$where    = "id_oficios = '$_id_oficios' "; 
-						$id       = "nombre_oficios";
+						$id       = "id_oficios";
 							
 						$resultEdit = $oficios->getCondiciones($columnas ,$tablas ,$where, $id);
 
@@ -198,8 +198,7 @@ class OficiosController extends ControladorBase{
 				
 			{
 			 $_array_juicios = $_POST["id_juicios"];
-			 $_nombre_oficios = $_POST["nombre_oficios"];
-			 $_id_entidades = $_POST["id_entidades"];
+			$_id_entidades = $_POST["id_entidades"];
 				
 					foreach($_array_juicios  as $id  )
 					{
@@ -225,7 +224,7 @@ class OficiosController extends ControladorBase{
 								
 								
 								$funcion = "ins_oficios";
-								$parametros = "'$_nombre_oficios','$numero_oficio', '$_id_juicios', '$_id_entidades' ";
+								$parametros = "'$numero_oficio', '$_id_juicios', '$_id_entidades' ";
 								$oficios->setFuncion($funcion);
 		                        $oficios->setParametros($parametros);
 					            $resultado=$oficios->Insert();
