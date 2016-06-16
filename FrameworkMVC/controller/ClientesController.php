@@ -465,5 +465,133 @@ public function index(){
 	
 	}
 	
+	public function consulta(){
+	
+		session_start();
+	
+		//Creamos el objeto usuario
+		$resultSet="";
+	
+		$ciudad = new CiudadModel();
+		$resultCiu = $ciudad->getAll("nombre_ciudad");
+	
+		$citaciones = new CitacionesModel();
+	
+	
+		if (isset(  $_SESSION['usuario_usuarios']) )
+		{
+			$permisos_rol = new PermisosRolesModel();
+			$nombre_controladores = "Clientes";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $citaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+	
+			if (!empty($resultPer))
+			{
+					
+				if(isset($_POST["buscar"])){
+	
+					$id_ciudad=$_POST['id_ciudad'];
+					$identificacion=$_POST['identificacion'];
+					$numero_juicio=$_POST['numero_juicio'];
+					$titulo_credito=$_POST['numero_titulo'];
+					$fechadesde=$_POST['fecha_desde'];
+					$fechahasta=$_POST['fecha_hasta'];
+	
+					$citaciones= new CitacionesModel();
+	
+	
+					$columnas = "juicios.id_juicios,
+					clientes.id_clientes,
+  					clientes.nombres_clientes,
+  					clientes.identificacion_clientes,
+  					ciudad.nombre_ciudad,
+  					tipo_persona.nombre_tipo_persona,
+  					juicios.juicio_referido_titulo_credito,
+  					usuarios.nombre_usuarios,
+  					titulo_credito.id_titulo_credito,
+  					etapas_juicios.nombre_etapas,
+  					tipo_juicios.nombre_tipo_juicios,
+  					juicios.creado,
+  					titulo_credito.total";
+	
+					$tablas="public.clientes,
+					  public.ciudad,
+					  public.tipo_persona,
+					  public.juicios,
+					  public.titulo_credito,
+					  public.etapas_juicios,
+					  public.tipo_juicios,
+					  public.usuarios";
+	
+					$where="ciudad.id_ciudad = clientes.id_ciudad AND
+					  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
+					  juicios.id_titulo_credito = titulo_credito.id_titulo_credito AND
+					  juicios.id_clientes = clientes.id_clientes AND
+					  juicios.id_tipo_juicios = tipo_juicios.id_tipo_juicios AND
+					  etapas_juicios.id_etapas_juicios = juicios.id_etapas_juicios AND
+					  usuarios.id_usuarios=juicios.id_usuarios";
+	
+					$id="juicios.id_juicios";
+	
+	
+					$where_0 = "";
+					$where_1 = "";
+					$where_2 = "";
+					$where_3 = "";
+					$where_4 = "";
+	
+	
+					if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
+	
+					if($numero_juicio!=""){$where_1=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
+	
+					if($identificacion!=""){$where_2=" AND clientes.identificacion='$identificacion'";}
+	
+					if($titulo_credito!=""){$where_3=" AND juicios.id_titulo_credito='$titulo_credito'";}
+	
+					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  juicios.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+	
+	
+					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;
+	
+	
+					$resultSet=$citaciones->getCondiciones($columnas ,$tablas , $where_to, $id);
+	
+	
+				}
+	
+	
+	
+	
+				$this->view("ConsultaClientes",array(
+						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu
+							
+				));
+	
+	
+	
+			}
+			else
+			{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Acceso a Citaciones"
+	
+				));
+	
+				exit();
+			}
+	
+		}
+		else
+		{
+			$this->view("ErrorSesion",array(
+					"resultSet"=>""
+	
+			));
+	
+		}
+	
+	}
+	
 }
 ?>
