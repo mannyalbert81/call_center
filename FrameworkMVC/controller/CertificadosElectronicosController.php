@@ -40,7 +40,7 @@ class CertificadosElectronicosController extends ControladorBase{
 					
 					
 					
-					$comando='start "" /b "C:\Users\User\git\coactiva\FrameworkMVC\core\CertificadosDigitales\registrar\RegistrarCertificado.exe" ';
+					$comando='start "" /b "C:\CertificadosDigitales\registrar\RegistrarCertificado.exe" ';
 						
 					$comando_esc = escapeshellcmd($comando);
 						
