@@ -74,7 +74,7 @@ class PHPJasperXML {
         }elseif($cndriver=="psql") {
             global $pgport;
             if($pgport=="" || $pgport==0)
-                $pgport=5432;
+                $pgport=5433;
 
             $conn_string = "host=$db_host port=$pgport dbname=$db_or_dsn_name user=$db_user password=$db_pass";
             $this->myconn = pg_connect($conn_string);
