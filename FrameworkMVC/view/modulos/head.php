@@ -99,6 +99,9 @@ $(document).ready(function(){
 		
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
+		
+		<div class="col-xs-8 col-md-8">
+		
 		 	 <div class="dropdown">
 				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><?php echo " ".$_SESSION['nombre_usuarios'];?></span>
 				  <span class="caret"></span>
@@ -110,13 +113,16 @@ $(document).ready(function(){
 				  </ul>
 								  
 			</div>
+		</div>
 			<!-- empieza notificacion -->
+		<div class="" style="float: left;">
 
-<form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
+            <form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
 			<div class="dropdown" id="div_head">
 				  
 			</div>
 			</form>
+		</div>
 
 			
 		 	 <?php  ?> 
