@@ -82,7 +82,7 @@
             <li><a href="index.php?controller=EstAutoPagoJuicios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Auto de PagO</span> </a>
             </li>
 
-            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Actividades</span> </a>
+            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Auditoria del Sistema</span> </a>
             </li>
             <li><a href="index.php?controller=Clientes&action=ImportacionClientes"><span class="glyphicon glyphicon-user" aria-hidden="true"> Importacion Clientes</span> </a>
             </li>
