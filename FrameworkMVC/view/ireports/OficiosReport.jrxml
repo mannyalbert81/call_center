@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<<<<<<< HEAD
 <!-- 2016-06-16T13:56:36 -->
+=======
+<!-- 2016-06-16T13:22:44 -->
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Oficios2Report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="adae3722-326b-4d7f-95b5-2321a3d02998">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -680,11 +684,11 @@ WHERE
 	<pageFooter>
 		<band height="25" splitType="Stretch">
 			<staticText>
-				<reportElement x="29" y="1" width="494" height="18" uuid="88f3ca86-5272-4d4a-9833-a39c2f7b80d8"/>
-				<textElement textAlignment="Center">
-					<font size="8" isItalic="true"/>
+				<reportElement x="117" y="6" width="320" height="12" forecolor="#000000" uuid="2e830ec2-e48e-4347-8440-ced1dc1acadc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[ Coactivas  - AllCoercive 2016 - www.masoft.net  Copyright 2016]]></text>
+				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
 			</staticText>
 		</band>
 	</pageFooter>
