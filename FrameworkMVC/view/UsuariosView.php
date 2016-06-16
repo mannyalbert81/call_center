@@ -597,8 +597,7 @@
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Correo </p>
 			  	<input type="email"  name="correo_usuarios" id="correo_usuarios" value="" class="form-control" />
-				
-				<div id="mensaje_correo" class="errores"></div>
+			    <div id="mensaje_correo" class="errores"></div>
 			  </div>
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Roles</p>
