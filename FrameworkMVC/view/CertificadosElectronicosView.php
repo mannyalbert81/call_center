@@ -62,7 +62,7 @@
   
      <div class="row" style="background-color: #ffffff;">
   
-  	      <form action="<?php echo $helper->url("Firmas","index"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
+  	      <form action="<?php echo $helper->url("CertificadosElectronicos","index"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
            
             <h4 style="color:#ec971f;">Insertar Firmas Digitales</h4>
             <hr/>

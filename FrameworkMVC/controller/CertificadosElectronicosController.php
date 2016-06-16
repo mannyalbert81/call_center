@@ -35,30 +35,6 @@ class CertificadosElectronicosController extends ControladorBase{
 				
 				
 				
-				if (isset ($_GET["id_firmas_digitales"])   )
-				{
-
-					$nombre_controladores = "FirmasDigitales";
-					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $firmas_digitales->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-						
-					if (!empty($resultPer))
-					{
-					
-						
-
-					}
-					else
-					{
-						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Firmas Digitales"
-					
-						));
-					
-					
-					}
-					
-				}
 				
 				if(isset($_POST['registrar'])){
 					
@@ -83,7 +59,7 @@ class CertificadosElectronicosController extends ControladorBase{
 				}
 		
 				
-				$this->view("Firmas",array(
+				$this->view("CertificadosElectronicos",array(
 						"resultSet"=>$resultSet,"resultEdit"=>$resultEdit,"resultCertificado"=>$resultCertificado
 			
 				));
