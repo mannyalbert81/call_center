@@ -40,7 +40,7 @@ $(document).ready(function(){
 		 
 		 cantidad_notificaciones = JSON.parse(result_notificaciones);
 		 
-		 var notificaciones ='<button type="button" id="boton_notificacion" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Notificacion <span class="badge">'+cantidad_notificaciones.length+'</span></button>';
+		 var notificaciones ='<button type="button" id="boton_notificacion" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="badge">'+cantidad_notificaciones.length+'</span></button>';
 
 		 notificaciones=notificaciones+'<ul class="dropdown-menu" id="ul_notificacion">'+'</ul>';
 
