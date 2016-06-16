@@ -98,7 +98,7 @@
 	       
 	        <div class="row">
 		     <div class="col-xs-6 col-md-6">
-		     <p  class="formulario-subtitulo" >Nombre Secretario</p>
+		     <p  class="formulario-subtitulo" >Nombre Firmante</p>
 		             <select name="abogados" id="abogados"  class="form-control">
 						<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
 							<option value="<?php echo $resSecretario->id_usuarios; ?>" <?php if ($resSecretario->id_usuarios == $resEdit->id_usuarios ) echo ' selected="selected" '  ; ?> ><?php echo $resSecretario->nombre_usuarios; ?> </option>
@@ -123,7 +123,7 @@
 		    	
 		    	 <div class="row">
 		    	<div class="col-xs-6 col-md-6">
-		    	<p  class="formulario-subtitulo" >Nombre Secretario</p>
+		    	<p  class="formulario-subtitulo" >Nombre Firmante</p>
 		          <select name="abogados" id="abogados"  class="form-control">
 									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
 				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
