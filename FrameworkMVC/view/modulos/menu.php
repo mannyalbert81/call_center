@@ -173,22 +173,22 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Reportes" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
            
-             <li><a href="/FrameworkMVC/view/ireports/ContClientesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Clientes</span> </a>
+             <li><a href="/FrameworkMVC/view/ireports/ContClientesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-home" aria-hidden="true"> Clientes</span> </a>
            </li>
             
-            <li><a href="/FrameworkMVC/view/ireports/ContUsuariosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Usuarios</span> </a>
+            <li><a href="/FrameworkMVC/view/ireports/ContUsuariosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-file" aria-hidden="true"> Usuarios</span> </a>
             </li>  
             
-            <li><a href="/FrameworkMVC/view/ireports/ContVehiculosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Vehiculos Embargados</span> </a>
+            <li><a href="/FrameworkMVC/view/ireports/ContVehiculosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class=" glyphicon glyphicon-print" aria-hidden="true"> Vehiculos Embargados</span> </a>
             </li>   
             
-            <li><a href="/FrameworkMVC/view/ireports/ContOficiosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Oficios</span> </a>
+            <li><a href="/FrameworkMVC/view/ireports/ContOficiosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class=" glyphicon glyphicon-bookmark" aria-hidden="true"> Oficios</span> </a>
             </li>  
             
-            <li><a href="/FrameworkMVC/view/ireports/ContCitacionesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Citaciones</span> </a>
+            <li><a href="/FrameworkMVC/view/ireports/ContCitacionesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class=" glyphicon glyphicon-book" aria-hidden="true"> Citaciones</span> </a>
             </li>   
             
-            <li><a href="/FrameworkMVC/view/ireports/ContAdministradorGastosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Citaciones</span> </a>
+            <li><a href="/FrameworkMVC/view/ireports/ContAdministradorGastosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-tags" aria-hidden="true"> Citaciones</span> </a>
             </li> 
       </ul>
       </li>
