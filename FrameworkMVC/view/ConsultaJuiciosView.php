@@ -184,8 +184,15 @@
 		 
 		 <div class="col-lg-12">
 		 
-	
-		 <span class="form-control">registros:<?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
+		 <div class="col-lg-12">
+		 <div class="col-lg-10"></div>
+		 <div class="col-lg-2">
+		 <span class="form-control"><strong>Registros:</strong><?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
+		 </div>
+		 </div>
+		 <div class="col-lg-12">
+		 
+		 
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
@@ -228,6 +235,8 @@
            
        	</table>     
       </section>
+      
+      </div>
 		 
 		 		 
 		 </div>
