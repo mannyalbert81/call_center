@@ -100,22 +100,14 @@
          <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Consultas" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-          <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Convenios</span> </a>
-           </li>
+          <li><a href="index.php?controller=Citaciones&action=consulta"><span class="glyphicon glyphicon-user" aria-hidden="true"> Citaciones</span> </a>
+            </li>
            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Juicios</span> </a>
-            </li>
-            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Pagos</span> </a>
-            </li>
-            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Pagos Detalle</span> </a>
             </li>
             <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Operaciones Coactiva</span> </a>
             </li>
-            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Titulos</span> </a>
+            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Titulos Credito</span> </a>
             </li>      
-            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Titulos Asignados Vencidos</span> </a>
-            </li>
-            <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Citaciones</span> </a>
-            </li>
             <li><a href="index.php?controller=Honorarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Honorarios</span> </a>
             </li>
             <li><a href="index.php?controller=TipoHonorarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Tipo de Honorarios</span> </a>
@@ -175,10 +167,13 @@
 </li>
 
 <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Convenios" ;?> </span> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Reportes" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
            
-            <li><a href="index.php?controller=RegistroConvenioPagoSolicitud&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Convenio Pago Solicitud</span> </a>
+            <li><a href="index.php?controller=Reportes&action=clientes"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Clientes</span> </a>
+            </li>
+            
+            <li><a href="index.php?controller=Reportes&action=usuarios"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Clientes</span> </a>
             </li>          
       </ul>
       </li>
@@ -191,7 +186,7 @@
             </li>           
       </ul>
       </li>
-
+</ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
