@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-10T15:25:18 -->
+<!-- 2016-06-16T12:40:57 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
-	<parameter name="_id_clientes" class="java.lang.Integer">
-		<parameterDescription><![CDATA[]]></parameterDescription>
-	</parameter>
 	<queryString>
 		<![CDATA[SELECT 
   clientes.id_clientes,
@@ -35,7 +32,7 @@ WHERE
   juicios.id_clientes = clientes.id_clientes AND
   juicios.id_tipo_juicios = tipo_juicios.id_tipo_juicios AND
   etapas_juicios.id_etapas_juicios = juicios.id_etapas_juicios 
-  AND clientes.id_clientes =  $P{_id_clientes}]]>
+  ]]>
 	</queryString>
 	<field name="nombres_clientes" class="java.lang.String"/>
 	<field name="identificacion_clientes" class="java.lang.String"/>
