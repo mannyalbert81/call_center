@@ -114,7 +114,7 @@
             </li>
             <li><a href="index.php?controller=Juicio&action=consulta"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"> Juicios</span> </a>
             </li>
-            <li><a href="index.php?controller=Trazas&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Titulos Credito</span> </a>
+            <li><a href="index.php?controller=Clientes&action=consulta"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Clientes</span> </a>
             </li>      
             
 			
