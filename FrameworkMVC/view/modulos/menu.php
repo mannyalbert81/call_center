@@ -59,6 +59,8 @@
             </li>
             <li><a href="index.php?controller=ReasignarTitulo&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Reasignar Titulo Credito</span> </a>
             </li>
+              <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
+            </li>
           	<li><a href="index.php?controller=Clientes&action=ImportacionClientes"><span class="glyphicon glyphicon-user" aria-hidden="true"> Importacion Clientes</span> </a>
             </li> 
                      </ul>
@@ -66,10 +68,9 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-                    <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
-            </li>
+          
 
-            	<li><a href="index.php?controller=TipoJuicios&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Juicios</span> </a>
+            <li><a href="index.php?controller=TipoJuicios&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Tipo de Juicios</span> </a>
 			</li>
 			<li><a href="index.php?controller=EstadosTitulosCredito&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Estado Titulo Credito</span> </a>
 			</li>
@@ -80,7 +81,7 @@
             </li>
             <li><a href="index.php?controller=LotesTituloCredito&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Lotes</span> </a>
             </li>
-            <li><a href="index.php?controller=EstAutoPagoJuicios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Auto de PagO</span> </a>
+            <li><a href="index.php?controller=EstAutoPagoJuicios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Estado Auto de Pago</span> </a>
             </li>
 
             <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Auditoria del Sistema</span> </a>
@@ -93,7 +94,19 @@
 			</li>
 			<li><a href="index.php?controller=Ciudad&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Ciudades</span> </a>
 			</li>
-
+            <li><a href="index.php?controller=Honorarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Honorarios</span> </a>
+            </li>
+            <li><a href="index.php?controller=TipoHonorarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Tipo de Honorarios</span> </a>
+            </li>
+            
+            <li><a href="index.php?controller=TipoGastos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Tipo Gastos</span> </a>
+			</li>
+			<li><a href="index.php?controller=AdministradorGastos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Administrador de Gastos</span> </a>
+			</li>
+			<li><a href="index.php?controller=TipoVehiculos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Tipo de Vehiculos </span> </a>
+			</li>
+			<li><a href="index.php?controller=MarcaVehiculos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Marca de Vehiculos </span> </a>
+			</li>
           </ul>
         </li>
 
@@ -108,22 +121,8 @@
             </li>
             <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Titulos Credito</span> </a>
             </li>      
-            <li><a href="index.php?controller=Honorarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Honorarios</span> </a>
-            </li>
-            <li><a href="index.php?controller=TipoHonorarios&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Tipo de Honorarios</span> </a>
-            </li>
-            <li><a href="index.php?controller=Productos&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Productos</span> </a>
-            </li>
-            <li><a href="index.php?controller=TipoGastos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Tipo Gastos</span> </a>
-			</li>
-			<li><a href="index.php?controller=AdministradorGastos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Administrador de Gastos</span> </a>
-			</li>
-			<li><a href="index.php?controller=TipoVehiculos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Tipo de Vehiculos </span> </a>
-			</li>
-			<li><a href="index.php?controller=MarcaVehiculos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Marca de Vehiculos </span> </a>
-			</li>
-			<li><a href="index.php?controller=MarcaVehiculos&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Reportes</span> </a>
-			</li>
+            
+			
 			
 </ul>
 </li>
@@ -167,6 +166,15 @@
 </li>
 
 <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Citaciones" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+          <li><a href="index.php?controller=Citaciones&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Generar Citaciones</span> </a>
+            </li>           
+      </ul>
+      </li>
+      
+<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Reportes" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
            
@@ -175,15 +183,6 @@
             
             <li><a href="index.php?controller=Reportes&action=usuarios"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Clientes</span> </a>
             </li>          
-      </ul>
-      </li>
-      
-<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Citaciones" ;?> </span> <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            
-          <li><a href="index.php?controller=Citaciones&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Generar Citaciones</span> </a>
-            </li>           
       </ul>
       </li>
 </ul>
