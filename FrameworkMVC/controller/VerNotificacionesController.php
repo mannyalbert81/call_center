@@ -27,7 +27,6 @@ class VerNotificacionesController extends ControladorBase{
 			
 			if (!empty($resultPer))
 			{
-							
 				
 			}
 			else
