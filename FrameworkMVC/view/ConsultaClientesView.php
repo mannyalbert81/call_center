@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Clientes - coactiva 2016</title>
+        <title>Consulta Clientes - coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -184,8 +184,14 @@
 		 
 		 <div class="col-lg-12">
 		 
-	
-		 <span class="form-control" style="margin-bottom:0px;">Registros:<?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
+	      <div class="col-lg-12">
+		 <div class="col-lg-10"></div>
+		 <div class="col-lg-2">
+		 <span class="form-control" style="margin-bottom:0px;"><strong>Registros:</strong><?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
+		 </div>
+		 </div>
+		 <div class="col-lg-12">
+		 
 		 
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
@@ -232,7 +238,7 @@
 		 
 		 		 
 		 </div>
-		 
+		 </div>
 		
 		
       

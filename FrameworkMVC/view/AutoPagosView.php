@@ -395,7 +395,16 @@
       
       
         
-       <section   style="height:400px;overflow-y:scroll;width: 655px;">
+        <div class="col-lg-12">
+		 <div class="col-lg-9"></div>
+		 <div class="col-lg-3">
+		 <span class="form-control" style="margin-bottom:0px;"><strong>Registros:</strong><?php if(!empty($resultDatos)) echo "  ".count($resultDatos);?></span>
+		 </div>
+		 </div>
+		 <div class="col-lg-12">
+		 
+		 
+       <section   style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" class="checkbox"> </th>
@@ -441,7 +450,8 @@
        	</table>     
 		     
       </section>
-        
+        </div>
+		 </div>
         </div>
     </div>
     

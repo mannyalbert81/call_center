@@ -194,6 +194,16 @@
         </div>
        <!-- termina formulario de busqueda -->
        
+       <div class="col-lg-12">
+		 
+	      <div class="col-lg-12">
+		 <div class="col-lg-10"></div>
+		 <div class="col-lg-2">
+       <span class="form-control" style="margin-bottom:0px;"><strong>Registros:</strong><?php if(!empty($resultActi)) echo "  ".count($resultActi);?></span>
+		 </div>
+		 </div>
+		 <div class="col-lg-12">
+       
         <section class="col-lg-12 actividades" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
@@ -235,6 +245,8 @@
             
        	</table>     
       </section>
+      </div>
+		 </div>
       </div>
       </div>
    
