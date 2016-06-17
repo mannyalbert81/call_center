@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-16T14:00:56 -->
+<!-- 2016-06-17T09:57:08 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Oficios2Report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="adae3722-326b-4d7f-95b5-2321a3d02998">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -32,8 +32,8 @@ WHERE
 	 AND titulo_credito.id_titulo_credito = juicios.id_titulo_credito 
 	 AND entidades.id_entidades = oficios.id_entidades 
 	 AND clientes.id_clientes = juicios.id_clientes 
-	 AND ciudad.id_ciudad = juicios.id_ciudad
-	 AND oficios.id_oficios =  $P{_id_oficios}]]>
+	 AND ciudad.id_ciudad = juicios.id_ciudad  AND
+	 oficios.id_oficios = $P{_id_oficios} ]]>
 	</queryString>
 	<field name="nombre_entidades" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
@@ -88,13 +88,13 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="31" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="5" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="12" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
 		<band height="713" splitType="Stretch">
@@ -678,13 +678,34 @@ WHERE
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="25" splitType="Stretch">
+		<band height="27" splitType="Stretch">
 			<staticText>
 				<reportElement x="117" y="6" width="320" height="12" forecolor="#000000" uuid="2e830ec2-e48e-4347-8440-ced1dc1acadc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="454" y="5" width="20" height="20" forecolor="#000000" uuid="33189587-2777-46e7-a3c6-176daf1242da"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="494" y="5" width="40" height="20" forecolor="#000000" uuid="ddaa2843-1f45-4b9e-b4ff-a6fd7d84ee8e"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="474" y="4" width="20" height="20" forecolor="#000000" uuid="4022d78a-7566-4ce4-bc16-e85d9c916f1d"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
 			</staticText>
 		</band>
 	</pageFooter>

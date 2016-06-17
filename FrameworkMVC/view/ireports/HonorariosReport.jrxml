@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-16T14:27:46 -->
+<!-- 2016-06-17T10:06:36 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HonorariosReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3d4e328b-0390-4a0a-8464-619c91a1179f">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -159,27 +159,41 @@ FROM honorarios
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="62" splitType="Stretch">
+		<band height="66" splitType="Stretch">
 			<rectangle>
 				<reportElement x="4" y="42" width="540" height="20" forecolor="#000000" backcolor="#000000" uuid="698ddb2f-f072-484a-9429-8fa479bf57b6"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</rectangle>
-			<staticText>
-				<reportElement x="130" y="46" width="280" height="12" forecolor="#FFFFFF" uuid="594dc099-0d1e-4d47-a564-473b618e1b40"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="8" isBold="true" isItalic="false"/>
-				</textElement>
-				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="505" y="42" width="40" height="20" forecolor="#FFFFFF" uuid="1ad6e6d1-a75c-4995-95b1-54517da789cc"/>
+				<reportElement x="444" y="46" width="20" height="20" forecolor="#FFFFFF" uuid="85d80e66-dd47-4465-89ae-88793a19c8a8"/>
 				<textElement>
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="484" y="46" width="40" height="20" forecolor="#FFFFFF" uuid="a810e1a9-2dee-452f-bca6-5ca804b920ef"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="464" y="45" width="20" height="20" forecolor="#FFFFFF" uuid="b31b1a70-af0c-4b1c-8676-963d050eb024"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="46" width="320" height="12" forecolor="#FFFFFF" uuid="625c4da2-e43d-4984-afb8-ce0f327d65cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<summary>
