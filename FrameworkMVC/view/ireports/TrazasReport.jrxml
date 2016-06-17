@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-16T17:50:26 -->
+<!-- 2016-06-17T10:03:51 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TrazasReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b22c1a24-4d1c-4b61-89d5-ee7bf3f6eb11">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -165,13 +165,6 @@ ORDER BY   	trazas.creado ASC]]>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</rectangle>
-			<staticText>
-				<reportElement x="130" y="6" width="280" height="12" forecolor="#FFFFFF" uuid="a66b5e62-8acb-4828-b073-03f229613e63"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="8" isBold="true" isItalic="false"/>
-				</textElement>
-				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="440" y="6" width="20" height="20" forecolor="#FFFFFF" uuid="3e23a819-d14e-4a25-9125-865a7f912cc2"/>
 				<textElement>
@@ -192,6 +185,13 @@ ORDER BY   	trazas.creado ASC]]>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="6" width="320" height="12" forecolor="#FFFFFF" uuid="ba7b90e0-3342-4454-bb28-eadb704929f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
 			</staticText>
 		</band>
 	</pageFooter>

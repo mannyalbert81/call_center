@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-16T11:25:18 -->
+<!-- 2016-06-17T12:12:51 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VehiculosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5955712-b99a-4538-ad86-41065f296b63">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -46,7 +46,7 @@ FROM vehiculos_embargados
 				</textElement>
 				<text><![CDATA[REPORTE VEHICULOS EMBARGADOS]]></text>
 			</staticText>
-			<textField pattern="EEEEE dd MMMMM yyyy">
+			<textField pattern="M/d/yy">
 				<reportElement x="685" y="50" width="115" height="20" forecolor="#FFFFFF" uuid="f0546d6a-6288-41c6-8c87-3082028f97ad"/>
 				<textElement>
 					<font fontName="Arial" size="10" isBold="true"/>
@@ -62,7 +62,7 @@ FROM vehiculos_embargados
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<image>
-				<reportElement x="1" y="0" width="209" height="69" uuid="380adc80-4e5d-404e-8eec-a2edb87eb94e"/>
+				<reportElement x="1" y="-2" width="209" height="69" uuid="380adc80-4e5d-404e-8eec-a2edb87eb94e"/>
 				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
 			</image>
 		</band>
@@ -183,27 +183,41 @@ FROM vehiculos_embargados
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="72" splitType="Stretch">
+		<band height="33" splitType="Stretch">
 			<rectangle>
-				<reportElement x="10" y="42" width="781" height="20" forecolor="#000000" backcolor="#000000" uuid="4f98effb-1c56-4c3c-94d7-100ea3b0eb00"/>
+				<reportElement x="10" y="2" width="781" height="20" forecolor="#000000" backcolor="#000000" uuid="4f98effb-1c56-4c3c-94d7-100ea3b0eb00"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</rectangle>
-			<staticText>
-				<reportElement x="250" y="46" width="320" height="12" forecolor="#FFFFFF" uuid="3004ec7d-78ec-42aa-854a-906c68005077"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="8" isBold="true" isItalic="false"/>
-				</textElement>
-				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="760" y="44" width="40" height="20" forecolor="#FFFFFF" uuid="e7992d52-a10e-4ccb-b966-156a67185876"/>
+				<reportElement x="690" y="7" width="20" height="20" forecolor="#FFFFFF" uuid="b4dc70a8-afdc-48b8-b82f-5078910e1e67"/>
 				<textElement>
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="730" y="7" width="40" height="20" forecolor="#FFFFFF" uuid="f9511f4c-a385-4bed-921d-178df000686f"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="710" y="7" width="20" height="20" forecolor="#FFFFFF" uuid="63237415-c685-4b62-8c42-ec5c19ebc4cc"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="6" width="320" height="12" forecolor="#FFFFFF" uuid="85af3899-7838-4f7f-a075-e2dc820d84d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<summary>
