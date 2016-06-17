@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-16T13:29:21 -->
+<!-- 2016-06-16T17:56:16 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AdministradorGastos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0a144fcb-1efa-4266-bcc8-d3103919b782">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="YWRtaW5pc3RyYWRvcl9nYXN0b3MgQVMgLDI3NCwxMzUsMzJkOTVhN2QtNjU5Ni00ZDE0LTk5ODct&#xA;ODk1ODY0ZTc0Y2M5O3RpcG9fZ2FzdG9zIEFTICw2NzMsMTUwLDM3YzQ1OTQ4LWEyYTUtNDJlZC04&#xA;NjQ2LTI2MjgyMWQzZmE3Yjs="/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -127,27 +127,41 @@ FROM administrador_gastos
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="62" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<rectangle>
-				<reportElement x="4" y="42" width="540" height="20" forecolor="#000000" backcolor="#000000" uuid="d8eb589a-6db1-4fab-9330-1ed9bf9c04d6"/>
+				<reportElement x="4" y="2" width="540" height="20" forecolor="#000000" backcolor="#000000" uuid="719ca77e-f275-4c03-8c51-c473b0e566ea"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="145" y="46" width="270" height="12" forecolor="#FFFFFF" uuid="54580795-58f6-489f-9c37-ca3196bf3f50"/>
+				<reportElement x="130" y="6" width="280" height="12" forecolor="#FFFFFF" uuid="863f67b0-5601-4c65-9d43-51bbbbf643d3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="505" y="42" width="40" height="20" forecolor="#FFFFFF" uuid="3fa73a0d-349b-4ed7-9ab7-c9ff210db38d"/>
+				<reportElement x="440" y="6" width="20" height="20" forecolor="#FFFFFF" uuid="9b815347-724e-4e78-8df9-05958fffc9cc"/>
 				<textElement>
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="480" y="6" width="40" height="20" forecolor="#FFFFFF" uuid="5bdbc12a-1b65-40bf-adbd-3d515ee899f1"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="460" y="5" width="20" height="20" forecolor="#FFFFFF" uuid="88476b8b-ae4b-4b57-9ab5-420fd1906e33"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<summary>
