@@ -39,9 +39,9 @@ $(document).ready(function(){
 	 result.done(function( result_notificaciones ) {
 		 
 		 cantidad_notificaciones = JSON.parse(result_notificaciones);
-		 
-		 var notificaciones ='<button type="button" id="boton_notificacion" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="badge">'+cantidad_notificaciones.length+'</span></button>';
-
+		var notificaciones ='<button type="button" id="boton_notificacion" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="badge">'+cantidad_notificaciones.length+'</span></button>';
+         
+		
 		 notificaciones=notificaciones+'<ul class="dropdown-menu" id="ul_notificacion">'+'</ul>';
 
 		  $divcontenedor.append(notificaciones);
@@ -50,9 +50,28 @@ $(document).ready(function(){
 
 		  $.post("<?php echo $helper->url("VerNotificaciones","iniciaNotificaciones"); ?>", datos, function(resultNotificaciones) {
 
-		 		$.each(resultNotificaciones, function(index, value) {
-			 	    $ul.append('<li  ><a href="index.php?controller=VerNotificaciones&action=actualizaNotificaciones&id_notificaciones='+value.id_notificaciones+'&controlador='+value.controlador_tipo_notificacion+'&acciones='+value.accion_tipo_notificacion+'">'+ value.descripcion_notificaciones+'</a></li>');	
-	      		 });
+               
+			  $.each(resultNotificaciones, function(index, value) {
+				  $ul.append('<li  ><a href="index.php?controller=VerNotificaciones&action=actualizaNotificaciones&id_notificaciones='+value.id_notificaciones+'&controlador='+value.controlador_tipo_notificacion+'&acciones='+value.accion_tipo_notificacion+'">'+ value.descripcion_notificaciones+'</a></li>');	
+                  
+			 
+                		if (value.controlador_tipo_notificacion == 0){
+
+                			   	
+                				alert('entro');
+                        }
+
+                		else{
+
+                			
+    			 	    }
+
+			  });
+          	      		 
+                	
+                	
+              
+		 		
 
 		 		 	 		   
 		  }, 'json');
@@ -119,7 +138,6 @@ $(document).ready(function(){
 
             <form action="<?php echo $helper->url("VerNotificaciones","actualizaNotificaciones"); ?>" method="post" >
 			<div class="dropdown" id="div_head">
-				  
 			</div>
 			</form>
 		</div>
