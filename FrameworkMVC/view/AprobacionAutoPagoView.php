@@ -157,17 +157,26 @@
     
     <div  class="col-lg-7">
      <h4 style="color:#ec971f;">Lista de titulo</h4>
-            <hr/>
+     <hr/>
+     <div class="col-xs-12">
+		 <div class="col-xs-9"></div>
+		 <div class="col-xs-3">
+		 <span class="form-control" style="margin-bottom:0px;"><strong>Registros:</strong><?php if(!empty($resultDatos)) echo "  ".count($resultDatos);?></span>
+		 </div>
+		 </div>
+		 <div class="col-xs-12">
+            
     		
-		<div class="col-xs-12" style="margin: 5px;">	
+		<div class="col-xs-12" >	
 
 	</div>
 	
 	<div class="col-xs-12">
       
-      
         
-       <section   style="height:400px;overflow-y:scroll;width: 655px;">
+        
+        
+       <section   style="height:400px;overflow-y:scroll;width: 630px;">
         <table class="table table-hover ">
 	         <tr >
 	    		
@@ -210,7 +219,8 @@
        	</table>     
 		     
       </section>
-        
+        </div>
+		 </div>
         </div>
         <?php 
 		

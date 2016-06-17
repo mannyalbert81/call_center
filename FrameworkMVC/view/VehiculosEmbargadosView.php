@@ -142,8 +142,10 @@
             
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	        
+	      
 	       <div class="row">
-			    <div class="col-xs-6 col-md-6">
+	          
+			    <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Tipo Vehiculos</p>
 			  	<select name="id_tipo_vehiculos" id="id_tipo_vehiculos"  class="form-control" >
 					<?php foreach($resultTipoVehiculos as $resTipoVehiculos) {?>
@@ -151,7 +153,7 @@
 				</select> 			  
 			  </div>
 		
-		<div class="col-xs-6 col-md-6">
+		<div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Marca</p>
 			  	<select name="id_marca_vehiculos" id="id_marca_vehiculos"  class="form-control">
 					<?php foreach($resultMarcaVehiculos as $resMarcaVehiculos) {?>
@@ -161,7 +163,7 @@
 			 
 			  </div>
 			  <div class="row">
-		    <div class="col-xs-6 col-md-6">
+		    <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Placa</p>
 			  	<input type="text"  name="placa_vehiculos_embargados" id="placa_vehiculos_embargados" value="<?php echo $resEdit->placa_vehiculos_embargados; ?>" class="form-control"/> 
 			    <div id="mensaje_cedula" class="errores"></div>
@@ -169,7 +171,7 @@
 			
 			 
 			
-		    <div class="col-xs-6 col-md-6">
+		    <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Modelo</p>
 			  	<input type="text"  name="modelo_vehiculos_embargados" id="modelo_vehiculos_embargados" value="<?php echo $resEdit->modelo_vehiculos_embargados; ?>" class="form-control"/> 
 			    <div id="mensaje_cedula" class="errores"></div>
@@ -178,7 +180,7 @@
 			 
 		    
 		    <div class="row">
-			  <div class="col-xs-6 col-md-6">
+			  <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Observaciones</p>
 			  	<input type="text" name="observacion_vehiculos_embargados" id="observacion_vehiculos_embargados" value="<?php echo $resEdit->observacion_vehiculos_embargados; ?>" class="form-control"/> 
 			  <div id="mensaje_nombres" class="errores"></div>
@@ -200,7 +202,13 @@
 		    
 		    
 		<div class="row">
-			    <div class="col-xs-6 col-md-6">
+		
+		       <div class="col-xs-3 col-md-3" >
+			  	
+			  	 			  
+			  </div>
+			  
+			    <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Tipo Vehiculos</p>
 			  	<select name="id_tipo_vehiculos" id="id_tipo_vehiculos"  class="form-control" >
 					<?php foreach($resultTipoVehiculos as $resTipoVehiculos) {?>
@@ -208,7 +216,7 @@
 				</select> 			  
 			  </div>
 		
-		<div class="col-xs-6 col-md-6">
+		<div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Marca</p>
 			  	<select name="id_marca_vehiculos" id="id_marca_vehiculos"  class="form-control" >
 					<?php foreach($resultMarcaVehiculos as $resMarcaVehiculos) {?>
@@ -217,7 +225,11 @@
 			  </div>
 			  </div>
 			   <div class="row">
-		    <div class="col-xs-6 col-md-6">
+			    <div class="col-xs-3 col-md-3" >
+			  	
+			  	 			  
+			  </div>
+		    <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Placa</p>
 			  	<input type="hidden"  name="id_clientes" id="id_clientes" value="<?php echo $id_clientes;?>" class="form-control"/>
 			  	<input type="hidden"  name="id_titulo_credito" id="id_titulo_credito" value="<?php echo $id_titulo_credito;?>" class="form-control"/>
@@ -227,7 +239,7 @@
 			
 			 
 			
-		    <div class="col-xs-6 col-md-6">
+		    <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Modelo</p>
 			  	<input type="text"  name="modelo_vehiculos_embargados" id="modelo_vehiculos_embargados" class="form-control"/> 
 			    <div id="mensaje_cedula" class="errores"></div>
@@ -236,20 +248,26 @@
 			
 		    
 		     <div class="row">
-			  <div class="col-xs-6 col-md-6">
+		      <div class="col-xs-3 col-md-3" >
+			  	
+			  	 			  
+			  </div>
+			  <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Observaciones</p>
 			  	<input type="text" name="observacion_vehiculos_embargados" id="observacion_vehiculos_embargados" class="form-control"/> 
 			  <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 		  
-		   <div class="col-lg-3" id="div_desde">
-      		<span>Fecha:</span>
+		   <div class="col-xs-3 col-md-3" id="div_desde">
+      		<p  class="formulario-subtitulo" >Fecha:</p>
            <input type="date"  name="fecha_ingreso_vehiculos_embargados" id="fecha_ingreso_vehiculos_embargados" value="" class="form-control"/>
            <div id="mensaje_desde" class="errores"></div>
            </div>
              </div>
 			
 			<hr>
+			
+			
 		     <?php } ?>
 		       <div class="row">
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" > 

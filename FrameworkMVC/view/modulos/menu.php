@@ -202,6 +202,9 @@
             
             <li><a href="/FrameworkMVC/view/ireports/ContAsignacionSecretariosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Asignacion Secretarios</span> </a>
             </li>
+            
+            <li><a href="/FrameworkMVC/view/ireports/ContTrazasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Auditoria del Sistema</span> </a>
+            </li>
       </ul>
       </li>
 </ul>
