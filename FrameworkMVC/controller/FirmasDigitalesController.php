@@ -252,9 +252,107 @@ class FirmasDigitalesController extends ControladorBase{
 		}
 		
 		
-				
+		
 	}
 	
+	public function firmarDocumento() 
+	{
+		session_start();
+		
+		
+		$id_usuario=$_SESSION['id_usuarios'];
+		
+		$firmas = new FirmasDigitalesModel();
+		$resultFirmas=$firmas->getBy("id_usuarios='$id_usuario'");
+		
+		$permisos_rol=new PermisosRolesModel();
+		$nombre_controladores = "FirmasDigitales";
+		$id_rol= $_SESSION['id_rol'];
+		$resultPer = $permisos_rol->getPermisosEditar(" controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			
+		if (!empty($resultPer))
+		{
+			$resultSet= array();
+			$resultEdit= null;
+			$resultUsuarioSecretario=null;
+		if(isset($_POST['guardar']))
+		{
+			
+			$directorio = $_SERVER['DOCUMENT_ROOT'].'/documentos/';
+				
+			$nombre = $_FILES['imagen_firmas_digitales']['name'];
+			$tipo = $_FILES['imagen_firmas_digitales']['type'];
+			$tamano = $_FILES['imagen_firmas_digitales']['size'];
+			
+			move_uploaded_file($_FILES['imagen_firmas_digitales']['tmp_name'],$directorio.$nombre);
+			
+			
+			if(!empty($resultFirmas)){
+			
+			$id_firma=$resultFirmas[0]->id_firmas_digitales;
+			
+			$origen=$directorio.$nombre;
+			
+			$destino=$directorio.'firmados/'.$nombre;
+			
+			$ruta_ejecutable=$directorio.'firmar/FirmadorElectronico.exe';
+				
+				
+			$comando='start "" /b "'.$ruta_ejecutable.'" '.$id_firma.' '.$origen.' '.$destino.' ';
+			
+			/*$this->view("Error",array(
+					"resultado"=>$comando
+			
+			));
+			
+			exit();*/
+				
+			$comando_esc = escapeshellcmd($comando);
+				
+			exec($comando_esc,$resultadoSalida,$ejecucion);
+				
+			
+			if($resultadoSalida[0]!="ok")
+			{
+			$this->view("Error",array(
+					"resultado"=>"ocurrio un eeror en el proceso de firmado"
+			
+			));
+			
+			exit();
+			
+					
+			}
+			
+			}else{
+				
+			$this->view("Error",array(
+					"resultado"=>"no possee firmas"
+			
+			));
+			
+			exit();
+			}
+			
+			
+				
+		}
+			
+		
+			$this->view("FirmarPdf",array(
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultUsuarioSecretario" =>$resultUsuarioSecretario
+			
+				));
+		}
+		else
+		{
+			$this->view("Error",array(
+					"resultado"=>"No tiene Permisos de Borrar Clientes"
+		
+			));
+		}
+		
+	}
 	
 	
 }

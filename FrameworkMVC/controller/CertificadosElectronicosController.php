@@ -97,6 +97,7 @@ class CertificadosElectronicosController extends ControladorBase{
 		$id_usuario=$_SESSION['id_usuarios'];
 
 		$nombre_controladores = "Certificados";
+		
 		$firmas = new FirmasDigitalesModel();
 		$resultFirmas=$firmas->getBy("id_usuarios='$id_usuario'");
 

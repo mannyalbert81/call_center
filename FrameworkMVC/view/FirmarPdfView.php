@@ -90,9 +90,9 @@
   
      <div class="row" style="background-color: #ffffff;">
   
-  	      <form action="<?php echo $helper->url("FirmasDigitales","InsertaFirmasDigitales"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
+  	      <form action="<?php echo $helper->url("FirmasDigitales","firmarDocumento"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
            
-            <h4 style="color:#ec971f;">Insertar Firmas Digitales</h4>
+            <h4 style="color:#ec971f;">Firmar Documentos</h4>
             <hr/>
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	       
@@ -122,34 +122,28 @@
 		   
 		    	
 		    	 <div class="row">
-		    	<div class="col-xs-6 col-md-6">
-		    	<p  class="formulario-subtitulo" >Nombre Firmante</p>
-		          <select name="abogados" id="abogados"  class="form-control">
-									<?php foreach($resultUsuarioSecretario as $resSecretario) {?>
-				 						<option value="<?php echo $resSecretario->id_usuarios; ?>" ><?php echo $resSecretario->nombre_usuarios; ?> </option>
-						            <?php } ?>
-								    	
-					</select>
-		         </div>
+		    	
 		         
 			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Firma</p>
-			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" accept="png|jpg|jpeg" onKeyDown="return intro(event)" value="" class="form-control"/> 
+			  	<p  class="formulario-subtitulo" >Documento</p>
+			  	<input type="file" name="imagen_firmas_digitales" id="imagen_firmas_digitales" accept="pdf" onKeyDown="return intro(event)" value="" class="form-control"/> 
 			   <div id="mensaje_imagen_firmas_digitales" class="errores"></div>
 			   </div>
                 </div>
+                
+                
 	 	       
 			<hr>
 		     <?php } ?>
 		<div class="row">
 			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           		<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+           		<input type="submit" id="guardar" name="guardar" value="Guardar" class="btn btn-success"/>
            </div>
         </div>
     </form>
        
         <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Firmas</h4>
+            <h4 style="color:#ec971f;">Pdf</h4>
             <hr/>
         </div>
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
