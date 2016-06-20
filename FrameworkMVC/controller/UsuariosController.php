@@ -83,6 +83,7 @@ public function index(){
 						"resultado"=>"No tiene Permisos de Acceso a Usuarios"
 			
 				));
+				exit();
 			
 			
 			}
