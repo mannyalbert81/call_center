@@ -439,6 +439,143 @@ class EntidadBase{
     
     }
     
+    public function verMacAddress(){
+    
+    	ob_start();
+    
+    	system('ipconfig /all');
+    
+    	$mycomsys=ob_get_contents();
+    
+    	ob_clean();
+    		
+    	$macaddress="";
+    	$find_mac = "Direcci";
+    
+    	$pmac = strpos($mycomsys, $find_mac);
+    		
+    	if ($pmac === false) {
+    
+    	} else {
+    		$find_mac = "Fhysical";
+    		$macaddress=substr($mycomsys,($pmac+36),17);
+    
+    	}
+    		
+    		
+    	$macaddress=substr($mycomsys,($pmac+43),23);
+    
+    	return $macaddress;
+    }
+    
+    public function getPermisosFirmar()
+    {
+    	@@session_start();
+    	
+    	$resultado="";
+    	
+    	$id_usuario=$_SESSION['id_usuarios'];
+    	
+    	$certficados = new CertificadosModel();
+    	$resultCertificados=$certficados->getBy("id_usuarios_certificado_digital='$id_usuario'");
+    	
+    	//verificar si tiene registradso certificado electronico.
+    	
+    	if(!empty($resultCertificados))
+    	{
+    		//verficar si se encuentra en la maquina personal del usuario
+    		
+    		$macLocal=$this->verMacAddress();
+    		$resultMac=$certficados->getBy("mac_certificado_digital='$macLocal'");
+    		
+    		if (!empty($resultMac))
+    		{
+    			$firmas= new FirmasDigitalesModel();
+    			$resultFirmas=$firmas->getBy("id_usuarios='$id_usuario'");
+    			
+    			
+    			if(!empty($resultFirmas))
+    			{
+    				$resultado="";
+    				
+    			}else
+    			{
+    				$resultado="No tiene registrado una firma";
+    			}    			
+    			
+    			
+    		}else{
+    			
+    			$resultado="No tiene permiso para firmar desde esta pc";
+    		}
+    		
+    	}else
+    	{
+    		$resultado="Tiene que registrar certificado electronico";
+    	}
+    	
+    	return $resultado;
+    }
+    
+    public function FirmarDocumentos($directorio,$nombrePdf,$id_firma)
+    {
+    	session_start();
+    						
+    	//$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/';
+
+		$origen = $directorio . $nombrePdf;
+		
+		$destino = $directorio . 'firmados/' . $nombrePdf;
+		
+		$ruta_ejecutable = $directorio . 'firmar/FirmadorElectronico.exe';
+		
+		$comando = 'start "" /b "' . $ruta_ejecutable . '" ' . $id_firma . ' ' . $origen . ' ' . $destino . ' ';
+		
+		
+		$comando_esc = escapeshellcmd ( $comando );
+		
+		exec ( $comando_esc, $resultadoSalida, $ejecucion );
+		
+		return $resultadoSalida;
+		
+    }
+    
+    public function FirmarDocumentoConPosicion($nombre,$id_firma,$destino,$posicion)
+    {
+    	session_start();
+    
+    	$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/';
+    
+    	$nombre = $_FILES ['imagen_firmas_digitales'] ['name'];
+    	$tipo = $_FILES ['imagen_firmas_digitales'] ['type'];
+    	$tamano = $_FILES ['imagen_firmas_digitales'] ['size'];
+    
+    	move_uploaded_file($_FILES['imagen_firmas_digitales']['tmp_name'],$directorio.$nombre);
+    	 
+    	$origen = $directorio . $nombre;
+    
+    	$destino = $directorio . 'firmados/' . $nombre;
+    
+    	$ruta_ejecutable = $directorio . 'firmar/FirmadorElectronico.exe';
+    
+    	$comando = 'start "" /b "' . $ruta_ejecutable . '" ' . $id_firma . ' ' . $origen . ' ' . $destino . ' ';
+    		
+    	/*
+    	 * $this->view("Error",array(
+    	 * "resultado"=>$comando
+    	 *
+    	 * ));
+    	 *
+    	 * exit();
+    	 */
+    
+    	$comando_esc = escapeshellcmd ( $comando );
+    
+    	exec ( $comando_esc, $resultadoSalida, $ejecucion );
+    
+    	return $resultadoSalida;
+    
+    }
       
 }
 ?>

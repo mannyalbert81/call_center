@@ -124,8 +124,8 @@ class CertificadosElectronicosController extends ControladorBase{
 			$emitido_por=$_POST['emitido_por'];
 			$emitido_para=$_POST['emitido_para'];
 			$fecha_expira=$_POST['fecha_expira'];
-			$macaddress=$this->verMacAddress();
 			
+			$macaddress=$certificados->verMacAddress();
 			
 			$funcion = "ins_certificado_digital";
 			
@@ -167,40 +167,6 @@ class CertificadosElectronicosController extends ControladorBase{
 		}
 		
 	}
-	
-	public function verMacAddress(){
-		
-		ob_start();
-		
-		system('ipconfig /all');
-		
-		$mycomsys=ob_get_contents();
-		
-		ob_clean();
-		 
-		
-		 
-		$macaddress="";
-		$find_mac = "Direcci";
-		
-		$pmac = strpos($mycomsys, $find_mac);
-		 
-		if ($pmac === false) {
-		
-		} else {
-			$find_mac = "Fhysical";
-			$macaddress=substr($mycomsys,($pmac+36),17);
-		
-		}
-		 
-		 
-		$macaddress=substr($mycomsys,($pmac+43),23);
-		
-		return $macaddress;
-	}
-
-
-	
 	
 	
 }
