@@ -167,7 +167,10 @@
           <ul class="dropdown-menu">
             
           <li><a href="index.php?controller=Citaciones&action=index"><span class=" glyphicon glyphicon-usd" aria-hidden="true"> Generar Citaciones</span> </a>
-            </li>           
+            </li>
+          <li><a href="index.php?controller=RegistroConvenioPagoSolicitud&action=index"><span class=" glyphicon glyphicon-usd" aria-hidden="true"> Convenio Pago Solicitud</span> </a>
+            </li>   
+                     
       </ul>
       </li>
       
