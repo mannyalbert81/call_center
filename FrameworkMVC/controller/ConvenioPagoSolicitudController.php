@@ -18,7 +18,8 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 		   $columnas = "juicios.juicio_referido_titulo_credito,
 					  clientes.identificacion_clientes,
 					  clientes.nombres_clientes,
-					  titulo_credito.id_titulo_credito";
+					  titulo_credito.id_titulo_credito,
+		   				titulo_credito.total";
 		   $tablas   = "public.clientes,
 					  public.juicios,
 					  public.titulo_credito";

@@ -33,48 +33,7 @@
             
         </style>
          
-         <script >
-		$(document).ready(function(){
-
-		    // cada vez que se cambia el valor del combo
-		    $("#Guardar").click(function() 
-			{
-		   
-		    	var observacion_vehiculos_embargados= $("#observacion_vehiculos_embargados").val();
-		    
-		   				
-		    	if (observacion_vehiculos_embargados== "")
-		    	{
-			    	
-		    		$("#mensaje_nombres").text("Introduzca un tipo de vehiculos embargados");
-		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	
-		    	
-			}); 
-
-
-		 
-				
-				$( "#observacion_vehiculos_embargados" ).focus(function() {
-					$("#mensaje_nombres").fadeOut("slow");
-    			});
-				
-			
-		
-				
-		
-		      
-				    
-		}); 
-
-	</script>
+ 
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -113,6 +72,7 @@
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
 	    		<th style="color:#456789;font-size:80%;">Nombres Clientes</th>
 	    		<th style="color:#456789;font-size:80%;">Titulo Credito</th>
+	    		<th style="color:#456789;font-size:80%;">Total</th>
 	    		    	           
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
@@ -120,6 +80,7 @@
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?></td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>     </td> 
 		              
 		           	   
 		    		
@@ -131,21 +92,102 @@
             
             ?>
             
-       	</table>     
+       	</table>   
+       	
+       	  
       </section>
-            
-             <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-	        
-	      
-	            	  
-            
-		     <?php } } 
-		     else {?>
-		    
-		       
-		    
-		     <?php } ?>
-		     
+      
+      
+       <div class="col-lg-12 panel panel-default" >
+       <div class="panel-body">
+       <div class="col-xs-4 col-md-4">
+      
+       		<div class="col-xs-5 col-md-5" >
+       		<div class="checkbox">
+			<label class="formulario-subtitulo"><input type="checkbox" class="" id="exoneracion" name="exoneracion" value="">% Capital
+			</label>
+			</div>			
+			</div>
+     
+     		<div class="col-xs-7 col-md-7">
+			  	<input type="text" class="form-control" id="por_capital" name="por_capital" value="">			  
+			</div>
+			
+			<div class="col-xs-12 col-md-12">
+			  		  
+			</div>
+			
+			
+			<div class="col-xs-5 col-md-5">
+			<div class="checkbox">
+			<label class="formulario-subtitulo"><input type="checkbox" class="" id="exoneracion" name="exoneracion" value="">Valor Inicial
+			
+			</label>
+			</div>
+			</div>
+				
+			
+           <div class="col-xs-7 col-md-7">
+			  	<input type="text" class="form-control" id="valor_inicial" name="valor_inicial" value="">			  
+			</div>
+			
+			<div class="col-xs-12 col-md-12">
+			  		  
+			</div>
+			
+			<div class="col-xs-5 col-md-5">
+			  	<span class="formulario-subtitulo">Numero cuotas:</span>			  
+			</div>
+			
+			<div class="col-xs-7 col-md-7">
+			  	<input type="text" class="form-control" id="numero_cuotas" name="numero_cuotas" value="">			  
+			</div>
+			
+			<div class="col-xs-5 col-md-5">
+			  	<span class="formulario-subtitulo">Fecha corte:</span>			  
+			</div>
+			
+			<div class="col-xs-7 col-md-7">
+			  	<input type="date" class="form-control" id="fecha_corte" name="fecha_corte" value="">			  
+			</div>
+			
+		</div>
+			
+			
+		<div class="col-xs-4 col-md-4">
+			<div class="col-xs-2 col-md-2">
+			<div class="checkbox">
+			<label class="formulario-subtitulo"><input type="checkbox" class="" id="exoneracion" name="exoneracion" value="">
+			Exoneracion
+			</label>
+			</div>			  		  
+			</div>
+			<div class="col-xs-12 col-md-12">
+			  		  
+			</div>
+			<div class="col-xs-5 col-md-5">
+			  	<span class="formulario-subtitulo">% Interes:</span>			  
+			</div>
+			
+			<div class="col-xs-7 col-md-7">
+			  	<input type="text" class="form-control" id="interes" name="interes" value="">			  
+			</div>
+			
+			<div class="col-xs-5 col-md-5">
+			  	<span class="formulario-subtitulo">% Interes:</span>			  
+			</div>
+			
+			<div class="col-xs-7 col-md-7">
+			  	<input type="text" class="form-control" id="mora_coactiva" name="mora_coactiva" value="">			  
+			</div>
+		</div>
+			
+			 <div class="col-xs-2 col-md-2" style="text-align: center;" > 
+           <input type="submit" id="generar_cuotas" name="generar_cuotas" value="Generar Cuotas" class="btn btn-default"/>
+           </div>
+          </div>
+        </div>
+             
 		     
 		       <div class="row">
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" > 
