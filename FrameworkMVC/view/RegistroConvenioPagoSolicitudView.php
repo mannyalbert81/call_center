@@ -177,6 +177,7 @@
 	    		<th style="color:#456789;font-size:80%;">Tipo Identificacion</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
 	    		<th style="color:#456789;font-size:80%;">Nombres</th>
+	    		<th style="color:#456789;font-size:80%;">Total</th>
 	    		<th style="color:#456789;font-size:80%;"></th>
 	    		
 	    		<th></th>
@@ -191,6 +192,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>  </td>
 		                <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>  </td>
 		           <td>
 			           		<div class="right">
 			                    <a href="<?php echo $helper->url("ConvenioPagoSolicitud","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>&id_titulo_credito=<?php echo $res->id_titulo_credito; ?>" class="btn btn-warning" style="font-size:65%;">Seleccionar</a>

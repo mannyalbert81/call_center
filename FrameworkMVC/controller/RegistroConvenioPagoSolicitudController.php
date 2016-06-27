@@ -113,12 +113,13 @@ class RegistroConvenioPagoSolicitudController extends ControladorBase{
 						$aprobacion_auto_pago = new AutoPagosModel();
 							
 							
-						$columnas = " titulo_credito.id_titulo_credito, 
+						$columnas = "titulo_credito.id_titulo_credito, 
 										  juicios.juicio_referido_titulo_credito, 
 										  tipo_identificacion.nombre_tipo_identificacion, 
 										  clientes.identificacion_clientes, 
 										  clientes.nombres_clientes,
-								          clientes.id_clientes";
+								          clientes.id_clientes,
+								titulo_credito.total";
 					
 						$tablas   = "public.titulo_credito, 
 									  public.juicios, 
