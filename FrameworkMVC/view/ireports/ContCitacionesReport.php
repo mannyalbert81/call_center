@@ -33,5 +33,4 @@ $PHPJasperXML->load_xml_file("CitacionesReport.jrxml");
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $PHPJasperXML->outpage("I");
 
-
 ?>
