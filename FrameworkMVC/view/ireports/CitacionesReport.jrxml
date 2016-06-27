@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-17T12:11:41 -->
+<!-- 2016-06-23T10:24:22 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CitacionesReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4608033-e192-4760-aeb9-2c160b2277ee">
-	<property name="com.jaspersoft.studio.data.sql.tables" value="Y2l1ZGFkICw0NjMsMTYyLDQyYzFjZGY0LTQ2Y2QtNDdlYS1iYjMzLTIxNzJjYzQzODIwZjt0aXBv&#xA;X2NpdGFjaW9uZXMgLDYxMiwyMDEsOTViZTMxMGUtMzVhMy00NjJjLThjMGItOTQ5NzlhMDc5M2Ew&#xA;O3VzdWFyaW9zICwxMDQ0LDU3LDZlZGI3ZWUzLTJlMDQtNGIyYy04NTNlLThlZDNiZjVhODMzYTtj&#xA;bGllbnRlcyAsMjY1LDgzLDkxNmRlOGU5LTk4YTYtNGFkYS1iYjc1LTAyNmE0NDY3ZjJkNTtjaXRh&#xA;Y2lvbmVzICwxNSw4MixmODgxYmM3OC0yZTc5LTRmZjYtODQwZS02NzJkMmMyNWRmMzI7anVpY2lv&#xA;cyAsODA0LDE1LGZmZjU5ODhlLTQ0MWQtNDczYy05MTI0LWFhMTdiZTFmZTY0OTs="/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
 	<queryString>
 		<![CDATA[SELECT usuarios.nombre_usuarios,
