@@ -8,9 +8,11 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 
 
 	public function index(){
+		
+		session_start();
 	
 		//Creamos el objeto usuario
-     	$vehiculos_embargados= new VehiculosEmbargadosModel(); 
+     
      	$clientes = new ClientesModel();
      	
      	
@@ -19,36 +21,30 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 					  clientes.identificacion_clientes,
 					  clientes.nombres_clientes,
 					  titulo_credito.id_titulo_credito,
-		   				titulo_credito.total";
+		   				titulo_credito.total,
+		   		      titulo_credito.fecha_corte";
+		   
 		   $tablas   = "public.clientes,
 					  public.juicios,
 					  public.titulo_credito";
+		   
 		   $where    = " clientes.id_clientes = titulo_credito.id_clientes AND
 		   juicios.id_clientes = clientes.id_clientes AND
 		   juicios.id_titulo_credito = titulo_credito.id_titulo_credito ";
+		   
 		   $id = "juicios.juicio_referido_titulo_credito";
 		   
 		   //creamos array con la consulta de registros
 		   $resultSet=$clientes->getCondiciones($columnas, $tablas, $where, $id);
 	
-				
+		   $vehiculos_embargados= new VehiculosEmbargadosModel();
 		
 		$resultEdit = "";
 		
 		$id_clientes = "";
 		$id_titulo_credito = "";
 		
-		$tipo_vehiculos = new TipoVehiculosModel();
-		$resultTipoVehiculos=$tipo_vehiculos->getAll("nombre_tipo_vehiculos");
-
-		$marca_vehiculos = new MarcaVehiculosModel();
-		$resultMarcaVehiculos=$marca_vehiculos->getAll("nombre_marca_vehiculos");
-		
 	
-	
-		session_start();
-		
-		
 		
 		if(isset($_GET["id_clientes"]) && isset($_GET["id_titulo_credito"]))
 		{
@@ -73,51 +69,46 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$permisos_rol = new PermisosRolesModel();
-			$nombre_controladores = "VehiculosEmbargados";
+			$nombre_controladores = "ConvenioPagoSolicitud";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $vehiculos_embargados->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
+			
+			
 			if (!empty($resultPer))
 			{
-				if (isset ($_GET["id_vehiculos_embargados"])   )
+				
+				$resultAmortizacion=array();
+				$resultDatos=array();
+				
+				if (isset($_POST['generar_cuotas'])   )
 				{
 
-					$nombre_controladores = "VehiculosEmbargados";
-					$id_rol= $_SESSION['id_rol'];
-					$resultPer = $vehiculos_embargados->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-						
-					if (!empty($resultPer))
-					{
 					
-						$_id_vehiculos_embargados = $_GET["id_vehiculos_embargados"];
-						$columnas = " vehiculos_embargados.id_vehiculos_embargados, vehiculos_embargados.placa_vehiculos_embargados, vehiculos_embargados.modelo_vehiculos_embargados, vehiculos_embargados.observacion_vehiculos_embargados, vehiculos_embargados.fecha_ingreso_vehiculos_embargados, vehiculos_embargados.id_tipo_vehiculos, vehiculos_embargados.id_marca_vehiculos, vehiculos_embargados.id_clientes, clientes.id_clientes, clientes.nombres_clientes, tipo_vehiculos.id_tipo_vehiculos, tipo_vehiculos.nombre_tipo_vehiculos, marca_vehiculos.id_marca_vehiculos, marca_vehiculos.nombre_marca_vehiculos";
-			            $tablas   = " public.vehiculos_embargados, public.tipo_vehiculos, public.marca_vehiculos, public.clientes";
-						$where    = "tipo_vehiculos.id_tipo_vehiculos = vehiculos_embargados.id_vehiculos_embargados AND marca_vehiculos.id_marca_vehiculos = vehiculos_embargados.id_vehiculos_embargados AND clientes.id_clientes = vehiculos_embargados.id_vehiculos_embargados;= '$_id_vehiculos_embargados' "; 
-						$id       = "vehiculos_embargados.observaciones_vehiculos_embargados";
-							
-						$resultEdit = $vehiculos_embargados->getCondiciones($columnas ,$tablas ,$where, $id);
-
-						$traza=new TrazasModel();
-						$_nombre_controlador = "VehiculosEmbargados";
-						$_accion_trazas  = "Editar";
-						$_parametros_trazas = $_id_vehiculos_embargados;
-						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-					}
-					else
-					{
-						$this->view("Error",array(
-								"resultado"=>"No tiene Permisos de Editar Tipos de vehiculos embargados"
+					$interes=0;
+					$total=$_POST['total'];
+					$porcentaje_capital=$_POST['por_capital'];
+					$total_capital=$total-($total*($porcentaje_capital/100));
+					$fecha_corte=$_POST['fecha_corte'];
 					
-						));
+					array_push($resultDatos,array('total'=> $total,'porcentaje_capital'=>$porcentaje_capital,'total_capital'=>$total_capital));
 					
+					//pruebas tabla amortizacion
 					
-					}
+					$saldo_capital=$total-($total*($porcentaje_capital/100));
+					$tasa_interes=8.86;
+					$numero_cuotas=$_POST['numero_cuotas'];
+					
+					$saldo_honorarios=0;
+					
+					array_push($resultAmortizacion,array('saldo_capital'=> $saldo_capital,'tasa_interes'=>$tasa_interes,'numero_cuotas'=>$numero_cuotas,'saldo_honorarios'=>$saldo_honorarios,'fecha_corte'=>$fecha_corte));
+					
 					
 				}
 		
 				
 				$this->view("ConvenioPagoSolicitud",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultTipoVehiculos"=>$resultTipoVehiculos, "resultMarcaVehiculos"=>$resultMarcaVehiculos,"id_clientes"=>$id_clientes
+						"resultSet"=>$resultSet,"id_clientes"=>$id_clientes,'resultDatos'=>$resultDatos,'resultAmortizacion'=>$resultAmortizacion
 			
 				));
 		
