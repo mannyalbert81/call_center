@@ -142,7 +142,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php $fecha_ingreso=strtotime("$res->fecha_corte"); $diferencia=$fecha_actual-$fecha_ingreso; echo $diferencia/86400; ?>     </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>     </td>
 		               <td><input type="hidden" id="total" name="total" value="<?php echo $res->total; ?>"></td>
-		               <td><input type="hidden" id="dias_mora" name="dias_mora" value="<?php echo $res->total; ?>"></td>
+		               <td><input type="hidden" id="dias_mora" name="dias_mora" value="<?php echo $diferencia/86400; ?>"></td>
 		               
 		    </tr>
 		    
@@ -261,8 +261,10 @@
         </div>
         </div>
         
-        <?php if(!empty($resultDatos)){	?>
+        <?php if(!empty($resultDatos)){	
         
+  
+ 	?>
          
         
         <div class="col-lg-12 col-xs-6">
@@ -283,79 +285,19 @@
 	    	
 	      <?php if (!empty($resultAmortizacion)) {
 	      	
-	      	$saldo_capital=0;
-	      	$tasa_interes=0;
-	      	$numero_cuotas=0;
-	      	$saldo_honorarios=0;
-	      	$otros=0;
-	      	$total_Capital=0;
-	      	$total_Honorarios=0;
-	      	$total_Convenio=0;
-	      	$total_Interes=0;
-	      	$fecha_corte="";
-	      	
-	        foreach ($resultAmortizacion as $res)
-	        {
-	            		
-	            	$saldo_capital=$res['saldo_capital'];
-	            	$tasa_interes=$res['tasa_interes'];
-	            	$numero_cuotas=$res['numero_cuotas'];
-	            	$saldo_honorarios=$res['saldo_honorarios'];
-	            	$fecha_corte=$res['fecha_corte'];
-	        }
-	           
-	            	$plazo=$numero_cuotas;
-	            	
-					$honoraExon = $saldo_honorarios / ($plazo);
-
-             		$porcent = ($tasa_interes / 12)/100;
-             		
-             		$capinteres = $saldo_capital * (($porcent * (pow((1 + $porcent), ((int)($plazo))))) / (pow((1 + $porcent), ((int)($plazo))) - 1));
-	            	
-             		//agregar un mes a fecha dada
-             	
-             		$inter = 1*$saldo_capital*$porcent;
-             		 
-             		$abono = $capinteres-$inter;
-             		
-             		$saldocap = $saldo_capital;             		
-             		 
-             		$cuota = round($capinteres,2)+round($honoraExon,2)+round($otros,2);
-             		
-             		
-             		
-	            	
-	            	for( $i = 1; $i <= $plazo; $i++) {
-	            		
-	            		
-	            		$inter = 1*$saldocap*$porcent;
-	            		$abono = $capinteres-$inter;
-	            		$saldocap = $saldocap-$abono;
-	            		
-	            		$total_Interes = $total_Interes + $inter;
-	            		
-	            		$total_Capital = $total_Capital + $abono;
-	            		
-	            		$total_Honorarios = $total_Honorarios + $honoraExon;
-	            		
-	            		$total_Convenio = $total_Convenio + $cuota;
-	            		
-	            		$fecha=strtotime('+1 month',strtotime($fecha_corte));
-	            		 
-	            		$fecha=date('Y-m-d',$fecha);
-	            		
-	            		$fecha_corte=$fecha;
-	            		?>
+	      	foreach ($resultAmortizacion['tabla'] as $res)	{
+	      		
+	       ?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $i; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $fecha; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo round($abono,2); ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo round($inter,2); ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo round($capinteres,2); ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo round($saldocap,2); ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo round($honoraExon,2); ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo round($otros,2); ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $cuota; ?>     </td>  
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['periodo']; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['fecha_vencimiento']; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['abono_capital'],2); ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['interes'],2); ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['capital_interes'],2); ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo abs(round($res[0]['saldo_capital'],2)); ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['saldo_honorarios'],2); ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo round($res[0]['otros'],2); ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res[0]['cuota']; ?>     </td>  
 		               
 		    </tr>
 		    
@@ -376,13 +318,13 @@
        <div class="panel-body">
        <div class="col-xs-4 col-md-4">
       
-			
+			<?php foreach ($resultAmortizacion['totales'] as $totales){?>
 			<div class="col-xs-5 col-md-5">
 			  	<span class="formulario-subtitulo">Total Capital:</span>			  
 			</div>
 			
 			<div class="col-xs-7 col-md-7" >
-			<span  id="total_capital"  class="form-control" ><?php echo round($total_Capital,2); ?></span>		  
+			<span  id="total_capital"  class="form-control" ><?php echo round($totales['total_capital'],2); ?></span>		  
 			</div>
 			
 			<div class="col-xs-5 col-md-5">
@@ -390,7 +332,7 @@
 			</div>
 			
 			<div class="col-xs-7 col-md-7" style="margin-top:5px;">
-			<span  id="total_interes"  class="form-control" ><?php echo  round($total_Interes,2); ?></span>
+			<span  id="total_interes"  class="form-control" ><?php echo  round($totales['total_interes'],2); ?></span>
 			</div>
 			
 			<div class="col-xs-5 col-md-5">
@@ -398,7 +340,7 @@
 			</div>
 			
 			<div class="col-xs-7 col-md-7" style="margin-top:5px;">
-			<span  id="total_honorarios"  class="form-control" ><?php echo round($total_Honorarios,2); ?></span>	
+			<span  id="total_honorarios"  class="form-control" ><?php echo round($totales['total_honorarios'],2); ?></span>	
 			</div>
 			
 			<div class="col-xs-5 col-md-5">
@@ -406,7 +348,7 @@
 			</div>
 			
 			<div class="col-xs-7 col-md-7" style="margin-top:5px;">
-			<span  id="total_otros"  class="form-control" ><?php echo round($otros,2); ?></span>
+			<span  id="total_otros"  class="form-control" ><?php echo round($totales['total_otros'],2); ?></span>
 			</div>
 			<div class="col-xs-12 col-md-12" >
 			</div>
@@ -415,16 +357,16 @@
 			</div>
 			
 			<div class="col-xs-7 col-md-7" style="margin-top:5px;">
-			<span  id="total_convenio"  class="form-control" ><?php echo round($total_Convenio,2); ?></span>
+			<span  id="total_convenio"  class="form-control" ><?php echo round($totales['total_convenio'],2); ?></span>
 			</div>
 			
 		</div>
 		
-		<?php } ?>
+		<?php }} ?>
 		
 		<div class="col-xs-8 col-md-8">
 		
-		<section class="col-lg-12 usuario" style="height:100px;overflow-y:scroll;">
+		<section class="col-lg-12 usuario" style="height:350px;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;"><b>Rubros</b></th>
@@ -434,19 +376,19 @@
 	    		<th style="color:#456789;font-size:80%;">Cuota Inicial</th>
 	    		<th style="color:#456789;font-size:80%;">Saldo</th>
 	    	</tr>    	           
-	            <?php if (!empty($resultDatos)) {
+	            <?php if (!empty($resultRubros)) {
 	            	
 	            	
-	            	foreach($resultDatos as $res) {?>
+	            	foreach($resultRubros as $res) {?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo 'Interes Normal'; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo 0; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo 0; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo 0; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo 0; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo 0; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res['rubros']; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res['deuda']; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res['interes_rebaja']; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res['porc_rebaja']; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res['cuota_inicial']; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res['saldos']; ?>     </td> 
 		               
-		    </tr>
+		    		</tr>
 		    
 		    
 		        <?php } } ?>

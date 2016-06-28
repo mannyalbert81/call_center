@@ -80,6 +80,7 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 				
 				$resultAmortizacion=array();
 				$resultDatos=array();
+				$resultRubros=array();
 				
 				if (isset($_POST['generar_cuotas'])   )
 				{
@@ -90,6 +91,7 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 					$porcentaje_capital=$_POST['por_capital'];
 					$total_capital=$total-($total*($porcentaje_capital/100));
 					$fecha_corte=$_POST['fecha_corte'];
+					$dias_mora=$_POST['dias_mora'];
 					
 					array_push($resultDatos,array('total'=> $total,'porcentaje_capital'=>$porcentaje_capital,'total_capital'=>$total_capital));
 					
@@ -101,14 +103,25 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 					
 					$saldo_honorarios=0;
 					
-					array_push($resultAmortizacion,array('saldo_capital'=> $saldo_capital,'tasa_interes'=>$tasa_interes,'numero_cuotas'=>$numero_cuotas,'saldo_honorarios'=>$saldo_honorarios,'fecha_corte'=>$fecha_corte));
+					$resultAmortizacion=$this->tablaAmortizacion($saldo_capital, $numero_cuotas, $fecha_corte);
 					
+					$interes=0.812;
+					
+					$resultRubros=$this->tablaRubros($total, $interes, $dias_mora);
+					
+					
+					/*$this->view("Error",array(
+							"resultado"=>'dias_mora  '.$dias_mora.'<br>'.print_r($resultRubros)
+					
+					));
+					
+					exit();*/
 					
 				}
 		
 				
 				$this->view("ConvenioPagoSolicitud",array(
-						"resultSet"=>$resultSet,"id_clientes"=>$id_clientes,'resultDatos'=>$resultDatos,'resultAmortizacion'=>$resultAmortizacion
+						"resultSet"=>$resultSet,"id_clientes"=>$id_clientes,'resultDatos'=>$resultDatos,'resultAmortizacion'=>$resultAmortizacion,'resultRubros'=>$resultRubros
 			
 				));
 		
@@ -336,8 +349,212 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 				
 	}
 	
+	public function tablaAmortizacion($saldo_capital,$numero_cuotas,$fecha_corte)
+	{
+		//array donde guardar tabla amortizacion
+		$resultAmortizacion=array();
+		
+		
+		$tasa_interes=8.86;
+	
+		$saldo_honorarios=0;
+		$otros=0;
+		$total_Capital=0;
+		$total_Honorarios=0;
+		$total_Convenio=0;
+		$total_Interes=0;	
+		
+		
+		$plazo=$numero_cuotas;
+		
+		$honoraExon = $saldo_honorarios / ($plazo);
+		
+		$porcent = ($tasa_interes / 12)/100;
+		 
+		$capinteres = $saldo_capital * (($porcent * (pow((1 + $porcent), ((int)($plazo))))) / (pow((1 + $porcent), ((int)($plazo))) - 1));
+		
+		
+		$inter = 1*$saldo_capital*$porcent;
+		
+		$abono = $capinteres-$inter;
+		 
+		$saldocap = $saldo_capital;
+		
+		$cuota = round($capinteres,2)+round($honoraExon,2)+round($otros,2);
+		 
+		 
+		 
+		
+		for( $i = 1; $i <= $plazo; $i++) {
+			 
+			 
+			$inter = 1*$saldocap*$porcent;
+			$abono = $capinteres-$inter;
+			$saldocap = $saldocap-$abono;
+			 
+			$total_Interes = $total_Interes + $inter;
+			 
+			$total_Capital = $total_Capital + $abono;
+			 
+			$total_Honorarios = $total_Honorarios + $honoraExon;
+			 
+			$total_Convenio = $total_Convenio + $cuota;
+			 
+			$fecha=strtotime('+1 month',strtotime($fecha_corte));
+		
+			$fecha=date('Y-m-d',$fecha);
+			 
+			$fecha_corte=$fecha;
+			
+			
+			$resultAmortizacion['tabla'][]=array(
+			            array('periodo'=> $i,
+						'fecha_vencimiento'=>$fecha,
+						'abono_capital'=>$abono,
+						'interes'=>$inter,
+						'capital_interes'=>$capinteres,
+						'saldo_capital'=>$saldocap,
+						'saldo_honorarios'=>$honoraExon,
+						'otros'=>$otros,
+						'cuota'=>$cuota
+						)
+						);			
+		}
+		
+		$resultAmortizacion['totales']=array(
+				 array('total_capital'=> $total_Capital,
+						'total_interes'=>$total_Interes,
+						'total_honorarios'=>$total_Honorarios,
+						'total_otros'=>$otros,
+						'total_convenio'=>$total_Convenio
+						
+						));
+		
+		return $resultAmortizacion;
+		
+		
+	}
 	
 	
+	public function tablaRubros($saldo_capital,$interes,$dias_mora)
+	{
+		//****rubros
+		//Interés Normal:	Interés Mora:	Costos Operativos (Gastos Cobranza: $0.00):	Capital:
+		//Cuantía:	Mora Coactiva:	Emisión Título C.	Costas Procesales:	Honorarios:	Deuda Total:
+		//****cabeceras
+		//Rubros 	Deuda 	Interes Rebaja	% Rebaja de Intereses	Cuota Inicial 	Saldos
+		
+		$resultRubros=array();
+		$deuda=0;
+		$interes_rebaja=0;
+		$porc_rebaja=0;
+		$cuota_inicial=0;
+		$saldos=0;
+		
+		$mora=($saldo_capital*$interes*12*$dias_mora)/3600;
+		
+		$mora_coativa=array('deuda'=>$mora);
+		
+		
+		
+		$rubros=array('interes_normal'=>'Interés Normal:','interes_mora'=>'Interés Mora:','costos_operativos'=>'Costos Operativos(Gastos Cobranza: $0.00):','capital'=>	'Capital:',	
+		'cuantia'=>'Cuantía:','mora_coactiva'=>	'Mora Coactiva:','emision_titulo'=>'Emisión Título C:','costos_procesales'=>'Costos Procesales:','honorarios'=>'Honorarios:',
+		'deudatotal'=>'Deuda Total:');
+		
+		
+		$resultRubros['interes_normal']=array(
+						'rubros'=> $rubros['interes_normal'],
+						'deuda'=>$deuda,
+						'interes_rebaja'=>$interes_rebaja,
+						'porc_rebaja'=>$porc_rebaja,
+						'cuota_inicial'=>$cuota_inicial,
+						'saldos'=>$saldos
+						   	);
+		
+		$resultRubros['interes_mora']=array(
+				'rubros'=> $rubros['interes_mora'],
+				'deuda'=>$deuda,
+				'interes_rebaja'=>$interes_rebaja,
+				'porc_rebaja'=>$porc_rebaja,
+				'cuota_inicial'=>$cuota_inicial,
+				'saldos'=>$saldos
+		);
+		
+		$resultRubros['costos_operativos']=array(
+				'rubros'=> $rubros['costos_operativos'],
+				'deuda'=>$deuda,
+				'interes_rebaja'=>$interes_rebaja,
+				'porc_rebaja'=>$porc_rebaja,
+				'cuota_inicial'=>$cuota_inicial,
+				'saldos'=>$saldos
+		);
+		
+		$resultRubros['capital']=array(
+				'rubros'=> $rubros['capital'],
+				'deuda'=>$saldo_capital,
+				'interes_rebaja'=>$interes_rebaja,
+				'porc_rebaja'=>$porc_rebaja,
+				'cuota_inicial'=>$cuota_inicial,
+				'saldos'=>$saldo_capital
+		);
+		
+		$resultRubros['cuantia']=array(
+				'rubros'=> $rubros['cuantia'],
+				'deuda'=>$saldo_capital,
+				'interes_rebaja'=>$interes_rebaja,
+				'porc_rebaja'=>$porc_rebaja,
+				'cuota_inicial'=>$cuota_inicial,
+				'saldos'=>$saldo_capital
+		);
+		
+		$resultRubros['mora_coactiva']=array(
+				'rubros'=> $rubros['mora_coactiva'],
+				'deuda'=>$mora_coativa['deuda'],
+				'interes_rebaja'=>$interes_rebaja,
+				'porc_rebaja'=>$porc_rebaja,
+				'cuota_inicial'=>$cuota_inicial,
+				'saldos'=>$saldos
+		);
+		
+		$resultRubros['emision_titulo']=array(
+				'rubros'=> $rubros['emision_titulo'],
+				'deuda'=>$deuda,
+				'interes_rebaja'=>$interes_rebaja,
+				'porc_rebaja'=>$porc_rebaja,
+				'cuota_inicial'=>$cuota_inicial,
+				'saldos'=>$saldos
+		);
+		
+		$resultRubros['costos_procesales']=array(
+				'rubros'=> $rubros['costos_procesales'],
+				'deuda'=>$deuda,
+				'interes_rebaja'=>$interes_rebaja,
+				'porc_rebaja'=>$porc_rebaja,
+				'cuota_inicial'=>$cuota_inicial,
+				'saldos'=>$saldos
+		);
+		
+		$resultRubros['honorarios']=array(
+				'rubros'=> $rubros['honorarios'],
+				'deuda'=>$deuda,
+				'interes_rebaja'=>$interes_rebaja,
+				'porc_rebaja'=>$porc_rebaja,
+				'cuota_inicial'=>$cuota_inicial,
+				'saldos'=>$saldos
+		);
+		
+		$resultRubros['deudatotal']=array(
+				'rubros'=> $rubros['deudatotal'],
+				'deuda'=>$deuda,
+				'interes_rebaja'=>$interes_rebaja,
+				'porc_rebaja'=>$porc_rebaja,
+				'cuota_inicial'=>$cuota_inicial,
+				'saldos'=>$saldos
+		);
+		
+		
+		return $resultRubros;
+	}
 	
 	
 }
