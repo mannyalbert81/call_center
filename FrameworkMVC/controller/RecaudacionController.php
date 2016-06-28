@@ -7,7 +7,7 @@ class RecaudacionController extends ControladorBase{
 		parent::__construct();
 	}
 
-	//maycol
+	
 
 	public function index(){
 	

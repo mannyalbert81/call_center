@@ -15,12 +15,12 @@ ini_set('display_errors', 0);
 
 #aqu� va el reporte
 
-$directorio = $_SERVER['DOCUMENT_ROOT'].'/documentos/';
+$directorio = $_SERVER['DOCUMENT_ROOT'].'/documentos/Reportes/';
 $PHPJasperXML = new PHPJasperXML();
 //$PHPJasperXML->debugsql=true;
 $PHPJasperXML->arrayParameter=array();
 $PHPJasperXML->load_xml_file("VehiculosReport.jrxml");
 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
-$PHPJasperXML->outpage("F",$directorio.'vehiculos.pdf'); //page output method I:standard output D:Download file, F =save as filename and submit 2nd parameter as destinate file name /$PHPJasperXML->outpage("I");    //page output method I:standard output  D:Download file
+$PHPJasperXML->outpage("F",$directorio.'Vehiculos.pdf'); //page output method I:standard output D:Download file, F =save as filename and submit 2nd parameter as destinate file name /$PHPJasperXML->outpage("I");    //page output method I:standard output  D:Download file
 ?>
