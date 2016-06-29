@@ -122,7 +122,7 @@
     </head>
     <body style="background-color: #d9e3e4;">
     
-       <?php include("view/modulos/modal.php"); ?>
+     
        <?php include("view/modulos/head.php"); ?>
        <?php include("view/modulos/menu.php"); ?>
   
@@ -185,8 +185,7 @@
 		   		   	</tr>
 		   		   </table>
 		   		   
-		   		   <hr>
-		    
+		   		
 		     <?php } } else {?>
 		    
 		     		
@@ -200,7 +199,7 @@
 						            <?php } ?>
 								    	
 									</select>
-		   		   
+		   		      <br>
 	            	 Nombre Controlador: <select name="id_controladores" id="id_controladores"  class="form-control">
 									<?php foreach($resultCon as $resCon) {?>
 				 						<option value="<?php echo $resCon->id_controladores; ?>"  ><?php echo $resCon->nombre_controladores; ?> </option>
@@ -209,8 +208,8 @@
 									</select>
 		   		   
 		    	   <table class="table">
-		   		   	<tr>
-		   		   		<th style="width: 33.3%"> Ver</th>
+		   	
+		   		   		<th style="width: 33.3%">   Ver</th>
 		   		   		<th style="width: 33.3%"> Editar</th>
 		   		   		<th style="width: 33.3%"> Borrar</th>
 		   		   	</tr>

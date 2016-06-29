@@ -264,13 +264,13 @@ $(document).ready(function() {
 		     
 		     
 		       <div class="row">
-			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
+			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
 			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
 			  </div>
 			</div>     
                
 		
-		 <hr>
+		 
           </div>
        
        
@@ -295,7 +295,7 @@ $(document).ready(function() {
            
            <div class="col-xs-4" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("Citaciones","index"); ?>'" value="buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("Citaciones","index"); ?>'" value="Buscar" class="btn btn-default"/>
 			</div>
 		<div class="col-xs-12" style="margin: 10px;">	
 

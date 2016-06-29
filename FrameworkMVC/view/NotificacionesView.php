@@ -129,9 +129,9 @@
 				</select> 			  
 			  </div>
 			  </div>
-		    
+			<br>		 
 		    <div class="row">
-			  <div class="col-xs-6 col-md-6">
+			  <div class="col-xs-12 col-md-12">
 			  	<p  class="formulario-subtitulo" >Descripcion Notificaciones</p>
 			  	<input type="text" name="descripcion_notificaciones" id="descripcion_notificaciones" value="<?php echo $resEdit->descripcion_notificaciones; ?>" class="form-control"/> 
 			  <div id="mensaje_nombres" class="errores"></div>
@@ -152,12 +152,11 @@
 			  	<select name="id_tipo_notificacion" id="id_tipo_notificacion"  class="form-control" >
 					<?php foreach($resultTipoNotificacion as $resTipoNotificacion) {?>
 						<option value="<?php echo $resTipoNotificacion->id_tipo_notificacion; ?>"  ><?php echo $resTipoNotificacion->descripcion_notificacion; ?>  </option>
-						          
-			        <?php } ?>
+						 <?php } ?>
+						 
 				</select> 			  
 			  </div>
-		
-		<div class="col-xs-6 col-md-6">
+				<div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Usuarios</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
 					<?php foreach($resultUsuarios as $resUsuarios) {?>
@@ -166,10 +165,10 @@
 				</select> 			  
 			  </div>
 			  </div>
-		    
+		    <br>
 		    <div class="row">
-			  <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Descripcion Notificaciones</p>
+			  <div class="col-xs-12 col-md-12">
+			  	<center><p  class="formulario-subtitulo" >Descripcion Notificaciones</p>
 			  	<input type="text" name="descripcion_notificaciones" id="descripcion_notificaciones"  class="form-control"/> 
 			  <div id="mensaje_nombres" class="errores"></div>
 			  </div>

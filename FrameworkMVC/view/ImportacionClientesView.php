@@ -87,21 +87,22 @@
        <?php include("view/modulos/menu.php"); ?>
   
   <div class="container">
-  
+  <center>
      <div class="row" style="background-color: #ffffff;">
   
-  	      <form action="<?php echo $helper->url("Clientes","ImportacionClientes"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
+  	      <form action="<?php echo $helper->url("Clientes","ImportacionClientes"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-12">
+           <br>
             <h4 style="color:#ec971f;">Importar Clientes</h4>
             <hr/>
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	       <?php } } else {?>
 		    	
-			     <div class="col-xs-6 col-md-6">
-			  		<p  class="formulario-subtitulo" >Archivo</p>
+			     <div class="col-xs-12 col-md-12">
+			  		<p  class="formulario-subtitulo" >ARCHIVO</p>
 			  		<input type="file" name="archivo" id="archivo" accept="txt" onKeyDown="return intro(event)" value="" class="form-control"/> 
 			   		<div id="mensaje_archivo" class="errores"></div>
 			     </div>
-   				 
+   				 <br>
 		       
 			
 		     <?php } ?>
@@ -116,12 +117,15 @@
            		
            </div>
         </div>
+        <hr>  
 		<div class="row">
 			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           		
+          		
            		<input type="submit" id="procesar" name="procesar" value="Procesar" class="btn btn-success"/>
            </div>
         </div>
+      <hr>
+      
     </form>
        
         

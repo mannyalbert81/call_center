@@ -160,7 +160,7 @@ class AsignacionSecretariosController extends ControladorBase{
 					//cambio linea 86
 					//"resultCon"=>$resultCon, "resultAcc"=>$resultAcc, "resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol
 					
-					$this->view("AsignacionSecretarios",array(
+			  		$this->view("AsignacionSecretarios",array(
 							
 							"resultCon"=>$resultCon,"resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultUsuarioSecretario"=>$resultUsuarioSecretario,"resultUsuarioImpulsor"=>$resultUsuarioImpulsor,"resultAsignacion"=>$resultAsignacion, "resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu
 					));
