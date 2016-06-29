@@ -120,7 +120,7 @@
             		<div class="col-lg-12">
            
         </div>
-        <section class="col-lg-12 usuario" style="height:100px;overflow-y:scroll;">
+        <section class="col-lg-12 usuario" style="height:100px;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;"><b>Juicio</b></th>
@@ -138,11 +138,12 @@
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?></td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_corte; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_corte; ?> 
+		               <input type="hidden" id="fecha_emision" name="fecha_emision" value="<?php echo  $res->fecha_corte; ?>">    </td>
 		               <td style="color:#000000;font-size:80%;"> <?php $fecha_ingreso=strtotime("$res->fecha_corte"); $diferencia=$fecha_actual-$fecha_ingreso; echo $diferencia/86400; ?>     </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>     </td>
 		               <td><input type="hidden" id="total" name="total" value="<?php echo $res->total; ?>"></td>
-		               <td><input type="hidden" id="dias_mora" name="dias_mora" value="<?php echo $diferencia/86400; ?>"></td>
+		               
 		               
 		    </tr>
 		    
@@ -360,6 +361,10 @@
 			<span  id="total_convenio"  class="form-control" ><?php echo round($totales['total_convenio'],2); ?></span>
 			</div>
 			
+			<div class="col-xs-12 col-md-12" style="margin:50px auto;">
+			 <input type="submit" id="aceptar" name="aceptar" value="Aceptar Convenio" class="btn btn-success"/>
+			</div>
+			
 		</div>
 		
 		<?php }} ?>
@@ -408,13 +413,6 @@
         <?php } ?>
         
         
-             
-		     
-		   <div class="row">
-			  <div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
-           </div>
-            </div>
             
           </form>  
      

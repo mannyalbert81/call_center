@@ -320,6 +320,7 @@ public function index(){
 							$funcion = "ins_clientes";
 	
 							$_id_tipo_identificacion =substr($lectura_linea,0,1);
+							
 							if ($_id_tipo_identificacion == "C")
 							{
 								$_nombre_tipo_identificacion = "CEDULA";
@@ -352,10 +353,10 @@ public function index(){
 							{
 							
 							$_identificacion_clientes = substr($lectura_linea,1,13);
-							$_nombres_clientes = substr($lectura_linea,14,100);
+							$_nombres_clientes = trim(substr($lectura_linea,14,100));
 							$_telefono_clientes = substr($lectura_linea,114,10);
 							$_celular_clientes = substr($lectura_linea,124,10);
-							$_direccion_clientes = substr($lectura_linea,134,200);
+							$_direccion_clientes = trim(substr($lectura_linea,134,200));
 							
 							
 							$_id_ciudad =substr($lectura_linea,334,5);
@@ -376,14 +377,15 @@ public function index(){
 							
 							
 							$_id_tipo_persona = substr($lectura_linea,339,1);
+							
 							if ($_id_tipo_persona == "N")
 							{
-								$_nombre_tipo_persona = "Natural";
+								$_nombre_tipo_persona = "NATURAL";
 									
 							}
 							if ($_id_tipo_persona == "J")
 							{
-								$_nombre_tipo_persona = "Juridica";
+								$_nombre_tipo_persona = "JURIDICA";
 									
 							}
 								
@@ -398,6 +400,7 @@ public function index(){
 									
 								$_id_tipo_persona =   $res->id_tipo_persona;
 							}
+							
 							
 							$parametros = " '$_id_tipo_identificacion' ,'$_identificacion_clientes' , '$_nombres_clientes' , '$_telefono_clientes' , '$_celular_clientes', '$_direccion_clientes', '$_id_ciudad' , '$_id_tipo_persona' ";
 							$clientes->setFuncion($funcion);

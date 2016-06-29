@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class OperacionesController extends ControladorBase{
 
@@ -149,7 +149,7 @@ class OperacionesController extends ControladorBase{
 								$errores_importacion = new ErroresImportacionModel();
 								$_origen_errores_importacion   = 'IMPORTACION DE OPERACIONES' ; 
 								$_error_errores_importacion    = 'No fue Posible encontrar un cliente' ;
-								$_detalle_errores_importacion  = 'Tipo Identificacion-> '.$_tipo_identificacion_cliente . ' Identificacion->'.$_tipo_identificacion_cliente ;
+								$_detalle_errores_importacion  = 'Tipo Identificacion-> '.$_tipo_identificacion_cliente . ' Identificacion->'.$_identificacion_cliente ;
 								$resultado = $errores_importacion->InsertaErroresImportacion($_origen_errores_importacion, $_error_errores_importacion, $_detalle_errores_importacion);
 								
 							}

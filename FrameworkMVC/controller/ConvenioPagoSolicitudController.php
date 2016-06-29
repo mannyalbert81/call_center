@@ -91,7 +91,8 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 					$porcentaje_capital=$_POST['por_capital'];
 					$total_capital=$total-($total*($porcentaje_capital/100));
 					$fecha_corte=$_POST['fecha_corte'];
-					$dias_mora=$_POST['dias_mora'];
+					$fecha_emision=$_POST['fecha_emision'];
+					
 					
 					array_push($resultDatos,array('total'=> $total,'porcentaje_capital'=>$porcentaje_capital,'total_capital'=>$total_capital));
 					
@@ -107,15 +108,11 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 					
 					$interes=0.812;
 					
+					$dias_mora=$this->diasMora($fecha_corte, $fecha_emision);
+					
 					$resultRubros=$this->tablaRubros($total, $interes, $dias_mora);
 					
 					
-					/*$this->view("Error",array(
-							"resultado"=>'dias_mora  '.$dias_mora.'<br>'.print_r($resultRubros)
-					
-					));
-					
-					exit();*/
 					
 				}
 		
@@ -171,59 +168,12 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 		
 			//_nombre_tipo_identificacion
 			
-			if (isset ($_POST["Guardar"]) )
+			if (isset ($_POST['aceptar']))
 				
 			{
-				$_id_tipo_vehiculos = $_POST["id_tipo_vehiculos"];
-				$_id_marca_vehiculos = $_POST["id_marca_vehiculos"];
-				$_placa_vehiculos_embargados  = $_POST["placa_vehiculos_embargados"];
-				$_modelo_vehiculos_embargados = $_POST["modelo_vehiculos_embargados"];
-				$_observaciones_vehiculos_embargados= $_POST["observacion_vehiculos_embargados"];
-				$_fecha_ingreso_vehiculos_embargados= $_POST["fecha_ingreso_vehiculos_embargados"];
-				$_id_clientes= $_POST["id_clientes"];
 				
-				if(isset($_POST["id_vehiculos_embargados"])) 
-				{
-					
-					$_id_vehiculos_embargados = $_POST["id_vehiculos_embargados"];
-					$colval = " observaciones_vehiculos_embargados= '$_observaciones_vehiculos_embargados'";
-					$tabla = "vehiculos_embargados";
-					$where = "id_vehiculos_embargados= '$_id_vehiculos_embargados'    ";
-					
-					$resultado=$vehiculos_embargados->UpdateBy($colval, $tabla, $where);
-					
-				}else {
-					
+				
 			
-
-				
-				$funcion = "ins_vehiculos_embargados";
-				//ins_vehiculos_embargados(_placa_vehiculos_embargados character varying, _modelo_vehiculos_embargados character varying, _observacion_vehiculos_embargados character varying, _fecha_ingreso_vehiculos_embargados date, _id_clientes integer, _id_tipo_vehiculos integer, _id_marca_vehiculos integer)
-				
-				$parametros = " '$_placa_vehiculos_embargados','$_modelo_vehiculos_embargados','$_observaciones_vehiculos_embargados','$_fecha_ingreso_vehiculos_embargados ','$_id_clientes','$_id_tipo_vehiculos ','$_id_marca_vehiculos' ";
-				
-				//$this->view("Error",array(
-							
-					//"resultado"=>$parametros
-				
-				//));
-				//exit();
-				
-				$vehiculos_embargados->setFuncion($funcion);
-		
-				$vehiculos_embargados->setParametros($parametros);
-		
-		
-				$resultado=$vehiculos_embargados->Insert();
-			 
-				$traza=new TrazasModel();
-				$_nombre_controlador = "VehiculosEmbargados";
-				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_observaciones_vehiculos_embargados;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-				
-				}
-			 
 			 
 		
 			}
@@ -242,67 +192,6 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 		}
 	
 
-		$vehiculos_embargados=new VehiculosEmbargadosModel();
-
-		$nombre_controladores = "VehiculosEmbargados";
-		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $tipo_identificacion->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-		
-		
-		if (!empty($resultPer))
-		{
-		
-		
-		
-			$resultado = null;
-			$vehiculos_embargados=new VehiculosEmbargadosModel();
-		
-			//_nombre_tipo_identificacion
-			
-			if (isset ($_POST["observaciones_vehiculos_embargados"]) )
-				
-			{
-				$_observaciones_vehiculos_embargados= $_POST["observaciones_vehiculos_embargados"];
-				
-				if(isset($_POST["id_vehiculos_embargados"]))
-				{
-				$_id_vehiculos_embargados= $_POST["id_vehiculos_embargados"];
-				$colval = " observaciones_vehiculos_embargados= '$_observaciones_vehiculos_embargados'   ";
-				$tabla = "vehiculos_embargados";
-				$where = "id_vehiculos_embargados= '$_id_vehiculos_embargados'    ";
-					
-				$resultado=$vehiculos_embargados->UpdateBy($colval, $tabla, $where);
-					
-				}else {
-				
-			
-				$funcion = "ins_vehiculos_embargados";
-				
-				$parametros = " '$_observaciones_vehiculos_embargados'  ";
-					
-				$vehiculos_embargados->setFuncion($funcion);
-		
-				$vehiculos_embargados->setParametros($parametros);
-		
-		
-				$resultado=$vehiculos_embargados->Insert();
-			 }
-		
-			}
-			$this->redirect("ConvenioPagoSolicitud", "index");
-
-		}
-		else
-		{
-			$this->view("Error",array(
-					
-					"resultado"=>"No tiene Permisos de Insertar Convenio Pago Solicitud"
-		
-			));
-		
-		
-		}
-		
 	}
 
 
@@ -452,108 +341,66 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 		$saldos=0;
 		
 		$mora=($saldo_capital*$interes*12*$dias_mora)/3600;
-		
-		$mora_coativa=array('deuda'=>$mora);
-		
+		$fila=array('rubros'=>'','deuda'=>$deuda,'interes_rebaja'=>$interes_rebaja,'porc_rebaja'=>$porc_rebaja,'cuota_inicial'=>$cuota_inicial,'saldos'=>$saldos);
 		
 		
 		$rubros=array('interes_normal'=>'Interés Normal:','interes_mora'=>'Interés Mora:','costos_operativos'=>'Costos Operativos(Gastos Cobranza: $0.00):','capital'=>	'Capital:',	
 		'cuantia'=>'Cuantía:','mora_coactiva'=>	'Mora Coactiva:','emision_titulo'=>'Emisión Título C:','costos_procesales'=>'Costos Procesales:','honorarios'=>'Honorarios:',
 		'deudatotal'=>'Deuda Total:');
 		
+		$fila['rubros']=$rubros['interes_normal'];
+		$resultRubros['interes_normal']=$fila;
 		
-		$resultRubros['interes_normal']=array(
-						'rubros'=> $rubros['interes_normal'],
-						'deuda'=>$deuda,
-						'interes_rebaja'=>$interes_rebaja,
-						'porc_rebaja'=>$porc_rebaja,
-						'cuota_inicial'=>$cuota_inicial,
-						'saldos'=>$saldos
-						   	);
+		$fila['rubros']=$rubros['interes_mora'];
+		$resultRubros['interes_mora']=$fila;
 		
-		$resultRubros['interes_mora']=array(
-				'rubros'=> $rubros['interes_mora'],
-				'deuda'=>$deuda,
-				'interes_rebaja'=>$interes_rebaja,
-				'porc_rebaja'=>$porc_rebaja,
-				'cuota_inicial'=>$cuota_inicial,
-				'saldos'=>$saldos
-		);
+		$fila['rubros']=$rubros['costos_operativos'];
+		$resultRubros['costos_operativos']=$fila;
 		
-		$resultRubros['costos_operativos']=array(
-				'rubros'=> $rubros['costos_operativos'],
-				'deuda'=>$deuda,
-				'interes_rebaja'=>$interes_rebaja,
-				'porc_rebaja'=>$porc_rebaja,
-				'cuota_inicial'=>$cuota_inicial,
-				'saldos'=>$saldos
-		);
+		$fila['rubros']=$rubros['capital'];
+		$fila['deuda']=$saldo_capital;
+		$fila['saldos']=$saldo_capital;
+		$resultRubros['capital']=$fila;
 		
-		$resultRubros['capital']=array(
-				'rubros'=> $rubros['capital'],
-				'deuda'=>$saldo_capital,
-				'interes_rebaja'=>$interes_rebaja,
-				'porc_rebaja'=>$porc_rebaja,
-				'cuota_inicial'=>$cuota_inicial,
-				'saldos'=>$saldo_capital
-		);
+		$fila['rubros']=$rubros['cuantia'];
+		$fila['deuda']=0;
+		$fila['saldos']=0;
+		$resultRubros['cuantia']=$fila;
 		
-		$resultRubros['cuantia']=array(
-				'rubros'=> $rubros['cuantia'],
-				'deuda'=>$saldo_capital,
-				'interes_rebaja'=>$interes_rebaja,
-				'porc_rebaja'=>$porc_rebaja,
-				'cuota_inicial'=>$cuota_inicial,
-				'saldos'=>$saldo_capital
-		);
+		$fila['rubros']=$rubros['mora_coactiva'];
+		$fila['deuda']=round($mora,2);
+		$fila['saldos']=round($mora,2);
+		$resultRubros['mora_coactiva']=$fila;
 		
-		$resultRubros['mora_coactiva']=array(
-				'rubros'=> $rubros['mora_coactiva'],
-				'deuda'=>$mora_coativa['deuda'],
-				'interes_rebaja'=>$interes_rebaja,
-				'porc_rebaja'=>$porc_rebaja,
-				'cuota_inicial'=>$cuota_inicial,
-				'saldos'=>$saldos
-		);
+		$fila=array('rubros'=>'','deuda'=>$deuda,'interes_rebaja'=>$interes_rebaja,'porc_rebaja'=>$porc_rebaja,'cuota_inicial'=>$cuota_inicial,'saldos'=>$saldos);
+		$fila['rubros']=$rubros['emision_titulo'];
+		$resultRubros['emision_titulo']=$fila;
 		
-		$resultRubros['emision_titulo']=array(
-				'rubros'=> $rubros['emision_titulo'],
-				'deuda'=>$deuda,
-				'interes_rebaja'=>$interes_rebaja,
-				'porc_rebaja'=>$porc_rebaja,
-				'cuota_inicial'=>$cuota_inicial,
-				'saldos'=>$saldos
-		);
+		$fila['rubros']=$rubros['costos_procesales'];
+		$resultRubros['costos_procesales']=$fila;
 		
-		$resultRubros['costos_procesales']=array(
-				'rubros'=> $rubros['costos_procesales'],
-				'deuda'=>$deuda,
-				'interes_rebaja'=>$interes_rebaja,
-				'porc_rebaja'=>$porc_rebaja,
-				'cuota_inicial'=>$cuota_inicial,
-				'saldos'=>$saldos
-		);
+		$fila['rubros']=$rubros['honorarios'];
+		$resultRubros['honorarios']=$fila;
 		
-		$resultRubros['honorarios']=array(
-				'rubros'=> $rubros['honorarios'],
-				'deuda'=>$deuda,
-				'interes_rebaja'=>$interes_rebaja,
-				'porc_rebaja'=>$porc_rebaja,
-				'cuota_inicial'=>$cuota_inicial,
-				'saldos'=>$saldos
-		);
-		
-		$resultRubros['deudatotal']=array(
-				'rubros'=> $rubros['deudatotal'],
-				'deuda'=>$deuda,
-				'interes_rebaja'=>$interes_rebaja,
-				'porc_rebaja'=>$porc_rebaja,
-				'cuota_inicial'=>$cuota_inicial,
-				'saldos'=>$saldos
-		);
+		$fila['rubros']=$rubros['deudatotal'];
+		$resultRubros['deudatotal']=$fila;
 		
 		
 		return $resultRubros;
+	}
+	
+	public function diasMora($fecha_corte,$fecha_emision)
+	{
+		
+		$_fecha_corte=date_create($fecha_corte);
+		
+		$_fecha_emision=date_create($fecha_emision);
+		
+		$dias_mora=date_diff($_fecha_emision, $_fecha_corte); 
+		
+		$dias_mora=$dias_mora->format('%a');;
+		
+		return  $dias_mora;
 	}
 	
 	

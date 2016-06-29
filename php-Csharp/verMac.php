@@ -38,6 +38,22 @@ $macaddress=substr($mycomsys,($pmac+43),23);
 
 echo $macaddress;  
 
+echo '<br>';
+echo '<br>';
+
+//Primer ejemplo de cadena con espacios en blanco al comienzo y final
+$cadena = " frase frase frase ";
+$cadena_formateada = trim($cadena);
+echo "La cadena original es esta: '".$cadena."' y la formateada es esta otra: '".$cadena_formateada."'";
+ 
+ echo '<br>';
+echo '<br>';
+ 
+//Segundo ejemplo para quitar caracteres
+$cadena2 = "frase2";
+$cadena_formateada2 = trim($cadena2, "fras");
+echo "La cadena original es esta: '".$cadena2."' y la formateada es esta otra: '".$cadena_formateada2."'";
+
 	
 ?>
 
