@@ -31,6 +31,39 @@ class OperacionesController extends ControladorBase{
 			{
 				if (isset ($_POST["procesar"]) )
 				{
+					//variables para insertar titulos credito
+					$id_entidades_titulo=0;
+					$id_clientes_titulo=0;
+					$id_ciudad_titulo=0;
+					$id_tipo_identificacion_titulo=0;
+					$id_usuario_titulo=0;
+					$numero_sorteo_titulo=0;
+					$fecha_corte_titulo="";
+					$fecha_emision_titulo="";
+					$id_estado_titulo=0;
+					$id_lotes_titulo=0;
+					$total_valor_emision_titulo=8.00;
+					$total_estado_costo_emision_titulo="G";
+					$total_mora_coactiva_titulo=0;
+					$total_saldo_capital_titulo=0;
+					$total_aprobacion_contador_titulo=0;
+					$total_aprobacion_liquidador_titulo=0;
+					$id_operacion_contable_titulo=0;
+					$id_operacion_contable_honorario_titulo=0;
+					$taza_interes_titulo=0;
+					
+					$entidades=new EntidadesModel();
+					$resultEntidades=$entidades->getBy("nombre_entidades LIKE '%FOMENTO'");
+					
+					$tipo_identificacion= new TipoIdentificacionModel();
+					
+					$estadoTitulo=new EstadosTitulosCreditoModel();
+					$resultEstadosTitulo=$estadoTitulo->getBy("nombre_estados_titulos_credito='GENERADO'");
+					
+					$lotes_titulo= new LotesTituloCreditoModel();
+					$resultLotes= $lotes_titulo->getBy("nombre_lotes_titulos_credito='UNO'");
+					//termina asignacion variables titulos creditos
+					
 					//$_id_recaudacion_institucion = $_POST["recaudacion_institucion"];
 					
 					$directorio = $_SERVER['DOCUMENT_ROOT'].'/cartera/';
@@ -56,13 +89,15 @@ class OperacionesController extends ControladorBase{
 						if ($linea = fgets($file)){
 							$contador_linea ++;
 						}    
-				}
+					}
 					fclose ($file);
 					
 					$file = fopen($directorio.$nombre, "r") or exit("Unable to open file!");
 					
 					while(!feof($file))
 					{
+						
+						
 						$contador = $contador + 1;
 						$lectura_linea =  fgets($file) ;
 						
@@ -86,6 +121,7 @@ class OperacionesController extends ControladorBase{
 							foreach($resultCli as $res)
 							{
 								$_id_clientes  = $res->id_clientes;
+								
 									
 							}
 							if ($_id_clientes > 0)   //encontro el cliente
@@ -128,6 +164,45 @@ class OperacionesController extends ControladorBase{
 								$operaciones->setParametros($parametros);
 								
 								$resultado=$operaciones->Insert();
+								
+								//comienza insertado de titulo
+								
+								$resultTipoIdentificacion=$tipo_identificacion->getBy("substr(nombre_tipo_identificacion,1,1) = '$_tipo_identificacion_cliente'");
+								
+								$id_clientes_titulo= $_id_clientes;
+								$id_entidades_titulo=$resultEntidades[0]->id_entidades;
+								$id_ciudad_titulo=$_id_ciudad;
+								$id_tipo_identificacion_titulo=$resultTipoIdentificacion[0]->id_tipo_identificacion;
+								$id_usuario_titulo=$_SESSION['id_usuarios'];
+								$numero_sorteo_titulo=0;
+								$fecha_corte_titulo=$_fecha_liquidacion_operaciones;
+								$fecha_emision_titulo=date('Y-m-d');
+								$id_estado_titulo=$resultEstadosTitulo[0]->id_estados_titulos_credito;
+								$id_lotes_titulo=$resultLotes[0]->id_lotes_titulos_credito;
+								$total_valor_emision_titulo=8.00;
+								$total_estado_costo_emision_titulo="G";
+								$total_mora_coactiva_titulo=$_valor_interes_mora_operaciones;
+								$total_saldo_capital_titulo=$_valor_capital_operaciones;
+								$total_aprobacion_contador_titulo=74;
+								$total_aprobacion_liquidador_titulo=75;
+								$id_operacion_contable_titulo=0;
+								$id_operacion_contable_honorario_titulo=0;
+								$taza_interes_titulo=0.812;
+								
+								
+								
+								
+								$titulo=new TituloCreditoModel();
+								//parametros
+								
+								$parametros_titulo="'$id_clientes_titulo','$id_entidades_titulo','$id_ciudad_titulo','$id_tipo_identificacion_titulo','$id_usuario_titulo','$numero_sorteo_titulo','$fecha_corte_titulo','$fecha_emision_titulo','$id_estado_titulo','$id_lotes_titulo','$total_valor_emision_titulo','$total_estado_costo_emision_titulo','$total_mora_coactiva_titulo','$total_saldo_capital_titulo','$total_aprobacion_contador_titulo','$total_aprobacion_liquidador_titulo','$id_operacion_contable_titulo','$id_operacion_contable_honorario_titulo','$taza_interes_titulo'";
+								$funcion_titulo="ins_titulo_credito";
+								$titulo->setFuncion($funcion_titulo);
+								$titulo->setParametros($parametros_titulo);
+								
+								$resultado=$titulo->Insert();
+								//termina insertado de titulo
+								
 								
 								}else {
 									
