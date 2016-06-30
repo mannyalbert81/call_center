@@ -31,7 +31,8 @@ class OperacionesController extends ControladorBase{
 			{
 				if (isset ($_POST["procesar"]) )
 				{
-					//variables para insertar titulos credito
+					
+			//variables para insertar titulos credito
 					$id_entidades_titulo=0;
 					$id_clientes_titulo=0;
 					$id_ciudad_titulo=0;
@@ -62,7 +63,8 @@ class OperacionesController extends ControladorBase{
 					
 					$lotes_titulo= new LotesTituloCreditoModel();
 					$resultLotes= $lotes_titulo->getBy("nombre_lotes_titulos_credito='UNO'");
-					//termina asignacion variables titulos creditos
+			//termina asignacion variables titulos creditos
+					
 					
 					//$_id_recaudacion_institucion = $_POST["recaudacion_institucion"];
 					
@@ -165,7 +167,7 @@ class OperacionesController extends ControladorBase{
 								
 								$resultado=$operaciones->Insert();
 								
-								//comienza insertado de titulo
+							//comienza insertado de titulo
 								
 								$resultTipoIdentificacion=$tipo_identificacion->getBy("substr(nombre_tipo_identificacion,1,1) = '$_tipo_identificacion_cliente'");
 								
@@ -187,10 +189,7 @@ class OperacionesController extends ControladorBase{
 								$total_aprobacion_liquidador_titulo=75;
 								$id_operacion_contable_titulo=0;
 								$id_operacion_contable_honorario_titulo=0;
-								$taza_interes_titulo=0.812;
-								
-								
-								
+								$taza_interes_titulo=0.812; //cambiar tassa_interes
 								
 								$titulo=new TituloCreditoModel();
 								//parametros
@@ -201,7 +200,7 @@ class OperacionesController extends ControladorBase{
 								$titulo->setParametros($parametros_titulo);
 								
 								$resultado=$titulo->Insert();
-								//termina insertado de titulo
+							//termina insertado de titulo
 								
 								
 								}else {
@@ -269,16 +268,10 @@ class OperacionesController extends ControladorBase{
 	}
 	
 	
-	
-	
-	
-	
 		
-	public function InsertaFirmasDigitales(){
-			
-		
-				$this->redirect("FirmasDigitales", "index");
-		
+	public function InsertaFirmasDigitales()
+	{
+		$this->redirect("FirmasDigitales", "index");
 		
 	}
 	
