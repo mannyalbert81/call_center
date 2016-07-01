@@ -119,6 +119,18 @@
             	<hr/>
 		     
 		     <div class="row">
+		     
+		       <div class="col-xs-12 col-md-12" style="margin-bottom: 20px;">
+		       
+				  	<p  class="formulario-subtitulo" >Selecione</p>
+					<div class=" col-xs-5 col-md-5 ">
+					<label class="radio-inline"><input type="radio" name="coactivado" id="coactivado" value="coactivado" checked="checked" >Coactivado</label>
+					</div>
+					<div class=" col-xs-5 col-md-5 ">
+					<label class="radio-inline"><input type="radio" name="coactivado"  id="no_coactivado" value="no_coactivado"  >No Coactivado</label>
+					</div>
+				</div>
+		     
 			    
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Selecione filtro</p>

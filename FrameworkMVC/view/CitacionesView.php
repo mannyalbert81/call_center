@@ -275,7 +275,7 @@ $(document).ready(function() {
        
        
         <div class="col-lg-7">
-            <h4 style="color:#ec971f;">Lista de Clientes - Jucios</h4>
+            <h4 style="color:#ec971f;">Lista de Clientes - Titulo Credito</h4>
             <hr/>
             <div class="col-xs-4">
 			
@@ -318,14 +318,12 @@ $(document).ready(function() {
             
 	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
 	        		<tr>
-	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_juicios[]"   name="id_juicios[]"  value="<?php echo $res->id_juicios; ?>" class="marcados"></th>
+	        		  <th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_juicios[]"   name="id_juicios[]"  value="<?php echo $res->id_juicios; ?>" class="marcados"></th>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_juicios; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
 		              <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		              <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
-		             
-		           	   
-			            
+		           	    
 		    		</tr>
 		        <?php } } ?>
             

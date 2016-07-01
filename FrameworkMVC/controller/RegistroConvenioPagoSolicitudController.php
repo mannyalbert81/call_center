@@ -11,26 +11,17 @@ class RegistroConvenioPagoSolicitudController extends ControladorBase{
 	public function index(){
 	
 		session_start();
-	
-		
 		
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$resultDatos=array();
 			
-			//creacion ddl de secretarios o abogadpos
-			$resultAsignacion=array(0=>'--Seleccione--',1=>'Secretario',2=>'Abg Impulsor');
-	
 			$permisos_rol = new PermisosRolesModel();
 			
 			$nombre_controladores = "RegistroConvenioPagoSolicitud";
 			$id_rol= $_SESSION['id_rol'];
 			
-			$ciudad = new CiudadModel();
-			$resultCiu = $ciudad->getAll("nombre_ciudad");
 			
-			$usuarios=new UsuariosModel();
-			$resultUsu = $usuarios->getAll("nombre_usuarios");
 			
 			$estado=new EstadoModel();
 			$resultEstado=$estado->getBy("nombre_estado='PENDIENTE'");
@@ -47,9 +38,6 @@ class RegistroConvenioPagoSolicitudController extends ControladorBase{
 					$id="rol.id_rol";
 					
 					$usuarios=new UsuariosModel();
-					
-					$where="rol.nombre_rol='CIUDAD'";
-					$resultCiudad=$ciudad->getCondiciones($columnas ,$tablas , $where, $id);
 					
 					$where="rol.nombre_rol='SECRETARIO'";
 					$resultUsuarioSecretario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
@@ -105,7 +93,15 @@ class RegistroConvenioPagoSolicitudController extends ControladorBase{
 						
 					}
 					
-					if(isset($_POST["buscar"])){
+					if(isset($_POST["buscar"]))
+					{
+						
+						$tipoClientes=$_POST["coactivado"];
+						
+						
+						if($tipoClientes=='coactivado'){
+							
+							
 					
 						$criterio_busqueda=$_POST["criterio_busqueda"];
 						$contenido_busqueda=$_POST["contenido_busqueda"];
@@ -137,6 +133,7 @@ class RegistroConvenioPagoSolicitudController extends ControladorBase{
 						$where_1 = "";
 						$where_2 = "";
 						$where_3 = "";
+						
 					
 						switch ($criterio_busqueda) {
 							
@@ -154,8 +151,9 @@ class RegistroConvenioPagoSolicitudController extends ControladorBase{
 									$where_3 = " AND  juicios.juicio_referido_titulo_credito = '$contenido_busqueda'  ";
 									break;
 					
-						}
+							}
 					
+						}
 					
 					
 						$where_to  = $where . $where_1 . $where_2 . $where_3;
