@@ -589,6 +589,52 @@ class EntidadBase{
     	return $resultadoSalida;
     
     }
+    
+    public function MostrarNotificaciones($id_usuario)
+    {
+    	//session_start();
+    	 
+    	$notificaciones= new NotificacionesModel();
+    	 
+    	$columnas=" notificaciones.id_notificaciones,
+			  notificaciones.descripcion_notificaciones,
+			  notificaciones.usuario_destino_notificaciones,
+			  notificaciones.usuario_origen_notificaciones,
+			  notificaciones.numero_movimiento_notificaciones,
+			  notificaciones.cantidad_cartones_notificaciones,
+    		  notificaciones.creado,
+    		  usuarios.id_usuarios,
+			  usuarios.usuario_usuarios,
+			  usuarios.nombre_usuarios,
+			  notificaciones.visto_notificaciones,
+			  tipo_notificacion.controlador_tipo_notificacion,
+			  tipo_notificacion.accion_tipo_notificacion,
+    		  tipo_notificacion.nombre_icon_tipo_notificacion";
+    	 
+    	$tablas=" public.notificaciones,
+				  public.usuarios,
+				  public.tipo_notificacion";
+    	 
+    	$where="notificaciones.usuario_origen_notificaciones = usuarios.id_usuarios AND
+    	tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion
+    	AND  notificaciones.visto_notificaciones='FALSE'
+    	AND notificaciones.usuario_destino_notificaciones='$id_usuario'";
+    	 
+    	$resultNotificaciones=$notificaciones->getCondiciones($columnas, $tablas, $where, "notificaciones.id_notificaciones");
+    	 
+    	$cantidad_notificaciones=count($resultNotificaciones);
+    	 
+    	 
+    	if($cantidad_notificaciones<0)
+    	{
+    		$cantidad_notificaciones=0;
+    		$resultNotificaciones=array();
+    	}
+    	
+    	 
+    	$_SESSION["resultNotificaciones"]=$resultNotificaciones;
+    	
+    }
       
 }
 ?>
