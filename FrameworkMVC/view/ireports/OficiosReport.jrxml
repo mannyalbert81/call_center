@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-28T12:00:07 -->
+<!-- 2016-07-07T17:51:07 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Oficios2Report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="adae3722-326b-4d7f-95b5-2321a3d02998">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -412,7 +412,7 @@ WHERE
 				<text><![CDATA[JUICIO COACTIVO No.]]></text>
 			</staticText>
 		</band>
-		<band height="740">
+		<band height="728">
 			<staticText>
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="21" width="494" height="18" uuid="77bd43ca-cba8-420a-98ad-64d5e5531b92"/>
 				<textElement textAlignment="Justified"/>

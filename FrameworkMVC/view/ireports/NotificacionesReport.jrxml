@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-17T10:06:15 -->
+<!-- 2016-07-07T18:37:32 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="NotificacionesReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="607e1fdc-9d09-4372-96b0-0829fc988419">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -62,25 +62,32 @@ WHERE
 				<reportElement x="9" y="6" width="536" height="30" forecolor="#999999" backcolor="#999999" uuid="f08cfdf3-c823-4de7-86e3-42341d5fb311"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="166" y="9" width="180" height="30" forecolor="#FFFFFF" uuid="4b49cf98-80c0-41b2-b7dc-007eedcf6c9d"/>
+				<reportElement x="186" y="9" width="180" height="30" forecolor="#FFFFFF" uuid="4b49cf98-80c0-41b2-b7dc-007eedcf6c9d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Notificacion]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="20" y="9" width="120" height="30" forecolor="#FFFFFF" uuid="30ee2240-0a5c-48cb-82c2-3f00026e4b22"/>
+				<reportElement x="50" y="9" width="120" height="30" forecolor="#FFFFFF" uuid="30ee2240-0a5c-48cb-82c2-3f00026e4b22"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="360" y="9" width="180" height="30" forecolor="#FFFFFF" uuid="c4ec346a-9eaf-47d8-a679-b5ba12a424b6"/>
+				<reportElement x="380" y="9" width="180" height="30" forecolor="#FFFFFF" uuid="c4ec346a-9eaf-47d8-a679-b5ba12a424b6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Notificacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="9" width="41" height="30" forecolor="#FFFFFF" uuid="062c043d-258c-48b9-b9c7-6cd8989ff161"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -88,32 +95,39 @@ WHERE
 		<band height="4" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="217" splitType="Stretch">
+		<band height="29" splitType="Stretch">
 			<textField>
-				<reportElement x="20" y="0" width="120" height="20" uuid="73d81ac4-291c-479d-8c85-daf1e96b2035"/>
+				<reportElement x="50" y="0" width="120" height="20" uuid="73d81ac4-291c-479d-8c85-daf1e96b2035"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="163" y="0" width="180" height="20" uuid="fb6c241e-f88c-4ee2-a4f7-44f24a54f501"/>
+				<reportElement x="183" y="0" width="180" height="20" uuid="fb6c241e-f88c-4ee2-a4f7-44f24a54f501"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descripcion_notificacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="362" y="0" width="180" height="20" uuid="57e34296-1512-4c2e-9ed5-266c31f8053f"/>
+				<reportElement x="382" y="0" width="180" height="20" uuid="57e34296-1512-4c2e-9ed5-266c31f8053f"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descripcion_notificaciones}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="9" y="0" width="41" height="20" uuid="e63b07bf-1250-4ded-8fb8-ff9ec6d4e465"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="62" splitType="Stretch">
+		<band height="31" splitType="Stretch">
 			<rectangle>
 				<reportElement x="4" y="2" width="540" height="20" forecolor="#000000" backcolor="#000000" uuid="9b83bd62-2f6a-4848-a344-11109ebc130f"/>
 				<graphicElement>
@@ -150,7 +164,4 @@ WHERE
 			</staticText>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
