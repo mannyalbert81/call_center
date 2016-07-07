@@ -22,5 +22,5 @@ $PHPJasperXML->arrayParameter=array();
 $PHPJasperXML->load_xml_file("AdministradorGastosReport.jrxml");
 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
-$PHPJasperXML->outpage("F",$directorio.'AdministradorGastos.pdf'); //page output method I:standard output D:Download file, F =save as filename and submit 2nd parameter as destinate file name /$PHPJasperXML->outpage("I");    //page output method I:standard output  D:Download file
+$PHPJasperXML->outpage("I",$directorio.'AdministradorGastos.pdf'); //page output method I:standard output D:Download file, F =save as filename and submit 2nd parameter as destinate file name /$PHPJasperXML->outpage("I");    //page output method I:standard output  D:Download file
 ?>

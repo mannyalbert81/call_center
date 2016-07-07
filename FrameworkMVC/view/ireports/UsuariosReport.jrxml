@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-17T10:03:27 -->
+<!-- 2016-07-07T18:39:17 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -45,7 +45,7 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[REPORTE USUARIOS]]></text>
+				<text><![CDATA[REPORTE DE USUARIOS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="633" y="49" width="50" height="20" forecolor="#FFFFFF" uuid="ff8ac2a3-a816-49c1-83bb-5cddfe9fe680"/>
@@ -74,35 +74,35 @@ WHERE
 				<reportElement x="9" y="6" width="782" height="30" forecolor="#999999" backcolor="#999999" uuid="315890a9-2ddd-4a73-9a66-543a6e06826c"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="520" y="10" width="69" height="30" forecolor="#FFFFFF" uuid="094cf221-b2b7-4cc5-8017-f8673eb3ad9c"/>
+				<reportElement x="540" y="10" width="69" height="30" forecolor="#FFFFFF" uuid="094cf221-b2b7-4cc5-8017-f8673eb3ad9c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Correo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="340" y="10" width="70" height="30" forecolor="#FFFFFF" uuid="71d7bcbb-e8a7-4f13-bea8-af9f356c0afd"/>
+				<reportElement x="360" y="10" width="70" height="30" forecolor="#FFFFFF" uuid="71d7bcbb-e8a7-4f13-bea8-af9f356c0afd"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Telefono]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="131" y="10" width="70" height="30" forecolor="#FFFFFF" uuid="f6a509eb-8679-4bf1-94ba-45b56f6f5a5e"/>
+				<reportElement x="171" y="10" width="70" height="30" forecolor="#FFFFFF" uuid="f6a509eb-8679-4bf1-94ba-45b56f6f5a5e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="430" y="10" width="59" height="30" forecolor="#FFFFFF" uuid="298967ea-3c37-4152-befa-5e01f9f1485d"/>
+				<reportElement x="450" y="10" width="59" height="30" forecolor="#FFFFFF" uuid="298967ea-3c37-4152-befa-5e01f9f1485d"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Celular]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="620" y="10" width="60" height="30" forecolor="#FFFFFF" uuid="a32d0926-18f8-45d8-838b-c294ed6ae26d"/>
+				<reportElement x="640" y="10" width="60" height="30" forecolor="#FFFFFF" uuid="a32d0926-18f8-45d8-838b-c294ed6ae26d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
@@ -116,18 +116,25 @@ WHERE
 				<text><![CDATA[Estado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="250" y="10" width="63" height="30" forecolor="#FFFFFF" uuid="fb3bf942-6bc8-40ef-a8c7-77484949ecfb"/>
+				<reportElement x="270" y="10" width="63" height="30" forecolor="#FFFFFF" uuid="fb3bf942-6bc8-40ef-a8c7-77484949ecfb"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cedula]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="20" y="10" width="70" height="30" forecolor="#FFFFFF" uuid="e64898d4-6fb4-4896-ac3a-8be2ff17390f"/>
+				<reportElement x="60" y="10" width="70" height="30" forecolor="#FFFFFF" uuid="e64898d4-6fb4-4896-ac3a-8be2ff17390f"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ciudad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="9" width="41" height="30" forecolor="#FFFFFF" uuid="ab1d8998-7bd1-4710-9815-e56709e6086e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -135,9 +142,9 @@ WHERE
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="31" splitType="Stretch">
 			<textField>
-				<reportElement x="240" y="0" width="81" height="20" uuid="c57bb7a9-10ef-4a5f-a808-c74b5776ab7e"/>
+				<reportElement x="260" y="0" width="81" height="20" uuid="c57bb7a9-10ef-4a5f-a808-c74b5776ab7e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
@@ -151,51 +158,73 @@ WHERE
 				<textFieldExpression><![CDATA[$F{nombre_estado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="617" y="0" width="80" height="20" uuid="30eeb45b-a07f-4f3c-9104-f6883de54243"/>
+				<reportElement x="637" y="0" width="80" height="20" uuid="30eeb45b-a07f-4f3c-9104-f6883de54243"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_rol}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="520" y="0" width="80" height="20" uuid="cc331f3c-9f14-4188-beb6-9dc3b08bcbdf"/>
+				<reportElement x="540" y="0" width="80" height="20" uuid="cc331f3c-9f14-4188-beb6-9dc3b08bcbdf"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{correo_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="424" y="1" width="59" height="20" uuid="a191bb6a-a8db-48b2-a745-f6546f647f52"/>
+				<reportElement x="444" y="1" width="59" height="20" uuid="a191bb6a-a8db-48b2-a745-f6546f647f52"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{celular_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="339" y="0" width="80" height="20" uuid="114dd61f-db45-4b0a-81a3-607f45c639e8"/>
+				<reportElement x="359" y="0" width="80" height="20" uuid="114dd61f-db45-4b0a-81a3-607f45c639e8"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telefono_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="111" y="0" width="111" height="20" uuid="867d6afa-8b26-4095-ada4-4f764095d8f5"/>
+				<reportElement x="151" y="0" width="111" height="20" uuid="867d6afa-8b26-4095-ada4-4f764095d8f5"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="10" y="1" width="81" height="20" uuid="20fa71a0-9999-4786-9de9-5b3c90cb2e9f"/>
+				<reportElement x="50" y="1" width="81" height="20" uuid="20fa71a0-9999-4786-9de9-5b3c90cb2e9f"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="9" y="0" width="41" height="20" uuid="5f3f1588-8a93-4de0-bd56-0304f44aec0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="462" y="-5" width="41" height="20" uuid="cff0af5e-90fb-4bb3-b67b-c879cfc6588b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Raavi" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="370" y="0" width="130" height="20" uuid="efc7275e-71ea-4a16-9ca3-d33e5b0a08bf"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NUMERO DE REGISTROS:]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="30" splitType="Stretch">
@@ -235,7 +264,4 @@ WHERE
 			</staticText>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
