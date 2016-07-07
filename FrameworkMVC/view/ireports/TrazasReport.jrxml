@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-17T10:03:51 -->
+<!-- 2016-07-07T18:38:16 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TrazasReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b22c1a24-4d1c-4b61-89d5-ee7bf3f6eb11">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -65,21 +65,21 @@ ORDER BY   	trazas.creado ASC]]>
 				<reportElement x="9" y="4" width="541" height="30" forecolor="#999999" backcolor="#999999" uuid="4717a109-2d88-4210-a5cc-b502c1bafab1"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="104" y="9" width="86" height="30" forecolor="#FFFFFF" uuid="a98f12ce-4f87-48ce-8b4b-c8691e1412b3"/>
+				<reportElement x="124" y="9" width="86" height="30" forecolor="#FFFFFF" uuid="a98f12ce-4f87-48ce-8b4b-c8691e1412b3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Accion]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="15" y="9" width="84" height="30" forecolor="#FFFFFF" uuid="4f38e297-8a71-4757-b86f-acb9fe23d578"/>
+				<reportElement x="45" y="9" width="84" height="30" forecolor="#FFFFFF" uuid="4f38e297-8a71-4757-b86f-acb9fe23d578"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="175" y="9" width="87" height="30" forecolor="#FFFFFF" uuid="b46c8821-9ea6-44c7-8609-e028e44e1eef"/>
+				<reportElement x="195" y="9" width="87" height="30" forecolor="#FFFFFF" uuid="b46c8821-9ea6-44c7-8609-e028e44e1eef"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
@@ -100,11 +100,18 @@ ORDER BY   	trazas.creado ASC]]>
 				<text><![CDATA[Modificado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="263" y="9" width="115" height="30" forecolor="#FFFFFF" uuid="db2a96e1-f7ac-4079-94ad-3fcd3b705a26"/>
+				<reportElement x="283" y="9" width="115" height="30" forecolor="#FFFFFF" uuid="db2a96e1-f7ac-4079-94ad-3fcd3b705a26"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Controlador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="9" width="41" height="30" forecolor="#FFFFFF" uuid="ad461a80-7576-4f25-b8f8-0b1d4fc9d229"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -112,23 +119,23 @@ ORDER BY   	trazas.creado ASC]]>
 		<band height="1" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="43" splitType="Stretch">
+		<band height="27" splitType="Stretch">
 			<textField>
-				<reportElement x="20" y="0" width="84" height="20" uuid="f946a11b-61c2-4191-b6b7-4d5598faceb7"/>
+				<reportElement x="50" y="0" width="84" height="20" uuid="f946a11b-61c2-4191-b6b7-4d5598faceb7"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="104" y="0" width="86" height="20" uuid="0a95d000-4da9-4ee2-8f20-78fc109a78a3"/>
+				<reportElement x="124" y="0" width="86" height="20" uuid="0a95d000-4da9-4ee2-8f20-78fc109a78a3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{accion_trazas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="190" y="0" width="87" height="20" uuid="24022b5a-2931-4421-b5d8-f32fcabf7267"/>
+				<reportElement x="210" y="0" width="87" height="20" uuid="24022b5a-2931-4421-b5d8-f32fcabf7267"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi" size="8"/>
 				</textElement>
@@ -149,53 +156,71 @@ ORDER BY   	trazas.creado ASC]]>
 				<textFieldExpression><![CDATA[$F{modificado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="277" y="0" width="115" height="20" uuid="28b7b799-9772-4352-9005-d26409fc520c"/>
+				<reportElement x="297" y="0" width="115" height="20" uuid="28b7b799-9772-4352-9005-d26409fc520c"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_controlador}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="9" y="0" width="41" height="20" uuid="e78a9814-f029-408d-aa80-92ffc467e9ad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Raavi"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="32" splitType="Stretch">
+		<band height="54" splitType="Stretch">
 			<rectangle>
-				<reportElement x="4" y="2" width="540" height="20" forecolor="#000000" backcolor="#000000" uuid="3cef4f85-7a8f-47de-8e01-deaaca5fb515"/>
+				<reportElement x="4" y="22" width="540" height="20" forecolor="#000000" backcolor="#000000" uuid="3cef4f85-7a8f-47de-8e01-deaaca5fb515"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="440" y="6" width="20" height="20" forecolor="#FFFFFF" uuid="3e23a819-d14e-4a25-9125-865a7f912cc2"/>
+				<reportElement x="440" y="26" width="20" height="20" forecolor="#FFFFFF" uuid="3e23a819-d14e-4a25-9125-865a7f912cc2"/>
 				<textElement>
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="480" y="6" width="40" height="20" forecolor="#FFFFFF" uuid="e4caf226-f289-4374-9aee-a4cb6bee0493"/>
+				<reportElement x="480" y="26" width="40" height="20" forecolor="#FFFFFF" uuid="e4caf226-f289-4374-9aee-a4cb6bee0493"/>
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="460" y="5" width="20" height="20" forecolor="#FFFFFF" uuid="ea283a15-ab36-4e71-b91c-5505b89c85ec"/>
+				<reportElement x="460" y="25" width="20" height="20" forecolor="#FFFFFF" uuid="ea283a15-ab36-4e71-b91c-5505b89c85ec"/>
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[de]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="97" y="6" width="320" height="12" forecolor="#FFFFFF" uuid="ba7b90e0-3342-4454-bb28-eadb704929f8"/>
+				<reportElement x="97" y="26" width="320" height="12" forecolor="#FFFFFF" uuid="ba7b90e0-3342-4454-bb28-eadb704929f8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
 			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="302" y="-5" width="41" height="20" uuid="56afe003-548b-4728-9abf-ed40be804aa6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Raavi" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="210" y="0" width="130" height="20" uuid="bc258954-1765-456f-8c77-07314607d1c7"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NUMERO DE REGISTROS:]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
