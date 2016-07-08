@@ -108,6 +108,7 @@
 			{
 		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
+
 		    	var cedula_usuario = $("#cedula_usuarios").val();
 		    	var nombre_usuario = $("#nombre_usuarios").val();
 		    	var usuario_usuario = $("#usuario_usuarios").val();
@@ -116,8 +117,8 @@
 		    	var telefono_usuario = $("#telefono_usuarios").val();	
 		    	var celular_usuario = $("#celular_usuarios").val();
 		    	var correo_usuario  = $("#correo_usuarios").val();
-		    	
-		    	
+		    	var correo_usuario  = $("#correo_usuarios").val();
+		    	var imagen_usuario  = $("#imagen_usuarios").val();
 		    	
 		    	
 		    	if (cedula_usuario == "")
@@ -250,7 +251,18 @@
 		            return false;	
 			    }
 
-		    	
+		    	if (imagen_usuario == "" )
+		    	{
+			    	
+		    		$("#mensaje_imagen_usuarios").text("Ingrese una Foto");
+		    		$("#mensaje_imagen_usuarios").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_imagen_usuarios").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
 
 		    					    
 
@@ -283,6 +295,9 @@
 				
 				$( "#correo_usuarios" ).focus(function() {
 					$("#mensaje_correo").fadeOut("slow");
+    			});
+				$( "#imagen_usuarios" ).focus(function() {
+					$("#mensaje_imagen_usuarios").fadeOut("slow");
     			});
 		
 				
@@ -453,7 +468,7 @@
             
             
             <div class="row">
-		    <div class="col-xs-12 col-md-12">
+		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Cedula</p>
 			  	<input type="text"  name="cedula_usuarios" id="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>" class="form-control"/> 
 			    <div id="mensaje_cedula" class="errores"></div>
@@ -545,7 +560,7 @@
                <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Foto</p>
 			  	<input type="file" name="imagen_usuarios" id="imagen_usuarios" value="" class="form-control" /> 
-			  <div id="mensaje_imagen_firmas_digitales" class="errores"></div>
+			  
 			  </div>
 			  
 			</div>
@@ -555,7 +570,7 @@
 		     <?php } } else {?>
 		    
 		    <div class="row">
-		    <div class="col-xs-12 col-md-12">
+		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Cedula</p>
 			  	<input type="text"  name="cedula_usuarios" id="cedula_usuarios" value="" class="form-control"/> 
 			    <div id="mensaje_cedula" class="errores"></div>
@@ -647,8 +662,6 @@
 			  	<p  class="formulario-subtitulo" >Foto</p>
 			  	
 			  	<input type="file" name="imagen_usuarios" id="imagen_usuarios" value="" class="form-control"/> 
-			     
-			  <div id="mensaje_imagen_firmas_digitales" class="errores"></div>
 			  </div>
 			  
 			</div>
