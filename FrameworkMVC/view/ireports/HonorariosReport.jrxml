@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T19:06:26 -->
+<!-- 2016-07-08T08:15:37 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HonorariosReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3d4e328b-0390-4a0a-8464-619c91a1179f">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -115,7 +115,7 @@ FROM honorarios
 				<text><![CDATA[Por exeso]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="9" width="41" height="30" forecolor="#FFFFFF" uuid="75908649-603b-49eb-a785-e3566383cfa5"/>
+				<reportElement x="9" y="10" width="41" height="30" forecolor="#FFFFFF" uuid="75908649-603b-49eb-a785-e3566383cfa5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
@@ -129,49 +129,49 @@ FROM honorarios
 	<detail>
 		<band height="28" splitType="Stretch">
 			<textField>
-				<reportElement x="40" y="0" width="84" height="20" uuid="09f68a30-ba93-4e30-84b1-505ac1c6f758"/>
+				<reportElement x="40" y="0" width="84" height="10" uuid="09f68a30-ba93-4e30-84b1-505ac1c6f758"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descripcion_tipo_honorarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="124" y="0" width="86" height="20" uuid="98ec58aa-54d4-418d-958a-779f0d4047fe"/>
+				<reportElement x="124" y="0" width="86" height="10" uuid="98ec58aa-54d4-418d-958a-779f0d4047fe"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descripcion_honorarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="205" y="0" width="80" height="20" uuid="50b2aacf-037a-464d-8885-0d97f2d4435c"/>
+				<reportElement x="205" y="0" width="80" height="10" uuid="50b2aacf-037a-464d-8885-0d97f2d4435c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{desde_honorarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="274" y="0" width="88" height="20" uuid="2b9c7226-62bd-4268-8e83-a44c77fb9c42"/>
+				<reportElement x="274" y="0" width="88" height="10" uuid="2b9c7226-62bd-4268-8e83-a44c77fb9c42"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hasta_honorarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="367" y="0" width="86" height="20" uuid="825c6866-eaaf-4f93-b3b6-442e4f962a60"/>
+				<reportElement x="367" y="0" width="86" height="10" uuid="825c6866-eaaf-4f93-b3b6-442e4f962a60"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{por_base_pocion_baja}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="450" y="0" width="105" height="20" uuid="1067352f-7043-478f-b1c7-2b67d3c5ff11"/>
+				<reportElement x="450" y="0" width="105" height="10" uuid="1067352f-7043-478f-b1c7-2b67d3c5ff11"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{por_exceso_porcentaje}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="9" y="0" width="41" height="20" uuid="a44a2122-e5bf-4157-8bdf-ead419cc3002"/>
+				<reportElement x="9" y="0" width="41" height="10" uuid="a44a2122-e5bf-4157-8bdf-ead419cc3002"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>

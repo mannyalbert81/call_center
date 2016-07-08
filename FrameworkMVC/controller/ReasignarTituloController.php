@@ -31,7 +31,13 @@ class ReasignarTituloController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']))
 		{
 			
-
+			
+			
+			$reasignar_titulo = new ReasignarTituloModel();
+			//Notificaciones
+			$reasignar_titulo->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$nombre_controladores = "ReasignarTitulo";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $reasignar_titulo->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );

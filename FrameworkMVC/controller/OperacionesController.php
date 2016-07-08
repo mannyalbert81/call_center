@@ -22,6 +22,11 @@ class OperacionesController extends ControladorBase{
 
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$operaciones = new OperacionesModel();
+			//Notificaciones
+			$operaciones->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
             $nombre_controladores = "Operaciones";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $operaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );

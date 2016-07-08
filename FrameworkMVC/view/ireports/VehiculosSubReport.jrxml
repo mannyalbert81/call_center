@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T20:20:48 -->
+<!-- 2016-07-08T08:27:33 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VehiculosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5955712-b99a-4538-ad86-41065f296b63">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -158,56 +158,56 @@ FROM vehiculos_embargados
 	<detail>
 		<band height="27" splitType="Stretch">
 			<textField>
-				<reportElement x="55" y="0" width="111" height="20" uuid="9e2cb07c-f40f-40ee-942d-48dd336a743d"/>
+				<reportElement x="55" y="0" width="111" height="10" uuid="9e2cb07c-f40f-40ee-942d-48dd336a743d"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Raavi" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{identificacion_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="160" y="0" width="101" height="20" uuid="aee44296-e9ee-4bb3-b695-e75db99e7a65"/>
+				<reportElement x="160" y="0" width="101" height="10" uuid="aee44296-e9ee-4bb3-b695-e75db99e7a65"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="265" y="0" width="100" height="20" uuid="4592b595-49d0-4731-a06b-21f758ac5f5d"/>
+				<reportElement x="265" y="0" width="100" height="10" uuid="4592b595-49d0-4731-a06b-21f758ac5f5d"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{placa_vehiculos_embargados}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="365" y="0" width="100" height="20" uuid="eecc91d0-90a9-438b-ab49-be4156a17e26"/>
+				<reportElement x="365" y="0" width="100" height="10" uuid="eecc91d0-90a9-438b-ab49-be4156a17e26"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{modelo_vehiculos_embargados}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="466" y="0" width="134" height="20" uuid="420b956c-ae66-40b5-9ad7-3d202fc9b6b9"/>
+				<reportElement x="466" y="0" width="134" height="10" uuid="420b956c-ae66-40b5-9ad7-3d202fc9b6b9"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{observacion_vehiculos_embargados}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="590" y="0" width="101" height="20" uuid="dd3a7cd8-72b0-4c6c-abd7-4463ceea287f"/>
+				<reportElement x="590" y="0" width="101" height="10" uuid="dd3a7cd8-72b0-4c6c-abd7-4463ceea287f"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="690" y="5" width="100" height="19" uuid="06e0fab3-8e24-431b-8e04-3baae21acfe1"/>
+				<reportElement x="690" y="0" width="100" height="10" uuid="06e0fab3-8e24-431b-8e04-3baae21acfe1"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{dias}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="9" y="0" width="41" height="20" uuid="785f5ed6-a763-42cd-b39d-a46a74b7bd6d"/>
+				<reportElement x="9" y="0" width="41" height="10" uuid="785f5ed6-a763-42cd-b39d-a46a74b7bd6d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>

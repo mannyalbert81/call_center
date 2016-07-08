@@ -24,6 +24,12 @@ class ProductosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			$productos= new ProductosModel();
+			//Notificaciones
+			$productos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "Productos";
 			$id_rol= $_SESSION['id_rol'];

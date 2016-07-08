@@ -23,8 +23,11 @@ class RegistroCartonDocumentosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-
-
+			$carton_documentos=new CartonDocumentosModel();
+			//Notificaciones
+			$marca_vehiculos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$nombre_controladores = "RegistroCartonDocumentos";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $carton_documentos->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' "  );

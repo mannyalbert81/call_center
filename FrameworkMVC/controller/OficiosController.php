@@ -45,6 +45,11 @@ class OficiosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			$oficios= new OficiosModel();
+			//Notificaciones
+			$oficios->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "Oficios";
 			$id_rol= $_SESSION['id_rol'];

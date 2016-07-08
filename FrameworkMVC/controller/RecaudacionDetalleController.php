@@ -34,6 +34,9 @@ class RecaudacionDetalleController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$recaudacion_cabeza = new RecaudacionCabezaModel();
+			//Notificaciones
+			$recaudacion_cabeza->MostrarNotificaciones($_SESSION['id_usuarios']);
 
 			$nombre_controladores = "RecaudacionDetalle";
 			$id_rol= $_SESSION['id_rol'];

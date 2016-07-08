@@ -24,6 +24,12 @@ class MarcaVehiculosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			
+			$marca_vehiculos=new MarcaVehiculosModel();
+			//Notificaciones
+			$marca_vehiculos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "MarcaVehiculos";
 			$id_rol= $_SESSION['id_rol'];

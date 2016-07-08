@@ -15,6 +15,9 @@ class PermisosRolesController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$permisos_rol=new PermisosRolesModel();
+		   //Notificaciones
+			$permisos_rol->MostrarNotificaciones($_SESSION['id_usuarios']);
 	
 			$permisos_rol = new PermisosRolesModel();
 			
