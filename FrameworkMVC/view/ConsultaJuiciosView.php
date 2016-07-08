@@ -23,6 +23,34 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
+		   <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Reporte"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Buscar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
         
         
        <style>
@@ -175,7 +203,7 @@
 		 
   			</div>
   		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
-		 <input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-warning " style="margin-top: 10px;"/> 	
+		 <input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-warning " onClick="notificacion()" style="margin-top: 10px;"/> 	
 		 </div>
 		</div>
         	
@@ -228,7 +256,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=<?php echo $res->id_clientes; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" style="font-size:80%;">Reporte</a>
+		               <a href="/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=<?php echo $res->id_clientes; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:80%;">Reporte</a>
 		               </td> 
 		    		</tr>
 		        <?php } }  ?>
