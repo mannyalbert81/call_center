@@ -187,9 +187,6 @@
             <li><a href="/FrameworkMVC/view/ireports/ContVehiculosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class=" glyphicon glyphicon-print" aria-hidden="true"> Vehiculos Embargados</span> </a>
             </li>   
             
-            <li><a href="/FrameworkMVC/view/ireports/ContOficiosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class=" glyphicon glyphicon-bookmark" aria-hidden="true"> Oficios</span> </a>
-            </li>  
-            
             <li><a href="/FrameworkMVC/view/ireports/ContCitacionesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class=" glyphicon glyphicon-book" aria-hidden="true"> Citaciones</span> </a>
             </li>   
             
