@@ -155,7 +155,7 @@
 					<div class=" col-xs-5 col-md-5 ">
 					<label class="radio-inline"><input type="radio" name="coactivado" id="coactivado" value="coactivado" checked="checked" >Coactivado</label>
 					</div>
-					<div class=" col-xs-5 col-md-5 ">
+					<div class=" col-xs-5 col-md-5 " style="display:none">
 					<label class="radio-inline"><input type="radio" name="coactivado"  id="no_coactivado" value="no_coactivado"  >No Coactivado</label>
 					</div>
 				</div>
