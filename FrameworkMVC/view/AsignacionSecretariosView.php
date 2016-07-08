@@ -543,9 +543,9 @@
 		    
 		    <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
 	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control">
+	            			        <option value="0">--Seleccione--</option>
 									<?php foreach($resultCiu as $resCiudad) {?>
-									<option value="0">--Seleccione--</option>
-				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" ><?php echo $resCiudad->nombre_ciudad; ?> </option>
+									<option value="<?php echo $resCiudad->id_ciudad; ?>" ><?php echo $resCiudad->nombre_ciudad; ?> </option>
 						            <?php } ?>
 								    	
 									</select>

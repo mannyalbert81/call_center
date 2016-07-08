@@ -15,8 +15,7 @@ class FirmasDigitalesController extends ControladorBase{
 		//Creamos el objeto usuario
      	$firmas_digitales = new FirmasDigitalesModel(); 
      	
-     	//NOTIFICACIONES
-     	$firmas_digitales->MostrarNotificaciones($_SESSION['id_usuarios']);
+     	
 		
 	   //Conseguimos todos los usuarios
      	$columnas  = "firmas_digitales.id_usuarios, usuarios.nombre_usuarios, firmas_digitales.imagen_firmas_digitales, firmas_digitales.id_firmas_digitales";
