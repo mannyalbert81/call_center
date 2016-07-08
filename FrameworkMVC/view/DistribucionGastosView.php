@@ -23,7 +23,34 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
-        
+           <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Asignar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
         
        <style>
             input{
@@ -491,7 +518,7 @@
 		 
 		 <div class="col-lg-5" style="text-align: center;">
 		 <div class="col-lg-12" style="text-align: center;">
-		 <input type="submit" id="Asignar" name="Asignar" value="Asignar" onclick="this.form.action='<?php echo $helper->url("DistribucionGastos","AsignarDistribucionGasto"); ?>'" class="btn btn-success " style="margin-top: 10px;"/> 
+		 <input type="submit" id="Asignar" name="Asignar" value="Asignar" onclick="this.form.action='<?php echo $helper->url("DistribucionGastos","AsignarDistribucionGasto"); ?>'" class="btn btn-success " onClick="notificacion()" style="margin-top: 10px;"/> 
 		 </div>
 				
 		 </div>

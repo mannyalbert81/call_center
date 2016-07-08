@@ -23,7 +23,34 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
-        
+           <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Aprobar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
         
        <style>
             input{
@@ -205,7 +232,7 @@
 		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado; ?>  </td>
 		              <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("AprobacionAutoPago","ActualizarAutoPago"); ?>&id_auto_pagos=<?php echo $res->id_auto_pagos; ?>&id_titulo_credito=<?php echo  $res->id_titulo_credito ?>" class="btn btn-success" style="font-size:65%;">Aprobar</a>
+			                    <a href="<?php echo $helper->url("AprobacionAutoPago","ActualizarAutoPago"); ?>&id_auto_pagos=<?php echo $res->id_auto_pagos; ?>&id_titulo_credito=<?php echo  $res->id_titulo_credito ?>" class="btn btn-success" onClick="notificacion()" style="font-size:65%;">Aprobar</a>
 			                </div>
 			            
 			          </td>  

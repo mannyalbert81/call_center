@@ -33,7 +33,34 @@
             
         </style>
          
-     
+        <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Generar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Aceptar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
      	<script>
 		$(document).ready(function(){
 
@@ -254,7 +281,7 @@
 			
 			 <div class="col-xs-12 col-md-12" style="margin-top: 60px; margin-left: 60px;" > 
 			
-           <input type="submit" id="generar_cuotas" name="generar_cuotas" value="Generar Cuotas" class="btn btn-default"/>
+           <input type="submit" id="generar_cuotas" name="generar_cuotas" value="Generar Cuotas" onClick="Ok()" class="btn btn-default"/>
            </div>
           
         </div>
@@ -362,7 +389,7 @@
 			</div>
 			
 			<div class="col-xs-12 col-md-12" style="margin:50px auto;">
-			 <input type="submit" id="aceptar" name="aceptar" value="Aceptar Convenio" class="btn btn-success"/>
+			 <input type="submit" id="aceptar" name="aceptar" value="Aceptar Convenio" onClick="notificacion()" class="btn btn-success"/>
 			</div>
 			
 		</div>
