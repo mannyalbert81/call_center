@@ -23,7 +23,35 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
-        
+            <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->  
+        	
         
        <style>
             input{
@@ -135,7 +163,7 @@
 		     
 		       <div class="row">
 			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
-			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
 			  </div>
 			</div>     
                
@@ -166,13 +194,13 @@
 		              
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("TipoNotificacion","index"); ?>&id_tipo_notificacion=<?php echo $res->id_tipo_notificacion; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("TipoNotificacion","index"); ?>&id_tipo_notificacion=<?php echo $res->id_tipo_notificacion; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("TipoNotificacion","borrarId"); ?>&id_tipo_notificacion=<?php echo $res->id_tipo_notificacion; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("TipoNotificacion","borrarId"); ?>&id_tipo_notificacion=<?php echo $res->id_tipo_notificacion; ?>" class="btn btn-danger" onClick="Borrar()" style="font-size:65%;">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>

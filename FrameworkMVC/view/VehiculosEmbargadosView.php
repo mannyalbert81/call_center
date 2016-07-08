@@ -24,7 +24,36 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
-        
+            <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Buscar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->  
+        	
+        	
         
        <style>
             input{
@@ -271,7 +300,7 @@
 		     <?php } ?>
 		       <div class="row">
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+           <input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
            </div>
             </div>
             
