@@ -85,6 +85,17 @@ class AsignacionSecretariosController extends ControladorBase{
 							$resultEdit=$asignacionSecretario->getCondiciones($columnas, $tablas, $where, $id);
 							
 							
+							$_id_impulsor=$resultEdit[0]->id_abogado;
+							
+							$columnasC="ciudad.id_ciudad, 
+									  ciudad.nombre_ciudad, 
+									  usuarios.id_usuarios";
+							$tablasC=" public.ciudad, 
+  									   public.usuarios";
+							$whereC="ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios='$_id_impulsor'";
+							
+							$resultCiu=$ciudad->getCondiciones($columnasC, $tablasC, $whereC, " usuarios.id_usuarios");
+							
 							$traza=new TrazasModel();
 							$_nombre_controlador = "Asignacion Secretarios";
 							$_accion_trazas  = "Editar";
@@ -165,7 +176,7 @@ class AsignacionSecretariosController extends ControladorBase{
 							"resultCon"=>$resultCon,"resultSet"=>$resultSet,  "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultUsuarioSecretario"=>$resultUsuarioSecretario,"resultUsuarioImpulsor"=>$resultUsuarioImpulsor,"resultAsignacion"=>$resultAsignacion, "resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu
 					));
 			
-			
+			  		
 			}
 			else
 			{
