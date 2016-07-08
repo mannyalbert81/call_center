@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T17:49:47 -->
+<!-- 2016-07-07T20:22:16 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CitacionesReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4608033-e192-4760-aeb9-2c160b2277ee">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -50,6 +50,16 @@ WHERE
 				</textElement>
 				<text><![CDATA[SISTEMA COACTIVA ]]></text>
 			</staticText>
+			<componentElement>
+				<reportElement key="" positionType="Float" mode="Transparent" x="437" y="30" width="100" height="27" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="66c4953d-98af-436d-9d17-2e660d5b0ebc">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.moduleWidth" value="pixel"/>
+				</reportElement>
+				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" moduleWidth="100.0" textPosition="bottom" verticalQuietZone="0.0">
+					<jr:codeExpression><![CDATA[$F{identificacion_clientes}]]></jr:codeExpression>
+				</jr:Code128>
+			</componentElement>
 		</band>
 	</title>
 	<pageHeader>

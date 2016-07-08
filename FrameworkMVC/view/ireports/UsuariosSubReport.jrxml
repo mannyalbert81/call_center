@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T19:09:17 -->
+<!-- 2016-07-07T20:19:18 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -36,7 +36,7 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="94" splitType="Stretch">
+		<band height="100" splitType="Stretch">
 			<rectangle>
 				<reportElement x="0" y="0" width="800" height="70" forecolor="#000000" backcolor="#000000" uuid="309f92f9-0c25-4218-b476-9f1c452ca0f7"/>
 			</rectangle>
@@ -67,7 +67,7 @@ WHERE
 				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
 			</image>
 			<componentElement>
-				<reportElement key="" positionType="Float" x="670" y="0" width="100" height="40" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="3c6ccf1f-2c86-4439-84ec-1be197f3fea7">
+				<reportElement key="" positionType="Float" mode="Transparent" x="693" y="71" width="100" height="27" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="3c6ccf1f-2c86-4439-84ec-1be197f3fea7">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.moduleWidth" value="pixel"/>
