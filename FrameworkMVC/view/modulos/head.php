@@ -156,7 +156,11 @@ $(document).ready(function(){
 			<?php $fecha= new DateTime($res->creado);?>
 			
 			<li class="list-group-item" >
-			<input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->usuario_origen_notificaciones; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->usuario_origen_notificaciones; ?>" width="50" height="50"  style="float:left;" >
+			<div   >
+			
+			<imp  name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->usuario_origen_notificaciones; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->usuario_origen_notificaciones; ?>" width="50" height="50"  class="img-circle"  style="float:left;" >
+			
+			</div>
 			<a href="index.php?controller=Notificaciones&action=actualizaNotificaciones&id_notificaciones=<?php echo $res->id_notificaciones;?>" style="display: inline-block; padding: 3px 5px;">
 			<?php echo '<b>'.$res->descripcion_notificaciones.'</b>'; echo ' '.$res->usuario_usuarios;  echo '<br>'.'('.$res->cantidad_cartones_notificaciones.')'; echo '   '; echo 'Fecha '; echo $fecha->format('Y-m-d');?>
 			</a>
