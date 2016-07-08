@@ -23,6 +23,8 @@ class EntidadesController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			//Notificaciones
+			$entidades->MostrarNotificaciones($_SESSION['id_usuarios']);
 
 			$nombre_controladores = "Entidades";
 			$id_rol= $_SESSION['id_rol'];

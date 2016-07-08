@@ -11,7 +11,7 @@ class CiudadController extends ControladorBase{
 	public function index(){
 	
 		//Creamos el objeto usuario
-     	$ciudad= new CiudadModel(); 
+     	
 		$resultSet=$ciudad->getAll("id_ciudad");
 				
 		$resultEdit = "";
@@ -22,6 +22,10 @@ class CiudadController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$ciudad= new CiudadModel();
+			//NOTIFICACIONES
+			$ciudad->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "Ciudad";
 			$id_rol= $_SESSION['id_rol'];

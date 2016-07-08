@@ -68,6 +68,9 @@ class ConvenioPagoSolicitudController extends ControladorBase{
 	   
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			//NOTIFICACIONES
+			$vehiculos_embargados->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "ConvenioPagoSolicitud";
 			$id_rol= $_SESSION['id_rol'];

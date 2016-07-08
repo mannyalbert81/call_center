@@ -15,6 +15,9 @@ class AsignacionTituloCreditoController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$asignacion_titulo_credito = new AsignacionTitulosCreditoModel();
+			//NOTIFICACIONES
+			$asignacion_titulo_credito->MostrarNotificaciones($_SESSION['id_usuarios']);
 			
 			//creacion ddl de secretarios o abogadpos
 			$resultAsignacion=array(0=>'--Seleccione--',1=>'Secretario',2=>'Abg Impulsor');
@@ -30,7 +33,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 			$usuarios=new UsuariosModel();
 			$resultUsu = $usuarios->getAll("nombre_usuarios");
 			
-			$asignacion_titulo_credito = new AsignacionTitulosCreditoModel();
+			
 			
 			
 			$columnas = " clientes.id_clientes, 
