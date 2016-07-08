@@ -21,7 +21,35 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
-      
+         <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Editar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
+		
         <style>
             input{
                 margin-top:5px;
@@ -137,7 +165,7 @@
 		     <?php } ?>
 		<div class="row">
 			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           		<input type="submit" id="guardar" name="guardar" value="Guardar" class="btn btn-success"/>
+           		<input type="submit" id="guardar" name="guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
            </div>
         </div>
     </form>
@@ -164,13 +192,13 @@
 		               <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_firmas_digitales; ?>&id_nombre=id_firmas_digitales&tabla=firmas_digitales&campo=imagen_firmas_digitales"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
 		               <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("FirmasDigitales","borrarId"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("FirmasDigitales","borrarId"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-danger" onClick="Borrar()" style="font-size:65%;">Borrar</a>
 			                </div>
 			                <hr/>
 		               </td>

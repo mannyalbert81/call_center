@@ -16,7 +16,34 @@
  		
  		<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
    
-  
+     <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Reasignar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
   
   <script >
 		$(document).ready(function(){
@@ -627,13 +654,13 @@
 		               
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("AsignacionSecretarios","index"); ?>&id_asignacion_secretarios=<?php echo $res->id_asignacion_secretarios ?>" class="btn btn-warning" style="font-size:65%;">Reasignar</a>
+			                    <a href="<?php echo $helper->url("AsignacionSecretarios","index"); ?>&id_asignacion_secretarios=<?php echo $res->id_asignacion_secretarios ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Reasignar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("AsignacionSecretarios","borrarId"); ?>&id_asignacion_secretarios=<?php echo $res->id_asignacion_secretarios; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("AsignacionSecretarios","borrarId"); ?>&id_asignacion_secretarios=<?php echo $res->id_asignacion_secretarios; ?>" class="btn btn-danger" onClick="Borrar()" style="font-size:65%;">Borrar</a>
 			                </div>
 	
 		               </td>

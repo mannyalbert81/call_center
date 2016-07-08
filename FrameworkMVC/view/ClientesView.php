@@ -40,7 +40,34 @@
 			}
 			</script>
 			
+		   <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
 			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Editar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->	
        <style>
             input{
                 margin-top:5px;
@@ -420,7 +447,7 @@
 		     <?php } ?>
 		       <div class="row">
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
-			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()"class="btn btn-success"/>
 			  </div>
 			</div>     
                
@@ -458,7 +485,7 @@
            
           
            <div class="col-lg-3">
-           <input type="submit" id="Buscar" name="Buscar" value="Buscar" class="btn btn-default"/>
+           <input type="submit" id="Buscar" name="Buscar" value="Buscar"  vclass="btn btn-default"/>
            </div>
          
           </form>
@@ -487,13 +514,13 @@
 		              
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Clientes","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-warning" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("Clientes","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
 			             <td>   
 			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Clientes","borrarId"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-danger" style="font-size:65%;">Borrar</a>
+			                    <a href="<?php echo $helper->url("Clientes","borrarId"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-danger" onClick="Borrar()" style="font-size:65%;">Borrar</a>
 			                </div>
 			              
 		               </td>
