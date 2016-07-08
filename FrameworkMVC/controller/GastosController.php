@@ -46,6 +46,9 @@ class GastosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			//Notificaciones
+			$gastos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "Gastos";
 			$id_rol= $_SESSION['id_rol'];

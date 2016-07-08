@@ -26,6 +26,9 @@ public function index(){
 	        
 			$clientes = new ClientesModel();
 
+			//NOTIFICACIONES
+			$clientes->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$nombre_controladores = "Clientes";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $clientes->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );

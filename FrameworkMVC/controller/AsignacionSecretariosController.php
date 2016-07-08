@@ -16,6 +16,10 @@ class AsignacionSecretariosController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			
+			$asignacionSecretario=new AsignacionSecretariosModel();
+			//NOTIFICACIONES
+			$asignacionSecretario->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			//creacion ddl de secretarios o abogadpos
 			$resultAsignacion=array(0=>'--Seleccione--',1=>'Secretario',2=>'Abg Impulsor');
 	

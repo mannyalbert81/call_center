@@ -24,6 +24,9 @@ class EstAutoPagoJuiciosController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
+			//Notificaciones
+			$estdAutoP->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$nombre_controladores = "EstAutoPagoJuicios";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $estdAutoP->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );

@@ -43,7 +43,9 @@ class FirmasDigitalesController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
-
+			//Notificaciones
+			$firmas_digitales->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$nombre_controladores = "FirmasDigitales";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $firmas_digitales->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );

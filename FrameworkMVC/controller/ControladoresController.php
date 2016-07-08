@@ -11,7 +11,7 @@ class ControladoresController extends ControladorBase{
 	public function index(){
 	
 		//Creamos el objeto usuario
-     	$controladores = new ControladoresModel(); 
+     	
 		
 	   //Conseguimos todos los usuarios
 		$resultSet=$controladores->getAll("id_controladores");
@@ -25,7 +25,10 @@ class ControladoresController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-
+			$controladores = new ControladoresModel();
+			//NOTIFICACIONES
+			$controladores->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$nombre_controladores = "Controladores";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $controladores->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );

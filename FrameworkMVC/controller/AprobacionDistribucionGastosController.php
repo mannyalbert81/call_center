@@ -29,6 +29,9 @@ class AprobacionDistribucionGastosController extends ControladorBase{
 			
 			$aprobacion_distribucion_gastos = new DistribucionGastosModel();
 			
+			//NOTIFICACIONES
+			$aprobacion_distribucion_gastos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			
 			$estado=new EstadoModel();
 			$resultEstado=$estado->getBy("nombre_estado='PENDIENTE'");

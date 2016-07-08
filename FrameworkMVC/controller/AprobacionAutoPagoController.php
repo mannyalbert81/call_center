@@ -17,6 +17,10 @@ class AprobacionAutoPagoController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$aprobacion_auto_pago = new AutoPagosModel();
+			//NOTIFICACIONES
+			$aprobacion_auto_pago->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$resultDatos=array();
 			
 			//creacion ddl de secretarios o abogadpos

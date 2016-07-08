@@ -27,6 +27,10 @@ class AdministradorGastosController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
+			//NOTIFICACIONES
+			$administrador_gastos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$nombre_controladores = "AdministradorGastos";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $administrador_gastos->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );

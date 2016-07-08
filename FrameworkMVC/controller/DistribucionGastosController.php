@@ -23,6 +23,10 @@ class DistribucionGastosController extends ControladorBase{
 
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			//NOTIFICACIONES
+			$distribucion_gastos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "DistribucionGastos";
 			$id_rol= $_SESSION['id_rol'];

@@ -26,6 +26,9 @@ class EtapasJuiciosController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
+			//Notificaciones
+			$etapas_juicios->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$nombre_controladores = "EtapasJuicios";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $etapas_juicios->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
