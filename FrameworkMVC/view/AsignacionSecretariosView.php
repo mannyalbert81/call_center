@@ -505,8 +505,9 @@
 	            	<div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Ciudad</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+			  	
 					<?php foreach($resultCiu as $resCiu) {?>
-						<option value="<?php echo $resCiu->id_ciudad; ?>"  <?php if ($resCiu->id_ciudad == $resEdit->id_ciudad ) echo ' selected="selected" '  ; ?> ><?php echo $resCiu->nombre_ciudad; ?> </option>
+						<option value="<?php echo $resCiu->id_ciudad; ?>"  <?php //if ($resCiu->id_ciudad == $resEdit->id_ciudad ) echo ' selected="selected" '  ; ?> ><?php echo $resCiu->nombre_ciudad; ?> </option>
 			        <?php } ?>
 				</select> 			  
 			  </div>
@@ -542,8 +543,9 @@
 		    
 		    <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
 	            	Cuidad: <select name="id_ciudad" id="id_ciudad"  class="form-control">
+	            			        <option value="0">--Seleccione--</option>
 									<?php foreach($resultCiu as $resCiudad) {?>
-				 						<option value="<?php echo $resCiudad->id_ciudad; ?>" ><?php echo $resCiudad->nombre_ciudad; ?> </option>
+									<option value="<?php echo $resCiudad->id_ciudad; ?>" ><?php echo $resCiudad->nombre_ciudad; ?> </option>
 						            <?php } ?>
 								    	
 									</select>

@@ -151,15 +151,15 @@ $(document).ready(function(){
 			<button type="button" id="boton_notificacion" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="badge"><?php echo $cantidad; ?></span></button>
 			<?php if($cantidad>0){ ?>
 			
-			<ul class="dropdown-menu" id="ul_notificacion" style="width: 320px; overflow: auto" >
+			<ul class="dropdown-menu" id="ul_notificacion" style="min-width: 400px; overflow: auto; margin: 2px 0 0 -150px;" >
 			<?php foreach ($resultNotificaciones as $res){?>
 			<?php $fecha= new DateTime($res->creado);?>
 			
 			<li class="list-group-item" >
 			<div   >
 			
-			<imp  name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->usuario_origen_notificaciones; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->usuario_origen_notificaciones; ?>" width="50" height="50"  class="img-circle"  style="float:left;" >
-			
+			<input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->usuario_origen_notificaciones; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->usuario_origen_notificaciones;?>" width="50" height="40"  style="float:left;" >
+ 		
 			</div>
 			<a href="index.php?controller=Notificaciones&action=actualizaNotificaciones&id_notificaciones=<?php echo $res->id_notificaciones;?>" style="display: inline-block; padding: 3px 5px;">
 			<?php echo '<b>'.$res->descripcion_notificaciones.'</b>'; echo ' '.$res->usuario_usuarios;  echo '<br>'.'('.$res->cantidad_cartones_notificaciones.')'; echo '   '; echo 'Fecha '; echo $fecha->format('Y-m-d');?>

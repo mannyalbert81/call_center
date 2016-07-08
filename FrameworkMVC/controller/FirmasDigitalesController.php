@@ -15,8 +15,7 @@ class FirmasDigitalesController extends ControladorBase{
 		//Creamos el objeto usuario
      	$firmas_digitales = new FirmasDigitalesModel(); 
      	
-     	//NOTIFICACIONES
-     	$firmas_digitales->MostrarNotificaciones($_SESSION['id_usuarios']);
+     	
 		
 	   //Conseguimos todos los usuarios
      	$columnas  = "firmas_digitales.id_usuarios, usuarios.nombre_usuarios, firmas_digitales.imagen_firmas_digitales, firmas_digitales.id_firmas_digitales";
@@ -271,7 +270,7 @@ class FirmasDigitalesController extends ControladorBase{
 			
 				$permisos_rol=new PermisosRolesModel();
 				$nombre_controladores = "FirmasDigitales";
-				
+				$tipo_notificacion=new TipoNotificacionModel();				
 				$id_rol= $_SESSION['id_rol'];
 				$resultPer = $permisos_rol->getPermisosEditar(" controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 					
@@ -327,7 +326,7 @@ class FirmasDigitalesController extends ControladorBase{
 											{
 												$usuarioDestino=$result_asg_secretario[0]->id_secretario_asignacion_secretarios;
 													
-												$result_notificaciones=$notificaciones->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $cantidad_cartones);
+												$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $cantidad_cartones);
 													
 											}else
 											{
