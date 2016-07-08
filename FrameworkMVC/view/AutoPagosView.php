@@ -422,7 +422,7 @@
             
 	            <?php if (!empty($resultDatos)) {  foreach($resultDatos as $res) {?>
 	        		<tr>
-	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_juicio[]"   name="id_juicio[]"  value="<?php echo $res->id_titulo_credito; ?>" class="marcados"></th>
+	        		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_titulo_credito[]"   name="id_titulo_credito[]"  value="<?php echo $res->id_titulo_credito; ?>" class="marcados"></th>
 	                 
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 

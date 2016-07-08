@@ -9,9 +9,14 @@ class FirmasDigitalesController extends ControladorBase{
 
 
 	public function index(){
+		
+
 	
 		//Creamos el objeto usuario
      	$firmas_digitales = new FirmasDigitalesModel(); 
+     	
+     	//NOTIFICACIONES
+     	$firmas_digitales->MostrarNotificaciones($_SESSION['id_usuarios']);
 		
 	   //Conseguimos todos los usuarios
      	$columnas  = "firmas_digitales.id_usuarios, usuarios.nombre_usuarios, firmas_digitales.imagen_firmas_digitales, firmas_digitales.id_firmas_digitales";
@@ -264,6 +269,7 @@ class FirmasDigitalesController extends ControladorBase{
 			
 				$permisos_rol=new PermisosRolesModel();
 				$nombre_controladores = "FirmasDigitales";
+				
 				$id_rol= $_SESSION['id_rol'];
 				$resultPer = $permisos_rol->getPermisosEditar(" controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 					
@@ -297,6 +303,35 @@ class FirmasDigitalesController extends ControladorBase{
 											$id_firma = $resultFirmas [0]->id_firmas_digitales;
 											
 											$firmas->FirmarDocumentos( $directorio, $nombre, $id_firma );
+											
+											
+											//inserta las notificacion
+												
+											$_nombre_tipo_notificacion="firma";
+											$resul_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+												
+											$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;
+											$descripcion="Documento Firmado por";
+											$numero_movimiento=0;
+											$cantidad_cartones=$nombre;
+												
+											//dirigir notificacion
+											$id_impulsor=$_SESSION['id_usuarios'];
+											$asignacion_secreatario= new AsignacionSecretariosModel();
+											
+											$result_asg_secretario=$asignacion_secreatario->getBy("id_abogado_asignacion_secretarios='$id_impulsor'");
+												
+											if(!empty($result_asg_secretario))
+											{
+												$usuarioDestino=$result_asg_secretario[0]->id_secretario_asignacion_secretarios;
+													
+												$result_notificaciones=$notificaciones->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $cantidad_cartones);
+													
+											}else
+											{
+											
+											}
+											
 											
 										} else {
 											
