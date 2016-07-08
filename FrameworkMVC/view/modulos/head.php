@@ -158,7 +158,7 @@ $(document).ready(function(){
 			<li class="list-group-item" >
 			<div   >
 			
-			<input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->usuario_origen_notificaciones; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->usuario_origen_notificaciones;?>" width="70" height="60"  style="float:left;" >
+			<input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->usuario_origen_notificaciones; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->usuario_origen_notificaciones;?>" width="50" height="40"  style="float:left;" >
  		
 			</div>
 			<a href="index.php?controller=Notificaciones&action=actualizaNotificaciones&id_notificaciones=<?php echo $res->id_notificaciones;?>" style="display: inline-block; padding: 3px 5px;">
