@@ -248,29 +248,49 @@ class NotificacionesController extends ControladorBase{
 		return $result_notificaciones;
 	}
 	
-	function actualizaNotificaciones(){
+     function actualizaNotificaciones(){
 		
 		session_start();
 		
+		//toma el id de notificaciones
 		$id_notificaciones=$_GET['id_notificaciones'];
+		
 		$notificaciones= new NotificacionesModel();
-		$colval="visto_notificaciones=1";
+		$resultNotificaciones=array();
+		
+		$colval="visto_notificaciones=TRUE";
 		$tabla="notificaciones";
 		$where="id_notificaciones='$id_notificaciones'";
 		$resultado=$notificaciones->UpdateBy($colval, $tabla, $where);
 		
-		$_usuario=$_SESSION['usuario_usuarios'];
+		$columnas=" notificaciones.id_notificaciones,
+			  notificaciones.numero_movimiento_notificaciones,
+			  tipo_notificacion.controlador_tipo_notificacion, 
+			  tipo_notificacion.accion_tipo_notificacion";
+		$tablas="public.notificaciones, 
+  				public.tipo_notificacion";
+		$where1="tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion
+ 				 AND notificaciones.id_notificaciones='$id_notificaciones'";
 		
-		$id_usuario=$_SESSION['id_usuarios'];
-		$result_notificaciones=$notificaciones->verNotificaciones($id_usuario);
+
+		$resultNotificaciones=$notificaciones->getCondiciones($columnas, $tablas, $where1, "notificaciones.id_notificaciones");
 		
-	
-		$this->view("Bienvenida",array(
-    				"allusers"=>$_usuario,"result_notificaciones"=>$result_notificaciones
-	    		));
-		 
+		
+		    //crear variable se session numero movimiento para aprobar solicitud
+		
+		    $_SESSION['numero_movimiento']=$resultNotificaciones[0]->numero_movimiento_notificaciones;
+		
+			$controlador=$resultNotificaciones[0]->controlador_tipo_notificacion;
+		    $accion=$resultNotificaciones[0]->accion_tipo_notificacion;
+		    
+		    $id_usuario=$_SESSION['id_usuarios'];
+		    	
+		    $notificaciones->MostrarNotificaciones($id_usuario);
+		    
+		$this->redirect($controlador,$accion);
+			
+	 
 	}
-	
 	
 	
 	

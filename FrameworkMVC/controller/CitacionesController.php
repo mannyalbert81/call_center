@@ -57,6 +57,11 @@ class CitacionesController extends ControladorBase{
 
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			//NOTIFICACIONES
+			$citaciones->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "Citaciones";
 			$id_rol= $_SESSION['id_rol'];

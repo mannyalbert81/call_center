@@ -635,6 +635,24 @@ class EntidadBase{
     	$_SESSION["resultNotificaciones"]=$resultNotificaciones;
     	
     }
+    
+    public  function CrearNotificacion($id_tipoNotificacion,$usuarioDestino,$descripcion,$numero_movimiento,$cantidad_cartones)
+    {
+    	$notificaciones = new NotificacionesModel();
+    	 
+    	$funcion = "ins_notificaciones";
+    	 
+    	$_usuario_origen=$_SESSION['id_usuarios'];
+    	 
+    
+    	$parametros = "'$id_tipoNotificacion', '$_usuario_origen', '$usuarioDestino', '$descripcion','$numero_movimiento','$cantidad_cartones' ";
+    	 
+    	$notificaciones->setFuncion($funcion);
+    	 
+    	$notificaciones->setParametros($parametros);
+    	 
+    	$resultadoT=$notificaciones->Insert();
+    }
       
 }
 ?>

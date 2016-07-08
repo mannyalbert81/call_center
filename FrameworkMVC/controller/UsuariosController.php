@@ -383,6 +383,9 @@ public function index(){
     			$_id_usuario = $_SESSION['id_usuarios'];
     			$_ip_usuario = $_SESSION['ip_usuarios'];
     			
+    			//NOTIFICACIONES
+    			$usuarios->MostrarNotificaciones($_id_usuario);
+    			
     			$sesiones = new SesionesModel();
 
     			$funcion = "ins_sesiones";
