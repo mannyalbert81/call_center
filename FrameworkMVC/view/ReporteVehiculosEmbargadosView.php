@@ -23,6 +23,36 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
+				
+          <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Buscar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Reporte"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->  
+        
         
         
        <style>
@@ -144,7 +174,7 @@
 			  
 			<div class="col-xs-12 col-md-12" style="margin-top: 20px; text-align: center;" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  value="buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar" name="buscar"  value="buscar" onClick="Ok()" class="btn btn-default"/>
 
 			</div>
 			
@@ -198,7 +228,7 @@
 		     
 		             <td>   
 			                	<div class="right">
-			                	<a href="/FrameworkMVC/view/ireports/ContVehiculosSubReport.php?id_vehiculos_embargados=<?php echo $res->id_vehiculos_embargados; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-success" style="font-size:65%;">Reporte</a>
+			                	<a href="/FrameworkMVC/view/ireports/ContVehiculosSubReport.php?id_vehiculos_embargados=<?php echo $res->id_vehiculos_embargados; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-success" onClick="notificacion()" style="font-size:65%;">Reporte</a>
 			                 </div>
 			              
 		               </td>

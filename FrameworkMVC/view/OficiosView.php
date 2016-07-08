@@ -24,7 +24,34 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
-        
+           <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Buscar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->
         
        <style>
             input{
@@ -173,7 +200,7 @@ $(document).ready(function() {
 		     
 		       <div class="row">
 			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
-			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
 			  </div>
 			</div>     
                
@@ -203,7 +230,7 @@ $(document).ready(function() {
            
            <div class="col-xs-4" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("Oficios","index"); ?>'" value="buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("Oficios","index"); ?>'" value="buscar" onClick="notificacion()" class="btn btn-default"/>
 			</div>
 		<div class="col-xs-12" style="margin: 10px;">	
 

@@ -23,6 +23,35 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
+        		
+          <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Seleccionar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Editar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->  
         
         
        <style>
@@ -207,7 +236,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>  </td>
 		           <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("ConvenioPagoSolicitud","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>&id_titulo_credito=<?php echo $res->id_titulo_credito; ?>" class="btn btn-warning" style="font-size:65%;">Seleccionar</a>
+			                    <a href="<?php echo $helper->url("ConvenioPagoSolicitud","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>&id_titulo_credito=<?php echo $res->id_titulo_credito; ?>" class="btn btn-warning" onClick="Borrar()" style="font-size:65%;">Seleccionar</a>
 			                </div>
 			            
 			          </td>  

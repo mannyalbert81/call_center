@@ -43,17 +43,17 @@
 		<script>
 
 		function Ok(){
-				alertify.success("Has Pulsado en Guardar"); 
+				alertify.success("Has Pulsado en Procesar"); 
 				return false;
 			}
 			
 			function Borrar(){
-				alertify.success("Has Pulsado en Borrar"); 
+				alertify.success("Has Pulsado en Ver Detalle"); 
 				return false; 
 			}
 
 			function notificacion(){
-				alertify.success("Has Pulsado en Editar"); 
+				alertify.success("Has Pulsado en Detalle"); 
 				return false; 
 			}
 		</script>
@@ -201,7 +201,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
            		
-           		<input type="submit" id="procesar" name="procesar" value="Procesar" class="btn btn-success"/>
+           		<input type="submit" id="procesar" name="procesar" value="Procesar" onClick="Ok()" class="btn btn-success"/>
            </div>
         </div>
     </form>
@@ -263,13 +263,13 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td>
 		               <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_recaudacion_cabeza; ?>" class="btn btn-warning" style="font-size:65%;">Detalle</a>
+			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_recaudacion_cabeza; ?>" class="btn btn-warning" onClick="notificacion()"style="font-size:65%;">Detalle</a>
 			                </div>
 			            
 			           </td>
 			            <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("RecaudacionDetalle","index"); ?>&id_recaudacion_cabeza=<?php echo $res->id_recaudacion_cabeza; ?>" class="btn btn-warning" style="font-size:65%;">Ver Detalle</a>
+			                    <a href="<?php echo $helper->url("RecaudacionDetalle","index"); ?>&id_recaudacion_cabeza=<?php echo $res->id_recaudacion_cabeza; ?>" class="btn btn-warning" onClick="Borrar()"style="font-size:65%;">Ver Detalle</a>
 			                </div>
 			            
 			             </td>

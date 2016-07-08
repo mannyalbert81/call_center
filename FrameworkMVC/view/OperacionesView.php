@@ -20,7 +20,34 @@
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
 		</script>
+		   <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
 		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Procesar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES --> 
       
         <style>
             input{
@@ -119,7 +146,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
            		
-           		<input type="submit" id="procesar" name="procesar" value="Procesar" class="btn btn-success"/>
+           		<input type="submit" id="procesar" name="procesar" value="Procesar" onClick="notificacion()" class="btn btn-success"/>
            </div>
         </div>
     </form>

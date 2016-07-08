@@ -23,6 +23,35 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
+        		
+          <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Buscar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Ver"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->  
         
         
        <style>
@@ -140,7 +169,7 @@
 			  
 			<div class="col-xs-12 col-md-12" style="margin-top: 20px; text-align: center;" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar" name="buscar"  value="Buscar" onClick="Ok()" class="btn btn-default"/>
 			</div>
 			
 			  </div>
@@ -200,7 +229,7 @@
 		                <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
 		           <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("VehiculosEmbargados","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>&id_titulo_credito=<?php echo $res->id_titulo_credito; ?>" class="btn btn-warning" style="font-size:65%;">VER</a>
+			                    <a href="<?php echo $helper->url("VehiculosEmbargados","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>&id_titulo_credito=<?php echo $res->id_titulo_credito; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">VER</a>
 			                </div>
 			            
 			          </td>  

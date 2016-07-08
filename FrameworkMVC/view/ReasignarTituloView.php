@@ -23,7 +23,34 @@
 			webshims.polyfill('forms forms-ext');
 		</script>
 		
-        
+         <!-- AQUI NOTIFICAIONES -->
+		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
+		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		
+		
+		
+		<script>
+
+		function Ok(){
+				alertify.success("Has Pulsado en Guardar"); 
+				return false;
+			}
+			
+			function Borrar(){
+				alertify.success("Has Pulsado en Borrar"); 
+				return false; 
+			}
+
+			function notificacion(){
+				alertify.success("Has Pulsado en Reasignar"); 
+				return false; 
+			}
+		</script>
+		
+		
+		
+		<!-- TERMINA NOTIFICAIONES -->  
         
        <style>
             input{
@@ -162,7 +189,7 @@ $(document).ready(function() {
 			  </div>
 			  
 			  <div class="col-xs-12 col-md-12" style="text-align: center; margin-top: 20px;" >
-			  	<input type="submit" id="reasignar" name="reasignar" value="Reasignar" class="btn btn-default"/>
+			  	<input type="submit" id="reasignar" name="reasignar" value="Reasignar" onClick="notificacion()" class="btn btn-default"/>
 			  </div>   
 			 
 			  
