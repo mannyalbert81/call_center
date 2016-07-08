@@ -63,7 +63,8 @@ class AutoPagosController extends ControladorBase{
 				
 			if (!empty($resultPer))
 			{
-					
+				//NOTIFICACIONES
+				$usuarios->MostrarNotificaciones($_SESSION['id_usuarios']);
 				
 					//CONSULTA DE USUARIOS POR SU ROL 
 					$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
@@ -264,6 +265,8 @@ class AutoPagosController extends ControladorBase{
 		session_start();
 		
 		$resultado = null;
+		$notificaciones = new NotificacionesModel();
+		$tipo_notificacion = new TipoNotificacionModel();
 		$permisos_rol=new PermisosRolesModel();
 		$auto_pagos = new AutoPagosModel();
 	    $nombre_controladores = "AutoPagos";
@@ -277,6 +280,7 @@ class AutoPagosController extends ControladorBase{
 			if (isset ($_POST["Guardar"])   )
 			{
 				
+				
 				$_array_titulo_credito = $_POST["id_titulo_credito"];
 				$_usuario_asigna = $_SESSION['id_usuarios'];
 				$_id_ciudad = $_POST["id_ciudad"];
@@ -287,6 +291,7 @@ class AutoPagosController extends ControladorBase{
 				
 				foreach($_array_titulo_credito  as $id  )
 				{
+					
 						if (!empty($id) )
 					{
 						//busco si existe este nuevo id
@@ -300,25 +305,34 @@ class AutoPagosController extends ControladorBase{
 							$auto_pagos->setParametros($parametros);
 							$resultado=$auto_pagos->Insert();
 							
-							$controlador="AprobacionAutoPago";
-							$tipo_notificacion = new TipoNotificacionModel();
-							$resul_tipo_notificacion=$tipo_notificacion->getBy("controlador_tipo_notificacion='$controlador'");
 							
 							
 							//inserta las notificacion
-							$notificaciones = new NotificacionesModel();							
+							
+							$_nombre_tipo_notificacion="auto_pago";							
+							$resul_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+							
 							$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;
+							$descripcion="AutoPago pendiente por";
+							$numero_movimiento=0;
+							$cantidad_cartones=$_id_titulo_credito;
 							
 							//dirigir notificacion
 							$id_impulsor=$_SESSION['id_usuarios'];
 							$asignacion_secreatario= new AsignacionSecretariosModel();
 							$result_asg_secretario=$asignacion_secreatario->getBy("id_abogado_asignacion_secretarios='$id_impulsor'");
-							$id_usuarios_dirigido_notificacion=$result_asg_secretario[0]->id_secretario_asignacion_secretarios;
 							
-							//descripcion de notificacion
-							$descripcion_notificaciones="Auto Pago Pendiente del titulo de credito (".$_id_titulo_credito.") ";
+							if(!empty($result_asg_secretario))
+							{
+								$usuarioDestino=$result_asg_secretario[0]->id_secretario_asignacion_secretarios;
+									
+								$result_notificaciones=$notificaciones->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $cantidad_cartones);
 							
-							$result_notificaciones=$notificaciones->InsertaNotificaciones($id_tipo_notificacion, $id_usuarios_dirigido_notificacion, $descripcion_notificaciones);
+							}else 
+							{
+								
+							}
+							
 							
 										
 						} catch (Exception $e) 

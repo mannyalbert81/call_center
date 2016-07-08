@@ -196,6 +196,8 @@ class AsignacionSecretariosController extends ControladorBase{
 		
 		$resultado = null;
 		$permisos_rol=new PermisosRolesModel();
+		$usuarios= new UsuariosModel();
+		$tipo_notificacion = new TipoNotificacionModel();
 	
 		
 		$nombre_controladores = "AsignacionSecretarios";
@@ -241,6 +243,58 @@ class AsignacionSecretariosController extends ControladorBase{
 							$asignacionSecretarios->setFuncion($funcion);
 							$asignacionSecretarios->setParametros($parametros);
 							$resultado=$asignacionSecretarios->Insert();
+							
+							//inserta las notificacion de impulsor
+							
+							$_nombre_tipo_notificacion="asignacion";
+							$resul_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+							
+							$resultSecreatrio=$usuarios->getBy("id_usuarios='$_id_secretario'");
+							$nombre_secretario=$resultSecreatrio[0]->nombre_usuarios;
+							
+							$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;
+							$descripcion="Secretario asignado por";
+							$numero_movimiento=0;
+							$cantidad_cartones=$nombre_secretario;
+							
+							
+							if(!empty($resultSecreatrio))
+							{
+								$usuarioDestino=$_id_impulsor;
+									
+								$result_notificaciones=$usuarios->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $cantidad_cartones);
+									
+							
+							}else
+							{
+									
+							}
+							
+							//inserta las notificacion de secretario
+							
+							$resultimpulsor=$usuarios->getBy("id_usuarios='$_id_impulsor'");
+							$nombre_impulsor=$resultimpulsor[0]->nombre_usuarios;
+							
+							$descripcion="Impulsor asignado por";
+							$numero_movimiento=0;
+							$cantidad_cartones=$nombre_impulsor;
+								
+								
+							if(!empty($resultimpulsor))
+							{
+								$usuarioDestino=$_id_secretario;
+									
+								$result_notificaciones=$usuarios->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $cantidad_cartones);
+								
+								$this->view("Error",array(
+										"resultado"=>print_r($result_notificaciones)
+								));
+								exit();
+							}else
+							{
+									
+							}
+							
 							
 							$traza=new TrazasModel();
 							$_nombre_controlador = "Asignacion Secretarios";
@@ -530,6 +584,13 @@ class AsignacionSecretariosController extends ControladorBase{
 			
 	
 	}
+	
+	public function VerAsignacion()
+	{
+		
+		$this->view("Bienvenida", array());
+	}
+	
 	
 
 	

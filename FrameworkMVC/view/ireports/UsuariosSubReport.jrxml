@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T20:19:18 -->
+<!-- 2016-07-07T21:28:29 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
 	<parameter name="_id_usuarios" class="java.lang.String"/>
+	<parameter name="fotos" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT rol.nombre_rol,
 	ciudad.nombre_ciudad,
@@ -13,7 +14,8 @@
 	usuarios.celular_usuarios,
 	usuarios.correo_usuarios,
 	usuarios.cedula_usuarios,
-	estado.nombre_estado
+	estado.nombre_estado,
+	usuarios.imagen_usuarios
 FROM ciudad,
 	rol,
 	estado,
@@ -32,6 +34,7 @@ WHERE
 	<field name="correo_usuarios" class="java.lang.String"/>
 	<field name="cedula_usuarios" class="java.lang.String"/>
 	<field name="nombre_estado" class="java.lang.String"/>
+	<field name="imagen_usuarios" class="java.lang.Long"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -152,7 +155,7 @@ WHERE
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="28" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<textField>
 				<reportElement x="260" y="0" width="81" height="20" uuid="c57bb7a9-10ef-4a5f-a808-c74b5776ab7e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
