@@ -121,9 +121,6 @@ class CertificadosElectronicosController extends ControladorBase{
 		
 		if (!empty($resultPer))
 		{
-			
-			
-			
 			if(!empty($resultFirmas))
 			
 			{
