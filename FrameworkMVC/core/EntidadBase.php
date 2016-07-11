@@ -522,27 +522,7 @@ class EntidadBase{
     	@@session_start();
     						
     	//$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/';
-    	$id_rol=$_SESSION['id_rol'];
-    	$rol = new RolesModel();
-    	$resultRol=$rol->getBy("id_rol='$id_rol'");
-    	
-    	$nombre_rol=$resultRol[0]->nombre_rol;
-    	$posicion=0;
-    	
-    	if($nombre_rol==="ABOGADO IMPULSOR")
-    	{
-    		$posicion=1;
-    		
-    	}elseif ($nombre_rol==="LIQUIDADOR"){
-    		
-    		$posicion=2;
-    		
-    	}elseif ($nombre_rol==="SECRETARIO"){
-    		
-    		$posicion=3;
-    	}
-    	
-    	//$posicion=3;
+    	$id_rol=$_SESSION['id_rol'];    	
 
 		$origen = $directorio . $nombrePdf;
 		
@@ -550,8 +530,7 @@ class EntidadBase{
 		
 		$ruta_ejecutable = $directorio . 'firmar/FirmadorElectronico.exe';
 		
-		$comando = 'start "" /b "' . $ruta_ejecutable . '" ' . $id_firma . ' ' . $origen . ' ' . $destino . ' '.$posicion.' ';
-		
+		$comando = 'start "" /b "' . $ruta_ejecutable . '" ' . $id_firma . ' ' . $origen . ' ' . $destino . ' '.$id_rol.' ';
 		
 		$comando_esc = escapeshellcmd ( $comando );
 		

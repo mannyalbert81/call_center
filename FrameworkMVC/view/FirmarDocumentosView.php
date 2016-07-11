@@ -165,7 +165,7 @@
 		     <?php } ?>
 		<div class="row">
 			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           		<input type="submit" id="guardar" name="guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
+           		<input type="submit" id="guardar" name="guardar" value="Firmar" onClick="Ok()" class="btn btn-success"/>
            </div>
         </div>
     </form>
