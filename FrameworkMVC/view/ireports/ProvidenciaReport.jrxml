@@ -1,42 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-11T15:29:55 -->
+<!-- 2016-07-11T16:47:04 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProvidenciaReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0b0b1a7-0f75-4fb1-ac4b-c21d1f325d69">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
 	<queryString>
 		<![CDATA[SELECT 
-  clientes.nombres_clientes, 
-  juicios.juicio_referido_titulo_credito, 
   ciudad.nombre_ciudad, 
-  juicios.fecha_emision_juicios
+  juicios.juicio_referido_titulo_credito, 
+  clientes.nombres_clientes, 
+  documentos.fecha_emision_documentos, 
+  documentos.hora_emision_documentos, 
+  documentos.avoco_vistos_documentos
 FROM 
-  public.juicios, 
+  public.documentos, 
   public.ciudad, 
+  public.juicios, 
   public.clientes
 WHERE 
-  ciudad.id_ciudad = juicios.id_ciudad AND
+  ciudad.id_ciudad = documentos.id_ciudad AND
+  juicios.id_juicios = documentos.id_juicio AND
   clientes.id_clientes = juicios.id_clientes]]>
 	</queryString>
-	<field name="nombres_clientes" class="java.lang.String"/>
-	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
 	<field name="nombre_ciudad" class="java.lang.String"/>
-	<field name="fecha_emision_juicios" class="java.sql.Timestamp"/>
+	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
+	<field name="nombres_clientes" class="java.lang.String"/>
+	<field name="fecha_emision_documentos" class="java.lang.String"/>
+	<field name="hora_emision_documentos" class="java.lang.String"/>
+	<field name="avoco_vistos_documentos" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="37" splitType="Stretch"/>
-	</title>
-	<pageHeader>
-		<band height="184" splitType="Stretch">
+		<band height="67" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="12" width="535" height="50" uuid="e0b11250-4585-4486-96c4-377f7bba860f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="20" y="20" width="515" height="35" uuid="62faa6a3-b8ed-423e-a814-b96be6427f62"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="0" y="20" width="550" height="30" uuid="6224e3ea-97a6-43b2-90d9-cafad2ba3c2f"/>
+				<reportElement x="30" y="20" width="512" height="30" backcolor="#000000" uuid="6224e3ea-97a6-43b2-90d9-cafad2ba3c2f"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="19" isBold="true"/>
 				</textElement>
-				<text><![CDATA[SISTEMA COACTIVA ]]></text>
+				<text><![CDATA[BANCO DEL FOMENTO S.A. EN LIQUIDACIÓN]]></text>
 			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="177" splitType="Stretch">
 			<staticText>
 				<reportElement x="40" y="60" width="130" height="30" uuid="b458c000-59c0-4802-aa8b-c415a5d1394b"/>
 				<textElement>
@@ -73,30 +86,40 @@ WHERE
 				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" pattern="MMM d, yyyy h:mm:ss a">
-				<reportElement x="107" y="140" width="190" height="20" uuid="02f5329c-8d76-4906-bbad-2a834e9b513f"/>
+				<reportElement x="88" y="140" width="83" height="20" uuid="02f5329c-8d76-4906-bbad-2a834e9b513f"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fecha_emision_juicios}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha_emision_documentos}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="92" y="140" width="30" height="30" uuid="665ac881-cfd7-4335-a56b-de20831670c0"/>
+				<reportElement x="80" y="140" width="30" height="30" uuid="665ac881-cfd7-4335-a56b-de20831670c0"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[,]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="160" y="140" width="100" height="20" uuid="8bf2cc87-3b11-43df-b58f-8de5ecc9d572"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora_emision_documentos}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="17" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
-			<staticText>
-				<reportElement x="43" y="1" width="491" height="124" uuid="b891b750-d537-4ffa-943c-15f32fe68970"/>
-				<text><![CDATA[]]></text>
-			</staticText>
+		<band height="398" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="0" width="494" height="330" uuid="19eaf6f2-bb2b-44fd-9b1c-c9dd27d080b6"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{avoco_vistos_documentos}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -110,27 +133,6 @@ WHERE
 					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="434" y="5" width="20" height="20" forecolor="#000000" uuid="baf5a072-d8c6-4e8f-a834-ad8fcd46888a"/>
-				<textElement>
-					<font fontName="Arial" size="10" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="474" y="5" width="40" height="20" forecolor="#000000" uuid="9a737487-1a0a-444d-82c0-9b34d6f07225"/>
-				<textElement>
-					<font fontName="Arial" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="454" y="4" width="20" height="20" forecolor="#000000" uuid="2b3c9df0-e591-469a-a879-1f5f7762ca8f"/>
-				<textElement>
-					<font fontName="Arial" isBold="true"/>
-				</textElement>
-				<text><![CDATA[de]]></text>
 			</staticText>
 		</band>
 	</pageFooter>
