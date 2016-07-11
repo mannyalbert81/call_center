@@ -125,6 +125,7 @@ $(document).ready(function(){
 		  <div class="col-xs-7 col-md-5">
 			
 			<div class="dropdown">
+			
 				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><FONT  SIZE=1><?php echo " ".$_SESSION['nombre_usuarios'];?></FONT></span>
 				  
 				  <span class="caret"></span>
