@@ -1,6 +1,5 @@
 <?php
 
-
 class CertificadosElectronicosController extends ControladorBase{
 
 	public function __construct() {
@@ -60,7 +59,13 @@ class CertificadosElectronicosController extends ControladorBase{
 					}
 					
 				}
-		
+				
+				if(isset($_POST['aceptar']))
+				{
+					$this->InsertaCertificado();
+				}
+				
+				
 				
 				$this->view("CertificadosElectronicos",array(
 						"resultSet"=>$resultSet,"resultEdit"=>$resultEdit,"resultCertificado"=>$resultCertificado
@@ -93,7 +98,7 @@ class CertificadosElectronicosController extends ControladorBase{
 	}
 	
 		
-	public function InsertaFirmas(){
+	public function InsertaCertificado(){
 			
 		session_start();
 		
@@ -116,10 +121,9 @@ class CertificadosElectronicosController extends ControladorBase{
 		
 		if (!empty($resultPer))
 		{
+			if(!empty($resultFirmas))
 			
-			
-			
-			if(!empty($resultFirmas)){
+			{
 				
 			$id_firma=$resultFirmas[0]->id_firmas_digitales;
 			$alias=$_POST['alias'];
@@ -149,6 +153,7 @@ class CertificadosElectronicosController extends ControladorBase{
 			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			
 			$this->redirect("CertificadosElectronicos","index");
+			
 			}else {
 				$this->view("Error",array(
 							

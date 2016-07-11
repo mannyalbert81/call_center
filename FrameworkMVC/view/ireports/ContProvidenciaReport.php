@@ -22,5 +22,5 @@ $PHPJasperXML->arrayParameter=array();
 $PHPJasperXML->load_xml_file("ProvidenciaReport.jrxml");
 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
-$PHPJasperXML->outpage("I",$directorio.'Providencia.pdf'); //page output method I:standard output D:Download file, F =save as filename and submit 2nd parameter as destinate file name /$PHPJasperXML->outpage("I");    //page output method I:standard output  D:Download file
+$PHPJasperXML->outpage("F",$directorio.'Providencia.pdf'); //page output method I:standard output D:Download file, F =save as filename and submit 2nd parameter as destinate file name /$PHPJasperXML->outpage("I");    //page output method I:standard output  D:Download file
 ?>
