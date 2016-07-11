@@ -44,7 +44,11 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Procesos" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-          	<li><a href="index.php?controller=AsignacionSecretarios&action=index"><span class="glyphicon glyphicon-copy" aria-hidden="true"> Asignacion Secretarios</span> </a>
+        	<li><a href="index.php?controller=Operaciones&action=index"><span class="glyphicon glyphicon-ok" aria-hidden="true"> Importacion de Cartera/Operaciones</span> </a>
+		    </li>
+			<li><a href="index.php?controller=Recaudacion&action=index"><span class="glyphicon glyphicon-euro" aria-hidden="true"> Procesar Archivo de Recaudacion</span> </a>
+			</li>
+         	<li><a href="index.php?controller=AsignacionSecretarios&action=index"><span class="glyphicon glyphicon-copy" aria-hidden="true"> Asignacion Secretarios</span> </a>
             </li>
 			<li><a href="index.php?controller=FirmasDigitales&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Firmas Digitales</span> </a>
             </li>
@@ -56,7 +60,10 @@
             </li>
             <li><a href="index.php?controller=ReasignarTitulo&action=index"><span class="glyphicon glyphicon-edit" aria-hidden="true"> Reasignar Titulo Credito</span> </a>
             </li>
-         
+              <li><a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-user" aria-hidden="true"> Clientes</span> </a>
+            </li>
+          	<li><a href="index.php?controller=Clientes&action=ImportacionClientes"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"> Importacion Clientes</span> </a>
+            </li> 
                      </ul>
         </li>
         <li class="dropdown">
@@ -78,7 +85,22 @@
             </li>
              <li><a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
 			</li>
-          
+            <li><a href="index.php?controller=OrigenCartera&action=index"><span class=" glyphicon glyphicon-triangle-left" aria-hidden="true"> Origen de Cartera</span> </a>
+			</li>
+			<li><a href="index.php?controller=Ciudad&action=index"><span class="glyphicon glyphicon-object-align-vertical" aria-hidden="true"> Ciudades</span> </a>
+			</li>
+            <li><a href="index.php?controller=Honorarios&action=index"><span class="glyphicon glyphicon-level-up" aria-hidden="true"> Honorarios</span> </a>
+            </li>
+            <li><a href="index.php?controller=TipoHonorarios&action=index"><span class="glyphicon glyphicon-saved" aria-hidden="true"> Tipo de Honorarios</span> </a>
+            </li>
+            <li><a href="index.php?controller=TipoGastos&action=index"><span class="glyphicon glyphicon-open" aria-hidden="true"> Tipo Gastos</span> </a>
+			</li>
+			<li><a href="index.php?controller=AdministradorGastos&action=index"><span class="glyphicon glyphicon-record" aria-hidden="true"> Administrador de Gastos</span> </a>
+			</li>
+			<li><a href="index.php?controller=TipoVehiculos&action=index"><span class="glyphicon glyphicon-export" aria-hidden="true"> Tipo de Vehiculos </span> </a>
+			</li>
+			<li><a href="index.php?controller=MarcaVehiculos&action=index"><span class="glyphicon glyphicon-unchecked" aria-hidden="true"> Marca de Vehiculos </span> </a>
+			</li>
           </ul>
         </li>
 
@@ -94,7 +116,9 @@
             </li>
             <li><a href="index.php?controller=Juicio&action=consulta"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"> Juicios</span> </a>
             </li>
-           
+            <li><a href="index.php?controller=Clientes&action=consulta"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Clientes</span> </a>
+            </li>      
+            
 			
 			
 </ul>
@@ -111,7 +135,12 @@
             </li>
             <li><a href="index.php?controller=AprobacionAutoPago&action=index"><span class="glyphicon glyphicon-tasks" aria-hidden="true"> Aprobacion Auto Pagos</span> </a>
             </li>
-        		 <li><a href="index.php?controller=ImpresionAutoPago&action=index"><span class=" glyphicon glyphicon-triangle-bottom" aria-hidden="true"> Impresion Auto Pagos</span> </a>
+            <li><a href="index.php?controller=RegistroVehiculosEmbargados&action=index"><span class="glyphicon glyphicon-blackboard" aria-hidden="true"> Registro Vehiculos Embargados</span> </a>
+            </li>
+
+            <li><a href="index.php?controller=ReporteVehiculosEmbargados&action=index"><span class="glyphicon glyphicon-text-size" aria-hidden="true"> Reporte Vehiculos Embargados</span> </a>
+			</li>
+			 <li><a href="index.php?controller=ImpresionAutoPago&action=index"><span class=" glyphicon glyphicon-triangle-bottom" aria-hidden="true"> Impresion Auto Pagos</span> </a>
             </li>
 
            </ul>
