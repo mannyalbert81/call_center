@@ -415,7 +415,7 @@ class CitacionesController extends ControladorBase{
 						
 					if($titulo_credito!=""){$where_3=" AND juicios.id_titulo_credito='$titulo_credito'";}
 						
-					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  distribucion_gastos.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  citaciones.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
 
 
 					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;

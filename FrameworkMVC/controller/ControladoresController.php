@@ -12,7 +12,7 @@ class ControladoresController extends ControladorBase{
 	
 		//Creamos el objeto usuario
      	
-		
+		$controladores = new ControladoresModel();
 	   //Conseguimos todos los usuarios
 		$resultSet=$controladores->getAll("id_controladores");
 				
@@ -111,12 +111,6 @@ class ControladoresController extends ControladorBase{
 	public function InsertaControladores(){
 			
 		session_start();
-
-		$permisos_rol=new PermisosRolesModel();
-
-
-		$controladores=new ControladoresModel();
-
 
 		$permisos_rol=new PermisosRolesModel();
 
