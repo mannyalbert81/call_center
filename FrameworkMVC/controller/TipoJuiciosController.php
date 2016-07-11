@@ -24,6 +24,11 @@ class TipoJuiciosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$tipo_juicios= new TipoJuiciosModel();
+			//Notificaciones
+			$tipo_juicios->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "TipoJuicios";
 			$id_rol= $_SESSION['id_rol'];

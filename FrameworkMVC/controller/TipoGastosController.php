@@ -24,6 +24,11 @@ class TipoGastosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+
+			$tipo_gastos=new TipoGastosModel();
+			//Notificaciones
+			$tipo_gastos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "TipoGastos";
 			$id_rol= $_SESSION['id_rol'];

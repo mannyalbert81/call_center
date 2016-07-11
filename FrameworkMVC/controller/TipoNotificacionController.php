@@ -25,6 +25,11 @@ class TipoNotificacionController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			
+			$tipoNotificacion = new TipoNotificacionModel();
+			//Notificaciones
+			$tipoNotificacion->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$permisos_rol=new PermisosRolesModel();
 			$nombre_controladores = "TipoNotificacion";
 			$id_rol= $_SESSION['id_rol'];

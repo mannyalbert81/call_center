@@ -1,19 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-11T11:08:58 -->
+
+<!-- 2016-07-11T15:39:35 -->
+
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CitacionesReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4608033-e192-4760-aeb9-2c160b2277ee">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
+
 	<parameter name="sql" class="java.lang.String"/>
+
+	<parameter name="id_citaciones" class="java.lang.String"/>
+
 	<queryString>
+
 		<![CDATA[ $P{sql}]]>
+=
+		<![CDATA[SELECT 
+  usuarios.nombre_usuarios, 
+  tipo_citaciones.nombre_tipo_citaciones, 
+  juicios.juicio_referido_titulo_credito, 
+  citaciones.nombre_persona_recibe_citaciones, 
+  citaciones.relacion_cliente_citaciones, 
+  citaciones.fecha_citaciones, 
+  ciudad.nombre_ciudad, 
+  clientes.nombres_clientes, 
+  clientes.identificacion_clientes, 
+  clientes.direccion_clientes
+FROM 
+  public.citaciones, 
+  public.clientes, 
+  public.ciudad, 
+  public.tipo_citaciones, 
+  public.juicios, 
+  public.usuarios
+WHERE 
+  ciudad.id_ciudad = citaciones.id_ciudad AND
+  tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones AND
+  juicios.id_juicios = citaciones.id_juicios AND
+  juicios.id_clientes = clientes.id_clientes AND
+  usuarios.id_usuarios = citaciones.id_usuarios]]>
+
 	</queryString>
 	<field name="nombre_usuarios" class="java.lang.String"/>
 	<field name="nombre_tipo_citaciones" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
 	<field name="nombre_persona_recibe_citaciones" class="java.lang.String"/>
 	<field name="relacion_cliente_citaciones" class="java.lang.String"/>
-	<field name="fecha_citaciones" class="java.sql.Date"/>
+	<field name="fecha_citaciones" class="java.sql.Timestamp"/>
 	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="nombres_clientes" class="java.lang.String"/>
 	<field name="identificacion_clientes" class="java.lang.String"/>
@@ -22,6 +55,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
+<<<<<<< HEAD
 		<band height="142" splitType="Stretch">
 			<staticText>
 				<reportElement x="-6" y="90" width="550" height="30" uuid="acf18fca-baf1-4411-aac3-0e3e515a3d3d"/>
@@ -41,9 +75,46 @@
 				</jr:Code128>
 			</componentElement>
 		</band>
+
+		<band height="60" splitType="Stretch"/>
+
 	</title>
+
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="127" splitType="Stretch">
+			<staticText>
+				<reportElement x="50" y="81" width="130" height="30" uuid="d433a56d-d454-4c02-9022-cf7c0de750de"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JUICIO COACTIVO #]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="81" width="190" height="30" uuid="bbeb77b8-89d9-4fcc-ab71-46a9b9ae8212"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="550" height="30" uuid="67b21dbf-73e8-48e0-a082-d1c74daa9680"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEMA COACTIVA ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+
 	<detail>
+
 		<band height="373" splitType="Stretch">
+
+		<band height="302" splitType="Stretch">
+
 			<staticText>
 				<reportElement x="50" y="63" width="70" height="30" uuid="b6051b1a-b1e7-4be5-9337-31baf22bc23d"/>
 				<textElement>
@@ -56,14 +127,22 @@
 				<text><![CDATA[Siento como tal, que hoy]]></text>
 			</staticText>
 			<textField>
+
 				<reportElement x="200" y="93" width="55" height="20" uuid="7ea8a7c0-7233-4f45-a0eb-999d5f819a05"/>
+
+				<reportElement x="185" y="30" width="55" height="20" uuid="7ea8a7c0-7233-4f45-a0eb-999d5f819a05"/>
+
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha_citaciones}]]></textFieldExpression>
 			</textField>
 			<staticText>
+
 				<reportElement x="265" y="93" width="60" height="20" uuid="52eb573b-cf75-4bcf-a324-cd04abdcef74"/>
+
+				<reportElement x="290" y="30" width="60" height="20" uuid="52eb573b-cf75-4bcf-a324-cd04abdcef74"/>
+
 				<text><![CDATA[siendo las]]></text>
 			</staticText>
 			<staticText>
@@ -169,11 +248,17 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
 			</textField>
+
 			<textField pattern="HH:mm:ss zzzz">
 				<reportElement x="350" y="93" width="87" height="20" uuid="ad7ff058-b692-46ed-9557-54695304b085"/>
+
+			<staticText>
+				<reportElement x="365" y="30" width="60" height="20" uuid="6b03478a-5f89-4200-954b-87f5a4dc8081"/>
+
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
+
 				<textFieldExpression><![CDATA[$F{fecha_citaciones}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -189,10 +274,14 @@
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[JUICIO COACTIVO #]]></text>
+
+				<text><![CDATA[14:00:00]]></text>
+
 			</staticText>
 		</band>
 	</detail>
 	<pageFooter>
+
 		<band height="25" splitType="Stretch">
 			<staticText>
 				<reportElement x="117" y="6" width="320" height="12" forecolor="#000000" uuid="eba7e5d2-f930-4a3b-8ab6-59e06f0ac8a2"/>
@@ -202,5 +291,11 @@
 				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
 			</staticText>
 		</band>
+
+		<band height="54" splitType="Stretch"/>
+
 	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>

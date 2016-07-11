@@ -25,7 +25,7 @@ class RegistroCartonDocumentosController extends ControladorBase{
 		{
 			$carton_documentos=new CartonDocumentosModel();
 			//Notificaciones
-			$marca_vehiculos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			$carton_documentos->MostrarNotificaciones($_SESSION['id_usuarios']);
 			
 			
 			$nombre_controladores = "RegistroCartonDocumentos";
