@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-07-11T15:11:33 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Oficios2Report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="adae3722-326b-4d7f-95b5-2321a3d02998">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
+	<queryString>
+		<![CDATA[SELECT entidades.nombre_entidades,
+	juicios.juicio_referido_titulo_credito,
+	oficios.creado,
+	juicios.creado,
+	titulo_credito.id_titulo_credito,
+	clientes.identificacion_clientes,
+	clientes.nombres_clientes,
+	clientes.direccion_clientes,
+	ciudad.nombre_ciudad,
+	asignacion_secretarios_view.secretarios,
+	asignacion_secretarios_view.impulsores,
+	asignacion_secretarios_view.liquidador,
+	oficios.numero_oficios
+FROM oficios,
+	juicios,
+	titulo_credito,
+	entidades,
+	clientes,
+	ciudad,
+	asignacion_secretarios_view
+WHERE 
+	 oficios.id_juicios = juicios.id_juicios 
+	 AND juicios.id_usuarios = asignacion_secretarios_view.id_abogado 
+	 AND titulo_credito.id_titulo_credito = juicios.id_titulo_credito 
+	 AND entidades.id_entidades = oficios.id_entidades 
+	 AND clientes.id_clientes = juicios.id_clientes 
+     AND ciudad.id_ciudad = juicios.id_ciudad 
+]]>
+	</queryString>
+	<field name="nombre_entidades" class="java.lang.String"/>
+	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
+	<field name="creado" class="java.sql.Timestamp"/>
+	<field name="COLUMN_4" class="java.sql.Timestamp"/>
+	<field name="id_titulo_credito" class="java.lang.Integer"/>
+	<field name="identificacion_clientes" class="java.lang.String"/>
+	<field name="nombres_clientes" class="java.lang.String"/>
+	<field name="direccion_clientes" class="java.lang.String"/>
+	<field name="nombre_ciudad" class="java.lang.String"/>
+	<field name="secretarios" class="java.lang.String"/>
+	<field name="impulsores" class="java.lang.String"/>
+	<field name="liquidador" class="java.lang.String"/>
+	<field name="numero_oficios" class="java.lang.String"/>
+	<group name="nombre_entidades">
+		<groupExpression><![CDATA[$F{nombre_entidades}]]></groupExpression>
+	</group>
+	<group name="juicio_referido_titulo_credito">
+		<groupExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></groupExpression>
+	</group>
+	<group name="creado">
+		<groupExpression><![CDATA[$F{creado}]]></groupExpression>
+	</group>
+	<group name="COLUMN_4">
+		<groupExpression><![CDATA[$F{COLUMN_4}]]></groupExpression>
+	</group>
+	<group name="id_titulo_credito">
+		<groupExpression><![CDATA[$F{id_titulo_credito}]]></groupExpression>
+	</group>
+	<group name="identificacion_clientes">
+		<groupExpression><![CDATA[$F{identificacion_clientes}]]></groupExpression>
+	</group>
+	<group name="nombres_clientes">
+		<groupExpression><![CDATA[$F{nombres_clientes}]]></groupExpression>
+	</group>
+	<group name="direccion_clientes">
+		<groupExpression><![CDATA[$F{direccion_clientes}]]></groupExpression>
+	</group>
+	<group name="nombre_ciudad">
+		<groupExpression><![CDATA[$F{nombre_ciudad}]]></groupExpression>
+	</group>
+	<group name="secretarios">
+		<groupExpression><![CDATA[$F{secretarios}]]></groupExpression>
+	</group>
+	<group name="impulsores">
+		<groupExpression><![CDATA[$F{impulsores}]]></groupExpression>
+	</group>
+	<group name="liquidador">
+		<groupExpression><![CDATA[$F{liquidador}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="713" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="18" width="60" height="16" uuid="88bb2fc0-3210-40f7-9fbf-f47c0753cd30"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[OFICIO No.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="19" width="100" height="16" uuid="ede56628-b88e-4712-9ac1-061eb9ebadc7"/>
+				<textFieldExpression><![CDATA[$F{numero_oficios}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="46" width="375" height="15" uuid="84d2289a-df39-4e91-9539-7f1f4782ee31"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Se le hace saber que dentro del presente juicio coactivo se encuentra lo siguiente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="148" y="76" width="143" height="18" uuid="7f786c81-909a-4143-bb0d-3effaa564edd"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="104" width="60" height="20" uuid="1a7aae3f-bb90-47ac-ab5a-d080490e91d8"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="90" y="104" width="130" height="20" uuid="bf6229c0-9928-46b7-84c5-6c547ff7987e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="152" width="204" height="16" uuid="c0b3491f-5ef3-430d-9d68-00e12cb350c4"/>
+				<textElement textAlignment="Justified">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[VISTOS: Del (los) título (s) de crédito No. (s)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="234" y="152" width="58" height="13" uuid="1b6b9517-d319-4825-beeb-fc7353c8a436"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_titulo_credito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="168" width="326" height="12" uuid="bee33d57-62a4-422b-9db2-e33b27c4edac"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Banco Nacional del Fomento S.A. en Liquidación, y emitido (s) en fecha                  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="185" width="326" height="14" uuid="7f5a1ade-b728-410f-bec4-68bb07a6ec5d"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[(s) liquidación (es) que se manda (n) agregar a los autos aparece que ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="202" width="50" height="16" uuid="d186662a-6b1c-415f-a770-74a7bb290537"/>
+				<textElement textAlignment="Justified">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[con C.I. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="240" width="502" height="18" uuid="1937dae4-d6d1-47e9-b143-abde7e4b1e63"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[ más los intereses y costas y gastos judiciales que se generen hasta la fecha de pago total.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="356" y="167" width="58" height="14" uuid="8ec2bd36-4bc2-4a2c-896b-e3e38f130ce3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{creado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="356" y="186" width="166" height="18" uuid="681820d2-812b-423f-879e-99d6e5036cad"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="293" y="152" width="230" height="16" uuid="354a548e-1bb2-490c-a593-7a0e74d8e2b4"/>
+				<textElement textAlignment="Justified">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[que ha (n) sido expedido (s) por el]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="168" width="108" height="12" uuid="afbdb32d-9ab0-481e-8fb1-3ee6ebbfe9e6"/>
+				<textElement textAlignment="Justified">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[, de conformidad con]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="75" y="202" width="80" height="16" uuid="cb5d960b-4357-4357-89e1-87d165485e03"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{identificacion_clientes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="156" y="203" width="366" height="16" uuid="07c4834a-f0ea-4d86-ad0d-df51a7e9cfd0"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[, adeuda (n) a esta Institución Bancaria en Liquidación lasuma de USD$ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="222" width="332" height="16" uuid="46a641b6-9b84-42ce-8335-cf1240717ba5"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[DOLARES DE LOS ESTADOS UNIDOS DE AMERICA ,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="258" width="494" height="18" uuid="9de4721d-b7a3-4673-86d6-0592b208c839"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Y siendo la obligación líquida, determinada y de plazo vencido, en mi calidad de Liquidador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="276" width="494" height="18" uuid="482ea401-5fea-43dc-8923-4aa3571fbf75"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[del Banco Territorial S.A. en Liquidación, conforme a la designación a mi extendida y fundado en la]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="294" width="494" height="18" uuid="2c93df86-259d-4177-8685-71942f32a4a9"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[orden de cobro contenidos ambos actos en la Resolución No. JB-2013-2438, emitida por el Ab.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="312" width="494" height="18" uuid="0ad7ee33-70e2-403f-95f6-bdf924b2c125"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Pedro Solines Chacón, en su calidad de Presidente de la Junta Bancaria, dada en la]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="330" width="494" height="18" uuid="2578fa94-6df0-4121-beb3-daa5a197b99d"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Superintendencia de Bancos y Seguros en Guayaquil con fecha 26 de marzo de 2013, inscrita en el]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="348" width="494" height="18" uuid="8d344b6b-8fbf-460c-aee3-618bde2e6219"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Registro Mercantil del cantón Guayaquil el 27 de marzo de 2013, en la que se dispone la]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="366" width="494" height="18" uuid="5081f30c-c5e6-4dfb-a6b8-8563addc0b28"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[liquidación forzosa del Banco Territorial S.A., y de conformidad con lo dispuesto en los Arts. 941,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="384" width="494" height="18" uuid="7b2911d4-ccef-45f2-b2ec-f35fde536f6f"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[945, 946. 948 y 951 del Código de Procedimiento Civil, INICIO el presente juicio coactivo contra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="402" width="112" height="18" uuid="43b56ce5-8ad8-4c63-b9e2-0a8634393c49"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[, registrado con C.I. No.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="28" y="402" width="152" height="16" uuid="07385678-937f-4c4e-acd0-8fe3578c343d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="293" y="402" width="80" height="16" uuid="d091b112-34a1-4415-a51e-fe337ed97c4b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{identificacion_clientes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="373" y="402" width="112" height="18" uuid="43f623bf-3b01-4b5a-b8f4-f506e93be620"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[; y en consecuencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="420" width="494" height="18" uuid="e21d6916-0cad-44d7-bc83-eb9d724467f3"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[ORDENO que el (los) deudor (es) pague (n) al Banco Territorial S.A. en Liquidación la cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="438" width="494" height="18" uuid="32428de0-8e99-4ddb-9280-48f6d18ffab1"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[adeudada, más los intereses generados hasta la fecha y los que se generen hasta la total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="456" width="494" height="18" uuid="8d49c2cd-cf79-42f6-9178-a2ebf8a1caa2"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[cancelación de la deuda, intereses de mora, comisión, gastos judiciales, costas procesales,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="474" width="494" height="18" uuid="7e5f5da8-3024-463f-a11d-40600ed6e8b1"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[honorarios y otros accesorios legales, o dimita bienes en el término perentorio de tres días,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="492" width="494" height="18" uuid="1dd06bc7-9f42-4c51-8f0c-9cc49e9b01e8"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[contados desde que se cite con el auto de pago, apercibiéndole (s) que de no hacerlo se le]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="510" width="494" height="18" uuid="0490b5be-7559-4df8-b5b0-10b1c8e8ba53"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[embargará bienes que aseguren la recuperación de todo lo adeudado, de conformidad con lo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="528" width="494" height="18" uuid="b7797069-4726-4891-bf13-2c54b06b35e0"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[dispuesto en el Art. 962 del Código de Procedimiento Civil, actúen en el presente juicio, como]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="546" width="192" height="18" uuid="60a31e7c-7e9a-4d17-9fe5-2fd472a4013e"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[secretario e impulsor respectivamente, el]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="245" y="546" width="80" height="16" uuid="adf644ee-a7ab-4a43-b610-6d718b525981"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{secretarios}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="220" y="546" width="24" height="18" uuid="633a67c2-d464-4e09-94b8-22508613a48e"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ab.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="546" width="36" height="18" uuid="fed0817e-8032-4436-9390-2beece2c7767"/>
+				<textElement textAlignment="Justified">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[y el(la)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="384" y="546" width="136" height="16" uuid="7c414166-59d2-4188-b5cf-17a09ddbbd50"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{impulsores}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="546" width="24" height="18" uuid="c4872794-c040-45e8-8c73-3944dce6a70a"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ab.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="564" width="494" height="18" uuid="ab59e404-d44f-4729-b64c-8e00f0c8c3af"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[, quienes estando presentes aceptan los cargos conferidos y juran desempeñarlos fiel y legalmente,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="582" width="494" height="18" uuid="94d76606-dd9f-487b-8690-a9f24f1b8fb2"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[firmando para constancia con el suscrito Juez de Coactiva. Desglósese el (los) título (s) de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="600" width="494" height="18" uuid="c0a13d03-0937-40d8-8dcd-bd7dbd8879f7"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[crédito aparejado (s) a la coactiva, así como el documento habilitante que acredita la calidad invocada,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="618" width="494" height="18" uuid="843d0496-7ae4-4af2-8ee7-c474a70e9907"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[dejándose las copias certificadas en autos,remitiéndose el original al departamento correspondiente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="636" width="494" height="18" uuid="30a3725b-6e31-4b26-ad2d-7226f7cbf420"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[para su respectiva custodia. En lo principal, por disposición de lo prescrito en la parte final del inciso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="654" width="494" height="18" uuid="3465be2a-c78b-467b-990a-c9c78acd6a0c"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[primero del Art. 942 del Código de Procedimiento Civil, en concordancia con los Arts. 421 y 426]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="672" width="494" height="18" uuid="3ed0bb50-c4a6-42a3-b457-ac56d8a355d4"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[del Código Adjetivo Civil, díctanse las siguientes medidas cautelares: UNO) Al tenor de lo dispuesto]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="54" y="0" width="206" height="18" uuid="082e1de0-ba6f-46ca-91a4-a2b8ffbc96d5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="-1" width="24" height="18" uuid="a94cef7a-47b5-4e80-a6c5-921dd0671597"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[A:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="76" width="118" height="18" uuid="84b0707a-a15f-40ab-997a-6fb7b7762a09"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[JUICIO COACTIVO No.]]></text>
+			</staticText>
+		</band>
+		<band height="740">
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="21" width="494" height="18" uuid="77bd43ca-cba8-420a-98ad-64d5e5531b92"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[en los Arts. 6, 9 y 18 de la Ley del Sistema Nacional de Registro de Datos Públicos, notifíquese]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="39" width="494" height="18" uuid="01daa4df-6c0e-40ac-a421-1818805fea7f"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[a los señores Registradores de la Propiedad del (los) cantón (es) Guayaquil,Duran,Samborondón,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="57" width="494" height="18" uuid="96529c8f-ee7c-4369-a7cd-2fb9c1123bd5"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Salinas,General Villamil (Playas),Daule,Santa Elena, para que remitan a este Juzgado un certificado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="75" width="494" height="18" uuid="42be6a6a-54d7-4584-8c25-cf6a590f8382"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[actualizado de bienes inmuebles que consten inscritos a nombre del (los) coactivado (s)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="93" width="494" height="18" uuid="cb4c33a1-e6d2-4d30-bff6-f96e3989c3ff"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[debiéndose señalar linderos,medidas, superficie, historia de dominio; y, se inscriba la Prohibición ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="111" width="494" height="18" uuid="3c3880b5-d8fd-4f0c-81ee-8a6a3712d8c6"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[de gravar y/o enajenar sobrelos bienes inmuebles que el (los) coactivado (s) tenga inscritos a su nombre ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="129" width="422" height="18" uuid="cbc890cd-ddbf-4b98-a706-587ab6576915"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[en dichos Registros.Hecho, remítase a la Secretaría de este Juzgado ubicado en la ciudad de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="129" width="72" height="18" uuid="aaaddb41-434c-4e99-94fb-a95b7464044c"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Guayaquil, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="147" width="242" height="18" uuid="5f02d7b5-d0a2-4d9d-8a09-73ee023bbdd7"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[calles P. Ycaza 115 y Pichincha planta baja; DOS)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="270" y="147" width="252" height="18" uuid="b51c8145-a527-4b46-8466-c8dd2cd32656"/>
+				<textElement textAlignment="Justified">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Prohibición de gravar y/o enajenar los vehículos del ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="165" width="238" height="18" uuid="bf5e857a-7bb8-4b52-b6be-4855ab6d44a9"/>
+				<textElement textAlignment="Justified">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[coactivado (s), para cuyo efecto notifíquese a la]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="266" y="165" width="170" height="18" uuid="3178b060-88a4-4512-981e-7c2591aa8726"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comision de Transito del Ecuador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="436" y="165" width="86" height="18" uuid="3a80f71f-da2d-48be-8c9e-b83652cb2ebf"/>
+				<textElement textAlignment="Justified">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[, a fin de que]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="183" width="494" height="18" uuid="9bdc2e7d-b1c1-43ba-acab-620a02ab16b2"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[tome nota en sus registros de la medida cautelar dispuesta, hecho lo cual, emita un certificado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="201" width="494" height="18" uuid="67f686e3-33db-4987-8a44-64e5ff0f6577"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[donde consten las características de los vehículos sobre los cuales se ha registrado la medida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="28" y="219" width="91" height="18" uuid="2c900539-fbed-4d18-b44c-0b50489f0b43"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[cautelar ordenada;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="119" y="219" width="36" height="18" uuid="a42a5692-2413-40ed-8675-13fd07dd0214"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRES)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="156" y="219" width="366" height="18" uuid="7a346c78-fa60-4581-929f-d755f6a67524"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Se ordena la retención de valores de conformidad con lo dispuesto en el]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="29" y="237" width="310" height="18" uuid="7e7580bd-09e8-4c1c-a67e-db3249f7834f"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Art. 425 del Código de Procedimiento Civil, hasta por la cantidad de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="95" y="255" width="288" height="18" uuid="5d2348b6-e049-4f55-bac7-238322d05096"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOLARES DE LOS ESTADOS UNIDOS DE AMÉRICA)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="383" y="255" width="138" height="18" uuid="d7f0cdd9-05d6-4051-8dd7-02be864e64bb"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[, retención que se verificará]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="273" width="494" height="18" uuid="88b2b202-fc0b-42c5-a4d2-4f3afc6d0251"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[en las inversiones que mantenga el (los) coactivado (s) en las instituciones bancarias y financieras]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="291" width="494" height="18" uuid="a7eb5e0e-f9c0-4485-8a84-ecbf6708bb33"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[que operan en el país, sean éstas cuentas corrientes, de ahorros, inversiones, depósitos a plazo,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="309" width="494" height="18" uuid="773e0d95-94c2-4da5-bb8a-1e19acc9ad8c"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[pólizas de acumulación y de cualquier otra operación en dicha institución, para lo cual deberá]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="327" width="494" height="18" uuid="3d05763f-b2bf-4b0a-a914-107af85bfbf8"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[oficiarse a la Superintendencia de Bancos y Seguros. De conformidad con lo dispuesto en el Art.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="345" width="494" height="18" uuid="43224d9f-d73d-4a22-aa24-8c40f890aef2"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[428 del Código de Procedimiento Civil, las entidades bancarias sujetas al control de la]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="363" width="494" height="18" uuid="9b7c3eda-cb31-4c96-b04b-a136e8fa8c33"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Superintendencia de Bancos y Seguros, deberán informar a éste Juzgado en el término]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="381" width="494" height="18" uuid="c047a555-7e6b-4522-a9d3-af38cb14b382"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[improrrogable de 72 horas el cumplimiento de la retención ordenada, sin perjuicio de que el]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="399" width="494" height="18" uuid="75ccb8f0-1812-4cb4-bb08-bdff601aad60"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[secretario de la causa notifique directamente a las instituciones que conforman el Sistema]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="417" width="494" height="18" uuid="31ec016b-aced-4d96-b6b4-efb0a2eddb45"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Financiero Nacional. Notifíquese a la Dirección General de Registro Civil, Identificación y]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="26" y="435" width="494" height="18" uuid="eb4a909c-87ca-44f9-b7e1-54d7fa3d60d8"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Cedulación, para que remitan a este Juzgado la tarjeta índice, datos de filiación, dirección]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="26" y="453" width="494" height="18" uuid="b49d01ae-af1e-4c29-b663-be6dec89cd8e"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[domiciliaria y demás información que registre en sus archivos físicos y/o electrónicos referente al]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="26" y="471" width="494" height="18" uuid="cb892531-4229-4ece-9104-c5e1b83cf891"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[(los) coactivado (s). De conformidad con lo dispuesto en el Art. 952 del Código de Procedimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="26" y="489" width="494" height="18" uuid="dd1e0426-652f-4e20-acd9-dbb5cee6b65a"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Civil, una vez cumplida la notificación de las medidas cautelares ordenadas en este auto de pago,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="26" y="507" width="494" height="18" uuid="eef94d3b-547c-4a8e-ad1c-57d03ac5f36a"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[cítese al (los) coactivado (s) en legal y debida forma en el domicilio señalado en el título de crédito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="26" y="525" width="494" height="18" uuid="012484a6-a55a-4e32-9d34-386dd78d77a6"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[o en el lugar donde se lo encuentre, previniéndole de la obligación que tiene de señalar casilla]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="26" y="543" width="494" height="18" uuid="1241802b-c972-4052-b51f-6c51516265fa"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[judicial para recibir futuras notificaciones de conformidad con lo dispuesto en el Art. 75 del Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="561" width="494" height="18" uuid="dd0cb78b-b7c4-405c-a0c2-887deaf683d4"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[de Procedimiento Civil. Se ofrece reconocer los abonos o cancelaciones que legalmente se]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="579" width="302" height="18" uuid="4625ea6a-4c5c-47fc-ad11-217545499c2a"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[comprobaren haberse realizado.- Cúmplase, cítese y ofíciese.- f.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="329" y="579" width="180" height="18" uuid="fa561d61-43c6-47d5-a521-54b0c375eac7"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ing. Carlos Espinoza Torres -]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="597" width="458" height="18" uuid="af84b43e-8031-47a2-ac04-11d6dc197bfe"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Liquidador - Juez de Coactiva - Banco Territorial S.A., en Liquidación.- f.) Ab. Juan Flores Barragán -]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="615" width="462" height="18" uuid="8fa075e0-2c6c-462b-b0cc-bec7eb30519d"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Secretario de Coactiva.- f.) Ab. Pia Enriqueta Acosta Bustamante - Abogado(a) Impulsor(a).]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="633" width="82" height="18" uuid="fbb6212e-9144-441e-a427-847b82e06174"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[- Lo certifico.-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="662" width="272" height="18" uuid="5b3ce936-05a5-413f-86ae-e1aa754ba534"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Particular que comunico a usted para los fines de ley.-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="690" width="59" height="18" uuid="e462a434-804c-4c98-910e-f6931d6d0623"/>
+				<textElement textAlignment="Left">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Guayaquil,]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="690" width="100" height="18" uuid="0649cb73-0c85-4b4b-bdc8-09881f8cb42a"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{creado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="117" y="6" width="320" height="12" forecolor="#000000" uuid="2e830ec2-e48e-4347-8440-ced1dc1acadc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="454" y="5" width="20" height="20" forecolor="#000000" uuid="33189587-2777-46e7-a3c6-176daf1242da"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="494" y="5" width="40" height="20" forecolor="#000000" uuid="ddaa2843-1f45-4b9e-b4ff-a6fd7d84ee8e"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="474" y="4" width="20" height="20" forecolor="#000000" uuid="4022d78a-7566-4ce4-bc16-e85d9c916f1d"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
