@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-07-07T17:37:13 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntradaReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49197e56-67ed-4774-b17a-0c56fbcb17d9">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\BodegaDataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="sql" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[$P{sql}]]>
+	</queryString>
+	<field name="id_cartones" class="java.lang.String"/>
+	<field name="numero_cartones" class="java.lang.String"/>
+	<field name="serie_cartones" class="java.lang.String"/>
+	<field name="contenido_cartones" class="java.lang.String"/>
+	<field name="year_cartones" class="java.lang.String"/>
+	<field name="cantidad_documentos_libros_cartones" class="java.lang.String"/>
+	<field name="nombre_tipo_contenido_cartones" class="java.lang.String"/>
+	<field name="digitalizado_cartones" class="java.lang.String"/>
+	<field name="nombre_entidades" class="java.lang.String"/>
+	<field name="nombre_bodegas" class="java.lang.String"/>
+	<field name="nombre_tipo_operaciones" class="java.lang.String"/>
+	<field name="creado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="800" height="70" forecolor="#000000" backcolor="#FFFFFF" uuid="31234f13-0405-467c-8b39-f2b54016d959"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="20" width="800" height="50" forecolor="#000000" backcolor="#FFFFFF" uuid="1745fe55-903c-4b70-90f3-a6cedf08b196"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="19" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE CARTONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="633" y="49" width="50" height="20" forecolor="#000000" backcolor="#000000" uuid="6dfd737b-2aef-45ec-a506-cde85d20c479"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="685" y="50" width="115" height="20" forecolor="#000000" uuid="b88ae8f5-6e87-4133-bfb2-c8887bfe6061"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="5" y="10" width="190" height="50" uuid="1450479c-09aa-45b1-8ce2-a7a8b775598a"/>
+				<imageExpression><![CDATA["C:/Users/User/git/bodega2016/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/logo-docstore.jpg"]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement key="" positionType="Float" x="672" y="5" width="100" height="40" uuid="1dad1e6e-6ee5-4754-bf51-af039e9d5cee">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.moduleWidth" value="pixel"/>
+				</reportElement>
+				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" moduleWidth="100.0" textPosition="bottom" verticalQuietZone="0.0">
+					<jr:codeExpression><![CDATA[$F{numero_movimientos_detalle}]]></jr:codeExpression>
+				</jr:Code128>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="36" splitType="Stretch">
+			<rectangle>
+				<reportElement x="9" y="6" width="791" height="30" forecolor="#999999" backcolor="#999999" uuid="dd2960b0-a116-4e1a-8792-0f2d88719651"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="15" width="30" height="21" forecolor="#FFFFFF" uuid="4f8e287b-20ff-4456-9186-aeb70940fc76"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="15" width="70" height="21" forecolor="#FFFFFF" uuid="0f072f68-3594-428d-a9e8-41291fa8b282"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="15" width="60" height="21" forecolor="#FFFFFF" uuid="c82cdd3a-9759-44dd-886d-f12b6a60f9ed"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Serie]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="15" width="70" height="21" forecolor="#FFFFFF" uuid="1813d28d-7084-4acf-bb13-171de26b1a49"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contenido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="15" width="70" height="21" forecolor="#FFFFFF" uuid="bde17aa8-5d65-421e-bc22-070924b7e77a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Años]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="15" width="70" height="21" forecolor="#FFFFFF" uuid="42f4c6ab-b6ed-45d6-9d74-8e5e20ac94de"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="15" width="70" height="21" forecolor="#FFFFFF" uuid="761c022b-59fa-443a-9aca-c12d19a4e4a2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="15" width="30" height="21" forecolor="#FFFFFF" uuid="2d6ff9bf-aa5d-4bbf-8c82-3ce0c8843e2d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dig]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="15" width="70" height="21" forecolor="#FFFFFF" uuid="3f624245-5af8-49e2-97b0-fbbc9c1aaf9b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entidades]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="560" y="15" width="100" height="21" forecolor="#FFFFFF" uuid="2745628b-835a-46df-a782-3dc99e28329b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bodegas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="670" y="15" width="70" height="21" forecolor="#FFFFFF" uuid="9ae283b3-a121-46c9-9f4f-b118f8517e16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Operación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="740" y="15" width="70" height="21" forecolor="#FFFFFF" uuid="16b8549b-e93c-4936-9663-fa0544e300ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rockwell Extra Bold" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="2" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="38" y="0" width="72" height="10" uuid="b27551cd-7ac2-4693-a564-ca2c917a7af6"/>
+				<textFieldExpression><![CDATA[$F{numero_cartones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="0" width="60" height="10" uuid="33841b2e-e78d-4246-94f8-29d9133422c5"/>
+				<textFieldExpression><![CDATA[$F{serie_cartones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="0" width="70" height="10" uuid="2cb7dd2d-2bb8-44ea-b404-6eecaa7a651b"/>
+				<textFieldExpression><![CDATA[$F{contenido_cartones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="0" width="70" height="10" uuid="8722f952-4d6b-4d6d-b262-639932c00f60"/>
+				<textFieldExpression><![CDATA[$F{year_cartones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="70" height="10" uuid="8830899e-48ef-40b2-8f4f-bd16bb8a1bbd"/>
+				<textFieldExpression><![CDATA[$F{cantidad_documentos_libros_cartones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="70" height="10" uuid="da4e8590-9a64-47cc-bdca-ec7c5e353976"/>
+				<textFieldExpression><![CDATA[$F{nombre_tipo_contenido_cartones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="30" height="10" uuid="8976ed6e-9d23-41c3-811e-effa8a614431"/>
+				<textFieldExpression><![CDATA[$F{digitalizado_cartones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="70" height="10" uuid="5e58775f-56f2-4713-8e24-afc8f8727ab9"/>
+				<textFieldExpression><![CDATA[$F{nombre_entidades}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="560" y="0" width="100" height="10" uuid="de40c494-dd6f-4073-8ecd-1706a3705a0a"/>
+				<textFieldExpression><![CDATA[$F{nombre_bodegas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="660" y="0" width="70" height="10" uuid="d3b2f3b5-b108-4ac2-9a57-3e5a6a895845"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombre_tipo_operaciones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="740" y="0" width="52" height="10" uuid="6c29f0f0-ac52-4072-81b8-42eb027dc9ff"/>
+				<textFieldExpression><![CDATA[$F{creado}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Band" pattern="">
+				<reportElement x="10" y="0" width="30" height="10" uuid="5136fe1f-732b-4999-9667-22ad51515b4c"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="17" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="444" y="1" width="100" height="10" uuid="dab84c0a-316a-4e96-872e-c181fc585a23"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="0" width="135" height="10" uuid="eb46ed01-b6a1-41a2-8a59-a35129c2f649"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Cartones :]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="12" width="781" height="20" forecolor="#000000" backcolor="#000000" uuid="df592b9c-348c-41fa-9533-e518c8c715cb"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="704" y="16" width="20" height="20" forecolor="#FFFFFF" uuid="ca3e0a73-f6a4-4167-9c47-78a5a041488d"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="744" y="16" width="40" height="20" forecolor="#FFFFFF" uuid="aa51d488-540f-485e-a44f-bb0ae6afaddf"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="724" y="15" width="20" height="20" forecolor="#FFFFFF" uuid="dc578264-a1db-47fe-a9ff-22d64e61a8f2"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="16" width="320" height="12" forecolor="#FFFFFF" uuid="749a3706-629a-422b-9fcf-74845698f47d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Bodega - AllDocStore 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

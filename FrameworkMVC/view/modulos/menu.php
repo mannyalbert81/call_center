@@ -156,7 +156,7 @@
            </li>
              <li><a href="index.php?controller=Oficios&action=index"><span class="glyphicon glyphicon-leaf" aria-hidden="true"> Oficios</span> </a>
             </li>
-             <li><a href="index.php?controller=SeguimientoGastos&action=index"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"> Seguimiento Gastos</span> </a>
+             <li><a href="index.php?controller=SeguimientoGastos&action=index"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"> Consulta de Gastos</span> </a>
             </li>
 
 </ul>
@@ -204,6 +204,16 @@
             
             <li><a href="/FrameworkMVC/view/ireports/ContTrazasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Auditoria del Sistema</span> </a>
             </li>
+      </ul>
+      </li>
+      
+<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Documentos" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          
+          <li><a href="index.php?controller=Documentos&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Emisón y Aprobación de Providencias</span> </a>
+            </li>   
+            
       </ul>
       </li>
 </ul>
