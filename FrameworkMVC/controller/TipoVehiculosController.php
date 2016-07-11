@@ -25,6 +25,11 @@ class TipoVehiculosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$tipo_vehiculos= new TipoVehiculosModel();
+			//Notificaciones
+			$tipo_vehiculos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "TipoVehiculos";
 			$id_rol= $_SESSION['id_rol'];

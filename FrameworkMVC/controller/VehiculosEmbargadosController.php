@@ -71,6 +71,12 @@ class VehiculosEmbargadosController extends ControladorBase{
 	   
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			$vehiculos_embargados= new VehiculosEmbargadosModel();
+			//Notificaciones
+			$vehiculos_embargados->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "VehiculosEmbargados";
 			$id_rol= $_SESSION['id_rol'];

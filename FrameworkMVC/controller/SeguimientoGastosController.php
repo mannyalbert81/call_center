@@ -37,6 +37,10 @@ class SeguimientoGastosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$distribucion_gastos = new DistribucionGastosModel();
+			//Notificaciones
+			$marca_vehiculos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 	
 			$nombre_controladores = "SeguimientoGastos";
 			$id_rol= $_SESSION['id_rol'];

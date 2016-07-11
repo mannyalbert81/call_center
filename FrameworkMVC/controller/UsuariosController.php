@@ -24,6 +24,12 @@ public function index(){
 		session_start();
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			$usuarios=new UsuariosModel();
+			//Notificaciones
+			$usuarios->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			//creacion menu busqueda
 			//$resultMenu=array("1"=>Nombre,"2"=>Usuario,"3"=>Correo,"4"=>Rol);
 			$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Usuario', 3=>'Correo', 4=>'Rol', 5=>'Ciudad');

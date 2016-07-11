@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T20:28:45 -->
+<!-- 2016-07-11T14:31:34 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CitacionesReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4608033-e192-4760-aeb9-2c160b2277ee">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -42,46 +42,35 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="148" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="110" width="550" height="30" uuid="acf18fca-baf1-4411-aac3-0e3e515a3d3d"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font size="19" isBold="true"/>
-				</textElement>
-				<text><![CDATA[SISTEMA COACTIVA ]]></text>
-			</staticText>
-			<componentElement>
-				<reportElement key="" positionType="Float" mode="Transparent" x="437" y="30" width="100" height="27" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="66c4953d-98af-436d-9d17-2e660d5b0ebc">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.moduleWidth" value="pixel"/>
-				</reportElement>
-				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" moduleWidth="100.0" textPosition="bottom" verticalQuietZone="0.0">
-					<jr:codeExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></jr:codeExpression>
-				</jr:Code128>
-			</componentElement>
-		</band>
+		<band height="24" splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="44" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="164" splitType="Stretch">
 			<staticText>
-				<reportElement x="50" y="10" width="130" height="30" uuid="d433a56d-d454-4c02-9022-cf7c0de750de"/>
+				<reportElement x="50" y="130" width="130" height="30" uuid="f130555c-fefe-4db6-91f8-493ee94d9cf8"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[JUICIO COACTIVO #]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="180" y="10" width="190" height="30" uuid="bbeb77b8-89d9-4fcc-ab71-46a9b9ae8212"/>
+				<reportElement x="180" y="130" width="190" height="30" uuid="02143181-c94c-453e-b21f-9761b85d4c3a"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="550" height="30" uuid="5a9d0021-ff91-439a-bbed-b3b1476b414f"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEMA COACTIVA ]]></text>
+			</staticText>
 		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
 		<band height="270" splitType="Stretch">
