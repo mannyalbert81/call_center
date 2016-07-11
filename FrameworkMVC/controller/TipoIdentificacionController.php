@@ -24,6 +24,11 @@ class TipoIdentificacionController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$tipo_identificacion= new TipoIdentificacionModel();
+			//Notificaciones
+			$tipo_identificacion->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "TipoIdentificacion";
 			$id_rol= $_SESSION['id_rol'];

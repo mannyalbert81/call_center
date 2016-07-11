@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-11T10:14:35 -->
+<!-- 2016-07-11T15:39:35 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CitacionesReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4608033-e192-4760-aeb9-2c160b2277ee">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
-	<parameter name="_id_citaciones" class="java.lang.String"/>
+	<parameter name="id_citaciones" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT usuarios.nombre_usuarios,
-	tipo_citaciones.nombre_tipo_citaciones,
-	juicios.juicio_referido_titulo_credito,
-	citaciones.nombre_persona_recibe_citaciones,
-	citaciones.relacion_cliente_citaciones,
-	citaciones.fecha_citaciones,
-	ciudad.nombre_ciudad,
-	clientes.nombres_clientes,
-	clientes.identificacion_clientes,
-	clientes.direccion_clientes
-FROM citaciones,
-	clientes,
-	ciudad,
-	tipo_citaciones,
-	juicios,
-	usuarios
+		<![CDATA[SELECT 
+  usuarios.nombre_usuarios, 
+  tipo_citaciones.nombre_tipo_citaciones, 
+  juicios.juicio_referido_titulo_credito, 
+  citaciones.nombre_persona_recibe_citaciones, 
+  citaciones.relacion_cliente_citaciones, 
+  citaciones.fecha_citaciones, 
+  ciudad.nombre_ciudad, 
+  clientes.nombres_clientes, 
+  clientes.identificacion_clientes, 
+  clientes.direccion_clientes
+FROM 
+  public.citaciones, 
+  public.clientes, 
+  public.ciudad, 
+  public.tipo_citaciones, 
+  public.juicios, 
+  public.usuarios
 WHERE 
-	 ciudad.id_ciudad = citaciones.id_ciudad 
-	 AND tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones 
-	 AND juicios.id_juicios = citaciones.id_juicios 
-	 AND juicios.id_clientes = clientes.id_clientes 
-	 AND usuarios.id_usuarios = citaciones.id_usuarios
-	 AND citaciones.id_citaciones = $P{_id_citaciones} ]]>
+  ciudad.id_ciudad = citaciones.id_ciudad AND
+  tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones AND
+  juicios.id_juicios = citaciones.id_juicios AND
+  juicios.id_clientes = clientes.id_clientes AND
+  usuarios.id_usuarios = citaciones.id_usuarios]]>
 	</queryString>
 	<field name="nombre_usuarios" class="java.lang.String"/>
 	<field name="nombre_tipo_citaciones" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
 	<field name="nombre_persona_recibe_citaciones" class="java.lang.String"/>
 	<field name="relacion_cliente_citaciones" class="java.lang.String"/>
-	<field name="fecha_citaciones" class="java.sql.Date"/>
+	<field name="fecha_citaciones" class="java.sql.Timestamp"/>
 	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="nombres_clientes" class="java.lang.String"/>
 	<field name="identificacion_clientes" class="java.lang.String"/>
@@ -44,49 +45,38 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="148" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="110" width="550" height="30" uuid="acf18fca-baf1-4411-aac3-0e3e515a3d3d"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font size="19" isBold="true"/>
-				</textElement>
-				<text><![CDATA[SISTEMA COACTIVA ]]></text>
-			</staticText>
-			<componentElement>
-				<reportElement key="" positionType="Float" mode="Transparent" x="437" y="30" width="100" height="27" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="66c4953d-98af-436d-9d17-2e660d5b0ebc">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.moduleWidth" value="pixel"/>
-				</reportElement>
-				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" moduleWidth="100.0" textPosition="bottom" verticalQuietZone="0.0">
-					<jr:codeExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></jr:codeExpression>
-				</jr:Code128>
-			</componentElement>
-		</band>
+		<band height="60" splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="44" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="127" splitType="Stretch">
 			<staticText>
-				<reportElement x="50" y="10" width="130" height="30" uuid="d433a56d-d454-4c02-9022-cf7c0de750de"/>
+				<reportElement x="50" y="81" width="130" height="30" uuid="d433a56d-d454-4c02-9022-cf7c0de750de"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[JUICIO COACTIVO #]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="180" y="10" width="190" height="30" uuid="bbeb77b8-89d9-4fcc-ab71-46a9b9ae8212"/>
+				<reportElement x="180" y="81" width="190" height="30" uuid="bbeb77b8-89d9-4fcc-ab71-46a9b9ae8212"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="550" height="30" uuid="67b21dbf-73e8-48e0-a082-d1c74daa9680"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEMA COACTIVA ]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="270" splitType="Stretch">
+		<band height="302" splitType="Stretch">
 			<staticText>
 				<reportElement x="50" y="0" width="70" height="30" uuid="b6051b1a-b1e7-4be5-9337-31baf22bc23d"/>
 				<textElement>
@@ -99,14 +89,14 @@ WHERE
 				<text><![CDATA[Siento como tal, que hoy]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="200" y="30" width="55" height="20" uuid="7ea8a7c0-7233-4f45-a0eb-999d5f819a05"/>
+				<reportElement x="185" y="30" width="55" height="20" uuid="7ea8a7c0-7233-4f45-a0eb-999d5f819a05"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha_citaciones}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="265" y="30" width="60" height="20" uuid="52eb573b-cf75-4bcf-a324-cd04abdcef74"/>
+				<reportElement x="290" y="30" width="60" height="20" uuid="52eb573b-cf75-4bcf-a324-cd04abdcef74"/>
 				<text><![CDATA[siendo las]]></text>
 			</staticText>
 			<staticText>
@@ -212,48 +202,22 @@ WHERE
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
 			</textField>
-			<textField pattern="HH:mm:ss zzzz">
-				<reportElement x="350" y="30" width="87" height="20" uuid="ad7ff058-b692-46ed-9557-54695304b085"/>
+			<staticText>
+				<reportElement x="365" y="30" width="60" height="20" uuid="6b03478a-5f89-4200-954b-87f5a4dc8081"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fecha_citaciones}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[14:00:00]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="25" splitType="Stretch">
-			<staticText>
-				<reportElement x="117" y="6" width="320" height="12" forecolor="#000000" uuid="eba7e5d2-f930-4a3b-8ab6-59e06f0ac8a2"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
-				</textElement>
-				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="461" y="4" width="20" height="20" forecolor="#000000" uuid="d1321110-bf47-4f88-b6a3-2afb3b485227"/>
-				<textElement>
-					<font fontName="Arial" size="10" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="501" y="4" width="40" height="20" forecolor="#000000" uuid="c7cb5444-810b-4771-bbbf-aebcfca91825"/>
-				<textElement>
-					<font fontName="Arial" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="481" y="3" width="20" height="20" forecolor="#000000" uuid="b01e08b2-25ad-48c8-b316-e02450d06034"/>
-				<textElement>
-					<font fontName="Arial" isBold="true"/>
-				</textElement>
-				<text><![CDATA[de]]></text>
-			</staticText>
-		</band>
+		<band height="54" splitType="Stretch"/>
 	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>

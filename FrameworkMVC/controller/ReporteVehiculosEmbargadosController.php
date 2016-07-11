@@ -16,6 +16,9 @@ class ReporteVehiculosEmbargadosController extends ControladorBase{
 		
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+		
+			
 			$resultDatos=array();
 
 			//creacion ddl de secretarios o abogadpos

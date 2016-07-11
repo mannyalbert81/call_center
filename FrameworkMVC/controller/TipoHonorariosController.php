@@ -24,6 +24,13 @@ class TipoHonorariosController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			
+			$tipo_honorarios= new TipoHonorariosModel();
+			//Notificaciones
+			$tipo_honorarios->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "TipoHonorarios";
 			$id_rol= $_SESSION['id_rol'];
