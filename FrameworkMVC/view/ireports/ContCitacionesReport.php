@@ -21,7 +21,7 @@ $PHPJasperXML->debugsql=false;
 #aqu� va el reporte
 
 
-$id=$_GET['id_clientes'];
+$id=$_GET['id_citaciones'];
 $PHPJasperXML = new PHPJasperXML("en","TCPDF");
 $PHPJasperXML->debugsql=false;
 $PHPJasperXML->arrayParameter=array("_id_citaciones"=>$id);
@@ -32,6 +32,4 @@ $PHPJasperXML->load_xml_file("CitacionesReport.jrxml");
 ////$PHPJasperXML->xml_dismantle($xml); 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $PHPJasperXML->outpage("I");
-
-
 ?>
