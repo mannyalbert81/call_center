@@ -31,6 +31,13 @@ class NotificacionesController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
+			
+			$notificaciones=new NotificacionesModel();
+			//Notificaciones
+			$notificaciones->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
+			
 			$nombre_controladores = "Notificaciones";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $notificaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );

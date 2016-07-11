@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T20:21:28 -->
+<!-- 2016-07-08T08:14:13 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -170,19 +170,19 @@ WHERE
 	<detail>
 		<band height="39" splitType="Stretch">
 			<textField>
-				<reportElement x="52" y="4" width="60" height="16" uuid="1a8532e3-6510-42ed-aa1e-7a1a3684f270"/>
+				<reportElement x="52" y="0" width="60" height="10" uuid="1a8532e3-6510-42ed-aa1e-7a1a3684f270"/>
 				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="110" y="4" width="138" height="16" uuid="3c6c7084-2c74-4014-b290-05b7d65558f2"/>
+				<reportElement x="110" y="0" width="138" height="10" uuid="3c6c7084-2c74-4014-b290-05b7d65558f2"/>
 				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="245" y="4" width="90" height="16" uuid="126379b3-77d6-487d-aad7-7788c37687db"/>
+				<reportElement x="245" y="0" width="90" height="10" uuid="126379b3-77d6-487d-aad7-7788c37687db"/>
 				<textFieldExpression><![CDATA[$F{identificacion_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="356" y="4" width="48" height="16" uuid="d6141f27-2746-4b4c-a893-3e60090e3864"/>
+				<reportElement x="356" y="0" width="48" height="10" uuid="d6141f27-2746-4b4c-a893-3e60090e3864"/>
 				<textFieldExpression><![CDATA[$F{nombre_tipo_persona}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -198,11 +198,11 @@ WHERE
 				<textFieldExpression><![CDATA[$F{creado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="420" y="4" width="130" height="16" uuid="0bd94fad-852c-4eda-a194-afe2dbe748b7"/>
+				<reportElement x="420" y="0" width="130" height="10" uuid="0bd94fad-852c-4eda-a194-afe2dbe748b7"/>
 				<textFieldExpression><![CDATA[$F{direccion_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="9" y="0" width="41" height="20" uuid="76cb64b0-069f-43cb-aecb-32a69fdf5446"/>
+				<reportElement x="9" y="0" width="41" height="10" uuid="76cb64b0-069f-43cb-aecb-32a69fdf5446"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>

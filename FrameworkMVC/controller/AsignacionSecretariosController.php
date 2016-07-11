@@ -301,10 +301,7 @@ class AsignacionSecretariosController extends ControladorBase{
 									
 								$result_notificaciones=$usuarios->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $cantidad_cartones);
 								
-								$this->view("Error",array(
-										"resultado"=>print_r($result_notificaciones)
-								));
-								exit();
+								
 							}else
 							{
 									

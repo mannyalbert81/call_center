@@ -586,7 +586,7 @@
            		</div>
            		
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
-           <input type="submit" id="Guardar" name="Guardar" value="Guardar" class="btn btn-success"/>
+           <input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
            </div>
            </div>
           </form>

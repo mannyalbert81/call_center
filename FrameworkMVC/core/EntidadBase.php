@@ -542,6 +542,7 @@ class EntidadBase{
     		$posicion=3;
     	}
     	
+    	//$posicion=3;
 
 		$origen = $directorio . $nombrePdf;
 		

@@ -24,6 +24,11 @@ class OrigenCarteraController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			$origen_cartera= new OrigenCarteraModel();
+			//Notificaciones
+			$origen_cartera->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "OrigenCartera";
 			$id_rol= $_SESSION['id_rol'];

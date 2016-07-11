@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-07T21:28:29 -->
+<!-- 2016-07-08T08:25:19 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -157,63 +157,63 @@ WHERE
 	<detail>
 		<band height="38" splitType="Stretch">
 			<textField>
-				<reportElement x="260" y="0" width="81" height="20" uuid="c57bb7a9-10ef-4a5f-a808-c74b5776ab7e"/>
+				<reportElement x="260" y="0" width="81" height="10" uuid="c57bb7a9-10ef-4a5f-a808-c74b5776ab7e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cedula_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="716" y="0" width="71" height="20" uuid="0db44d44-67f1-4f71-8251-f7441629ccd0"/>
+				<reportElement x="716" y="0" width="71" height="10" uuid="0db44d44-67f1-4f71-8251-f7441629ccd0"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_estado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="617" y="0" width="80" height="20" uuid="30eeb45b-a07f-4f3c-9104-f6883de54243"/>
+				<reportElement x="617" y="0" width="80" height="10" uuid="30eeb45b-a07f-4f3c-9104-f6883de54243"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_rol}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="520" y="0" width="80" height="20" uuid="cc331f3c-9f14-4188-beb6-9dc3b08bcbdf"/>
+				<reportElement x="520" y="0" width="80" height="10" uuid="cc331f3c-9f14-4188-beb6-9dc3b08bcbdf"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{correo_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="424" y="1" width="59" height="20" uuid="a191bb6a-a8db-48b2-a745-f6546f647f52"/>
+				<reportElement x="424" y="1" width="59" height="8" uuid="a191bb6a-a8db-48b2-a745-f6546f647f52"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{celular_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="339" y="0" width="80" height="20" uuid="114dd61f-db45-4b0a-81a3-607f45c639e8"/>
+				<reportElement x="339" y="0" width="80" height="10" uuid="114dd61f-db45-4b0a-81a3-607f45c639e8"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telefono_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="141" y="0" width="111" height="20" uuid="867d6afa-8b26-4095-ada4-4f764095d8f5"/>
+				<reportElement x="141" y="0" width="111" height="10" uuid="867d6afa-8b26-4095-ada4-4f764095d8f5"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="50" y="1" width="81" height="20" uuid="20fa71a0-9999-4786-9de9-5b3c90cb2e9f"/>
+				<reportElement x="50" y="0" width="81" height="10" uuid="20fa71a0-9999-4786-9de9-5b3c90cb2e9f"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="9" y="0" width="41" height="20" uuid="e2066f6b-d45c-429f-9141-2ed215618e09"/>
+				<reportElement x="9" y="0" width="41" height="10" uuid="e2066f6b-d45c-429f-9141-2ed215618e09"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>

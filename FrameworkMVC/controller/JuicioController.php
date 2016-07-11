@@ -15,6 +15,11 @@ class JuicioController extends ControladorBase{
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			$juicio = new JuiciosModel();
+			//Notificaciones
+			$juicio->MostrarNotificaciones($_SESSION['id_usuarios']); 
+			
 			$resultSet=array();
 			
 			$resultEdit = "";

@@ -24,9 +24,16 @@ class LotesTituloCreditoController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			
-			//NOTIFICACIONES
-			$ltCredito->MostrarNotificaciones($_SESSION['id_usuarios']);
-
+		
+			$ltCredito = new LotesTituloCreditoModel();
+			//Notificaciones
+			$ltCredito->MostrarNotificaciones($_SESSION['id_usuarios']); 
+			
+				
+			
+			
+			
+		
 			$nombre_controladores = "LotesTituloCredito";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $ltCredito->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
