@@ -1,29 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-12T11:12:16 -->
+<!-- 2016-07-12T11:19:29 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProvidenciaReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0b0b1a7-0f75-4fb1-ac4b-c21d1f325d69">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
 	<parameter name="_id_documentos" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT 
- documentos.id_documentos,
-  ciudad.nombre_ciudad, 
-  juicios.juicio_referido_titulo_credito, 
-  clientes.nombres_clientes, 
-  documentos.fecha_emision_documentos, 
-  documentos.hora_emision_documentos, 
-  documentos.avoco_vistos_documentos
+  									documentos.id_documentos, 
+								  ciudad.nombre_ciudad, 
+								  juicios.juicio_referido_titulo_credito, 
+								  clientes.nombres_clientes, 
+								  clientes.identificacion_clientes, 
+								  estados_procesales_juicios.nombre_estado_procesal_juicios, 
+								  documentos.fecha_emision_documentos, 
+								  documentos.hora_emision_documentos, 
+								  documentos.detalle_documentos, 
+								  documentos.observacion_documentos, 
+								  documentos.avoco_vistos_documentos, 
+								  usuarios.id_usuarios,
+							      usuarios.nombre_usuarios, 
+								  usuarios.imagen_usuarios
 FROM 
   public.documentos, 
-  public.ciudad, 
-  public.juicios, 
-  public.clientes
+							  public.ciudad, 
+							  public.juicios, 
+							  public.usuarios, 
+							  public.clientes, 
+							  public.estados_procesales_juicios
 WHERE 
-  ciudad.id_ciudad = documentos.id_ciudad AND
-  juicios.id_juicios = documentos.id_juicio AND
-  clientes.id_clientes = juicios.id_clientes AND 
- documentos.id_documentos= $P{_id_documentos} ]]>
+ ciudad.id_ciudad = documentos.id_ciudad AND
+						  juicios.id_juicios = documentos.id_juicio AND
+						  usuarios.id_usuarios = documentos.id_usuario_registra_documentos AND
+						  clientes.id_clientes = juicios.id_clientes AND
+						  estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios AND 
+ documentos.id_documentos= $P{_id_documentos} 
+ 
+ 
+
+
+]]>
 	</queryString>
 	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
