@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-12T11:19:29 -->
+<!-- 2016-07-12T11:35:49 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProvidenciaReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0b0b1a7-0f75-4fb1-ac4b-c21d1f325d69">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -34,12 +34,7 @@ WHERE
 						  usuarios.id_usuarios = documentos.id_usuario_registra_documentos AND
 						  clientes.id_clientes = juicios.id_clientes AND
 						  estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios AND 
- documentos.id_documentos= $P{_id_documentos} 
- 
- 
-
-
-]]>
+ documentos.id_documentos= $P{_id_documentos}]]>
 	</queryString>
 	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
@@ -132,14 +127,13 @@ WHERE
 	</columnHeader>
 	<detail>
 		<band height="367" splitType="Stretch">
-			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement x="40" y="0" width="480" height="360" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="19eaf6f2-bb2b-44fd-9b1c-c9dd27d080b6"/>
+			<textField isBlankWhenNull="false">
+				<reportElement x="40" y="0" width="450" height="360" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="19eaf6f2-bb2b-44fd-9b1c-c9dd27d080b6"/>
 				<textElement textAlignment="Justified" markup="styled">
 					<font size="12"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{avoco_vistos_documentos}]]></textFieldExpression>
-				<patternExpression><![CDATA[$F{avoco_vistos_documentos}]]></patternExpression>
 			</textField>
 		</band>
 	</detail>

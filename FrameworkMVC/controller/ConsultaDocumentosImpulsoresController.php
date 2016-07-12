@@ -13,9 +13,31 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 
 		//Creamos el objeto usuario
 		$resultSet="";
+		$documentos_impulsores=new DocumentosModel();
 
+		
+		$_id_usuarios= $_SESSION["id_usuarios"]; 
+		
+		$columnas = " usuarios.id_ciudad, 
+					  ciudad.nombre_ciudad, 
+					  usuarios.nombre_usuarios";
+			
+		$tablas   = "public.usuarios, 
+                     public.ciudad";
+			
+		$where    = "ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuarios'";
+			
+		$id       = "usuarios.id_ciudad";
+		
+			
+		$resultDatos=$documentos_impulsores->getCondiciones($columnas ,$tablas ,$where, $id);
+		
+		
+		
+		
 		$ciudad = new CiudadModel();
 		$resultCiu = $ciudad->getAll("nombre_ciudad");
+		
 		
 		$usuarios = new UsuariosModel();
 		$resultUsu = $usuarios->getAll("nombre_usuarios");
@@ -107,7 +129,7 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 
 
 				$this->view("ConsultaDocumentosImpulsores",array(
-						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu
+						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu, "resultDatos"=>$resultDatos
 							
 				));
 

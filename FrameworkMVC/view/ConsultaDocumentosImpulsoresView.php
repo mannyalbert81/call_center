@@ -99,7 +99,7 @@
        $sel_id_ciudad = "";
        $sel_identificacion="";
        $sel_numero_juicio="";
-       $sel_id_usuarios="";
+      
        $sel_fecha_desde="";
        $sel_fecha_hasta="";
        
@@ -110,7 +110,7 @@
        	$sel_id_ciudad = $_POST['id_ciudad'];
        	$sel_identificacion=$_POST['identificacion'];
        	$sel_numero_juicio=$_POST['numero_juicio'];
-       	$sel_id_usuarios=$_POST['id_usuarios'];
+      
        	$sel_fecha_desde=$_POST['fecha_desde'];
        	$sel_fecha_hasta=$_POST['fecha_hasta'];
        	 
@@ -141,10 +141,8 @@
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
-			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
-					<?php foreach($resultCiu as $res) {?>
-						<option value="<?php echo $res->id_ciudad; ?>"<?php if($sel_id_ciudad==$res->id_ciudad){echo "selected";}?>><?php echo $res->nombre_ciudad;  ?> </option>
-			         
+			  		<?php foreach($resultDatos as $res) {?>
+						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>
@@ -152,11 +150,9 @@
 		 <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Impulsor:</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
-					<?php foreach($resultUsu as $res) {?>
-						<option value="<?php echo $res->id_usuarios; ?>"<?php if($sel_id_ciudad==$res->id_usuarios){echo "selected";}?>><?php echo $res->nombre_usuarios;  ?> </option>
-			         
-			            <?php } ?>
+			  		
+					   <option value="<?php echo $_SESSION['id_usuarios'];  ?>"><?php echo $_SESSION['nombre_usuarios'];  ?></option>  
+			            
 				</select>
 		 </div>
 		 
