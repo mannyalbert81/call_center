@@ -15,7 +15,7 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 		$resultSet="";
 		$documentos_secretarios=new DocumentosModel();
 
-		
+		// saber la ciudad del usuario
 		$_id_usuarios= $_SESSION["id_usuarios"]; 
 		
 		$columnas = " usuarios.id_ciudad, 
@@ -28,11 +28,21 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 		$where    = "ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuarios'";
 			
 		$id       = "usuarios.id_ciudad";
-		
-			
 		$resultDatos=$documentos_secretarios->getCondiciones($columnas ,$tablas ,$where, $id);
 		
 		
+		// saber los impulsores del secretario
+		$_id_usuarios= $_SESSION["id_usuarios"];
+		
+		$columnas = " asignacion_secretarios_view.id_abogado,
+					  asignacion_secretarios_view.impulsores";
+			
+		$tablas   = "public.asignacion_secretarios_view";
+			
+		$where    = "public.asignacion_secretarios_view.id_secretario = '$_id_usuarios'";
+			
+		$id       = "asignacion_secretarios_view.id_abogado";
+		$resultImpul=$documentos_secretarios->getCondiciones($columnas ,$tablas ,$where, $id);
 		
 		
 		$ciudad = new CiudadModel();
@@ -94,7 +104,8 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 						  juicios.id_juicios = documentos.id_juicio AND
 						  usuarios.id_usuarios = documentos.id_usuario_registra_documentos AND
 						  clientes.id_clientes = juicios.id_clientes AND
-						  estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios";
+						  estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios
+						 AND documentos.firma_impulsor ='TRUE'";
 
 					$id="documentos.id_documentos";
 						
@@ -129,7 +140,7 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 
 
 				$this->view("ConsultaDocumentosSecretarios",array(
-						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu, "resultDatos"=>$resultDatos
+						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu, "resultDatos"=>$resultDatos, "resultImpul"=>$resultImpul
 							
 				));
 

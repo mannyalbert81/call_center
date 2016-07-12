@@ -148,10 +148,11 @@
 		 </div>
 		 
 		 <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo" style="" >Impulsor:</p>
+			  	<p  class="formulario-subtitulo" style="" >Impulsores:</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-			  		
-					   <option value="<?php echo $_SESSION['id_usuarios'];  ?>"><?php echo $_SESSION['nombre_usuarios'];  ?></option>  
+			  		<?php foreach($resultImpul as $res) {?>
+						 <option value="<?php echo $res->id_abogado; ?>"  ><?php echo $res->impulsores; ?> </option>
+			            <?php } ?>  
 			            
 				</select>
 		 </div>
