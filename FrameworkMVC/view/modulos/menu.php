@@ -178,6 +178,9 @@
             <li><a href="/FrameworkMVC/view/ireports/ContTrazasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Auditoria del Sistema</span> </a>
             </li>
             
+             <li><a href="/FrameworkMVC/view/ireports/ContDocumentosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Providencias</span> </a>
+            </li>
+            
            
       </ul>
       </li>
