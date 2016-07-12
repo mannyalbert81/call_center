@@ -113,7 +113,7 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 						
 					if($numero_juicio!=""){$where_2=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
 						
-					if($identificacion!=""){$where_3=" AND clientes.identificacion='$identificacion'";}
+					if($identificacion!=""){$where_3=" AND clientes.identificacion_clientes='$identificacion'";}
 						
 					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  documentos.fecha_emision_documentos BETWEEN '$fechadesde' AND '$fechahasta'";}
 
