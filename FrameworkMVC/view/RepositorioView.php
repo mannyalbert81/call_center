@@ -129,13 +129,18 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Controladores","InsertaControladores"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("Repositorio","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
             
          
         	    <h4 style="color:#ec971f;">Insertar Repositorios</h4>
             	<hr/>
             	
-		   		
+		   	<?php if($resultado!=""){
+		   		echo "
+                <script language='JavaScript'>
+                alert('$resultado');
+                </script>";
+		   	}?>	
             
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
@@ -185,32 +190,27 @@
         <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Nombre</th>
+	    		<th style="color:#456789;font-size:80%;"><b>Nº</b></th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Repositorio</th>
 	    		
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
             
-	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
+	            <?php  if (!empty($resultSet)) { $contador=1; foreach($resultSet as $res) { ?>
 	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_controladores; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_controladores; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $contador ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res ?>     </td> 
 		              
 		           	   <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Controladores","index"); ?>&id_controladores=<?php echo $res->id_controladores; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("Repositorio","index"); ?>&nombre_dir=<?php echo $res ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Eliminar</a>
 			                </div>
 			            
-			             </td>
-			             <td>   
-			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Controladores","borrarId"); ?>&id_controladores=<?php echo $res->id_controladores; ?>" class="btn btn-danger" onClick="Borrar()" style="font-size:65%;">Borrar</a>
-			                </div>
-			                <hr/>
-		               </td>
+			           </td>
+			             
 		    		</tr>
-		        <?php } } ?>
+		        <?php  $contador=$contador+1;} } ?>
             
             <?php 
             
