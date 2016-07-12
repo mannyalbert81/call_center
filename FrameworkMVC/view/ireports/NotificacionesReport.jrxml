@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-08T08:16:09 -->
+<!-- 2016-07-12T10:12:03 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="NotificacionesReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="607e1fdc-9d09-4372-96b0-0829fc988419">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -14,8 +14,7 @@ FROM
   public.tipo_notificacion, 
   public.usuarios
 WHERE 
-  tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion AND
-  usuarios.id_usuarios = notificaciones.id_usuarios]]>
+  tipo_notificacion.id_tipo_notificacion = notificaciones.id_tipo_notificacion]]>
 	</queryString>
 	<field name="descripcion_notificaciones" class="java.lang.String"/>
 	<field name="nombre_usuarios" class="java.lang.String"/>
@@ -62,7 +61,7 @@ WHERE
 				<reportElement x="9" y="6" width="536" height="30" forecolor="#999999" backcolor="#999999" uuid="f08cfdf3-c823-4de7-86e3-42341d5fb311"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="186" y="9" width="180" height="30" forecolor="#FFFFFF" uuid="4b49cf98-80c0-41b2-b7dc-007eedcf6c9d"/>
+				<reportElement x="166" y="9" width="180" height="30" forecolor="#FFFFFF" uuid="4b49cf98-80c0-41b2-b7dc-007eedcf6c9d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
@@ -76,7 +75,7 @@ WHERE
 				<text><![CDATA[Usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="380" y="9" width="180" height="30" forecolor="#FFFFFF" uuid="c4ec346a-9eaf-47d8-a679-b5ba12a424b6"/>
+				<reportElement x="350" y="9" width="180" height="30" forecolor="#FFFFFF" uuid="c4ec346a-9eaf-47d8-a679-b5ba12a424b6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" isBold="true"/>
 				</textElement>
@@ -97,14 +96,14 @@ WHERE
 	<detail>
 		<band height="29" splitType="Stretch">
 			<textField>
-				<reportElement x="50" y="0" width="120" height="10" uuid="73d81ac4-291c-479d-8c85-daf1e96b2035"/>
+				<reportElement x="80" y="0" width="120" height="10" uuid="73d81ac4-291c-479d-8c85-daf1e96b2035"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="183" y="0" width="180" height="10" uuid="fb6c241e-f88c-4ee2-a4f7-44f24a54f501"/>
+				<reportElement x="223" y="0" width="180" height="10" uuid="fb6c241e-f88c-4ee2-a4f7-44f24a54f501"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Raavi"/>
 				</textElement>
