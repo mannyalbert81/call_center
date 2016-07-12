@@ -21,11 +21,12 @@ $PHPJasperXML->debugsql=false;
 #aqu� va el reporte
 
 
-$id=$_GET['id_vehiculos_embargados'];
+$id=$_GET['id_documentos'];
 $PHPJasperXML = new PHPJasperXML("en","TCPDF");
 $PHPJasperXML->debugsql=false;
-$PHPJasperXML->arrayParameter=array("_id_vehiculos_embargados"=>$id);
-$PHPJasperXML->load_xml_file("NotificacionesSubReport.jrxml");
+$PHPJasperXML->arrayParameter=array("_id_documentos"=>$id);
+$PHPJasperXML->xml_dismantle($xml);
+$PHPJasperXML->load_xml_file("DocumentosSubReport.jrxml");
 
 
 ////$PHPJasperXML = new PHPJasperXML();

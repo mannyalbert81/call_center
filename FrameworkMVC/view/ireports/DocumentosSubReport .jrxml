@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-11T17:35:37 -->
+<!-- 2016-07-12T11:03:54 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProvidenciaReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0b0b1a7-0f75-4fb1-ac4b-c21d1f325d69">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
+	<parameter name="_id_documentos" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT 
   ciudad.nombre_ciudad, 
@@ -20,7 +21,8 @@ FROM
 WHERE 
   ciudad.id_ciudad = documentos.id_ciudad AND
   juicios.id_juicios = documentos.id_juicio AND
-  clientes.id_clientes = juicios.id_clientes]]>
+  clientes.id_clientes = juicios.id_clientes AND 
+ documentos.id_documentos= $P{_id_documentos} ]]>
 	</queryString>
 	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
@@ -40,7 +42,7 @@ WHERE
 				<reportElement x="20" y="20" width="515" height="35" uuid="62faa6a3-b8ed-423e-a814-b96be6427f62"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="30" y="20" width="512" height="30" backcolor="#000000" uuid="6224e3ea-97a6-43b2-90d9-cafad2ba3c2f"/>
+				<reportElement x="25" y="26" width="512" height="30" backcolor="#000000" uuid="6224e3ea-97a6-43b2-90d9-cafad2ba3c2f"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="19" isBold="true"/>
 				</textElement>
@@ -112,13 +114,15 @@ WHERE
 		<band height="17" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="398" splitType="Stretch">
-			<textField>
-				<reportElement x="40" y="0" width="494" height="330" uuid="19eaf6f2-bb2b-44fd-9b1c-c9dd27d080b6"/>
-				<textElement textAlignment="Justified">
+		<band height="367" splitType="Stretch">
+			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="40" y="0" width="480" height="360" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="19eaf6f2-bb2b-44fd-9b1c-c9dd27d080b6"/>
+				<textElement textAlignment="Justified" markup="styled">
 					<font size="12"/>
+					<paragraph lineSpacing="Proportional"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{avoco_vistos_documentos}]]></textFieldExpression>
+				<patternExpression><![CDATA[$F{avoco_vistos_documentos}]]></patternExpression>
 			</textField>
 		</band>
 	</detail>

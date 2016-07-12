@@ -1,4 +1,4 @@
-<?php
+ContDocumentosSubReport.php<?php
 
 #<?php
 #Importas la librer�a PhpJasperLibrary
@@ -19,7 +19,16 @@ $directorio = $_SERVER['DOCUMENT_ROOT'].'/documentos/Reportes/';
 $PHPJasperXML = new PHPJasperXML();
 //$PHPJasperXML->debugsql=true;
 $PHPJasperXML->arrayParameter=array();
-$PHPJasperXML->load_xml_file("ProvidenciaReport.jrxml");
+$PHPJasperXML->load_xml_file("DocumentosRepositorioReport.jrxml");
+
+$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
+$PHPJasperXML->outpage("I",$directorio.'Providencia.pdf'); //page output method I:standard output D:Download file, F =save as filename and submit 2nd parameter as destinate file name /$PHPJasperXML->outpage("I");    //page output method I:standard output  D:Download file
+
+$directorio = $_SERVER['DOCUMENT_ROOT'].'/documentos/Reportes/';
+$PHPJasperXML = new PHPJasperXML();
+//$PHPJasperXML->debugsql=true;
+$PHPJasperXML->arrayParameter=array();
+$PHPJasperXML->load_xml_file("DocumentosRepositorioReport.jrxml");
 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $PHPJasperXML->outpage("F",$directorio.'Providencia.pdf'); //page output method I:standard output D:Download file, F =save as filename and submit 2nd parameter as destinate file name /$PHPJasperXML->outpage("I");    //page output method I:standard output  D:Download file

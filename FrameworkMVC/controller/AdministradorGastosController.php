@@ -19,8 +19,6 @@ class AdministradorGastosController extends ControladorBase{
 		$tipo_gastos = new TipoGastosModel();
 		$resultTipoGastos=$tipo_gastos->getAll("nombre_tipo_gastos");
 		
-		
-		
 		session_start();
 
 	
