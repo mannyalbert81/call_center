@@ -37,6 +37,8 @@
 			</li>
 			<li><a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
 			</li>
+			<li><a href="index.php?controller=Repositorio&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true">Gestion Repositorios</span> </a>
+			</li>
 			
 		</ul>
         </li>
