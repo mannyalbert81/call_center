@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-12T11:03:54 -->
+<!-- 2016-07-12T11:12:16 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProvidenciaReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0b0b1a7-0f75-4fb1-ac4b-c21d1f325d69">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
 	<parameter name="_id_documentos" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT 
+ documentos.id_documentos,
   ciudad.nombre_ciudad, 
   juicios.juicio_referido_titulo_credito, 
   clientes.nombres_clientes, 
