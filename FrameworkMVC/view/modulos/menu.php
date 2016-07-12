@@ -193,6 +193,9 @@
             </li>   
           <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Documentos Impulsores</span> </a>
             </li>
+            
+           <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Documentos Secretarios</span> </a>
+            </li>
       </ul>
       </li>
 </ul>
