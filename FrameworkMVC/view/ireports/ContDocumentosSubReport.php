@@ -1,15 +1,11 @@
-<?php 
-#<?php 
-#Importas la librer�a PhpJasperLibrary
-ob_end_clean(); //add this line here
+<?php
 
+#<?php
+#Importas la librer�a PhpJasperLibrary
 include_once('PhpJasperLibrary/class/tcpdf/tcpdf.php');
 include_once("PhpJasperLibrary/class/PHPJasperXML.inc.php");
-
 include_once ('conexion.php');
-
-
-#Conectas a la base de datos 
+#Conectas a la base de datos
 $server  = server;
 $user    = user;
 $pass    = pass;
@@ -29,10 +25,14 @@ $PHPJasperXML->xml_dismantle($xml);
 $PHPJasperXML->load_xml_file("DocumentosSubReport.jrxml");
 
 
+
 ////$PHPJasperXML = new PHPJasperXML();
-////$PHPJasperXML->xml_dismantle($xml); 
+////$PHPJasperXML->xml_dismantle($xml);
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $PHPJasperXML->outpage("I");
-
-
 ?>
+
+
+
+
+
