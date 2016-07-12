@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-12T12:04:50 -->
+<!-- 2016-07-12T16:07:54 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="_id_documentos" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT 
@@ -22,7 +22,7 @@ WHERE
   ciudad.id_ciudad = documentos.id_ciudad AND
   juicios.id_juicios = documentos.id_juicio AND
   clientes.id_clientes = juicios.id_clientes AND 
-  documentos.id_documentos =  $P{_id_documentos} ]]>
+  documentos.id_documentos =  $P{_id_documentos}]]>
 	</queryString>
 	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
@@ -81,32 +81,13 @@ WHERE
 				<text><![CDATA[JUZGADO COACTIVA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="40" y="140" width="100" height="20" uuid="1d8e57d0-78e5-4003-badc-d02ce0284809"/>
+				<reportElement x="40" y="140" width="450" height="20" uuid="1d8e57d0-78e5-4003-badc-d02ce0284809"/>
 				<textElement>
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report" pattern="MMM d, yyyy h:mm:ss a">
-				<reportElement x="108" y="140" width="83" height="20" uuid="3a0abc96-1186-42c5-b3a0-5bdbdb9018d1"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fecha_emision_documentos}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="100" y="140" width="30" height="30" uuid="b37aff5c-2ffc-49c4-b4bc-118639fddf73"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[,]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="180" y="140" width="100" height="20" uuid="cfdd54b3-b5a7-4621-b414-b987feda8bab"/>
-				<textElement>
-					<font size="12" isBold="true" isItalic="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{hora_emision_documentos}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre_ciudad}+", "+$F{fecha_emision_documentos}+" a las "+$F{hora_emision_documentos}
+
+]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
