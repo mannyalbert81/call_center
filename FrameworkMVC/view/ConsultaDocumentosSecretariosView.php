@@ -140,7 +140,7 @@
 		   			
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" readonly>
 			  		<?php foreach($resultDatos as $res) {?>
 						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
 			            <?php } ?>
@@ -242,7 +242,19 @@
 		               <a href="/FrameworkMVC/view/ireports/ContDocumentosSubReport.php?id_documentos=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
 		               </td> 
 		    		</tr>
-		        <?php } }  ?>
+		        <?php } }else {  ?>
+
+                <tr>
+	                  	<td></td>
+            			<td></td>
+            			<td></td>
+            			<td></td>
+            			<td colspan="5" style="color:#ec971f;font-size:8;" style="text-aling:center";> <?php echo '<span id="snResult">NO EXISTE DATOS PARA ESOS FILTROS</span>' ?></td>
+	       				
+		    	</tr>
+		    		
+		    		<?php }?>
+               
                
        	</table>
        </section>

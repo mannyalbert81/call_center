@@ -14,7 +14,7 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 		//Creamos el objeto usuario
 		$resultSet="";
 		$documentos_secretarios=new DocumentosModel();
-
+		$usuarios = new UsuariosModel();
 		// saber la ciudad del usuario
 		$_id_usuarios= $_SESSION["id_usuarios"]; 
 		
@@ -28,7 +28,7 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 		$where    = "ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuarios'";
 			
 		$id       = "usuarios.id_ciudad";
-		$resultDatos=$documentos_secretarios->getCondiciones($columnas ,$tablas ,$where, $id);
+		$resultDatos=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 		
 		
 		// saber los impulsores del secretario

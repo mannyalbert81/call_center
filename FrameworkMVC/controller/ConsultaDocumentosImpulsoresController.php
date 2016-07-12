@@ -14,7 +14,7 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 		//Creamos el objeto usuario
 		$resultSet="";
 		$documentos_impulsores=new DocumentosModel();
-
+		$ciudad = new CiudadModel();
 		
 		$_id_usuarios= $_SESSION["id_usuarios"]; 
 		
@@ -30,7 +30,7 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 		$id       = "usuarios.id_ciudad";
 		
 			
-		$resultDatos=$documentos_impulsores->getCondiciones($columnas ,$tablas ,$where, $id);
+		$resultDatos=$ciudad->getCondiciones($columnas ,$tablas ,$where, $id);
 		
 		
 		
