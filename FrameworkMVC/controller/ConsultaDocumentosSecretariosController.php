@@ -70,8 +70,8 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 
 					$id_ciudad=$_POST['id_ciudad'];
 					$id_usuarios=$_POST['id_usuarios'];
-					$numero_juicio=$_POST['numero_juicio'];
 					$identificacion=$_POST['identificacion'];
+					$numero_juicio=$_POST['numero_juicio'];
 					$fechadesde=$_POST['fecha_desde'];
 					$fechahasta=$_POST['fecha_hasta'];
 
@@ -121,10 +121,10 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 					
 					if($id_usuarios!=0){$where_1=" AND usuarios.id_usuarios='$id_usuarios'";}
 						
-					if($numero_juicio!=""){$where_2=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
+					if($identificacion!=""){$where_2=" AND clientes.identificacion_clientes='$identificacion'";}
 						
-					if($identificacion!=""){$where_3=" AND clientes.identificacion_clientes='$identificacion'";}
-						
+					if($numero_juicio!=""){$where_3=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
+					
 					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  documentos.fecha_emision_documentos BETWEEN '$fechadesde' AND '$fechahasta'";}
 
 
