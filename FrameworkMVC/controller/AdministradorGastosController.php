@@ -7,7 +7,7 @@ class AdministradorGastosController extends ControladorBase{
 	}
 
 
-
+//maycol
 	public function index(){
 	
 		//Creamos el objeto usuario
