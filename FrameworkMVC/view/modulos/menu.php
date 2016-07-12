@@ -176,8 +176,7 @@
             <li><a href="/FrameworkMVC/view/ireports/ContTrazasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Auditoria del Sistema</span> </a>
             </li>
             
-            <li><a href="/FrameworkMVC/view/ireports/ContProvidenciaReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Providencia</span> </a>
-            </li>
+           
       </ul>
       </li>
       
@@ -187,7 +186,8 @@
           
           <li><a href="index.php?controller=Documentos&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Emisón y Aprobación de Providencias</span> </a>
             </li>   
-            
+          <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Documentos Impulsores</span> </a>
+            </li>
       </ul>
       </li>
 </ul>
