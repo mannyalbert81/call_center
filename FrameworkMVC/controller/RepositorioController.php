@@ -27,19 +27,74 @@ class RepositorioController extends ControladorBase{
 			
 			if (!empty($resultPer))
 			{
-				
+				$resultSet=array();
 				$resultEdit="";
 				$resultado="";
+				$directorio = $_SERVER['DOCUMENT_ROOT'].'/Documentos';
 				
 				if(isset($_POST['guardar']))
 				{
 					$nombre_repositorio=$_POST['nombre_repositorio'];
 					
+					if (file_exists($directorio)) {
+						
+						$repositorio=$directorio.'/'.$nombre_repositorio;
+						
+						if (!file_exists($repositorio)) {
+						
+						if(mkdir($repositorio, 0777, true))							
+							$resultado="Directorio Creado Correctamente";
+						
+						}else
+						{
+							
+							$resultado="Error al crear directorio - Documento ya existe";
+						}
+						
+					}
 				}
+				
+				if(isset($_GET['nombre_dir']))
+				{
+					$nombre_directorio=$_GET['nombre_dir'];
+					
+					if(@@ !rmdir($_SERVER['DOCUMENT_ROOT'].'/Documentos/'.$nombre_directorio))
+					{
+						
+						$resultado="Error al eliminar directorio- Directorio Tiene contenido";
+					}else {
+						
+						$resultado="Directorio Eliminado ";
+					}
+					
+				}
+				
+				$ruta=opendir($_SERVER['DOCUMENT_ROOT'].'/Documentos/');
+				
+				while ($elemento = readdir($ruta))
+				{
+					if($elemento!='.' && $elemento!='..')
+					{
+						if (file_exists($ruta.$elemento) && is_dir( $ruta . $elemento )) 
+						{
+							$resultSet [] = 1;
+						} else {
+							$resultSet [] = $elemento;
+						}
+					}
+				}
+				
+				closedir($ruta);
+				
+				/*$this->view("Error",array(
+						"resultado"=>print_r($resultSet)
+				
+				));
+				exit();*/
 				
 				$this->view("Repositorio",array(
 						
-						"resultado"=>$resultado,"resultEdit"=>$resultEdit
+						"resultado"=>$resultado,"resultEdit"=>$resultEdit,'resultSet'=>$resultSet
 				
 				));
 					
