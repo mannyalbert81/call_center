@@ -47,7 +47,6 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 
 
 					$columnas = "documentos.id_documentos, 
-								  ciudad.nombre_ciudad, 
 								  juicios.juicio_referido_titulo_credito, 
 								  clientes.nombres_clientes, 
 								  clientes.identificacion_clientes, 
