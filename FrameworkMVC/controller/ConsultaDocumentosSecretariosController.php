@@ -135,6 +135,49 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 
 
 				}
+				
+				if(isset($_POST['firmar']))
+				{
+					$firmas= new FirmasDigitalesModel();
+					$directorio = $_SERVER['DOCUMENT_ROOT'].'/documentos/';
+					$nombre_documento="";
+					$array_documento=$_POST['file_firmar'];
+					
+					//para pruebas
+					$nombre="Providencia.pdf";
+					//termijna pruebas
+					
+					if($permisos_rol->getPermisosFirmar()=="")
+					{
+						
+						
+						$resultFirmas = $firmas->getBy ( "id_usuarios='$_id_usuarios'" );
+						$id_firma = $resultFirmas [0]->id_firmas_digitales;
+						
+						
+						foreach ($array_documento as $id )
+						{
+														
+							if(!empty($id))
+							{
+								
+								$id_documento = $id;
+								
+								$res=$firmas->FirmarDocumentos( $directorio, $nombre, $id_firma );
+								
+								$this->view("Error",array(
+										"resultado"=>"no vacio ".print_r($res)
+											
+								));
+									
+								exit();
+								
+								$firmas->UpdateBy("firma_secretario='TRUE'", "documentos", "id_documentos='$id_documento'");
+						
+							}
+						}
+					}
+				}
 
 
 

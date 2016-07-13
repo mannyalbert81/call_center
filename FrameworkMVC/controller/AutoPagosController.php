@@ -297,7 +297,7 @@ class AutoPagosController extends ControladorBase{
 				foreach($_array_titulo_credito  as $id  )
 				{
 					
-						if (!empty($id) )
+				if (!empty($id) )
 					{
 						//busco si existe este nuevo id
 						try 
