@@ -6,7 +6,7 @@ class AsignacionSecretariosController extends ControladorBase{
 		parent::__construct();
 	}
 
-
+//MAYCOL
 
 	public function index(){
 	

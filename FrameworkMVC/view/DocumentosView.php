@@ -129,22 +129,32 @@
 		   
 		?>
  
-  
-  <div class="container">
-  
-  <div class="row" style="background-color: #ffffff;">
-  
-  <h4 ALIGN="center"></h4>
-		   <hr/>
+			  
+			  <div class="container">
+			  
+			  <div class="row" style="background-color: #ffffff;">
+			  
+			  <h4 ALIGN="center"></h4>
+					
 		    <h4 style="color:#ec971f;" ALIGN="center" >Emisión y Aprobación de Documentos</h4>
 		    
             	<hr/>
+            	
+            	<div class="col-lg-11" style=" text-aling: justify;">
+            	 	<p align = "justify"><font face="univers" size=2>***Esta Leyenda será incluída automaticamente por el sistema a las Providencias para los casos de Juicios anteriores a la gestión del nuevo Liquidador</font></p>
+					<p align = "justify"><font face="univers" size=1>VISTOS: Avoco conocimiento del presente proceso en mi calidad de Liquidador del Banco Territorial S.A. en Liquidación conforme la designación a mí extendida mediante Resolución No. SB-2016-304 emitida por el MBA. Christian Cruz Rodríguez en su calidad de Superintendente de Bancos, dada en la Superintendencia de Bancos en Quito Distrito Metropolitano con fecha 28 de abril de 2016 debidamente inscrita en el Registro Mercantil del cantón Guayaquil el 03 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Continúen actuando los abogados Nombre Secretario y Nombre Abogado en calidad de secretario y abogado impulsor respectivamente, con los juramentos que tienen rendido en autos.-</font></p>
+			  </div>
+			     <br>
+			     <br>
+    
+     
+     
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Documentos","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
+      <form action="<?php echo $helper->url("Documentos","index"); ?>" method="post" enctype="multipart/form-data">
             
          
-            	
+            <div class="col-lg-6">	
 		   		
             
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
@@ -193,7 +203,7 @@
 		      <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Fecha de Providencia:</p>
 					   
-	          <input type="date" id="fecha_emision_documentos" name="fecha_emision_documentos" value="<?php echo date("Y-n-j"); ?>" class="form-control" required>
+	          <input type="date" id="fecha_emision_documentos" name="fecha_emision_documentos" value="<?php  $fecha=date("d/m/y");  echo $fecha;?>" class="form-control">
 		   	   	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
 		    
@@ -207,61 +217,31 @@
 		    
 		    <?php } ?>
 		     
-		      <div class="row">
+		     </div>
+		     
+         <div class="col-lg-6">
+             <div class="row">
+              <div class="col-xs-4 col-md-4" style="margin-top:10px">
+              <p  class="formulario-subtitulo" ><?php setlocale(LC_ALL,"es_ES");echo strftime("%A %d de %B del %Y");?></p>
+		      <textarea id="textarea_comunicacion" name="comunicacion" rows="8" cols="70">VISTOS: </textarea>
+		      </div>
+		      </div>
+        </div>
+          
+          
+          
+          <div class="row">
 			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
 			  <input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
 			  </div>
-			  </div>     
-              
-            
-		 <hr>
-          
+			  </div>    
        </form>
        <!-- termina el form --> 
        
-        <div class="col-lg-6">
-            <h4 style="color:#ec971f;">Lista de Ciudades</h4>
-            <hr/>
-        </div>
-        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
-        <table class="table table-hover ">
-	         <tr >
-	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Nombre</th>
-	    		
-	    		<th></th>
-	    		<th></th>
-	  		</tr>
-            
-	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
-	        		<tr>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_ciudad; ?></td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>     </td> 
-		              
-		           	   <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Ciudad","index"); ?>&id_ciudad=<?php echo $res->id_ciudad; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Editar</a>
-			                </div>
-			            
-			             </td>
-			             <td>   
-			                	<div class="right">
-			                    <a href="<?php echo $helper->url("Ciudad","borrarId"); ?>&id_ciudad=<?php echo $res->id_ciudad; ?>" class="btn btn-danger" onClick="Borrar()" style="font-size:65%;">Borrar</a>
-			                </div>
-			                <hr/>
-		               </td>
-		    		</tr>
-		        <?php } } ?>
-            
-            <?php 
-            
-            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
-            
-            ?>
-            
-       	</table>     
-      </section>
+        
+        
       </div>
+      </center>
       </div>
    </body>  
 

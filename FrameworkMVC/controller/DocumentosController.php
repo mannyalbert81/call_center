@@ -44,11 +44,11 @@ public function index(){
 				
 				if(!empty($resulSet)){
 					
-					echo "No Existe";
+					echo "Existe";
 					
 				}else{
 					
-              		echo "Existe";
+              		echo "No Existe";
 				}
 					
 				}

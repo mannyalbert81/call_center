@@ -60,8 +60,8 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 
 					$id_ciudad=$_POST['id_ciudad'];
 					$id_usuarios=$_POST['id_usuarios'];
-					$numero_juicio=$_POST['numero_juicio'];
 					$identificacion=$_POST['identificacion'];
+					$numero_juicio=$_POST['numero_juicio'];
 					$fechadesde=$_POST['fecha_desde'];
 					$fechahasta=$_POST['fecha_hasta'];
 
@@ -94,7 +94,8 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 						  juicios.id_juicios = documentos.id_juicio AND
 						  usuarios.id_usuarios = documentos.id_usuario_registra_documentos AND
 						  clientes.id_clientes = juicios.id_clientes AND
-						  estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios";
+						  estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios
+							AND documentos.firma_impulsor ='FALSE'";
 
 					$id="documentos.id_documentos";
 						
@@ -110,9 +111,9 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 					
 					if($id_usuarios!=0){$where_1=" AND usuarios.id_usuarios='$id_usuarios'";}
 						
-					if($numero_juicio!=""){$where_2=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
-						
-					if($identificacion!=""){$where_3=" AND clientes.identificacion='$identificacion'";}
+					if($identificacion!=""){$where_2=" AND clientes.identificacion_clientes='$identificacion'";}
+					
+					if($numero_juicio!=""){$where_3=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
 						
 					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  documentos.fecha_emision_documentos BETWEEN '$fechadesde' AND '$fechahasta'";}
 
