@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-12T16:07:54 -->
+<!-- 2016-07-13T13:28:58 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -22,7 +22,7 @@ WHERE
   ciudad.id_ciudad = documentos.id_ciudad AND
   juicios.id_juicios = documentos.id_juicio AND
   clientes.id_clientes = juicios.id_clientes AND 
-  documentos.id_documentos =  $P{_id_documentos}]]>
+  documentos.id_documentos  =  $P{_id_documentos}]]>
 	</queryString>
 	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
@@ -85,9 +85,7 @@ WHERE
 				<textElement>
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_ciudad}+", "+$F{fecha_emision_documentos}+" a las "+$F{hora_emision_documentos}
-
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre_ciudad}+", "+$F{fecha_emision_documentos}+" a las "+$F{hora_emision_documentos}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

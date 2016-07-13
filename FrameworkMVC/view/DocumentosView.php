@@ -65,6 +65,19 @@
             
         </style>
          
+        <script type="text/javascript">
+		$(document).ready(function(){
+			
+	   		$("#Guardar").click(function() {
+		   		
+		   		url = $("#enlace").attr("href");
+		     	//window.open(url, '_blank');
+		     	window.open(url, this.target, 'width=1000, height=800, menubar=no');
+		     	return true;
+	   		});
+		});
+       </script>
+         
          <script >
 		$(document).ready(function(){
 
@@ -166,9 +179,9 @@
 		    <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  	<p  class="formulario-subtitulo" >Ciudad:</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
-					<?php foreach($resultCiu as $res) {?>
-						<option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
-			        <?php } ?>
+					<?php foreach($resultDatos as $res) {?>
+						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
+			            <?php } ?>
 				</select> 
 			  </div>
 			 </div>
@@ -177,8 +190,11 @@
 		       <div class="row">
 		       <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Juicios:</p>
-	          <input type="text" id="id_juicios" name="id_juicios" class="form-control" value="">
-	         
+	          <input type="text" id="juicios" name="juicios" class="form-control" value="">
+	        
+	         <input type="hidden" id="id_juicios" name="id_juicios" value="<?php if(!empty($resulSet)){ foreach ($resulSet as $res){
+	         echo 	$res->id_juicios;
+	         }}?>">
 		   	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
 		    
@@ -203,13 +219,31 @@
 		      <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Fecha de Providencia:</p>
 					   
-	          <input type="date" id="fecha_emision_documentos" name="fecha_emision_documentos" value="<?php  $fecha=date("d/m/y");  echo $fecha;?>" class="form-control">
+	          <input type="text" id="fecha_emision_documentos" name="fecha_emision_documentos" value="<?php  $fecha=date("d/m/Y");  echo $fecha;?>" class="form-control">
 		   	   	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
 		    
 		     <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Hora de Providencia:</p>
-	          <input type="time" id="fecha_emision_documentos" name="fecha_emision_documentos" class="form-control" value="<?php echo date("G:i:s");?>">
+	          <input type="time" id="hora_emision_documentos" name="hora_emision_documentos" class="form-control" value="<?php echo date("G:i:s");?>">
+		   	<div id="mensaje_criterio" class="errores"></div>	   
+		    </div>
+		      </div>
+		      
+		      
+		      <div class="row">
+		      <div class="col-xs-6 col-md-6" style="margin-top:10px">
+			  <p  class="formulario-subtitulo" >Detalle:</p>
+					   
+	          <input type="text" id="detalle_documentos" name="detalle_documentos" value="" class="form-control">
+		   	   	<div id="mensaje_criterio" class="errores"></div>	   
+		    </div>
+		    </div>
+		    
+		    <div class="row">
+		     <div class="col-xs-6 col-md-6" style="margin-top:10px">
+			  <p  class="formulario-subtitulo" >Observación:</p>
+	          <input type="text" id="observacion_documentos" name="observacion_documentos" class="form-control" value="">
 		   	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
 		      </div>
@@ -222,8 +256,8 @@
          <div class="col-lg-6">
              <div class="row">
               <div class="col-xs-4 col-md-4" style="margin-top:10px">
-              <p  class="formulario-subtitulo" ><?php setlocale(LC_ALL,"es_ES");echo strftime("%A %d de %B del %Y");?></p>
-		      <textarea id="textarea_comunicacion" name="comunicacion" rows="8" cols="70">VISTOS: </textarea>
+              <p  class="formulario-subtitulo" ><?php setlocale(LC_ALL,"es_ES"); define("CHARSET", "iso-8859-1"); echo strftime("%A %d de %B del %Y");?></p>
+		      <textarea id="avoco_vistos_documentos" name="avoco_vistos_documentos" rows="8" cols="70">VISTOS: </textarea>
 		      </div>
 		      </div>
         </div>
@@ -232,8 +266,10 @@
           
           <div class="row">
 			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
-			  <input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
-			  </div>
+			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Guardar" onClick="Ok()" class="btn btn-success"/>
+		     <a id="enlace" href="/FrameworkMVC/view/ireports/ContDocumentosReport.php?id_juicios=<?php echo $resulSet[0]->id_juicios; ?>" style="margin-top: 10px; display: none;" class="btn"></a>				   		
+		        	
+		  </div>
 			  </div>    
        </form>
        <!-- termina el form --> 
