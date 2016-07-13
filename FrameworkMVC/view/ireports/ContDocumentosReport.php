@@ -12,38 +12,33 @@ $pass    = pass;
 $db      = db;
 $driver  = driver;
 ini_set('display_errors', 0);
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+$PHPJasperXML->debugsql=false;
+$id=$_GET['id_documentos'];
 
-$variable_nombre_archivo = '';
+$Documentos = new DocumentosModel();
+$resultado = $Documentos->UpdateBy($colval,$tabla, $where);
 
+//nombre del pdf
+$juicio="uio-1-2016";
+$fecha="13-07-2016";
+$archivo = 'Providencia'.$juicio.$fecha;
 
-////ver que tipo de documentos es
+//visualizar
 
-
-//// recuperar el nombre del cliente + el juicio + fecha y hora actual
-
-///repositorio
-
-/////buscar en la tabla de la base en docu,mentos y guardar el camino + nombre del documentos
-
-#aqu� va el reporte
-$directorio = $_SERVER['DOCUMENT_ROOT'].'/documentos/Reportes/';
-
-$PHPJasperXML = new PHPJasperXML();
-//$PHPJasperXML->debugsql=true;
-$PHPJasperXML->arrayParameter=array();
+$PHPJasperXML = new PHPJasperXML("en","TCPDF");
+$PHPJasperXML->debugsql=false;
+$PHPJasperXML->arrayParameter=array("_id_documentos"=>$id);
+$PHPJasperXML->xml_dismantle($xml);
 $PHPJasperXML->load_xml_file("DocumentosReport.jrxml");
-
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
-$PHPJasperXML->outpage("I",$directorio.'Providencia.pdf');
-$directorio = $_SERVER['DOCUMENT_ROOT'].'/documentos/Reportes/';
+$PHPJasperXML->outpage("I");
+
+//descargar en repositorio
+$directorio = $_SERVER['DOCUMENT_ROOT'].'/documentos/Providencias/';
 $PHPJasperXML = new PHPJasperXML();
-
-
-
-
-//$PHPJasperXML->debugsql=true;
 $PHPJasperXML->arrayParameter=array();
 $PHPJasperXML->load_xml_file("DocumentosReport.jrxml");
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
-$PHPJasperXML->outpage("F",$directorio. $variable_nombre_archivo .'.pdf'); //page output method I:standard output D:Download file, F =save as filename and submit 2nd parameter as destinate file name /$PHPJasperXML->outpage("I");    //page output method I:standard output  D:Download file
+$PHPJasperXML->outpage("F",$directorio. $archivo.'.pdf'); //page output method I:standard output D:Download file, F =save as filename and submit 2nd parameter as destinate file name /$PHPJasperXML->outpage("I");    //page output method I:standard output  D:Download file
 ?>
