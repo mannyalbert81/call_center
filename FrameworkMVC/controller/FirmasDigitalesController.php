@@ -303,7 +303,8 @@ class FirmasDigitalesController extends ControladorBase{
 											$resultFirmas = $firmas->getBy ( "id_usuarios='$id_usuario'" );
 											$id_firma = $resultFirmas [0]->id_firmas_digitales;
 											
-											$firmas->FirmarDocumentos( $directorio, $nombre, $id_firma );
+											
+											$resultado=$firmas->FirmarDocumentos( $directorio, $nombre, $id_firma );
 											
 											
 											//inserta las notificacion

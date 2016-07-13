@@ -139,12 +139,12 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 				if(isset($_POST['firmar']))
 				{
 					$firmas= new FirmasDigitalesModel();
-					$directorio = $_SERVER['DOCUMENT_ROOT'].'/documentos/';
+					$destino = $_SERVER['DOCUMENT_ROOT'].'/documentos/firmados/';
 					$nombre_documento="";
 					$array_documento=$_POST['file_firmar'];
 					
 					//para pruebas
-					$nombre="Providencia.pdf";
+					$nombrePdf="prueba.pdf";
 					//termijna pruebas
 					
 					if($permisos_rol->getPermisosFirmar()=="")
@@ -163,14 +163,13 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 								
 								$id_documento = $id;
 								
-								$res=$firmas->FirmarDocumentos( $directorio, $nombre, $id_firma );
+								$id_rol=$_SESSION['id_rol'];
 								
-								$this->view("Error",array(
-										"resultado"=>"no vacio ".print_r($res)
-											
-								));
-									
-								exit();
+								
+								
+								$res=$firmas->FirmarPDFs( $destino, $nombrePdf, $id_firma,$id_rol);
+								
+								
 								
 								$firmas->UpdateBy("firma_secretario='TRUE'", "documentos", "id_documentos='$id_documento'");
 						

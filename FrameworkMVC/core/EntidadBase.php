@@ -570,6 +570,28 @@ class EntidadBase{
     
     }
     
+    public function FirmarPDFs($destino,$nombrePdf,$id_firma,$id_rol)
+    {
+    	$ruta_ejecutable = $_SERVER['DOCUMENT_ROOT'].'/documentos/firmar/FirmadorElectronico.exe';
+    	$tmp = $_SERVER['DOCUMENT_ROOT'].'/documentos/tmp_documentos/';
+    	$moveTo = $tmp.$nombrePdf;
+    	$moveOf = $destino.$nombrePdf;
+    	
+    	rename($moveOf,$moveTo);
+    	
+    	$origen=$moveTo;
+    	$destino=$moveOf;
+    	
+    	$comando = 'start "" /b "' . $ruta_ejecutable . '" ' . $id_firma . ' ' . $origen . ' ' . $destino . ' '.$id_rol.' ';
+    
+    	$comando_esc = escapeshellcmd ( $comando );
+    
+    	exec ( $comando_esc, $resultadoSalida, $ejecucion );
+    
+    	return $resultadoSalida;
+    
+    }
+    
     public function MostrarNotificaciones($id_usuario)
     {
     	//session_start();
