@@ -124,7 +124,10 @@ public function index(){
 		//_nombre_categorias character varying, _path_categorias character varying
 		if (isset ($_POST["id_juicios"]) )
 		{
-
+			//estado de documento pdf
+			$_estado = "Visualizar";
+			
+			//parametros
 			$_id_ciudad     = $_POST["id_ciudad"];
 			$_id_juicio      = $_POST["id_juicios"];
 			$_id_estados_procesales_juicios   = $_POST["id_estados_procesales_juicios"];
@@ -134,30 +137,33 @@ public function index(){
 			$_observacion_documentos   = $_POST["observacion_documentos"];
 			$_avoco_vistos_documentos   = $_POST["avoco_vistos_documentos"];
 			$_id_usuario_registra_documentos   = $_SESSION['id_usuarios'];
-		
 			
-				$_estado = "Visualizar";
-				
-			
-				$funcion = "ins_documentos";
-					
-				$parametros = " '$_id_ciudad' ,'$_id_juicio' , '$_id_estados_procesales_juicios' , '$_fecha_emision_documentos' , '$_hora_emision_documentos' , '$_detalle_documentos' , '$_observacion_documentos' , '$_avoco_vistos_documentos', '$_id_usuario_registra_documentos'";
-				$documentos->setFuncion($funcion);
-				
-				$documentos->setParametros($parametros);
-				$resultado=$documentos->Insert();
 			
 				if ($_POST["Guardar"])
 				{
+					//Guarda en la base de datos 
+					
+					$funcion = "ins_documentos";
+						
+					$parametros = " '$_id_ciudad' ,'$_id_juicio' , '$_id_estados_procesales_juicios' , '$_fecha_emision_documentos' , '$_hora_emision_documentos' , '$_detalle_documentos' , '$_observacion_documentos' , '$_avoco_vistos_documentos', '$_id_usuario_registra_documentos'";
+					$documentos->setFuncion($funcion);
+					
+					$documentos->setParametros($parametros);
+					$resultado=$documentos->Insert();
+					
+					//auditoria
 					$traza=new TrazasModel();
 					$_nombre_controlador = "Documentos";
 					$_accion_trazas  = "Guardar";
 					$_parametros_trazas = $_detalle_documentos;
 					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+					
 					$_estado = "Guardar";
+					
 				}
 				if ($_POST["Visualizar"])
 				{
+					
 					$traza=new TrazasModel();
 					$_nombre_controlador = "Documentos";
 					$_accion_trazas  = "Visualizar";
