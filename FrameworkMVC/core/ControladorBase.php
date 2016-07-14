@@ -36,13 +36,6 @@ class ControladorBase{
     }
     
 
-    public function ireport($vista){
-    	
-    	require_once 'core/AyudaVistas.php';
-    	$helper=new AyudaVistas();
-    
-    	require_once 'view/ireports/'.$vista.'Report.php';
-    }
     
     
     public function afuera($vista,$datos){

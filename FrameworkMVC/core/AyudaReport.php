@@ -1,11 +1,12 @@
 <?php
 class AyudaReport{
     
-    public function url($controlador=CONTROLADOR_DEFECTO,$accion=ACCION_DEFECTO){
-        $urlString="index.php?controller=".$controlador."&action=".$accion;
-        return $urlString;
-    }
-    
+function Redirect($url, $permanent = false)
+{
+    header('Location: ' . '/FrameworkMVC/view/ireports/'.$url, true, $permanent ? 301 : 302);
+
+    exit();
+}
     //Helpers para las vistas
 }
 ?>

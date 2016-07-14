@@ -7,5 +7,6 @@ class AyudaVistas{
     }
     
     //Helpers para las vistas
+ 
 }
 ?>
