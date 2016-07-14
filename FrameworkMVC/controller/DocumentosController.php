@@ -146,8 +146,10 @@ public function index(){
 				{
 					//Guarda en la base de datos
 					
-										
-					$identificador="id0001";
+					$consecutivo= new ConsecutivosModel();
+					$resultConsecutivo= $consecutivo->getBy("documento_consecutivos='PROVIDENCIAS'");
+					
+					$identificador=$resultConsecutivo[0]->real_consecutivos;
 					
 					$funcion = "ins_documentos";
 						
@@ -157,11 +159,6 @@ public function index(){
 					$documentos->setParametros($parametros);
 					$resultado=$documentos->Insert();
 					
-					$this->view("Error",array(
-								
-							"resultado"=>"No tiene Permisos de Insertar Documentos". print_r($resultado)
-							));
-							
 					//auditoria
 					$traza=new TrazasModel();
 					$_nombre_controlador = "Documentos";
@@ -169,10 +166,13 @@ public function index(){
 					$_parametros_trazas = $_detalle_documentos;
 					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 					
+					$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='PROVIDENCIAS'");
+					
 					$_estado = "Guardar";
 					
 				}
-				if ($_POST["Visualizar"])
+				
+				if (isset($_POST["Visualizar"]))
 				{
 					
 					$traza=new TrazasModel();
@@ -186,7 +186,7 @@ public function index(){
 				
 				}
 				
-				//header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado);
+				header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado);
 					
 				
 				////muestro en una nueva tab el reporte
