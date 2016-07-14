@@ -267,7 +267,7 @@
           <div class="row">
 			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
 			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Guardar" onClick="Ok()" class="btn btn-success"/>
-		     <a id="enlace" href="/FrameworkMVC/view/ireports/ContDocumentosReport.php?id_juicios=<?php echo $resulSet[0]->id_juicios; ?>" style="margin-top: 10px; display: none;" class="btn"></a>				   		
+		     <a id="enlace" href="/FrameworkMVC/view/ireports/ContDocumentosReport.php?id_juicios=<?php echo $resulSet[0]->id_juicios; ?>" style="margin-top: 10px;" class="btn">Visualizar</a>				   		
 		        	
 		  </div>
 			  </div>    
