@@ -41,3 +41,4 @@ $archivo = 'Providencia'.$juicio.$fecha;
 
 $PHPJasperXML->outpage("F",$directorio. $archivo.'.pdf');
 ?>
+

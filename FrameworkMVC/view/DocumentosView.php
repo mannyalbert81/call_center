@@ -145,17 +145,19 @@
 			  
 			  <div class="container">
 			  
-			  <div class="row" style="background-color: #ffffff;">
+			  <div class="row" style="background-color: #ffffff;" >
 			  
 			  <h4 ALIGN="center"></h4>
-					
-		    <h4 style="color:#ec971f;" ALIGN="center" >Emisión y Aprobación de Documentos</h4>
+			<div class="" style="margin-left:50px">	
+				<BR>
+            	
+		    <h4 style="color:#ec971f;" ALIGN="center" >EMISIÓN Y APROBACIÓN DE DOCUMENTOS</h4>
 		    
-            	<hr/>
+            	<BR>
             	
             	<div class="col-lg-11" style=" text-aling: justify;">
-            	 	<p align = "justify"><font face="univers" size=2>***Esta Leyenda será incluída automaticamente por el sistema a las Providencias para los casos de Juicios anteriores a la gestión del nuevo Liquidador</font></p>
-					<p align = "justify"><font face="univers" size=1>VISTOS: Avoco conocimiento del presente proceso en mi calidad de Liquidador del Banco Territorial S.A. en Liquidación conforme la designación a mí extendida mediante Resolución No. SB-2016-304 emitida por el MBA. Christian Cruz Rodríguez en su calidad de Superintendente de Bancos, dada en la Superintendencia de Bancos en Quito Distrito Metropolitano con fecha 28 de abril de 2016 debidamente inscrita en el Registro Mercantil del cantón Guayaquil el 03 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Continúen actuando los abogados Nombre Secretario y Nombre Abogado en calidad de secretario y abogado impulsor respectivamente, con los juramentos que tienen rendido en autos.-</font></p>
+            	 	<p align = "justify"><b><center><font face="univers" size=2>***Esta Leyenda será incluída automaticamente por el sistema a las Providencias para los casos de Juicios anteriores a la gestión del nuevo Liquidador***</b></font></center></p>
+					<p align = "justify"><font face="univers" size=1><b>VISTOS:</b> Avoco conocimiento del presente proceso en mi calidad de Liquidador del Banco Territorial S.A. en Liquidación conforme la designación a mí extendida mediante Resolución No. SB-2016-304 emitida por el MBA. Christian Cruz Rodríguez en su calidad de Superintendente de Bancos, dada en la Superintendencia de Bancos en Quito Distrito Metropolitano con fecha 28 de abril de 2016 debidamente inscrita en el Registro Mercantil del cantón Guayaquil el 03 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Continúen actuando los abogados Nombre Secretario y Nombre Abogado en calidad de secretario y abogado impulsor respectivamente, con los juramentos que tienen rendido en autos.-</font></p>
 			  </div>
 			     <br>
 			     <br>
@@ -168,6 +170,8 @@
             
          
             <div class="col-lg-6">	
+          <p margin-left: 2cm;>
+
 		   		
             
           <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
@@ -247,17 +251,17 @@
 		   	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
 		      </div>
-		    <hr>
+
 		    
 		    <?php } ?>
-		     
+		     </p>
 		     </div>
 		     
-         <div class="col-lg-6">
+         <div class="col-lg-5">
              <div class="row">
               <div class="col-xs-4 col-md-4" style="margin-top:10px">
               <p  class="formulario-subtitulo" ><?php setlocale(LC_ALL,"es_ES"); define("CHARSET", "iso-8859-1"); echo strftime("%A %d de %B del %Y");?></p>
-		      <textarea id="avoco_vistos_documentos" name="avoco_vistos_documentos" rows="8" cols="70">VISTOS: </textarea>
+		      <textarea id="avoco_vistos_documentos" name="avoco_vistos_documentos" rows="8" cols="60">VISTOS: </textarea>
 		      </div>
 		      </div>
         </div>
@@ -273,11 +277,12 @@
 			  </div>    
        </form>
        <!-- termina el form --> 
-       
-        
+       <BR>     
         
       </div>
+      </div>
       </center>
+      </div>
       </div>
    </body>  
 
