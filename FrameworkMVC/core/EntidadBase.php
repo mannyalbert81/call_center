@@ -570,6 +570,58 @@ class EntidadBase{
     
     }
     
+    
+    public function getPermisosFirmarPdfs($id_usuario)
+    {
+    	$resultado=array('valor'=>0,'error'=>'','estado'=>false);
+    	 
+    	
+    	$certficados = new CertificadosModel();
+    	$resultCertificados=$certficados->getBy("id_usuarios_certificado_digital='$id_usuario'");
+    	 
+    	//verificar si tiene registradso certificado electronico.
+    	 
+    	if(!empty($resultCertificados))
+    	{
+    		//verficar si se encuentra en la maquina personal del usuario
+    
+    		$macLocal=$this->verMacAddress();
+    		$resultMac=$certficados->getBy("mac_certificado_digital='$macLocal'");
+    
+    		if (!empty($resultMac))
+    		{
+    			$firmas= new FirmasDigitalesModel();
+    			$resultFirmas=$firmas->getBy("id_usuarios='$id_usuario'");
+    			 
+    			 
+    			if(!empty($resultFirmas))
+    			{
+    				$id_firma=$resultFirmas[0]->id_firmas_digitales;
+    			
+    				$resultado=array('valor'=>$id_firma,'error'=>'','estado'=>true);
+    				
+    
+    			}else
+    			{
+    				$resultado="No tiene registrado una firma";
+    				$resultado['error']="No tiene registrado una firma";
+    			}
+    			 
+    			 
+    		}else{
+    			
+    			$resultado['error']="No tiene permiso para firmar desde esta pc";
+    		}
+    
+    	}else
+    	{
+    		
+    		$resultado['error']="Tiene que registrar certificado electronico";
+    	}
+    	 
+    	return $resultado;
+    }
+    
     public function FirmarPDFs($destino,$nombrePdf,$id_firma,$id_rol)
     {
     	$ruta_ejecutable = $_SERVER['DOCUMENT_ROOT'].'/documentos/firmar/FirmadorElectronico.exe';
