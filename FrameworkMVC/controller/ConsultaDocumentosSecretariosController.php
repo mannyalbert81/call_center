@@ -173,8 +173,6 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 								
 								$res=$firmas->FirmarPDFs( $destino, $nombrePdf, $id_firma,$id_rol);
 								
-								
-								
 								$firmas->UpdateBy("firma_secretario='TRUE'", "documentos", "id_documentos='$id_documento'");
 						
 							}

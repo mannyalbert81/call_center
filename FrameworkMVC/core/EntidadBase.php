@@ -400,6 +400,7 @@ class EntidadBase{
     	}
     }
     
+    
     function verNotificaciones(){
     	//session_start();
     	$id_usuario=$_SESSION['id_usuarios'];
@@ -467,6 +468,7 @@ class EntidadBase{
     
     	return $macaddress;
     }
+    
     
     public function getPermisosFirmar()
     {
@@ -570,6 +572,7 @@ class EntidadBase{
     
     }
     
+    //cuando se selecciona archivos a firmar
     
     public function getPermisosFirmarPdfs($id_usuario)
     {
@@ -626,6 +629,7 @@ class EntidadBase{
     {
     	$ruta_ejecutable = $_SERVER['DOCUMENT_ROOT'].'/documentos/firmar/FirmadorElectronico.exe';
     	$tmp = $_SERVER['DOCUMENT_ROOT'].'/documentos/tmp_documentos/';
+    	
     	$moveTo = $tmp.$nombrePdf;
     	$moveOf = $destino.$nombrePdf;
     	

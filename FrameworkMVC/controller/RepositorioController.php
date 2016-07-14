@@ -54,6 +54,7 @@ class RepositorioController extends ControladorBase{
 					}
 				}
 				
+				
 				if(isset($_GET['nombre_dir']))
 				{
 					$nombre_directorio=$_GET['nombre_dir'];
@@ -69,18 +70,18 @@ class RepositorioController extends ControladorBase{
 					
 				}
 				
-				$ruta=opendir($_SERVER['DOCUMENT_ROOT'].'/Documentos/');
+				
+				$url=$_SERVER['DOCUMENT_ROOT'].'/Documentos/';
+				$ruta=opendir($url);
 				
 				while ($elemento = readdir($ruta))
 				{
-					if($elemento!='.' && $elemento!='..')
+					if($elemento!='.' && $elemento!='..' && $elemento!='tmp_documentos')
 					{
-						if (file_exists($ruta.$elemento) && is_dir( $ruta . $elemento )) 
+						if (file_exists($url.$elemento) && is_dir( $url . $elemento )) 
 						{
-							$resultSet [] = 1;
-						} else {
 							$resultSet [] = $elemento;
-						}
+						} 
 					}
 				}
 				

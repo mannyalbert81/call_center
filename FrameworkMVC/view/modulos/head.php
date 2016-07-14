@@ -92,6 +92,15 @@ $(document).ready(function(){
 });
 
 </script>
+
+<!-- para hacer que refresque pag -->
+	
+	<script>
+    $(document).ready(function(){
+        
+    	setTimeout( '$("#noti_btn").load();' , 1000);
+    });
+	</script>
  
 	
 </head>
@@ -126,7 +135,7 @@ $(document).ready(function(){
 			
 			<div class="dropdown">
 			
-				  <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><FONT  SIZE=1><?php echo " ".$_SESSION['nombre_usuarios'];?></FONT></span>
+				  <button id="noti_btn" class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><FONT  SIZE=1><?php echo " ".$_SESSION['nombre_usuarios'];?></FONT></span>
 				  
 				  <span class="caret"></span>
 				  </button>
