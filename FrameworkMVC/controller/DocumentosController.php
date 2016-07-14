@@ -127,6 +127,9 @@ public function index(){
 			//estado de documento pdf
 			$_estado = "Visualizar";
 			
+			//identificador de pdf
+			$identificador="";
+			
 			//parametros
 			$_id_ciudad     = $_POST["id_ciudad"];
 			$_id_juicio      = $_POST["id_juicios"];
@@ -141,16 +144,24 @@ public function index(){
 			
 				if ($_POST["Guardar"])
 				{
-					//Guarda en la base de datos 
+					//Guarda en la base de datos
+					
+										
+					$identificador="id0001";
 					
 					$funcion = "ins_documentos";
 						
-					$parametros = " '$_id_ciudad' ,'$_id_juicio' , '$_id_estados_procesales_juicios' , '$_fecha_emision_documentos' , '$_hora_emision_documentos' , '$_detalle_documentos' , '$_observacion_documentos' , '$_avoco_vistos_documentos', '$_id_usuario_registra_documentos'";
+					$parametros = " '$_id_ciudad' ,'$_id_juicio' , '$_id_estados_procesales_juicios' , '$_fecha_emision_documentos' , '$_hora_emision_documentos' , '$_detalle_documentos' , '$_observacion_documentos' , '$_avoco_vistos_documentos', '$_id_usuario_registra_documentos','$identificador'";
 					$documentos->setFuncion($funcion);
 					
 					$documentos->setParametros($parametros);
 					$resultado=$documentos->Insert();
 					
+					$this->view("Error",array(
+								
+							"resultado"=>"No tiene Permisos de Insertar Documentos". print_r($resultado)
+							));
+							
 					//auditoria
 					$traza=new TrazasModel();
 					$_nombre_controlador = "Documentos";
@@ -175,7 +186,7 @@ public function index(){
 				
 				}
 				
-				header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?id_juicio='.$_id_juicio.'&estado='.$_estado);
+				//header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado);
 					
 				
 				////muestro en una nueva tab el reporte
