@@ -122,7 +122,7 @@ public function index(){
 		
 		
 		//_nombre_categorias character varying, _path_categorias character varying
-		if (isset ($_POST["id_ciudad"]) )
+		if (isset ($_POST["id_juicios"]) )
 		{
 
 			$_id_ciudad     = $_POST["id_ciudad"];
@@ -136,7 +136,8 @@ public function index(){
 			$_id_usuario_registra_documentos   = $_SESSION['id_usuarios'];
 		
 			
-			
+				$_estado = "Visualizar";
+				
 			
 				$funcion = "ins_documentos";
 					
@@ -146,15 +147,38 @@ public function index(){
 				$documentos->setParametros($parametros);
 				$resultado=$documentos->Insert();
 			
-			
-				$traza=new TrazasModel();
-				$_nombre_controlador = "Documentos";
-				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_detalle_documentos;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				if ($_POST["Guardar"])
+				{
+					$traza=new TrazasModel();
+					$_nombre_controlador = "Documentos";
+					$_accion_trazas  = "Guardar";
+					$_parametros_trazas = $_detalle_documentos;
+					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+					$_estado = "Guardar";
+				}
+				if ($_POST["Visualizar"])
+				{
+					$traza=new TrazasModel();
+					$_nombre_controlador = "Documentos";
+					$_accion_trazas  = "Visualizar";
+					$_parametros_trazas = $_detalle_documentos;
+					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+					
+				}
+					
+				
 				}
 				
-				$this->redirect("Documentos", "index");
+				header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?id_juicio='.$_id_juicio.'&estado='.$_estado);
+					
+				
+				////muestro en una nueva tab el reporte
+				
+				
+				
+				///luego nvio a index
+				
+				//$this->redirect("Documentos", "index");
 	
 			
 		}	

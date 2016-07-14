@@ -17,7 +17,10 @@ $PHPJasperXML->debugsql=false;
 #aqu� va el reporte
 
 //UHU
-$id=$_GET['id_juicios'];
+$id= 18;
+///por parametro get mandar si estoy visualizando o guardando
+
+
 $PHPJasperXML = new PHPJasperXML("en","TCPDF");
 $PHPJasperXML->debugsql=false;
 $PHPJasperXML->arrayParameter=array("_id_juicios"=>$id);
@@ -38,6 +41,10 @@ $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $juicio="uio-1-2016";
 $fecha="13-07-2016";
 $archivo = 'Providencia'.$juicio.$fecha;
+
+///guadar
+
+
 
 $PHPJasperXML->outpage("F",$directorio. $archivo.'.pdf');
 ?>

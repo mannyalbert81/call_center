@@ -65,19 +65,7 @@
             
         </style>
          
-        <script type="text/javascript">
-		$(document).ready(function(){
-			
-	   		$("#Guardar").click(function() {
-		   		
-		   		url = $("#enlace").attr("href");
-		     	//window.open(url, '_blank');
-		     	window.open(url, this.target, 'width=1000, height=800, menubar=no');
-		     	return true;
-	   		});
-		});
-       </script>
-         
+       
          <script >
 		$(document).ready(function(){
 
@@ -270,9 +258,9 @@
           
           <div class="row">
 			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
-			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Guardar" onClick="Ok()" class="btn btn-success"/>
-		     <a id="enlace" href="/FrameworkMVC/view/ireports/ContDocumentosReport.php?id_juicios=<?php echo $resulSet[0]->id_juicios; ?>" style="margin-top: 10px; display: none;" class="btn"></a>				   		
-		        	
+			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Guardar" class="btn btn-success"/>
+			  <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Visualizar" class="btn btn-success"/>
+			  	
 		  </div>
 			  </div>    
        </form>
