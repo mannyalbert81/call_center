@@ -275,6 +275,17 @@ class ControladoresController extends ControladorBase{
 	
 	}
 	
+	public function verError(){
+		
+	$a=stripslashes ($_GET['dato']);
+	
+	$_dato=urldecode($a);
+	
+	$_dato=unserialize($a);
+		
+		$this->view("error", array('resultado'=>print_r($_dato)));
+	}
+	
 		
 }
 ?>
