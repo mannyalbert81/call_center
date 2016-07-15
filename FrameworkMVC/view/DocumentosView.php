@@ -235,7 +235,7 @@
 			   <div class="row">
 		    <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  	<p  class="formulario-subtitulo" >Ciudad:</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" disabled >
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" readonly >
 					<?php foreach($resultDatos as $res) {?>
 						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
 			            <?php } ?>
