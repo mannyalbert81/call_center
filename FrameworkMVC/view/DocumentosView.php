@@ -264,7 +264,7 @@
 		      <div class="row">
 		     <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  	<p  class="formulario-subtitulo" >Estado Procesal:</p>
-			  	 <select name="id_estados_procesales_juicios" id="id_estados_procesales_juicios"  class="form-control" <?php echo $habilitar;?>>
+			  	 <select name="id_estados_procesales_juicios" id="id_estados_procesales_juicios"  class="form-control" readonly>
 				 <?php foreach($resultEstPro as $res) {?>
 						<option value="<?php echo $res->id_estados_procesales_juicios; ?>"  ><?php echo $res->nombre_estado_procesal_juicios; ?> </option>
 			        <?php } ?>
@@ -313,7 +313,7 @@
              <div class="row">
               <div class="col-xs-6 col-md-6" style="margin-top:10px">
               <p class="formulario-subtitulo" ><?php setlocale(LC_ALL,"es_ES");  echo strftime("%A %d de %B del %Y");?></p>
-		      <textarea id="avoco_vistos_documentos" name="avoco_vistos_documentos" rows="8" cols="60" <?php echo $habilitar;?>>VISTOS: </textarea>
+		      <textarea id="avoco_vistos_documentos" name="avoco_vistos_documentos" rows="8" cols="60" <?php echo $habilitar;?>>VISTOS:  </textarea>
 		      	<div id="mensaje_avoco" class="errores"></div>	 
 		      </div>
 		      </div>

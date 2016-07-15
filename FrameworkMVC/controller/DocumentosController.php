@@ -180,6 +180,7 @@ public function index(){
 					
 					
 				}
+				
 					
 		header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado.'&dato='.$dato);
 					
