@@ -73,7 +73,6 @@
 		    $("#Guardar").click(function() 
 			{
 		    	var juicios = $("#juicios").val();
-		    	var id_estados_procesales_juicios = $("#id_estados_procesales_juicios").val();
 		    	var detalle_documentos = $("#detalle_documentos").val();
 		    	var observacion_documentos = $("#observacion_documentos").val();
 		    	var avoco_vistos_documentos = $("#avoco_vistos_documentos").val();
@@ -91,18 +90,7 @@
 		    		$("#mensaje_juicio").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
-		    	if (id_estados_procesales_juicios == "0")
-		    	{
-			    	
-		    		$("#mensaje_estados_procesales").text("Introduzca un Estado");
-		    		$("#mensaje_estados_procesales").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_estados_procesales").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
+		    	
 
 				if (detalle_documentos == "")
 		    	{
@@ -153,10 +141,7 @@
 					$("#mensaje_juicio").fadeOut("slow");
 					});
 					
-					$( "#id_estados_procesales_juicios" ).focus(function() {
-						$("#mensaje_estados_procesales").fadeOut("slow");
-					});
-						
+					
 						$( "#detalle_documentos" ).focus(function() {
 							$("#mensaje_detalle").fadeOut("slow");
 						});
@@ -280,12 +265,11 @@
 		     <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  	<p  class="formulario-subtitulo" >Estado Procesal:</p>
 			  	 <select name="id_estados_procesales_juicios" id="id_estados_procesales_juicios"  class="form-control" <?php echo $habilitar;?>>
-				<option value="0">--Seleccione--</option>
-			   <?php foreach($resultEstPro as $res) {?>
+				 <?php foreach($resultEstPro as $res) {?>
 						<option value="<?php echo $res->id_estados_procesales_juicios; ?>"  ><?php echo $res->nombre_estado_procesal_juicios; ?> </option>
 			        <?php } ?>
 				</select> 
-				<div id="mensaje_estados_procesales" class="errores"></div>	   
+				   
 			  </div>
 		      </div>
 		      
