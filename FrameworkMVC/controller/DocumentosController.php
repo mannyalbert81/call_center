@@ -12,13 +12,13 @@ public function index(){
 		{
 			$ciudad = new CiudadModel();
 			$resultCiu = $ciudad->getAll("nombre_ciudad");
-	        
+			
 			$juicios = new JuiciosModel();
 			$resultJui = $juicios->getAll("juicio_referido_titulo_credito");
 			
 			$estados_procesales = new EstadosProcesalesModel();
-			$resultEstPro = $estados_procesales->getAll("nombre_estado_procesal_juicios");
-				
+			$resultEstPro = $estados_procesales->getBy("nombre_estado_procesal_juicios='Providencia'");
+			
 			
 			$ciudad = new CiudadModel();
 			
@@ -183,6 +183,7 @@ public function index(){
 					
 					
 				}
+				
 					
 		header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado.'&nombre='.$nombre_documento);
 					
