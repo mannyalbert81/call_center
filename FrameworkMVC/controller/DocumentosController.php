@@ -147,6 +147,7 @@ public function index(){
 				
 					if (isset($_POST["Guardar"]))
 					{
+						
 						//Guarda en la base de datos
 						
 						$consecutivo= new ConsecutivosModel();
@@ -177,29 +178,6 @@ public function index(){
 						
 					}
 					
-					if (isset($_POST["Visualizar"]))
-					{
-						//cargar datos para el reporte
-						$dato['id_ciudad']=$_id_ciudad;						     
-						$dato['id_juicios']=$_id_juicio;
-						$dato['id_estados_procesales_juicios']=$_id_estados_procesales_juicios;
-						$dato['fecha_emision_documentos']=$_fecha_emision_documentos;
-						$dato['hora_emision_documentos']=$_hora_emision_documentos;
-						$dato['detalle_documentos']=$_detalle_documentos;
-						$dato['observacion_documentos']=$_observacion_documentos;
-						$dato['avoco_vistos_documentos']=$_avoco_vistos_documentos;
-						$dato['id_usuarios']=$_id_usuario_registra_documentos;
-						
-						$traza=new TrazasModel();
-						$_nombre_controlador = "Documentos";
-						$_accion_trazas  = "Visualizar";
-						$_parametros_trazas = $_detalle_documentos;
-						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-						
-					}
-					
-					
-					
 					
 				}
 					
@@ -222,6 +200,35 @@ public function index(){
 
 	}
 	
+	public function VisualizarDocumentos(){
+		
+		$identificador="";
+		$_estado="Visualizar";
+		
+		if (isset($_POST["Visualizar"]))
+		{
+			//cargar datos para el reporte
+			$dato['id_ciudad']=$_id_ciudad;
+			$dato['id_juicios']=$_id_juicio;
+			$dato['id_estados_procesales_juicios']=$_id_estados_procesales_juicios;
+			$dato['fecha_emision_documentos']=$_fecha_emision_documentos;
+			$dato['hora_emision_documentos']=$_hora_emision_documentos;
+			$dato['detalle_documentos']=$_detalle_documentos;
+			$dato['observacion_documentos']=$_observacion_documentos;
+			$dato['avoco_vistos_documentos']=$_avoco_vistos_documentos;
+			$dato['id_usuarios']=$_id_usuario_registra_documentos;
+		
+			$traza=new TrazasModel();
+			$_nombre_controlador = "Documentos";
+			$_accion_trazas  = "Visualizar";
+			$_parametros_trazas = $_detalle_documentos;
+			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+		
+		}
+		
+		header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado.'&dato='.$dato);
+				
+	}
 	
 	public function verError(){
 		$resultado=$_GET['dato'];
