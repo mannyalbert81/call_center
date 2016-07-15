@@ -240,7 +240,7 @@
             
          
             <div class="col-lg-6">	
-          <p margin-left: 2cm;>
+         
 
 		   		
             
@@ -324,7 +324,7 @@
 
 		    
 		    <?php } ?>
-		     </p>
+		    
 		     </div>
 		     
          <div class="col-lg-6">
@@ -353,9 +353,9 @@
         
       </div>
       </div>
-      </center>
+     
       </div>
-      </div>
+     
    </body>  
 
     </html>   
