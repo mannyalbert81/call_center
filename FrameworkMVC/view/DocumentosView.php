@@ -197,8 +197,6 @@
        
        	if(!empty($resulSet)){
        	$sel_juicios = $_POST['juicios'];
-       	 }else{
-       	 	
        	 }
        	 
        }
