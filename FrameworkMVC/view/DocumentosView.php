@@ -72,20 +72,70 @@
 		    // cada vez que se cambia el valor del combo
 		    $("#Guardar").click(function() 
 			{
-		   
-		    	var nombre_ciudad = $("#nombre_ciudad").val();
-		    
+		    	var juicios = $("#juicios").val();
+		    	var id_estados_procesales_juicios = $("#id_estados_procesales_juicios").val();
+		    	var detalle_documentos = $("#detalle_documentos").val();
+		    	var observacion_documentos = $("#observacion_documentos").val();
+		    	var avoco_vistos_documentos = $("#avoco_vistos_documentos").val();
+		    	
 		   				
-		    	if (nombre_ciudad == "")
+		    	if (juicios == "")
 		    	{
 			    	
-		    		$("#mensaje_nombres").text("Introduzca una ciudad ");
-		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_juicio").text("Introduzca un Juicio");
+		    		$("#mensaje_juicio").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_juicio").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	if (id_estados_procesales_juicios == "0")
+		    	{
+			    	
+		    		$("#mensaje_estados_procesales").text("Introduzca un Estado");
+		    		$("#mensaje_estados_procesales").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_estados_procesales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+				if (detalle_documentos == "")
+		    	{
+			    	
+		    		$("#mensaje_detalle").text("Introduzca un Detalle");
+		    		$("#mensaje_detalle").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_detalle").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}if (observacion_documentos == "")
+		    	{
+			    	
+		    		$("#mensaje_observacion").text("Introduzca una Observacion");
+		    		$("#mensaje_observacion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_observacion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}if (avoco_vistos_documentos == "")
+		    	{
+			    	
+		    		$("#mensaje_avoco").text("Introduzca un Contenido");
+		    		$("#mensaje_avoco").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_avoco").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
 		    	
@@ -99,9 +149,23 @@
 
 		 
 				
-				$( "#nombre_ciudad" ).focus(function() {
-					$("#mensaje_nombres").fadeOut("slow");
-    			});
+				$( "#juicios" ).focus(function() {
+					$("#mensaje_juicio").fadeOut("slow");
+					});
+					
+					$( "#id_estados_procesales_juicios" ).focus(function() {
+						$("#mensaje_estados_procesales").fadeOut("slow");
+					});
+						
+						$( "#detalle_documentos" ).focus(function() {
+							$("#mensaje_detalle").fadeOut("slow");
+						});
+
+							$( "#observacion_documentos" ).focus(function() {
+								$("#mensaje_observacion").fadeOut("slow");
+							});
+								$( "#avoco_vistos_documentos" ).focus(function() {
+									$("#mensaje_avoco").fadeOut("slow"); 			});
 				
 			
 		
@@ -125,7 +189,25 @@
        
        <?php
        
+       $sel_juicios = "";
        
+       
+       if($_SERVER['REQUEST_METHOD']=='POST' )
+       {
+       
+       	if(!empty($resulSet)){
+       	$sel_juicios = $_POST['juicios'];
+       	 }else{
+       	 	
+       	 }
+       	 
+       }
+       
+       $habilitar="disabled";
+       
+       if(!empty($resulSet)){
+       	$habilitar="";
+       }
        
 		   
 		?>
@@ -170,7 +252,7 @@
 			   <div class="row">
 		    <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  	<p  class="formulario-subtitulo" >Ciudad:</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" disabled >
 					<?php foreach($resultDatos as $res) {?>
 						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
 			            <?php } ?>
@@ -182,12 +264,12 @@
 		       <div class="row">
 		       <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Juicios:</p>
-	          <input type="text" id="juicios" name="juicios" class="form-control" value="">
+	          <input type="text" id="juicios" name="juicios" class="form-control" placeholder="Nº Juicio" value="<?php echo $sel_juicios;?>">
 	        
 	         <input type="hidden" id="id_juicios" name="id_juicios" value="<?php if(!empty($resulSet)){ foreach ($resulSet as $res){
 	         echo 	$res->id_juicios;
 	         }}?>">
-		   	<div id="mensaje_criterio" class="errores"></div>	   
+		   	<div id="mensaje_juicio" class="errores"></div>	   
 		    </div>
 		    
 		    <div class="col-xs-4 col-md-4" style="margin-top:10px">
@@ -199,25 +281,26 @@
 		      <div class="row">
 		     <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  	<p  class="formulario-subtitulo" >Estado Procesal:</p>
-			  	<select name="id_estados_procesales_juicios" id="id_estados_procesales_juicios"  class="form-control" >
-					<?php foreach($resultEstPro as $res) {?>
+			  	 <select name="id_estados_procesales_juicios" id="id_estados_procesales_juicios"  class="form-control" <?php echo $habilitar;?>>
+				<option value="0">--Seleccione--</option>
+			   <?php foreach($resultEstPro as $res) {?>
 						<option value="<?php echo $res->id_estados_procesales_juicios; ?>"  ><?php echo $res->nombre_estado_procesal_juicios; ?> </option>
 			        <?php } ?>
 				</select> 
+				<div id="mensaje_estados_procesales" class="errores"></div>	   
 			  </div>
 		      </div>
 		      
 		      <div class="row">
 		      <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Fecha de Providencia:</p>
-					   
-	          <input type="text" id="fecha_emision_documentos" name="fecha_emision_documentos" value="<?php  $fecha=date("d/m/Y");  echo $fecha;?>" class="form-control">
+			 <input type="text" id="fecha_emision_documentos" name="fecha_emision_documentos" value="<?php $sdate=date("d")."/".date("m")."/".date("Y"); $stime=date("h").":".date("i"); echo "$sdate";?>" class="form-control" <?php echo $habilitar;?>>
 		   	   	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
 		    
 		     <div class="col-xs-4 col-md-4" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Hora de Providencia:</p>
-	          <input type="time" id="hora_emision_documentos" name="hora_emision_documentos" class="form-control" value="<?php echo date("G:i:s");?>">
+	          <input type="text" id="hora_emision_documentos" name="hora_emision_documentos" class="form-control" value="<?php $sdate=date("d")."/".date("m")."/".date("Y"); $stime=date("h").":".date("i");  echo " $stime";?>" <?php echo $habilitar;?>>
 		   	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
 		      </div>
@@ -226,17 +309,16 @@
 		      <div class="row">
 		      <div class="col-xs-6 col-md-6" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Detalle:</p>
-					   
-	          <input type="text" id="detalle_documentos" name="detalle_documentos" value="" class="form-control">
-		   	   	<div id="mensaje_criterio" class="errores"></div>	   
+			  <input type="text" id="detalle_documentos" name="detalle_documentos" placeholder="Ingrese" class="form-control" <?php echo $habilitar;?>>
+		   	   	<div id="mensaje_detalle" class="errores"></div>	   
 		    </div>
 		    </div>
 		    
 		    <div class="row">
 		     <div class="col-xs-6 col-md-6" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Observación:</p>
-	          <input type="text" id="observacion_documentos" name="observacion_documentos" class="form-control" value="">
-		   	<div id="mensaje_criterio" class="errores"></div>	   
+	          <input type="text" id="observacion_documentos" name="observacion_documentos" class="form-control" placeholder="Ingrese" <?php echo $habilitar;?>>
+		   	<div id="mensaje_observacion" class="errores"></div>	   
 		    </div>
 		      </div>
 
@@ -245,11 +327,12 @@
 		     </p>
 		     </div>
 		     
-         <div class="col-lg-5">
+         <div class="col-lg-6">
              <div class="row">
-              <div class="col-xs-4 col-md-4" style="margin-top:10px">
-              <p  class="formulario-subtitulo" ><?php setlocale(LC_ALL,"es_ES"); define("CHARSET", "iso-8859-1"); echo strftime("%A %d de %B del %Y");?></p>
-		      <textarea id="avoco_vistos_documentos" name="avoco_vistos_documentos" rows="8" cols="60">VISTOS: </textarea>
+              <div class="col-xs-6 col-md-6" style="margin-top:10px">
+              <p class="formulario-subtitulo" ><?php setlocale(LC_ALL,"es_ES");  echo strftime("%A %d de %B del %Y");?></p>
+		      <textarea id="avoco_vistos_documentos" name="avoco_vistos_documentos" rows="8" cols="60" <?php echo $habilitar;?>>VISTOS: </textarea>
+		      	<div id="mensaje_avoco" class="errores"></div>	 
 		      </div>
 		      </div>
         </div>
@@ -257,11 +340,12 @@
           
           
           <div class="row">
-			  <div class="col-xs-12 col-md-6" style="text-align: center;" >
+			  <div class="col-xs-12 col-md-5" style="text-align: center; margin-top:10px"  >
 			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Guardar" class="btn btn-success"/>
-			  <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Visualizar" class="btn btn-success"/>
-			  	
-		  </div>
+			  </div>
+			   <div class="col-xs-12 col-md-5" style="text-align: center; margin-top:10px" >
+			 <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Visualizar" class="btn btn-success"/>
+			 </div>   
 			  </div>    
        </form>
        <!-- termina el form --> 

@@ -105,7 +105,7 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 						  usuarios.id_usuarios = documentos.id_usuario_registra_documentos AND
 						  clientes.id_clientes = juicios.id_clientes AND
 						  estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios
-						 AND documentos.firma_impulsor ='TRUE'";
+						 AND documentos.firma_impulsor ='TRUE' AND documentos.firma_secretario ='FALSE'";
 
 					$id="documentos.id_documentos";
 						
