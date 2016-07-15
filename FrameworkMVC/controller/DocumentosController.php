@@ -122,95 +122,110 @@ public function index(){
 		
 		
 		//_nombre_categorias character varying, _path_categorias character varying
-		if (isset ($_POST["id_juicios"]) )
-		{
-			//estado de documento pdf
-			$_estado = "Visualizar";
-			
-			//identificador de pdf
-			$identificador="";
-			
-			//parametros
-			$_id_ciudad     = $_POST["id_ciudad"];
-			$_id_juicio      = $_POST["id_juicios"];
-			$_id_estados_procesales_juicios   = $_POST["id_estados_procesales_juicios"];
-			$_fecha_emision_documentos   = $_POST["fecha_emision_documentos"];
-			$_hora_emision_documentos   = $_POST["hora_emision_documentos"];
-			$_detalle_documentos   = $_POST["detalle_documentos"];
-			$_observacion_documentos   = $_POST["observacion_documentos"];
-			$_avoco_vistos_documentos   = $_POST["avoco_vistos_documentos"];
-			$_id_usuario_registra_documentos   = $_SESSION['id_usuarios'];
-			
-			
-				if ($_POST["Guardar"])
-				{
-					//Guarda en la base de datos
-					
-					$consecutivo= new ConsecutivosModel();
-					$resultConsecutivo= $consecutivo->getBy("documento_consecutivos='PROVIDENCIAS'");
-					
-					$identificador=$resultConsecutivo[0]->real_consecutivos;
-					
-					$funcion = "ins_documentos";
-						
-					$parametros = " '$_id_ciudad' ,'$_id_juicio' , '$_id_estados_procesales_juicios' , '$_fecha_emision_documentos' , '$_hora_emision_documentos' , '$_detalle_documentos' , '$_observacion_documentos' , '$_avoco_vistos_documentos', '$_id_usuario_registra_documentos','$identificador'";
-					$documentos->setFuncion($funcion);
-					
-					$documentos->setParametros($parametros);
-					$resultado=$documentos->Insert();
-					
-					//auditoria
-					$traza=new TrazasModel();
-					$_nombre_controlador = "Documentos";
-					$_accion_trazas  = "Guardar";
-					$_parametros_trazas = $_detalle_documentos;
-					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-					
-					$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='PROVIDENCIAS'");
-					
-					$_estado = "Guardar";
-					
-				}
-				
-				if (isset($_POST["Visualizar"]))
-				{
-					
-					$traza=new TrazasModel();
-					$_nombre_controlador = "Documentos";
-					$_accion_trazas  = "Visualizar";
-					$_parametros_trazas = $_detalle_documentos;
-					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-					
-				}
-					
-				
-				}
-				
-				header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado);
-					
-				
-				////muestro en una nueva tab el reporte
-				
-				
-				
-				///luego nvio a index
-				
-				//$this->redirect("Documentos", "index");
-	
-			
-		}	
-			
-				else
+			if (isset ($_POST["id_juicios"]) )
 			{
-				$this->view("Error",array(
+				//estado de documento pdf
+				$_estado = "Visualizar";
+				
+				$dato=array();
+				
+				//identificador de pdf
+				$identificador="";
+				
+				//parametros
+				$_id_ciudad     = $_POST["id_ciudad"];
+				$_id_juicio      = $_POST["id_juicios"];
+				$_id_estados_procesales_juicios   = $_POST["id_estados_procesales_juicios"];
+				$_fecha_emision_documentos   = $_POST["fecha_emision_documentos"];
+				$_hora_emision_documentos   = $_POST["hora_emision_documentos"];
+				$_detalle_documentos   = $_POST["detalle_documentos"];
+				$_observacion_documentos   = $_POST["observacion_documentos"];
+				$_avoco_vistos_documentos   = $_POST["avoco_vistos_documentos"];
+				$_id_usuario_registra_documentos   = $_SESSION['id_usuarios'];
+				
+				
+				
+					if (isset($_POST["Guardar"]))
+					{
+						//Guarda en la base de datos
+						
+						$consecutivo= new ConsecutivosModel();
+						$resultConsecutivo= $consecutivo->getBy("documento_consecutivos='PROVIDENCIAS'");
+						
+						$identificador=$resultConsecutivo[0]->real_consecutivos;
+						
+						
+						$funcion = "ins_documentos";
+							
+						$parametros = " '$_id_ciudad' ,'$_id_juicio' , '$_id_estados_procesales_juicios' , '$_fecha_emision_documentos' , '$_hora_emision_documentos' , '$_detalle_documentos' , '$_observacion_documentos' , '$_avoco_vistos_documentos', '$_id_usuario_registra_documentos','$identificador'";
+						$documentos->setFuncion($funcion);
+						
+						$documentos->setParametros($parametros);
+						$resultado=$documentos->Insert();
+						
+						//auditoria
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Documentos";
+						$_accion_trazas  = "Guardar";
+						$_parametros_trazas = $_detalle_documentos;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+						
+						$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='PROVIDENCIAS'");
+						
+						$_estado = "Guardar";
+						
+						
+					}
 					
-				"resultado"=>"No tiene Permisos de Insertar Documentos"
+					if (isset($_POST["Visualizar"]))
+					{
+						//cargar datos para el reporte
+						$dato['id_ciudad']=$_id_ciudad;						     
+						$dato['id_juicios']=$_id_juicio;
+						$dato['id_estados_procesales_juicios']=$_id_estados_procesales_juicios;
+						$dato['fecha_emision_documentos']=$_fecha_emision_documentos;
+						$dato['hora_emision_documentos']=$_hora_emision_documentos;
+						$dato['detalle_documentos']=$_detalle_documentos;
+						$dato['observacion_documentos']=$_observacion_documentos;
+						$dato['avoco_vistos_documentos']=$_avoco_vistos_documentos;
+						$dato['id_usuarios']=$_id_usuario_registra_documentos;
+						
+						$traza=new TrazasModel();
+						$_nombre_controlador = "Documentos";
+						$_accion_trazas  = "Visualizar";
+						$_parametros_trazas = $_detalle_documentos;
+						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+						
+					}
+					
+					
+					
+					
+				}
+					
+		header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado.'&dato='.$dato);
+					
+		//header('Location: ' . '/FrameworkMVC/index.php?controller=Controladores&action=verError&dato='.serialize($dato));
+				
+			
+			}else
+				{
+					
+					$this->view("Error",array(
+						
+					"resultado"=>"No tiene Permisos de Insertar Documentos"
+		
+					));
 	
-		));
 	
-	
-	}
+				}
 
+	}
+	
+	
+	public function verError(){
+		$resultado=$_GET['dato'];
+		$this->view("error", array('resultado'=>print_r($resultado)));
 	}
 	
 	
