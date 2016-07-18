@@ -97,6 +97,7 @@
        <?php
        
        $sel_id_ciudad = "";
+       $sel_id_usuarios = "";
        $sel_identificacion="";
        $sel_numero_juicio="";
       
@@ -108,6 +109,7 @@
        
        
        	$sel_id_ciudad = $_POST['id_ciudad'];
+       	$sel_id_usuarios = $_POST['id_usuarios'];
        	$sel_identificacion=$_POST['identificacion'];
        	$sel_numero_juicio=$_POST['numero_juicio'];
       
@@ -142,7 +144,7 @@
 			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" readonly>
 			  		<?php foreach($resultDatos as $res) {?>
-						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
+						 <option value="<?php echo $res->id_ciudad; ?>" <?php if($sel_id_ciudad==$res->id_ciudad){echo "selected";}?>   ><?php echo $res->nombre_ciudad; ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>
@@ -150,10 +152,9 @@
 		 <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Impulsor:</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" readonly>
-			  		
-					   <option value="<?php echo $_SESSION['id_usuarios'];  ?>"><?php echo $_SESSION['nombre_usuarios'];  ?></option>  
-			            
-				</select>
+			   <option value="<?php echo $_SESSION['id_usuarios'];  ?>" <?php if($sel_id_usuarios==$_SESSION['id_usuarios']){echo "selected";}?>  ><?php echo $_SESSION['nombre_usuarios'];  ?></option>  
+			     
+			    </select>
 		 </div>
 		 
 		 <div class="col-xs-2 ">
@@ -188,7 +189,7 @@
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" onClick="notificacion()" class="btn btn-warning " style="margin-top: 10px;"/> 	
 		 
 		 <?php if(!empty($resultSet))  {?>
-		 <a href="/FrameworkMVC/view/ireports/ContDocumentosReport.php?id_ciudad=<?php  echo $sel_id_ciudad ?>&identificacion=<?php  echo $sel_identificacion?>&numero_juicio=<?php  echo $sel_numero_juicio?>&id_usuarios=<?php  echo $sel_id_usuarios?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
+		 <a href="/FrameworkMVC/view/ireports/ContDocumentosGeneralReport.php?id_ciudad=<?php  echo $sel_id_ciudad ?>&identificacion=<?php  echo $sel_identificacion?>&numero_juicio=<?php  echo $sel_numero_juicio?>&id_usuarios=<?php  echo $sel_id_usuarios?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
 		            
 		  <?php } else {?>
 		  
