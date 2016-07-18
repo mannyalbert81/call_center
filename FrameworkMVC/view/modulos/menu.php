@@ -159,10 +159,7 @@
             
             <li><a href="/FrameworkMVC/view/ireports/ContVehiculosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class=" glyphicon glyphicon-print" aria-hidden="true"> Vehiculos Embargados</span> </a>
             </li>   
-            
-            <li><a href="/FrameworkMVC/view/ireports/ContCitacionesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class=" glyphicon glyphicon-book" aria-hidden="true"> Citaciones</span> </a>
-            </li>   
-            
+                                  
             <li><a href="/FrameworkMVC/view/ireports/ContAdministradorGastosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Administrador de Gastos</span> </a>
              </li>
              
@@ -178,9 +175,7 @@
             <li><a href="/FrameworkMVC/view/ireports/ContTrazasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Auditoria del Sistema</span> </a>
             </li>
             
-             <li><a href="/FrameworkMVC/view/ireports/ContDocumentosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Providencias</span> </a>
-            </li>
-            
+             
            
       </ul>
       </li>

@@ -143,8 +143,7 @@ public function index(){
 				$_avoco_vistos_documentos   = $_POST["avoco_vistos_documentos"];
 				$_id_usuario_registra_documentos   = $_SESSION['id_usuarios'];
 				
-				
-				
+			
 					if (isset($_POST["Guardar"]))
 					{
 						
@@ -156,9 +155,13 @@ public function index(){
 						$identificador=$resultConsecutivo[0]->real_consecutivos;
 						
 						
-						$funcion = "ins_documentos";
+						$repositorio_documento="Providencias";
+						
+						$nombre_documento=$repositorio_documento.$identificador;
+						
+						$funcion = "ins_documentos_report";
 							
-						$parametros = " '$_id_ciudad' ,'$_id_juicio' , '$_id_estados_procesales_juicios' , '$_fecha_emision_documentos' , '$_hora_emision_documentos' , '$_detalle_documentos' , '$_observacion_documentos' , '$_avoco_vistos_documentos', '$_id_usuario_registra_documentos','$identificador'";
+						$parametros = " '$_id_ciudad' ,'$_id_juicio' , '$_id_estados_procesales_juicios' , '$_fecha_emision_documentos' , '$_hora_emision_documentos' , '$_detalle_documentos' , '$_observacion_documentos' , '$_avoco_vistos_documentos', '$_id_usuario_registra_documentos','$identificador','$nombre_documento','$repositorio_documento'";
 						$documentos->setFuncion($funcion);
 						
 						$documentos->setParametros($parametros);
@@ -182,7 +185,7 @@ public function index(){
 				}
 				
 					
-		header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado.'&dato='.$dato);
+		header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado.'&nombre='.$nombre_documento);
 					
 		//header('Location: ' . '/FrameworkMVC/index.php?controller=Controladores&action=verError&dato='.serialize($dato));
 				
@@ -203,11 +206,25 @@ public function index(){
 	
 	public function VisualizarDocumentos(){
 		
+		session_start();
+		
 		$identificador="";
 		$_estado="Visualizar";
+		$dato=array();
 		
 		if (isset($_POST["Visualizar"]))
 		{
+			//parametros
+			$_id_ciudad     = $_POST["id_ciudad"];
+			$_id_juicio      = $_POST["id_juicios"];
+			$_id_estados_procesales_juicios   = $_POST["id_estados_procesales_juicios"];
+			$_fecha_emision_documentos   = $_POST["fecha_emision_documentos"];
+			$_hora_emision_documentos   = $_POST["hora_emision_documentos"];
+			$_detalle_documentos   = $_POST["detalle_documentos"];
+			$_observacion_documentos   = $_POST["observacion_documentos"];
+			$_avoco_vistos_documentos   = $_POST["avoco_vistos_documentos"];
+			$_id_usuario_registra_documentos   = $_SESSION['id_usuarios'];
+			
 			//cargar datos para el reporte
 			$dato['id_ciudad']=$_id_ciudad;
 			$dato['id_juicios']=$_id_juicio;
@@ -218,7 +235,7 @@ public function index(){
 			$dato['observacion_documentos']=$_observacion_documentos;
 			$dato['avoco_vistos_documentos']=$_avoco_vistos_documentos;
 			$dato['id_usuarios']=$_id_usuario_registra_documentos;
-		
+			
 			$traza=new TrazasModel();
 			$_nombre_controlador = "Documentos";
 			$_accion_trazas  = "Visualizar";
@@ -226,9 +243,23 @@ public function index(){
 			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 		
 		}
+
+		$result=urlencode(serialize($dato));
 		
-		header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado.'&dato='.$dato);
+		header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?estado='.$_estado.'&dato='.$result);
 				
+	}
+	
+	public function GuardarReporte()
+	{
+		$resultado=$_GET['dato'];
+		
+		$result=explode(".", $resultado);
+		
+		$documentos = new  DocumentosModel();
+		
+		$result=$documentos->UpdateBy("ruta_documento='$result[0]',nombre_documento='$result[1]'", "documentos", "identificador='$result[2]'");
+		
 	}
 	
 	public function verError(){

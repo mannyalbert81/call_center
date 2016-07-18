@@ -77,6 +77,9 @@
 			{
 		   
 		    	var descripcion_tipo_honorarios = $("#descripcion_tipo_honorarios").val();
+		    	var descripcion_tipo_honorarios = $("#descripcion_tipo_honorarios").val();
+		    	
+		    	
 		    
 		   				
 		    	if (nombre_tipo_honorarios == "")

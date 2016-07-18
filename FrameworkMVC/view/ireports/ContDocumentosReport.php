@@ -6,6 +6,10 @@
 include_once('PhpJasperLibrary/class/tcpdf/tcpdf.php');
 include_once("PhpJasperLibrary/class/PHPJasperXML.inc.php");
 include_once ('conexion.php');
+
+//include_once  'core/EntidadBase.php';
+//include_once  'model/DocumentosModel.php';
+
 #Conectas a la base de datos
 $server  = server;
 $user    = user;
@@ -18,27 +22,9 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 
 
-$id= $_GET['identificador'];
 $estado=$_GET['estado'];
 
-//aqui va la consulta
-$sql="SELECT
-ciudad.nombre_ciudad,
-juicios.juicio_referido_titulo_credito,
-clientes.nombres_clientes,
-documentos.fecha_emision_documentos,
-documentos.hora_emision_documentos,
-documentos.avoco_vistos_documentos
-FROM
-public.documentos,
-public.ciudad,
-public.juicios,
-public.clientes
-WHERE
-ciudad.id_ciudad = documentos.id_ciudad AND
-juicios.id_juicios = documentos.id_juicio AND
-clientes.id_clientes = juicios.id_clientes AND
-documentos.identificador= '$id'";
+
 ///por parametro get mandar si estoy visualizando o guardando
 
 
@@ -48,8 +34,14 @@ documentos.identificador= '$id'";
 
 if ($estado == 'Visualizar') {
 	
-	$_dato=unserialize($_GET['dato']);
+	$a=stripslashes($_GET['dato']);
 	
+	$_dato=urldecode($a);
+	
+	$_dato=unserialize($a);
+
+	/* para prueba de llegar datos
+	 * 
 	$dato['id_ciudad']='504';
 	$dato['id_juicios']='18';
 	$dato['id_estados_procesales_juicios']='4';
@@ -59,15 +51,18 @@ if ($estado == 'Visualizar') {
 	$dato['observacion_documentos']='valiste';
 	$dato['avoco_vistos_documentos']='qvbvccv';
 	$dato['id_usuarios']='41';
+		
+	$result=urlencode(serialize($_dato));
 	
+	header('Location: ' . '/FrameworkMVC/index.php?controller=Controladores&action=verError&dato='.$result);
+	*/
 
 	
 	$PHPJasperXML = new PHPJasperXML ( "en", "TCPDF" );
 	$PHPJasperXML->debugsql = false;
 
-    $PHPJasperXML->arrayParameter=$dato;
+    $PHPJasperXML->arrayParameter=array("id_ciudad" => $_dato['id_ciudad']);
     
-	
 	$PHPJasperXML->load_xml_file ( "DocumentosVisualizarReport.jrxml" );
 	$PHPJasperXML->transferDBtoArray ( $server, $user, $pass, $db, $driver );
 	$PHPJasperXML->outpage ( "I" );
@@ -75,12 +70,52 @@ if ($estado == 'Visualizar') {
 
 } else {
 	
-	
-	$archivo = 'Providencia'.$id;
-
-	#aqu� va el reporte
+	$id= $_GET['identificador'];
+	$nombre=$_GET['nombre'];
+	//aqui va la consulta
+	$sql="SELECT
+	ciudad.nombre_ciudad,
+	juicios.juicio_referido_titulo_credito,
+	clientes.nombres_clientes,
+	documentos.fecha_emision_documentos,
+	documentos.hora_emision_documentos,
+	documentos.avoco_vistos_documentos
+	FROM
+	public.documentos,
+	public.ciudad,
+	public.juicios,
+	public.clientes
+	WHERE
+	ciudad.id_ciudad = documentos.id_ciudad AND
+	juicios.id_juicios = documentos.id_juicio AND
+	clientes.id_clientes = juicios.id_clientes AND
+	documentos.identificador= '$id'";
 	
 	$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/Providencias/';
+	
+	
+	
+	//$archivo = 'Providencia'.$id;
+
+	#aqu� va el reporte
+	/*
+	
+	
+	$repositorio="Providencias";
+	
+	$dato=$repositorio.'.'.$archivo.'.'.$id;
+	
+	header('Location: ' . '/FrameworkMVC/index.php?controller=Documentos&action=GuardarReporte&dato='.$dato);
+	*/
+	
+	//actualizar tabla documentos
+	/*
+	$repositorio="Providencias";
+	
+	$documentos = new  DocumentosModel();
+	
+	$result=$documentos->UpdateBy("ruta_documento='$repositorio',nombre_documento='$archivo'", "documentos", "identificador='$id'");
+	*/
 	
 	
 	$PHPJasperXML = new PHPJasperXML();
@@ -92,20 +127,9 @@ if ($estado == 'Visualizar') {
 	
 	$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 	
-	$PHPJasperXML->outpage("F",$directorio.$archivo.'.pdf');
+	$PHPJasperXML->outpage("F",$directorio.$nombre.'.pdf');
 
-
-/*
-	 $repositorio="Providencias";
-	 $documentos = new  DocumentosModel();
-
-	 $result=$documentos->UpdateBy("ruta_documento='$repositorio',nombre_documento='$archivo'", "documentos", "identificador='$id'");
-	 
-	 header("location:$helper->url()");
-	 
-	 print_r($result);
-	 */
-	 
+		
 }
 
 ?>
