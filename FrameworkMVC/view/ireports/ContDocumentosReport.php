@@ -1,14 +1,10 @@
 <?php
 
-
 #<?php
 #Importas la librer�a PhpJasperLibrary
 include_once('PhpJasperLibrary/class/tcpdf/tcpdf.php');
 include_once("PhpJasperLibrary/class/PHPJasperXML.inc.php");
 include_once ('conexion.php');
-
-//include_once  'core/EntidadBase.php';
-//include_once  'model/DocumentosModel.php';
 
 #Conectas a la base de datos
 $server  = server;
@@ -18,19 +14,8 @@ $db      = db;
 $driver  = driver;
 ini_set('display_errors', 0);
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-#aqu� va el reporte
-
-
 
 $estado=$_GET['estado'];
-
-
-///por parametro get mandar si estoy visualizando o guardando
-
-
-///por parametro get mandar si estoy visualizando o guardando
-
-///Visualizar Pdf
 
 if ($estado == 'Visualizar') {
 	
@@ -39,6 +24,19 @@ if ($estado == 'Visualizar') {
 	$_dato=urldecode($a);
 	
 	$_dato=unserialize($a);
+	
+	
+	$PHPJasperXML = new PHPJasperXML ( "en", "TCPDF" );
+	
+	$PHPJasperXML->debugsql = false;
+
+    $PHPJasperXML->arrayParameter=$_dato;
+    
+	$PHPJasperXML->load_xml_file( "DocumentosVisualizarReport.jrxml" );
+	
+	$PHPJasperXML->transferDBtoArray ( $server, $user, $pass, $db, $driver );
+	
+	$PHPJasperXML->outpage ( "I" );
 
 	/* para prueba de llegar datos
 	 * 
@@ -57,15 +55,8 @@ if ($estado == 'Visualizar') {
 	header('Location: ' . '/FrameworkMVC/index.php?controller=Controladores&action=verError&dato='.$result);
 	*/
 
+		
 	
-	$PHPJasperXML = new PHPJasperXML ( "en", "TCPDF" );
-	$PHPJasperXML->debugsql = false;
-
-    $PHPJasperXML->arrayParameter=array("id_ciudad" => $_dato['id_ciudad']);
-    
-	$PHPJasperXML->load_xml_file ( "DocumentosVisualizarReport.jrxml" );
-	$PHPJasperXML->transferDBtoArray ( $server, $user, $pass, $db, $driver );
-	$PHPJasperXML->outpage ( "I" );
 
 
 } else {

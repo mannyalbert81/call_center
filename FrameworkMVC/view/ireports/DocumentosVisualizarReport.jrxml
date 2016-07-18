@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-15T15:22:46 -->
+<!-- 2016-07-18T16:41:46 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
-	<parameter name="id_ciudad" class="java.lang.String"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="ciudad" class="java.lang.String"/>
+	<parameter name="juicio_referido" class="java.lang.String"/>
+	<parameter name="fecha_emision_documentos" class="java.lang.String"/>
+	<parameter name="cliente" class="java.lang.String"/>
+	<parameter name="hora_emision_documentos" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[]]>
+		<![CDATA[SELECT 1 FROM documentos LIMIT 1
+]]>
 	</queryString>
 	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
@@ -35,7 +40,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="122" splitType="Stretch">
+		<band height="120" splitType="Stretch">
 			<staticText>
 				<reportElement x="40" y="10" width="130" height="30" uuid="6e678564-df35-4c7f-914e-da9bfccc565d"/>
 				<textElement>
@@ -48,12 +53,14 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{juicio_referido}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="40" y="30" width="320" height="20" uuid="d3595bc1-39c4-42ca-9e5e-8afef99a9528"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{cliente}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="40" y="50" width="130" height="30" uuid="67f3b531-5010-43ae-bf11-596809d6fe2e"/>
@@ -67,13 +74,14 @@
 				<textElement>
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{id_ciudad}=="fv,dfmv"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ciudad}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" pattern="MMM d, yyyy h:mm:ss a">
 				<reportElement x="148" y="90" width="82" height="20" uuid="3a0abc96-1186-42c5-b3a0-5bdbdb9018d1"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_emision_documentos}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="120" y="90" width="30" height="30" uuid="b37aff5c-2ffc-49c4-b4bc-118639fddf73"/>
@@ -87,6 +95,7 @@
 				<textElement>
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{hora_emision_documentos}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -98,6 +107,7 @@
 					<font size="12"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{avoco_vistos_documentos}]]></textFieldExpression>
 				<patternExpression><![CDATA[$F{avoco_vistos_documentos}]]></patternExpression>
 			</textField>
 		</band>

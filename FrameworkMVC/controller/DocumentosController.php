@@ -208,6 +208,10 @@ public function index(){
 		
 		session_start();
 		
+		$documentos = new DocumentosModel();
+		$juicios = new JuiciosModel();
+		$ciudad = new CiudadModel();
+		
 		$identificador="";
 		$_estado="Visualizar";
 		$dato=array();
@@ -225,17 +229,30 @@ public function index(){
 			$_avoco_vistos_documentos   = $_POST["avoco_vistos_documentos"];
 			$_id_usuario_registra_documentos   = $_SESSION['id_usuarios'];
 			
+			//traer datos temporales para el reporte
+			$resultCiudad = $ciudad->getBy("id_ciudad='$_id_ciudad'");	
+			
+			//consulta datos de juicio
+			$columnas="juicios.juicio_referido_titulo_credito,
+			clientes.nombres_clientes";
+			
+			$tablas="public.juicios,public.clientes";
+			
+			$where="clientes.id_clientes = juicios.id_clientes AND  juicios.id_juicios='$_id_juicio'";
+			
+			$resultJuicio = $juicios->getCondiciones($columnas, $tablas, $where, "clientes.id_clientes");
+			
+			
+			
 			//cargar datos para el reporte
-			$dato['id_ciudad']=$_id_ciudad;
-			$dato['id_juicios']=$_id_juicio;
-			$dato['id_estados_procesales_juicios']=$_id_estados_procesales_juicios;
+			
+			$dato['ciudad']=$resultCiudad[0]->nombre_ciudad;
+			$dato['juicio_referido']=$resultJuicio[0]->juicio_referido_titulo_credito;
+			$dato['cliente']=$resultJuicio[0]->nombres_clientes;
 			$dato['fecha_emision_documentos']=$_fecha_emision_documentos;
 			$dato['hora_emision_documentos']=$_hora_emision_documentos;
-			$dato['detalle_documentos']=$_detalle_documentos;
-			$dato['observacion_documentos']=$_observacion_documentos;
 			$dato['avoco_vistos_documentos']=$_avoco_vistos_documentos;
-			$dato['id_usuarios']=$_id_usuario_registra_documentos;
-			
+		
 			$traza=new TrazasModel();
 			$_nombre_controlador = "Documentos";
 			$_accion_trazas  = "Visualizar";
