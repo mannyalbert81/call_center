@@ -204,6 +204,7 @@ class OficiosController extends ControladorBase{
 			{
 			 $_array_juicios = $_POST["id_juicios"];
 			$_id_entidades = $_POST["id_entidades"];
+			$_id_usuario_registra_oficios   = $_SESSION['id_usuarios'];
 				
 					foreach($_array_juicios  as $id  )
 					{
@@ -225,11 +226,11 @@ class OficiosController extends ControladorBase{
 								
 								$consecutivo_oficio=(int)$resultprefijo[0]->consecutivo;
 								$consecutivo_oficio=$consecutivo_oficio+1;
-								$numero_oficio=$consecutivo_oficio."-".$anio;
+								$numero_oficio="OFI"."-".$consecutivo_oficio."-".$anio;
 								
 								
 								$funcion = "ins_oficios";
-								$parametros = "'$numero_oficio', '$_id_juicios', '$_id_entidades' ";
+								$parametros = "'$numero_oficio', '$_id_juicios', '$_id_entidades', '$_id_usuario_registra_oficios' ";
 								$oficios->setFuncion($funcion);
 		                        $oficios->setParametros($parametros);
 					            $resultado=$oficios->Insert();
@@ -330,8 +331,8 @@ class OficiosController extends ControladorBase{
 		//Creamos el objeto usuario
 		$resultSet="";
 	
-		$entidades = new EntidadesModel();
-		$resultEntidad = $entidades->getAll("nombre_entidades");
+		$usuarios = new UsuariosModel();
+		$resultUsu= $usuarios->getAll("nombre_usuarios");
 	
 		$oficios = new OficiosModel();
 	
@@ -348,10 +349,10 @@ class OficiosController extends ControladorBase{
 					
 				if(isset($_POST["buscar"])){
 	
-					$id_entidad=$_POST['id_entidad'];
+					$id_usuarios=$_POST['id_usuarios'];
 					$identificacion=$_POST['identificacion'];
 					$numero_juicio=$_POST['numero_juicio'];
-					$titulo_credito=$_POST['numero_titulo'];
+					$numero_oficios=$_POST['numero_oficios'];
 					$fechadesde=$_POST['fecha_desde'];
 					$fechahasta=$_POST['fecha_hasta'];
 	
@@ -371,11 +372,12 @@ class OficiosController extends ControladorBase{
 					$tablas="public.oficios,
 					public.juicios,
 					public.entidades,
-					public.clientes";
+					public.clientes,
+					public.usuarios";
 	
 					$where="juicios.id_juicios = oficios.id_juicios AND
 					entidades.id_entidades = oficios.id_entidades AND
-					clientes.id_clientes = juicios.id_clientes";
+					clientes.id_clientes = juicios.id_clientes AND usuarios.id_usuarios = oficios.id_usuario_registra_oficios";
 	
 					$id="oficios.id_oficios";
 						
@@ -387,15 +389,15 @@ class OficiosController extends ControladorBase{
 					$where_4 = "";
 	
 	
-					if($id_entidad!=0){$where_0=" AND entidades.id_entidades='$id_entidad'";}
+					if($id_usuarios!=0){$where_0=" AND usuarios.id_usuarios='$id_usuarios'";}
 						
 					if($numero_juicio!=""){$where_1=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
 						
-					if($identificacion!=""){$where_2=" AND clientes.identificacion='$identificacion'";}
+					if($identificacion!=""){$where_2=" AND clientes.identificacion_clientes='$identificacion'";}
 						
-					if($titulo_credito!=""){$where_3=" AND juicios.id_titulo_credito='$titulo_credito'";}
+					if($numero_oficios!=""){$where_3=" AND oficios.numero_oficios='$numero_oficios'";}
 						
-					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  distribucion_gastos.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  oficios.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
 	
 	
 					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;
@@ -410,7 +412,7 @@ class OficiosController extends ControladorBase{
 	
 	
 				$this->view("ConsultaOficios",array(
-						"resultSet"=>$resultSet,"resultEntidad"=>$resultEntidad
+						"resultSet"=>$resultSet,"resultUsu"=>$resultUsu
 							
 				));
 	
