@@ -1,4 +1,4 @@
-
+	
 <?php 
 #<?php 
 #Importas la librer�a PhpJasperLibrary
@@ -98,10 +98,6 @@ if ($_GET['fecha_desde']!="" && $_GET['fecha_hasta']!="")
 
 
 $sql=$cabeceraSql.$detallesql;
-
-
-
-
 
 $PHPJasperXML = new PHPJasperXML("en","TCPDF");
 $PHPJasperXML->debugsql=false;

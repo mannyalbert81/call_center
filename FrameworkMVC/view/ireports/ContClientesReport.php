@@ -21,4 +21,5 @@ $PHPJasperXML->load_xml_file("ClientesReport.jrxml");
 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $PHPJasperXML->outpage("I") 
+
 ?>

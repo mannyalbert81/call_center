@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-12T10:12:03 -->
+<!-- 2016-07-18T15:52:47 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="NotificacionesReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="607e1fdc-9d09-4372-96b0-0829fc988419">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -123,6 +123,20 @@ WHERE
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="302" y="-5" width="41" height="20" uuid="0a575f96-d0dd-4a8c-adad-2ee6cd40a57c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Raavi" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="210" y="0" width="130" height="20" uuid="034e2491-b458-49e2-b914-453423539167"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NUMERO DE REGISTROS:]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<pageFooter>
