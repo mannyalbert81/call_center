@@ -74,19 +74,83 @@
 		    $("#Guardar").click(function() 
 			{
 		   
+		    	var id_tipo_vehiculos= $("#id_tipo_vehiculos").val();
+		    	var id_marca_vehiculos= $("#id_marca_vehiculos").val();
+		    	var placa_vehiculos_embargados= $("#placa_vehiculos_embargados").val();
+		    	var modelo_vehiculos_embargados= $("#placa_vehiculos_embargados").val();
 		    	var observacion_vehiculos_embargados= $("#observacion_vehiculos_embargados").val();
-		    
+		    	var observacion_vehiculos_embargados= $("#observacion_vehiculos_embargados").val();
 		   				
-		    	if (observacion_vehiculos_embargados== "")
+		    	if (id_tipo_vehiculos== "")
 		    	{
 			    	
-		    		$("#mensaje_nombres").text("Introduzca un tipo de vehiculos embargados");
-		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_tipo").text("Introduzca un tipo");
+		    		$("#mensaje_tipo").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_tipo").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	if (id_marca_vehiculos== "")
+		    	{
+			    	
+		    		$("#mensaje_marca").text("Introduzca una marca");
+		    		$("#mensaje_marca").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_marca").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	if (placa_vehiculos_embargados== "")
+		    	{
+			    	
+		    		$("#mensaje_placa").text("Introduzca una placa");
+		    		$("#mensaje_placa").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_placa").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	if (modelo_vehiculos_embargados== "")
+		    	{
+			    	
+		    		$("#mensaje_modelo").text("Introduzca un modelo");
+		    		$("#mensaje_modelo").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_modelo").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	if (observacion_vehiculos_embargados== "")
+		    	{
+			    	
+		    		$("#mensaje_observacion").text("Introduzca una observacion");
+		    		$("#mensaje_observacion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_observacion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	if (fecha_ingreso_vehiculos_embargados== "")
+		    	{
+			    	
+		    		$("#mensaje_fecha").text("Introduzca una fecha");
+		    		$("#mensaje_fecha").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_fecha").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
 		    	
@@ -96,15 +160,25 @@
 
 		 
 				
-				$( "#observacion_vehiculos_embargados" ).focus(function() {
-					$("#mensaje_nombres").fadeOut("slow");
+				$( "#id_tipo_vehiculos" ).focus(function() {
+					$("#mensaje_tipo").fadeOut("slow");
     			});
-				
-			
-		
-				
-		
-		      
+				$( "#id_marca_vehiculos" ).focus(function() {
+					$("#mensaje_marca").fadeOut("slow");
+    			});
+				$( "#placa_vehiculos_embargados" ).focus(function() {
+					$("#mensaje_placa").fadeOut("slow");
+    			});
+				$( "#modelo_vehiculos_embargados" ).focus(function() {
+					$("#mensaje_modelo").fadeOut("slow");
+    			});
+    			$( "#observacion_vehiculos_embargados" ).focus(function() {
+					$("#mensaje_observacion").fadeOut("slow");
+    			});
+    			$( "#fecha_ingreso_vehiculos_embargados" ).focus(function() {
+					$("#mensaje_fecha").fadeOut("slow");
+    			});
+						      
 				    
 		}); 
 
@@ -195,7 +269,7 @@
 		    <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Placa</p>
 			  	<input type="text"  name="placa_vehiculos_embargados" id="placa_vehiculos_embargados" value="<?php echo $resEdit->placa_vehiculos_embargados; ?>" class="form-control"/> 
-			    <div id="mensaje_cedula" class="errores"></div>
+			    <div id="mensaje_placa" class="errores"></div>
 			  </div>
 			
 			 
@@ -203,7 +277,7 @@
 		    <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Modelo</p>
 			  	<input type="text"  name="modelo_vehiculos_embargados" id="modelo_vehiculos_embargados" value="<?php echo $resEdit->modelo_vehiculos_embargados; ?>" class="form-control"/> 
-			    <div id="mensaje_cedula" class="errores"></div>
+			    <div id="mensaje_modelo" class="errores"></div>
 			  </div>
 			   </div>
 			 
@@ -212,7 +286,7 @@
 			  <div class="col-xs-3 col-md-3">
 			  	<p  class="formulario-subtitulo" >Observaciones</p>
 			  	<input type="text" name="observacion_vehiculos_embargados" id="observacion_vehiculos_embargados" value="<?php echo $resEdit->observacion_vehiculos_embargados; ?>" class="form-control"/> 
-			  <div id="mensaje_nombres" class="errores"></div>
+			  <div id="mensaje_observacion" class="errores"></div>
 			  </div>
 		  
 		   <div class="col-lg-3" id="div_desde">
