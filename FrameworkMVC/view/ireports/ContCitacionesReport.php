@@ -38,14 +38,14 @@ if ($_GET['id_ciudad']!=0)
 }
 	
 	
-if ($_GET['identificacion']!=0)
+if ($_GET['identificacion']!="")
 {
 
 	$identificacion= $_GET['identificacion'];
-	$detallesql=$detallesql." AND clientes.identificacion = '$identificacion'";
+	$detallesql=$detallesql." AND clientes.identificacion_clientes = '$identificacion'";
 }
 	
-if ($_GET['numero_juicio']!=0)
+if ($_GET['numero_juicio']!="")
 {
 		
 	$numero_juicio= $_GET['numero_juicio'];
