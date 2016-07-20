@@ -161,6 +161,32 @@
 		}); 
 
 	</script>
+	
+	 <script >
+		$(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#Visualizar").click(function() 
+			{
+		    	var juicios = $("#juicios").val();
+		   				
+		    	if (juicios == "")
+		    	{
+			    	
+		    		$("#mensaje_juicio").text("Introduzca un Juicio");
+		    		$("#mensaje_juicio").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_juicio").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+			}); 
+		}); 
+
+	</script>
      
 
     </head>
@@ -175,6 +201,10 @@
        <?php
        
        $sel_juicios = "";
+       $sel_id_juicio="";
+       $sel_detalle="";
+       $sel_observacion="";
+       $sel_avoco="";
        
        
        if($_SERVER['REQUEST_METHOD']=='POST' )
@@ -186,9 +216,39 @@
        	 
        }
        
+      /* $sel_id_juicio = "";
+       $sel_id_usuarios = "";
+       $sel_identificacion="";
+       $sel_numero_juicio="";
+       
+       $sel_fecha_desde="";
+       $sel_fecha_hasta="";*/
+        
+       if($_SERVER['REQUEST_METHOD']=='GET')
+       {
+       	
+       	if(isset($_GET['dato']))
+       	{
+       	$a=stripslashes($_GET['dato']);
+       	
+       	$_dato=urldecode($a);
+       	
+       	$_dato=unserialize($a);
+       	
+       	$sel_juicios=$_dato['juicio'];
+       	$sel_id_juicio=$_dato['id_juicio'];
+       	$sel_detalle=$_dato['detalle'];
+       	$sel_observacion=$_dato['observacion'];
+       	$sel_avoco=$_dato['avoco'];
+       	}
+      
+       }
+        
+       
+       
        $habilitar="disabled";
        
-       if(!empty($resulSet)){
+       if(!empty($resulSet) || $sel_juicios!=""){
        	$habilitar="";
        }
        
@@ -251,7 +311,7 @@
 	        
 	         <input type="hidden" id="id_juicios" name="id_juicios" value="<?php if(!empty($resulSet)){ foreach ($resulSet as $res){
 	         echo 	$res->id_juicios;
-	         }}?>">
+	         }}elseif ($sel_id_juicio!=""){echo $sel_id_juicio;}?>">
 		   	<div id="mensaje_juicio" class="errores"></div>	   
 		    </div>
 		    
@@ -291,7 +351,7 @@
 		      <div class="row">
 		      <div class="col-xs-6 col-md-6" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Detalle:</p>
-			  <input type="text" id="detalle_documentos" name="detalle_documentos" placeholder="Ingrese" class="form-control" <?php echo $habilitar;?>>
+			  <input type="text" id="detalle_documentos" name="detalle_documentos" placeholder="Ingrese" class="form-control" value="<?php echo $sel_detalle;?>" <?php echo $habilitar;?>>
 		   	   	<div id="mensaje_detalle" class="errores"></div>	   
 		    </div>
 		    </div>
@@ -299,7 +359,7 @@
 		    <div class="row">
 		     <div class="col-xs-6 col-md-6" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Observación:</p>
-	          <input type="text" id="observacion_documentos" name="observacion_documentos" class="form-control" placeholder="Ingrese" <?php echo $habilitar;?>>
+	          <input type="text" id="observacion_documentos" name="observacion_documentos" class="form-control" placeholder="Ingrese" value="<?php echo $sel_observacion; ?>" <?php echo $habilitar;?>>
 		   	<div id="mensaje_observacion" class="errores"></div>	   
 		    </div>
 		      </div>
@@ -312,7 +372,7 @@
              <div class="row">
               <div class="col-xs-6 col-md-6" style="margin-top:10px">
               <p class="formulario-subtitulo" ><?php setlocale(LC_ALL,"es_ES");  echo strftime("%A %d de %B del %Y");?></p>
-		      <textarea id="avoco_vistos_documentos" name="avoco_vistos_documentos" rows="8" cols="60" <?php echo $habilitar;?>>VISTOS:  </textarea>
+		      <textarea id="avoco_vistos_documentos" name="avoco_vistos_documentos" rows="8" cols="60"  <?php echo $habilitar;?>><?php echo $sel_avoco;?> </textarea>
 		      	<div id="mensaje_avoco" class="errores"></div>	 
 		      </div>
 		      </div>

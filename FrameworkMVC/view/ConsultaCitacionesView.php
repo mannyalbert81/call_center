@@ -177,11 +177,9 @@
 		   			
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
-			  		<option value="0"><?php echo "--Seleccione--";  ?> </option>
-					<?php foreach($resultCiu as $res) {?>
-						<option value="<?php echo $res->id_ciudad; ?>"<?php if($sel_id_ciudad==$res->id_ciudad){echo "selected";}?>><?php echo $res->nombre_ciudad;  ?> </option>
-			         
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" readonly>
+			  		<?php foreach($resultDatos as $res) {?>
+						 <option value="<?php echo $res->id_ciudad; ?>" <?php if($sel_id_ciudad==$res->id_ciudad){echo "selected";}?>   ><?php echo $res->nombre_ciudad; ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>

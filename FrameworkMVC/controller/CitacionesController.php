@@ -343,8 +343,24 @@ class CitacionesController extends ControladorBase{
 		$resultSet="";
 
 		$ciudad = new CiudadModel();
-		$resultCiu = $ciudad->getAll("nombre_ciudad");
-
+		
+		
+		$_id_usuarios= $_SESSION["id_usuarios"];
+		
+		$columnas = " usuarios.id_ciudad,
+					  ciudad.nombre_ciudad,
+					  usuarios.nombre_usuarios";
+			
+		$tablas   = "public.usuarios,
+                     public.ciudad";
+			
+		$where    = "ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuarios'";
+			
+		$id       = "usuarios.id_ciudad";
+		
+			
+		$resultDatos=$ciudad->getCondiciones($columnas ,$tablas ,$where, $id);
+		
 		$citaciones = new CitacionesModel();
 
 
@@ -395,7 +411,7 @@ class CitacionesController extends ControladorBase{
   					ciudad.id_ciudad = citaciones.id_ciudad AND
   					tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones AND
   					usuarios.id_usuarios = citaciones.id_usuarios AND
-  					clientes.id_clientes = juicios.id_clientes";
+  					clientes.id_clientes = juicios.id_clientes AND citaciones.id_usuarios ='$_id_usuarios'";
 
 					$id="citaciones.id_citaciones";
 						
@@ -430,7 +446,7 @@ class CitacionesController extends ControladorBase{
 
 
 				$this->view("ConsultaCitaciones",array(
-						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu
+						"resultSet"=>$resultSet, "resultDatos"=>$resultDatos
 							
 				));
 
