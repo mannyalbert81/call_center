@@ -139,6 +139,7 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 				if(isset($_POST['firmar']))
 				{
 					$firmas= new FirmasDigitalesModel();
+					$documentos = new DocumentosModel();
 					$ruta="";
 					$nombrePdf="";
 					
@@ -185,6 +186,7 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 																		
 								} catch (Exception $e) {
 									
+									echo $e->getMessage();
 								}
 								
 							}

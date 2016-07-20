@@ -86,6 +86,32 @@
 			   });
 			});
         </script>
+        
+  <script>
+		$(document).ready(function(){
+			
+				$("#firmar").click(function(){
+	
+					  var selected = '';  
+			          
+				        $('.marcados').each(function(){
+				            if (this.checked) {
+				                selected +=$(this)+' esta '+$(this).val()+', ';
+				            }
+				        }); 
+	
+				        if (selected != '') {
+				            return true;
+				        }
+				        else{
+				            alert('Seleccione Documento(s) a firmar.');
+				            return false;
+				        }
+	
+				      
+				});
+		});
+   </script>
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -223,8 +249,7 @@
         <table class="table table-hover ">
 	         <tr >
 	            <th style="color:#456789;font-size:80%;"></th>
-	            <th style="color:#456789;font-size:80%;"></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
+	            <th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Nº Juicio Referido</th>
 	    		<th style="color:#456789;font-size:80%;">Cliente</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
@@ -238,9 +263,8 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	        		   <td> <input type="checkbox" name="file_firmar[]" id="file_firmar" class="checkbox" value="<?php echo $res->id_documentos; ?>"/>      </td>
-	        		   <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_usuarios; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
-		             <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
+	        		   <td> <input type="checkbox" name="file_firmar[]" id="file_firmar" class="marcados" value="<?php echo $res->id_documentos; ?>"/>      </td>
+	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
