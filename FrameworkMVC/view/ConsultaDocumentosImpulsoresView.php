@@ -86,6 +86,34 @@
 			   });
 			});
         </script>
+        
+      <script>
+	$(document).ready(function(){
+		
+			$("#firmar").click(function(){
+
+				  var selected = '';  
+		          
+			        $('.marcados').each(function(){
+			            if (this.checked) {
+			                selected +=$(this)+' esta '+$(this).val()+', ';
+			            }
+			        }); 
+
+			        if (selected != '') {
+			            return true;
+			        }
+			        else{
+			            alert('Seleccione Documento(s) a firmar.');
+			            return false;
+			        }
+
+			      
+			});
+	});
+        </script>
+        
+       
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -190,7 +218,7 @@
 		 
 		 <?php if(!empty($resultSet))  {?>
 		 <a href="/FrameworkMVC/view/ireports/ContDocumentosGeneralReport.php?id_ciudad=<?php  echo $sel_id_ciudad ?>&identificacion=<?php  echo $sel_identificacion?>&numero_juicio=<?php  echo $sel_numero_juicio?>&id_usuarios=<?php  echo $sel_id_usuarios?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
-		            
+		 <input type="submit" value="Firmar" id="firmar" name="firmar" class="btn btn-info" style="margin-top: 10px;"/>          
 		  <?php } else {?>
 		  
 		  <?php } ?>
@@ -220,7 +248,7 @@
 	    		<th style="color:#456789;font-size:80%;">Cliente</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
 	    		<th style="color:#456789;font-size:80%;">Estado Procesal</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Emisión>
+	    		<th style="color:#456789;font-size:80%;">Fecha Emisión</th>
 	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
 	    		
 	    		<th></th>
@@ -229,12 +257,13 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	        		   <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_usuarios; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
-		             <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
+	        		
+	        		   <td> <input type="checkbox" name="file_firmar[]" id="file_firmar" class="marcados" value="<?php echo $res->id_documentos; ?>"/></td>
+	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado_procesal_juicios; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado_procesal_juicios; ?></td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_emision_documentos; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
 		            

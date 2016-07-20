@@ -78,7 +78,9 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 								  documentos.hora_emision_documentos, 
 								  documentos.detalle_documentos, 
 								  documentos.observacion_documentos, 
-								  documentos.avoco_vistos_documentos, 
+								  documentos.avoco_vistos_documentos,
+								  documentos.ruta_documento,
+								  documentos.nombre_documento,
 								  usuarios.id_usuarios,
 							      usuarios.nombre_usuarios, 
 								  usuarios.imagen_usuarios";
@@ -122,8 +124,67 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 
 
 					$resultSet=$documentos_impulsores->getCondiciones($columnas ,$tablas , $where_to, $id);
+					
+									
 
 
+				}
+				
+				if(isset($_POST['firmar']))
+				{
+					$firmas= new FirmasDigitalesModel();
+					$documentos = new DocumentosModel();
+					
+					$ruta="Providencias";
+					$nombrePdf="";
+						
+					$destino = $_SERVER['DOCUMENT_ROOT'].'/documentos/'.$ruta.'/';
+						
+					$array_documento=$_POST['file_firmar'];
+					
+				
+					$permisosFirmar=$permisos_rol->getPermisosFirmarPdfs($_id_usuarios);
+						
+						
+					if($permisosFirmar['estado'])
+					{
+				
+						$id_firma = $permisosFirmar['valor'];
+						
+				
+				
+						foreach ($array_documento as $id )
+						{
+				
+							if(!empty($id))
+							{
+				
+								$id_documento = $id;
+								
+								$resultDocumento=$documentos->getBy("id_documentos='$id'");
+								
+								$nombrePdf=$resultDocumento[0]->nombre_documento;
+								
+								$nombrePdf=$nombrePdf.".pdf";
+				
+								$id_rol=$_SESSION['id_rol'];
+				
+								try {
+										$res=$firmas->FirmarPDFs( $destino, $nombrePdf, $id_firma,$id_rol);
+					
+										$firmas->UpdateBy("firma_impulsor='TRUE'", "documentos", "id_documentos='$id_documento'");
+										
+										
+									}catch(Exception $e)
+									{
+										
+									}
+								
+				
+							}
+						}
+					}
+					
 				}
 
 
