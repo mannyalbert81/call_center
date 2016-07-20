@@ -307,8 +307,7 @@
 		    
 		    <?php } ?>
 		    
-		     </div>
-		     
+		     </div>     
          <div class="col-lg-6">
              <div class="row">
               <div class="col-xs-6 col-md-6" style="margin-top:10px">
@@ -331,8 +330,7 @@
 			  </div>    
        </form>
        <!-- termina el form --> 
-       <BR>     
-        
+       <BR>      
       </div>
       </div>
      
