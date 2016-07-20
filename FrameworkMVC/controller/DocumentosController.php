@@ -8,6 +8,10 @@ class DocumentosController extends ControladorBase{
 public function index(){
 	
 		session_start();
+		
+		//$dato=array();
+		
+		
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$ciudad = new CiudadModel();
@@ -64,6 +68,8 @@ public function index(){
 				
 					$resulSet=$juicio->getCondiciones("id_juicios,juicio_referido_titulo_credito", "juicios", "juicio_referido_titulo_credito='$juicio_referido'", "id_juicios");
 				}
+				
+				
 			
 					
 			
@@ -125,7 +131,7 @@ public function index(){
 			if (isset ($_POST["id_juicios"]) )
 			{
 				//estado de documento pdf
-				$_estado = "Visualizar";
+				$_estado = "";
 				
 				$dato=array();
 				
@@ -184,9 +190,27 @@ public function index(){
 					
 				}
 				
+				$host  = $_SERVER['HTTP_HOST'];
+				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+				
+				
+				print "<script language='JavaScript'>
+				setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+				</script>";
+				
+				print("<script>window.location.replace('index.php?controller=Documentos&action=index');</script>");
+				
+				
+				/*
+				
+				ob_start();
+				header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado.'&nombre='.$nombre_documento);
+				$contenido=ob_get_contents();
+				ob_end_flush();
+				
+				$this->redirect("Documentos","index");*/
 					
-		header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado.'&nombre='.$nombre_documento);
-					
+		      	
 		//header('Location: ' . '/FrameworkMVC/index.php?controller=Controladores&action=verError&dato='.serialize($dato));
 				
 			
@@ -215,6 +239,7 @@ public function index(){
 		$identificador="";
 		$_estado="Visualizar";
 		$dato=array();
+		$arrayGet=array();
 		
 		if (isset($_POST["Visualizar"]))
 		{
@@ -243,7 +268,6 @@ public function index(){
 			$resultJuicio = $juicios->getCondiciones($columnas, $tablas, $where, "clientes.id_clientes");
 			
 			
-			
 			//cargar datos para el reporte
 			
 			$dato['ciudad']=$resultCiudad[0]->nombre_ciudad;
@@ -258,12 +282,38 @@ public function index(){
 			$_accion_trazas  = "Visualizar";
 			$_parametros_trazas = $_detalle_documentos;
 			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-		
+			
+			
+			//cargar array q va por get
+			
+			$arrayGet['id_juicio']=$_id_juicio;
+			$arrayGet['juicio']=$resultJuicio[0]->juicio_referido_titulo_credito;
+			$arrayGet['detalle']=$_detalle_documentos;
+			$arrayGet['observacion']=$_observacion_documentos;
+			$arrayGet['avoco']=$_avoco_vistos_documentos;
+			
 		}
+		
 
 		$result=urlencode(serialize($dato));
 		
-		header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?estado='.$_estado.'&dato='.$result);
+		$resultArray=urlencode(serialize($arrayGet));
+		
+		$host  = $_SERVER['HTTP_HOST'];
+		$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+		
+		
+        
+		print "<script language='JavaScript'>
+			 setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000); 
+		      </script>";
+		
+		print("<script>window.location.replace('index.php?controller=Documentos&action=index&dato=$resultArray');</script>");
+		
+		
+		
+		
+		
 				
 	}
 	
@@ -282,6 +332,17 @@ public function index(){
 	public function verError(){
 		$resultado=$_GET['dato'];
 		$this->view("error", array('resultado'=>print_r($resultado)));
+	}
+	
+	public function devuelveArray($dato)
+	{
+		$a=stripslashes($dato);
+		
+		$array=urldecode($a);
+		
+		$array=unserialize($a);
+		
+		return $array;
 	}
 	
 	
