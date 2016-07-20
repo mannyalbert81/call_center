@@ -8,7 +8,7 @@ class AprobacionAutoPagoController extends ControladorBase{
 		parent::__construct();
 	}
 
-	//maycol
+	//maycol454
 
 	public function index(){
 	
