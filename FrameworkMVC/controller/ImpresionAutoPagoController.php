@@ -18,6 +18,7 @@ class ImpresionAutoPagoController extends ControladorBase{
 		{
 			
 			$impresion_auto_pago = new AutoPagosModel();
+			
 			//Notificaciones
 			$impresion_auto_pago->MostrarNotificaciones($_SESSION['id_usuarios']);
 			

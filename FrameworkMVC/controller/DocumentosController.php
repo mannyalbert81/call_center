@@ -14,6 +14,8 @@ public function index(){
 		
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			
+			
 			$ciudad = new CiudadModel();
 			$resultCiu = $ciudad->getAll("nombre_ciudad");
 			
@@ -24,9 +26,11 @@ public function index(){
 			$resultEstPro = $estados_procesales->getBy("nombre_estado_procesal_juicios='Providencia'");
 			
 			
-			$ciudad = new CiudadModel();
 			
 			$_id_usuarios= $_SESSION["id_usuarios"];
+			
+			//notificaciones
+			$juicios->MostrarNotificaciones($_id_usuarios);
 			
 			$columnas = " usuarios.id_ciudad,
 					  ciudad.nombre_ciudad,
