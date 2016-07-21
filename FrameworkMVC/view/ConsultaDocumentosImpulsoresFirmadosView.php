@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Firmar Documentos Secretarios - coactiva 2016</title>
+        <title>Consulta Documentos Impulsores Firmados - coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -87,31 +87,33 @@
 			});
         </script>
         
-  <script>
-		$(document).ready(function(){
-			
-				$("#firmar").click(function(){
-	
-					  var selected = '';  
-			          
-				        $('.marcados').each(function(){
-				            if (this.checked) {
-				                selected +=$(this)+' esta '+$(this).val()+', ';
-				            }
-				        }); 
-	
-				        if (selected != '') {
-				            return true;
-				        }
-				        else{
-				            alert('Seleccione Documento(s) a firmar.');
-				            return false;
-				        }
-	
-				      
-				});
-		});
-   </script>
+      <script>
+	$(document).ready(function(){
+		
+			$("#firmar").click(function(){
+
+				  var selected = '';  
+		          
+			        $('.marcados').each(function(){
+			            if (this.checked) {
+			                selected +=$(this)+' esta '+$(this).val()+', ';
+			            }
+			        }); 
+
+			        if (selected != '') {
+			            return true;
+			        }
+			        else{
+			            alert('Seleccione Documento(s) a firmar.');
+			            return false;
+			        }
+
+			      
+			});
+	});
+        </script>
+        
+       
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -153,12 +155,12 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("ConsultaDocumentosSecretarios","consulta_secretarios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("ConsultaDocumentosImpulsores","consulta_impulsores_firmados"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
          
-       	 <h4 style="color:#ec971f;">Firmar Documentos Secretarios</h4>
+       	 <h4 style="color:#ec971f;">Consulta Documentos Impulsores Firmados</h4>
        	 
        	 
        	 <div class="panel panel-default">
@@ -170,20 +172,17 @@
 			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" readonly>
 			  		<?php foreach($resultDatos as $res) {?>
-						 <option value="<?php echo $res->id_ciudad; ?>" <?php if($sel_id_ciudad==$res->id_ciudad){echo "selected";}?>  ><?php echo $res->nombre_ciudad; ?> </option>
+						 <option value="<?php echo $res->id_ciudad; ?>" <?php if($sel_id_ciudad==$res->id_ciudad){echo "selected";}?>   ><?php echo $res->nombre_ciudad; ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>
 		 
 		 <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo" style="" >Impulsores:</p>
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-			  		<?php foreach($resultImpul as $res) {?>
-						 <option value="<?php echo $res->id_abogado; ?>"<?php if($sel_id_usuarios==$res->id_abogado){echo "selected";}?>  ><?php echo $res->impulsores; ?> </option>
-			           
-			            <?php } ?>  
-			            
-				</select>
+			  	<p  class="formulario-subtitulo" style="" >Impulsor:</p>
+			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" readonly>
+			   <option value="<?php echo $_SESSION['id_usuarios'];  ?>" <?php if($sel_id_usuarios==$_SESSION['id_usuarios']){echo "selected";}?>  ><?php echo $_SESSION['nombre_usuarios'];  ?></option>  
+			     
+			    </select>
 		 </div>
 		 
 		 <div class="col-xs-2 ">
@@ -215,15 +214,11 @@
 		 
   			</div>
   		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
-  		
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" onClick="notificacion()" class="btn btn-warning " style="margin-top: 10px;"/> 	
 		 
 		 <?php if(!empty($resultSet))  {?>
 		 <a href="/FrameworkMVC/view/ireports/ContDocumentosGeneralReport.php?id_ciudad=<?php  echo $sel_id_ciudad ?>&identificacion=<?php  echo $sel_identificacion?>&numero_juicio=<?php  echo $sel_numero_juicio?>&id_usuarios=<?php  echo $sel_id_usuarios?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
-		 
-		
-		 <input type="submit" value="Firmar" id="firmar" name="firmar" class="btn btn-info" style="margin-top: 10px;"/>
-		         
+		 <input type="submit" value="Firmar" id="firmar" name="firmar" class="btn btn-info" style="margin-top: 10px;"/>          
 		  <?php } else {?>
 		  
 		  <?php } ?>
@@ -240,7 +235,6 @@
 		 <div class="col-lg-2">
 		 <span class="form-control"><strong>Registros:</strong><?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
 		 </div>
-		 
 		 </div>
 		 
 		 <div class="col-lg-12">
@@ -249,12 +243,12 @@
         <table class="table table-hover ">
 	         <tr >
 	            <th style="color:#456789;font-size:80%;"></th>
-	            <th style="color:#456789;font-size:80%;"><b>Id</b></th>
+	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Nº Juicio Referido</th>
 	    		<th style="color:#456789;font-size:80%;">Cliente</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
 	    		<th style="color:#456789;font-size:80%;">Estado Procesal</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Emisión>
+	    		<th style="color:#456789;font-size:80%;">Fecha Emisión</th>
 	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
 	    		
 	    		<th></th>
@@ -263,12 +257,13 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	        		   <td> <input type="checkbox" name="file_firmar[]" id="file_firmar" class="marcados" value="<?php echo $res->id_documentos; ?>"/>      </td>
-	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
+	        		
+	        		   <td> <input type="checkbox" name="file_firmar[]" id="file_firmar" class="marcados" value="<?php echo $res->id_documentos; ?>"/></td>
+	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado_procesal_juicios; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado_procesal_juicios; ?></td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_emision_documentos; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
 		            
@@ -288,7 +283,6 @@
 		    	</tr>
 		    		
 		    		<?php }?>
-               
                
        	</table>
        </section>

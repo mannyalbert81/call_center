@@ -509,32 +509,7 @@ class JuicioController extends ControladorBase{
 	
 	}
 	
-	public function Reporte(){
 	
-		//Creamos el objeto usuario
-		$subcategorias=new SubCategoriasModel();
-		//Conseguimos todos los usuarios
-	
-	
-		$columnas = " subcategorias.id_subcategorias, categorias.nombre_categorias, subcategorias.nombre_subcategorias, subcategorias.path_subcategorias";
-		$tablas   = "public.subcategorias, public.categorias";
-		$where    = "subcategorias.id_categorias = categorias.id_categorias";
-		$id       = "categorias.nombre_categorias,subcategorias.nombre_subcategorias";
-		
-	
-		session_start();
-	
-	
-		if (isset(  $_SESSION['usuario']) )
-		{
-			$resultRep = $subcategorias->getCondicionesPDF($columnas, $tablas, $where, $id);
-			
-			$this->report("SubCategorias",array(	"resultRep"=>$resultRep));
-	
-		}
-			
-	
-	}
 	
 	public function consulta(){
 	
@@ -544,7 +519,23 @@ class JuicioController extends ControladorBase{
 		$resultSet="";
 	
 		$ciudad = new CiudadModel();
-		$resultCiu = $ciudad->getAll("nombre_ciudad");
+		
+		
+		$_id_usuarios= $_SESSION["id_usuarios"];
+		
+		$columnas = " usuarios.id_ciudad,
+					  ciudad.nombre_ciudad,
+					  usuarios.nombre_usuarios";
+			
+		$tablas   = "public.usuarios,
+                     public.ciudad";
+			
+		$where    = "ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuarios'";
+			
+		$id       = "usuarios.id_ciudad";
+		
+			
+		$resultDatos=$ciudad->getCondiciones($columnas ,$tablas ,$where, $id);
 	
 		$citaciones = new CitacionesModel();
 	
@@ -578,8 +569,9 @@ class JuicioController extends ControladorBase{
   					ciudad.nombre_ciudad, 
   					tipo_persona.nombre_tipo_persona, 
   					juicios.juicio_referido_titulo_credito, 
-  					usuarios.nombre_usuarios,
-  					titulo_credito.id_titulo_credito, 
+  					asignacion_secretarios_view.impulsores,
+  					asignacion_secretarios_view.secretarios,
+					titulo_credito.id_titulo_credito, 
   					etapas_juicios.nombre_etapas, 
   					tipo_juicios.nombre_tipo_juicios, 
   					juicios.creado, 
@@ -592,7 +584,7 @@ class JuicioController extends ControladorBase{
 					  public.titulo_credito, 
 					  public.etapas_juicios, 
 					  public.tipo_juicios,
-					  public.usuarios";
+					  public.asignacion_secretarios_view";
 	
 					$where="ciudad.id_ciudad = clientes.id_ciudad AND
 					  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
@@ -600,7 +592,7 @@ class JuicioController extends ControladorBase{
 					  juicios.id_clientes = clientes.id_clientes AND
 					  juicios.id_tipo_juicios = tipo_juicios.id_tipo_juicios AND
 					  etapas_juicios.id_etapas_juicios = juicios.id_etapas_juicios AND
-					  usuarios.id_usuarios=juicios.id_usuarios";
+					  juicios.id_usuarios= asignacion_secretarios_view.id_abogado AND juicios.id_usuarios ='$_id_usuarios'";
 	
 					$id="juicios.id_juicios";
 						
@@ -616,7 +608,7 @@ class JuicioController extends ControladorBase{
 						
 					if($numero_juicio!=""){$where_1=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
 						
-					if($identificacion!=""){$where_2=" AND clientes.identificacion='$identificacion'";}
+					if($identificacion!=""){$where_2=" AND clientes.identificacion_clientes='$identificacion'";}
 						
 					if($titulo_credito!=""){$where_3=" AND juicios.id_titulo_credito='$titulo_credito'";}
 						
@@ -635,7 +627,7 @@ class JuicioController extends ControladorBase{
 	
 	
 				$this->view("ConsultaJuicios",array(
-						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu
+						"resultSet"=>$resultSet,"resultDatos"=>$resultDatos
 							
 				));
 	

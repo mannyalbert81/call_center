@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Firmar Documentos Secretarios - coactiva 2016</title>
+        <title>Consulta Documentos Secretarios Firmados- coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -153,12 +153,12 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("ConsultaDocumentosSecretarios","consulta_secretarios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("ConsultaDocumentosSecretarios","consulta_secretarios_firmados"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
          
-       	 <h4 style="color:#ec971f;">Firmar Documentos Secretarios</h4>
+       	 <h4 style="color:#ec971f;">Consulta Documentos Secretarios Firmados</h4>
        	 
        	 
        	 <div class="panel panel-default">
