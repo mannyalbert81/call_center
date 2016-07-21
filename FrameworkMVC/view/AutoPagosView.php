@@ -236,35 +236,7 @@
         });
     </script>
 
-    <script>
-    $(document).ready(function(){
-        
- 		$("#buscar").click(function () {
-             
-             var fecha_asignacion = $("#fecha_asignacion").val();
-             var contenido = $("#contenido_busqueda").val();
-             if(fecha_asignacion!=0 && contenido==""){
-          	   $("#mensaje_contenido").text("Ingrese contenido");
-  	    	   $("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
-                 return false;
-                 }else if(fecha_asignacion==0 && contenido!=""){
-               $("#mensaje_criterio").text("Selecione una busqueda");
-        	   $("#mensaje_criterio").fadeIn("slow");
-        	     return false;
-                 }else{
-                	 return true;
-                     }
-          });
-          
-          $( "#contenido_busqueda" ).focus(function() {
-  			  $("#mensaje_contenido").fadeOut("slow");
-  		    });
-          $( "#fecha_asignacion" ).focus(function() {
-  			  $("#mensaje_criterio").fadeOut("slow");
-  		    });
-        });
-
-    </script>
+   
     
     </head>
     <body style="background-color: #d9e3e4;">
@@ -277,7 +249,7 @@
        
        <?php
        
-     	$resultMenu_busqueda=array(0=>"Identificacion",1=>"Titulo Credito");
+     	$resultMenu_busqueda=array(0=>"Todos",1=>"Identificacion",2=>"Titulo Credito");
      	
      	
      	$sel_id_usuarioAgente = "";
@@ -413,7 +385,7 @@
            
            <div class="col-xs-4" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("AutoPagos","index"); ?>'" value="buscar" onClick="notificacion()" class="btn btn-default"/>
+			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("AutoPagos","index"); ?>'" value="buscar"  class="btn btn-default"/>
 			</div>
 		<div class="col-xs-12" style="margin: 10px;">	
 

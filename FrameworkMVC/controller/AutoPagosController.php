@@ -170,10 +170,15 @@ class AutoPagosController extends ControladorBase{
 					
 						switch ($criterio_busqueda) {
 							case 0:
-								$where_0 = " AND  clientes.identificacion_clientes LIKE '$contenido_busqueda'  ";
+								$where_0 = " ";
 								break;
 							case 1:
-								$where_1 = " AND  titulo_credito.id_titulo_credito = '$contenido_busqueda'   ";
+								// identificacion de cliente
+								$where_1 = " AND  clientes.identificacion_clientes LIKE '$contenido_busqueda'  ";
+								break;
+							case 2:
+								//id_titulo de credito
+								$where_2 = " AND  titulo_credito.id_titulo_credito = '$contenido_busqueda'  ";
 								break;
 								
 							

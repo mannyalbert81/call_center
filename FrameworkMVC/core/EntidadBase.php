@@ -711,6 +711,15 @@ class EntidadBase{
     	 
     	$resultadoT=$notificaciones->Insert();
     }
+    
+    public function abrirPdf($pdf)
+    {
+
+    	header('Content-type: application/pdf');
+    	header('Content-Disposition: attachment; filename="'.$pdf.'"');
+    	readfile($pdf);
+    	   	
+    }
       
 }
 ?>

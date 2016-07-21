@@ -64,38 +64,16 @@ class AsignacionTituloCreditoController extends ControladorBase{
 			if (!empty($resultPer))
 			{
 					
-				
-					//CONSULTA DE USUARIOS POR SU ROL 
-					$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
-					$tablas="usuarios inner join rol on(usuarios.id_rol=rol.id_rol)";
-					$id="rol.id_rol";
-					
-					$usuarios=new UsuariosModel();
-					
-					$where="rol.nombre_rol='CIUDAD'";
-					$resultCiudad=$ciudad->getCondiciones($columnas ,$tablas , $where, $id);
-					
-					$where="rol.nombre_rol='SECRETARIO'";
-					$resultUsuarioSecretario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
-					
-					$where="rol.nombre_rol='ABOGADO IMPULSOR'";
-					$resultUsuarioImpulsor=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
-					
-					
-					//roles
-					$rol = new RolesModel();
-					$resultRol=$rol->getAll("nombre_rol");
-					
-					$controladores=new ControladoresModel();
-					$resultCon=$controladores->getAll("nombre_controladores");
-			
-			
 					
 					$resultEdit = "";
 					$resul = "";
 			
-					if (isset ($_GET["id_asignacion_secretarios"])   )
-					{
+					    $rol = new RolesModel();
+					    $resultRol=$rol->getAll("nombre_rol");
+					    
+					    $controladores = new ControladoresModel();
+					    $resultCon=$controladores->getAll("nombre_controladores");
+					    
 						$nombre_controladores = "AsignacionTituloCredito";
 						$id_rol= $_SESSION['id_rol'];
 						$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -103,31 +81,27 @@ class AsignacionTituloCreditoController extends ControladorBase{
 						if (!empty($resultPer))
 						{
 							
-							
-							$resultEdit=$asignacionSecretario->getCondiciones($columnas, $tablas, $where, $id);
-							
-							
 							$traza=new TrazasModel();
 							$_nombre_controlador = "AsignacionTituloCredito";
 							$_accion_trazas  = "Editar";
-							$_parametros_trazas = $_id_asignacion_secretarios;
+							$_parametros_trazas ="";
 							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 							
 						}
 						else
 						{
 							$this->view("Error",array(
-									"resultado"=>"No tiene Permisos de Editar Asignacion Secretarios"
+									"resultado"=>"No tiene Permisos de Editar Asignacion Titutlo de Credito"
 						
 									
 							));
 						
-							exit();
+						
 						}
 						
 						
 						
-					}
+					
 					
 					if(isset($_POST["buscar"])){
 					
@@ -135,7 +109,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 						$contenido_busqueda=$_POST["contenido_busqueda"];
 					
 						$asignacion_titulo_credito = new AsignacionTitulosCreditoModel();
-							
+						
 							
 						$columnas = " clientes.id_clientes,
 							  titulo_credito.id_titulo_credito,
@@ -188,47 +162,10 @@ class AsignacionTituloCreditoController extends ControladorBase{
 					}
 					
 					
-			
-					if (isset ($_POST["ddl_resultado"]) && isset($_POST["ddl_busqueda"]))
-					{
-					
-						//busqueda  WHERE  B.id_secretario_asignacion_secretarios=28
-							
-					$columnas = "B.id_asignacion_secretarios AS id_asignacion_secretarios ,
-								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_secretario_asignacion_secretarios) AS secretarios,
-								(SELECT A.nombre_usuarios FROM usuarios A WHERE A.id_usuarios=B.id_abogado_asignacion_secretarios) AS impulsadores";
-					$tablas   = "asignacion_secretarios B";
-					//$where    = "B.id_asignacion_secretarios>0";
-					$where="";
-					$id       = "B.id_asignacion_secretarios";
-							
-					
-						$criterio = $_POST["ddl_resultado"];
-						$contenido = $_POST["ddl_busqueda"];
-					
-							
-						//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
-					
-						if ($contenido ==1)
-						{
-							$where="B.id_secretario_asignacion_secretarios=".$criterio;					
-							
-						}elseif ($contenido ==2)
-						{
-							$where="B.id_abogado_asignacion_secretarios=".$criterio;
-						}
-					
-							//Conseguimos todos los usuarios con filtros
-					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
-					
-						}
-					
-					
-					
 					
 					$this->view("AsignacionTituloCredito",array(
 							
-							"resultCon"=>$resultCon, "resultEdit"=>$resultEdit, "resultRol"=>$resultRol,"resultUsuarioSecretario"=>$resultUsuarioSecretario,"resultUsuarioImpulsor"=>$resultUsuarioImpulsor,"resultAsignacion"=>$resultAsignacion, "resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu, "resultDatos"=>$resultDatos
+							 "resultEdit"=>$resultEdit, "resultRol"=>$resultRol, "resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu, "resultDatos"=>$resultDatos
 					));
 			
 			
@@ -236,11 +173,11 @@ class AsignacionTituloCreditoController extends ControladorBase{
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Asignacion Secretarios"
+						"resultado"=>"No tiene Permisos de Acceso a Asignacion Titulo de Credito"
 			
 				));
 			
-			
+			exit();
 			}
 			
 		}
