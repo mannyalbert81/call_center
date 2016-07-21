@@ -1,45 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-21T17:15:31 -->
+<!-- 2016-07-21T17:16:18 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
-	<parameter name="_id_juicios" class="java.lang.Integer">
+	<parameter name="sql" class="java.lang.Integer">
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT juicios.id_juicios,
-					clientes.id_clientes,
-  					clientes.nombres_clientes, 
-  					clientes.identificacion_clientes, 
-  					ciudad.nombre_ciudad, 
-  					tipo_persona.nombre_tipo_persona, 
-  					juicios.juicio_referido_titulo_credito, 
-  					asignacion_secretarios_view.impulsores,
-  					asignacion_secretarios_view.secretarios,
-					titulo_credito.id_titulo_credito, 
-  					etapas_juicios.nombre_etapas, 
-  					tipo_juicios.nombre_tipo_juicios, 
-  					juicios.creado, 
-  					titulo_credito.total
-	
-					FROM  public.clientes, 
-					  public.ciudad, 
-					  public.tipo_persona, 
-					  public.juicios, 
-					  public.titulo_credito, 
-					  public.etapas_juicios, 
-					  public.tipo_juicios,
-					  public.asignacion_secretarios_view
-	
-					 WHERE ciudad.id_ciudad = clientes.id_ciudad AND
-					  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
-					  juicios.id_titulo_credito = titulo_credito.id_titulo_credito AND
-					  juicios.id_clientes = clientes.id_clientes AND
-					  juicios.id_tipo_juicios = tipo_juicios.id_tipo_juicios AND
-					  etapas_juicios.id_etapas_juicios = juicios.id_etapas_juicios AND
-					  juicios.id_usuarios= asignacion_secretarios_view.id_abogado AND
-					  juicios.id_juicios= $P{_id_juicios}]]>
+		<![CDATA[ $P{sql}]]>
 	</queryString>
 	<field name="id_juicios" class="java.lang.String"/>
 	<field name="id_clientes" class="java.lang.String"/>
