@@ -134,6 +134,8 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 				{
 					$firmas= new FirmasDigitalesModel();
 					$documentos = new DocumentosModel();
+					$tipo_notificacion = new TipoNotificacionModel();
+					$asignacion_secreatario= new AsignacionSecretariosModel();
 					
 					$ruta="Providencias";
 					$nombrePdf="";
@@ -144,6 +146,14 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 					
 				
 					$permisosFirmar=$permisos_rol->getPermisosFirmarPdfs($_id_usuarios);
+					
+					//para las notificaciones
+					$_nombre_tipo_notificacion="documentos";
+					$resul_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+					$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;
+					$descripcion="Documento Firmado por";
+					$numero_movimiento=0;
+					$id_impulsor="";
 						
 						
 					if($permisosFirmar['estado'])
@@ -174,10 +184,25 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 					
 										$firmas->UpdateBy("firma_impulsor='TRUE'", "documentos", "id_documentos='$id_documento'");
 										
+
+										//dirigir notificacion
+										
+											$id_impulsor=$_SESSION['id_usuarios'];
+											
+											$result_asg_secretario=$asignacion_secreatario->getBy("id_abogado_asignacion_secretarios='$id_impulsor'");
+												
+											if(!empty($result_asg_secretario))
+											{
+												$usuarioDestino=$result_asg_secretario[0]->id_secretario_asignacion_secretarios;
+												$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $nombrePdf);
+												
+											}
+											
+											
 										
 									}catch(Exception $e)
 									{
-										
+										echo $e->getMessage();
 									}
 								
 				

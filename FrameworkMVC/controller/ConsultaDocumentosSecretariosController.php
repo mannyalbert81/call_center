@@ -140,6 +140,9 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 				{
 					$firmas= new FirmasDigitalesModel();
 					$documentos = new DocumentosModel();
+					$tipo_notificacion = new TipoNotificacionModel();
+					$asignacion_secreatario= new AsignacionSecretariosModel();
+					
 					$ruta="";
 					$nombrePdf="";
 					
@@ -150,6 +153,15 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 					
 										
 					$permisosFirmar=$permisos_rol->getPermisosFirmarPdfs($_id_usuarios);
+					
+					//para las notificaciones 
+					$_nombre_tipo_notificacion="documentos";					
+					$resul_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");						
+					$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;					
+					$descripcion="Documento Firmado por";
+					$numero_movimiento=0;
+					$id_impulsor="";
+					
 					
 					
 					if($permisosFirmar['estado'])
@@ -180,9 +192,19 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 								
 								
 								try {
+									
 									$res=$firmas->FirmarPDFs( $destino, $nombrePdf, $id_firma,$id_rol);
 									
 									$firmas->UpdateBy("firma_secretario='TRUE'", "documentos", "id_documentos='$id_documento'");
+									
+									
+									//dirigir notificacion
+									$usuarioDestino=$resultDocumento[0]->id_usuario_registra_documentos;
+									
+									$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $nombrePdf);
+											
+									
+									
 																		
 								} catch (Exception $e) {
 									

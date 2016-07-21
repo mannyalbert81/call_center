@@ -345,7 +345,19 @@ public function index(){
 		return $array;
 	}
 	
+	public function prueba(){
 	
+		//Creamos el objeto usuario
+		$usuarios=new UsuariosModel();
+		 
+		//Conseguimos todos los usuarios
+		$allusers=$usuarios->getLogin();
+		 
+		//Cargamos la vista index y l e pasamos valores
+		$this->view("Bienvenida",array(
+				"allusers"=>$allusers
+		));
+	}
 	
 }
 ?>
