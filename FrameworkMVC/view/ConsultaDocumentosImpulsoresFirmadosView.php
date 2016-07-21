@@ -168,7 +168,7 @@
   			
   			
 		   			
-          <div class="col-xs-2">
+           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" readonly>
 			  		<?php foreach($resultDatos as $res) {?>

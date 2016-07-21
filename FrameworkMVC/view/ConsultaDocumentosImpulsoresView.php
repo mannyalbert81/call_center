@@ -197,7 +197,7 @@
 			  	<input type="text"  name="numero_juicio" id="numero_juicio" value="<?php echo $sel_numero_juicio;?>" class="form-control"/> 
 			    <div id="mensaje_nombres" class="errores"></div>
 
-         </div>
+          </div>
           
          
          <div class="col-xs-2 ">

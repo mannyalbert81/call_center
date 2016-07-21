@@ -186,17 +186,14 @@
           
           <li><a href="index.php?controller=Documentos&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Emisón y Aprobación de Providencias</span> </a>
             </li>   
-          <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Documentos Impulsores</span> </a>
-            </li>
             
-           <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Documentos Secretarios</span> </a>
-            </li>
-     
-          <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Documentos Impulsores Firmados</span> </a>
-            </li>
-            
-           <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Documentos Secretarios Firmados</span> </a>
-            </li>
+          <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Documentos Impulsores</span> </a>
+           </li>
+           
+            <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Documentos Secretarios</span> </a>
+           </li>
+          
+          
      
      
       </ul>

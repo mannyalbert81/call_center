@@ -5,7 +5,37 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 		parent::__construct();
 	}
 
-
+	public function index()
+	{
+		
+		session_start();
+		$resultSet="";
+		$documentos_secretarios=new DocumentosModel();
+	
+		if (isset(  $_SESSION['usuario_usuarios']) )
+		{
+			$permisos_rol = new PermisosRolesModel();
+			$nombre_controladores = "ConsultaDocumentosSecretarios";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $documentos_secretarios->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+	
+			if (!empty($resultPer))
+			{
+					
+				$this->view("AccesoDocumentosSecretarios",array(
+						"resultSet"=>$resultSet
+							
+				));
+			}else{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Ver Documentos Secretarios"
+				
+				));
+				
+				exit();
+			}
+		}
+	}
 
 	public function consulta_secretarios(){
 
@@ -251,10 +281,6 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 
 
 	
-	
-	
-	
-	
 	public function consulta_secretarios_firmados(){
 	
 		session_start();
@@ -381,19 +407,14 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 	
 					$resultSet=$documentos_secretarios->getCondiciones($columnas ,$tablas , $where_to, $id);
 	
-	
-				}
-	
-				
+	         }
 	
 				$this->view("ConsultaDocumentosSecretariosFirmados",array(
 						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu, "resultDatos"=>$resultDatos, "resultImpul"=>$resultImpul
 							
 				));
 	
-	
-	
-			}
+	         }
 			else
 			{
 				$this->view("Error",array(
@@ -415,10 +436,6 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 		}
 	
 	}
-	
-
-
-
 
 }
 ?>
