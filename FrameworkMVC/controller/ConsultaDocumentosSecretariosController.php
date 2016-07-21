@@ -436,8 +436,7 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 		}
 	
 	}
-<<<<<<< HEAD
-=======
+
 	
 	public function abrirPdf()
 	{
@@ -476,7 +475,7 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 	}
 
 
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
+
 
 }
 ?>
