@@ -26,6 +26,9 @@ class ReporteVehiculosEmbargadosController extends ControladorBase{
 	
 			$permisos_rol = new PermisosRolesModel();
 			
+			//notificaciones
+			$permisos_rol->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$nombre_controladores = "ReporteVehiculosEmbargados";
 			$id_rol= $_SESSION['id_rol'];
 			

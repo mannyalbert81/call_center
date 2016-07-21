@@ -48,6 +48,8 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			//notificaciones
+			$documentos_impulsores->MostrarNotificaciones($_SESSION['id_usuarios']);
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "ConsultaDocumentosImpulsores";
 			$id_rol= $_SESSION['id_rol'];

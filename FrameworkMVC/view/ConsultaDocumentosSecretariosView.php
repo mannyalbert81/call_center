@@ -254,7 +254,7 @@
 	    		<th style="color:#456789;font-size:80%;">Cliente</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
 	    		<th style="color:#456789;font-size:80%;">Estado Procesal</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Emisión>
+	    		<th style="color:#456789;font-size:80%;">Fecha Emisión</th>
 	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
 	    		
 	    		<th></th>
@@ -273,7 +273,8 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
 		            
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContDocumentosSubReport.php?id_documentos=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               <a href="<?php echo $helper->url("ConsultaDocumentosSecretarios","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               <a href="<?php echo $helper->url("ConsultaDocumentosSecretarios","rechazarPdf"); ?>&id=<?php echo $res->id_documentos; ?>" class="btn btn-danger" onClick="Ok()" style="font-size:65%;">Eliminar</a>
 		               </td> 
 		    		</tr>
 		        <?php } }else {  ?>
