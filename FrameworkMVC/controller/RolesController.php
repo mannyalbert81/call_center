@@ -27,7 +27,7 @@ class RolesController extends ControladorBase{
 			
 			
 			//Notificaciones
-			$marca_vehiculos->MostrarNotificaciones($_SESSION['id_usuarios']);
+			$roles->MostrarNotificaciones($_SESSION['id_usuarios']);
 			
 			$nombre_controladores = "Roles";
 			$id_rol= $_SESSION['id_rol'];
