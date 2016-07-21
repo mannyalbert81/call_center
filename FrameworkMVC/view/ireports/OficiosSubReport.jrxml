@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-19T12:44:34 -->
+<!-- 2016-07-21T18:12:29 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Oficio" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="78670156-5cbc-4292-9311-008def6ed94d">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
@@ -110,17 +110,17 @@ WHERE
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["hasta por la cantidad de USD$ "+$F{total}+" DOLARES DE LOS ESTADOS UNIDOS DE AMÉRICA), retención que se verificará en las inversiones que mantenga el (los) coactivado (s) en las instituciones bancarias y financieras que operan en el país, sean éstas cuentas corrientes, de ahorros, inversiones, depósitos a plazo, pólizas de acumulación y de cualquier otra operación en dicha institución, para lo cual deberá oficiarse a la Superintendencia de Bancos y Seguros. De conformidad con lo dispuesto en el Art. 428 del Código de Procedimiento Civil, las entidades bancarias sujetas al control de la Superintendencia de Bancos y Seguros, deberán informar a éste Juzgado en el término improrrogable de 72 horas el cumplimiento de la retención ordenada, sin perjuicio de que el secretario de la causa notifique directamente a las instituciones que conforman el Sistema Financiero Nacional. Notifíquese a la Dirección General de Registro Civil, Identificación y Cedulación, para que remitan a este Juzgado la tarjeta índice, datos de filiación, dirección domiciliaria y demás información que registre en sus archivos físicos y/o electrónicos referente al (los) coactivado (s). De conformidad con lo dispuesto en el Art. 952 del Código de Procedimiento Civil, una vez cumplida la notificación de las medidas cautelares ordenadas en este auto de pago, cítese al (los) coactivado (s) en legal y debida forma en el domicilio señalado en el título de crédito o en el lugar donde se lo encuentre, previniéndole de la obligación que tiene de señalar casilla judicial para recibir futuras notificaciones de conformidad con lo dispuesto en el Art. 75 del Código de Procedimiento Civil. Se ofrece reconocer los abonos o cancelaciones que legalmente se comprobaren haberse realizado.- Cúmplase, cítese y ofíciese.- f.) Ab. "+$F{liquidador}+" - Liquidador - Juez de Coactiva - Banco S.A., en Liquidación.- f.) Ab. "+$F{secretarios}+" - Secretario de Coactiva.- f.) Ab. "+$F{impulsores}+" -Abogado(a) Impulsor(a).- Lo certifico.- "]]></textFieldExpression>
+				<textFieldExpression><![CDATA["hasta por la cantidad de USD$ "+$F{total}+" DOLARES DE LOS ESTADOS UNIDOS DE AMÉRICA), retención que se verificará en las inversiones que mantenga el (los) coactivado (s) en las instituciones bancarias y financieras que operan en el país, sean éstas cuentas corrientes, de ahorros, inversiones, depósitos a plazo, pólizas de acumulación y de cualquier otra operación en dicha institución, para lo cual deberá oficiarse a la Superintendencia de Bancos y Seguros. De conformidad con lo dispuesto en el Art. 428 del Código de Procedimiento Civil, las entidades bancarias sujetas al control de la Superintendencia de Bancos y Seguros, deberán informar a éste Juzgado en el término improrrogable de 72 horas el cumplimiento de la retención ordenada, sin perjuicio de que el secretario de la causa notifique directamente a las instituciones que conforman el Sistema Financiero Nacional. Notifíquese a la Dirección General de Registro Civil, Identificación y Cedulación, para que remitan a este Juzgado la tarjeta índice, datos de filiación, dirección domiciliaria y demás información que registre en sus archivos físicos y/o electrónicos referente al (los) coactivado (s). De conformidad con lo dispuesto en el Art. 952 del Código de Procedimiento Civil, una vez cumplida la notificación de las medidas cautelares ordenadas en este auto de pago, cítese al (los) coactivado (s) en legal y debida forma en el domicilio señalado en el título de crédito o en el lugar donde se lo encuentre, previniéndole de la obligación que tiene de señalar casilla judicial para recibir futuras notificaciones de conformidad con lo dispuesto en el Art. 75 del Código de Procedimiento Civil. Se ofrece reconocer los abonos o cancelaciones que legalmente se comprobaren haberse realizado.- Cúmplase, cítese y ofíciese.- f.) Ab. "+$F{liquidador}+" - Liquidador - Juez de Coactiva - Banco S.A., en Liquidación.- f.) Ab. "+$F{secretarios}+" - Secretario de Coactiva.- f.) Ab. "+$F{impulsores}+" -Abogado(a) Impulsor(a).- Lo certifico.-  "]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="350" width="272" height="18" uuid="5b7ff99d-6f78-47c0-ad3f-3cfc1118128c"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="27" y="320" width="272" height="18" uuid="5b7ff99d-6f78-47c0-ad3f-3cfc1118128c"/>
 				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Particular que comunico a usted para los fines de ley.-]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="27" y="368" width="156" height="18" uuid="475c993f-9292-4e18-8ae2-88c1d95326d9"/>
+				<reportElement x="27" y="338" width="156" height="18" uuid="475c993f-9292-4e18-8ae2-88c1d95326d9"/>
 				<textElement textAlignment="Left">
 					<font isBold="true"/>
 				</textElement>
@@ -131,7 +131,7 @@ WHERE
 	<pageFooter>
 		<band height="55" splitType="Stretch">
 			<staticText>
-				<reportElement x="77" y="36" width="320" height="12" forecolor="#000000" uuid="5afcbdfa-70fc-48cf-80ab-c2d3c5afac58"/>
+				<reportElement x="97" y="36" width="320" height="12" forecolor="#000000" uuid="5afcbdfa-70fc-48cf-80ab-c2d3c5afac58"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
 				</textElement>
@@ -139,7 +139,4 @@ WHERE
 			</staticText>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
