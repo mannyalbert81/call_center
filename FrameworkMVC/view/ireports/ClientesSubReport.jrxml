@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-19T09:56:28 -->
+<!-- 2016-07-21T17:49:17 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -82,16 +82,6 @@ WHERE
 					<jr:codeExpression><![CDATA[$F{identificacion_clientes}]]></jr:codeExpression>
 				</jr:Code128>
 			</componentElement>
-			<componentElement>
-				<reportElement key="" positionType="Float" mode="Transparent" x="693" y="70" width="100" height="27" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="cb95614a-163e-4fe7-8a4a-ff01b03ca1e6">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.moduleWidth" value="pixel"/>
-				</reportElement>
-				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" moduleWidth="100.0" textPosition="bottom" verticalQuietZone="0.0">
-					<jr:codeExpression><![CDATA[$F{cedula_usuarios}]]></jr:codeExpression>
-				</jr:Code128>
-			</componentElement>
 		</band>
 	</title>
 	<pageHeader>
@@ -102,63 +92,63 @@ WHERE
 			<staticText>
 				<reportElement x="50" y="15" width="60" height="21" forecolor="#FFFFFF" uuid="f6a509eb-8679-4bf1-94ba-45b56f6f5a5e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ciudad]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="135" y="15" width="60" height="21" forecolor="#FFFFFF" uuid="d9462914-91b9-48b5-8a41-c961e97b8082"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombres]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="247" y="15" width="68" height="21" forecolor="#FFFFFF" uuid="3044fd5b-3e45-4891-bded-d9c0c4459b31"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CI / RUC]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="339" y="15" width="90" height="21" forecolor="#FFFFFF" uuid="bcd25db7-690a-4c27-b109-1b4d44606cce"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo Persona]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="737" y="13" width="50" height="21" forecolor="#FFFFFF" uuid="0e2ea34c-180b-42e9-be40-36d817e1c7e9"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha de Registro]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="564" y="15" width="60" height="21" forecolor="#FFFFFF" uuid="7543dca8-5a43-4e75-a119-d7337538768f"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Teléfono]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="660" y="15" width="60" height="21" forecolor="#FFFFFF" uuid="e89b413d-97cb-4444-9f84-5be2cf35275f"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Celular]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="448" y="15" width="70" height="21" forecolor="#FFFFFF" uuid="a17b235b-f5d2-4a1e-af7f-b808b7d4faa0"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Dirección]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="9" y="9" width="41" height="30" forecolor="#FFFFFF" uuid="085a732c-0faf-43b9-aee4-d3d0c9743356"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nº]]></text>
 			</staticText>
@@ -171,40 +161,64 @@ WHERE
 		<band height="39" splitType="Stretch">
 			<textField>
 				<reportElement x="52" y="0" width="60" height="10" uuid="1a8532e3-6510-42ed-aa1e-7a1a3684f270"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="110" y="0" width="138" height="10" uuid="3c6c7084-2c74-4014-b290-05b7d65558f2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="245" y="0" width="90" height="10" uuid="126379b3-77d6-487d-aad7-7788c37687db"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{identificacion_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="356" y="0" width="48" height="10" uuid="d6141f27-2746-4b4c-a893-3e60090e3864"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_tipo_persona}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="568" y="4" width="48" height="16" uuid="641ccdf6-1cae-4bfa-9374-0310a936d11e"/>
+				<reportElement x="568" y="1" width="48" height="9" uuid="641ccdf6-1cae-4bfa-9374-0310a936d11e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{telefono_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="660" y="4" width="54" height="16" uuid="df8c5e74-8d0b-4378-95ad-21a3b06a68d9"/>
+				<reportElement x="660" y="0" width="54" height="10" uuid="df8c5e74-8d0b-4378-95ad-21a3b06a68d9"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{celular_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="730" y="3" width="56" height="16" uuid="f04b7d77-9bd0-4673-b0e0-0164c1099565"/>
+				<reportElement x="731" y="0" width="56" height="10" uuid="f04b7d77-9bd0-4673-b0e0-0164c1099565"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{creado}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="420" y="0" width="130" height="10" uuid="0bd94fad-852c-4eda-a194-afe2dbe748b7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{direccion_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="9" y="0" width="41" height="10" uuid="76cb64b0-069f-43cb-aecb-32a69fdf5446"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Raavi"/>
+					<font fontName="Raavi" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
