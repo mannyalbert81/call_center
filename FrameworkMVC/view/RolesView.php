@@ -171,7 +171,7 @@
 		               
 		               <td>
 			           		<div class="right">
-			                    <a href="<?php echo $helper->url("Roles","index"); ?>&id_rol=<?php echo $res->id_rol; ?>" class="btn btn-warning" onClick="notificacion()" cstyle="font-size:65%;">Editar</a>
+			                    <a href="<?php echo $helper->url("Roles","index"); ?>&id_rol=<?php echo $res->id_rol; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Editar</a>
 			                </div>
 			            
 			             </td>
