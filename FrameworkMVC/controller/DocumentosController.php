@@ -359,5 +359,14 @@ public function index(){
 		));
 	}
 	
+	//funcion para los pdf rechazados por los secretarios
+	public function  pdfRechazado()
+	{
+		$archivo="";
+		$this->view("Error",array(
+				"resultado"=>"Archivo ".$archivo." fue eliminado"
+		));
+	}
+	
 }
 ?>

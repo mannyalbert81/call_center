@@ -57,6 +57,9 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
+			//notificaciones
+			$documentos_secretarios->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
 			$permisos_rol = new PermisosRolesModel();
 			$nombre_controladores = "ConsultaDocumentosSecretarios";
 			$id_rol= $_SESSION['id_rol'];
@@ -437,10 +440,67 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 		}
 		
 	
-		/*header('Content-type: application/pdf');
-		header('Content-Disposition: attachment; filename="'.$directorio.'"');
-		readfile($directorio);*/
 		
+	}
+	
+	public function rechazarPdf()
+	{
+		$documentos = new DocumentosModel();
+
+		$firmas= new FirmasDigitalesModel();
+		$documentos = new DocumentosModel();
+		$tipo_notificacion = new TipoNotificacionModel();
+		$asignacion_secreatario= new AsignacionSecretariosModel();
+	
+			
+		//para las notificaciones
+		$_nombre_tipo_notificacion="rechazado";
+		$resul_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+		$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;
+		$descripcion="Documento Rechazo por";
+		$numero_movimiento=0;
+		$id_impulsor="";
+	
+		if(isset($_GET['id']))
+		{
+	
+			$id_documento = $_GET ['id'];
+			$resultDocumento = $documentos->getBy ( "id_documentos='$id_documento'" );
+				
+				
+			if (! empty ( $resultDocumento )) {
+	
+				$nombrePdf = $resultDocumento [0]->nombre_documento;
+	
+				$nombrePdf .= ".pdf";
+	
+				$ruta = $resultDocumento [0]->ruta_documento;
+	
+				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
+	
+	
+				try {
+						
+					$eliminado=unlink($directorio);
+					$resultDocumento=$documentos->deleteById("id_documentos='$id_documento'");
+					$this->redirect("ConsultaDocumentosSecretarios","consulta_secretarios");
+					
+					//dirigir notificacion
+					$usuarioDestino=$resultDocumento[0]->id_usuario_registra_documentos;
+						
+					$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $nombrePdf);
+						
+				} catch (Exception $e)
+				{
+					$this->view("Error", array("resultado"=>"no se elimino el archivo <br>".$e->getMessage()));
+				}
+					
+			}
+	
+	
+		}
+	
+	
 	}
 
 
