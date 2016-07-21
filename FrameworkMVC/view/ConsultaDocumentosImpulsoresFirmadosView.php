@@ -87,33 +87,7 @@
 			});
         </script>
         
-      <script>
-	$(document).ready(function(){
-		
-			$("#firmar").click(function(){
-
-				  var selected = '';  
-		          
-			        $('.marcados').each(function(){
-			            if (this.checked) {
-			                selected +=$(this)+' esta '+$(this).val()+', ';
-			            }
-			        }); 
-
-			        if (selected != '') {
-			            return true;
-			        }
-			        else{
-			            alert('Seleccione Documento(s) a firmar.');
-			            return false;
-			        }
-
-			      
-			});
-	});
-        </script>
-        
-       
+    
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -218,7 +192,6 @@
 		 
 		 <?php if(!empty($resultSet))  {?>
 		 <a href="/FrameworkMVC/view/ireports/ContDocumentosGeneralReport.php?id_ciudad=<?php  echo $sel_id_ciudad ?>&identificacion=<?php  echo $sel_identificacion?>&numero_juicio=<?php  echo $sel_numero_juicio?>&id_usuarios=<?php  echo $sel_id_usuarios?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
-		 <input type="submit" value="Firmar" id="firmar" name="firmar" class="btn btn-info" style="margin-top: 10px;"/>          
 		  <?php } else {?>
 		  
 		  <?php } ?>
@@ -242,8 +215,7 @@
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	            <th style="color:#456789;font-size:80%;"></th>
-	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
+	            <th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Nº Juicio Referido</th>
 	    		<th style="color:#456789;font-size:80%;">Cliente</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
@@ -258,8 +230,7 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	        		
-	        		   <td> <input type="checkbox" name="file_firmar[]" id="file_firmar" class="marcados" value="<?php echo $res->id_documentos; ?>"/></td>
-	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
+	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
@@ -268,7 +239,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
 		            
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContDocumentosSubReport.php?id_documentos=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               <a href="<?php echo $helper->url("ConsultaDocumentosImpulsores","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
 		               </td> 
 		    		</tr>
 		        <?php } }else {  ?>

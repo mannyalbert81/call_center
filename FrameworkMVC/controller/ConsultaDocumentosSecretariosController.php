@@ -1,6 +1,6 @@
 <?php
 class ConsultaDocumentosSecretariosController extends ControladorBase{
-
+	
 	public function __construct() {
 		parent::__construct();
 	}
@@ -416,7 +416,41 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 	
 	}
 	
-
+	public function abrirPdf()
+	{
+		$documentos = new DocumentosModel();
+		
+		if(isset($_GET['id']))
+		{
+			
+			$id_documento = $_GET ['id'];
+			
+			$resultDocumento = $documentos->getBy ( "id_documentos='$id_documento'" );
+			
+			if (! empty ( $resultDocumento )) {
+				
+				$nombrePdf = $resultDocumento [0]->nombre_documento;
+				
+				$nombrePdf .= ".pdf";
+				
+				$ruta = $resultDocumento [0]->ruta_documento;
+				
+				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
+				
+				header('Content-type: application/pdf');
+				header('Content-Disposition: attachment; filename="'.$directorio.'"');
+				readfile($directorio);
+			}
+		
+		
+		}
+		
+	
+		/*header('Content-type: application/pdf');
+		header('Content-Disposition: attachment; filename="'.$directorio.'"');
+		readfile($directorio);*/
+		
+	}
 
 
 
