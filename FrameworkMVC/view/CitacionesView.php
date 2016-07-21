@@ -71,11 +71,8 @@
 		    
 		    $("#Guardar").click(function() 
 			{
-		    	
+		    
 		    	var fecha_citaciones= $("#fecha_citaciones").val();
-		    	var id_ciudad = $("#id_ciudad").val();
-		     	
-		    	var id_usuarioCitador = $("#id_usuarioCitador").val();
 		     	var nombre_persona_recibe_citaciones = $("#nombre_persona_recibe_citaciones").val();
 		    	var relacion_cliente_citaciones = $("#relacion_cliente_citaciones").val();
 		    	 	
@@ -92,31 +89,8 @@
 		    	{
 		    		$("#mensaje_fecha").fadeOut("slow"); //Muestra mensaje de error
 		            
-				}  
-		    	if (id_ciudad == 0)
-		    	{
-			    	
-		    		$("#mensaje_ciudad").text("Seleccione una ciudad");
-		    		$("#mensaje_ciudad").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_ciudad").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}	  
-		    	if (id_usuarioCitador == 0)
-		    	{
-			    	
-		    		$("#mensaje_usuarioCitador").text("Seleccione un Citador");
-		    		$("#mensaje_usuarioCitador").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_usuarioCitador").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}				
+				}    
+				
 		    	if (nombre_persona_recibe_citaciones == "")
 		    	{
 			    	
@@ -149,12 +123,6 @@
 		        $( "#fecha_citaciones" ).focus(function() {
 				  $("#mensaje_fecha").fadeOut("slow");
 			    });
-		        $( "#id_ciudad" ).focus(function() {
-					  $("#mensaje_ciudad").fadeOut("slow");
-				    });
-		        $( "#id_usuarioCitador" ).focus(function() {
-					  $("#mensaje_usuarioCitador").fadeOut("slow");
-				    });
 				
 				$( "#nombre_persona_recibe_citaciones" ).focus(function() {
 					$("#mensaje_recibe").fadeOut("slow");
@@ -213,58 +181,6 @@ $(document).ready(function() {
 	});
 	</script>
 
-
-
-
-    <script>
-	$(document).ready(function(){
-		
-		$("#id_ciudad").change(function(){
-
-            // obtenemos el combo de resultado combo 2
-           var $ddl_citador = $("#id_usuarioCitador");
-       	
-
-            // lo vaciamos
-           var ddl_ciudad = $(this).val();
-
-          
-            $ddl_citador.empty();
-
-          
-            if(ddl_ciudad != 0)
-            {
-            	
-            	 var datos = {
-                   	   
-           			   ciudad:$(this).val()
-                  };
-             
-            	
-         	   $.post("<?php echo $helper->url("Citaciones","returnCitadoresbyciudad"); ?>", datos, function(resultUsuarioCita) {
-
-         		 		$.each(resultUsuarioCita, function(index, value) {
-            		 	    $ddl_citador.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
-                    		 });
-
-         		 		 	 		   
-         		  }, 'json');
-
-
-            }
-            else
-            {
-                
-         	   $ddl_citador.empty();
-
-            }
-		//alert("hola;");
-		});
-		});
-	
-       
-
-	</script>
     </head>
     <body style="background-color: #d9e3e4;">
     
@@ -281,17 +197,16 @@ $(document).ready(function() {
        
        $sel_id_ciudad="";
        $sel_fecha_citacion="";
+       $sel_id_usuarios="";
        $sel_id_tipo_citaciones="";
-       $sel_nombre_persona_recibe_citaciones="";
-       $sel_relacion_cliente_citaciones="";
+       
        if($_SERVER['REQUEST_METHOD']=='POST' )
        {
        
        	$sel_id_ciudad=$_POST['id_ciudad'];
        	$sel_fecha_citacion=$_POST['fecha_citaciones'];
+       	$sel_id_usuarios=$_POST['id_usuarios'];
        	$sel_id_tipo_citaciones=$_POST['id_tipo_citaciones'];
-       	$sel_nombre_persona_recibe_citaciones=$_POST['nombre_persona_recibe_citaciones'];
-       	$sel_relacion_cliente_citaciones=$_POST['relacion_cliente_citaciones'];
        }
        
 		   
@@ -327,13 +242,10 @@ $(document).ready(function() {
 		   	<div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Ciudad</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
-			  	<option value="0"  > -- SIN ESPECIFICAR -- </option>
 					<?php foreach($resultCiu as $resCiu) {?>
 						<option value="<?php echo $resCiu->id_ciudad; ?>" <?php if($sel_id_ciudad==$resCiu->id_ciudad){echo "selected";}?> ><?php echo $resCiu->nombre_ciudad; ?> </option>
 				        <?php } ?>
-				</select> 
-				<div id="mensaje_ciudad" class="errores"></div>	   
-		    			  
+				</select> 			  
 			  </div>
 			  </div>
 			  
@@ -347,32 +259,26 @@ $(document).ready(function() {
 				</select> 			  
 			  </div>
 			  
-			  
-			  
-			  
-			  
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Citador Judicial</p>
-			  	<select name="id_usuarioCitador" id="id_usuarioCitador"  class="form-control">
-						<option value="0"  > -- SIN ESPECIFICAR -- </option>
-						
-				</select>	
-				<div id="mensaje_usuarioCitador" class="errores"></div>	  
+			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
+					<?php foreach($resultUsuarios as $res) {?>
+						<option value="<?php echo $res->id_usuarios; ?>" <?php if($sel_id_usuarios==$res->id_usuarios){echo "selected";}?> ><?php echo $res->nombre_usuarios; ?> </option>
+			        <?php } ?>
+				</select> 			  
 			  </div>
-			  
-			  
 			  </div>
 			  
 			  <div class="row" >
 		       <div class="col-xs-6 col-md-6" style="margin-top:20px;">
 			  	<p  class="formulario-subtitulo" >Nombre Persona Recibe</p>
-			  	<input type="text"  name="nombre_persona_recibe_citaciones" id="nombre_persona_recibe_citaciones" value="<?php echo $sel_nombre_persona_recibe_citaciones;?>" class="form-control"/> 
+			  	<input type="text"  name="nombre_persona_recibe_citaciones" id="nombre_persona_recibe_citaciones" value="" class="form-control"/> 
 			    <div id="mensaje_recibe" class="errores"></div>
 			  </div>
 			  
 			   <div class="col-xs-6 col-md-6" style="margin-top:20px;">
 			  	<p  class="formulario-subtitulo" >Relacion con Cliente</p>
-			  	<input type="text"  name="relacion_cliente_citaciones" id="relacion_cliente_citaciones" value="<?php echo $sel_relacion_cliente_citaciones;?>" class="form-control"/> 
+			  	<input type="text"  name="relacion_cliente_citaciones" id="relacion_cliente_citaciones" value="" class="form-control"/> 
 			    <div id="mensaje_relacion" class="errores"></div>
 			  </div>
 			 </div>

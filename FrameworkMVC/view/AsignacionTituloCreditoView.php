@@ -163,7 +163,7 @@
     
          
          
-         
+
       
 			
 			 <script >
@@ -191,6 +191,66 @@ $(document).ready(function() {
 
 	});
 	</script>
+
+        <script >
+		$(document).ready(function(){
+
+			$("#Buscar").click(function()
+
+			{
+
+				var contenido = $("#contenido").val();
+				var criterio= $("#criterio").val();
+
+				if (contenido != "" && criterio==0)
+		    	{
+					$("#mensaje_criterio").text("Seleccione filtro de busqueda");
+		    		$("#mensaje_criterio").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_criterio").fadeOut("slow"); //Muestra mensaje de error
+		    		
+		            
+				}    
+
+				if (criterio !=0 && contenido=="")
+		    	{
+
+			    	
+		    		$("#mensaje_contenido").text("Ingrese Contenido a buscar");
+		    		$("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    	
+		    		
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_contenido").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}    
+
+
+				
+
+		
+				
+			});
+
+
+			$( "#contenido" ).focus(function() {
+				  $("#mensaje_contenido").fadeOut("slow");
+			    });
+
+			$( "#criterio" ).focus(function() {
+				  $("#mensaje_criterio").fadeOut("slow");
+			    });
+		   
+			
+		});
+			</script >
+
         
     
     		
@@ -200,51 +260,106 @@ $(document).ready(function() {
 		    
 		    $("#Guardar").click(function() 
 			{
-		   
-		    	var id_ciudad = $("#id_ciudad").val();
-		     	var id_usuarioImpulsor = $("#id_usuarioImpulsor").val();
+		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
+
+		    	var identificacion_clientes = $("#identificacion_clientes").val();
+		    	var nombres_clientes = $("#nombres_clientes").val();
+		    	var telefono_clientes = $("#telefono_clientes").val();
+		    	var celular_clientes = $("#celular_clientes").val();
+		    	var direccion_clientes = $("#direccion_clientes").val();
 		    	
-		    	if (id_ciudad == 0)
+		    	
+		    	
+		    	if (identificacion_clientes == "")
 		    	{
 			    	
-		    		$("#mensaje_ciudad").text("Introduzca una Ciudad");
-		    		$("#mensaje_ciudad").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_identificacion_clientes").text("Introduzca una Identificacion");
+		    		$("#mensaje_identificacion_clientes").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_ciudad").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_identificacion_clientes").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}    
 				
-		    	if (id_usuarioImpulsor == 0)
+		    	if (nombres_clientes == "")
 		    	{
 			    	
-		    		$("#mensaje_impulsor").text("Introduzca un Impulsor");
-		    		$("#mensaje_impulsor").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_nombres_clientes").text("Introduzca un Nombre");
+		    		$("#mensaje_nombres_clientes").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_impulsor").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_nombres_clientes").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}  
 
+		    	if (telefono_clientes == "")
+		    	{
+			    	
+		    		$("#mensaje_telefono_clientes").text("Introduzca un Teléfono");
+		    		$("#mensaje_telefono_clientes").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_telefono_clientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				} 
+
+		    	if (celular_clientes == "")
+		    	{
+			    	
+		    		$("#mensaje_celular_clientes").text("Introduzca un Celular");
+		    		$("#mensaje_celular_clientes").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_celular_clientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+		    	if (direccion_clientes == "")
+		    	{
+			    	
+		    		$("#mensaje_direccion_clientes").text("Introduzca una Dirección");
+		    		$("#mensaje_direccion_clientes").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_direccion_clientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
 		    	
 
 		    					    
 
 			}); 
 
-		    $( "#id_ciudad" ).focus(function() {
-				  $("#mensaje_ciudad").fadeOut("slow");
+		    $( "#identificacion_clientes" ).focus(function() {
+				  $("#mensaje_identificacion_clientes").fadeOut("slow");
 			    });
 				
-		        $( "#id_usuarioImpulsor" ).focus(function() {
-				  $("#mensaje_impulsor").fadeOut("slow");
+		        $( "#nombres_clientes" ).focus(function() {
+				  $("#mensaje_nombres_clientes").fadeOut("slow");
 			    });
 
-		       
+		        $( "#telefono_clientes" ).focus(function() {
+					  $("#mensaje_telefono_clientes").fadeOut("slow");
+				    });
+		        $( "#celular_clientes" ).focus(function() {
+					  $("#mensaje_celular_clientes").fadeOut("slow");
+				    });
+		        $( "#direccion_clientes" ).focus(function() {
+					  $("#mensaje_direccion_clientes").fadeOut("slow");
+				    });
+				
 		
 				
 		      
@@ -306,32 +421,39 @@ $(document).ready(function() {
 		   	<div class="col-xs-5">
 			  	<p  class="formulario-subtitulo" >Ciudad</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
-			  	<option value="0"  > -- SIN ESPECIFICAR -- </option>
 					<?php foreach($resultCiu as $resCiu) {?>
 						<option value="<?php echo $resCiu->id_ciudad; ?>"  ><?php echo $resCiu->nombre_ciudad; ?> </option>
 			        <?php } ?>
-				</select>
-				<div id="mensaje_ciudad" class="errores"></div>	    			  
+				</select> 			  
 			  </div>
+			  
+			  
+		
 		  
 		    <div class="col-xs-5">
 			  <p  class="formulario-subtitulo" >Abogado(a)</p>
 	            	 <select name="id_usuarioImpulsor" id="id_usuarioImpulsor"  class="form-control">
 						<option value="0"  > -- SIN ESPECIFICAR -- </option>			
-					</select>
-					<div id="mensaje_impulsor" class="errores"></div>	   
-		        </div>
-		        
-		          
+								    	
+									</select>
+		   		   
+		    </div>
+			  
 			  <div class="col-xs-5" >
 			  <p style="color:#ffffff;" >-----</p>
-			  <input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
+			
+			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
 			  </div>
+			 
 			<div class="col-xs-1"  style="width: 400px;">
 			<hr>
 			</div>
-		
-		    <?php } ?>
+			 
+			
+			
+      
+             	
+		     <?php } ?>
     </div>
     
     
@@ -346,18 +468,25 @@ $(document).ready(function() {
             
            <div class="col-xs-4">
            <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
-               <?php foreach($resultMenu_busqueda as $val=>$desc) {?>
-                  <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
-               <?php } ?>
+                                    <?php foreach($resultMenu_busqueda as $val=>$desc) {?>
+                                         <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
+                                    <?php } ?>
+                                        
            </select>
            
            </div>
            
            <div class="col-xs-4" >
+
 		     	<input type="submit" id="buscar" name="buscar"    onclick="this.form.action='<?php echo $helper->url("AsignacionTituloCredito","index"); ?>'" value="buscar" class="btn btn-default"/>
+
+		
+			  	<input type="submit" id="buscar" name="buscar"   onClick="notificacion()" onclick="this.form.action='<?php echo $helper->url("AsignacionTituloCredito","Index"); ?>'" value="buscar" class="btn btn-default"/>
+
 			</div>
 		<div class="col-xs-12" style="margin: 10px;">	
-      </div>
+
+	</div>
 	<div class="col-xs-12">
       
       
@@ -386,9 +515,9 @@ $(document).ready(function() {
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->celular_clientes; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_corte; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>  </td>
+		                <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>  </td>
+		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_corte; ?>  </td>
+		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>  </td>
 		             
 		              
 		           	   <td>
@@ -406,11 +535,16 @@ $(document).ready(function() {
             ?>
             
        	</table>     
-	 </section>
-       </div>
+		     
+      </section>
+        
+        </div>
     </div>
+    
     </form>
-   </div>
+  
+
+    </div>
    </div>
      </body>  
     </html>   

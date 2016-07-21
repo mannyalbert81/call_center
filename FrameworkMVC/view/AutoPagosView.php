@@ -217,32 +217,6 @@
 		});
 			</script >
         
-        
-        <script >
-$(document).ready(function() {
-		
-		$('#Guardar').click(function(){
-	        var selected = '';  
-	          
-	        $('.marcados').each(function(){
-	            if (this.checked) {
-	                selected +=$(this)+' esta '+$(this).val()+', ';
-	            }
-	        }); 
-
-	        if (selected != '') {
-	            return true;
-	        }
-	        else{
-	            alert('Debes seleccionar un Auto de Pago.');
-	            return false;
-	        }
-
-	      
-	    }); 
-
-	});
-	</script>
     
     		
 			
