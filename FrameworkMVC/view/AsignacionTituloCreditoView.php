@@ -164,64 +164,7 @@
          
          
          
-        <script >
-		$(document).ready(function(){
-
-			$("#Buscar").click(function()
-
-			{
-
-				var contenido = $("#contenido").val();
-				var criterio= $("#criterio").val();
-
-				if (contenido != "" && criterio==0)
-		    	{
-					$("#mensaje_criterio").text("Seleccione filtro de busqueda");
-		    		$("#mensaje_criterio").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_criterio").fadeOut("slow"); //Muestra mensaje de error
-		    		
-		            
-				}    
-
-				if (criterio !=0 && contenido=="")
-		    	{
-
-			    	
-		    		$("#mensaje_contenido").text("Ingrese Contenido a buscar");
-		    		$("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    	
-		    		
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_contenido").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}    
-
-
-				
-
-		
-				
-			});
-
-
-			$( "#contenido" ).focus(function() {
-				  $("#mensaje_contenido").fadeOut("slow");
-			    });
-
-			$( "#criterio" ).focus(function() {
-				  $("#mensaje_criterio").fadeOut("slow");
-			    });
-		   
-			
-		});
-			</script >
+      
 			
 			 <script >
 $(document).ready(function() {
@@ -325,34 +268,7 @@ $(document).ready(function() {
         });
     </script>
     
-    <script>
-    $(document).ready(function(){
-        
- 		$("#buscar").click(function () {
-             
-             var criterio = $("#criterio_busqueda").val();
-             var contenido = $("#contenido_busqueda").val();
-             if(criterio!=0 && contenido==""){
-          	   $("#mensaje_contenido").text("Ingrese contenido");
-  	    	   $("#mensaje_contenido").fadeIn("slow"); //Muestra mensaje de error
-                 return false;
-                 }else if(criterio==0 && contenido!=""){
-               $("#mensaje_criterio").text("Selecione una busqueda");
-        	   $("#mensaje_criterio").fadeIn("slow");
-        	     return false;
-                 }else{
-                	 return true;
-                     }
-          });
-          
-          $( "#contenido_busqueda" ).focus(function() {
-  			  $("#mensaje_contenido").fadeOut("slow");
-  		    });
-          $( "#criterio_busqueda" ).focus(function() {
-  			  $("#mensaje_criterio").fadeOut("slow");
-  		    });
-        });
-    </script>
+    
     
     </head>
     <body style="background-color: #d9e3e4;">
@@ -425,7 +341,7 @@ $(document).ready(function() {
     		<div class="col-xs-4">
 			
            <input type="text"  name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
-           <div id="mensaje_contenido" class="errores"></div>
+          
             </div>
             
            <div class="col-xs-4">
@@ -434,11 +350,11 @@ $(document).ready(function() {
                   <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
                <?php } ?>
            </select>
-           <div id="mensaje_criterio" class="errores"></div>
+           
            </div>
            
            <div class="col-xs-4" >
-		     	<input type="submit" id="buscar" name="buscar"   onClick="notificacion()" onclick="this.form.action='<?php echo $helper->url("AsignacionTituloCredito","Index"); ?>'" value="buscar" class="btn btn-default"/>
+		     	<input type="submit" id="buscar" name="buscar"    onclick="this.form.action='<?php echo $helper->url("AsignacionTituloCredito","index"); ?>'" value="buscar" class="btn btn-default"/>
 			</div>
 		<div class="col-xs-12" style="margin: 10px;">	
       </div>
