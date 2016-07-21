@@ -184,8 +184,7 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 					
 										$firmas->UpdateBy("firma_impulsor='TRUE'", "documentos", "id_documentos='$id_documento'");
 										
-
-										//dirigir notificacion
+											//dirigir notificacion
 										
 											$id_impulsor=$_SESSION['id_usuarios'];
 											
