@@ -5,38 +5,7 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 		parent::__construct();
 	}
 
-	public function index()
-	{
-		
-		session_start();
-		$resultSet="";
-		$documentos_secretarios=new DocumentosModel();
 	
-		if (isset(  $_SESSION['usuario_usuarios']) )
-		{
-			$permisos_rol = new PermisosRolesModel();
-			$nombre_controladores = "ConsultaDocumentosSecretarios";
-			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $documentos_secretarios->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-	
-			if (!empty($resultPer))
-			{
-					
-				$this->view("AccesoDocumentosSecretarios",array(
-						"resultSet"=>$resultSet
-							
-				));
-			}else{
-				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Ver Documentos Secretarios"
-				
-				));
-				
-				exit();
-			}
-		}
-	}
-
 	public function consulta_secretarios(){
 
 		session_start();

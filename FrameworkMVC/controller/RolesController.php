@@ -24,8 +24,6 @@ class RolesController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 
-			
-			
 			//Notificaciones
 			$roles->MostrarNotificaciones($_SESSION['id_usuarios']);
 			
