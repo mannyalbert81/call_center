@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-21T17:16:18 -->
+<!-- 2016-07-21T17:45:59 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -8,7 +8,7 @@
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
 	<queryString>
-		<![CDATA[ $P{sql}]]>
+		<![CDATA[$P{sql}]]>
 	</queryString>
 	<field name="id_juicios" class="java.lang.String"/>
 	<field name="id_clientes" class="java.lang.String"/>
@@ -25,7 +25,7 @@
 	<field name="total" class="java.lang.String"/>
 	<field name="nombres_clientes" class="java.lang.String"/>
 	<title>
-		<band height="102" splitType="Stretch">
+		<band height="77" splitType="Stretch">
 			<rectangle>
 				<reportElement x="0" y="0" width="800" height="70" forecolor="#000000" backcolor="#000000" uuid="309f92f9-0c25-4218-b476-9f1c452ca0f7"/>
 			</rectangle>
@@ -63,16 +63,6 @@
 				</reportElement>
 				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" moduleWidth="100.0" textPosition="bottom" verticalQuietZone="0.0">
 					<jr:codeExpression><![CDATA[$F{identificacion_clientes}]]></jr:codeExpression>
-				</jr:Code128>
-			</componentElement>
-			<componentElement>
-				<reportElement key="" positionType="Float" mode="Transparent" x="693" y="70" width="100" height="27" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="cb95614a-163e-4fe7-8a4a-ff01b03ca1e6">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.moduleWidth" value="pixel"/>
-				</reportElement>
-				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" moduleWidth="100.0" textPosition="bottom" verticalQuietZone="0.0">
-					<jr:codeExpression><![CDATA[$F{cedula_usuarios}]]></jr:codeExpression>
 				</jr:Code128>
 			</componentElement>
 		</band>
