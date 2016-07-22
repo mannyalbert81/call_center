@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-19T11:17:40 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CitacionesReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4608033-e192-4760-aeb9-2c160b2277ee">
+<!-- 2016-07-21T19:01:11 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Citaciones" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="63306ce9-b0ed-428c-81f8-41c55bd08ecb">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
-	<parameter name="sql" class="java.lang.String"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
 	<queryString>
-		<![CDATA[ $P{sql} ]]>
+		<![CDATA[SELECT usuarios.nombre_usuarios,
+	tipo_citaciones.nombre_tipo_citaciones,
+	juicios.juicio_referido_titulo_credito,
+	citaciones.nombre_persona_recibe_citaciones,
+	citaciones.relacion_cliente_citaciones,
+	citaciones.fecha_citaciones,
+	ciudad.nombre_ciudad,
+	clientes.nombres_clientes,
+	clientes.identificacion_clientes,
+	clientes.direccion_clientes
+FROM citaciones,
+	clientes,
+	ciudad,
+	tipo_citaciones,
+	juicios,
+	usuarios
+WHERE 
+	 ciudad.id_ciudad = citaciones.id_ciudad 
+	 AND tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones 
+	 AND juicios.id_juicios = citaciones.id_juicios 
+	 AND juicios.id_clientes = clientes.id_clientes 
+	 AND usuarios.id_usuarios = citaciones.id_usuarios]]>
 	</queryString>
 	<field name="nombre_usuarios" class="java.lang.String"/>
 	<field name="nombre_tipo_citaciones" class="java.lang.String"/>
@@ -22,179 +42,68 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="60" splitType="Stretch"/>
-	</title>
-	<pageHeader>
-		<band splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="127" splitType="Stretch">
-			<staticText>
-				<reportElement x="50" y="81" width="130" height="30" uuid="d433a56d-d454-4c02-9022-cf7c0de750de"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[JUICIO COACTIVO #]]></text>
-			</staticText>
+		<band height="126" splitType="Stretch">
 			<textField>
-				<reportElement x="180" y="81" width="190" height="30" uuid="bbeb77b8-89d9-4fcc-ab71-46a9b9ae8212"/>
+				<reportElement x="30" y="69" width="320" height="30" uuid="57367cd5-f65d-45b1-b5d5-a4122bd1b3df"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["JUICIO COACTIVO # "+$F{juicio_referido_titulo_credito}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="0" width="550" height="30" uuid="67b21dbf-73e8-48e0-a082-d1c74daa9680"/>
+				<reportElement x="0" y="20" width="550" height="30" uuid="e60f54ba-5a24-467d-b1d1-ce076f653e9a"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="19" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SISTEMA COACTIVA ]]></text>
 			</staticText>
+			<image>
+				<reportElement x="420" y="10" width="120" height="50" uuid="bc6f0980-10f9-4cf0-b5cb-6960af6321a1"/>
+				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondo_blanco.jpg"]]></imageExpression>
+			</image>
 		</band>
-	</columnHeader>
+	</title>
 	<detail>
-		<band height="302" splitType="Stretch">
+		<band height="208" splitType="Stretch">
+			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="30" y="20" width="480" height="110" uuid="8139a562-6bc9-40aa-af61-026713d76c19"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Siento como tal, que hoy "+$F{fecha_citaciones}+" siendo las "+$F{fecha_citaciones}+" horas, dando cumplimiento a lo dispuesto en auto de pago dictado dentro del presente juicio, me constituí en las calles "+$F{direccion_clientes}+" canton "+$F{nombre_ciudad}+" con la finalidad de citar al (a) coactivado (a) "+$F{nombres_clientes}+" cerciorándome que se trata del domicilio del (a) coactivado (a), le entregué la "+$F{nombre_tipo_citaciones}+" de citación que contiene el auto de pago a "+$F{nombre_persona_recibe_citaciones}+" quien se identificó como "+$F{relacion_cliente_citaciones}+" del (a) coactivado (a). Lo certifico.-"]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="50" y="0" width="70" height="30" uuid="b6051b1a-b1e7-4be5-9337-31baf22bc23d"/>
+				<reportElement x="30" y="0" width="70" height="20" uuid="d0a4220a-77b5-44dc-bd72-163b0d4b1266"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[RAZÓN:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="50" y="30" width="130" height="20" uuid="9e658e93-186c-4e36-b4b5-e27ad92dd869"/>
-				<text><![CDATA[Siento como tal, que hoy]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="185" y="30" width="55" height="20" uuid="7ea8a7c0-7233-4f45-a0eb-999d5f819a05"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fecha_citaciones}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="290" y="30" width="60" height="20" uuid="52eb573b-cf75-4bcf-a324-cd04abdcef74"/>
-				<text><![CDATA[siendo las]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="450" y="30" width="80" height="20" uuid="9bf7cd90-9d2d-492e-9aeb-38318e897f41"/>
-				<textElement textAlignment="Justified"/>
-				<text><![CDATA[horas, dando]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="49" y="50" width="481" height="20" uuid="83ab78a6-da0b-4d32-b221-1fdad2e979d6"/>
-				<textElement textAlignment="Justified"/>
-				<text><![CDATA[cumplimiento a lo dispuesto en auto de pago dictado dentro del presente juicio, me]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="49" y="70" width="101" height="20" uuid="caea8a40-ca9d-4094-8992-1ea8d6fe5150"/>
-				<text><![CDATA[constituí en las calles]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="150" y="71" width="380" height="20" uuid="91254906-1512-4879-b739-e2acff291a16"/>
-				<textElement textAlignment="Justified">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{direccion_clientes}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="49" y="90" width="61" height="20" uuid="818c1b22-a788-4caf-88bc-8ef52dd7fa5e"/>
-				<text><![CDATA[canton]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="110" y="90" width="100" height="20" uuid="4630603c-4bf2-444d-be5a-c7ea6bd8efba"/>
-				<textElement>
-					<font isBold="true" isItalic="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="210" y="90" width="320" height="20" uuid="2acd6fb0-41be-43d3-be57-d2e7da2d323c"/>
-				<textElement textAlignment="Justified"/>
-				<text><![CDATA[con la finalidad de citar al (a) coactivado (a)]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="49" y="110" width="136" height="20" uuid="c4a2bab8-8b81-4ccd-b9d8-ff342f6884db"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="185" y="110" width="345" height="20" uuid="8a4d9216-2235-4fd0-aac9-ff9cb9dc5c22"/>
-				<textElement textAlignment="Justified"/>
-				<text><![CDATA[cerciorándome que se trata del domicilio del (a) coactivado (a),]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="50" y="130" width="101" height="20" uuid="e275e006-fd5f-4b96-a91a-110760186a63"/>
-				<textElement textAlignment="Justified"/>
-				<text><![CDATA[le entregué la]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="151" y="130" width="161" height="20" uuid="30815088-7256-4ee9-ab6f-62895cf6973d"/>
-				<textElement textAlignment="Center">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_tipo_citaciones}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="312" y="130" width="218" height="20" uuid="78973667-4c70-4592-b3e8-5d4da951f565"/>
-				<textElement textAlignment="Justified"/>
-				<text><![CDATA[de citación que contiene el auto de pago a]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="48" y="150" width="112" height="20" uuid="ffddd0af-460e-4363-9c05-7e40a8a6f167"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_persona_recibe_citaciones}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="160" y="150" width="125" height="20" uuid="2974f34e-e9c6-4ea6-a0ab-d66b998f628f"/>
-				<text><![CDATA[quien se identificó como]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="290" y="150" width="80" height="20" uuid="ed73871c-5927-471b-9a6e-c3894f79e61a"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{relacion_cliente_citaciones}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="370" y="150" width="160" height="20" uuid="f393e2eb-16eb-4691-91d6-1d62c63a70f4"/>
-				<textElement textAlignment="Justified"/>
-				<text><![CDATA[del (a) coactivado (a). Lo certifico.-]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="49" y="250" width="101" height="20" uuid="d585d237-0631-4d36-ba4e-fe31c37dcc95"/>
+				<reportElement x="30" y="170" width="101" height="20" uuid="a4b2809b-9705-45fa-a7db-74d91a94a810"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Citador Judicial]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="50" y="230" width="161" height="20" uuid="1562e677-658a-4eac-ae7f-a35517609f16"/>
+				<reportElement x="30" y="150" width="161" height="20" uuid="745385ec-c188-4c90-a403-70c466cd5b28"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="365" y="30" width="60" height="20" uuid="6b03478a-5f89-4200-954b-87f5a4dc8081"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[14:00:00]]></text>
-			</staticText>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="117" y="6" width="320" height="12" forecolor="#000000" uuid="f76cfb19-987f-4f84-9d19-683a43020e1c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-08T08:27:33 -->
+<!-- 2016-07-21T17:36:10 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VehiculosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5955712-b99a-4538-ad86-41065f296b63">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -37,7 +37,7 @@ FROM vehiculos_embargados
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="102" splitType="Stretch">
+		<band height="84" splitType="Stretch">
 			<rectangle>
 				<reportElement x="0" y="-2" width="800" height="70" forecolor="#000000" backcolor="#000000" uuid="e4690d77-0fd5-4b2f-aeea-e21f851f2bde"/>
 			</rectangle>
@@ -77,16 +77,6 @@ FROM vehiculos_embargados
 					<jr:codeExpression><![CDATA[$F{placa_vehiculos_embargados}]]></jr:codeExpression>
 				</jr:Code128>
 			</componentElement>
-			<componentElement>
-				<reportElement key="" positionType="Float" mode="Transparent" x="693" y="70" width="100" height="27" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="59d2c738-8248-4c6b-bb8f-15dd73ab989c">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.moduleWidth" value="pixel"/>
-				</reportElement>
-				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" evaluationTime="Report" moduleWidth="100.0" textPosition="bottom" verticalQuietZone="0.0">
-					<jr:codeExpression><![CDATA[$F{cedula_usuarios}]]></jr:codeExpression>
-				</jr:Code128>
-			</componentElement>
 		</band>
 	</title>
 	<pageHeader>
@@ -97,56 +87,56 @@ FROM vehiculos_embargados
 			<staticText>
 				<reportElement x="53" y="8" width="111" height="29" forecolor="#FFFFFF" uuid="2eea8030-e615-4e2b-8e36-426b331bb69f"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Identificacion]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="164" y="8" width="100" height="29" forecolor="#FFFFFF" uuid="77e6b7c5-6503-4d47-9902-771ad7a50ced"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="265" y="8" width="100" height="29" forecolor="#FFFFFF" uuid="6f74d458-c531-4cbb-a855-f9cc4e5c9e45"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Placa]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="366" y="8" width="100" height="29" forecolor="#FFFFFF" uuid="92e41c93-b05d-4bbe-9adf-27091332d5ce"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Modelo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="465" y="8" width="135" height="29" forecolor="#FFFFFF" uuid="ba48800c-8906-4b2e-9ffb-747299ba1b14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Observacion]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="590" y="8" width="100" height="29" forecolor="#FFFFFF" uuid="f0e7134b-57a3-454e-90a9-cdafaea192f4"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ciudad]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="690" y="8" width="100" height="29" forecolor="#FFFFFF" uuid="4c662b48-b156-45ea-b8db-62acd047b71d"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Dias Retenidos]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="9" y="9" width="41" height="30" forecolor="#FFFFFF" uuid="2570dbcb-4b25-49c1-b7df-6386bf9fac72"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Rockwell Extra Bold" isBold="true"/>
+					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nº]]></text>
 			</staticText>
@@ -209,7 +199,7 @@ FROM vehiculos_embargados
 			<textField>
 				<reportElement x="9" y="0" width="41" height="10" uuid="785f5ed6-a763-42cd-b39d-a46a74b7bd6d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Raavi"/>
+					<font fontName="Raavi" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
