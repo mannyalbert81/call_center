@@ -96,9 +96,11 @@
             </li>
             <li><a href="index.php?controller=Juicio&action=consulta"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"> Juicios</span> </a>
             </li>
-            <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Documentos Firmados Impulsores</span> </a>
+              <li><a href="index.php?controller=SeguimientoGastos&action=index"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"> Gastos</span> </a>
+            </li>
+            <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Providencias Impulsores</span> </a>
            </li>
-            <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Documentos Firmados Secretarios</span> </a>
+            <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Providencias Secretarios</span> </a>
            </li>
 			
 			
@@ -130,10 +132,11 @@
             </li>
           <li><a href="index.php?controller=AprobacionDistribucionGastos&action=index"><span class="glyphicon glyphicon-oil" aria-hidden="true"> Aprobacion Gastos</span> </a>
            </li>
-             <li><a href="index.php?controller=Oficios&action=index"><span class="glyphicon glyphicon-leaf" aria-hidden="true"> Oficios</span> </a>
+            <li><a href="index.php?controller=Oficios&action=index"><span class="glyphicon glyphicon-leaf" aria-hidden="true"> Generar Oficios</span> </a>
             </li>
-             <li><a href="index.php?controller=SeguimientoGastos&action=index"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"> Consulta de Gastos</span> </a>
+            <li><a href="index.php?controller=Oficios&action=consulta_firmar"><span class="glyphicon glyphicon-leaf" aria-hidden="true"> Firmar Oficios</span> </a>
             </li>
+           
 
 </ul>
 </li>
@@ -144,8 +147,8 @@
             
           <li><a href="index.php?controller=Citaciones&action=index"><span class=" glyphicon glyphicon-usd" aria-hidden="true"> Generar Citaciones</span> </a>
             </li>
-          <li><a href="index.php?controller=RegistroConvenioPagoSolicitud&action=index"><span class=" glyphicon glyphicon-usd" aria-hidden="true"> Convenio Pago Solicitud</span> </a>
-            </li>   
+              <li><a href="index.php?controller=Citaciones&action=consulta_firmar"><span class="glyphicon glyphicon-link" aria-hidden="true"> Firmar Citaciones</span> </a>
+            </li>
                      
       </ul>
       </li>
@@ -189,13 +192,13 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Documentos" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
           
-          <li><a href="index.php?controller=Documentos&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Emisón y Aprobación de Providencias</span> </a>
+          <li><a href="index.php?controller=Documentos&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Emisón de Providencias</span> </a>
             </li>   
             
-          <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Documentos Impulsores</span> </a>
+          <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Providencias Impulsores</span> </a>
            </li>
            
-            <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Documentos Secretarios</span> </a>
+            <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Providencias Secretarios</span> </a>
            </li>
           
           
