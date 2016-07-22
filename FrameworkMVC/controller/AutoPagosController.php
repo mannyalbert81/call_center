@@ -40,28 +40,7 @@ class AutoPagosController extends ControladorBase{
 			
 		
 			
-			
-			$columnas = " clientes.id_clientes, 
-						  titulo_credito.id_titulo_credito, 
-						  clientes.identificacion_clientes, 
-						  clientes.nombres_clientes, 
-						  clientes.celular_clientes, 
-						  titulo_credito.total, 
-						  titulo_credito.fecha_corte, 
-						  titulo_credito.id_ciudad, 
-						  ciudad.nombre_ciudad";
-			
-			$tablas   = "public.titulo_credito, 
-						  public.clientes, 
-						  public.ciudad";
-			
-			$where    = "clientes.id_clientes = titulo_credito.id_clientes AND
-                         ciudad.id_ciudad = titulo_credito.id_ciudad";
-			
-			$id       = "titulo_credito.id_titulo_credito";
-				
-			
-			$resultDatos=$asignacion_titulo_credito->getCondiciones($columnas ,$tablas ,$where, $id);
+			$resultDatos="";
 			
 			
 			$resultPer = $permisos_rol->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );

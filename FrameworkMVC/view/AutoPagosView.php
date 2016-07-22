@@ -373,7 +373,7 @@
            <div id="mensaje_contenido_busqueda" class="errores"></div>
             </div>
             
-           <div class="col-xs-4">
+           <div class="col-xs-3">
            <select name="criterio_busqueda" id="criterio_busqueda"  class="form-control">
                                     <?php foreach($resultMenu_busqueda as $val=>$desc) {?>
                                          <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
@@ -383,31 +383,22 @@
            <div id="mensaje_criterio" class="errores"></div>
            </div>
            
-           <div class="col-xs-4" >
-		
-			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("AutoPagos","index"); ?>'" value="buscar"  class="btn btn-default"/>
+           <div class="col-xs-2" >
+		          <input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("AutoPagos","index"); ?>'" value="buscar"  class="btn btn-default"/>
 			</div>
-		<div class="col-xs-12" style="margin: 10px;">	
-
-	</div>
-	<div class="col-xs-12">
-      
-      
-        
-        <div class="col-lg-12">
-		 <div class="col-lg-9"></div>
-		 <div class="col-lg-3">
+			<div class="col-lg-3">
 		 <span class="form-control" style="margin-bottom:0px;"><strong>Registros:</strong><?php if(!empty($resultDatos)) echo "  ".count($resultDatos);?></span>
 		 </div>
-		 </div>
-		 <div class="col-lg-12">
+		
+	<div class="col-xs-12">
+       <div class="col-lg-12">
 		 
 		 
-       <section   style="height:400px;overflow-y:scroll;">
+       <section   style="height:400px; width:600px; overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" class="checkbox"> </th>
-	    		<th style="color:#456789;font-size:80%;">Id</th>
+	    		<th style="color:#456789;font-size:80%;">Nº Titulo Credito</th>
 	    		<th style="color:#456789;font-size:80%;">Numero de Identifiación</th>
 	    		<th style="color:#456789;font-size:80%;">Nombres Cliente</th>
 	    		<th style="color:#456789;font-size:80%;">Celular Cliente</th>
