@@ -552,6 +552,11 @@ class OficiosController extends ControladorBase{
 	
 	
 				}
+				
+				if(isset($_POST['']))
+				{
+					
+				}
 	
 	
 	
@@ -560,6 +565,9 @@ class OficiosController extends ControladorBase{
 						"resultSet"=>$resultSet,"resultUsu"=>$resultUsu
 							
 				));
+				
+				
+				
 	
 	
 	

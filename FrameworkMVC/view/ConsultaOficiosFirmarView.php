@@ -209,7 +209,7 @@
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	            
+	            <th style="color:#456789;font-size:80%;"><b></b></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Nº Oficio</th>
 	    		<th style="color:#456789;font-size:80%;">Nº Juicio</th>
@@ -225,9 +225,9 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	        		
-	        		  
+	        		   <td> <input type="checkbox" name="file_firmar[]" id="file_firmar" class="marcados" value="<?php echo $res->id_documentos; ?>"/>      </td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_oficios; ?></td>
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_oficios; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->numero_oficios; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
