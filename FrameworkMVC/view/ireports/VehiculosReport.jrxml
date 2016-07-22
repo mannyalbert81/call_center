@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-21T17:35:06 -->
+<!-- 2016-07-21T18:49:23 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VehiculosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5955712-b99a-4538-ad86-41065f296b63">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -62,7 +62,7 @@ FROM vehiculos_embargados
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<image>
-				<reportElement x="1" y="-2" width="209" height="69" uuid="380adc80-4e5d-404e-8eec-a2edb87eb94e"/>
+				<reportElement x="1" y="-2" width="179" height="70" uuid="380adc80-4e5d-404e-8eec-a2edb87eb94e"/>
 				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
 			</image>
 			<componentElement>
@@ -201,24 +201,24 @@ FROM vehiculos_embargados
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="332" y="10" width="130" height="20" uuid="3f44559f-65f5-4042-9f1e-960dd75ac02f"/>
-				<textElement>
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[NUMERO DE REGISTROS:]]></text>
-			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="20" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<textField evaluationTime="Page">
-				<reportElement x="462" y="-5" width="41" height="20" uuid="3174fe31-cfb3-44a1-9723-f1f0b136709e"/>
+				<reportElement x="462" y="0" width="41" height="20" uuid="3174fe31-cfb3-44a1-9723-f1f0b136709e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Raavi" size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="332" y="1" width="130" height="20" uuid="d823f56c-67d3-4e75-9b7e-93044fbe7fbb"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NUMERO DE REGISTROS:]]></text>
+			</staticText>
 		</band>
 	</columnFooter>
 	<pageFooter>

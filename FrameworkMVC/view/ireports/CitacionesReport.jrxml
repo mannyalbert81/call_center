@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-21T18:36:20 -->
+<!-- 2016-07-21T19:01:11 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Citaciones" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="63306ce9-b0ed-428c-81f8-41c55bd08ecb">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
@@ -26,8 +26,7 @@ WHERE
 	 AND tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones 
 	 AND juicios.id_juicios = citaciones.id_juicios 
 	 AND juicios.id_clientes = clientes.id_clientes 
-	 AND usuarios.id_usuarios = citaciones.id_usuarios
-]]>
+	 AND usuarios.id_usuarios = citaciones.id_usuarios]]>
 	</queryString>
 	<field name="nombre_usuarios" class="java.lang.String"/>
 	<field name="nombre_tipo_citaciones" class="java.lang.String"/>
@@ -58,6 +57,10 @@ WHERE
 				</textElement>
 				<text><![CDATA[SISTEMA COACTIVA ]]></text>
 			</staticText>
+			<image>
+				<reportElement x="420" y="10" width="120" height="50" uuid="bc6f0980-10f9-4cf0-b5cb-6960af6321a1"/>
+				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondo_blanco.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>
