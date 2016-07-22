@@ -249,9 +249,6 @@ class CitacionesController extends ControladorBase{
 			 						 			
 			 			
 
-			 			$this->view("Error",array(
-			 					"resultado"=>"entro ->". print_r($resultado)." ".print_r($res)
-			 			));
 			 			
 			 		} catch (Exception $e)
 			 		{
