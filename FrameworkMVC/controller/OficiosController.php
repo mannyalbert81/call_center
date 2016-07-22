@@ -200,15 +200,23 @@ class OficiosController extends ControladorBase{
 			$oficios=new OficiosModel();
 				
 			if (isset ($_POST["Guardar"]) )
-				
 			{
-			 $_array_juicios = $_POST["id_juicios"];
-			$_id_entidades = $_POST["id_entidades"];
-			$_id_usuario_registra_oficios   = $_SESSION['id_usuarios'];
+				$_estado="Guardar";
+					
+				$consecutivo= new ConsecutivosModel();
+				$resultConsecutivo= $consecutivo->getBy("documento_consecutivos='OFICIOS'");
+				$identificador=$resultConsecutivo[0]->real_consecutivos;
+				
+				$repositorio_documento="Oficios";					
+				$nombre_oficio=$repositorio_documento.$identificador;
+				
+			 	$_array_juicios = $_POST["id_juicios"];
+				$_id_entidades = $_POST["id_entidades"];
+				$_id_usuario_registra_oficios  = $_SESSION['id_usuarios'];
 				
 					foreach($_array_juicios  as $id  )
 					{
-						if (!empty($id) )
+						if (!empty($id))
 						{
 							//busco si exties este nuevo id
 							try
@@ -230,7 +238,9 @@ class OficiosController extends ControladorBase{
 								
 								
 								$funcion = "ins_oficios";
-								$parametros = "'$numero_oficio', '$_id_juicios', '$_id_entidades', '$_id_usuario_registra_oficios' ";
+								//parametros
+								//, , , _,  ,  character varying,  character varying
+								$parametros = "'$numero_oficio', '$_id_juicios', '$_id_entidades', '$_id_usuario_registra_oficios','$identificador','$nombre_oficio','$repositorio_documento' ";
 								$oficios->setFuncion($funcion);
 		                        $oficios->setParametros($parametros);
 					            $resultado=$oficios->Insert();
@@ -241,6 +251,9 @@ class OficiosController extends ControladorBase{
 					            $where="id_prefijos='$id_prefijo'";
 					             
 					            $resultado=$prefijos->UpdateBy($colval, $tabla, $where);
+					            $res=$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='OFICIOS'");
+					            
+					           
 		                      
 							} catch (Exception $e)
 							{
@@ -248,20 +261,33 @@ class OficiosController extends ControladorBase{
 										"resultado"=>"Eror al Asignar ->". $id
 								));
 							}
+							
+							$traza=new TrazasModel();
+							$_nombre_controlador = "Oficios";
+							$_accion_trazas  = "Guardar";
+							$_parametros_trazas = $numero_oficio;
+							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+							
+							
+							$host  = $_SERVER['HTTP_HOST'];
+							$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+							
+							print "<script language='JavaScript'>
+							setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_oficio','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+							</script>";
+								
+							print("<script>window.location.replace('index.php?controller=Oficios&action=index');</script>");
 								
 						}
 					
 					}
 					
-				$traza=new TrazasModel();
-				$_nombre_controlador = "Oficios";
-				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_nombre_oficios;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				
+				
 				
 				}
 			 
-			$this->redirect("Oficios", "index");
+			//$this->redirect("Oficios", "index");
 
 		}
 		else
