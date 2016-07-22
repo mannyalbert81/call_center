@@ -134,9 +134,9 @@
        <?php include("view/modulos/menu.php"); ?>
        
        <?php
-       $resultMenu=array(1=>"Cheque",2=>"Reembolso");
+
        $resultGastos=array(1=>"Oficios",2=>"Citaciones",3=>"Otros");
-       $resultTipoDocumento=array(0=>"--Seleccione--",1=>"Cheque",2=>"Factura",3=>"NA");
+
       
 		?>
  
@@ -211,10 +211,8 @@
         	
 		 </div>
 		 
-		 
 		 <div class="col-lg-12">
-		 
-	
+		
 		 <span class="form-control">registros:<?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
@@ -250,17 +248,10 @@
            
        	</table>     
       </section>
-		 
-		 		 
 		 </div>
-		 
-		
-		
-      
-       </form>
+		 </form>
      
       </div>
-     
   </div>
       <!-- termina
        busqueda  -->

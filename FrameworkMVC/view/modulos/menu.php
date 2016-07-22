@@ -17,7 +17,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" ><?php echo " Administración" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -39,7 +38,6 @@
 			</li>
 			<li><a href="index.php?controller=Repositorio&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Gestion Repositorios</span> </a>
 			</li>
-			
 		</ul>
         </li>
 
@@ -54,23 +52,20 @@
             </li>
             <li><a href="index.php?controller=FirmasDigitales&action=firmarDocumento"><span class="glyphicon glyphicon-adjust" aria-hidden="true"> Firmar Documento</span> </a>
             </li>
-             <li><a href="index.php?controller=AsignacionTituloCredito&action=index"><span class="glyphicon glyphicon-adjust" aria-hidden="true"> Asignar Titulo Credito</span> </a>
+            <li><a href="index.php?controller=AsignacionTituloCredito&action=index"><span class="glyphicon glyphicon-adjust" aria-hidden="true"> Asignar Titulo Credito</span> </a>
             </li>
             <li><a href="index.php?controller=ReasignarTitulo&action=index"><span class="glyphicon glyphicon-edit" aria-hidden="true"> Reasignar Titulo Credito</span> </a>
             </li>
-         
-                     </ul>
+         </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-          
-
             <li><a href="index.php?controller=TipoJuicios&action=index"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"> Tipo de Juicios</span> </a>
 			</li>
 			<li><a href="index.php?controller=EstadosTitulosCredito&action=index"><span class="glyphicon glyphicon-collapse-up" aria-hidden="true"> Estado Titulo Credito</span> </a>
 			</li>
-             <li><a href="index.php?controller=EstadosProcesales&action=index"><span class="glyphicon glyphicon-log-in" aria-hidden="true"> Estado Procesal</span> </a>
+            <li><a href="index.php?controller=EstadosProcesales&action=index"><span class="glyphicon glyphicon-log-in" aria-hidden="true"> Estado Procesal</span> </a>
             </li>
             <li><a href="index.php?controller=EtapasJuicios&action=index"><span class="glyphicon glyphicon-subtitles" aria-hidden="true"> Etapas Juicios</span> </a>
             </li>
@@ -78,31 +73,28 @@
             </li>
             <li><a href="index.php?controller=EstAutoPagoJuicios&action=index"><span class="glyphicon glyphicon-education" aria-hidden="true"> Estado Auto de Pago</span> </a>
             </li>
-             <li><a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
+            <li><a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
 			</li>
-          
           </ul>
         </li>
 
          <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Consultas" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-          
           <li><a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-save-file" aria-hidden="true"> Auditoria del Sistema</span> </a>
-            </li>
+          </li>
           <li><a href="index.php?controller=Citaciones&action=consulta"><span class="glyphicon glyphicon-link" aria-hidden="true"> Citaciones</span> </a>
-            </li>
-           <li><a href="index.php?controller=Oficios&action=consulta"><span class="glyphicon glyphicon-copy" aria-hidden="true"> Oficios</span> </a>
-            </li>
-            <li><a href="index.php?controller=Juicio&action=consulta"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"> Juicios</span> </a>
-            </li>
-              <li><a href="index.php?controller=SeguimientoGastos&action=index"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"> Gastos</span> </a>
-            </li>
-            <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Providencias Impulsores</span> </a>
-           </li>
-            <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Providencias Secretarios</span> </a>
-           </li>
-			
+          </li>
+          <li><a href="index.php?controller=Oficios&action=consulta"><span class="glyphicon glyphicon-copy" aria-hidden="true"> Oficios</span> </a>
+          </li>
+          <li><a href="index.php?controller=Juicio&action=consulta"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"> Juicios</span> </a>
+          </li>
+          <li><a href="index.php?controller=SeguimientoGastos&action=index"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"> Gastos</span> </a>
+          </li>
+          <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Providencias Impulsores</span> </a>
+          </li>
+          <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Providencias Secretarios</span> </a>
+          </li>
 			
 </ul>
 </li>
@@ -110,33 +102,28 @@
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Juicios" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-          
           <li><a href="index.php?controller=Juicio&action=index"><span class="glyphicon glyphicon-sort" aria-hidden="true"> Seguimiento Juicio</span> </a>
-            </li>
-         
-         <li><a href="index.php?controller=AutoPagos&action=index"><span class="glyphicon glyphicon-filter" aria-hidden="true"> Auto Pagos</span> </a>
-            </li>
-            <li><a href="index.php?controller=AprobacionAutoPago&action=index"><span class="glyphicon glyphicon-tasks" aria-hidden="true"> Aprobacion Auto Pagos</span> </a>
-            </li>
-        		 <li><a href="index.php?controller=ImpresionAutoPago&action=index"><span class=" glyphicon glyphicon-triangle-bottom" aria-hidden="true"> Impresion Auto Pagos</span> </a>
-            </li>
-
-           </ul>
+          </li>
+          <li><a href="index.php?controller=AutoPagos&action=index"><span class="glyphicon glyphicon-filter" aria-hidden="true"> Auto Pagos</span> </a>
+          </li>
+          <li><a href="index.php?controller=AprobacionAutoPago&action=index"><span class="glyphicon glyphicon-tasks" aria-hidden="true"> Aprobacion Auto Pagos</span> </a>
+          </li>
+    	  <li><a href="index.php?controller=ImpresionAutoPago&action=index"><span class=" glyphicon glyphicon-triangle-bottom" aria-hidden="true"> Impresion Auto Pagos</span> </a>
+          </li>
+        </ul>
            </li>
 
 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Gastos" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-          
           <li><a href="index.php?controller=DistribucionGastos&action=index"><span class="glyphicon glyphicon-text-background" aria-hidden="true"> Distribucion Gastos</span> </a>
-            </li>
+          </li>
           <li><a href="index.php?controller=AprobacionDistribucionGastos&action=index"><span class="glyphicon glyphicon-oil" aria-hidden="true"> Aprobacion Gastos</span> </a>
-           </li>
-            <li><a href="index.php?controller=Oficios&action=index"><span class="glyphicon glyphicon-leaf" aria-hidden="true"> Generar Oficios</span> </a>
-            </li>
-            <li><a href="index.php?controller=Oficios&action=consulta_firmar"><span class="glyphicon glyphicon-leaf" aria-hidden="true"> Firmar Oficios</span> </a>
-            </li>
-           
+          </li>
+          <li><a href="index.php?controller=Oficios&action=index"><span class="glyphicon glyphicon-leaf" aria-hidden="true"> Generar Oficios</span> </a>
+          </li>
+          <li><a href="index.php?controller=Oficios&action=consulta_firmar"><span class="glyphicon glyphicon-leaf" aria-hidden="true"> Firmar Oficios</span> </a>
+          </li>
 
 </ul>
 </li>
@@ -144,67 +131,46 @@
 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Citaciones" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            
           <li><a href="index.php?controller=Citaciones&action=index"><span class=" glyphicon glyphicon-usd" aria-hidden="true"> Generar Citaciones</span> </a>
-            </li>
-              <li><a href="index.php?controller=Citaciones&action=consulta_firmar"><span class="glyphicon glyphicon-link" aria-hidden="true"> Firmar Citaciones</span> </a>
-            </li>
-                     
+          </li>
+          <li><a href="index.php?controller=Citaciones&action=consulta_firmar"><span class="glyphicon glyphicon-link" aria-hidden="true"> Firmar Citaciones</span> </a>
+          </li>
       </ul>
       </li>
       
 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Reportes" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-           
-             <li><a href="/FrameworkMVC/view/ireports/ContClientesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-home" aria-hidden="true"> Clientes</span> </a>
-           </li>
-            
+            <li><a href="/FrameworkMVC/view/ireports/ContClientesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-home" aria-hidden="true"> Clientes</span> </a>
+            </li>
             <li><a href="/FrameworkMVC/view/ireports/ContUsuariosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-file" aria-hidden="true"> Usuarios</span> </a>
             </li>  
-            
             <li><a href="/FrameworkMVC/view/ireports/ContVehiculosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class=" glyphicon glyphicon-print" aria-hidden="true"> Vehiculos Embargados</span> </a>
             </li>   
-                                  
             <li><a href="/FrameworkMVC/view/ireports/ContAdministradorGastosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> Administrador de Gastos</span> </a>
-             </li>
-             
+            </li>
             <li><a href="/FrameworkMVC/view/ireports/ContHonorariosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-th" aria-hidden="true"> Honorarios</span> </a>
             </li>
-            
             <li><a href="/FrameworkMVC/view/ireports/ContNotificacionesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> Notificaciones</span> </a>
             </li>
-            
             <li><a href="/FrameworkMVC/view/ireports/ContAsignacionSecretariosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-stop" aria-hidden="true"> Asignacion Secretarios</span> </a>
             </li>
-            
             <li><a href="/FrameworkMVC/view/ireports/ContTrazasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Auditoria del Sistema</span> </a>
             </li>
-             <li><a href="/FrameworkMVC/view/ireports/ContJuiciosSubReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Juicios</span> </a>
+            <li><a href="/FrameworkMVC/view/ireports/ContJuiciosSubReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Juicios</span> </a>
             </li>
-            
-             
-           
       </ul>
       </li>
       
 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Documentos" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-          
           <li><a href="index.php?controller=Documentos&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Emisón de Providencias</span> </a>
-            </li>   
-            
+          </li>   
           <li><a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Providencias Impulsores</span> </a>
-           </li>
-           
-            <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Providencias Secretarios</span> </a>
-           </li>
-          
-          
-     
-     
-      </ul>
+          </li>
+          <li><a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Providencias Secretarios</span> </a>           </li>
+     </ul>
       </li>
 </ul>
     </div><!-- /.navbar-collapse -->

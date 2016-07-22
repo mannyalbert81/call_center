@@ -37,20 +37,9 @@ class CitacionesController extends ControladorBase{
 		$citaciones= new CitacionesModel();
 
 
-		$columnas = " clientes.id_clientes,
-				juicios.id_juicios,
-								  clientes.identificacion_clientes,
-								  clientes.nombres_clientes,
-								  juicios.juicio_referido_titulo_credito";
+		
 
-		$tablas   = " public.clientes,
-                                  public.juicios";
-
-		$where    = "juicios.id_clientes = clientes.id_clientes";
-
-		$id       = "juicios.juicio_referido_titulo_credito";
-
-		$resultDatos=$citaciones->getCondiciones($columnas ,$tablas ,$where, $id);
+		$resultDatos="";
 
 		session_start();
 
