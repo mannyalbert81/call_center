@@ -445,6 +445,8 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 	
 	public function rechazarPdf()
 	{
+		session_start();
+		
 		$documentos = new DocumentosModel();
 
 		$firmas= new FirmasDigitalesModel();
@@ -483,13 +485,16 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 						
 					$eliminado=unlink($directorio);
 					$resultDocumento=$documentos->deleteById("id_documentos='$id_documento'");
-					$this->redirect("ConsultaDocumentosSecretarios","consulta_secretarios");
+					
 					
 					//dirigir notificacion
 					$usuarioDestino=$resultDocumento[0]->id_usuario_registra_documentos;
 						
 					$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $nombrePdf);
-						
+										
+					//$this->view("Error", array("resultado"=>"no se elimino el archivo <br>".print_r($result_notificaciones)));
+					//$this->redirect("ConsultaDocumentosSecretarios","consulta_secretarios");
+					
 				} catch (Exception $e)
 				{
 					$this->view("Error", array("resultado"=>"no se elimino el archivo <br>".$e->getMessage()));
@@ -503,7 +508,7 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 	
 	}
 
-
+//129;681;19;4;"2016-07-22";"02:11:00";"DSFSD";"FSDFSD";" SDFSD";41;FALSE;FALSE;FALSE;"Providencias1065";"Providencias";"2016-07-21 19:10:34.858-05";""
 
 
 }

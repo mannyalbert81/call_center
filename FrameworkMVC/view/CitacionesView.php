@@ -221,10 +221,7 @@ $(document).ready(function() {
        
       <form action="<?php echo $helper->url("Citaciones","InsertaCitaciones"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
             
-               
-        	    
-            	
-		   		
+         		
             <div class="col-lg-5">
             
             <h4 style="color:#ec971f;">Insertar Citaciones </h4>

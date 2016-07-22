@@ -212,22 +212,32 @@ class CitacionesController extends ControladorBase{
 			$citaciones=new CitacionesModel();
 
 			if (isset ($_POST["Guardar"]) )
-
 			{
 				
-			 $_array_juicios = $_POST["id_juicios"];
-			 $_fecha_citaciones = $_POST["fecha_citaciones"];
-			 $_id_ciudad = $_POST["id_ciudad"];
-			 $_id_tipo_citaciones = $_POST["id_tipo_citaciones"];
-			 $_nombre_persona_recibe_citaciones = $_POST["nombre_persona_recibe_citaciones"];
-			 $_relacion_cliente_citaciones = $_POST["relacion_cliente_citaciones"];
-			 $_id_usuarios = $_POST["id_usuarios"];
+				
+				 $_estado="Guardar";
+				 
+				 $consecutivo= new ConsecutivosModel();
+				 $resultConsecutivo= $consecutivo->getBy("documento_consecutivos='CITACIONES'");
+				 $identificador=$resultConsecutivo[0]->real_consecutivos;
+				 
+				 $repositorio_documento="Citaciones";
+				 
+				 $_nombre_citacion=$repositorio_documento.$identificador;
+					
+				 $_array_juicios = $_POST["id_juicios"];
+				 $_fecha_citaciones = $_POST["fecha_citaciones"];
+				 $_id_ciudad = $_POST["id_ciudad"];
+				 $_id_tipo_citaciones = $_POST["id_tipo_citaciones"];
+				 $_nombre_persona_recibe_citaciones = $_POST["nombre_persona_recibe_citaciones"];
+				 $_relacion_cliente_citaciones = $_POST["relacion_cliente_citaciones"];
+				 $_id_usuarios = $_POST["id_usuarios"];
 			 	
 			 	
-
-
 			 foreach($_array_juicios  as $id  )
 			 {
+			 	
+			 	
 			 	if (!empty($id) )
 			 	{
 			 		//busco si exties este nuevo id
@@ -235,29 +245,40 @@ class CitacionesController extends ControladorBase{
 			 		{
 			 			
 			 			
-			 			
-			 			
 			 			$_id_juicios = $id;
 
-
-
 			 			$funcion = "ins_citaciones";
-			 			//parametros 
-			 			//_id_juicios , _fecha_citaciones  , _id_ciudad , _id_tipo_citaciones , _nombre_persona_recibe_citaciones , _relacion_cliente_citaciones , hora_citaciones , _id_usuarios integer
-			 			$parametros = "'$_id_juicios', '$_fecha_citaciones', '$_id_ciudad', '$_id_tipo_citaciones', '$_nombre_persona_recibe_citaciones', '$_relacion_cliente_citaciones', '$_id_usuarios' ";
+			 						 			
+			 			$parametros = "'$_id_juicios', '$_fecha_citaciones', '$_id_ciudad', '$_id_tipo_citaciones', '$_nombre_persona_recibe_citaciones', '$_relacion_cliente_citaciones', '$_id_usuarios','$_nombre_citacion','$repositorio_documento','$identificador' ";
+			 			
 			 			$citaciones->setFuncion($funcion);
 			 			$citaciones->setParametros($parametros);
 			 			
 			 			$resultado=$citaciones->Insert();
+			 			
+			 			$res=$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='CITACIONES'");
+			 						 			
+			 			
 
-			 			 
-
+			 			$this->view("Error",array(
+			 					"resultado"=>"entro ->". print_r($resultado)." ".print_r($res)
+			 			));
+			 			
 			 		} catch (Exception $e)
 			 		{
 			 			$this->view("Error",array(
-			 					"resultado"=>"Eror al Asignar ->". $id
+			 					"resultado"=>"Eror al Asignar ->". $id 
 			 			));
 			 		}
+			 		
+			 		$host  = $_SERVER['HTTP_HOST'];
+			 		$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+			 		
+			 		print "<script language='JavaScript'>
+			 		setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?identificador=$identificador&estado=$_estado&nombre=$_nombre_citacion','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+			 		</script>";
+			 		 
+			 		print("<script>window.location.replace('index.php?controller=Citaciones&action=index');</script>");
 
 			 	}
 			 		
@@ -268,6 +289,10 @@ class CitacionesController extends ControladorBase{
 				$_accion_trazas  = "Guardar";
 				$_parametros_trazas = $_id_juicios;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				
+				//para generar el pdf
+				
+				
 
 			}
 
