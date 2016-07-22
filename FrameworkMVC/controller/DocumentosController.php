@@ -314,11 +314,7 @@ public function index(){
 		
 		print("<script>window.location.replace('index.php?controller=Documentos&action=index&dato=$resultArray');</script>");
 		
-		
-		
-		
-		
-				
+					
 	}
 	
 	public function GuardarReporte()
