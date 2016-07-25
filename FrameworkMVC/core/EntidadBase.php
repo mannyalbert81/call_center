@@ -606,7 +606,7 @@ class EntidadBase{
     
     			}else
     			{
-    				$resultado="No tiene registrado una firma";
+    				
     				$resultado['error']="No tiene registrado una firma";
     			}
     			 
