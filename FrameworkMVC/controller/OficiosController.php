@@ -262,7 +262,7 @@ class OficiosController extends ControladorBase{
 							$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 							
 							print "<script language='JavaScript'>
-							setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_oficio','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+							setTimeout(window.open('http://$host$uri/view/ireports/ContOficiosCrearReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_oficio','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
 							</script>";
 								
 							print("<script>window.location.replace('index.php?controller=Oficios&action=index');</script>");
@@ -688,7 +688,6 @@ class OficiosController extends ControladorBase{
 				header('Content-Disposition: attachment; filename="'.$directorio.'"');
 				readfile($directorio);
 			}
-	
 	
 		}
 	
