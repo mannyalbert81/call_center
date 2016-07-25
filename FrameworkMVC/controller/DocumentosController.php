@@ -187,13 +187,8 @@ public function index(){
 						$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='PROVIDENCIAS'");
 						
 						$_estado = "Guardar";
-						
-						
 					}
-					
-					
 				}
-				
 				$host  = $_SERVER['HTTP_HOST'];
 				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 				
@@ -313,10 +308,6 @@ public function index(){
 		      </script>";
 		
 		print("<script>window.location.replace('index.php?controller=Documentos&action=index&dato=$resultArray');</script>");
-		
-		
-		
-		
 		
 				
 	}
