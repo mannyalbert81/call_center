@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-18T16:55:55 -->
+<!-- 2016-07-22T12:15:00 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -10,8 +10,7 @@
 	<parameter name="cliente" class="java.lang.String"/>
 	<parameter name="hora_emision_documentos" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT 1 FROM documentos LIMIT 1
-]]>
+		<![CDATA[SELECT 1 FROM documentos LIMIT 1]]>
 	</queryString>
 	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
@@ -23,7 +22,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="119" splitType="Stretch">
 			<rectangle>
 				<reportElement x="10" y="12" width="535" height="50" uuid="4897037e-9b1b-411c-927b-2b3afeba5254"/>
 			</rectangle>
@@ -37,6 +36,10 @@
 				</textElement>
 				<text><![CDATA[BANCO DEL FOMENTO S.A. EN LIQUIDACIÓN]]></text>
 			</staticText>
+			<image>
+				<reportElement x="415" y="69" width="120" height="50" uuid="d1cd162c-6dad-4685-894d-6d30b3e1a9fd"/>
+				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondo_blanco.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

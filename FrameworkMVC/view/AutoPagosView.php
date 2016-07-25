@@ -167,7 +167,8 @@
 
 				var contenido = $("#contenido").val();
 				var fecha_asignacion= $("#fecha_asignacion").val();
-
+				var id_ciudad= $("#id_ciudad").val();
+				    
 				if (contenido != "" && fecha_asignacion==0)
 		    	{
 					$("#mensaje_criterio").text("Seleccione una fecha");
@@ -196,21 +197,36 @@
 		    		$("#mensaje_contenido").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}    
+				if (id_ciudad != "" && id_ciudad==0)
+		    	{
 
+			    	
+		    		$("#mensaje_ciudad").text("Ingrese una ciudad");
+		    		$("#mensaje_ciudad").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    	
+		    		
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_ciudad").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}    
 
-				
-
-		
+					
 				
 			});
 
 
-			$( "#contenido" ).focus(function() {
+			$( "#fecha_asignacion" ).focus(function() {
 				  $("#mensaje_contenido").fadeOut("slow");
 			    });
 
-			$( "#criterio" ).focus(function() {
+			$( "#fecha_asignacion" ).focus(function() {
 				  $("#mensaje_criterio").fadeOut("slow");
+			    });
+			$( "#id_ciudad" ).focus(function() {
+				  $("#mensaje_ciudad").fadeOut("slow");
 			    });
 		   
 			
@@ -304,7 +320,8 @@
 					<?php foreach($resultCiu as $resCiu) {?>
 						<option value="<?php echo $resCiu->id_ciudad; ?>" <?php if($sel_id_ciudad==$resCiu->id_ciudad){echo "selected";}?> ><?php echo $resCiu->nombre_ciudad; ?> </option>
 			        <?php } ?>
-				</select> 			  
+				</select>
+				<div id="mensaje_ciudad" class="errores"></div>	    			  
 			  </div>
 			  
 			  <div class="col-xs-1"  style="width: 400px;">
