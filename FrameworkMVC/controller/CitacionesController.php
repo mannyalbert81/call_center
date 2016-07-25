@@ -629,10 +629,37 @@ class CitacionesController extends ControladorBase{
 	
 	}
 	
+	public function abrirPdf()
+	{
+		$citaciones = new CitacionesModel();
+	
+		if(isset($_GET['id']))
+		{
+	
+			$id_oficios = $_GET ['id'];
+	
+			$resultCitaciones = $citaciones->getBy ( "id_oficios='$id_oficios'" );
+	
+			if (! empty ( $resultDocumento )) {
+	
+				$nombrePdf = $resultCitaciones [0]->nombre_documento;
+	
+				$nombrePdf .= ".pdf";
+	
+				$ruta = $resultCitaciones [0]->ruta_documento;
+	
+				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
+	
+				header('Content-type: application/pdf');
+				header('Content-Disposition: attachment; filename="'.$directorio.'"');
+				readfile($directorio);
+			}
 	
 	
-
-
+		}
+	
+	}
+	
 
 }
 ?>
