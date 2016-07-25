@@ -68,50 +68,7 @@
        
      <script>
 	$(document).ready(function(){
-		$("#id_ciudad").change(function(){
-
-            // obtenemos el combo de resultado combo 2
-           var $ddl_secretario = $("#id_usuarioSecretario");
-       	
-
-            // lo vaciamos
-           var ddl_ciudad = $(this).val();
-
-          
-            $ddl_secretario.empty();
-
-          
-            if(ddl_ciudad != 0)
-            {
-            	
-            	 var datos = {
-                   	   
-           			   ciudad:$(this).val()
-                  };
-             
-            	
-
-
-         	   $.post("<?php echo $helper->url("AsignacionTituloCredito","returnSecretariosbyciudad"); ?>", datos, function(resultUsuarioSecretarioC) {
-
-         		 		$.each(resultUsuarioSecretarioC, function(index, value) {
-            		 	    $ddl_secretario.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
-                    		 });
-
-         		 		 	 		   
-         		  }, 'json');
-
-
-            }
-            else
-            {
-                
-         	   $ddl_resultado.empty();
-
-            }
-		//alert("hola;");
-		});
-
+		
 		$("#id_ciudad").change(function(){
 
             // obtenemos el combo de resultado combo 2

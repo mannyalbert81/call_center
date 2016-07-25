@@ -130,16 +130,63 @@
 				$( "#relacion_cliente_citaciones" ).focus(function() {
 					$("#mensaje_relacion").fadeOut("slow");
     			});
-    			
-				
-		
-				
-		      
-				    
+    			    
 		}); 
 
 	</script>
 	
+	
+	  
+     <script>
+	$(document).ready(function(){
+		$("#id_ciudad").change(function(){
+
+            // obtenemos el combo de resultado combo 2
+           var $ddl_citador = $("#id_usuarioCitador");
+       	
+
+            // lo vaciamos
+           var ddl_ciudad = $(this).val();
+
+          
+            $ddl_citador.empty();
+
+          
+            if(ddl_ciudad != 0)
+            {
+            	
+            	 var datos = {
+                   	   
+           			   ciudad:$(this).val()
+                  };
+             
+            	
+
+
+         	   $.post("<?php echo $helper->url("Citaciones","returnCitadorbyciudad"); ?>", datos, function(resultUsuarioCitador) {
+
+         		 		$.each(resultUsuarioCitador, function(index, value) {
+            		 	    $ddl_citador.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_citador.empty();
+
+            }
+		//alert("hola;");
+		});
+		});
+	
+       
+
+	</script>
 	
 	<script >
 $(document).ready(function() {
@@ -256,10 +303,8 @@ $(document).ready(function() {
 			  
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Citador Judicial</p>
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-					<?php foreach($resultUsuarios as $res) {?>
-						<option value="<?php echo $res->id_usuarios; ?>" <?php if($sel_id_usuarios==$res->id_usuarios){echo "selected";}?> ><?php echo $res->nombre_usuarios; ?> </option>
-			        <?php } ?>
+			  	<select name="id_usuarioCitador" id="id_usuarioCitador"  class="form-control" >
+					<option value="0"  > -- SIN ESPECIFICAR -- </option>			
 				</select> 			  
 			  </div>
 			  </div>

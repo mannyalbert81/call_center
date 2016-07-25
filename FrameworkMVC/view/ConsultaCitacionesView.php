@@ -4,7 +4,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Consulta Citaciones - coactiva 2016</title>
+        <title>Consulta Citaciones Firmadas - coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -167,7 +167,7 @@
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
          
-       	 <h4 style="color:#ec971f;">Consulta Citaciones</h4>
+       	 <h4 style="color:#ec971f;">Consulta Citaciones Firmadas</h4>
        	 
        	 
        	 <div class="panel panel-default">
