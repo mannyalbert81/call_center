@@ -713,6 +713,27 @@ class EntidadBase{
     }
     
     
-      
+    public function MenuDinamico($_id_rol)
+    {
+    	$resultPermisos=array();
+    	$perimisos_rol = new PermisosRolesModel();
+    	 
+    	$columnas="controladores.nombre_controladores,
+				  permisos_rol.id_rol,
+				  permisos_rol.ver_permisos_rol";
+    	 
+    	$tablas="public.permisos_rol,
+  				 public.controladores";
+    	 
+    	$where="controladores.id_controladores = permisos_rol.id_controladores
+    	AND permisos_rol.ver_permisos_rol=TRUE AND permisos_rol.id_rol='$_id_rol'";
+    	 
+    	$id="controladores.id_controladores";
+    	 
+    	$resultPermisos = $perimisos_rol->getCondiciones($columnas, $tablas, $where, $id);
+    	 
+    	$_SESSION['controladores']=$resultPermisos;
+    }
+    
 }
 ?>

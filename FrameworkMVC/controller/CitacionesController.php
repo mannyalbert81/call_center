@@ -220,7 +220,7 @@ class CitacionesController extends ControladorBase{
 				 $_id_tipo_citaciones = $_POST["id_tipo_citaciones"];
 				 $_nombre_persona_recibe_citaciones = $_POST["nombre_persona_recibe_citaciones"];
 				 $_relacion_cliente_citaciones = $_POST["relacion_cliente_citaciones"];
-				 $_id_usuarios = $_POST["id_usuarios"];
+				 $_id_usuarios = $_POST["id_usuarioCitador"];
 			 	
 			 	
 			 foreach($_array_juicios  as $id  )
@@ -660,6 +660,23 @@ class CitacionesController extends ControladorBase{
 	
 	}
 	
+	public function returnCitadorbyciudad()
+	{
+	
+		//CONSULTA DE USUARIOS POR SU ROL
+		$idciudad=(int)$_POST["ciudad"];
+		$usuarios=new UsuariosModel();
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios,ciudad,rol";
+		$id="rol.id_rol";
+	
+		$where="rol.id_rol=usuarios.id_rol AND usuarios.id_ciudad=ciudad.id_ciudad
+		AND rol.nombre_rol='CITADOR JUDICIAL' AND ciudad.id_ciudad='$idciudad'";
+	
+		$resultUsuarioCitador=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultUsuarioCitador);
+	}
 
 }
 ?>

@@ -392,6 +392,9 @@ public function index(){
     			//NOTIFICACIONES
     			$usuarios->MostrarNotificaciones($_id_usuario);
     			
+    			$_id_rol=$_SESSION['id_rol'];
+    			$usuarios->MenuDinamico($_id_rol);
+    			
     			$sesiones = new SesionesModel();
 
     			$funcion = "ins_sesiones";
