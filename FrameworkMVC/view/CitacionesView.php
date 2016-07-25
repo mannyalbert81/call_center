@@ -250,7 +250,7 @@ $(document).ready(function() {
        
        	$sel_id_ciudad=$_POST['id_ciudad'];
        	$sel_fecha_citacion=$_POST['fecha_citaciones'];
-       	$sel_id_usuarios=$_POST['id_usuarios'];
+  
        	$sel_id_tipo_citaciones=$_POST['id_tipo_citaciones'];
        }
        
