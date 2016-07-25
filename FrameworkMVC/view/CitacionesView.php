@@ -140,25 +140,11 @@
 
 	</script>
 	
-	<script>
-    $(document).ready(function(){
-        $("#marcar_todo").change(function () {
-            if ($(this).is(':checked')) {
-               
-                $(".marcados").prop('checked', true); 
-            } else {
-                
-                $("input:checkbox").prop('checked', false);
-                $("input[type=checkbox]").prop('checked', false);
-            }
-        });
-        });
-    </script>
-    
-    <script >
+	
+	<script >
 $(document).ready(function() {
 		
-		$('#Guardar').click(function(){
+		$('#Guardar').click(function(){ºº
 	        var selected = '';  
 	          
 	        $('.marcados').each(function(){
@@ -181,6 +167,18 @@ $(document).ready(function() {
 	});
 	</script>
 
+
+		
+		<script>
+		$(document).ready(function() {
+		$('input[type=checkbox]').live('click', function(){
+		var parent = $(this).parent().attr('id');
+		$('#'+parent+' input[type=checkbox]').removeAttr('checked');
+		$(this).attr('checked','checked');
+		});
+		});
+		</script>
+		
     </head>
     <body style="background-color: #d9e3e4;">
     
@@ -330,7 +328,7 @@ $(document).ready(function() {
         <section class="col-lg-12 usuario" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	            <th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" class="checkbox"> </th>
+				<th style="color:#456789;font-size:80%;"></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Clientes</th>

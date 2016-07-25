@@ -541,6 +541,89 @@ class OficiosController extends ControladorBase{
 	
 	
 				}
+				
+			if(isset($_POST['firmar']))
+				{
+					$firmas= new FirmasDigitalesModel();
+					$oficios = new OficiosModel();
+					$tipo_notificacion = new TipoNotificacionModel();
+					$asignacion_secreatario= new AsignacionSecretariosModel();
+					
+					$ruta="";
+					$nombrePdf="";
+					
+					$destino = $_SERVER['DOCUMENT_ROOT'].'/documentos/';
+					
+					$array_documento=$_POST['file_firmar'];
+					
+										
+					$permisosFirmar=$permisos_rol->getPermisosFirmarPdfs($_SESSION['id_usuarios']);
+					
+					//para las notificaciones 
+					$_nombre_tipo_notificacion="documentos";					
+					$resul_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");						
+					$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;					
+					$descripcion="Documento Firmado por";
+					$numero_movimiento=0;
+					$id_impulsor="";
+					
+					
+					if($permisosFirmar['estado'])
+					{
+						
+						$id_firma = $permisosFirmar['valor'];
+						
+						
+						foreach ($array_documento as $id )
+						{
+														
+							if(!empty($id))
+							{
+								
+								$id_oficios = $id;
+								
+								$resultOficio=$oficios->getBy("id_oficios='$id_oficios'");
+								
+								$nombrePdf=$resultOficio[0]->nombre_oficio;
+								
+								$nombrePdf.=".pdf";
+								
+								$ruta=$resultOficio[0]->ruta_oficio;
+				
+								$id_rol=$_SESSION['id_rol'];
+								
+								$destino.=$ruta.'/';
+								
+								
+								try {
+									
+									$res=$firmas->FirmarPDFs( $destino, $nombrePdf, $id_firma,$id_rol);
+									
+									$firmas->UpdateBy("firma_secretario='TRUE'", "oficios", "id_oficios='$id_oficios'");
+									
+									//dirigir notificacion
+									$usuarioDestino=$resultOficio[0]->id_usuario_registra_oficios;
+									
+									//$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $nombrePdf);
+											
+									
+																		
+								} catch (Exception $e) {
+									
+									echo $e->getMessage();
+								}
+								
+							}
+						}
+					}else{
+						//para cuando no puede firmar
+						
+						$this->view("Error", array("resultado"=>"Error <br>".$permisosFirmar['error']));
+						exit();
+						
+					} 
+				}
+				
 	
 	
 	
@@ -549,6 +632,9 @@ class OficiosController extends ControladorBase{
 						"resultSet"=>$resultSet,"resultUsu"=>$resultUsu
 							
 				));
+				
+				
+				
 	
 	
 	
@@ -572,6 +658,41 @@ class OficiosController extends ControladorBase{
 			));
 	
 		}
+	
+	}
+	
+	public function abrirPdf()
+	{
+		$oficios = new OficiosModel();
+	
+		if(isset($_GET['id']))
+		{
+				
+			$id_oficios = $_GET ['id'];
+				
+			$resultOficios = $oficios->getBy ( "id_oficios='$id_oficios'" );
+				
+			if (! empty ( $resultOficios )) {
+	
+				$nombrePdf = $resultOficios [0]->nombre_oficio;
+	
+				$nombrePdf .= ".pdf";
+	
+				$ruta = $resultOficios [0]->ruta_oficio;
+	
+				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
+				
+				//echo $directorio;
+	
+				header('Content-type: application/pdf');
+				header('Content-Disposition: attachment; filename="'.$directorio.'"');
+				readfile($directorio);
+			}
+	
+	
+		}
+	
+	
 	
 	}
 	

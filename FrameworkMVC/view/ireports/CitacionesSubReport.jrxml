@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-21T19:01:16 -->
+<!-- 2016-07-22T12:07:44 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Citaciones" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="63306ce9-b0ed-428c-81f8-41c55bd08ecb">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="coactiva1"/>
@@ -60,7 +60,7 @@ WHERE
 				<text><![CDATA[SISTEMA COACTIVA ]]></text>
 			</staticText>
 			<image>
-				<reportElement x="420" y="50" width="120" height="50" uuid="9e76b88c-a6e3-4d99-aef8-481f80fdfc3c"/>
+				<reportElement x="420" y="30" width="120" height="50" uuid="9e76b88c-a6e3-4d99-aef8-481f80fdfc3c"/>
 				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondo_blanco.jpg"]]></imageExpression>
 			</image>
 		</band>

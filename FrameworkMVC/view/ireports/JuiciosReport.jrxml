@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-21T17:45:59 -->
+<!-- 2016-07-22T12:13:05 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -51,10 +51,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="1" y="0" width="209" height="69" uuid="2e71147d-46b9-4a83-91b2-71e2e8c89be3"/>
-				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
-			</image>
 			<componentElement>
 				<reportElement key="" positionType="Float" x="670" y="0" width="100" height="40" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="fccbda85-fde1-4ff5-a8ac-9490a030fd5c">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -65,6 +61,10 @@
 					<jr:codeExpression><![CDATA[$F{identificacion_clientes}]]></jr:codeExpression>
 				</jr:Code128>
 			</componentElement>
+			<image>
+				<reportElement x="4" y="17" width="126" height="40" uuid="97b3e586-2b73-429a-84ff-495bbf452199"/>
+				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

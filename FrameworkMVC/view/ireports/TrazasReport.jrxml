@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-21T17:18:32 -->
+<!-- 2016-07-22T12:13:50 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TrazasReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b22c1a24-4d1c-4b61-89d5-ee7bf3f6eb11">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -53,10 +53,6 @@ ORDER BY   	trazas.creado ASC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="4" y="17" width="126" height="40" uuid="2a8e4d5b-6ea0-4065-8056-b7960805b82d"/>
-				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
-			</image>
 			<componentElement>
 				<reportElement key="" positionType="Float" x="440" y="0" width="100" height="40" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="15dab71f-1e9f-40db-8f48-a34000481010">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -67,6 +63,10 @@ ORDER BY   	trazas.creado ASC]]>
 					<jr:codeExpression><![CDATA[$F{accion_trazas}]]></jr:codeExpression>
 				</jr:Code128>
 			</componentElement>
+			<image>
+				<reportElement x="4" y="17" width="126" height="40" uuid="8c4829a0-5e8c-4152-89f1-e8ea47a2db1a"/>
+				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondonegro.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
