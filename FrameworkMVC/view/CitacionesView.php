@@ -216,15 +216,15 @@ $(document).ready(function() {
 
 
 		
-		<script>
-		$(document).ready(function() {
+<script>
+	$(document).ready(function() {
 		$('input[type=checkbox]').live('click', function(){
-		var parent = $(this).parent().attr('id');
-		$('#'+parent+' input[type=checkbox]').removeAttr('checked');
-		$(this).attr('checked','checked');
+			var parent = $(this).parent().attr('id');
+			$('#'+parent+' input[type=checkbox]').removeAttr('checked');
+			$(this).attr('checked','checked');
 		});
-		});
-		</script>
+	});
+</script>
 		
     </head>
     <body style="background-color: #d9e3e4;">

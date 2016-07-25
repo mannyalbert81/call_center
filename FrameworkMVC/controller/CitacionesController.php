@@ -229,6 +229,7 @@ class CitacionesController extends ControladorBase{
 			 	
 			 	if (!empty($id) )
 			 	{
+			 		
 			 		//busco si exties este nuevo id
 			 		try
 			 		{
@@ -260,11 +261,7 @@ class CitacionesController extends ControladorBase{
 			 		$host  = $_SERVER['HTTP_HOST'];
 			 		$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 			 		
-			 		print "<script language='JavaScript'>
-			 		setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?identificador=$identificador&estado=$_estado&nombre=$_nombre_citacion','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
-			 		</script>";
-			 		 
-			 		print("<script>window.location.replace('index.php?controller=Citaciones&action=index');</script>");
+			 		
 
 			 	}
 			 		
@@ -277,12 +274,16 @@ class CitacionesController extends ControladorBase{
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
 				//para generar el pdf
-				
+				print "<script language='JavaScript'>
+				setTimeout(window.open('http://$host$uri/view/ireports/ContCitacionesGuardarReport.php?identificador=$identificador&estado=$_estado&nombre=$_nombre_citacion','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+				</script>";
+				 
+				print("<script>window.location.replace('index.php?controller=Citaciones&action=index');</script>");
 				
 
 			}
 
-			$this->redirect("Citaciones", "index");
+			//$this->redirect("Citaciones", "index");
 
 		}
 		else
@@ -595,6 +596,91 @@ class CitacionesController extends ControladorBase{
 	
 	
 				}
+				
+				
+			if(isset($_POST['firmar']))
+				{
+					$firmas= new FirmasDigitalesModel();
+					$citaciones=new CitacionesModel();
+					$oficios = new OficiosModel();
+					$tipo_notificacion = new TipoNotificacionModel();
+					$asignacion_secreatario= new AsignacionSecretariosModel();
+					
+					$ruta="";
+					$nombrePdf="";
+					
+					$destino = $_SERVER['DOCUMENT_ROOT'].'/documentos/';
+					
+					$array_documento=$_POST['file_firmar'];
+					
+										
+					$permisosFirmar=$permisos_rol->getPermisosFirmarPdfs($_SESSION['id_usuarios']);
+					
+					//para las notificaciones 
+					$_nombre_tipo_notificacion="documentos";					
+					$resul_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");						
+					$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;					
+					$descripcion="Documento Firmado por";
+					$numero_movimiento=0;
+					$id_impulsor="";
+					
+					
+					if($permisosFirmar['estado'])
+					{
+						
+						$id_firma = $permisosFirmar['valor'];
+						
+						
+						foreach ($array_documento as $id )
+						{
+														
+							if(!empty($id))
+							{
+								
+								$id_oficios = $id;
+								$id_citaciones=$id;
+								
+								$resultCitaciones=$citaciones->getBy("id_citaciones='$id_citaciones'");
+								
+								$nombrePdf=$resultCitaciones[0]->nombre_citacion;
+								
+								$nombrePdf.=".pdf";
+								
+								$ruta=$resultCitaciones[0]->ruta_citacion;
+				
+								$id_rol=$_SESSION['id_rol'];
+								
+								$destino.=$ruta.'/';
+								
+								
+								try {
+									
+									$res=$citaciones->FirmarPDFs( $destino, $nombrePdf, $id_firma,$id_rol);
+									
+									$citaciones->UpdateBy("firma_citador='TRUE'", "citaciones", "id_citaciones='$id_citaciones'");
+									
+									//dirigir notificacion
+									//$usuarioDestino=$resultCitaciones[0]->id_usuario_registra_oficios;
+									
+									//$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $nombrePdf);
+											
+									
+																		
+								} catch (Exception $e) {
+									
+									echo $e->getMessage();
+								}
+								
+							}
+						}
+					}else{
+						//para cuando no puede firmar
+						
+						$this->view("Error", array("resultado"=>"Error <br>".$permisosFirmar['error']));
+						exit();
+						
+					} 
+				}
 	
 	
 	
@@ -638,15 +724,15 @@ class CitacionesController extends ControladorBase{
 	
 			$id_oficios = $_GET ['id'];
 	
-			$resultCitaciones = $citaciones->getBy ( "id_oficios='$id_oficios'" );
+			$resultCitaciones = $citaciones->getBy ( "id_citaciones='$id_oficios'" );
 	
-			if (! empty ( $resultDocumento )) {
+			if (! empty ( $resultCitaciones )) {
 	
-				$nombrePdf = $resultCitaciones [0]->nombre_documento;
+				$nombrePdf = $resultCitaciones [0]->nombre_citacion;
 	
 				$nombrePdf .= ".pdf";
 	
-				$ruta = $resultCitaciones [0]->ruta_documento;
+				$ruta = $resultCitaciones [0]->ruta_citacion;
 	
 				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
 	

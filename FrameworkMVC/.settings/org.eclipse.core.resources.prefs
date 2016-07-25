@@ -5,6 +5,7 @@ eclipse.preferences.version=1
 encoding//view/ireports/AdministradorGastosReport.jrxml=UTF-8
 encoding//view/ireports/AsignacionSecretariosReport.jrxml=UTF-8
 encoding//view/ireports/AsignacionSecretariosSubReport.jrxml=UTF-8
+encoding//view/ireports/CitacionesGuardarReport.jrxml=UTF-8
 encoding//view/ireports/CitacionesReport.jrxml=UTF-8
 encoding//view/ireports/CitacionesSubReport.jrxml=UTF-8
 encoding//view/ireports/ClientesReport.jrxml=UTF-8
