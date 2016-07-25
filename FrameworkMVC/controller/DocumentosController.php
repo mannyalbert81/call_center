@@ -309,11 +309,7 @@ public function index(){
 		
 		print("<script>window.location.replace('index.php?controller=Documentos&action=index&dato=$resultArray');</script>");
 		
-<<<<<<< HEAD
-				
-=======
-					
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
+
 	}
 	
 	public function GuardarReporte()
