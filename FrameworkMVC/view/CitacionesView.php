@@ -166,8 +166,7 @@
             		 	    $ddl_citador.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
                     		 });
                   	  }, 'json');
-
-                      }
+                }
             else
             {
                 

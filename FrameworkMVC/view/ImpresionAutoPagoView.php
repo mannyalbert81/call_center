@@ -63,53 +63,7 @@
                 
             
         </style>
-       
-      <script >
-		$(document).ready(function(){
-
-		    // cada vez que se cambia el valor del combo
-		    $("#buscar").click(function() 
-			{
-		   
-		    	var contenido_busqueda= $("#contenido_busqueda").val();
-		    
-		   				
-		    	if (contenido_busqueda== "")
-		    	{
-			    	
-		    		$("#mensaje_nombres").text("Introduzca un tipo de busqueda");
-		    		$("#mensaje_nombres").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_nombres").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	
-		    	
-
-			
-		    					    
-
-			}); 
-
-
-		 
-				
-				$( "#contenido_busqueda" ).focus(function() {
-					$("#mensaje_nombres").fadeOut("slow");
-    			});
-				
-			
-		
-				
-		
-		      
-				    
-		}); 
-
-	</script>
+      
     
     </head>
     <body style="background-color: #d9e3e4;">

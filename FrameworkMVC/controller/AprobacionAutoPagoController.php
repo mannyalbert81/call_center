@@ -225,11 +225,10 @@ class AprobacionAutoPagoController extends ControladorBase{
 				$colval="id_estado='$id_estado'";
 				$id_auto_pago=$_GET["id_auto_pagos"];
 				
+				
 				//para obtener id titulo credito
 				$id_titulo_credito = $_GET["id_titulo_credito"];
-				
 				$tabla="auto_pagos";
-				
 				$where="id_auto_pagos='$id_auto_pago'";
 				
 				try {
