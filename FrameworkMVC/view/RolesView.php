@@ -145,7 +145,7 @@
 		        
 		         <div class="row" margin-top= "20px">
 		          <div class="col-xs-6 col-md-6" style="text-align: center;" >
-                  <input type="submit" value="Guardar"onClick="Ok()"  class="btn btn-success"/>
+                  <input type="submit" value="Guardar" onClick="Ok()"  class="btn btn-success"/>
                   </div>
                   </div>
                   </form>
