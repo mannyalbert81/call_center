@@ -313,7 +313,7 @@
 			   
 		    <div class="row">
 		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Nombres </p>
+			  	<p  class="formulario-subtitulo" >Nombres Cliente</p>
 			  	<input type="text" name="nombres_clientes" id="nombres_clientes" value="<?php echo $resEdit->nombres_clientes; ?>" class="form-control"/>
 			  <div id="mensaje_nombres_clientes" class="errores"></div>
 			  </div>
@@ -362,6 +362,25 @@
 				</select> 
 			  </div>
 		    </div>
+		    
+		    
+		     <div class="row">
+		    <div class="col-xs-6 col-md-6" style="margin-top:10px">
+			  	<p  class="formulario-subtitulo" >Nombres Garante</p>
+			  	<input type="text"  name="nombre_garantes" id="nombre_garantes" value="<?php echo $resEdit->nombre_garantes; ?>" class="form-control" /> 
+			    <div id="mensaje_nombre_garantes" class="errores"></div>
+			</div>
+			  
+			   
+			   
+		   
+		    <div class="col-xs-6 col-md-6" style="margin-top:10px">
+			  	<p  class="formulario-subtitulo" >Numero de Identificación Garante</p>
+			  	<input type="text" name="identificacion_garantes" id="identificacion_garantes" value="<?php echo $resEdit->identificacion_garantes; ?>" class="form-control" readonly/>
+			  <div id="mensaje_identificacion_garantes" class="errores"></div>
+			    <input type="hidden"  name="id_clientes"  value="<?php echo $resEdit->id_clientes; ?>" class="form-control"/> 
+			  </div>
+		     </div>
 		    
 		    <hr>
 		    
@@ -439,7 +458,24 @@
 			        <?php } ?>
 				</select> 
 			  </div>
-		      </div>
+			   </div>
+			   
+			   <div class="row">
+			   <div class="col-xs-6 col-md-6" style="margin-top:10px">
+			  	<p  class="formulario-subtitulo" >Nombres Garante</p>
+			  	<input type="text"  name="nombre_garantes" id="nombre_garantes" value="" class="form-control"/> 
+			    <div id="mensaje_nombre_garantes" class="errores"></div>
+			  </div>
+			   
+			   
+		    <div class="col-xs-6 col-md-6" style="margin-top:10px">
+		     <p  class="formulario-subtitulo" >Numero de Identificación Garante</p>
+		 	<input type="text" name="identificacion_garantes" id="identificacion_garantes" value="" class="form-control"/>
+			  <div id="mensaje_identificacion_garantes" class="errores"></div>
+			  </div>
+			  </div>
+			  
+		     
 		    <hr>
 		    
 		   
@@ -465,7 +501,7 @@
      
             <hr>
         <div class="row">
-           <form action="<?php echo $helper->url("Clientes","Index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+           <form action="<?php echo $helper->url("Clientes","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
            
            <div class="col-lg-4">
            <input type="text"  name="contenido" id="contenido" value="" class="form-control"/>
@@ -484,21 +520,27 @@
           
            
           
-           <div class="col-lg-3">
-           <input type="submit" id="Buscar" name="Buscar" value="Buscar"  vclass="btn btn-default"/>
+           <div class="col-lg-4">
+           <input type="submit" id="Buscar" name="Buscar" value="Buscar"  class="btn btn-default"/>
            </div>
-         
+        
           </form>
           
        <!-- termina formulario de busqueda -->
-        <hr/>
+        
          
-       <section class="col-lg-12  usuario" style="height:500px;overflow-y:scroll;">
+       <section class="col-lg-12  usuario" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
 	    		<th style="color:#456789;font-size:80%;">Id</th>
-	    		<th style="color:#456789;font-size:80%;">Numero de Identifiación</th>
-	    		<th style="color:#456789;font-size:80%;">Nombres Cliente</th>
+	    		<th style="color:#456789;font-size:80%;">Identifiación</th>
+	    		<th style="color:#456789;font-size:80%;">Nombres Cliente </th>
+	    		<th style="color:#456789;font-size:80%;">Teléfono</th>
+	    		<th style="color:#456789;font-size:80%;">Celular</th>
+	    		<th style="color:#456789;font-size:80%;">Dirección</th>
+	    		<th style="color:#456789;font-size:80%;">Ciudad</th>
+	    		<th style="color:#456789;font-size:80%;">Nombres Garante</th>
+	    		<th style="color:#456789;font-size:80%;">Identificación Garante</th>
 	    		
 	    		
 	    		<th></th>
@@ -510,6 +552,12 @@
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_clientes; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->telefono_clientes; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->celular_clientes; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->direccion_clientes; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_garantes; ?>  </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_garantes; ?>  </td>
 		             
 		              
 		           	   <td>

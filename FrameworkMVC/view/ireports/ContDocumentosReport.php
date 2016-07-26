@@ -83,11 +83,7 @@ $estado=$_GET['estado'];
 				
 				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/Providencias/';
 	
-	
-	
-	
 				$PHPJasperXML = new PHPJasperXML();
-				
 				
 				$PHPJasperXML->arrayParameter=array("_sql" => $sql);
 				
@@ -97,9 +93,7 @@ $estado=$_GET['estado'];
 				
 				$PHPJasperXML->outpage("F",$directorio.$nombre.'.pdf');
 	
-
-		
-		}
+           }
 
 ?>
 

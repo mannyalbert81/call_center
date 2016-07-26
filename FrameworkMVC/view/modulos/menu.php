@@ -128,6 +128,9 @@ $controladores=$_SESSION['controladores'];
             <li style="<?php echo getcontrolador("TipoPersona",$controladores) ?>">
             <a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
 			</li>
+			 <li style="<?php echo getcontrolador("Clientes",$controladores) ?>">
+            <a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Clientes</span> </a>
+			</li>
           </ul>
         </li>
 
