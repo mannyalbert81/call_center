@@ -136,18 +136,22 @@
      
       <form action="<?php echo $helper->url("AprobacionAutoPago","index"); ?>" method="post"  class="col-lg-12">
     
-    <div class="col-lg-5">
-    <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+    <div class="col-lg-12" style="margin-top: 10px">
+         
+       	 <h4 style="color:#ec971f;">Aprobacion Auto Pagos</h4>
+       	 
+       	 
+       	 <div class="panel panel-default">
+  			<div class="panel-body">
+  			
+  			<?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
            <?php //no hay datos para editar?>
         
             <?php } } else {?>
-		     
-		      <h4 style="color:#ec971f;">Aprobacion Auto Pagos</h4>
-            	<hr/>
-		     
-		     <div class="row">
-			    
-			  <div class="col-xs-6 col-md-6">
+          
+           <div class="col-md-2">
+		   </div>
+  			<div class="col-xs-12 col-md-3">
 			  	<p  class="formulario-subtitulo" >Selecione filtro</p>
 			  	<select name="criterio_busqueda" id="criterio_busqueda"  class="form-control" >
 					<?php foreach($resultMenu as $val=>$desc) {?>
@@ -155,55 +159,46 @@
 			        <?php } ?>
 				</select> 			  
 			  </div>
-		    
-		     
-             	
-             	
-		    <div class="col-xs-6 col-md-6">
+			  
+		    <div class="col-xs-12 col-md-3">
 		    	<p  class="formulario-subtitulo" style="color: #ffffff;" >--</p>
 			  <input type="text" name="contenido_busqueda" id="contenido_busqueda" value="" class="form-control"/>
 			  <div id="mensaje_nombres" class="errores"></div>
 			  </div>
 			  
-			<div class="col-xs-12 col-md-12" style="margin-top: 20px; text-align: center;" >
-		
-			  	<input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-default"/>
+			  <div class="col-xs-12 col-md-3">
+			  <p  class="formulario-subtitulo" style="color: #ffffff;" >--</p>
+  		    <input type="submit" id="buscar" name="buscar"  value="Buscar" class="btn btn-warning"/>
+  		    </div>
+  		    
+  		     <?php } ?>
+		 
+  			</div>
+  			 
+		</div>
+	</div>
+    
+   
+    
+    <div  class="col-lg-12">
+     
+     
+		     <div class="col-xs-12">
+		     
+				 <div class="col-xs-9"></div>
+				 <div class="col-xs-3">
+				 <span class="form-control" style="margin-bottom:0px;"><strong>Registros:</strong><?php if(!empty($resultDatos)) echo "  ".count($resultDatos);?></span>
+				 </div>
+				 
 			</div>
-			
-			  </div>
-             	
-             	
-             	
-             	
-             	
-             	
-             	
-		     <?php } ?>
-    </div>
-    
-    
-    <div  class="col-lg-7">
-     <h4 style="color:#ec971f;">Lista de titulo</h4>
-     <hr/>
-     <div class="col-xs-12">
-		 <div class="col-xs-9"></div>
-		 <div class="col-xs-3">
-		 <span class="form-control" style="margin-bottom:0px;"><strong>Registros:</strong><?php if(!empty($resultDatos)) echo "  ".count($resultDatos);?></span>
-		 </div>
-		 </div>
 		 <div class="col-xs-12">
             
     		
-		<div class="col-xs-12" >	
-
-	</div>
+			
 	
 	<div class="col-xs-12">
-      
-        
-        
-        
-       <section   style="height:400px;overflow-y:scroll;width: 630px;">
+         
+       <section   style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
 	    		
@@ -246,20 +241,13 @@
        	</table>     
 		     
       </section>
-        </div>
-		 </div>
-        </div>
-        <?php 
-		
-            
-          ?>
+       </div>
+	  </div>
+     </div>
+      </form>
         
-    </div>
-    
-    </form>
   
-
-    </div>
-   </div>
+		</div>
+        </div>
      </body>  
     </html>   
