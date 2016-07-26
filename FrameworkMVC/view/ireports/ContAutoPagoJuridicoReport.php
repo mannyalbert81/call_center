@@ -33,7 +33,7 @@ $estado=$_GET['estado'];
 		
 		    $PHPJasperXML->arrayParameter=$_dato;
 		    
-			$PHPJasperXML->load_xml_file( "DocumentosVisualizarReport.jrxml" );
+			$PHPJasperXML->load_xml_file( "AutoPagoJuridicoReport.jrxml" );
 			
 			$PHPJasperXML->transferDBtoArray ( $server, $user, $pass, $db, $driver );
 			
@@ -83,17 +83,23 @@ $estado=$_GET['estado'];
 				
 				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/Providencias/';
 	
+	
+	
+	
 				$PHPJasperXML = new PHPJasperXML();
+				
 				
 				$PHPJasperXML->arrayParameter=array("_sql" => $sql);
 				
-				$PHPJasperXML->load_xml_file("DocumentosReport.jrxml");
+				$PHPJasperXML->load_xml_file("AutoPagoJuridicoReport.jrxml");
 				
 				$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 				
 				$PHPJasperXML->outpage("F",$directorio.$nombre.'.pdf');
 	
-           }
+
+		
+		}
 
 ?>
 
