@@ -589,15 +589,17 @@ class EntidadBase{
     		//verficar si se encuentra en la maquina personal del usuario
     
     		$macLocal=$this->verMacAddress();
+    		$macUsuario=$resultCertificados[0]->mac_certificado_digital;
     		
-    		$resultMac=$certficados->getBy("mac_certificado_digital='$macLocal' AND id_usuarios_certificado_digital='$id_usuario'");
-    
-    		if (!empty($resultMac))
+    		//$resultMac=$certficados->getBy("mac_certificado_digital='$macLocal' AND id_usuarios_certificado_digital='$id_usuario'");
+        	//if (!empty($resultMac))
+        	
+    		if($macUsuario===$macLocal)
     		{
     			$firmas= new FirmasDigitalesModel();
     			$resultFirmas=$firmas->getBy("id_usuarios='$id_usuario'");
     			 
-    			 
+    			
     			if(!empty($resultFirmas))
     			{
     				$id_firma=$resultFirmas[0]->id_firmas_digitales;

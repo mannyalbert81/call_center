@@ -160,37 +160,25 @@
            			   ciudad:$(this).val()
                   };
              
-            	
-
-
          	   $.post("<?php echo $helper->url("Citaciones","returnCitadorbyciudad"); ?>", datos, function(resultUsuarioCitador) {
 
          		 		$.each(resultUsuarioCitador, function(index, value) {
             		 	    $ddl_citador.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
                     		 });
-
-         		 		 	 		   
-         		  }, 'json');
-
-
-            }
+                  	  }, 'json');
+                }
             else
             {
                 
          	   $ddl_citador.empty();
 
             }
-		//alert("hola;");
 		});
 		});
-	
-       
-
 	</script>
 	
 	<script >
-$(document).ready(function() {
-		
+        $(document).ready(function() {
 		$('#Guardar').click(function(){ºº
 	        var selected = '';  
 	          
@@ -207,6 +195,7 @@ $(document).ready(function() {
 	            alert('Debes seleccionar un juicio.');
 	            return false;
 	        }
+<<<<<<< HEAD
 
 	      
 	    }); 
@@ -238,19 +227,28 @@ $(document).ready(function() {
 	    }); 
 
 	});
+=======
+         }); 
+       });
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 	</script>
 
 
-		
-<script>
-	$(document).ready(function() {
-		$('input[type=checkbox]').live('click', function(){
-			var parent = $(this).parent().attr('id');
-			$('#'+parent+' input[type=checkbox]').removeAttr('checked');
-			$(this).attr('checked','checked');
-		});
-	});
-</script>
+		 <script>
+    $(document).ready(function(){
+        $("#marcar_todo").change(function () {
+            if ($(this).is(':checked')) {
+               
+                $(".marcados").prop('checked', true); 
+            } else {
+                
+                $("input:checkbox").prop('checked', false);
+                $("input[type=checkbox]").prop('checked', false);
+            }
+        });
+        });
+    </script>
+
 		
     </head>
     <body style="background-color: #d9e3e4;">
@@ -264,8 +262,6 @@ $(document).ready(function() {
        <?php
        
        $resultMenu=array(0=>"Todos",1=>"Identificacion",2=>"Juicio");
-       
-       
        $sel_id_ciudad="";
        $sel_fecha_citacion="";
        $sel_id_usuarios="";
@@ -421,9 +417,6 @@ $(document).ready(function() {
 		        <?php } } ?>
             
             <?php 
-            
-            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
-            
             ?>
             
        	</table>     

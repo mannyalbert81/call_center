@@ -6,12 +6,10 @@ class AsignacionTituloCreditoController extends ControladorBase{
 		parent::__construct();
 	}
 
-//maycol
 
 	public function index(){
 	
 		session_start();
-	
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
@@ -33,38 +31,13 @@ class AsignacionTituloCreditoController extends ControladorBase{
 			$usuarios=new UsuariosModel();
 			$resultUsu = $usuarios->getAll("nombre_usuarios");
 			
-			
-			
-			
-			$columnas = " clientes.id_clientes, 
-						  titulo_credito.id_titulo_credito, 
-						  clientes.identificacion_clientes, 
-						  clientes.nombres_clientes, 
-						  clientes.celular_clientes, 
-						  titulo_credito.total, 
-						  titulo_credito.fecha_corte, 
-						  titulo_credito.id_ciudad, 
-						  ciudad.nombre_ciudad";
-			
-			$tablas   = "public.titulo_credito, 
-						  public.clientes, 
-						  public.ciudad";
-			
-			$where    = "clientes.id_clientes = titulo_credito.id_clientes AND
-                         ciudad.id_ciudad = titulo_credito.id_ciudad";
-			
-			$id       = "titulo_credito.id_titulo_credito";
-				
-			
-			$resultDatos=$asignacion_titulo_credito->getCondiciones($columnas ,$tablas ,$where, $id);
+			$resultDatos=" ";
 			
 			
 			$resultPer = $permisos_rol->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
 			if (!empty($resultPer))
 			{
-					
-					
 					$resultEdit = "";
 					$resul = "";
 			
@@ -80,28 +53,18 @@ class AsignacionTituloCreditoController extends ControladorBase{
 						
 						if (!empty($resultPer))
 						{
-							
 							$traza=new TrazasModel();
 							$_nombre_controlador = "AsignacionTituloCredito";
 							$_accion_trazas  = "Editar";
 							$_parametros_trazas ="";
 							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-							
 						}
 						else
 						{
 							$this->view("Error",array(
 									"resultado"=>"No tiene Permisos de Editar Asignacion Titutlo de Credito"
-						
-									
-							));
-						
-						
+						     ));
 						}
-						
-						
-						
-					
 					
 					if(isset($_POST["buscar"])){
 					
@@ -109,8 +72,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 						$contenido_busqueda=$_POST["contenido_busqueda"];
 					
 						$asignacion_titulo_credito = new AsignacionTitulosCreditoModel();
-						
-							
+		
 						$columnas = " clientes.id_clientes,
 							  titulo_credito.id_titulo_credito,
 							  clientes.identificacion_clientes,
@@ -151,17 +113,10 @@ class AsignacionTituloCreditoController extends ControladorBase{
 					
 						}
 					
-					
-					
 						$where_to  = $where .  $where_0 . $where_1 . $where_2;
 						
-							
 						$resultDatos=$asignacion_titulo_credito->getCondiciones($columnas ,$tablas ,$where_to, $id);
-					
-							
 					}
-					
-					
 					
 					$this->view("AsignacionTituloCredito",array(
 							
@@ -249,12 +204,8 @@ class AsignacionTituloCreditoController extends ControladorBase{
 		
 				
 			}
-			
-			
 
 			$this->redirect("AsignacionTituloCredito", "index");
-				
-			
 		}
 		else
 		{
@@ -262,12 +213,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 					"resultado"=>"No tiene Permisos de Asignacion Titulo Credito"
 		
 			));
-		
-		
 		}
-		
-		
-		
 	}
 	
 	public function borrarId()
@@ -296,10 +242,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 				$_parametros_trazas = $id_asigancionSecretarios;
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			}
-			
-			
 			$this->redirect("AsignacionTituloCredito", "index");
-			
 		}
 		else
 		{
@@ -307,18 +250,12 @@ class AsignacionTituloCreditoController extends ControladorBase{
 					"resultado"=>"No tiene Permisos de Borrar Asignacion Titulo Credito"
 		
 			));
-		
-		
 		}
-		
 	}
-	
-	
 	
 	public function returnImpulsorbyciudad()
 	{
-	
-		//CONSULTA DE USUARIOS POR SU ROL
+	    //CONSULTA DE USUARIOS POR SU ROL
 		$idciudad=(int)$_POST["ciudad"];
 		$usuarios=new UsuariosModel();
 		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
@@ -332,11 +269,6 @@ class AsignacionTituloCreditoController extends ControladorBase{
 	
 		echo json_encode($resultUsuarioImpulC);
 	}
-		
-	
-		
-	
-
 	
 }
 ?>      
