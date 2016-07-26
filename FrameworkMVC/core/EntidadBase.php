@@ -589,7 +589,8 @@ class EntidadBase{
     		//verficar si se encuentra en la maquina personal del usuario
     
     		$macLocal=$this->verMacAddress();
-    		$resultMac=$certficados->getBy("mac_certificado_digital='$macLocal'");
+    		
+    		$resultMac=$certficados->getBy("mac_certificado_digital='$macLocal' AND id_usuarios_certificado_digital='$id_usuario'");
     
     		if (!empty($resultMac))
     		{
@@ -613,7 +614,7 @@ class EntidadBase{
     			 
     		}else{
     			
-    			$resultado['error']="No tiene permiso para firmar desde esta pc";
+    			$resultado['error']="No tiene permiso para firmar desde esta Maquina <br> por favor firmar desde su maquina asignada";
     		}
     
     	}else

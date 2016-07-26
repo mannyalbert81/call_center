@@ -637,11 +637,11 @@ class CitacionesController extends ControladorBase{
 							if(!empty($id))
 							{
 								
-								$id_oficios = $id;
+								
 								$id_citaciones=$id;
 								
 								$resultCitaciones=$citaciones->getBy("id_citaciones='$id_citaciones'");
-								
+																						
 								$nombrePdf=$resultCitaciones[0]->nombre_citacion;
 								
 								$nombrePdf.=".pdf";
@@ -663,8 +663,6 @@ class CitacionesController extends ControladorBase{
 									//$usuarioDestino=$resultCitaciones[0]->id_usuario_registra_oficios;
 									
 									//$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $nombrePdf);
-											
-									
 																		
 								} catch (Exception $e) {
 									

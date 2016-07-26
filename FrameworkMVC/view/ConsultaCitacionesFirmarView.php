@@ -265,7 +265,7 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	        		
-	        		   <td> <input type="checkbox" name="file_firmar[]" id="file_firmar" class="marcados" value="<?php echo $res->id_oficios; ?>"/>      </td>
+	        		   <td> <input type="checkbox" name="file_firmar[]" id="file_firmar" class="marcados" value="<?php echo $res->id_citaciones; ?>"/>      </td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_citaciones; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->id_juicios; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 

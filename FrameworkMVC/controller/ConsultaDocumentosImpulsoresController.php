@@ -156,7 +156,7 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 					$descripcion="Documento Firmado por";
 					$numero_movimiento=0;
 					$id_impulsor="";
-						
+					
 						
 					if($permisosFirmar['estado'])
 					{
@@ -208,7 +208,13 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 				
 							}
 						}
-					}
+					}else{
+						//para cuando no puede firmar
+						
+						$this->view("Error", array("resultado"=>"Error <br>".$permisosFirmar['error']));
+						exit();
+						
+					} 
 					
 				}
 
