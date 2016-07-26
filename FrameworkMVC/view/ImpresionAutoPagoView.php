@@ -132,8 +132,6 @@
 		</div>
 	</div>
 	
-
-    
     
     <div  class="col-lg-12">
      
@@ -146,10 +144,8 @@
 				 
 			</div>
 	
-	<div class="col-xs-12">
-      
-      
-        
+		<div class="col-xs-12">
+	        
        <section   style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >

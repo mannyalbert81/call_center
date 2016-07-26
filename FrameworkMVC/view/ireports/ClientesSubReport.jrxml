@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-22T12:12:24 -->
+<!-- 2016-07-26T17:38:50 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -85,7 +85,7 @@ WHERE
 		</band>
 	</title>
 	<pageHeader>
-		<band height="57" splitType="Stretch">
+		<band height="39" splitType="Stretch">
 			<rectangle>
 				<reportElement x="9" y="6" width="782" height="30" forecolor="#999999" backcolor="#999999" uuid="315890a9-2ddd-4a73-9a66-543a6e06826c"/>
 			</rectangle>
@@ -97,7 +97,7 @@ WHERE
 				<text><![CDATA[Ciudad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="135" y="15" width="60" height="21" forecolor="#FFFFFF" uuid="d9462914-91b9-48b5-8a41-c961e97b8082"/>
+				<reportElement x="128" y="15" width="60" height="21" forecolor="#FFFFFF" uuid="d9462914-91b9-48b5-8a41-c961e97b8082"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Rockwell Extra Bold" size="8" isBold="true"/>
 				</textElement>
@@ -158,7 +158,7 @@ WHERE
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="39" splitType="Stretch">
+		<band height="16" splitType="Stretch">
 			<textField>
 				<reportElement x="52" y="0" width="60" height="10" uuid="1a8532e3-6510-42ed-aa1e-7a1a3684f270"/>
 				<textElement>
@@ -169,7 +169,7 @@ WHERE
 			<textField>
 				<reportElement x="110" y="0" width="138" height="10" uuid="3c6c7084-2c74-4014-b290-05b7d65558f2"/>
 				<textElement>
-					<font size="8"/>
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
 			</textField>
@@ -225,7 +225,7 @@ WHERE
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="21" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<textField evaluationTime="Report">
 				<reportElement x="462" y="-5" width="41" height="20" uuid="9f1cd967-9dc5-4306-be62-5e420568d9b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
