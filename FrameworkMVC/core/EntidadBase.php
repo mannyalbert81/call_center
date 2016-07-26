@@ -599,7 +599,6 @@ class EntidadBase{
     			$firmas= new FirmasDigitalesModel();
     			$resultFirmas=$firmas->getBy("id_usuarios='$id_usuario'");
     			 
-    			 
     			
     			if(!empty($resultFirmas))
     			{
