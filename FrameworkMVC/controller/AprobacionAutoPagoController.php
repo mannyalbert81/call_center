@@ -222,7 +222,10 @@ class AprobacionAutoPagoController extends ControladorBase{
 				$resultEstado=$estado->getBy("nombre_estado='APROBADO'");
 				
 				$id_estado=$resultEstado[0]->id_estado;
+				
 				$colval="id_estado='$id_estado'";
+				
+				//para obtener el id auto de pago
 				$id_auto_pago=$_GET["id_auto_pagos"];
 				
 				
@@ -233,7 +236,7 @@ class AprobacionAutoPagoController extends ControladorBase{
 				
 				try {
 					
-					//$resultado=$aprobacion_auto_pago->UpdateBy($colval, $tabla, $where);
+					$resultado=$aprobacion_auto_pago->UpdateBy($colval, $tabla, $where);
 					
 					//pra obtener id_ciudad
 					
@@ -303,14 +306,9 @@ class AprobacionAutoPagoController extends ControladorBase{
 					//para archivos
 					$prefijo=CLIENTE;
 					$nombre_archivado_juicios=$prefijo."-".$juicio_referido_titulo_credito;
+					
 					//para entidad
 					$id_entidades=10;
-					
-					//$this->view("Error",array(
-					//		"resultado"=>"entidad ".$id_entidades." ciud ".$id_ciudad." referido ".$juicio_referido_titulo_credito."usuario".$id_usuarios." tiulo credito ".$id_titulo_credito." id_cliente ".$id_clientes." Etapa juicio ".$id_etapas_juicios." tIpo JUicio ".$id_tipo_juicios." descripcion".$descipcion_auto_pago_juicios." estado procesal ".$id_estados_procesales_juicios."estado pago juicio".$id_estados_auto_pago_juicios."nombre archivado".$nombre_archivado_juicios
-					//));
-					
-					//exit();
 					
 					//aqui va insertado de juicio
 
