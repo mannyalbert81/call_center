@@ -574,9 +574,7 @@
 		               </td>
 		               
 		               <td>   
-			                	<div class="right">
-			                	<a href="/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=<?php echo $res->id_clientes; ?>"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"; class="btn btn-success" style="font-size:65%;">Reporte</a>
-			                 </div>
+			                	
 			               <hr/>
 		               </td>
 		    		</tr>
