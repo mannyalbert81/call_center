@@ -261,7 +261,7 @@
 			  <div class="row" style="background-color: #ffffff;" >
 			  
 			  <h4 ALIGN="center"></h4>
-			<div class="" style="margin-left:50px">	
+			 <div class="" style="margin-left:50px">	
 				<BR>
             	
 		    <h4 style="color:#ec971f;" ALIGN="center" >EMISIÓN Y APROBACIÓN DE DOCUMENTOS</h4>
@@ -274,6 +274,7 @@
 			  </div>
 			     <br>
 			     <br>
+			 </div>
     
      
      
@@ -281,31 +282,26 @@
        
       <form action="<?php echo $helper->url("Documentos","index"); ?>" method="post" enctype="multipart/form-data">
             
+        <div class="col-lg-12" style="margin-top: 10px">
          
-            <div class="col-lg-6">	
-         
-
-		   		
-            
-          <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+       	 <div class="panel panel-default">
+  			<div class="panel-body">
+  			
+  			 <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
 		    
 		     <?php } } else {?>
-		    
-			   <div class="row">
-		    <div class="col-xs-4 col-md-4" style="margin-top:10px">
+  			
+             <div class="col-xs-6 col-md-4" >
 			  	<p  class="formulario-subtitulo" >Ciudad:</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" readonly >
 					<?php foreach($resultDatos as $res) {?>
 						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
 			            <?php } ?>
 				</select> 
-			  </div>
 			 </div>
-		      
-		      
-		       <div class="row">
-		       <div class="col-xs-4 col-md-4" style="margin-top:10px">
+			  
+		    <div class="col-xs-6 col-md-4" >
 			  <p  class="formulario-subtitulo" >Juicios:</p>
 	          <input type="text" id="juicios" name="juicios" class="form-control" placeholder="Nº Juicio" value="<?php echo $sel_juicios;?>">
 	        
@@ -314,15 +310,15 @@
 	         }}elseif ($sel_id_juicio!=""){echo $sel_id_juicio;}?>">
 		   	<div id="mensaje_juicio" class="errores"></div>	   
 		    </div>
-		    
-		    <div class="col-xs-4 col-md-4" style="margin-top:10px">
+			  
+			  <div class="col-xs-12 col-md-3">
 		     <p  class="formulario-subtitulo" >Validar:</p>
-			  <input type="submit" id="Validar" name="Validar" value="Validar" onClick="Ok()" class="btn btn-success"/>
+			  <input type="submit" id="Validar" name="Validar" value="Validar" onClick="Ok()" class="btn btn-warning"/>
 			 </div>
-		       </div>
-		       
-		      <div class="row">
-		     <div class="col-xs-4 col-md-4" style="margin-top:10px">
+			 <br>
+			 <hr>
+			 		        
+		       <div class="col-xs-6 col-md-2" style="margin-top:10px">
 			  	<p  class="formulario-subtitulo" >Estado Procesal:</p>
 			  	 <select name="id_estados_procesales_juicios" id="id_estados_procesales_juicios"  class="form-control" readonly>
 				 <?php foreach($resultEstPro as $res) {?>
@@ -331,73 +327,69 @@
 				</select> 
 				   
 			  </div>
-		      </div>
-		      
-		      <div class="row">
-		      <div class="col-xs-4 col-md-4" style="margin-top:10px">
+			  
+			  <div class="col-xs-6 col-md-2" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Fecha de Providencia:</p>
 			 <input type="text" id="fecha_emision_documentos" name="fecha_emision_documentos" value="<?php $sdate=date("d")."/".date("m")."/".date("Y"); $stime=date("h").":".date("i"); echo "$sdate";?>" class="form-control" <?php echo $habilitar;?>>
 		   	   	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
-		    
-		     <div class="col-xs-4 col-md-4" style="margin-top:10px">
+  		    
+  		     <div class="col-xs-6 col-md-2" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Hora de Providencia:</p>
 	          <input type="text" id="hora_emision_documentos" name="hora_emision_documentos" class="form-control" value="<?php $sdate=date("d")."/".date("m")."/".date("Y"); $stime=date("h").":".date("i");  echo " $stime";?>" <?php echo $habilitar;?>>
 		   	<div id="mensaje_criterio" class="errores"></div>	   
 		    </div>
-		      </div>
-		      
-		      
-		      <div class="row">
-		      <div class="col-xs-6 col-md-6" style="margin-top:10px">
+  		    
+  		    <div class="col-xs-6 col-md-3" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Detalle:</p>
 			  <input type="text" id="detalle_documentos" name="detalle_documentos" placeholder="Ingrese" class="form-control" value="<?php echo $sel_detalle;?>" <?php echo $habilitar;?>>
 		   	   	<div id="mensaje_detalle" class="errores"></div>	   
 		    </div>
-		    </div>
-		    
-		    <div class="row">
-		     <div class="col-xs-6 col-md-6" style="margin-top:10px">
+  		    
+  		    <div class="col-xs-6 col-md-3" style="margin-top:10px">
 			  <p  class="formulario-subtitulo" >Observación:</p>
 	          <input type="text" id="observacion_documentos" name="observacion_documentos" class="form-control" placeholder="Ingrese" value="<?php echo $sel_observacion; ?>" <?php echo $habilitar;?>>
 		   	<div id="mensaje_observacion" class="errores"></div>	   
 		    </div>
-		      </div>
-
 		    
 		    <?php } ?>
 		    
-		     </div>
-		     
-         <div class="col-lg-6">
-             <div class="row">
-              <div class="col-xs-6 col-md-6" style="margin-top:10px">
-              <p class="formulario-subtitulo" ><?php setlocale(LC_ALL,"es_ES");  echo strftime("%A %d de %B del %Y");?></p>
-		      <textarea id="avoco_vistos_documentos" name="avoco_vistos_documentos" rows="8" cols="60"  <?php echo $habilitar;?>><?php echo $sel_avoco;?> </textarea>
-		      	<div id="mensaje_avoco" class="errores"></div>	 
-		      </div>
-		      </div>
-        </div>
-          
-          
-          
-          <div class="row">
-			  <div class="col-xs-12 col-md-5" style="text-align: center; margin-top:10px"  >
-			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Guardar" class="btn btn-success"/>
+		    </div>
+		    		      
+		       <div class="col-xs-12 col-md-12" style="margin-top:10px">
+              
+		       <div class="form-group">
+  				<label for="comment"><?php setlocale(LC_ALL,"es_ES");  echo strftime("%A %d de %B del %Y");?></label>
+  				<textarea class="form-control" rows="8" id="avoco_vistos_documentos" name="avoco_vistos_documentos"  <?php echo $habilitar;?>><?php echo "Vistos: ".$sel_avoco;?></textarea>
+  				<div id="mensaje_avoco" class="errores"></div>
 			  </div>
-			   <div class="col-xs-12 col-md-5" style="text-align: center; margin-top:10px" >
-			 <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php echo $helper->url("Documentos","VisualizarDocumentos"); ?>'" value="Visualizar" class="btn btn-success"/>
-			 </div>   
-			  </div>    
-       </form>
-       <!-- termina el form --> 
-       <BR>     
-        
+			  </div>
+		      <div class="col-xs-12 col-md-6" style="text-align: center; margin-top:10px"  >
+		      </div>
+		       <div class="col-xs-12 col-md-3" style="text-align: center; margin-top:10px"  >
+			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php // echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Guardar" class="btn btn-success" <?php echo $habilitar;?>/>
+			  </div>
+			   <div class="col-xs-12 col-md-3" style="text-align: center; margin-top:10px" >
+			 <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php //echo $helper->url("Documentos","VisualizarDocumentos"); ?>'" value="Visualizar" class="btn btn-info" <?php echo $habilitar;?>/>
+			 </div>
+			 
+			 <div class="col-xs-6 col-md-12" style="margin-top:50px">
+			 </div>
+		    
+  			 
+		</div>
+		
+		
+		 
+		</div>
+		
+	   </form>
+       
       </div>
       </div>
      
-      </div>
+
      
    </body>  
-
+ <?php include 'view/modulos/footer.php';?>
     </html>   

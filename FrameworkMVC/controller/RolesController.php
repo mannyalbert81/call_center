@@ -33,6 +33,13 @@ class RolesController extends ControladorBase{
 			
 			if (!empty($resultPer))
 			{
+				
+				$this->view("Roles",array(
+						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
+							
+				));
+				
+				
 				if (isset ($_GET["id_rol"])   )
 				{
 
@@ -56,6 +63,11 @@ class RolesController extends ControladorBase{
 						$_accion_trazas  = "Editar";
 						$_parametros_trazas = $_id_rol;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+						$this->view("Error",array(
+								"resultado"=>$resultado
+			
+						));
+					
 					}
 					else
 					{
@@ -70,11 +82,7 @@ class RolesController extends ControladorBase{
 				}
 		
 				
-				$this->view("Roles",array(
-						"resultSet"=>$resultSet, "resultEdit" =>$resultEdit
-			
-				));
-		
+				
 				
 				
 			}
