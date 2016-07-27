@@ -117,7 +117,7 @@
     </script>
     
     <script >
-$(document).ready(function() {
+	$(document).ready(function() {
 		
 		$('#Guardar').click(function(){
 	        var selected = '';  
@@ -141,6 +141,8 @@ $(document).ready(function() {
 
 	});
 	</script>
+	
+	
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -241,7 +243,7 @@ $(document).ready(function() {
         <section class="col-lg-12 usuario" style="height:400px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	            <th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" class="checkbox"> </th>
+	            <th style="color:#456789;font-size:80%;"></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Clientes</th>

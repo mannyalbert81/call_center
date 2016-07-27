@@ -242,6 +242,7 @@ public function index(){
 		
 		if (isset($_POST["Visualizar"]))
 		{
+			
 			//parametros
 			$_id_ciudad     = $_POST["id_ciudad"];
 			$_id_juicio      = $_POST["id_juicios"];
@@ -311,6 +312,7 @@ public function index(){
 		
 
 	}
+	
 	
 	public function GuardarReporte()
 	{

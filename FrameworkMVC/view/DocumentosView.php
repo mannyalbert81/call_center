@@ -187,7 +187,10 @@
 		}); 
 
 	</script>
-     
+	
+	<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+	
+	  
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -355,22 +358,41 @@
 		    <?php } ?>
 		    
 		    </div>
+		    </div>
+		    </div>
+		    		
+		    	<div class="col-xs-12 col-md-12" style="margin-top:10px">
+		       <div class="form-group">
+		       
+	        <?php  include ("view/ckeditor/ckeditor.php");
+			   $valor = "";
+			   $CKEditor = new CKEditor();
+			   $CKEditor->basePatch = "./ckeditor/";
+			   $CKEditor->editor("avoco_vistos_documentos",$valor);
+	           ?> 
+  				
 		    		      
-		       <div class="col-xs-12 col-md-12" style="margin-top:10px">
-              
+		     <!-- 
+		        
+		     <div class="col-xs-12 col-md-12" style="margin-top:10px">
 		       <div class="form-group">
   				<label for="comment"><?php setlocale(LC_ALL,"es_ES");  echo strftime("%A %d de %B del %Y");?></label>
-  				<textarea class="form-control" rows="8" id="avoco_vistos_documentos" name="avoco_vistos_documentos"  <?php echo $habilitar;?>><?php echo "Vistos: ".$sel_avoco;?></textarea>
+  				<textarea class="form-control" rows="8" id="avoco" name="avoco"  <?php echo $habilitar;?>><?php echo "Vistos: ".$sel_avoco;?></textarea>
   				<div id="mensaje_avoco" class="errores"></div>
 			  </div>
 			  </div>
+			  
+			 -->
+			 
+     
+			  
 		      <div class="col-xs-12 col-md-6" style="text-align: center; margin-top:10px"  >
 		      </div>
 		       <div class="col-xs-12 col-md-3" style="text-align: center; margin-top:10px"  >
-			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php // echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Guardar" class="btn btn-success" <?php echo $habilitar;?>/>
+			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php  echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Guardar" class="btn btn-success" <?php echo $habilitar;?>/>
 			  </div>
 			   <div class="col-xs-12 col-md-3" style="text-align: center; margin-top:10px" >
-			 <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php //echo $helper->url("Documentos","VisualizarDocumentos"); ?>'" value="Visualizar" class="btn btn-info" <?php echo $habilitar;?>/>
+			 <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php echo $helper->url("Documentos","VisualizarDocumentos"); ?>'" value="Visualizar" class="btn btn-info" <?php echo $habilitar;?>/>
 			 </div>
 			 
 			 <div class="col-xs-6 col-md-12" style="margin-top:50px">
