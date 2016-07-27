@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-07-22T12:15:00 -->
+<!-- 2016-07-27T15:55:49 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -85,7 +85,7 @@
 		<band height="387" splitType="Stretch">
 			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
 				<reportElement x="40" y="0" width="460" height="370" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
-				<textElement textAlignment="Justified" markup="styled">
+				<textElement textAlignment="Justified" markup="html">
 					<font size="12"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>

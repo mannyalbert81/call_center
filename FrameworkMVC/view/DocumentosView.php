@@ -188,7 +188,7 @@
 
 	</script>
 	
-	<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 	
 	  
 
@@ -365,15 +365,25 @@
 		       <div class="form-group">
 		       
 	        <?php  include ("view/ckeditor/ckeditor.php");
-			   $valor = "";
+			   $valor = "$sel_avoco";
 			   $CKEditor = new CKEditor();
-			   $CKEditor->basePatch = "./ckeditor/";
-			   $CKEditor->editor("avoco_vistos_documentos",$valor);
+			   $config = array();
+			   $config['toolbar'] = array(
+			   	      array( 'Source', '-', 'Bold', 'Italic', 'Underline', 'Strike','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'),
+			   		  array( 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo'),
+			   	      array( 'TextColor','BGColor','-','NewPage','Maximize'),
+			   		  array( 'NumberedList','BulletedList','-','Outdent','Indent','/'),
+			   		  array( 'Styles','Format','Font','FontSize')
+			   	  );
+			  // $CKEditor->basePatch = "./ckeditor/";
+			   $CKEditor->editor("avoco_vistos_documentos",$valor,$config);
+			   //$CKEditor->replace("avoco");
 	           ?> 
+	          
   				
 		    		      
-		     <!-- 
-		        
+		     
+		    <!--    
 		     <div class="col-xs-12 col-md-12" style="margin-top:10px">
 		       <div class="form-group">
   				<label for="comment"><?php setlocale(LC_ALL,"es_ES");  echo strftime("%A %d de %B del %Y");?></label>
@@ -382,7 +392,7 @@
 			  </div>
 			  </div>
 			  
-			 -->
+			  --> 
 			 
      
 			  
