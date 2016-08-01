@@ -122,6 +122,7 @@ public function index(){
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $documentos->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 		
+		$avoco='<p align = "justify"><font face="univers" size=1>  La información contenida en este mensaje y sus anexos tiene carácter confidencial,y está dirigida únicamente al destinatario de la misma y sólo podrá ser usada por éste. Si el lector de este mensaje no es el destinatario del mismo, se le notifica que cualquier copia o distribución de éste se encuentra totalmente prohibida. Si usted ha recibido este mensaje por error, por favor notifique inmediatamente al remitente por este mismo medio y borre el mensaje de su sistema. Las opiniones que contenga este mensaje son exclusivas de su autor y no necesariamente representan la opinión oficial del BANCO NACIONAL DE FOMENTO. Este mensaje ha sido examinado por Symantec y se considera libre de virus y spam.</font></p>';
 		
 		if (!empty($resultPer))
 		{
@@ -132,7 +133,7 @@ public function index(){
 		
 		
 		//_nombre_categorias character varying, _path_categorias character varying
-			if (isset ($_POST["id_juicios"]) )
+			if (isset ($_POST["id_juicios"]) && isset($_POST["Guardar"]))
 			{
 				//estado de documento pdf
 				$_estado = "";
@@ -150,7 +151,7 @@ public function index(){
 				$_hora_emision_documentos   = $_POST["hora_emision_documentos"];
 				$_detalle_documentos   = $_POST["detalle_documentos"];
 				$_observacion_documentos   = $_POST["observacion_documentos"];
-				$_avoco_vistos_documentos   = $_POST["avoco_vistos_documentos"];
+				$_avoco_vistos_documentos   = $avoco. $_POST["avoco_vistos_documentos"];
 				$_id_usuario_registra_documentos   = $_SESSION['id_usuarios'];
 				
 			
@@ -184,6 +185,8 @@ public function index(){
 						$_parametros_trazas = $_detalle_documentos;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						
+						//$this->view("Error", array("resultado"=>print_r($resultado)));
+						
 						$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='PROVIDENCIAS'");
 						
 						$_estado = "Guardar";
@@ -200,17 +203,7 @@ public function index(){
 				print("<script>window.location.replace('index.php?controller=Documentos&action=index');</script>");
 				
 				
-				/*
 				
-				ob_start();
-				header('Location: ' . '/FrameworkMVC/view/ireports/ContDocumentosReport.php?identificador='.$identificador.'&estado='.$_estado.'&nombre='.$nombre_documento);
-				$contenido=ob_get_contents();
-				ob_end_flush();
-				
-				$this->redirect("Documentos","index");*/
-					
-		      	
-		//header('Location: ' . '/FrameworkMVC/index.php?controller=Controladores&action=verError&dato='.serialize($dato));
 				
 			
 			}else
@@ -230,6 +223,8 @@ public function index(){
 	public function VisualizarDocumentos(){
 		
 		session_start();
+		
+		$avoco='<p align = "justify"><font face="univers" size=1>  La información contenida en este mensaje y sus anexos tiene carácter confidencial,y está dirigida únicamente al destinatario de la misma y sólo podrá ser usada por éste. Si el lector de este mensaje no es el destinatario del mismo, se le notifica que cualquier copia o distribución de éste se encuentra totalmente prohibida. Si usted ha recibido este mensaje por error, por favor notifique inmediatamente al remitente por este mismo medio y borre el mensaje de su sistema. Las opiniones que contenga este mensaje son exclusivas de su autor y no necesariamente representan la opinión oficial del BANCO NACIONAL DE FOMENTO. Este mensaje ha sido examinado por Symantec y se considera libre de virus y spam.</font></p>';
 		
 		$documentos = new DocumentosModel();
 		$juicios = new JuiciosModel();
@@ -275,7 +270,7 @@ public function index(){
 			$dato['cliente']=$resultJuicio[0]->nombres_clientes;
 			$dato['fecha_emision_documentos']=$_fecha_emision_documentos;
 			$dato['hora_emision_documentos']=$_hora_emision_documentos;
-			$dato['avoco_vistos_documentos']=$_avoco_vistos_documentos;
+			$dato['avoco_vistos_documentos']=$avoco.$_avoco_vistos_documentos;
 		
 			$traza=new TrazasModel();
 			$_nombre_controlador = "Documentos";

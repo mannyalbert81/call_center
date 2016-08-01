@@ -269,11 +269,12 @@
             	
 		    <h4 style="color:#ec971f;" ALIGN="center" >EMISIÓN Y APROBACIÓN DE DOCUMENTOS</h4>
 		    
-            	<BR>
-            	
+            	<br>
+            	 
             	<div class="col-lg-11" style=" text-aling: justify;">
-            	 	<p align = "justify"><b><center><font face="univers" size=2>***Esta Leyenda será incluída automaticamente por el sistema a las Providencias para los casos de Juicios anteriores a la gestión del nuevo Liquidador***</b></font></center></p>
-					<p align = "justify"><font face="univers" size=1><b>VISTOS:</b> Avoco conocimiento del presente proceso en mi calidad de Liquidador del Banco Territorial S.A. en Liquidación conforme la designación a mí extendida mediante Resolución No. SB-2016-304 emitida por el MBA. Christian Cruz Rodríguez en su calidad de Superintendente de Bancos, dada en la Superintendencia de Bancos en Quito Distrito Metropolitano con fecha 28 de abril de 2016 debidamente inscrita en el Registro Mercantil del cantón Guayaquil el 03 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Continúen actuando los abogados Nombre Secretario y Nombre Abogado en calidad de secretario y abogado impulsor respectivamente, con los juramentos que tienen rendido en autos.-</font></p>
+            	 	<p align = "justify"><center><b><font face="univers" size=2>***Esta Leyenda será incluída automaticamente por el sistema a las Providencias para los casos de Juicios anteriores a la gestión del nuevo Liquidador***</font></b></center></p>
+					<p align = "justify"><font face="univers" size=1><b>NOTA DE DESCARGO:</b>  La información contenida en este mensaje y sus anexos tiene carácter confidencial,y está dirigida únicamente al destinatario de la misma y sólo podrá ser usada por éste. Si el lector de este mensaje no es el destinatario del mismo, se le notifica que cualquier copia o distribución de éste se encuentra totalmente prohibida. Si usted ha recibido este mensaje por error, por favor notifique inmediatamente al remitente por este mismo medio y borre el mensaje de su sistema. Las opiniones que contenga este mensaje son exclusivas de su autor y no necesariamente representan la opinión oficial del BANCO NACIONAL DE FOMENTO. Este mensaje ha sido examinado por Symantec y se considera libre de virus y spam.-</font></p>
+			  	
 			  </div>
 			     <br>
 			     <br>
@@ -361,8 +362,8 @@
 		    </div>
 		    </div>
 		    		
-		    	<div class="col-xs-12 col-md-12" style="margin-top:10px">
-		       <div class="form-group">
+		<div class="col-xs-12 col-md-12" style="margin-top:10px">
+		 <div class="form-group">
 		       
 	        <?php  include ("view/ckeditor/ckeditor.php");
 			   $valor = "$sel_avoco";
@@ -375,25 +376,22 @@
 			   		  array( 'NumberedList','BulletedList','-','Outdent','Indent','/'),
 			   		  array( 'Styles','Format','Font','FontSize')
 			   	  );
-			  // $CKEditor->basePatch = "./ckeditor/";
+			  $CKEditor->basePatch = "./ckeditor/";
 			   $CKEditor->editor("avoco_vistos_documentos",$valor,$config);
-			   //$CKEditor->replace("avoco");
+			   //$CKEditor->replaceAll();
 	           ?> 
+	           
 	          
-  				
-		    		      
-		     
-		    <!--    
-		     <div class="col-xs-12 col-md-12" style="margin-top:10px">
-		       <div class="form-group">
+	          <!--  
+	          <div class="col-xs-12 col-md-12" style="margin-top:10px">
+		       
   				<label for="comment"><?php setlocale(LC_ALL,"es_ES");  echo strftime("%A %d de %B del %Y");?></label>
   				<textarea class="form-control" rows="8" id="avoco" name="avoco"  <?php echo $habilitar;?>><?php echo "Vistos: ".$sel_avoco;?></textarea>
   				<div id="mensaje_avoco" class="errores"></div>
-			  </div>
-			  </div>
-			  
-			  --> 
 			 
+			  </div>
+  			  -->
+		    
      
 			  
 		      <div class="col-xs-12 col-md-6" style="text-align: center; margin-top:10px"  >
