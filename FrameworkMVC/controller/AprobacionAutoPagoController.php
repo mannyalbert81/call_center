@@ -314,7 +314,16 @@ class AprobacionAutoPagoController extends ControladorBase{
 
 					$resultadojuicio=$aprobacion_auto_pago->InsertaJuicio($id_entidades, $id_ciudad, $juicio_referido_titulo_credito, $id_usuarios, $id_titulo_credito, $id_clientes, $id_etapas_juicios, $id_tipo_juicios, $descipcion_auto_pago_juicios, $id_estados_procesales_juicios, $id_estados_auto_pago_juicios, $nombre_archivado_juicios);
 					
+					$host  = $_SERVER['HTTP_HOST'];
+					$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 					
+				/*	
+					print "<script language='JavaScript'>
+					setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+					</script>";
+					
+					print("<script>window.location.replace('index.php?controller=Documentos&action=index');</script>");
+				*/
 					
 				} catch (Exception $e) {
 					
@@ -323,10 +332,6 @@ class AprobacionAutoPagoController extends ControladorBase{
 					));
 					
 				}
-				
-				
-				
-				
 				
 				
 				
