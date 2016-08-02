@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-02T09:38:40 -->
+<!-- 2016-08-02T10:06:50 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
-	<parameter name="_sql" class="java.lang.String"/>
+	<parameter name="_identificador" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 				ciudad.nombre_ciudad,
@@ -27,7 +27,8 @@
 				ciudad.id_ciudad = documentos.id_ciudad AND
 				juicios.id_juicios = documentos.id_juicio AND
 				clientes.id_clientes = juicios.id_clientes AND
-				usuarios.id_usuarios = asignacion_secretarios_usuarios_view.id_asignacion_secretarios]]>
+				usuarios.id_usuarios = asignacion_secretarios_usuarios_view.id_asignacion_secretarios
+				AND documentos.identificador ='']]>
 	</queryString>
 	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
