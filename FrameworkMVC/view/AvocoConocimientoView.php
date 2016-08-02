@@ -331,12 +331,12 @@
        	$_dato=urldecode($a);
        	
        	$_dato=unserialize($a);
-       	
+       	/*
        	$sel_juicios=$_dato['juicio'];
        	$sel_id_juicio=$_dato['id_juicio'];
        	$sel_detalle=$_dato['detalle'];
        	$sel_observacion=$_dato['observacion'];
-       	$sel_avoco=$_dato['avoco'];
+       	$sel_avoco=$_dato['avoco'];*/
        	}
       
        }
@@ -409,9 +409,9 @@
 			 	        
 		       <div class="col-xs-6 col-md-3" >
 			  	<p  class="formulario-subtitulo" >Secretario A Reemplazar:</p>
-			  	 <select name="id_secretario_reemplazo" id="id_secretario_reemplazo"  class="form-control" >
+			  	 <select name="id_secretario_reemplazo" id="id_secretario_reemplazo"  class="form-control" <?php echo $habilitar;?>>
 				 <?php foreach($resulSecretario as $res) {?>
-						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
+						 <option value="<?php echo $res->id_usuarios; ?>"  ><?php echo $res->nombre_usuarios; ?> </option>
 			            <?php } ?>
 				</select> 
 				   
@@ -423,24 +423,24 @@
 			  
 			   <div class="col-xs-6 col-md-4" >
 			  	<p  class="formulario-subtitulo" >Ciudad:</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" <?php echo $habilitar;?>>
 					<?php foreach($resultDatos as $res) {?>
-						 <option value="<?php echo $res->id_usuarios; ?>"  ><?php echo $res->nombre_usuarios; ?> </option>
-			            <?php } ?>
+						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
+						 <?php } ?>
 				</select> 
 			 </div>
 			 	        
-		       <div class="col-xs-6 col-md-2" >
+		       <div class="col-xs-6 col-md-3" >
 			  	<p  class="formulario-subtitulo" >Secretario:</p>
-			  	 <select name="id_secretario" id="id_secretario"  class="form-control" >
+			  	 <select name="id_secretario" id="id_secretario"  class="form-control" <?php echo $habilitar;?> >
 				 
 				</select> 
 				   
 			  </div>
 			  
-			  <div class="col-xs-6 col-md-2">
+			  <div class="col-xs-6 col-md-3">
 			  	<p  class="formulario-subtitulo" >Impulsor:</p>
-			  	 <select name="id_impulsor" id="id_impulsor"  class="form-control" >
+			  	 <select name="id_impulsor" id="id_impulsor"  class="form-control" <?php echo $habilitar;?>>
 			     </select>
   		
 		    </div>
