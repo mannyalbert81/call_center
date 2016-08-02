@@ -42,9 +42,11 @@ public function index(){
 					$resultDatos=$ciudad->getAll("nombre_ciudad");
 					
 					$resulSecretario=$usarios->getCondiciones("usuarios.id_usuarios,usuarios.nombre_usuarios",
-																"public.rol,public.usuarios", "rol.id_rol = usuarios.id_rol",
-																"AND rol.nombre_rol='SECRETARIO'",
+																"public.rol,public.usuarios", 
+																"rol.id_rol = usuarios.id_rol AND rol.nombre_rol='SECRETARIO'",
 																"usuarios.nombre_usuarios");
+					
+					//$this->view("Error", array("resultado"=>print_r($resulSecretario))); exit();
 					
 					$juicio = new  JuiciosModel();
 					$juicio_referido=$_POST['juicios'];
@@ -202,7 +204,7 @@ public function index(){
 		session_start();
 		
 		
-		$documentos = new DocumentosModel();
+		$usuarios = new UsuariosModel();
 		$juicios = new JuiciosModel();
 		$ciudad = new CiudadModel();
 		
@@ -210,20 +212,22 @@ public function index(){
 		$_estado="Visualizar";
 		$dato=array();
 		$arrayGet=array();
+		$resultCiudad=array();
 		
 		if (isset($_POST["Visualizar"]))
 		{
 			
 			//parametros
-			$_id_ciudad     = $_POST["id_ciudad"];
-			$_id_juicio      = $_POST["id_juicios"];
-			$_id_secretario     = $_POST["id_ciudad"];
-			$_id_abogado      = $_POST["id_juicios"];
+			$_id_ciudad     			= $_POST["id_ciudad"];
+			$_id_juicio      			= $_POST["id_juicios"];
+			$_id_secretario_reemplazar  = $_POST["id_secretario_reemplazo"];
+			$_id_secretario     		= $_POST["id_secretario"];
+			$_id_abogado      			= $_POST["id_impulsor"];
 			
 			
 			//consulta datos de juicio
 			$columnas="juicios.juicio_referido_titulo_credito,
-			clientes.nombres_clientes";
+			clientes.nombres_clientes,clientes.identificacion_clientes";
 			
 			$tablas="public.juicios,public.clientes";
 			
@@ -231,30 +235,49 @@ public function index(){
 			
 			$resultJuicio = $juicios->getCondiciones($columnas, $tablas, $where, "clientes.id_clientes");
 			
+			//datos ciudad
+			$resultCiudad=$ciudad->getBy("id_ciudad='$_id_ciudad'");
+			
+			//datos secretario q se reemplaza
+			$resultSecretario=$usuarios->getBy("id_usuarios='$_id_secretario_reemplazar'");
+			
+			//datos Secretario e impulsor
+			$resultAbogados=$usuarios->getCondiciones("asignacion_secretarios_view.id_abogado,asignacion_secretarios_view.id_secretario, 
+                                                      asignacion_secretarios_view.secretarios,asignacion_secretarios_view.impulsores",
+													  "public.asignacion_secretarios_view", 
+													 "asignacion_secretarios_view.id_abogado = '$_id_abogado' AND asignacion_secretarios_view.id_secretario='$_id_secretario'",
+													 "asignacion_secretarios_view.secretarios");
+			
 			
 			//cargar datos para el reporte
 			
 			$dato['ciudad']=$resultCiudad[0]->nombre_ciudad;
 			$dato['juicio_referido']=$resultJuicio[0]->juicio_referido_titulo_credito;
 			$dato['cliente']=$resultJuicio[0]->nombres_clientes;
-			$dato['fecha_emision_documentos']=$_fecha_emision_documentos;
-			$dato['hora_emision_documentos']=$_hora_emision_documentos;
-			$dato['avoco_vistos_documentos']=$_avoco_vistos_documentos;
+			$dato['identificacion']=$resultJuicio[0]->identificacion_clientes;
+			$dato['secretario_reemplazar']=$resultSecretario[0]->nombre_usuarios;
+			$dato['secretario']=$resultAbogados[0]->secretarios;
+			$dato['abogado']=$resultAbogados[0]->impulsores;
+			
+			//$this->view("Error", array("resultado"=>print_r($dato))); exit();
+						
 		
 			$traza=new TrazasModel();
-			$_nombre_controlador = "Documentos";
+			$_nombre_controlador = "Avoco";
 			$_accion_trazas  = "Visualizar";
-			$_parametros_trazas = $_detalle_documentos;
+			$_parametros_trazas = "Cambiar".($resultSecretario[0]->nombre_usuarios)."Por".$resultAbogados[0]->secretarios;
 			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			
 			
 			//cargar array q va por get
 			
-			$arrayGet['id_juicio']=$_id_juicio;
+			/*$arrayGet['id_juicio']=$_id_juicio;
 			$arrayGet['juicio']=$resultJuicio[0]->juicio_referido_titulo_credito;
 			$arrayGet['detalle']=$_detalle_documentos;
 			$arrayGet['observacion']=$_observacion_documentos;
-			$arrayGet['avoco']=$_avoco_vistos_documentos;
+			$arrayGet['avoco']=$_avoco_vistos_documentos;*/
+			
+			$arrayGet=array();
 			
 		}
 		
@@ -269,10 +292,10 @@ public function index(){
 		
         
 		print "<script language='JavaScript'>
-			 setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000); 
+			 setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000); 
 		      </script>";
 		
-		print("<script>window.location.replace('index.php?controller=Documentos&action=index&dato=$resultArray');</script>");
+		print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index&dato=$resultArray');</script>");
 		
 
 	}
