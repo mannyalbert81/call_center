@@ -252,7 +252,6 @@
         });
     </script>
 
-   
     
     </head>
     <body style="background-color: #d9e3e4;">
@@ -412,8 +411,8 @@
 		 
 		 
        <section   style="height:400px; width:600px; overflow-y:scroll;">
-        <table class="table table-hover ">
-	         <tr >
+        <table class="table table-hover">
+	         <tr>
 	    		<th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" class="checkbox"> </th>
 	    		<th style="color:#456789;font-size:80%;">Nº Titulo Credito</th>
 	    		<th style="color:#456789;font-size:80%;">Numero de Identifiación</th>
