@@ -571,6 +571,97 @@ class AutoPagosController extends ControladorBase{
 	
 	}
 	
+	public function VisualizarAutoPago(){
+	
+		session_start();
+	
+		$avoco='<p align = "justify"><font face="univers" size=1>  La información contenida en este mensaje y sus anexos tiene carácter confidencial,y está dirigida únicamente al destinatario de la misma y sólo podrá ser usada por éste. Si el lector de este mensaje no es el destinatario del mismo, se le notifica que cualquier copia o distribución de éste se encuentra totalmente prohibida. Si usted ha recibido este mensaje por error, por favor notifique inmediatamente al remitente por este mismo medio y borre el mensaje de su sistema. Las opiniones que contenga este mensaje son exclusivas de su autor y no necesariamente representan la opinión oficial del BANCO NACIONAL DE FOMENTO. Este mensaje ha sido examinado por Symantec y se considera libre de virus y spam.</font></p>';
+	
+		$documentos = new AutoPagosModel();
+		$juicios = new JuiciosModel();
+		$ciudad = new CiudadModel();
+	
+		$identificador="";
+		$_estado="Visualizar";
+		$dato=array();
+		$arrayGet=array();
+	
+		if (isset($_POST["Visualizar"]))
+		{
+				
+			//parametros
+			$_juicio_referido_titulo_credito     = $_POST["juicio_referido_titulo_credito"];
+			$_creado      = $_POST["creado"];
+			$_nombres_clientes   = $_POST["nombres_clientes"];
+			$_identificacion_clientes   = $_POST["identificacion_clientes"];
+			$_total   = $_POST["total"];
+			$_secretarios   = $_POST["secretarios"];
+			$_liquidador   = $_POST["liquidador"];
+			$_id_titulo_credito   = $_POST["id_titulo_credito"];
+			$_nombre_garantes   = $_SESSION['nombre_garantes'];
+			$_identificacion_garantes   = $_SESSION['identificacion_garantes'];
+			
+				
+			//traer datos temporales para el reporte
+			$resultCiudad = $ciudad->getBy("id_ciudad='$_id_ciudad'");
+				
+			//consulta datos de juicio
+			$columnas="juicios.juicio_referido_titulo_credito,
+			clientes.nombres_clientes";
+				
+			$tablas="public.juicios,public.clientes";
+				
+			$where="clientes.id_clientes = juicios.id_clientes AND  juicios.id_juicios='$_id_juicio'";
+				
+			$resultJuicio = $juicios->getCondiciones($columnas, $tablas, $where, "clientes.id_clientes");
+				
+				
+			//cargar datos para el reporte
+				
+			$dato['ciudad']=$resultCiudad[0]->nombre_ciudad;
+			$dato['juicio_referido']=$resultJuicio[0]->juicio_referido_titulo_credito;
+			$dato['cliente']=$resultJuicio[0]->nombres_clientes;
+			$dato['fecha_emision_documentos']=$_fecha_emision_documentos;
+			$dato['hora_emision_documentos']=$_hora_emision_documentos;
+			$dato['avoco_vistos_documentos']=$avoco.$_avoco_vistos_documentos;
+	
+			$traza=new TrazasModel();
+			$_nombre_controlador = "Documentos";
+			$_accion_trazas  = "Visualizar";
+			$_parametros_trazas = $_detalle_documentos;
+			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				
+				
+			//cargar array q va por get
+				
+			$arrayGet['id_juicio']=$_id_juicio;
+			$arrayGet['juicio']=$resultJuicio[0]->juicio_referido_titulo_credito;
+			$arrayGet['detalle']=$_detalle_documentos;
+			$arrayGet['observacion']=$_observacion_documentos;
+			$arrayGet['avoco']=$_avoco_vistos_documentos;
+				
+		}
+	
+	
+		$result=urlencode(serialize($dato));
+	
+		$resultArray=urlencode(serialize($arrayGet));
+	
+		$host  = $_SERVER['HTTP_HOST'];
+		$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+	
+	
+	
+		print "<script language='JavaScript'>
+		setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+		</script>";
+	
+		print("<script>window.location.replace('index.php?controller=Documentos&action=index&dato=$resultArray');</script>");
+	
+	
+	}
+	
+	
 	public function Reporte(){
 	
 		//Creamos el objeto usuario
