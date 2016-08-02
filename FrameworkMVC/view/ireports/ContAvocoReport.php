@@ -66,13 +66,13 @@ $estado=$_GET['estado'];
 				clientes.id_clientes = juicios.id_clientes AND
 				documentos.identificador= '$id'";
 				
-				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/Providencias/';
+				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/Avoco/';
 	
 				$PHPJasperXML = new PHPJasperXML();
 				
 				$PHPJasperXML->arrayParameter=array("_sql" => $sql);
 				
-				$PHPJasperXML->load_xml_file("DocumentosReport.jrxml");
+				$PHPJasperXML->load_xml_file("AvocoReport.jrxml");
 				
 				$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 				
