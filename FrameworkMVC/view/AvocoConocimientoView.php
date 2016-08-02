@@ -5,7 +5,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>Documentos - aDocument 2015</title>
+        <title>Avoco Conocimiento - Coactiva 2016</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -188,6 +188,106 @@
 
 	</script>
 	
+	 <script>
+	$(document).ready(function(){
+		
+		$("#id_ciudad").change(function(){
+
+            // identificamos al ddl de secretario
+           var $ddl_secretario = $("#id_secretario");
+       	
+
+            // tomamos parametros -> idCiudad
+           var ddl_ciudad = $(this).val();
+
+          //vaciamos el ddl para secretario y de impulsor
+            $ddl_secretario.empty();
+            var $ddl_impulsor = $("#id_impulsor");
+            $ddl_impulsor.empty();
+
+          
+            if(ddl_ciudad != 0)
+            {
+            	
+            	 var datos = {  
+                    	 		ciudad:$(this).val()  
+                    	 	 };
+             
+            	
+         	   	$.post("<?php echo $helper->url("AvocoConocimiento","returnSecretariosbyciudad"); ?>", datos, function(resultado) {
+
+         		 		$.each(resultado, function(index, value) {
+            		 	    $ddl_secretario.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_resultado.empty();
+
+            }
+		//alert("hola;");
+		});
+
+		
+		});
+	
+	</script>
+	
+	<script>
+	$(document).ready(function(){
+		
+		$("#id_secretario").change(function(){
+
+            // identificamos al ddl de impulsor
+           var $ddl_impulsor = $("#id_impulsor");
+       	
+
+            // tomamos parametros -> idSecretario
+           var ddl_secretario = $(this).val();
+
+          //vaciamos el ddl para secretario
+            $ddl_impulsor.empty();
+
+          
+            if(ddl_secretario != 0)
+            {
+            	
+            	 var datos = {  
+                    	 		idSecretario:$(this).val()  
+                    	 	 };
+             
+            	
+         	   	$.post("<?php echo $helper->url("AvocoConocimiento","returnImpulsoresxSecretario"); ?>", datos, function(resultado) {
+
+         		 		$.each(resultado, function(index, value) {
+            		 	    $ddl_impulsor.append("<option value= " +value.id_abogado +" >" + value.impulsores  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_impulsor.empty();
+
+            }
+		//alert("hola;");
+		});
+
+		
+		});
+	
+	</script>
+	
 	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 	
 	  
@@ -219,13 +319,7 @@
        	 
        }
        
-      /* $sel_id_juicio = "";
-       $sel_id_usuarios = "";
-       $sel_identificacion="";
-       $sel_numero_juicio="";
-       
-       $sel_fecha_desde="";
-       $sel_fecha_hasta="";*/
+    
         
        if($_SERVER['REQUEST_METHOD']=='GET')
        {
@@ -267,14 +361,13 @@
 			 <div class="" style="margin-left:50px">	
 				<BR>
             	
-		    <h4 style="color:#ec971f;" ALIGN="center" >EMISIÓN Y APROBACIÓN DE DOCUMENTOS</h4>
+		    <h4 style="color:#ec971f;" ALIGN="center" >EMISIÓN AVOCO DE CONOCIMIENTO</h4>
 		    
             	<br>
             	 
             	<div class="col-lg-11" style=" text-aling: justify;">
             	 	<p align = "justify"><center><b><font face="univers" size=2>***Esta Leyenda será incluída automaticamente por el sistema a las Providencias para los casos de Juicios anteriores a la gestión del nuevo Liquidador***</font></b></center></p>
-					<p align = "justify"><font face="univers" size=1><b>NOTA DE DESCARGO:</b>  La información contenida en este mensaje y sus anexos tiene carácter confidencial,y está dirigida únicamente al destinatario de la misma y sólo podrá ser usada por éste. Si el lector de este mensaje no es el destinatario del mismo, se le notifica que cualquier copia o distribución de éste se encuentra totalmente prohibida. Si usted ha recibido este mensaje por error, por favor notifique inmediatamente al remitente por este mismo medio y borre el mensaje de su sistema. Las opiniones que contenga este mensaje son exclusivas de su autor y no necesariamente representan la opinión oficial del BANCO NACIONAL DE FOMENTO. Este mensaje ha sido examinado por Symantec y se considera libre de virus y spam.-</font></p>
-			  	
+					 
 			  </div>
 			     <br>
 			     <br>
@@ -284,26 +377,16 @@
      
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Documentos","index"); ?>" method="post" enctype="multipart/form-data">
+      <form action="<?php echo $helper->url("AvocoConocimiento","index"); ?>" method="post" enctype="multipart/form-data">
             
         <div class="col-lg-12" style="margin-top: 10px">
          
        	 <div class="panel panel-default">
   			<div class="panel-body">
   			
-  			 <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
-            
-		    
-		     <?php } } else {?>
+  			 
   			
-             <div class="col-xs-6 col-md-4" >
-			  	<p  class="formulario-subtitulo" >Ciudad:</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" readonly >
-					<?php foreach($resultDatos as $res) {?>
-						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
-			            <?php } ?>
-				</select> 
-			 </div>
+             
 			  
 		    <div class="col-xs-6 col-md-4" >
 			  <p  class="formulario-subtitulo" >Juicios:</p>
@@ -321,43 +404,45 @@
 			 </div>
 			 <br>
 			 <hr>
-			 		        
-		       <div class="col-xs-6 col-md-2" style="margin-top:10px">
-			  	<p  class="formulario-subtitulo" >Estado Procesal:</p>
-			  	 <select name="id_estados_procesales_juicios" id="id_estados_procesales_juicios"  class="form-control" readonly>
-				 <?php foreach($resultEstPro as $res) {?>
-						<option value="<?php echo $res->id_estados_procesales_juicios; ?>"  ><?php echo $res->nombre_estado_procesal_juicios; ?> </option>
-			        <?php } ?>
+			 
+			
+			 	        
+		       <div class="col-xs-6 col-md-3" >
+			  	<p  class="formulario-subtitulo" >Secretario A Reemplazar:</p>
+			  	 <select name="id_secretario_reemplazo" id="id_secretario_reemplazo"  class="form-control" >
+				 <?php foreach($resulSecretario as $res) {?>
+						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
+			            <?php } ?>
+				</select> 
+				   
+			  </div>
+			  <br>
+			
+			  
+			  <hr>
+			  
+			   <div class="col-xs-6 col-md-4" >
+			  	<p  class="formulario-subtitulo" >Ciudad:</p>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+					<?php foreach($resultDatos as $res) {?>
+						 <option value="<?php echo $res->id_usuarios; ?>"  ><?php echo $res->nombre_usuarios; ?> </option>
+			            <?php } ?>
+				</select> 
+			 </div>
+			 	        
+		       <div class="col-xs-6 col-md-2" >
+			  	<p  class="formulario-subtitulo" >Secretario:</p>
+			  	 <select name="id_secretario" id="id_secretario"  class="form-control" >
+				 
 				</select> 
 				   
 			  </div>
 			  
-			  <div class="col-xs-6 col-md-2" style="margin-top:10px">
-			  <p  class="formulario-subtitulo" >Fecha de Providencia:</p>
-			 <input type="text" id="fecha_emision_documentos" name="fecha_emision_documentos" value="<?php $sdate=date("d")."/".date("m")."/".date("Y"); $stime=date("h").":".date("i"); echo "$sdate";?>" class="form-control" <?php echo $habilitar;?>>
-		   	   	<div id="mensaje_criterio" class="errores"></div>	   
-		    </div>
-  		    
-  		     <div class="col-xs-6 col-md-2" style="margin-top:10px">
-			  <p  class="formulario-subtitulo" >Hora de Providencia:</p>
-	          <input type="text" id="hora_emision_documentos" name="hora_emision_documentos" class="form-control" value="<?php $sdate=date("d")."/".date("m")."/".date("Y"); $stime=date("h").":".date("i");  echo " $stime";?>" <?php echo $habilitar;?>>
-		   	<div id="mensaje_criterio" class="errores"></div>	   
-		    </div>
-  		    
-  		    <div class="col-xs-6 col-md-3" style="margin-top:10px">
-			  <p  class="formulario-subtitulo" >Detalle:</p>
-			  <input type="text" id="detalle_documentos" name="detalle_documentos" placeholder="Ingrese" class="form-control" value="<?php echo $sel_detalle;?>" <?php echo $habilitar;?>>
-		   	   	<div id="mensaje_detalle" class="errores"></div>	   
-		    </div>
-  		    
-  		    <div class="col-xs-6 col-md-3" style="margin-top:10px">
-			  <p  class="formulario-subtitulo" >Observación:</p>
-	          <input type="text" id="observacion_documentos" name="observacion_documentos" class="form-control" placeholder="Ingrese" value="<?php echo $sel_observacion; ?>" <?php echo $habilitar;?>>
-		   	<div id="mensaje_observacion" class="errores"></div>	   
-		    </div>
-		    
-		    <?php } ?>
-		    
+			  <div class="col-xs-6 col-md-2">
+			  	<p  class="formulario-subtitulo" >Impulsor:</p>
+			  	 <select name="id_impulsor" id="id_impulsor"  class="form-control" >
+			     </select>
+  		
 		    </div>
 		    </div>
 		    </div>
@@ -369,10 +454,10 @@
 		      <div class="col-xs-12 col-md-6" style="text-align: center; margin-top:10px"  >
 		      </div>
 		       <div class="col-xs-12 col-md-3" style="text-align: center; margin-top:10px"  >
-			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php  echo $helper->url("Documentos","InsertaDocumentos"); ?>'" value="Guardar" class="btn btn-success" <?php echo $habilitar;?>/>
+			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php  echo $helper->url("AvocoConocimiento","InsertaAvoco"); ?>'" value="Guardar" class="btn btn-success" <?php echo $habilitar;?>/>
 			  </div>
 			   <div class="col-xs-12 col-md-3" style="text-align: center; margin-top:10px" >
-			 <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php echo $helper->url("Documentos","VisualizarDocumentos"); ?>'" value="Visualizar" class="btn btn-info" <?php echo $habilitar;?>/>
+			 <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php echo $helper->url("AvocoConocimiento","VisualizarAvoco"); ?>'" value="Visualizar" class="btn btn-info" <?php echo $habilitar;?>/>
 			 </div>
 			 
 			 <div class="col-xs-6 col-md-12" style="margin-top:50px">

@@ -12,55 +12,25 @@ public function index(){
 	
 		session_start();
 		
-		//$dato=array();
-		
-		
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-			
-			
 			$ciudad = new CiudadModel();
-			$resultCiu = $ciudad->getAll("nombre_ciudad");
+			$usarios= new UsuariosModel();
+			$avoco = new AvocoConocimientoModel();
 			
-			$juicios = new JuiciosModel();
-			$resultJui = $juicios->getAll("juicio_referido_titulo_credito");
-			
-			$estados_procesales = new EstadosProcesalesModel();
-			$resultEstPro = $estados_procesales->getBy("nombre_estado_procesal_juicios='Providencia'");
-			
-			
+			$resulSecretario=array();
+			$resultDatos=array();
+			$resulSet=array();
 			
 			$_id_usuarios= $_SESSION["id_usuarios"];
 			
 			//notificaciones
-			$juicios->MostrarNotificaciones($_id_usuarios);
-			
-			$columnas = " usuarios.id_ciudad,
-					  ciudad.nombre_ciudad,
-					  usuarios.nombre_usuarios";
-				
-			$tablas   = "public.usuarios,
-                     public.ciudad";
-				
-			$where    = "ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuarios'";
-				
-			$id       = "usuarios.id_ciudad";
-			
-				
-			$resultDatos=$ciudad->getCondiciones($columnas ,$tablas ,$where, $id);
-			
-
+			$usarios->MostrarNotificaciones($_id_usuarios);
 			
 			$documentos = new DocumentosModel();
 			
 			
-			
-			$resulSet=array();
-
-			//NOTIFICACIONES
-			$documentos->MostrarNotificaciones($_SESSION['id_usuarios']);
-			
-			$nombre_controladores = "Documentos";
+			$nombre_controladores = "Avoco";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $documentos->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
@@ -69,6 +39,12 @@ public function index(){
 				
 				if(isset($_POST['Validar']))
 				{
+					$resultDatos=$ciudad->getAll("nombre_ciudad");
+					
+					$resulSecretario=$usarios->getCondiciones("usuarios.id_usuarios,usuarios.nombre_usuarios",
+																"public.rol,public.usuarios", "rol.id_rol = usuarios.id_rol",
+																"AND rol.nombre_rol='SECRETARIO'",
+																"usuarios.nombre_usuarios");
 					
 					$juicio = new  JuiciosModel();
 					$juicio_referido=$_POST['juicios'];
@@ -78,9 +54,7 @@ public function index(){
 				
 				
 			
-					
 			
-				$resultEdit = "";
 			}
 			else
 			{
@@ -93,7 +67,7 @@ public function index(){
 			}
 			
 			$this->view("AvocoConocimiento",array(
-					"resultCiu"=>$resultCiu, "resultEdit"=>$resultEdit, "resultJui"=>$resultJui, "resultEstPro"=>$resultEstPro,"resulSet"=>$resulSet, "resultDatos"=>$resultDatos
+					 "resulSecretario"=>$resulSecretario,"resulSet"=>$resulSet, "resultDatos"=>$resultDatos
 			
 			));
 			
@@ -114,7 +88,7 @@ public function index(){
 	
 	
 	
-	public function InsertaDocumentos(){
+	public function InsertaAvoco(){
 		
 		
 		session_start();
@@ -223,11 +197,10 @@ public function index(){
 
 	}
 	
-	public function VisualizarDocumentos(){
+	public function VisualizarAvoco(){
 		
 		session_start();
 		
-		$avoco='<p align = "justify"><font face="univers" size=1>  La información contenida en este mensaje y sus anexos tiene carácter confidencial,y está dirigida únicamente al destinatario de la misma y sólo podrá ser usada por éste. Si el lector de este mensaje no es el destinatario del mismo, se le notifica que cualquier copia o distribución de éste se encuentra totalmente prohibida. Si usted ha recibido este mensaje por error, por favor notifique inmediatamente al remitente por este mismo medio y borre el mensaje de su sistema. Las opiniones que contenga este mensaje son exclusivas de su autor y no necesariamente representan la opinión oficial del BANCO NACIONAL DE FOMENTO. Este mensaje ha sido examinado por Symantec y se considera libre de virus y spam.</font></p>';
 		
 		$documentos = new DocumentosModel();
 		$juicios = new JuiciosModel();
@@ -244,16 +217,9 @@ public function index(){
 			//parametros
 			$_id_ciudad     = $_POST["id_ciudad"];
 			$_id_juicio      = $_POST["id_juicios"];
-			$_id_estados_procesales_juicios   = $_POST["id_estados_procesales_juicios"];
-			$_fecha_emision_documentos   = $_POST["fecha_emision_documentos"];
-			$_hora_emision_documentos   = $_POST["hora_emision_documentos"];
-			$_detalle_documentos   = $_POST["detalle_documentos"];
-			$_observacion_documentos   = $_POST["observacion_documentos"];
-			$_avoco_vistos_documentos   = $_POST["avoco_vistos_documentos"];
-			$_id_usuario_registra_documentos   = $_SESSION['id_usuarios'];
+			$_id_secretario     = $_POST["id_ciudad"];
+			$_id_abogado      = $_POST["id_juicios"];
 			
-			//traer datos temporales para el reporte
-			$resultCiudad = $ciudad->getBy("id_ciudad='$_id_ciudad'");	
 			
 			//consulta datos de juicio
 			$columnas="juicios.juicio_referido_titulo_credito,
@@ -273,7 +239,7 @@ public function index(){
 			$dato['cliente']=$resultJuicio[0]->nombres_clientes;
 			$dato['fecha_emision_documentos']=$_fecha_emision_documentos;
 			$dato['hora_emision_documentos']=$_hora_emision_documentos;
-			$dato['avoco_vistos_documentos']=$avoco.$_avoco_vistos_documentos;
+			$dato['avoco_vistos_documentos']=$_avoco_vistos_documentos;
 		
 			$traza=new TrazasModel();
 			$_nombre_controlador = "Documentos";
@@ -329,38 +295,44 @@ public function index(){
 		$this->view("error", array('resultado'=>print_r($resultado)));
 	}
 	
-	public function devuelveArray($dato)
+	
+	
+	
+	//funcion script para mosttrar Secretarios de acuerdo a la ciudad selecionada
+	public function returnSecretariosbyciudad()
 	{
-		$a=stripslashes($dato);
-		
-		$array=urldecode($a);
-		
-		$array=unserialize($a);
-		
-		return $array;
+	
+		//CONSULTA DE USUARIOS POR SU ROL
+		$idciudad=(int)$_POST["ciudad"];
+		$usuarios=new UsuariosModel();
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios,ciudad,rol";
+		$id="rol.id_rol";
+	
+		$where="rol.id_rol=usuarios.id_rol AND usuarios.id_ciudad=ciudad.id_ciudad
+		AND rol.nombre_rol='SECRETARIO' AND ciudad.id_ciudad='$idciudad'";
+	
+		$resultado=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultado);
 	}
 	
-	public function prueba(){
-	
-		//Creamos el objeto usuario
-		//$usuarios=new UsuariosModel();
-		 
-		//Conseguimos todos los usuarios
-		//$allusers=$usuarios->getLogin();
-		 
-		//Cargamos la vista index y l e pasamos valores
-		$this->view("Bienvenida",array(
-				"allusers"=>""
-		));
-	}
-	
-	//funcion para los pdf rechazados por los secretarios
-	public function  pdfRechazado()
+	//funcion script para mosttrar Impulsores de acuerdo a su secretario
+	public function returnImpulsoresxSecretario()
 	{
-		$archivo="";
-		$this->view("Error",array(
-				"resultado"=>"Archivo ".$archivo." fue eliminado"
-		));
+	
+		//consulta de impulsores
+		$idSecretario=(int)$_POST["idSecretario"];
+		$usuarios=new UsuariosModel();
+		$columnas = "asignacion_secretarios_view.id_abogado,asignacion_secretarios_view.impulsores";
+		$tablas="public.asignacion_secretarios_view";
+		$id="asignacion_secretarios_view.impulsores";
+	
+		$where="asignacion_secretarios_view.id_secretario='$idSecretario'";
+	
+		$resultado=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultado);
 	}
 	
 }
