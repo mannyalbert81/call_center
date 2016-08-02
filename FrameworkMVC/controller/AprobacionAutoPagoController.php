@@ -205,6 +205,13 @@ class AprobacionAutoPagoController extends ControladorBase{
 	public function ActualizarAutoPago(){
 		session_start();
 		
+		//para generar el archivo pdf
+		
+		$identificador="";
+		$_estado = "Guardar";
+		$dato=array();
+		
+		
 		$resultado = null;
 		$permisos_rol = new PermisosRolesModel();
 		$aprobacion_auto_pago = new AutoPagosModel();
@@ -214,29 +221,34 @@ class AprobacionAutoPagoController extends ControladorBase{
 		
 		if (!empty($resultPer))
 		{
-			if(isset($_GET["id_auto_pagos"])){
+			
+			if(isset($_GET["id_auto_pagos"]))
+			{
 				
 			
+				$consecutivo= new ConsecutivosModel();
+				$resultConsecutivo= $consecutivo->getBy("documento_consecutivos='AUTOPAGOS'");
+				$identificador=$resultConsecutivo[0]->real_consecutivos;
+				
+				$repositorio_documento="AutoPago";
+				
+				$nombre_documento=$repositorio_documento.$identificador;
 				
 				$estado=new EstadoModel();
 				$resultEstado=$estado->getBy("nombre_estado='APROBADO'");
 				
 				$id_estado=$resultEstado[0]->id_estado;
 				
-				$colval="id_estado='$id_estado'";
-				
 				//para obtener el id auto de pago
 				$id_auto_pago=$_GET["id_auto_pagos"];
 				
-				
 				//para obtener id titulo credito
 				$id_titulo_credito = $_GET["id_titulo_credito"];
-				$tabla="auto_pagos";
-				$where="id_auto_pagos='$id_auto_pago'";
+				
 				
 				try {
 					
-					$resultado=$aprobacion_auto_pago->UpdateBy($colval, $tabla, $where);
+					$resultado=$aprobacion_auto_pago->UpdateBy("id_estado='$id_estado'", "auto_pagos", "id_auto_pagos='$id_auto_pago'");
 					
 					//pra obtener id_ciudad
 					
@@ -314,16 +326,9 @@ class AprobacionAutoPagoController extends ControladorBase{
 
 					$resultadojuicio=$aprobacion_auto_pago->InsertaJuicio($id_entidades, $id_ciudad, $juicio_referido_titulo_credito, $id_usuarios, $id_titulo_credito, $id_clientes, $id_etapas_juicios, $id_tipo_juicios, $descipcion_auto_pago_juicios, $id_estados_procesales_juicios, $id_estados_auto_pago_juicios, $nombre_archivado_juicios);
 					
-					$host  = $_SERVER['HTTP_HOST'];
-					$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-					
-				/*	
-					print "<script language='JavaScript'>
-					setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
-					</script>";
-					
-					print("<script>window.location.replace('index.php?controller=Documentos&action=index');</script>");
-				*/
+					$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='AUTOPAGOS'");
+										
+				
 					
 				} catch (Exception $e) {
 					
@@ -333,13 +338,25 @@ class AprobacionAutoPagoController extends ControladorBase{
 					
 				}
 				
+				$host  = $_SERVER['HTTP_HOST'];
+				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 				
+				 print "<script language='JavaScript'>
+				 setTimeout(window.open('http://$host$uri/view/ireports/ContAutoPagosReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+				 </script>";
+				 	
+				 print("<script>window.location.replace('index.php?controller=AprobacionAutoPago&action=index');</script>");
+				 
 				
 			}
 			
-			$this->redirect("AprobacionAutoPago", "index");
+			//$this->redirect("AprobacionAutoPago", "index");
 		
-		}
+		}else{
+			
+			$this->view("Error", array("resultado"=>"No tiene Acceso a aprobacion de Auto Pagos"));
+			
+			}
 		
 	}
 	
