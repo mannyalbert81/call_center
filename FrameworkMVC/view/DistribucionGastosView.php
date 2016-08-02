@@ -18,6 +18,19 @@
  		
  		<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
 		
+		
+		
+		<script language="javascript" type="text/javascript" src="/view/css/tinymce/js/tinymce/tinymce.js"> </script>
+        <script language="javascript" type="text/javascript">
+	      tinyMCE.init({
+	         mode : "textareas",
+	         theme : "advanced"
+	      });
+	      </script>
+		
+		
+		
+		
 		<script>
 		    webshims.setOptions('forms-ext', {types: 'date'});
 			webshims.polyfill('forms forms-ext');
@@ -283,7 +296,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("DistribucionGastos","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("DistribucionGastos","index"); ?>" method="post" name="tinymce" enctype="multipart/form-data"  class="col-lg-12">
          
          <!-- empieza la cabecera  -->
          <div class="col-lg-12" style="display:none;">

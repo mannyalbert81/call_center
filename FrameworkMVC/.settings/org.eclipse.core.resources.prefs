@@ -7,7 +7,12 @@ encoding//view/ireports/AsignacionSecretariosReport.jrxml=UTF-8
 encoding//view/ireports/AsignacionSecretariosSubReport.jrxml=UTF-8
 encoding//view/ireports/AutoPagoJURIDICOCREGARANTEReport.jrxml=UTF-8
 encoding//view/ireports/AutoPagoJuridicoReport.jrxml=UTF-8
+<<<<<<< HEAD
 encoding//view/ireports/AutoPagoVizualizarJURIDICOCREGARANTEReport.jrxml=UTF-8
+=======
+encoding//view/ireports/AvocoReport.jrxml=UTF-8
+encoding//view/ireports/AvocoVisualizarReport.jrxml=UTF-8
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 encoding//view/ireports/CitacionesGuardarReport.jrxml=UTF-8
 encoding//view/ireports/CitacionesReport.jrxml=UTF-8
 encoding//view/ireports/CitacionesSubReport.jrxml=UTF-8
@@ -25,7 +30,6 @@ encoding//view/ireports/NotificacionesReport.jrxml=UTF-8
 encoding//view/ireports/OficiosReport.jrxml=UTF-8
 encoding//view/ireports/OficiosSubReport.jrxml=UTF-8
 encoding//view/ireports/PhpJasperLibrary/sample1.jrxml=UTF-8
-encoding//view/ireports/ProvidenciaDocumentosReport.jrxml=UTF-8
 encoding//view/ireports/TrazasReport.jrxml=UTF-8
 encoding//view/ireports/UsuariosReport.jrxml=UTF-8
 encoding//view/ireports/UsuariosSubReport.jrxml=UTF-8

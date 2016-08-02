@@ -25,7 +25,7 @@ $controladores=$_SESSION['controladores'];
 ?>
 
 
-<div class="container" style="margin-top: 15px;" >
+<div class="container" style="margin-top: 15px; " >
 <div class="row">
 <div class="col-xs-12">
 <nav class="navbar navbar-default">
@@ -76,6 +76,36 @@ $controladores=$_SESSION['controladores'];
 			<li style="<?php echo getcontrolador("Repositorio",$controladores) ?>">
 			<a href="index.php?controller=Repositorio&action=index"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"> Gestion Repositorios</span> </a>
 			</li>
+			
+			<li role="separator" class="divider"></li>
+			
+			
+            <li style="<?php echo getcontrolador("TipoJuicios",$controladores) ?>">
+            <a href="index.php?controller=TipoJuicios&action=index"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"> Tipo de Juicios</span> </a>
+			</li>
+			<li style="<?php echo getcontrolador("EstadosTitulosCredito",$controladores) ?>">
+			<a href="index.php?controller=EstadosTitulosCredito&action=index"><span class="glyphicon glyphicon-collapse-up" aria-hidden="true"> Estado Titulo Credito</span> </a>
+			</li>
+            <li style="<?php echo getcontrolador("EstadosProcesales",$controladores) ?>">
+            <a href="index.php?controller=EstadosProcesales&action=index"><span class="glyphicon glyphicon-log-in" aria-hidden="true"> Estado Procesal</span> </a>
+            </li>
+            <li style="<?php echo getcontrolador("EtapasJuicios",$controladores) ?>">
+            <a href="index.php?controller=EtapasJuicios&action=index"><span class="glyphicon glyphicon-subtitles" aria-hidden="true"> Etapas Juicios</span> </a>
+            </li>
+            <li style="<?php echo getcontrolador("LotesTituloCredito",$controladores) ?>">
+            <a href="index.php?controller=LotesTituloCredito&action=index"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"> Estado Lotes</span> </a>
+            </li>
+            <li style="<?php echo getcontrolador("EstAutoPagoJuicios",$controladores) ?>">
+            <a href="index.php?controller=EstAutoPagoJuicios&action=index"><span class="glyphicon glyphicon-education" aria-hidden="true"> Estado Auto de Pago</span> </a>
+            </li>
+            <li style="<?php echo getcontrolador("TipoPersona",$controladores) ?>">
+            <a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
+			</li>
+			 <li style="<?php echo getcontrolador("Clientes",$controladores) ?>">
+            <a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Clientes</span> </a>
+			</li>
+			
+			
 </ul>
 </li>
 
@@ -104,37 +134,6 @@ $controladores=$_SESSION['controladores'];
 </ul>
 </li>
         
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-          
-            <li style="<?php echo getcontrolador("TipoJuicios",$controladores) ?>">
-            <a href="index.php?controller=TipoJuicios&action=index"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"> Tipo de Juicios</span> </a>
-			</li>
-			<li style="<?php echo getcontrolador("EstadosTitulosCredito",$controladores) ?>">
-			<a href="index.php?controller=EstadosTitulosCredito&action=index"><span class="glyphicon glyphicon-collapse-up" aria-hidden="true"> Estado Titulo Credito</span> </a>
-			</li>
-            <li style="<?php echo getcontrolador("EstadosProcesales",$controladores) ?>">
-            <a href="index.php?controller=EstadosProcesales&action=index"><span class="glyphicon glyphicon-log-in" aria-hidden="true"> Estado Procesal</span> </a>
-            </li>
-            <li style="<?php echo getcontrolador("EtapasJuicios",$controladores) ?>">
-            <a href="index.php?controller=EtapasJuicios&action=index"><span class="glyphicon glyphicon-subtitles" aria-hidden="true"> Etapas Juicios</span> </a>
-            </li>
-            <li style="<?php echo getcontrolador("LotesTituloCredito",$controladores) ?>">
-            <a href="index.php?controller=LotesTituloCredito&action=index"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"> Estado Lotes</span> </a>
-            </li>
-            <li style="<?php echo getcontrolador("EstAutoPagoJuicios",$controladores) ?>">
-            <a href="index.php?controller=EstAutoPagoJuicios&action=index"><span class="glyphicon glyphicon-education" aria-hidden="true"> Estado Auto de Pago</span> </a>
-            </li>
-            <li style="<?php echo getcontrolador("TipoPersona",$controladores) ?>">
-            <a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
-			</li>
-			 <li style="<?php echo getcontrolador("Clientes",$controladores) ?>">
-            <a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Clientes</span> </a>
-			</li>
-			
-</ul>
-</li>
 
          <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Consultas" ;?> </span> <span class="caret"></span></a>
@@ -256,6 +255,9 @@ $controladores=$_SESSION['controladores'];
           </li>
           <li style="<?php echo getcontrolador("ConsultaDocumentosSecretarios",$controladores) ?>">
           <a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Providencias Secretarios</span> </a>           
+          </li>
+           <li style="<?php echo getcontrolador("ConsultaDocumentosSecretarios",$controladores) ?>">
+          <a href="index.php?controller=AvocoConocimiento&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Avoco Conocimiento</span> </a>           
           </li>
 </ul>
 </li>
