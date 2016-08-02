@@ -256,6 +256,9 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("ConsultaDocumentosSecretarios",$controladores) ?>">
           <a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Providencias Secretarios</span> </a>           
           </li>
+           <li style="<?php echo getcontrolador("ConsultaDocumentosSecretarios",$controladores) ?>">
+          <a href="index.php?controller=AvocoConocimiento&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Avoco Conocimiento</span> </a>           
+          </li>
 </ul>
 </li>
 
