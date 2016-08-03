@@ -437,7 +437,7 @@
        
             <h4 style="color:#ec971f;">Fotografia del Usuario</h4>
            
-        <div class="row"
+        <div class="row">
         <div class="col-xs-12 col-md-12" style="margin-top:20px">
         <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $_SESSION['id_usuarios']; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $_SESSION['id_usuarios'];?>" width="450" height="400"  style="float:left;" >
  		</div>
