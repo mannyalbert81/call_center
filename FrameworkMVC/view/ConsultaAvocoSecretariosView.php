@@ -219,9 +219,6 @@
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" onClick="notificacion()" class="btn btn-warning " style="margin-top: 10px;"/> 	
 		 
 		 <?php if(!empty($resultSet))  {?>
-		 <a href="/FrameworkMVC/view/ireports/ContDocumentosGeneralReport.php?id_ciudad=<?php  echo $sel_id_ciudad ?>&identificacion=<?php  echo $sel_identificacion?>&numero_juicio=<?php  echo $sel_numero_juicio?>&id_usuarios=<?php  echo $sel_id_usuarios?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
-		 
-		
 		 <input type="submit" value="Firmar" id="firmar" name="firmar" class="btn btn-info" style="margin-top: 10px;"/>
 		         
 		  <?php } else {?>
@@ -276,10 +273,12 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
 		            
-		               <td style="color:#000000;font-size:80%;">
-		               <a href="<?php echo $helper->url("ConsultaAvocoSecretarios","abrirPdf"); ?>&id=<?php echo $res->id_avoco_conocimiento; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
-		               <a href="<?php echo $helper->url("ConsultaAvocoSecretarios","rechazarPdf"); ?>&id=<?php echo $res->id_avoco_conocimiento; ?>" class="btn btn-danger" onClick="Ok()" style="font-size:65%;">Eliminar</a>
-		               </td> 
+		               <td style="color:#000000;font-size:90%;">
+		               <a href="<?php echo $helper->url("ConsultaAvocoSecretarios","abrirPdf"); ?>&id=<?php echo $res->id_avoco_conocimiento; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:80%;"> VER </a>
+		               </td>
+		                <td style="color:#000000;font-size:90%;">
+		               <a href="<?php echo $helper->url("ConsultaAvocoSecretarios","rechazarPdf"); ?>&id=<?php echo $res->id_avoco_conocimiento; ?>" class="btn btn-danger" onClick="Ok()" style="font-size:80%;">Eliminar</a>
+		               </td>  
 		    		</tr>
 		        <?php } }else {  ?>
 

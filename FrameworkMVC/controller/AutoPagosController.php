@@ -83,11 +83,10 @@ class AutoPagosController extends ControladorBase{
 					{
 						$nombre_controladores = "AutoPagos";
 						$id_rol= $_SESSION['id_rol'];
-						$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+						$resultPer = $permisos_rol->getPermisosEditar(" controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 						
 						if (!empty($resultPer))
 						{
-							
 							
 							$resultEdit=$asignacionSecretario->getCondiciones($columnas, $tablas, $where, $id);
 							
