@@ -449,9 +449,7 @@
   <div class="container">
   
   <div class="row" style="background-color: #ffffff;">
-  
-  <div></div>
-    
+      
       <!-- empieza el form --> 
        
       <form action="<?php echo $helper->url("Usuarios","InsertaUsuarios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
