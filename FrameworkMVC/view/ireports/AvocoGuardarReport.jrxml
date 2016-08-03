@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-03T14:32:10 -->
+<!-- 2016-08-03T14:37:29 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -72,7 +72,7 @@ JUZGADO DE COACTIVA
 				<textElement>
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{ciudad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="80" y="90" width="30" height="30" uuid="d809d11f-4d27-4249-8ae6-71efe7c3afd9"/>
@@ -98,7 +98,7 @@ JUZGADO DE COACTIVA
 					<font size="12"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<textFieldExpression><![CDATA["VISTOS: Avoco conocimiento del presente proceso signado con el número "+$F{juicio_referido_titulo_credito}+" seguido en contra de "+$F{nombres_clientes}+" con cedula de ciudadanía N° "+$F{identificacion_clientes}+" en calidad de deudor (a) principal y "+$F{nombre_garantes}+", con cedula de ciudadanía N° "+$F{identificacion_garantes}+", en calidad de garante  solidario (a), en mi calidad de Liquidador del Banco Nacional de Fomento en Liquidación conforme a la designación a mi extendida y fundado en la orden de cobro, contenidos ambos actos en la Resolución No. SB-2016-324, emitida por el Ec. Christian Cruz Rodríguez, en su calidad de Superintendente de Bancos del Ecuador, dada en Quito con fecha 08 de mayo del 2016, inscrita en el Registro Mercantil del cantón Quito, el 12 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Déjese sin efecto el nombramiento del Abogado "+$F{secretario_reemplazo}+" , en su calidad de Secretario de Coactiva y en su reemplazo se designa como Secretario de Coactiva al Abogado (a) "+$F{secretarios}+"  y, como Abogado (a) Impulsor (a) se designa a la Abogado (a) "+$F{impulsores}+" quienes hallándose presentes aceptan los cargos y juran desempeñarlos fiel y legalmente, firmando para constancia con el suscrito Juez de Coactiva ................................................................"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["VISTOS: Avoco conocimiento del presente proceso signado con el número "+$F{juicio_referido_titulo_credito}+" seguido en contra de "+$F{nombres_clientes}+" con cedula de ciudadanía N° "+$F{identificacion_clientes}+" en calidad de deudor (a) principal y "+$F{nombre_garantes}+", con cedula de ciudadanía N° "+$F{identificacion_garantes}+", en calidad de garante  solidario (a), en mi calidad de Liquidador del Banco Nacional de Fomento en Liquidación conforme a la designación a mi extendida y fundado en la orden de cobro, contenidos ambos actos en la Resolución No. SB-2016-324, emitida por el Ec. Christian Cruz Rodríguez, en su calidad de Superintendente de Bancos del Ecuador, dada en Quito con fecha 08 de mayo del 2016, inscrita en el Registro Mercantil del cantón Quito, el 12 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Déjese sin efecto el nombramiento del Abogado "+$F{secretario_reemplazo}+" , en su calidad de Secretario de Coactiva y en su reemplazo se designa como Secretario de Coactiva al Abogado (a) "+$F{secretarios}+"  y, como Abogado (a) Impulsor (a) se designa a la Abogado (a) "+$F{impulsores}+" quienes hallándose presentes aceptan los cargos y juran desempeñarlos fiel y legalmente, firmando para constancia con el suscrito Juez de Coactiva. "]]></textFieldExpression>
 				<patternExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></patternExpression>
 			</textField>
 			<staticText>
