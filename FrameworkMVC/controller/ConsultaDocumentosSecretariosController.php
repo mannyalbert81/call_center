@@ -129,11 +129,8 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 					
 					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  documentos.fecha_emision_documentos BETWEEN '$fechadesde' AND '$fechahasta'";}
 
-
-					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;
-
-
-					$resultSet=$documentos_secretarios->getCondiciones($columnas ,$tablas , $where_to, $id);
+                    $where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;
+                    $resultSet=$documentos_secretarios->getCondiciones($columnas ,$tablas , $where_to, $id);
 
 
 				}
@@ -152,8 +149,6 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 					
 					$array_documento=$_POST['file_firmar'];
 					
-					
-										
 					$permisosFirmar=$permisos_rol->getPermisosFirmarPdfs($_id_usuarios);
 					
 					//para las notificaciones 
@@ -163,8 +158,6 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 					$descripcion="Documento Firmado por";
 					$numero_movimiento=0;
 					$id_impulsor="";
-					
-					
 					
 					if($permisosFirmar['estado'])
 					{

@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE HTML>
 <html lang="es">
 
@@ -142,11 +139,9 @@
 		    	var usuario_usuario = $("#usuario_usuarios").val();
 		    	var clave_usuario = $("#clave_usuarios").val();
 		    	var cclave_usuario = $("#cclave_usuarios").val();
-		    	var telefono_usuario = $("#telefono_usuarios").val();	
 		    	var celular_usuario = $("#celular_usuarios").val();
 		    	var correo_usuario  = $("#correo_usuarios").val();
 		    	var correo_usuario  = $("#correo_usuarios").val();
-		    	var imagen_usuario  = $("#imagen_usuarios").val();
 		    	
 		    	
 		    	if (cedula_usuario == "")
@@ -232,19 +227,7 @@
 				
 
 				//los telefonos
-		    	if (telefono_usuario == "" )
-		    	{
-			    	
-		    		$("#mensaje_telefono").text("Ingrese un Teléfono");
-		    		$("#mensaje_telefono").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_telefono").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-
+		    	
 		    	if (celular_usuario == "" )
 		    	{
 			    	
@@ -279,18 +262,7 @@
 		            return false;	
 			    }
 
-		    	if (imagen_usuario == "" )
-		    	{
-			    	
-		    		$("#mensaje_imagen_usuarios").text("Ingrese una Foto");
-		    		$("#mensaje_imagen_usuarios").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_imagen_usuarios").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
+		    	
 
 		    					    
 
@@ -314,9 +286,7 @@
 				$( "#cclave_usuarios" ).focus(function() {
 					$("#mensaje_cclave").fadeOut("slow");
     			});
-				$( "#telefono_usuarios" ).focus(function() {
-					$("#mensaje_telefono").fadeOut("slow");
-    			});
+				
 				$( "#celular_usuarios" ).focus(function() {
 					$("#mensaje_celular").fadeOut("slow");
     			});
@@ -324,9 +294,7 @@
 				$( "#correo_usuarios" ).focus(function() {
 					$("#mensaje_correo").fadeOut("slow");
     			});
-				$( "#imagen_usuarios" ).focus(function() {
-					$("#mensaje_imagen_usuarios").fadeOut("slow");
-    			});
+			
 		
 				
 		      
@@ -478,9 +446,7 @@
   <div class="container">
   
   <div class="row" style="background-color: #ffffff;">
-  
-  <div></div>
-    
+      
       <!-- empieza el form --> 
        
       <form action="<?php echo $helper->url("Usuarios","InsertaUsuarios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-6">
@@ -533,7 +499,7 @@
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Teléfono Usuario </p>
 			  	<input type="text" name="telefono_usuarios" id="telefono_usuarios" value="<?php echo $resEdit->telefono_usuarios; ?>" class="form-control"/>
-			  <div id="mensaje_telefono" class="errores"></div>
+			  
 			  </div>
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Celular  Usuario</p>
@@ -635,7 +601,7 @@
 		    <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Teléfono Usuario </p>
 			  	<input type="text" name="telefono_usuarios" id="telefono_usuarios" value="" class="form-control"/>
-			  <div id="mensaje_telefono" class="errores"></div>
+			  
 			  </div>
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Celular  Usuario</p>

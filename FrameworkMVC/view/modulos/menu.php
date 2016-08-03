@@ -163,7 +163,13 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("ConsultaDocumentosSecretarios",$controladores) ?>">
           <a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Providencias Secretarios</span> </a>
           </li>
-			
+          
+		  <li style="<?php echo getcontrolador("ConsultaAvocoImpulsores",$controladores) ?>">
+          <a href="index.php?controller=ConsultaAvocoImpulsores&action=consulta_impulsores_avoco_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Avoco Impulsores</span> </a>
+          </li>
+          <li style="<?php echo getcontrolador("ConsultaAvocoSecretarios",$controladores) ?>">
+          <a href="index.php?controller=ConsultaAvocoSecretarios&action=consulta_secretarios_avoco_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Avoco Secretarios</span> </a>
+          </li>	
 </ul>
 </li>
 
@@ -258,6 +264,13 @@ $controladores=$_SESSION['controladores'];
           </li>
            <li style="<?php echo getcontrolador("ConsultaDocumentosSecretarios",$controladores) ?>">
           <a href="index.php?controller=AvocoConocimiento&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Avoco Conocimiento</span> </a>           
+          </li>
+          
+          <li style="<?php echo getcontrolador("ConsultaAvocoImpulsores",$controladores) ?>">
+          <a href="index.php?controller=ConsultaAvocoImpulsores&action=consulta_impulsores_avoco"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Avoco Impulsores</span> </a>
+          </li>
+          <li style="<?php echo getcontrolador("ConsultaAvocoSecretarios",$controladores) ?>">
+          <a href="index.php?controller=ConsultaAvocoSecretarios&action=consulta_secretarios_avoco"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Avoco Secretarios</span> </a>           
           </li>
 </ul>
 </li>

@@ -6,7 +6,7 @@ class CertificadosElectronicosController extends ControladorBase{
 		parent::__construct();
 	}
 
-
+//sadsad
 
 	public function index(){
 	
