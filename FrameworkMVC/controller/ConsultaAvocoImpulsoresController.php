@@ -107,7 +107,7 @@ class ConsultaAvocoImpulsoresController extends ControladorBase{
 
 					if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
 					
-					if($id_usuarios!=0){$where_1=" AND usuarios.id_usuarios='$id_usuarios'";}
+					if($id_usuarios!=0){$where_1=" AND avoco_conocimiento.id_impulsor='$id_usuarios'";}
 						
 					if($identificacion!=""){$where_2=" AND clientes.identificacion_clientes='$identificacion'";}
 					
@@ -343,7 +343,7 @@ class ConsultaAvocoImpulsoresController extends ControladorBase{
 	
 					if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
 						
-					if($id_usuarios!=0){$where_1=" AND usuarios.id_usuarios='$id_usuarios'";}
+					if($id_usuarios!=0){$where_1=" AND avoco_conocimiento.id_impulsor='$id_usuarios'";}
 	
 					if($identificacion!=""){$where_2=" AND clientes.identificacion_clientes='$identificacion'";}
 						
