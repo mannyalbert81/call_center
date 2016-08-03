@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-03T13:13:02 -->
+<!-- 2016-08-03T13:45:45 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -96,7 +96,7 @@ JUZGADO DE COACTIVA
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="527" splitType="Stretch">
+		<band height="588" splitType="Stretch">
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="" isBlankWhenNull="true">
 				<reportElement x="40" y="10" width="470" height="290" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
 				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
@@ -107,18 +107,24 @@ JUZGADO DE COACTIVA
 				<patternExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></patternExpression>
 			</textField>
 			<staticText>
-				<reportElement x="390" y="493" width="100" height="27" uuid="02f79a28-5c3c-4fd9-b4a1-f5abacfa961a"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="395" y="550" width="120" height="27" uuid="02f79a28-5c3c-4fd9-b4a1-f5abacfa961a"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[ABOGADO (A) SECRETARIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="20" y="490" width="100" height="30" uuid="02a32497-bf7d-43fd-bfeb-df4c69640f51"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="70" y="550" width="120" height="30" uuid="02a32497-bf7d-43fd-bfeb-df4c69640f51"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[ABOGADO (A) IMPULSOR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="211" y="490" width="100" height="30" uuid="ab0b2625-f93b-489b-8ddf-a8fe0af341ae"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="251" y="550" width="100" height="30" uuid="ab0b2625-f93b-489b-8ddf-a8fe0af341ae"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[JUEZ (A) DE COACTIVA]]></text>
 			</staticText>
 		</band>

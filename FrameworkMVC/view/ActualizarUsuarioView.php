@@ -67,7 +67,8 @@
 		    $("#Guardar").click(function() 
 			{
 		   
-		    	var nombre_tipo_identificacion = $("#nombre_tipo_identificacion").val();
+		    	var clave_usuario = $("#clave_usuarios").val();
+		    	var cclave_usuario = $("#cclave_usuarios").val();
 		    
 		   				
 		    	if (cclave_usuario == "")
@@ -98,14 +99,17 @@
 				
 
 
-		 
+			});
 				
-				$( "#nombre_tipo_identificacion" ).focus(function() {
-					$("#mensaje_nombres").fadeOut("slow");
-    			});
+				
 				
 			
-		
+				$( "#clave_usuarios" ).focus(function() {
+					$("#mensaje_clave").fadeOut("slow");
+    			});
+				$( "#cclave_usuarios" ).focus(function() {
+					$("#mensaje_cclave").fadeOut("slow");
+    			});
 				
 		
 		      
@@ -166,13 +170,13 @@
 		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Clave Usuario</p>
 			  	<input type="password" name="clave_usuarios"  id="clave_usuarios" value="" class="form-control"/> 
-			  	<div id="mensaje_descripcion_notificacion" class="errores"></div>
+			  	<div id="mensaje_clave" class="errores"></div>
 			  </div>
 			 
 			   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Repita Clave Usuario</p>
 			  	<input type="password" name="clave_usuario_r" id="clave_usuario_r" value="" class="form-control"/> 
-			  	<div id="mensaje_descripcion_notificacion" class="errores"></div>
+			  	<div id="mensaje_cclave" class="errores"></div>
 			  </div>
 			    </div>
 			    
@@ -223,13 +227,13 @@
 		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Clave Usuario</p>
 			  	<input type="password" name="clave_usuarios"  id="clave_usuarios" value="" class="form-control"/> 
-			  	<div id="mensaje_descripcion_notificacion" class="errores"></div>
+			  	<div id="mensaje_clave" class="errores"></div>
 			  </div>
 			 
 			   <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Repita Clave Usuario</p>
 			  	<input type="password" name="clave_usuario_r" id="clave_usuario_r" value="" class="form-control"/> 
-			  	<div id="mensaje_descripcion_notificacion" class="errores"></div>
+			  	<div id="mensaje_cclave" class="errores"></div>
 			  </div>
 			    </div>
 			    
