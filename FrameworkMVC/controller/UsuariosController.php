@@ -275,6 +275,7 @@ public function index(){
 	
 	
 			$resultado=$usuarios->Insert();
+		    
 		    }
 			
 		    else
