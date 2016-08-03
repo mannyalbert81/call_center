@@ -44,42 +44,52 @@ $estado=$_GET['estado'];
 	
 		} else 
 		{
-	
-				$id= $_GET['identificador'];
-				$nombre=$_GET['nombre'];
-				//aqui va la consulta
-				$sql="SELECT
-				ciudad.nombre_ciudad,
-				juicios.juicio_referido_titulo_credito,
-				clientes.nombres_clientes,
-				documentos.fecha_emision_documentos,
-				documentos.hora_emision_documentos,
-				documentos.avoco_vistos_documentos
-				FROM
-				public.documentos,
-				public.ciudad,
-				public.juicios,
-				public.clientes
-				WHERE
-				ciudad.id_ciudad = documentos.id_ciudad AND
-				juicios.id_juicios = documentos.id_juicio AND
-				clientes.id_clientes = juicios.id_clientes AND
-				documentos.identificador= '$id'";
-
-				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/Avoco/';
-	
-				$PHPJasperXML = new PHPJasperXML();
-				
-				$PHPJasperXML->arrayParameter=array("_sql" => $sql);
-				
-				$PHPJasperXML->load_xml_file("AvocoReport.jrxml");
-
-				
-				$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
-				
-				$PHPJasperXML->outpage("F",$directorio.$nombre.'.pdf');
+			
+			 $id= $_GET['identificador'];
+			 $nombre=$_GET['nombre'];
+			 //aqui va la consulta
+			 $sql="SELECT 
+					  avoco_conocimiento.id_avoco_conocimiento, 
+					  juicios.juicio_referido_titulo_credito,
+					  clientes.nombres_clientes,
+					  clientes.identificacion_clientes, 
+					  ciudad.nombre_ciudad, 
+					  asignacion_secretarios_view.secretarios, 
+					  asignacion_secretarios_view.impulsores, 
+					  usuarios.nombre_usuarios as secretario_reemplazo
+					FROM 
+					  public.avoco_conocimiento, 
+					  public.juicios, 
+					  public.ciudad, 
+					  public.asignacion_secretarios_view, 
+					  public.usuarios,
+					  public.clientes
+					WHERE 
+					  avoco_conocimiento.id_secretario = asignacion_secretarios_view.id_secretario AND
+					  avoco_conocimiento.id_impulsor = asignacion_secretarios_view.id_abogado AND
+					  avoco_conocimiento.secretario_reemplazo = usuarios.id_usuarios AND
+					  juicios.id_juicios = avoco_conocimiento.id_juicios AND
+					  ciudad.id_ciudad = avoco_conocimiento.id_ciudad AND
+					  juicios.id_clientes = clientes.id_clientes AND
+					  avoco_conocimiento.identificador= '$id' ";
+			
+			 $directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/Avoco/';
+			
+			 $PHPJasperXML = new PHPJasperXML();
+			
+			 $PHPJasperXML->arrayParameter=array("_sql" => $sql);
+			
+			 $PHPJasperXML->load_xml_file("AvocoGuardarReport.jrxml");
+			
+			
+			 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
+			
+			 $PHPJasperXML->outpage("F",$directorio.$nombre.'.pdf');
+		
 	
            }
+           
+       
 
 ?>
 

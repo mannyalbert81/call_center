@@ -309,11 +309,14 @@
        $sel_observacion="";
        $sel_avoco="";
        
+       $datosGet=array();
+       
        
        if($_SERVER['REQUEST_METHOD']=='POST' )
        {
        
-       	if(!empty($resulSet)){
+       	if(!empty($resulSet))
+       	{
        	$sel_juicios = $_POST['juicios'];
        	 }
        	 
@@ -328,24 +331,19 @@
        	{
        	$a=stripslashes($_GET['dato']);
        	
-       	$_dato=urldecode($a);
+       	$datosGet=urldecode($a);
        	
-       	$_dato=unserialize($a);
-       	/*
-       	$sel_juicios=$_dato['juicio'];
-       	$sel_id_juicio=$_dato['id_juicio'];
-       	$sel_detalle=$_dato['detalle'];
-       	$sel_observacion=$_dato['observacion'];
-       	$sel_avoco=$_dato['avoco'];*/
+       	$datosGet=unserialize($a);
+       	
+       	
        	}
       
        }
         
        
-       
        $habilitar="disabled";
        
-       if(!empty($resulSet) || $sel_juicios!=""){
+       if(!empty($resulSet) || $sel_juicios!="" || !empty($datosGet)){
        	$habilitar="";
        }
        
@@ -383,18 +381,14 @@
          
        	 <div class="panel panel-default">
   			<div class="panel-body">
-  			
-  			 
-  			
-             
 			  
 		    <div class="col-xs-6 col-md-4" >
 			  <p  class="formulario-subtitulo" >Juicios:</p>
-	          <input type="text" id="juicios" name="juicios" class="form-control" placeholder="Nº Juicio" value="<?php echo $sel_juicios;?>">
+	          <input type="text" id="juicios" name="juicios" class="form-control" placeholder="Nº Juicio" value="<?php if (!empty($datosGet)){echo $datosGet['juicio'];}else { echo $sel_juicios;} ?>">
 	        
 	         <input type="hidden" id="id_juicios" name="id_juicios" value="<?php if(!empty($resulSet)){ foreach ($resulSet as $res){
 	         echo 	$res->id_juicios;
-	         }}elseif ($sel_id_juicio!=""){echo $sel_id_juicio;}?>">
+	         }}elseif (!empty($datosGet)){echo $datosGet['id_juicio'];}?>">
 		   	<div id="mensaje_juicio" class="errores"></div>	   
 		    </div>
 			  
@@ -410,9 +404,12 @@
 		       <div class="col-xs-6 col-md-3" >
 			  	<p  class="formulario-subtitulo" >Secretario A Reemplazar:</p>
 			  	 <select name="id_secretario_reemplazo" id="id_secretario_reemplazo"  class="form-control" <?php echo $habilitar;?>>
-				 <?php foreach($resulSecretario as $res) {?>
-						 <option value="<?php echo $res->id_usuarios; ?>"  ><?php echo $res->nombre_usuarios; ?> </option>
-			            <?php } ?>
+				     <?php if (!empty($datosGet)){ ?>
+			  		<option value="<?php echo $datosGet['id_reemplazo']; ?>"  ><?php echo $datosGet['reemplazo']; ?> </option>
+			  		<?php }else{ ?>
+					<?php foreach($resulSecretario as $res) {?>
+					 <option value="<?php echo $res->id_usuarios; ?>"  ><?php echo $res->nombre_usuarios; ?> </option>
+			        <?php }} ?>
 				</select> 
 				   
 			  </div>
@@ -424,16 +421,21 @@
 			   <div class="col-xs-6 col-md-4" >
 			  	<p  class="formulario-subtitulo" >Ciudad:</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" <?php echo $habilitar;?>>
+			  		<?php if (!empty($datosGet)){ ?>
+			  		<option value="<?php echo $datosGet['id_ciudad']; ?>"  ><?php echo $datosGet['ciudad']; ?> </option>
+			  		<?php }else{ ?>
 					<?php foreach($resultDatos as $res) {?>
-						 <option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
-						 <?php } ?>
+					<option value="<?php echo $res->id_ciudad; ?>"  ><?php echo $res->nombre_ciudad; ?> </option>
+					<?php }} ?>
 				</select> 
 			 </div>
 			 	        
 		       <div class="col-xs-6 col-md-3" >
 			  	<p  class="formulario-subtitulo" >Secretario:</p>
 			  	 <select name="id_secretario" id="id_secretario"  class="form-control" <?php echo $habilitar;?> >
-				 
+				 <?php if (!empty($datosGet)){ ?>
+			  		<option value="<?php echo $datosGet['id_secretario']; ?>"  ><?php echo $datosGet['secretario']; ?> </option>
+			  	 <?php }?>
 				</select> 
 				   
 			  </div>
@@ -441,6 +443,9 @@
 			  <div class="col-xs-6 col-md-3">
 			  	<p  class="formulario-subtitulo" >Impulsor:</p>
 			  	 <select name="id_impulsor" id="id_impulsor"  class="form-control" <?php echo $habilitar;?>>
+			  	 <?php if (!empty($datosGet)){ ?>
+			  		<option value="<?php echo $datosGet['id_impulsor']; ?>"  ><?php echo $datosGet['impulsor']; ?> </option>
+			  	<?php } ?>
 			     </select>
   		
 		    </div>
@@ -466,7 +471,7 @@
   			 
 		</div>
 		
-		
+		</div>
 		 
 		</div>
 		

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-02T17:31:31 -->
+<!-- 2016-08-03T09:59:48 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
-	<parameter name="ciudad" class="java.lang.String"/>
-	<parameter name="juicio_referido" class="java.lang.String"/>
-	<parameter name="cliente" class="java.lang.String"/>
-	<parameter name="identificacion" class="java.lang.String"/>
-	<parameter name="secretario_reemplazar" class="java.lang.String"/>
-	<parameter name="secretario" class="java.lang.String"/>
-	<parameter name="impulsor" class="java.lang.String"/>
+	<parameter name="_sql" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT 1 as juicio_referido FROM documentos LIMIT 1]]>
+		<![CDATA[ $P{_sql} ]]>
 	</queryString>
-	<field name="juicio_referido" class="java.lang.String"/>
+	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
+	<field name="nombres_clientes" class="java.lang.String"/>
+	<field name="identificacion_clientes" class="java.lang.String"/>
+	<field name="nombre_ciudad" class="java.lang.String"/>
+	<field name="secretarios" class="java.lang.String"/>
+	<field name="impulsores" class="java.lang.String"/>
+	<field name="secretario_reemplazo" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="60" splitType="Stretch">
 			<staticText>
 				<reportElement x="25" y="0" width="512" height="60" backcolor="#000000" uuid="2a47ab86-e168-4c13-8677-a347fc2eb3db"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
@@ -45,14 +45,14 @@ JUZGADO DE COACTIVA
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{juicio_referido}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="40" y="30" width="320" height="20" uuid="d3595bc1-39c4-42ca-9e5e-8afef99a9528"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{cliente}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="40" y="50" width="130" height="30" uuid="67f3b531-5010-43ae-bf11-596809d6fe2e"/>
@@ -66,7 +66,7 @@ JUZGADO DE COACTIVA
 				<textElement>
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{ciudad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="120" y="90" width="30" height="30" uuid="b37aff5c-2ffc-49c4-b4bc-118639fddf73"/>
@@ -103,8 +103,8 @@ JUZGADO DE COACTIVA
 					<font size="12"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<textFieldExpression><![CDATA[  "VISTOS: Avoco conocimiento del presente proceso signado con el número"+"<style isBold='true' pdfFontName='Helvetica-Bold'>" +$P{juicio_referido}+"</style>"+" seguido en contra de "+"<b> "+$P{cliente}+" </b>"+" con cedula de ciudadanía N° "+"<b> "+$P{identificacion}+" </b>"+" en calidad de deudor (a) principal y "+"NOMBRE DEL GARANTE"+", con cedula de ciudadanía N° "+"CEDULA_GARANTE"+", en calidad de garante  solidario (a), en mi calidad de Liquidador del Banco Nacional de Fomento en Liquidación conforme a la designación a mi extendida y fundado en la orden de cobro, contenidos ambos actos en la Resolución No. SB-2016-324, emitida por el Ec. Christian Cruz Rodríguez, en su calidad de Superintendente de Bancos del Ecuador, dada en Quito con fecha 08 de mayo del 2016, inscrita en el Registro Mercantil del cantón Quito, el 12 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Déjese sin efecto el nombramiento del Abogado "+"<b> "+$P{secretario_reemplazar}+" </b>"+" , en su calidad de Secretario de Coactiva y en su reemplazo se designa como Secretario de Coactiva al Abogado (a) "+"<b> "+$P{secretario}+" </b>"+"  y, como Abogado (a) Impulsor (a) se designa a la Abogado (a) "+"<b> "+$P{impulsor}+" </b>"+"quienes hallándose presentes aceptan los cargos y juran desempeñarlos fiel y legalmente, firmando para constancia con el suscrito Juez de Coactiva…………………………………………………………...   Cúmplase y Notifíquese.-  "]]></textFieldExpression>
-				<patternExpression><![CDATA[$F{juicio_referido}]]></patternExpression>
+				<textFieldExpression><![CDATA["VISTOS: Avoco conocimiento del presente proceso signado con el número"+"<style isBold='true' pdfFontName='Helvetica-Bold'>" +$F{juicio_referido_titulo_credito}+"</style>"+" seguido en contra de "+"<b> "+$F{nombres_clientes}+" </b>"+" con cedula de ciudadanía N° "+"<b> "+$F{identificacion_clientes}+" </b>"+" en calidad de deudor (a) principal y "+"NOMBRE DEL GARANTE"+", con cedula de ciudadanía N° "+"CEDULA_GARANTE"+", en calidad de garante  solidario (a), en mi calidad de Liquidador del Banco Nacional de Fomento en Liquidación conforme a la designación a mi extendida y fundado en la orden de cobro, contenidos ambos actos en la Resolución No. SB-2016-324, emitida por el Ec. Christian Cruz Rodríguez, en su calidad de Superintendente de Bancos del Ecuador, dada en Quito con fecha 08 de mayo del 2016, inscrita en el Registro Mercantil del cantón Quito, el 12 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Déjese sin efecto el nombramiento del Abogado "+"<b> "+$F{secretario_reemplazo}+" </b>"+" , en su calidad de Secretario de Coactiva y en su reemplazo se designa como Secretario de Coactiva al Abogado (a) "+"<b> "+$F{secretarios}+" </b>"+"  y, como Abogado (a) Impulsor (a) se designa a la Abogado (a) "+"<b> "+$F{impulsores}+" </b>"+"quienes hallándose presentes aceptan los cargos y juran desempeñarlos fiel y legalmente, firmando para constancia con el suscrito Juez de Coactiva…………………………………………………………...   Cúmplase y Notifíquese.-  "]]></textFieldExpression>
+				<patternExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></patternExpression>
 			</textField>
 			<staticText>
 				<reportElement x="40" y="333" width="100" height="70" uuid="425565a5-5a3c-48a4-92ec-a9f98004198d"/>
