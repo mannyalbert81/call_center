@@ -223,7 +223,8 @@ public function index(){
 			
 			//consulta datos de juicio
 			$columnas="juicios.juicio_referido_titulo_credito,
-			clientes.nombres_clientes,clientes.identificacion_clientes";
+			clientes.nombres_clientes,clientes.identificacion_clientes,clientes.nombre_garantes,
+					  clientes.identificacion_garantes";
 			
 			$tablas="public.juicios,public.clientes";
 			
@@ -254,6 +255,8 @@ public function index(){
 			$dato['secretario_reemplazar']=$resultSecretario[0]->nombre_usuarios;
 			$dato['secretario']=$resultAbogados[0]->secretarios;
 			$dato['abogado']=$resultAbogados[0]->impulsores;
+			$dato['garante']=$resultJuicio[0]->nombre_garantes;
+			$dato['identificacion_garante']=$resultJuicio[0]->identificacion_garantes;
 			
 			//$this->view("Error", array("resultado"=>print_r($dato))); exit();
 						
