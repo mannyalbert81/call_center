@@ -252,7 +252,6 @@
 	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
 	    		<th style="color:#456789;font-size:80%;">Secretario Saliente </th>
 	    		<th style="color:#456789;font-size:80%;">Fecha </th>
-	    		
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
@@ -280,6 +279,7 @@
 
                 <tr>
 	                  	<td></td>
+            			<td></td>
             			<td></td>
             			<td></td>
             			<td></td>

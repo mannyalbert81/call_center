@@ -259,6 +259,7 @@
             			<td></td>
             			<td></td>
             			<td></td>
+            			<td></td>
             			<td colspan="5" style="color:#ec971f;font-size:8;" style="text-aling:center";> <?php echo '<span id="snResult">NO EXISTE DATOS PARA ESOS FILTROS</span>' ?></td>
 	       				
 		    	</tr>
