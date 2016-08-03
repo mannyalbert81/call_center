@@ -94,25 +94,21 @@ public function index(){
 		
 		
 		session_start();
-		$documentos=new DocumentosModel();
+
+		$avoco = new AvocoConocimientoModel();
 		
 		$juicio = new  JuiciosModel();
-		$nombre_controladores = "Documentos";
+		$nombre_controladores = "Avoco";
 		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $documentos->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-		
-		$avoco='<p align = "justify"><font face="univers" size=1>  La información contenida en este mensaje y sus anexos tiene carácter confidencial,y está dirigida únicamente al destinatario de la misma y sólo podrá ser usada por éste. Si el lector de este mensaje no es el destinatario del mismo, se le notifica que cualquier copia o distribución de éste se encuentra totalmente prohibida. Si usted ha recibido este mensaje por error, por favor notifique inmediatamente al remitente por este mismo medio y borre el mensaje de su sistema. Las opiniones que contenga este mensaje son exclusivas de su autor y no necesariamente representan la opinión oficial del BANCO NACIONAL DE FOMENTO. Este mensaje ha sido examinado por Symantec y se considera libre de virus y spam.</font></p>';
+		$resultPer = $avoco->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+		$id_usuario=$_SESSION['id_usuarios'];
 		
 		if (!empty($resultPer))
 		{
 		
 			$resultado = null;
-			$documentos=new DocumentosModel();
 		
-		
-		
-		//_nombre_categorias character varying, _path_categorias character varying
-			if (isset ($_POST["id_juicios"]) && isset($_POST["Guardar"]))
+			if (isset ($_POST["id_juicios"]))
 			{
 				//estado de documento pdf
 				$_estado = "";
@@ -122,16 +118,13 @@ public function index(){
 				//identificador de pdf
 				$identificador="";
 				
+				
 				//parametros
-				$_id_ciudad     = $_POST["id_ciudad"];
-				$_id_juicio      = $_POST["id_juicios"];
-				$_id_estados_procesales_juicios   = $_POST["id_estados_procesales_juicios"];
-				$_fecha_emision_documentos   = $_POST["fecha_emision_documentos"];
-				$_hora_emision_documentos   = $_POST["hora_emision_documentos"];
-				$_detalle_documentos   = $_POST["detalle_documentos"];
-				$_observacion_documentos   = $_POST["observacion_documentos"];
-				$_avoco_vistos_documentos   = $avoco. $_POST["avoco_vistos_documentos"];
-				$_id_usuario_registra_documentos   = $_SESSION['id_usuarios'];
+				$_id_ciudad     			= $_POST["id_ciudad"];
+				$_id_juicio      			= $_POST["id_juicios"];
+				$_id_secretario_reemplazar  = $_POST["id_secretario_reemplazo"];
+				$_id_secretario     		= $_POST["id_secretario"];
+				$_id_impulsor     			= $_POST["id_impulsor"];
 				
 			
 					if (isset($_POST["Guardar"]))
@@ -140,51 +133,53 @@ public function index(){
 						//Guarda en la base de datos
 						
 						$consecutivo= new ConsecutivosModel();
-						$resultConsecutivo= $consecutivo->getBy("documento_consecutivos='PROVIDENCIAS'");
+						$resultConsecutivo= $consecutivo->getBy("documento_consecutivos='AVOCO'");
 						
 						$identificador=$resultConsecutivo[0]->real_consecutivos;
 						
 						
-						$repositorio_documento="Providencias";
+						$repositorio_documento="Avoco";
 						
 						$nombre_documento=$repositorio_documento.$identificador;
 						
-						$funcion = "ins_documentos_report";
-							
-						$parametros = " '$_id_ciudad' ,'$_id_juicio' , '$_id_estados_procesales_juicios' , '$_fecha_emision_documentos' , '$_hora_emision_documentos' , '$_detalle_documentos' , '$_observacion_documentos' , '$_avoco_vistos_documentos', '$_id_usuario_registra_documentos','$identificador','$nombre_documento','$repositorio_documento'";
-						$documentos->setFuncion($funcion);
+						$funcion = "ins_avoco_conocimiento";
 						
-						$documentos->setParametros($parametros);
-						$resultado=$documentos->Insert();
+						//parametrsos sql
+						//_id_juicios integer, _id_ciudad integer, _id_secretario integer, _id_impulsor integer, _id_usuario_registra_avoco integer, _nombre_documento character varying, _ruta_documento character varying, _identificador character varying, _secretario_reemplazo integer
+						
+							
+						$parametros = " '$_id_juicio' ,'$_id_ciudad' , '$_id_secretario' , '$_id_impulsor' , '$id_usuario' , '$nombre_documento' , '$repositorio_documento' , '$identificador','$_id_secretario_reemplazar'";
+						$avoco->setFuncion($funcion);
+														
+						$avoco->setParametros($parametros);
+						$resultado=$avoco->Insert();
 						
 						//auditoria
 						$traza=new TrazasModel();
-						$_nombre_controlador = "Documentos";
+						$_nombre_controlador = "Avoco";
 						$_accion_trazas  = "Guardar";
-						$_parametros_trazas = $_detalle_documentos;
+						$_parametros_trazas = "Archivo ".$nombre_documento." en ".$repositorio_documento;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						
 						//$this->view("Error", array("resultado"=>print_r($resultado)));
 						
-						$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='PROVIDENCIAS'");
+						$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='AVOCO'");
 						
 						$_estado = "Guardar";
 					}
+					
 				}
 				$host  = $_SERVER['HTTP_HOST'];
 				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 				
 				
 				print "<script language='JavaScript'>
-				setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+				setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
 				</script>";
 				
-				print("<script>window.location.replace('index.php?controller=Documentos&action=index');</script>");
-				
-				
-				
-				
-			
+				print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index');</script>");
+
+		
 			}else
 				{
 					
@@ -197,6 +192,7 @@ public function index(){
 	
 				}
 
+	
 	}
 	
 	public function VisualizarAvoco(){
@@ -271,13 +267,18 @@ public function index(){
 			
 			//cargar array q va por get
 			
-			/*$arrayGet['id_juicio']=$_id_juicio;
+			$arrayGet['id_juicio']=$_id_juicio;
 			$arrayGet['juicio']=$resultJuicio[0]->juicio_referido_titulo_credito;
-			$arrayGet['detalle']=$_detalle_documentos;
-			$arrayGet['observacion']=$_observacion_documentos;
-			$arrayGet['avoco']=$_avoco_vistos_documentos;*/
+			$arrayGet['id_reemplazo']=$resultSecretario[0]->id_usuarios;
+			$arrayGet['reemplazo']=$resultSecretario[0]->nombre_usuarios;
+			$arrayGet['id_ciudad']=$resultCiudad[0]->id_ciudad;
+			$arrayGet['ciudad']=$resultCiudad[0]->nombre_ciudad;
+			$arrayGet['id_secretario']=$resultAbogados[0]->id_secretario;
+			$arrayGet['secretario']=$resultAbogados[0]->secretarios;
+			$arrayGet['id_impulsor']=$resultAbogados[0]->id_abogado;
+			$arrayGet['impulsor']=$resultAbogados[0]->impulsores;
 			
-			$arrayGet=array();
+			
 			
 		}
 		
