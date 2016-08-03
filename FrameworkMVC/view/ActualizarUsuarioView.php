@@ -60,6 +60,60 @@
 			}
 		</script>
 		
+		 <script >
+		$(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#Guardar").click(function() 
+			{
+		   
+		    	var nombre_tipo_identificacion = $("#nombre_tipo_identificacion").val();
+		    
+		   				
+		    	if (cclave_usuario == "")
+		    	{
+		    		
+		    		$("#mensaje_cclave").text("Introduzca una Clave");
+		    		$("#mensaje_cclave").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_cclave").fadeOut("slow"); 
+		            
+				}
+		    	
+		    	if (clave_usuario != cclave_usuario)
+		    	{
+			    	
+		    		$("#mensaje_cclave").text("Claves no Coinciden");
+		    		$("#mensaje_cclave").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else
+		    	{
+		    		$("#mensaje_cclave").fadeOut("slow"); 
+			        
+		    	}	
+				
+
+
+		 
+				
+				$( "#nombre_tipo_identificacion" ).focus(function() {
+					$("#mensaje_nombres").fadeOut("slow");
+    			});
+				
+			
+		
+				
+		
+		      
+				    
+		}); 
+
+	</script>
+		
 		
 		
 		<!-- TERMINA NOTIFICAIONES -->
