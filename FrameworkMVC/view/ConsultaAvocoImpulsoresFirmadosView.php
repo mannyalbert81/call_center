@@ -190,11 +190,7 @@
   		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" onClick="notificacion()" class="btn btn-warning " style="margin-top: 10px;"/> 	
 		 
-		 <?php if(!empty($resultSet))  {?>
-		 <a href="/FrameworkMVC/view/ireports/ContDocumentosGeneralReport.php?id_ciudad=<?php  echo $sel_id_ciudad ?>&identificacion=<?php  echo $sel_identificacion?>&numero_juicio=<?php  echo $sel_numero_juicio?>&id_usuarios=<?php  echo $sel_id_usuarios?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
-		  <?php } else {?>
-		  
-		  <?php } ?>
+		
 		 </div>
 		</div>
         	
