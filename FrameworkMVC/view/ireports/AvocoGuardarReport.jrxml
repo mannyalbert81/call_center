@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-03T13:53:50 -->
+<!-- 2016-08-03T14:08:39 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -15,6 +15,8 @@
 	<field name="secretarios" class="java.lang.String"/>
 	<field name="impulsores" class="java.lang.String"/>
 	<field name="secretario_reemplazo" class="java.lang.String"/>
+	<field name="nombre_garantes" class="java.lang.String"/>
+	<field name="identificacion_garantes" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -69,7 +71,7 @@ JUZGADO DE COACTIVA
 				<textFieldExpression><![CDATA[$F{nombre_ciudad}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="120" y="90" width="30" height="30" uuid="b37aff5c-2ffc-49c4-b4bc-118639fddf73"/>
+				<reportElement x="120" y="90" width="19" height="30" uuid="b37aff5c-2ffc-49c4-b4bc-118639fddf73"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -99,11 +101,11 @@ JUZGADO DE COACTIVA
 		<band height="588" splitType="Stretch">
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="" isBlankWhenNull="true">
 				<reportElement x="40" y="10" width="470" height="290" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
 					<font size="12"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<textFieldExpression><![CDATA["VISTOS: Avoco conocimiento del presente proceso signado con el número"+"<style isBold='true' pdfFontName='Helvetica-Bold'>" +$F{juicio_referido_titulo_credito}+"</style>"+" seguido en contra de "+"<b> "+$F{nombres_clientes}+" </b>"+" con cedula de ciudadanía N° "+"<b> "+$F{identificacion_clientes}+" </b>"+" en calidad de deudor (a) principal y "+"NOMBRE DEL GARANTE"+", con cedula de ciudadanía N° "+"CEDULA_GARANTE"+", en calidad de garante  solidario (a), en mi calidad de Liquidador del Banco Nacional de Fomento en Liquidación conforme a la designación a mi extendida y fundado en la orden de cobro, contenidos ambos actos en la Resolución No. SB-2016-324, emitida por el Ec. Christian Cruz Rodríguez, en su calidad de Superintendente de Bancos del Ecuador, dada en Quito con fecha 08 de mayo del 2016, inscrita en el Registro Mercantil del cantón Quito, el 12 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Déjese sin efecto el nombramiento del Abogado "+"<b> "+$F{secretario_reemplazo}+" </b>"+" , en su calidad de Secretario de Coactiva y en su reemplazo se designa como Secretario de Coactiva al Abogado (a) "+"<b> "+$F{secretarios}+" </b>"+"  y, como Abogado (a) Impulsor (a) se designa a la Abogado (a) "+"<b> "+$F{impulsores}+" </b>"+"quienes hallándose presentes aceptan los cargos y juran desempeñarlos fiel y legalmente, firmando para constancia con el suscrito Juez de Coactiva…………………………………………………………...   Cúmplase y Notifíquese.-  "]]></textFieldExpression>
+				<textFieldExpression><![CDATA["VISTOS: Avoco conocimiento del presente proceso signado con el número "+$F{juicio_referido_titulo_credito}+" seguido en contra de "+$F{nombres_clientes}+" con cedula de ciudadanía N° "+$F{identificacion_clientes}+" en calidad de deudor (a) principal y "+$F{nombre_garantes}+", con cedula de ciudadanía N° "+$F{identificacion_garantes}+", en calidad de garante  solidario (a), en mi calidad de Liquidador del Banco Nacional de Fomento en Liquidación conforme a la designación a mi extendida y fundado en la orden de cobro, contenidos ambos actos en la Resolución No. SB-2016-324, emitida por el Ec. Christian Cruz Rodríguez, en su calidad de Superintendente de Bancos del Ecuador, dada en Quito con fecha 08 de mayo del 2016, inscrita en el Registro Mercantil del cantón Quito, el 12 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Déjese sin efecto el nombramiento del Abogado "+$F{secretario_reemplazo}+" , en su calidad de Secretario de Coactiva y en su reemplazo se designa como Secretario de Coactiva al Abogado (a) "+$F{secretarios}+"  y, como Abogado (a) Impulsor (a) se designa a la Abogado (a) "+$F{impulsores}+" quienes hallándose presentes aceptan los cargos y juran desempeñarlos fiel y legalmente, firmando para constancia con el suscrito Juez de Coactiva ..........................................................................Cúmplase y Notifíquese.-  "]]></textFieldExpression>
 				<patternExpression><![CDATA[$F{juicio_referido_titulo_credito}]]></patternExpression>
 			</textField>
 			<staticText>
@@ -114,14 +116,14 @@ JUZGADO DE COACTIVA
 				<text><![CDATA[ABOGADO (A) SECRETARIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="550" width="120" height="30" uuid="02a32497-bf7d-43fd-bfeb-df4c69640f51"/>
+				<reportElement x="66" y="550" width="120" height="30" uuid="02a32497-bf7d-43fd-bfeb-df4c69640f51"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ABOGADO (A) IMPULSOR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="221" y="550" width="100" height="30" uuid="ab0b2625-f93b-489b-8ddf-a8fe0af341ae"/>
+				<reportElement x="224" y="550" width="100" height="30" uuid="ab0b2625-f93b-489b-8ddf-a8fe0af341ae"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="true"/>
 				</textElement>
