@@ -165,9 +165,9 @@ class ConsultaAvocoImpulsoresController extends ControladorBase{
 							if(!empty($id))
 							{
 				
-								$id_documento = $id;
+								$id_avoco = $id;
 								
-								$resultDocumento=$avoco->getBy("id_documentos='$id'");
+								$resultDocumento=$avoco->getBy("id_avoco_conocimiento='$id_avoco'");
 								
 								$nombrePdf=$resultDocumento[0]->nombre_documento;
 								
@@ -178,7 +178,7 @@ class ConsultaAvocoImpulsoresController extends ControladorBase{
 								try {
 										$res=$firmas->FirmarPDFs( $destino, $nombrePdf, $id_firma,$id_rol);
 					
-										$firmas->UpdateBy("firma_impulsor='TRUE'", "avoco_conocimiento", "id_avoco_conocimiento='$id_documento'");
+										$firmas->UpdateBy("firma_impulsor='TRUE'", "avoco_conocimiento", "id_avoco_conocimiento='$id_avoco'");
 										
 											//dirigir notificacion
 										
