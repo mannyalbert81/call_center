@@ -398,17 +398,17 @@ class ConsultaAvocoImpulsoresController extends ControladorBase{
 		if(isset($_GET['id']))
 		{
 				
-			$id_documento = $_GET ['id'];
+			$id_avoco = $_GET ['id'];
 				
-			$resultDocumento = $avoco->getBy ( "id_avoco_conocimiento='$id_documento'" );
+			$resultAvoco = $avoco->getBy ( "id_avoco_conocimiento='$id_avoco'" );
 				
-			if (! empty ( $resultDocumento )) {
+			if (! empty ( $resultAvoco )) {
 	
-				$nombrePdf = $resultDocumento [0]->nombre_documento;
+				$nombrePdf = $resultAvoco [0]->nombre_documento;
 	
 				$nombrePdf .= ".pdf";
 	
-				$ruta = $resultDocumento [0]->ruta_documento;
+				$ruta = $resultAvoco [0]->ruta_documento;
 	
 				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
 	

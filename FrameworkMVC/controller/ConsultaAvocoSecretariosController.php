@@ -452,17 +452,17 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 		if(isset($_GET['id']))
 		{
 	
-			$id_documento = $_GET ['id'];
-			$resultDocumento = $avoco->getBy ( "id_avoco_conocimiento='$id_documento'" );
+			$id_avoco = $_GET ['id'];
+			$resultAvoco = $avoco->getBy ( "id_avoco_conocimiento='$id_avoco'" );
 				
 				
-			if (! empty ( $resultDocumento )) {
+			if (! empty ( $resultAvoco )) {
 	
-				$nombrePdf = $resultDocumento [0]->nombre_documento;
+				$nombrePdf = $resultAvoco [0]->nombre_documento;
 	
 				$nombrePdf .= ".pdf";
 	
-				$ruta = $resultDocumento [0]->ruta_documento;
+				$ruta = $resultAvoco [0]->ruta_documento;
 	
 				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
 	
@@ -470,16 +470,16 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 				try {
 						
 					$eliminado=unlink($directorio);
-					$resultDocumento=$documentos->deleteById("id_avoco_conocimiento='$id_documento'");
+					$resultDocumento=$avoco->deleteById("id_avoco_conocimiento='$id_avoco'");
 					
 					
 					//dirigir notificacion
-					$usuarioDestino=$resultDocumento[0]->id_usuario_registra_avoco;
+					$usuarioDestino=$resultAvoco[0]->id_usuario_registra_avoco;
 						
 					$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $nombrePdf);
 										
 					//$this->view("Error", array("resultado"=>"no se elimino el archivo <br>".print_r($result_notificaciones)));
-					//$this->redirect("ConsultaDocumentosSecretarios","consulta_secretarios");
+					$this->redirect("ConsultaAvocoSecretarios","consulta_secretarios_avoco");
 					
 				} catch (Exception $e)
 				{
