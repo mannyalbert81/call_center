@@ -445,6 +445,7 @@ public function index(){
 		{
 			//Creamos el objeto usuario
 			$usuarios = new UsuariosModel();
+			$ciudad = new CiudadModel();
 		
 						
 					
@@ -454,24 +455,64 @@ public function index(){
 				$where    = " usuarios.id_usuarios = '$_id_usuario' ";
 				$resultEdit = $usuarios->getBy($where);
 				
+				$resultCiu = $ciudad->getAll("nombre_ciudad");
+				
 
-				if ( isset($_POST["guardar"]) )
+				if ( isset($_POST["Guardar"]) )
 				{
 
 					$_nombre_usuario    = $_POST["nombre_usuarios"];
-					$_clave_usuario      = $_POST["clave_usuarios"];
+					$_clave_usuario      =$usuarios->encriptar( $_POST["clave_usuarios"]);
 					$_telefono_usuario  = $_POST["telefono_usuarios"];
 					$_celular_usuario    = $_POST["celular_usuarios"];
 					$_correo_usuario     = $_POST["correo_usuarios"];
 					$_usuario_usuario     = $_POST["usuario_usuarios"];
 					$_cedula_usuarios     = $_POST["cedula_usuarios"];
 					$_id_ciudad           = $_POST["id_ciudad"];
+				
 					
-					$colval   = " nombre_usuarios = '$_nombre_usuario' , clave_usuarios = '$_clave_usuario'   , telefono_usuarios = '$_telefono_usuario' ,  celular_usuarios = '$_celular_usuario' , correo_usuarios = '$_correo_usuario' , usuario_usuarios = '$_usuario_usuario', cedula_usuarios = '$_cedula_usuarios', id_ciudad = '$_id_ciudad'   ";
+					
+					
+					if ($_FILES['imagen_usuarios']['tmp_name']!="")
+					{
+					
+						//para la foto
+					
+						$directorio = $_SERVER['DOCUMENT_ROOT'].'/fotos/';
+					
+						$nombre = $_FILES['imagen_usuarios']['name'];
+						$tipo = $_FILES['imagen_usuarios']['type'];
+						$tamano = $_FILES['imagen_usuarios']['size'];
+					
+						// temporal al directorio definitivo
+					
+						move_uploaded_file($_FILES['imagen_usuarios']['tmp_name'],$directorio.$nombre);
+					
+						$data = file_get_contents($directorio.$nombre);
+					
+						$imagen_usuarios = pg_escape_bytea($data);
+					
+					
+					
+				    $colval   = " nombre_usuarios = '$_nombre_usuario' , clave_usuarios = '$_clave_usuario'   , telefono_usuarios = '$_telefono_usuario' ,  celular_usuarios = '$_celular_usuario' , correo_usuarios = '$_correo_usuario' , usuario_usuarios = '$_usuario_usuario', cedula_usuarios = '$_cedula_usuarios', id_ciudad = '$_id_ciudad', imagen_usuarios = '$imagen_usuarios'  ";
 					$tabla    = "usuarios";
 					$where    = " id_usuarios = '$_id_usuario' ";
 					
 					$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
+					}
+						
+					else
+					{
+					
+						 $colval   = " nombre_usuarios = '$_nombre_usuario' , clave_usuarios = '$_clave_usuario'   , telefono_usuarios = '$_telefono_usuario' ,  celular_usuarios = '$_celular_usuario' , correo_usuarios = '$_correo_usuario' , usuario_usuarios = '$_usuario_usuario', cedula_usuarios = '$_cedula_usuarios', id_ciudad = '$_id_ciudad' ";
+					$tabla    = "usuarios";
+					$where    = " id_usuarios = '$_id_usuario' ";
+					
+					$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
+				
+					
+					}
+					
 					
 					
 					$this->view("Login",array(
@@ -483,15 +524,15 @@ public function index(){
 				else
 				{
 					$this->view("ActualizarUsuario",array(
-							"resultEdit" =>$resultEdit
-								
+							"resultEdit" =>$resultEdit,
+							"resultCiu" =>$resultCiu
 					));
 					
 				}
 				
 				
 					
-		
+				
 			
 		
 		}
