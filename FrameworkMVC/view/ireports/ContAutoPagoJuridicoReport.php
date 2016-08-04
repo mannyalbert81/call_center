@@ -27,41 +27,27 @@ $estado=$_GET['estado'];
 			$_dato=unserialize($a);
 			
 			
+			
 			$PHPJasperXML = new PHPJasperXML ( "en", "TCPDF" );
 			
 			$PHPJasperXML->debugsql = false;
 		
 		    $PHPJasperXML->arrayParameter=$_dato;
 		    
-			$PHPJasperXML->load_xml_file( "AutoPagoJURIDICOCREGARANTEVizualizarReport.jrxml" );
+			$PHPJasperXML->load_xml_file( "AutoPagoVizualizarJURIDICOCREGARANTEReport.jrxml" );
 			
 			$PHPJasperXML->transferDBtoArray ( $server, $user, $pass, $db, $driver );
 			
 			$PHPJasperXML->outpage ( "I" );
 		
-			/* para prueba de llegar datos
-			 * 
-			$dato['id_ciudad']='504';
-			$dato['id_juicios']='18';
-			$dato['id_estados_procesales_juicios']='4';
-			$dato['fecha_emision_documentos']='2016-07-14';
-			$dato['hora_emision_documentos']='10:30';
-			$dato['detalle_documentos']='lskerlkse';
-			$dato['observacion_documentos']='valiste';
-			$dato['avoco_vistos_documentos']='qvbvccv';
-			$dato['id_usuarios']='41';
-				
-			$result=urlencode(serialize($_dato));
-			
-			header('Location: ' . '/FrameworkMVC/index.php?controller=Controladores&action=verError&dato='.$result);
-			*/
-
+		
 	
 		} else 
 		{
 	
 				$id= $_GET['identificador'];
 				$nombre=$_GET['nombre'];
+				
 				//aqui va la consulta
 				$sql="SELECT 
 				  juicios.juicio_referido_titulo_credito, 
@@ -87,15 +73,12 @@ $estado=$_GET['estado'];
 				  titulo_credito.id_titulo_credito = auto_pagos.id_titulo_credito AND
 				  clientes.id_clientes = juicios.id_clientes AND
 				  clientes.id_clientes = titulo_credito.id_clientes AND
-				documentos.identificador= '$id'";
+				  auto_pagos.identificador= '$id'";
 				
 				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/AutoPagos/';
 	
 	
-	
-	
 				$PHPJasperXML = new PHPJasperXML();
-				
 				
 				$PHPJasperXML->arrayParameter=array("_sql" => $sql);
 				
@@ -103,7 +86,8 @@ $estado=$_GET['estado'];
 				
 				$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 				
-				$PHPJasperXML->outpage("F",$directorio.$nombre.'.pdf');
+				//$PHPJasperXML->outpage("F",$directorio.$nombre.'.pdf');
+				$PHPJasperXML->outpage("I");
 	
 
 		
