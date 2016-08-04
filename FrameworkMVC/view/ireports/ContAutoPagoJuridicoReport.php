@@ -50,37 +50,14 @@ $estado=$_GET['estado'];
 				$nombre=$_GET['nombre'];
 				
 				//aqui va la consulta
-				$sql="SELECT 
-				  juicios.juicio_referido_titulo_credito, 
-				  juicios.creado, 
-				  clientes.nombres_clientes, 
-				  clientes.identificacion_clientes, 
-				  titulo_credito.total, 
-				  asignacion_secretarios_view.secretarios, 
-				  asignacion_secretarios_view.impulsores, 
-				  asignacion_secretarios_view.liquidador,
-				  titulo_credito.id_titulo_credito, 
-				  clientes.nombre_garantes, 
-				  clientes.identificacion_garantes
-				FROM 
-				  public.juicios, 
-				  public.titulo_credito, 
-				  public.clientes, 
-				  public.asignacion_secretarios_view, 
-				  public.auto_pagos
-				WHERE 
-				  juicios.id_usuarios = asignacion_secretarios_view.id_abogado AND
-				  titulo_credito.id_titulo_credito = auto_pagos.id_titulo_credito AND
-				  clientes.id_clientes = juicios.id_clientes AND
-				  clientes.id_clientes = titulo_credito.id_clientes AND
-				  auto_pagos.identificador= '$id'";
+				$sql="SELECT * FROM auto_pagos_report WHERE identificador='$id' ";
 				
 				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/AutoPagos/';
 	
 	
 				$PHPJasperXML = new PHPJasperXML();
 				
-				$PHPJasperXML->arrayParameter=array("_sql" => $sql,"identificador"=>$id);
+				$PHPJasperXML->arrayParameter=array("_sql" => $sql,"identificador"=>"'".$id."'");
 				
 				$PHPJasperXML->load_xml_file("AutoPagoJURIDICOCREGARANTEReport.jrxml");
 				
