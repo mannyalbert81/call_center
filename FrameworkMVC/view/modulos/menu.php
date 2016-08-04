@@ -196,12 +196,12 @@ $controladores=$_SESSION['controladores'];
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Oficios" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
           
-          <li style="<?php echo getcontrolador("DistribucionGastos",$controladores) ?>">
+          <!-- <li style="<?php echo getcontrolador("DistribucionGastos",$controladores) ?>"> 
           <a href="index.php?controller=DistribucionGastos&action=index"><span class="glyphicon glyphicon-text-background" aria-hidden="true"> Distribucion Gastos</span> </a>
           </li>
           <li style="<?php echo getcontrolador("AprobacionDistribucionGastos",$controladores) ?>">
           <a href="index.php?controller=AprobacionDistribucionGastos&action=index"><span class="glyphicon glyphicon-oil" aria-hidden="true"> Aprobacion Gastos</span> </a>
-          </li>
+          </li>-->
           <li style="<?php echo getcontrolador("Oficios",$controladores) ?>">
           <a href="index.php?controller=Oficios&action=index"><span class="glyphicon glyphicon-leaf" aria-hidden="true"> Generar Oficios</span> </a>
           </li>

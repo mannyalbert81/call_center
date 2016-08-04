@@ -166,7 +166,7 @@
 		$(document).ready(function(){
 
 		    // cada vez que se cambia el valor del combo
-		    $("#Visualizar").click(function() 
+		    $("#Validar").click(function() 
 			{
 		    	var juicios = $("#juicios").val();
 		   				
@@ -308,7 +308,6 @@
 		    <div class="col-xs-6 col-md-4" >
 			  <p  class="formulario-subtitulo" >Juicios:</p>
 	          <input type="text" id="juicios" name="juicios" class="form-control" placeholder="Nº Juicio" value="<?php echo $sel_juicios;?>">
-	        
 	         <input type="hidden" id="id_juicios" name="id_juicios" value="<?php if(!empty($resulSet)){ foreach ($resulSet as $res){
 	         echo 	$res->id_juicios;
 	         }}elseif ($sel_id_juicio!=""){echo $sel_id_juicio;}?>">
