@@ -44,6 +44,7 @@ $estado=$_GET['estado'];
 	
 		} else 
 		{
+			
 	
 				$id= $_GET['identificador'];
 				$nombre=$_GET['nombre'];
@@ -57,8 +58,7 @@ $estado=$_GET['estado'];
 				  titulo_credito.total, 
 				  asignacion_secretarios_view.secretarios, 
 				  asignacion_secretarios_view.impulsores, 
-				  asignacion_secretarios_view.liquidador, 
-				  auto_pagos.identificador, 
+				  asignacion_secretarios_view.liquidador,
 				  titulo_credito.id_titulo_credito, 
 				  clientes.nombre_garantes, 
 				  clientes.identificacion_garantes
@@ -80,15 +80,13 @@ $estado=$_GET['estado'];
 	
 				$PHPJasperXML = new PHPJasperXML();
 				
-				$PHPJasperXML->arrayParameter=array("_sql" => $sql);
+				$PHPJasperXML->arrayParameter=array("_sql" => $sql,"identificador"=>$id);
 				
 				$PHPJasperXML->load_xml_file("AutoPagoJURIDICOCREGARANTEReport.jrxml");
 				
 				$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 				
-				//$PHPJasperXML->outpage("F",$directorio.$nombre.'.pdf');
-				$PHPJasperXML->outpage("I");
-	
+				$PHPJasperXML->outpage("F",$directorio.$nombre.'.pdf');
 
 		
 		}

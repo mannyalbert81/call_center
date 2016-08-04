@@ -19,6 +19,7 @@ $estado=$_GET['estado'];
 
 		if ($estado == 'Visualizar') 
 		{
+			
 	
 			$a=stripslashes($_GET['dato']);
 			
@@ -38,6 +39,9 @@ $estado=$_GET['estado'];
 			$PHPJasperXML->transferDBtoArray ( $server, $user, $pass, $db, $driver );
 			
 			$PHPJasperXML->outpage ( "I" );
+			
+			
+			
 		
 			/* para prueba de llegar datos
 			 * 

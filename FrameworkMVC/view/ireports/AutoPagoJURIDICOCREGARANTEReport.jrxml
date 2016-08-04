@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-04T11:20:42 -->
+<!-- 2016-08-04T12:40:51 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AutoPago" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="78670156-5cbc-4292-9311-008def6ed94d">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
 	<parameter name="_sql" class="java.lang.String"/>
+	<parameter name="identificador" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[ $P{_sql} ]]>
+		<![CDATA[$P{_sql} ]]>
 	</queryString>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
 	<field name="creado" class="java.lang.String"/>
