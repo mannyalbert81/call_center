@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-04T13:14:39 -->
+<!-- 2016-08-04T17:35:29 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -68,26 +68,12 @@ JUZGADO DE COACTIVA
 				<textElement>
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{ciudad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ciudad}+","]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="80" y="90" width="30" height="30" uuid="b37aff5c-2ffc-49c4-b4bc-118639fddf73"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[,]]></text>
-			</staticText>
 			<image>
 				<reportElement x="420" y="0" width="120" height="50" uuid="fe499f17-f12d-42e4-a815-7f7620371a78"/>
 				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondo_blanco.jpg"]]></imageExpression>
 			</image>
-			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="90" y="90" width="130" height="20" uuid="cfa4b968-baa2-4d5f-890c-993f4692ea7c"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 		</band>
 	</pageHeader>
 	<detail>
