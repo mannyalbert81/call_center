@@ -19,8 +19,8 @@ $estado=$_GET['estado'];
 
 		if ($estado == 'Visualizar') 
 		{
+			ob_clean();
 			
-	
 			$a=stripslashes($_GET['dato']);
 			
 			$_dato=urldecode($a);

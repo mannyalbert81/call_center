@@ -19,13 +19,13 @@ $estado=$_GET['estado'];
 
 		if ($estado == 'Visualizar') 
 		{
-	
+			
+			
 			$a=stripslashes($_GET['dato']);
 			
 			$_dato=urldecode($a);
 			
 			$_dato=unserialize($a);
-			
 			
 			$PHPJasperXML = new PHPJasperXML ( "en", "TCPDF" );
 			
@@ -38,6 +38,8 @@ $estado=$_GET['estado'];
 			$PHPJasperXML->transferDBtoArray ( $server, $user, $pass, $db, $driver );
 			
 			$PHPJasperXML->outpage ( "I" );
+			
+			
 		
 			
 
