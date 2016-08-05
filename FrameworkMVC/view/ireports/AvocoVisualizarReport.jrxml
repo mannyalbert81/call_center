@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-04T17:35:29 -->
+<!-- 2016-08-05T10:05:12 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -13,6 +13,8 @@
 	<parameter name="abogado" class="java.lang.String"/>
 	<parameter name="garante" class="java.lang.String"/>
 	<parameter name="identificacion_garante" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="hora" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT 1 as juicio_referido FROM documentos LIMIT 1]]>
 	</queryString>
@@ -23,7 +25,7 @@
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="25" y="0" width="512" height="60" backcolor="#000000" uuid="2a47ab86-e168-4c13-8677-a347fc2eb3db"/>
+				<reportElement x="25" y="16" width="512" height="60" backcolor="#000000" uuid="2a47ab86-e168-4c13-8677-a347fc2eb3db"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="19" isBold="true"/>
 				</textElement>
@@ -34,7 +36,7 @@ JUZGADO DE COACTIVA
 		</band>
 	</title>
 	<pageHeader>
-		<band height="120" splitType="Stretch">
+		<band height="110" splitType="Stretch">
 			<staticText>
 				<reportElement x="40" y="10" width="130" height="30" uuid="6e678564-df35-4c7f-914e-da9bfccc565d"/>
 				<textElement>
@@ -64,14 +66,14 @@ JUZGADO DE COACTIVA
 				<text><![CDATA[JUZGADO COACTIVA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="40" y="90" width="100" height="20" uuid="1d8e57d0-78e5-4003-badc-d02ce0284809"/>
+				<reportElement x="40" y="80" width="360" height="20" uuid="1d8e57d0-78e5-4003-badc-d02ce0284809"/>
 				<textElement>
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{ciudad}+","]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ciudad}+",  "+$P{fecha}+" - "+$P{hora}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="420" y="0" width="120" height="50" uuid="fe499f17-f12d-42e4-a815-7f7620371a78"/>
+				<reportElement x="420" y="10" width="120" height="50" uuid="fe499f17-f12d-42e4-a815-7f7620371a78"/>
 				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondo_blanco.jpg"]]></imageExpression>
 			</image>
 		</band>
@@ -79,16 +81,16 @@ JUZGADO DE COACTIVA
 	<detail>
 		<band height="567" splitType="Stretch">
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="" isBlankWhenNull="true">
-				<reportElement x="40" y="10" width="470" height="280" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
+				<reportElement x="40" y="30" width="470" height="260" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
 				<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
 					<font size="12"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<textFieldExpression><![CDATA["VISTOS: Avoco conocimiento del presente proceso signado con el número"+$P{juicio_referido}+" seguido en contra de "+$P{cliente} +" con cedula de ciudadanía N° "+$P{identificacion}+" en calidad de deudor (a) principal y "+$P{garante}+", con cedula de ciudadanía N° "+$P{identificacion_garante}+", en calidad de garante  solidario (a), en mi calidad de Liquidador del Banco Nacional de Fomento en Liquidación conforme a la designación a mi extendida y fundado en la orden de cobro, contenidos ambos actos en la Resolución No. SB-2016-324, emitida por el Ec. Christian Cruz Rodríguez, en su calidad de Superintendente de Bancos del Ecuador, dada en Quito con fecha 08 de mayo del 2016, inscrita en el Registro Mercantil del cantón Quito, el 12 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Déjese sin efecto el nombramiento del Abogado "+ $P{secretario_reemplazar} +", en su calidad de Secretario de Coactiva y en su reemplazo se designa como Secretario de Coactiva al Abogado (a) "+$P{secretario}+" y, como Abogado (a) Impulsor (a) se designa a la Abogado (a) "+$P{abogado}+" quienes hallándose presentes aceptan los cargos y juran desempeñarlos fiel y legalmente, firmando para constancia con el suscrito Juez de Coactiva .........................................................................."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["VISTOS: Avoco conocimiento del presente proceso signado con el número"+$P{juicio_referido}+" seguido en contra de "+$P{cliente} +" con cedula de ciudadanía N° "+$P{identificacion}+" en calidad de deudor (a) principal y "+$P{garante}+", con cedula de ciudadanía N° "+$P{identificacion_garante}+", en calidad de garante  solidario (a), en mi calidad de Liquidador del Banco Nacional de Fomento en Liquidación conforme a la designación a mi extendida y fundado en la orden de cobro, contenidos ambos actos en la Resolución No. SB-2016-324, emitida por el Ec. Christian Cruz Rodríguez, en su calidad de Superintendente de Bancos del Ecuador, dada en Quito con fecha 08 de mayo del 2016, inscrita en el Registro Mercantil del cantón Quito, el 12 de mayo de 2016, cuyo desglose ordeno dejando copias certificadas en autos.- Déjese sin efecto el nombramiento del Abogado "+ $P{secretario_reemplazar} +", en su calidad de Secretario de Coactiva y en su reemplazo se designa como Secretario de Coactiva al Abogado (a) "+$P{secretario}+" y, como Abogado (a) Impulsor (a) se designa a la Abogado (a) "+$P{abogado}+" quienes hallándose presentes aceptan los cargos y juran desempeñarlos fiel y legalmente, firmando para constancia con el suscrito Juez de Coactiva. "]]></textFieldExpression>
 				<patternExpression><![CDATA[$F{juicio_referido}]]></patternExpression>
 			</textField>
 			<staticText>
-				<reportElement x="40" y="290" width="280" height="30" uuid="c575c6cc-4322-4a2a-9379-1e5cd22d61dd"/>
+				<reportElement x="40" y="280" width="280" height="30" uuid="c575c6cc-4322-4a2a-9379-1e5cd22d61dd"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
