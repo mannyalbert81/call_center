@@ -163,7 +163,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Juicio","consulta"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("EtapasJuicios","consulta_juicios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
@@ -245,7 +245,7 @@
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	            
+	          
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Coactivad@</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
@@ -266,7 +266,7 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	        		
-	        		  
+	        		   <th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_juicios"   name="id_juicios"  value="<?php echo $res->id_juicios; ?>" class="marcados"></th>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_juicios; ?></td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
@@ -280,9 +280,18 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_juicios; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContJuiciosSubReport.php?id_juicios=<?php echo $res->id_juicios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:80%;">Ver</a>
+		             
+		               <td>
+		               		 <div class="right">
+		              		 	 <a href="<?php echo $helper->url("EtapasJuicios","ActualizaEtapasJuicios"); ?>&id_juicios=<?php echo $res->id_juicios;?>" class="btn btn-warning" onClick="notificacion()" style="font-size:70%;">Actualizar</a>
+			                </div>
 		               </td> 
+		                <td>
+			           		<div class="right">
+			           			<a href="/FrameworkMVC/view/ireports/ContJuiciosSubReport.php?id_juicios=<?php echo $res->id_juicios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:70%;">Ver</a>
+		             		</div>
+			            
+			          </td>  
 		    		</tr>
 		        <?php } }  ?>
            
