@@ -19,7 +19,8 @@ $estado=$_GET['estado'];
 
 		if ($estado == 'Visualizar') 
 		{
-	
+			ob_clean();
+			
 			$a=stripslashes($_GET['dato']);
 			
 			$_dato=urldecode($a);
@@ -38,6 +39,9 @@ $estado=$_GET['estado'];
 			$PHPJasperXML->transferDBtoArray ( $server, $user, $pass, $db, $driver );
 			
 			$PHPJasperXML->outpage ( "I" );
+			
+			
+			
 		
 			/* para prueba de llegar datos
 			 * 

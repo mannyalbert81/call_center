@@ -183,8 +183,7 @@
   		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-warning " onClick="notificacion()" style="margin-top: 10px;"/> 	
 		 <?php if(!empty($resultSet))  {?>
-		 <a href="/FrameworkMVC/view/ireports/ContOficiosReport.php?id_usuarios=<?php  echo $sel_id_usuarios ?>&identificacion=<?php  echo $sel_identificacion?>&numero_juicio=<?php  echo $sel_numero_juicio?>&numero_oficios=<?php  echo $sel_numero_oficios?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
-		            
+		          
 		  <?php } else {?>
 		  
 		  <?php } ?>
@@ -234,8 +233,8 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
 		              
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContOficiosSubReport.php?id_oficios=<?php echo $res->id_oficios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:80%;">Ver</a>
-		               </td> 
+		                <a href="<?php echo $helper->url("Oficios","abrirPdf"); ?>&id=<?php echo $res->id_oficios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:85%;">VER</a>
+		               </td>
 		    		</tr>
 		        <?php } }  ?>
            

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-03T14:32:50 -->
+<!-- 2016-08-04T17:35:29 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
@@ -68,30 +68,16 @@ JUZGADO DE COACTIVA
 				<textElement>
 					<font size="12" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{ciudad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ciudad}+","]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="80" y="90" width="30" height="30" uuid="b37aff5c-2ffc-49c4-b4bc-118639fddf73"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[,]]></text>
-			</staticText>
 			<image>
 				<reportElement x="420" y="0" width="120" height="50" uuid="fe499f17-f12d-42e4-a815-7f7620371a78"/>
 				<imageExpression><![CDATA["C:/Users/User/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondo_blanco.jpg"]]></imageExpression>
 			</image>
-			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="90" y="90" width="130" height="20" uuid="cfa4b968-baa2-4d5f-890c-993f4692ea7c"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="580" splitType="Stretch">
+		<band height="567" splitType="Stretch">
 			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="" isBlankWhenNull="true">
 				<reportElement x="40" y="10" width="470" height="280" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
 				<textElement textAlignment="Justified" verticalAlignment="Top" markup="styled">
@@ -109,21 +95,21 @@ JUZGADO DE COACTIVA
 				<text><![CDATA[Cúmplase y Notifíquese.-]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="365" y="550" width="120" height="27" uuid="e726f4f4-4e5a-4a3f-9ecd-b1d85a96a669"/>
+				<reportElement x="365" y="530" width="120" height="27" uuid="e726f4f4-4e5a-4a3f-9ecd-b1d85a96a669"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ABOGADO (A) SECRETARIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="66" y="550" width="120" height="30" uuid="18c37b35-0c3f-4e60-8d4e-e905452715ba"/>
+				<reportElement x="66" y="530" width="120" height="30" uuid="18c37b35-0c3f-4e60-8d4e-e905452715ba"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ABOGADO (A) IMPULSOR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="224" y="550" width="100" height="30" uuid="a5c9b8c4-6791-46ab-af3b-b08d0365dcd5"/>
+				<reportElement x="224" y="530" width="100" height="30" uuid="a5c9b8c4-6791-46ab-af3b-b08d0365dcd5"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="true"/>
 				</textElement>

@@ -230,7 +230,7 @@ class AprobacionAutoPagoController extends ControladorBase{
 				$resultConsecutivo= $consecutivo->getBy("documento_consecutivos='AUTOPAGOS'");
 				$identificador=$resultConsecutivo[0]->real_consecutivos;
 				
-				$repositorio_documento="AutoPago";
+				$repositorio_documento="AutoPagos";
 				
 				$nombre_documento=$repositorio_documento.$identificador;
 				
@@ -248,7 +248,8 @@ class AprobacionAutoPagoController extends ControladorBase{
 				
 				try {
 					
-					$resultado=$aprobacion_auto_pago->UpdateBy("id_estado='$id_estado'", "auto_pagos", "id_auto_pagos='$id_auto_pago'");
+					$resultado=$aprobacion_auto_pago->UpdateBy("id_estado='$id_estado',nombre_auto_pagos='$nombre_documento',identificador='$identificador',ruta_auto_pagos='$repositorio_documento'", "auto_pagos", "id_auto_pagos='$id_auto_pago'");
+					
 					
 					//pra obtener id_ciudad
 					
@@ -327,8 +328,8 @@ class AprobacionAutoPagoController extends ControladorBase{
 					$resultadojuicio=$aprobacion_auto_pago->InsertaJuicio($id_entidades, $id_ciudad, $juicio_referido_titulo_credito, $id_usuarios, $id_titulo_credito, $id_clientes, $id_etapas_juicios, $id_tipo_juicios, $descipcion_auto_pago_juicios, $id_estados_procesales_juicios, $id_estados_auto_pago_juicios, $nombre_archivado_juicios);
 					
 					$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='AUTOPAGOS'");
-										
-				
+					
+					
 					
 				} catch (Exception $e) {
 					
@@ -342,7 +343,7 @@ class AprobacionAutoPagoController extends ControladorBase{
 				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 				
 				 print "<script language='JavaScript'>
-				 setTimeout(window.open('http://$host$uri/view/ireports/ContAutoPagosReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+				 setTimeout(window.open('http://$host$uri/view/ireports/ContAutoPagoJuridicoReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
 				 </script>";
 				 	
 				 print("<script>window.location.replace('index.php?controller=AprobacionAutoPago&action=index');</script>");

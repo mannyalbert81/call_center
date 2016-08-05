@@ -574,8 +574,7 @@ class AutoPagosController extends ControladorBase{
 	
 		session_start();
 	
-		$avoco='<p align = "justify"><font face="univers" size=1>  La información contenida en este mensaje y sus anexos tiene carácter confidencial,y está dirigida únicamente al destinatario de la misma y sólo podrá ser usada por éste. Si el lector de este mensaje no es el destinatario del mismo, se le notifica que cualquier copia o distribución de éste se encuentra totalmente prohibida. Si usted ha recibido este mensaje por error, por favor notifique inmediatamente al remitente por este mismo medio y borre el mensaje de su sistema. Las opiniones que contenga este mensaje son exclusivas de su autor y no necesariamente representan la opinión oficial del BANCO NACIONAL DE FOMENTO. Este mensaje ha sido examinado por Symantec y se considera libre de virus y spam.</font></p>';
-	
+		
 		$documentos = new AutoPagosModel();
 		$juicios = new JuiciosModel();
 		$ciudad = new CiudadModel();
@@ -616,13 +615,16 @@ class AutoPagosController extends ControladorBase{
 				
 				
 			//cargar datos para el reporte
-				
-			$dato['ciudad']=$resultCiudad[0]->nombre_ciudad;
+			
 			$dato['juicio_referido']=$resultJuicio[0]->juicio_referido_titulo_credito;
-			$dato['cliente']=$resultJuicio[0]->nombres_clientes;
-			$dato['fecha_emision_documentos']=$_fecha_emision_documentos;
-			$dato['hora_emision_documentos']=$_hora_emision_documentos;
-			$dato['avoco_vistos_documentos']=$avoco.$_avoco_vistos_documentos;
+			$dato['creado']=$resultCiudad[0]->nombre_ciudad;
+			$dato['nombre_clientes']=$resultJuicio[0]->nombres_clientes;
+			$dato['identificacion_clientes']=$_fecha_emision_documentos;
+			$dato['nombre_garantes']=$_hora_emision_documentos;
+			$dato['identificacion_garantes']=$avoco.$_avoco_vistos_documentos;
+			$dato['total']=$_fecha_emision_documentos;
+			$dato['impulsor']=$_hora_emision_documentos;
+			$dato['secretario']=$avoco.$_avoco_vistos_documentos;
 	
 			$traza=new TrazasModel();
 			$_nombre_controlador = "Documentos";
@@ -652,7 +654,7 @@ class AutoPagosController extends ControladorBase{
 	
 	
 		print "<script language='JavaScript'>
-		setTimeout(window.open('http://$host$uri/view/ireports/ContDocumentosReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+		setTimeout(window.open('http://$host$uri/view/ireports/ContAutoPagoJuridicoReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
 		</script>";
 	
 		print("<script>window.location.replace('index.php?controller=Documentos&action=index&dato=$resultArray');</script>");

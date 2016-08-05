@@ -45,7 +45,7 @@
 		<script>
 
 		function Ok(){
-				alertify.success("Has Pulsado en Guardar"); 
+				alertify.success("Has Pulsado en Actualizar"); 
 				return false;
 			}
 			
@@ -427,7 +427,7 @@
 		     <div class="row">
 		      <hr>
 		    <div class="col-xs-12 col-md-12" style="text-align: center;" >     
-           <input type="submit" value="Actualizar" name="Guardar" id="Guardar"  onClick="Ok()"class="btn btn-success"/>
+           <input type="submit" value="Actualizar" name="Guardar" id="Guardar"  onClick="Ok()" class="btn btn-success"/>
             <hr>
             </div>    
             </div>         
