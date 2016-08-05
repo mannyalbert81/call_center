@@ -398,9 +398,7 @@
 			 </div>
 			 <br>
 			 <hr>
-			 
-			
-			 	        
+		 	        
 		       <div class="col-xs-6 col-md-3" >
 			  	<p  class="formulario-subtitulo" >Secretario A Reemplazar:</p>
 			  	 <select name="id_secretario_reemplazo" id="id_secretario_reemplazo"  class="form-control" <?php echo $habilitar;?>>

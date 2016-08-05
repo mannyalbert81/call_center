@@ -47,6 +47,11 @@ $estado=$_GET['estado'];
 		} else 
 		{
 			
+			$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+			$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+			$fecha =$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+			$hora = date ("h:i:s");
+			
 			 $id= $_GET['identificador'];
 			 $nombre=$_GET['nombre'];
 			 //aqui va la consulta
@@ -82,7 +87,7 @@ $estado=$_GET['estado'];
 			
 			 $PHPJasperXML = new PHPJasperXML();
 			
-			 $PHPJasperXML->arrayParameter=array("_sql" => $sql);
+			 $PHPJasperXML->arrayParameter=array("_sql" => $sql,"fecha"=>$fecha, $sql,"hora"=>$hora);
 			
 			 $PHPJasperXML->load_xml_file("AvocoGuardarReport.jrxml");
 			

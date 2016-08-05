@@ -248,6 +248,8 @@ public function index(){
 			
 			//cargar datos para el reporte
 			
+			$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+			$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 			$dato['ciudad']=$resultCiudad[0]->nombre_ciudad;
 			$dato['juicio_referido']=$resultJuicio[0]->juicio_referido_titulo_credito;
 			$dato['cliente']=$resultJuicio[0]->nombres_clientes;
@@ -257,7 +259,8 @@ public function index(){
 			$dato['abogado']=$resultAbogados[0]->impulsores;
 			$dato['garante']=$resultJuicio[0]->nombre_garantes;
 			$dato['identificacion_garante']=$resultJuicio[0]->identificacion_garantes;
-			
+			$dato['fecha']=$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+			$dato['hora']= date ("h:i:s");
 			//$this->view("Error", array("resultado"=>print_r($dato))); exit();
 						
 		
