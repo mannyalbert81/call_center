@@ -21,6 +21,15 @@
 		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+        
+        <style>
+
+.sub-menu {
+    padding: 0;
+    max-height: 200px; /* 1.5 x 3 */
+    overflow-y: auto;
+}
+</style>
 		
  
  <script type=text/javascript>
@@ -154,14 +163,16 @@ $(document).ready(function(){
             <?php 
             
             $resultNotificaciones=$_SESSION['resultNotificaciones'];
-            $cantidad=count($resultNotificaciones);
+            $cantidad=$_SESSION['cantidad'];
+            $cantidadXfila=$_SESSION['cantidad_fila_notificaciones'];
+            
             ?>
             
 			<div class="dropdown" id="">
 			<button type="button" id="boton_notificacion" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="badge"><?php echo $cantidad; ?></span></button>
 			<?php if($cantidad>0){ ?>
 			
-			<ul class="dropdown-menu" id="ul_notificacion" style="min-width: 400px; overflow: auto; margin: 2px 0 0 -150px;" >
+			<ul class="dropdown-menu sub-menu" id="ul_notificacion" style="min-width: 425px; overflow: auto; margin: 2px 0 0 -175px;" >
 			<?php foreach ($resultNotificaciones as $res){?>
 			<?php $fecha= new DateTime($res->creado);?>
 			
@@ -174,6 +185,7 @@ $(document).ready(function(){
 			<a href="index.php?controller=Notificaciones&action=actualizaNotificaciones&id_notificaciones=<?php echo $res->id_notificaciones;?>" style="display: inline-block; padding: 3px 5px;">
 			<?php echo '<b>'.$res->descripcion_notificaciones.'</b>'; echo ' '.$res->usuario_usuarios;  echo '<br>'.'('.$res->cantidad_cartones_notificaciones.')'; echo '   '; echo 'Fecha '; echo $fecha->format('Y-m-d');?>
 			</a>
+			<span class="badge"><?php echo $cantidadXfila[$res->descripcion_notificacion]; ?></span>
 			</li>			
 			<?php }?>
 			</ul>

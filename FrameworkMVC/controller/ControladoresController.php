@@ -76,6 +76,8 @@ class ControladoresController extends ControladorBase{
 					}
 					
 				}
+				
+				
 		
 				
 				$this->view("Controladores",array(
@@ -158,12 +160,7 @@ class ControladoresController extends ControladorBase{
 					
 					$resultado=$controladores->UpdateBy($colval, $tabla, $where);
 					
-					//$this->view("Error",array(
-								
-						//	"resultado"=>$resultado[0]
 					
-					//));
-					//exit();
 					
 				}else {
 					
@@ -285,6 +282,9 @@ class ControladoresController extends ControladorBase{
 		
 		$this->view("error", array('resultado'=>print_r($_dato)));
 	}
+	
+	
+	
 	
 		
 }

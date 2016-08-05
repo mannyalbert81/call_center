@@ -401,6 +401,7 @@ class EntidadBase{
     }
     
     
+    //funciones  de notificaciones anterior
     function verNotificaciones(){
     	//session_start();
     	$id_usuario=$_SESSION['id_usuarios'];
@@ -439,6 +440,8 @@ class EntidadBase{
     	
     
     }
+    //termina funciones anteriores notificaciones
+    
     
     public function verMacAddress(){
     
@@ -670,7 +673,7 @@ class EntidadBase{
 			  notificaciones.visto_notificaciones,
 			  tipo_notificacion.controlador_tipo_notificacion,
 			  tipo_notificacion.accion_tipo_notificacion,
-    		  tipo_notificacion.nombre_icon_tipo_notificacion";
+    		  tipo_notificacion.descripcion_notificacion";
     	 
     	$tablas=" public.notificaciones,
 				  public.usuarios,
@@ -692,10 +695,38 @@ class EntidadBase{
     		$resultNotificaciones=array();
     	}
     	
+    	$contar=array();
+    	$result=array();
     	 
-    	$_SESSION["resultNotificaciones"]=$resultNotificaciones;
+    	foreach($resultNotificaciones as $linea=>$value)
+    	{
+    		
+    		 
+    		if(isset($contar[$value->descripcion_notificacion]))
+    		{
+    			 
+    			$contar[$value->descripcion_notificacion]+=1;
+    			
+    			
+    		}else{
+    			 
+    			array_push($result, $resultNotificaciones[$linea]);
+    			 
+    			$contar[$value->descripcion_notificacion]=1;
+    			
+    			
+    		}
+    		
+    		
+    		 
+    	}
+    	 
     	
+    	$_SESSION['cantidad']=$cantidad_notificaciones;
+    	$_SESSION["resultNotificaciones"]=$result;
+    	$_SESSION["cantidad_fila_notificaciones"]=$contar;
     }
+    
     
     public  function CrearNotificacion($id_tipoNotificacion,$usuarioDestino,$descripcion,$numero_movimiento,$cantidad_cartones)
     {
