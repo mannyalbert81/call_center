@@ -124,7 +124,9 @@
 			   });
 			});
         </script>
-
+       
+       
+    
     </head>
     <body style="background-color: #d9e3e4;">
     
@@ -246,7 +248,7 @@
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	          
+	             <th style="color:#456789;font-size:80%;"></th>
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Coactivad@</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
@@ -257,7 +259,7 @@
 	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
 	    		<th style="color:#456789;font-size:80%;">Secretario</th>
 	    		<th style="color:#456789;font-size:80%;">Etapa</th>
-	    		<th style="color:#456789;font-size:80%;">PRUEBA</th>
+	    		
 	    		<th style="color:#456789;font-size:80%;">Tipo Juicio</th>
 	    		<th style="color:#456789;font-size:80%;">Fecha Emision</th>
 	    		<th style="color:#456789;font-size:80%;">Total</th>
@@ -278,12 +280,7 @@
 		                <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?>     </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->impulsores; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->secretarios; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_etapas; ?>     </td> 
-		               
-		               
-		                <td style="color:#000000;"><select name="id_etapas_juicios" id="id_etapas_juicios"><?php foreach($resultEtapas as $res1) {?><option value="<?php echo $res1->id_etapas_juicios; ?>" ><?php echo $res1->nombre_etapas; ?> </option><?php } ?></select></td> 
-		                
-		                
+		               <td style="color:#000000;font-size:75%;"><select name="id_etapas_juicios" id="id_etapas_juicios"><?php foreach($resultEtapas as $res1) {?><option value="<?php echo $res1->id_etapas_juicios; ?>" ><?php echo $res1->nombre_etapas; ?> </option><?php } ?></select></td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_juicios; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>     </td> 
