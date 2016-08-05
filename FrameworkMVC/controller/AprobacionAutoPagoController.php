@@ -248,6 +248,7 @@ class AprobacionAutoPagoController extends ControladorBase{
 				
 				try {
 					
+					$resultado=$aprobacion_auto_pago->UpdateBy("id_estado='$id_estado',nombre_auto_pagos='$nombre_documento',identificador='$identificador',ruta_auto_pagos='$repositorio_documento'", "auto_pagos", "id_auto_pagos='$id_auto_pago'");
 					
 					
 					//pra obtener id_ciudad
@@ -328,8 +329,7 @@ class AprobacionAutoPagoController extends ControladorBase{
 					
 					$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='AUTOPAGOS'");
 					
-					$resultado=$aprobacion_auto_pago->UpdateBy("id_estado='$id_estado',nombre_auto_pagos='$nombre_documento',identificador='$identificador',ruta_auto_pagos='$repositorio_documento'", "auto_pagos", "id_auto_pagos='$id_auto_pago'");
-				
+					
 					
 				} catch (Exception $e) {
 					
