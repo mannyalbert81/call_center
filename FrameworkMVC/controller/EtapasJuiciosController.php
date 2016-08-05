@@ -286,6 +286,15 @@ class EtapasJuiciosController extends ControladorBase{
 		//Creamos el objeto usuario
 		$resultSet="";
 	
+		
+		$etapa_juicios = new EtapasJuiciosModel();
+		$resultEtapas =$etapa_juicios->getAll("nombre_etapas");
+		
+		
+		
+		
+		
+		
 		$ciudad = new CiudadModel();
 	
 	
@@ -395,7 +404,7 @@ class EtapasJuiciosController extends ControladorBase{
 	
 	
 				$this->view("ActualizaEtapasJuicios",array(
-						"resultSet"=>$resultSet,"resultDatos"=>$resultDatos
+						"resultSet"=>$resultSet,"resultDatos"=>$resultDatos, "resultEtapas"=>$resultEtapas
 							
 				));
 	

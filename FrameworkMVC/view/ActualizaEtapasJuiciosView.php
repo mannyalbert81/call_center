@@ -140,6 +140,7 @@
        $sel_numero_titulo="";
        $sel_fecha_desde="";
        $sel_fecha_hasta="";
+    
        
        if($_SERVER['REQUEST_METHOD']=='POST' )
        {
@@ -151,7 +152,7 @@
        	$sel_numero_titulo=$_POST['numero_titulo'];
        	$sel_fecha_desde=$_POST['fecha_desde'];
        	$sel_fecha_hasta=$_POST['fecha_hasta'];
-       	 
+
        }
        
 		?>
@@ -256,6 +257,7 @@
 	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
 	    		<th style="color:#456789;font-size:80%;">Secretario</th>
 	    		<th style="color:#456789;font-size:80%;">Etapa</th>
+	    		<th style="color:#456789;font-size:80%;">PRUEBA</th>
 	    		<th style="color:#456789;font-size:80%;">Tipo Juicio</th>
 	    		<th style="color:#456789;font-size:80%;">Fecha Emision</th>
 	    		<th style="color:#456789;font-size:80%;">Total</th>
@@ -277,6 +279,11 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->impulsores; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->secretarios; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_etapas; ?>     </td> 
+		               
+		               
+		                <td style="color:#000000;"><select name="id_etapas_juicios" id="id_etapas_juicios"><?php foreach($resultEtapas as $res1) {?><option value="<?php echo $res1->id_etapas_juicios; ?>" ><?php echo $res1->nombre_etapas; ?> </option><?php } ?></select></td> 
+		                
+		                
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_juicios; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>     </td> 
