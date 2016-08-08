@@ -112,7 +112,7 @@ $PHPJasperXML = new PHPJasperXML("en","TCPDF");
 $PHPJasperXML->debugsql=false;
 //$PHPJasperXML->arrayParameter=array("_id_entidades"=>$id_entidades, "_id_tipo_operaciones"=>$id_tipo_operaciones, "_id_tipo_contenido_cartones"=>$id_tipo_contenido_cartones, "_numero_cartones"=>$numero_cartones);
 $PHPJasperXML->arrayParameter=array("sql"=>$sql);
-$PHPJasperXML->load_xml_file("JuiciosReport.jrxml");
+$PHPJasperXML->load_xml_file("EtapaJuiciosReport.jrxml");
 
 $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 $PHPJasperXML->outpage("I");
