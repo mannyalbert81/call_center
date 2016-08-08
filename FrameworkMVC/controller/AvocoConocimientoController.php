@@ -166,6 +166,13 @@ public function index(){
 						$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='AVOCO'");
 						
 						$_estado = "Guardar";
+						
+						//inserta las notificaciones
+						$this->notificacionSecretario($_id_secretario,$nombre_documento);
+						$this->notificacionimpulsor($_id_impulsor,$nombre_documento);
+						$this->notificacionSecretarioReemplazo($_id_secretario_reemplazar,$nombre_documento);
+						
+						
 					}
 					
 				}
@@ -323,6 +330,78 @@ public function index(){
 	public function verError(){
 		$resultado=$_GET['dato'];
 		$this->view("error", array('resultado'=>print_r($resultado)));
+	}
+	
+	
+	public function notificacionimpulsor($id_impulsor,$documento=null)
+	{
+		$tipo_notificacion= new TipoNotificacionModel();
+		
+		$res_tipo_notificacion=array();
+		
+		$destino=$id_impulsor;
+		
+		$archivoPdf=$documento;
+		
+		$_nombre_tipo_notificacion="avoco_impulsor";
+	
+		$resul_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+		$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;
+		
+		$descripcion="Avoco Conocimiento";
+		
+		$numero_movimiento=0;
+	
+		$tipo_notificacion->CrearNotificacion($id_tipo_notificacion, $destino, $descripcion, $numero_movimiento, $archivoPdf);
+	
+	}
+	
+	public function notificacionSecretario($id_secretario,$documento=null)
+	{
+		$tipo_notificacion= new TipoNotificacionModel();
+		
+		$res_tipo_notificacion=array();
+		
+		$destino=$id_secretario;
+		
+		$archivoPdf=$documento;
+		
+		$_nombre_tipo_notificacion="avoco_secretario";
+		
+		$res_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+		
+		$id_tipo_notificacion=$res_tipo_notificacion[0]->id_tipo_notificacion;
+		
+		$descripcion="Avoco Conocimiento";
+		
+		$numero_movimiento=0;		
+		
+		$tipo_notificacion->CrearNotificacion($id_tipo_notificacion, $destino, $descripcion, $numero_movimiento, $archivoPdf);
+	
+	}
+	
+	public function notificacionSecretarioReemplazo($id_secretario_reemplazo,$documento=null)
+	{
+		$tipo_notificacion= new TipoNotificacionModel();
+	
+		$res_tipo_notificacion=array();
+	
+		$destino=$id_secretario_reemplazo;
+	
+		$archivoPdf=$documento;
+	
+		$_nombre_tipo_notificacion="avoco_secretario";
+	
+		$res_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+	
+		$id_tipo_notificacion=$res_tipo_notificacion[0]->id_tipo_notificacion;
+	
+		$descripcion="Avoco Conocimiento";
+	
+		$numero_movimiento=0;
+	
+		$tipo_notificacion->CrearNotificacion($id_tipo_notificacion, $destino, $descripcion, $numero_movimiento, $archivoPdf);
+	
 	}
 	
 	
