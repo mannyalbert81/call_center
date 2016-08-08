@@ -389,6 +389,105 @@ class ConsultaAvocoImpulsoresController extends ControladorBase{
 		}
 	
 	}
+	
+	public function avoco_impulsores(){
+	
+		session_start();
+	
+		//Creamos el objeto usuario
+		$resultSet="";
+		$avoco_impulsores=new AvocoConocimientoModel();
+		$ciudad = new CiudadModel();
+	
+		$_id_usuarios= $_SESSION["id_usuarios"];
+			
+		$resultDatos=$ciudad->getCondiciones("usuarios.id_ciudad,
+					  						  ciudad.nombre_ciudad,
+					 						  usuarios.nombre_usuarios" ,
+											 "public.usuarios,public.ciudad" ,
+											 "ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuarios'",
+											 "usuarios.id_ciudad"
+											);
+	
+		if (isset(  $_SESSION['usuario_usuarios']) )
+		{
+			//notificaciones
+			$avoco_impulsores->MostrarNotificaciones($_SESSION['id_usuarios']);
+			$permisos_rol = new PermisosRolesModel();
+			$nombre_controladores = "ConsultaAvocoImpulsores";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $avoco_impulsores->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+	
+			if (!empty($resultPer))
+			{
+				
+	
+					$columnas = "avoco_conocimiento.id_avoco_conocimiento,
+								  juicios.juicio_referido_titulo_credito,
+								  clientes.nombres_clientes,
+								  clientes.identificacion_clientes,
+								  ciudad.nombre_ciudad,
+								  asignacion_secretarios_view.secretarios,
+								  asignacion_secretarios_view.impulsores,
+								  usuarios.nombre_usuarios,
+								  avoco_conocimiento.creado";
+	
+					$tablas="public.avoco_conocimiento,
+							  public.juicios,
+							  public.ciudad,
+							  public.asignacion_secretarios_view,
+							  public.clientes,
+							  public.usuarios,
+							  public.notificaciones";
+	
+					$where="avoco_conocimiento.id_impulsor = asignacion_secretarios_view.id_abogado AND
+						  avoco_conocimiento.secretario_reemplazo = usuarios.id_usuarios AND
+						  juicios.id_juicios = avoco_conocimiento.id_juicios AND
+						  ciudad.id_ciudad = avoco_conocimiento.id_ciudad AND
+						  clientes.id_clientes = juicios.id_clientes
+						  AND avoco_conocimiento.firma_impulsor='FALSE' AND
+						  notificaciones.usuario_destino_notificaciones='$_id_usuarios'";
+	
+					$id="avoco_conocimiento.id_avoco_conocimiento";
+	
+	
+				
+	
+					$resultSet=$avoco_impulsores->getCondiciones($columnas ,$tablas , $where, $id);
+						
+						
+	
+	
+	
+				$this->view("ConsultaAvocoImpulsores",array(
+						"resultSet"=>$resultSet, "resultDatos"=>$resultDatos
+							
+				));
+	
+	
+	
+			}
+			else
+			{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Acceso a Firmar Avoco Impulsores"
+	
+				));
+	
+				
+			}
+	
+		}
+		else
+		{
+			$this->view("ErrorSesion",array(
+					"resultSet"=>""
+	
+			)); 
+	
+		}
+	
+	}
 
 	
 	public function abrirPdf()

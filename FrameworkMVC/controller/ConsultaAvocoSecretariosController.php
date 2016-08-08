@@ -189,12 +189,7 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 									
 									$firmas->UpdateBy("firma_secretario='TRUE'", "avoco_conocimiento", "id_avoco_conocimiento='$id_documento'");
 									
-									
-									//dirigir notificacion
-									$usuarioDestino=$resultDocumento[0]->id_usuario_registra_avoco;
-									
-									$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $nombrePdf);
-											
+									$this->notificacionImpulsor($nombrePdf);	
 									
 									
 																		
@@ -242,6 +237,116 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 	}
 
 
+	public function avoco_secretarios(){
+	
+		session_start();
+	
+		//Creamos el objeto usuario
+		$resultSet="";
+		
+		$avoco_secretarios=new AvocoConocimientoModel();
+		
+		$usuarios = new UsuariosModel();
+		
+	
+		$_id_usuarios= $_SESSION["id_usuarios"];
+	
+		
+		$resultDatos=$usuarios->getCondiciones("usuarios.id_ciudad,
+					  							ciudad.nombre_ciudad,
+					 							usuarios.nombre_usuarios" ,
+												"public.usuarios,public.ciudad",
+												"ciudad.id_ciudad = usuarios.id_ciudad AND
+												usuarios.id_usuarios = '$_id_usuarios'",
+												"usuarios.id_ciudad");
+		
+	
+		$resultImpul=$avoco_secretarios->getCondiciones("asignacion_secretarios_view.id_abogado,
+					  									asignacion_secretarios_view.impulsores" ,
+														"public.asignacion_secretarios_view" ,
+														"public.asignacion_secretarios_view.id_secretario = '$_id_usuarios'",
+														"asignacion_secretarios_view.id_abogado");
+	
+	
+		if (isset(  $_SESSION['usuario_usuarios']) )
+		{
+			//notificaciones
+			$avoco_secretarios->MostrarNotificaciones($_SESSION['id_usuarios']);
+			
+			$nombre_controladores = "ConsultaAvocoSecretarios";
+			$id_rol= $_SESSION['id_rol'];
+			
+			$resultPer = $avoco_secretarios->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+	
+			if (!empty($resultPer))
+			{
+				
+					$columnas = "DISTINCT  avoco_conocimiento.id_avoco_conocimiento,
+							  juicios.juicio_referido_titulo_credito,
+							  clientes.nombres_clientes,
+							  clientes.identificacion_clientes,
+							  ciudad.nombre_ciudad,
+							  asignacion_secretarios_view.secretarios,
+							  asignacion_secretarios_view.impulsores,
+							  usuarios.nombre_usuarios,
+							  avoco_conocimiento.creado";
+	
+					$tablas=" public.avoco_conocimiento,
+							  public.juicios,
+							  public.ciudad,
+							  public.asignacion_secretarios_view,
+							  public.clientes,
+							  public.usuarios,
+							  public.notificaciones";
+	
+					$where="avoco_conocimiento.id_secretario = asignacion_secretarios_view.id_secretario AND
+							avoco_conocimiento.id_secretario = usuarios.id_usuarios AND
+							juicios.id_juicios = avoco_conocimiento.id_juicios AND
+							ciudad.id_ciudad = avoco_conocimiento.id_ciudad AND
+							clientes.id_clientes = juicios.id_clientes AND
+							avoco_conocimiento.firma_secretario='FALSE' AND
+							notificaciones.visto_notificaciones ='FALSE' AND
+							notificaciones.usuario_destino_notificaciones='$_id_usuarios'";
+	
+					$id="avoco_conocimiento.id_avoco_conocimiento";
+	
+	
+					
+	
+					$resultSet=$avoco_secretarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+	
+			
+	
+				$this->view("ConsultaAvocoSecretarios",array(
+						"resultSet"=>$resultSet,"resultDatos"=>$resultDatos, "resultImpul"=>$resultImpul
+							
+				));
+	
+	
+			}
+			else
+			{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Acceso a Firmar Avoco Secretarios"
+	
+				));
+	
+				exit();
+			}
+	
+		}
+		else
+		{
+			$this->view("ErrorSesion",array(
+					"resultSet"=>""
+	
+			));
+	
+		}
+	
+	}
+	
 	
 	public function consulta_secretarios_avoco_firmados(){
 	
@@ -396,6 +501,8 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 	}
 
 	
+
+	
 	public function abrirPdf()
 	{
 		$avoco = new AvocoConocimientoModel();
@@ -494,7 +601,35 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 	
 	}
 
-//129;681;19;4;"2016-07-22";"02:11:00";"DSFSD";"FSDFSD";" SDFSD";41;FALSE;FALSE;FALSE;"Providencias1065";"Providencias";"2016-07-21 19:10:34.858-05";""
+	public function notificacionImpulsor($documento=null)
+	{
+		$tipo_notificacion= new TipoNotificacionModel();
+		$usuario = new UsuariosModel();
+		
+		$res_tipo_notificacion=array();
+		
+		$res_liquidador=$usuario->getCondiciones("usuarios.id_usuarios",
+											  "public.usuarios,public.rol", 
+											  "rol.id_rol = usuarios.id_rol AND rol.nombre_rol = 'LIQUIDADOR'",
+											  "usuarios.id_usuarios"
+												);
+		$destino=$res_liquidador[0]->id_usuarios;
+		
+		$archivoPdf=$documento;
+		
+		$_nombre_tipo_notificacion="avoco_impulsor";
+		
+		$res_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+		
+		$id_tipo_notificacion=$res_tipo_notificacion[0]->id_tipo_notificacion;
+		
+		$descripcion="Avoco Conocimiento";
+		
+		$numero_movimiento=0;
+		
+		$tipo_notificacion->CrearNotificacion($id_tipo_notificacion, $destino, $descripcion, $numero_movimiento, $archivoPdf);
+		
+	}
 
 
 }
