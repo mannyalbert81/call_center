@@ -126,6 +126,13 @@
         </script>
        
        
+			 <script languaje="javascript">
+			function ocultar(id_juicios) {
+			document.all[id_juicios].style.display = "checkbox";
+			}
+			</script>
+    
+    
     
     </head>
     <body style="background-color: #d9e3e4;">
@@ -270,14 +277,14 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	        		
-	        		   <th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_juicios"   name="id_juicios"  value="<?php echo $res->id_juicios; ?>" class="marcados"></th>
+	        		   <th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_juicios"   name="id_juicios"  value="<?php echo $res->id_juicios; ?>" ocultar();></th>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_juicios; ?></td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_persona; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?>     </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->impulsores; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->secretarios; ?>     </td> 
 		               <td style="color:#000000;font-size:75%;"><select name="id_etapas_juicios" id="id_etapas_juicios"><?php foreach($resultEtapas as $res1) {?><option value="<?php echo $res1->id_etapas_juicios; ?>" ><?php echo $res1->nombre_etapas; ?> </option><?php } ?></select></td> 

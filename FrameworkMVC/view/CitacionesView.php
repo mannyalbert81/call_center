@@ -179,7 +179,7 @@
 	
 	<script >
         $(document).ready(function() {
-		$('#Guardar').click(function(){ºº
+		$('#Guardar').click(function(){
 	        var selected = '';  
 	          
 	        $('.marcados').each(function(){
@@ -195,7 +195,7 @@
 	            alert('Debes seleccionar un juicio.');
 	            return false;
 	        }
-<<<<<<< HEAD
+
 
 	      
 	    }); 
@@ -227,11 +227,8 @@ $(document).ready(function() {
 	    }); 
 
 	});
-=======
-         }); 
-       });
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
-	</script>
+</script>
+
 
 
 		 <script>
