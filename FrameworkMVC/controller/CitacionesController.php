@@ -230,7 +230,7 @@ class CitacionesController extends ControladorBase{
 			 	if (!empty($id) )
 			 	{
 			 		
-			 		//busco si exties este nuevo id
+			 		//busco si existe este  id
 			 		try
 			 		{
 			 			
@@ -277,6 +277,8 @@ class CitacionesController extends ControladorBase{
 				print "<script language='JavaScript'>
 				setTimeout(window.open('http://$host$uri/view/ireports/ContCitacionesGuardarReport.php?identificador=$identificador&estado=$_estado&nombre=$_nombre_citacion','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
 				</script>";
+				
+				$this->notificacionCitador($_id_usuarios,$_nombre_citacion);
 				 
 				print("<script>window.location.replace('index.php?controller=Citaciones&action=index');</script>");
 				
@@ -713,6 +715,31 @@ class CitacionesController extends ControladorBase{
 	
 	}
 	
+	public function notificacionCitador($id_citador,$documento=null)
+	{
+		$tipo_notificacion= new TipoNotificacionModel();
+		$usuario = new UsuariosModel();
+	
+		$res_tipo_notificacion=array();
+		
+		$destino=$id_citador;
+	
+		$archivoPdf=$documento;
+	
+		$_nombre_tipo_notificacion="citacion";
+	
+		$res_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+	
+		$id_tipo_notificacion=$res_tipo_notificacion[0]->id_tipo_notificacion;
+	
+		$descripcion="Citacion Creada";
+	
+		$numero_movimiento=0;
+	
+		$tipo_notificacion->CrearNotificacion($id_tipo_notificacion, $destino, $descripcion, $numero_movimiento, $archivoPdf);
+	
+	}
+	
 	public function abrirPdf()
 	{
 		$citaciones = new CitacionesModel();
@@ -739,6 +766,107 @@ class CitacionesController extends ControladorBase{
 				readfile($directorio);
 			}
 	
+	
+		}
+	
+	}
+	
+	public function firmar_citaciones(){
+	
+		session_start();
+	
+		//Creamos el objeto usuario
+		$resultSet="";
+	
+		$ciudad = new CiudadModel();
+		$citaciones= new CitacionesModel();
+	
+		$_id_usuarios= $_SESSION["id_usuarios"];
+	
+		
+		$resultDatos= $ciudad->getCondiciones("usuarios.id_ciudad,
+											  ciudad.nombre_ciudad,
+											  usuarios.nombre_usuarios",
+											  "public.usuarios,public.ciudad",
+											  "ciudad.id_ciudad = usuarios.id_ciudad AND 
+											  usuarios.id_usuarios = '$_id_usuarios'",
+											  "usuarios.id_ciudad"
+												);
+	
+		
+	
+		if (isset(  $_SESSION['usuario_usuarios']) )
+		{
+			$permisos_rol = new PermisosRolesModel();
+			$nombre_controladores = "Citaciones";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $citaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+	
+			if (!empty($resultPer))
+			{
+				
+					$columnas = "citaciones.id_citaciones,
+					juicios.id_juicios,
+  					juicios.juicio_referido_titulo_credito,
+ 					clientes.nombres_clientes,
+  					clientes.identificacion_clientes,
+  					citaciones.fecha_citaciones,
+  					ciudad.nombre_ciudad,
+  					ciudad.id_ciudad,
+  					tipo_citaciones.id_tipo_citaciones,
+  					tipo_citaciones.nombre_tipo_citaciones,
+  					citaciones.nombre_persona_recibe_citaciones,
+  					citaciones.relacion_cliente_citaciones,
+  					usuarios.nombre_usuarios";
+	
+					$tablas="public.citaciones,
+  					public.juicios,
+  					public.ciudad,
+  					public.tipo_citaciones,
+  					public.usuarios,
+  					public.clientes,
+  					public.notificaciones";
+	
+					$where="juicios.id_juicios = citaciones.id_juicios AND
+					ciudad.id_ciudad = citaciones.id_ciudad AND
+					tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones AND
+					usuarios.id_usuarios = citaciones.id_usuarios AND
+					clientes.id_clientes = juicios.id_clientes AND citaciones.id_usuarios ='$_id_usuarios' AND citaciones.firma_citador='FALSE'
+					AND notificaciones.usuario_destino_notificaciones = '$_id_usuarios' ";
+	
+					$id="citaciones.id_citaciones";
+	
+	
+					$resultSet=$citaciones->getCondiciones($columnas ,$tablas , $where, $id);
+	
+	
+				
+	
+				$this->view("ConsultaCitacionesFirmar",array(
+						"resultSet"=>$resultSet, "resultDatos"=>$resultDatos
+							
+				));
+	
+	
+	
+			}
+			else
+			{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Acceso a Citaciones"
+	
+				));
+	
+				exit();
+			}
+	
+		}
+		else
+		{
+			$this->view("ErrorSesion",array(
+					"resultSet"=>""
+	
+			));
 	
 		}
 	
