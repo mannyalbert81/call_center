@@ -13,6 +13,14 @@
 		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		
 		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
+		
+		
+		<link type="text/css" rel="stylesheet" href="view/css/modal.css" />
+		<script type="text/javascript" src="jquery-1.2.3.min.js"></script>
+		<script type="text/javascript" src="view/css/modal.js"></script>
+		
+		
+		
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
  		
@@ -293,7 +301,7 @@
 		             
 		               <td>
 		               		 <div class="right">
-		              		 	 <a href="<?php echo $helper->url("EtapasJuicios","ActualizaEtapasJuicios"); ?>&id_juicios=<?php echo $res->id_juicios;?>" class="btn btn-warning" onClick="notificacion()" style="font-size:70%;">Actualizar</a>
+		              		 	<input type="button" id="actualizar" value="Actualizar" class="btn btn-success"  style="font-size:60%;"/>
 			                </div>
 		               </td> 
 		               <td>
