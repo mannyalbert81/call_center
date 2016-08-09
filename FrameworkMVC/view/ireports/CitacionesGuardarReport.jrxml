@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-08-04T11:40:36 -->
+<!-- 2016-08-09T11:31:25 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Citaciones" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="63306ce9-b0ed-428c-81f8-41c55bd08ecb">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -22,16 +22,16 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="126" splitType="Stretch">
+		<band height="245" splitType="Stretch">
 			<textField>
-				<reportElement x="30" y="69" width="320" height="30" uuid="57367cd5-f65d-45b1-b5d5-a4122bd1b3df"/>
+				<reportElement x="30" y="199" width="320" height="30" uuid="57367cd5-f65d-45b1-b5d5-a4122bd1b3df"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["JUICIO COACTIVO # "+$F{juicio_referido_titulo_credito}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="20" width="550" height="30" uuid="e60f54ba-5a24-467d-b1d1-ce076f653e9a"/>
+				<reportElement x="0" y="120" width="550" height="30" uuid="e60f54ba-5a24-467d-b1d1-ce076f653e9a"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="19" isBold="true"/>
 				</textElement>
@@ -44,35 +44,28 @@
 		</band>
 	</title>
 	<detail>
-		<band height="208" splitType="Stretch">
+		<band height="241" splitType="Stretch">
 			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement x="30" y="20" width="480" height="110" uuid="8139a562-6bc9-40aa-af61-026713d76c19"/>
+				<reportElement x="30" y="40" width="480" height="110" uuid="8139a562-6bc9-40aa-af61-026713d76c19"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Siento como tal, que hoy "+$F{fecha_citaciones}+" siendo las "+$F{fecha_citaciones}+" horas, dando cumplimiento a lo dispuesto en auto de pago dictado dentro del presente juicio, me constituí en las calles "+$F{direccion_clientes}+" canton "+$F{nombre_ciudad}+" con la finalidad de citar al (a) coactivado (a) "+$F{nombres_clientes}+" cerciorándome que se trata del domicilio del (a) coactivado (a), le entregué la "+$F{nombre_tipo_citaciones}+" de citación que contiene el auto de pago a "+$F{nombre_persona_recibe_citaciones}+" quien se identificó como "+$F{relacion_cliente_citaciones}+" del (a) coactivado (a). Lo certifico.-"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="30" y="0" width="70" height="20" uuid="d0a4220a-77b5-44dc-bd72-163b0d4b1266"/>
+				<reportElement x="30" y="10" width="70" height="20" uuid="d0a4220a-77b5-44dc-bd72-163b0d4b1266"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[RAZÓN:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="30" y="170" width="101" height="20" uuid="a4b2809b-9705-45fa-a7db-74d91a94a810"/>
-				<textElement>
+				<reportElement x="180" y="220" width="200" height="20" uuid="a4b2809b-9705-45fa-a7db-74d91a94a810"/>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Citador Judicial]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="30" y="150" width="161" height="20" uuid="745385ec-c188-4c90-a403-70c466cd5b28"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_usuarios}]]></textFieldExpression>
-			</textField>
 		</band>
 	</detail>
 	<pageFooter>
