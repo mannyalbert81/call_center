@@ -1,4 +1,4 @@
-<?php
+ <?php
 class AvocoConocimientoController extends ControladorBase{
     
     public function __construct() {
@@ -54,26 +54,19 @@ public function index(){
 					$resulSet=$juicio->getCondiciones("id_juicios,juicio_referido_titulo_credito", "juicios", "juicio_referido_titulo_credito='$juicio_referido'", "id_juicios");
 				}
 				
-				
-			
-			
 			}
 			else
 			{
 				$this->view("Error",array(
 						"resultado"=>"No tiene Permisos de Acceso a Documentos"
-			
 				));
 				exit();
-			
 			}
 			
 			$this->view("AvocoConocimiento",array(
 					 "resulSecretario"=>$resulSecretario,"resulSet"=>$resulSet, "resultDatos"=>$resultDatos
 			
 			));
-			
-			
 		}
 		else 
 		{
@@ -81,14 +74,8 @@ public function index(){
 					"resultado"=>"Debe Iniciar Sesion"
 		
 			));
-			
-			
-			
 		}
-		
 	}
-	
-	
 	
 	public function InsertaAvoco(){
 		
@@ -195,12 +182,9 @@ public function index(){
 					"resultado"=>"No tiene Permisos de Insertar Documentos"
 		
 					));
-	
-	
+		
 				}
-
-	
-	}
+          }
 	
 	public function VisualizarAvoco(){
 		
