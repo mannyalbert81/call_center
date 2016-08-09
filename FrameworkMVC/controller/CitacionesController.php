@@ -16,7 +16,7 @@ class CitacionesController extends ControladorBase{
 		$resultSet=$citaciones->getAll("id_citaciones");
 
 		$ciudad = new CiudadModel();
-		$resultCiu = $ciudad->getAll("nombre_ciudad");
+		$resultCiu = $ciudad->getAll("nombre_ciudad");                                                                                                                                                                                                                                                                                  
 
 		$tipo_citaciones = new TipoCitacionesModel();
 		$resultTipoCit =$tipo_citaciones->getAll("nombre_tipo_citaciones");

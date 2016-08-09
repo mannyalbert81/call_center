@@ -323,8 +323,8 @@ $(document).ready(function() {
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Citador Judicial</p>
 			  	<select name="id_usuarioCitador" id="id_usuarioCitador"  class="form-control" >
-					<option value="0"  > -- SIN ESPECIFICAR -- </option>
-								
+							
+	
 				</select> 			  
 			  </div>
 			  </div>
