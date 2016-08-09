@@ -436,7 +436,7 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
 	
 				header('Content-type: application/pdf');
-				header('Content-Disposition: attachment; filename="'.$directorio.'"');
+				header('Content-Disposition: inline; filename="'.$directorio.'"');
 				readfile($directorio);
 			}
 	

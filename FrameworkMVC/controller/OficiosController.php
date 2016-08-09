@@ -685,7 +685,7 @@ class OficiosController extends ControladorBase{
 				//echo $directorio;
 	
 				header('Content-type: application/pdf');
-				header('Content-Disposition: attachment; filename="'.$directorio.'"');
+				header('Content-Disposition: inline; filename="'.$directorio.'"');
 				readfile($directorio);
 			}
 	
