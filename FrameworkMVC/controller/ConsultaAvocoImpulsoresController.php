@@ -512,7 +512,7 @@ class ConsultaAvocoImpulsoresController extends ControladorBase{
 	
 		$id_tipo_notificacion=$res_tipo_notificacion[0]->id_tipo_notificacion;
 	
-		$descripcion="Avoco Conocimiento";
+		$descripcion="Avoco Conocimiento Aceptado";
 	
 		$numero_movimiento=0;
 	
