@@ -222,7 +222,11 @@ class CitacionesController extends ControladorBase{
 				 $_relacion_cliente_citaciones = $_POST["relacion_cliente_citaciones"];
 				 $_id_usuarios = $_POST["id_usuarioCitador"];
 			 	
-			 	
+				 $host  = $_SERVER['HTTP_HOST'];
+				 $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+
+				  
+				 
 			 foreach($_array_juicios  as $id  )
 			 {
 			 	
@@ -233,22 +237,65 @@ class CitacionesController extends ControladorBase{
 			 		//busco si exties este nuevo id
 			 		try
 			 		{
-			 			
-			 			
-			 			$_id_juicios = $id;
 
-			 			$funcion = "ins_citaciones";
-			 						 			
-			 			$parametros = "'$_id_juicios', '$_fecha_citaciones', '$_id_ciudad', '$_id_tipo_citaciones', '$_nombre_persona_recibe_citaciones', '$_relacion_cliente_citaciones', '$_id_usuarios','$_nombre_citacion','$repositorio_documento','$identificador' ";
+			 			$_id_juicios = $id;
 			 			
-			 			$citaciones->setFuncion($funcion);
-			 			$citaciones->setParametros($parametros);
 			 			
-			 			$resultado=$citaciones->Insert();
+			 			$citaciones=new CitacionesModel();
+			 		   $resulSet=$citaciones->getCondiciones("id_juicios, id_tipo_citaciones", "citaciones", "id_juicios='$_id_juicios' AND id_tipo_citaciones='$_id_tipo_citaciones'", "id_juicios");
 			 			
-			 			$res=$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='CITACIONES'");
-			 						 			
+			 		   
+			 		   
+			 			if (empty($resulSet) )
+			 			{
 			 			
+                            $funcion = "ins_citaciones";
+			 				$parametros = "'$_id_juicios', '$_fecha_citaciones', '$_id_ciudad', '$_id_tipo_citaciones', '$_nombre_persona_recibe_citaciones', '$_relacion_cliente_citaciones', '$_id_usuarios','$_nombre_citacion','$repositorio_documento','$identificador' ";
+			 				$citaciones->setFuncion($funcion);
+			 				$citaciones->setParametros($parametros);
+			 				$resultado=$citaciones->Insert();
+			 				$res=$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='CITACIONES'");
+			 				 
+			 				
+			 				
+			 				$traza=new TrazasModel();
+			 				$_nombre_controlador = "Citaciones";
+			 				$_accion_trazas  = "Guardar";
+			 				$_parametros_trazas = $_id_juicios;
+			 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+			 				
+			 				//para generar el pdf
+			 				print "<script language='JavaScript'>
+			 				setTimeout(window.open('http://$host$uri/view/ireports/ContCitacionesGuardarReport.php?identificador=$identificador&estado=$_estado&nombre=$_nombre_citacion','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+			 				</script>";
+			 					
+			 				print("<script>window.location.replace('index.php?controller=Citaciones&action=index');</script>");
+			 				
+			 				
+			 			
+			 			}
+			 				else
+			 				{
+			 					
+			 					$columnas = " juicios.juicio_referido_titulo_credito, juicios.id_juicios, tipo_citaciones.nombre_tipo_citaciones";
+			 					$tablas   = "public.citaciones, public.juicios, public.tipo_citaciones";
+			 					$where    = "juicios.id_juicios = citaciones.id_juicios AND tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones AND citaciones.id_juicios = '$_id_juicios' AND citaciones.id_tipo_citaciones = '$_id_tipo_citaciones'";
+			 						
+			 					$id       = "juicios.id_juicios";
+			 					
+			 						
+			 					$resultDatos=$citaciones->getCondiciones($columnas ,$tablas ,$where, $id);
+			 					
+			 					$this->view("Error",array(
+			 					 	
+			 					 			"resultado"=>"Ya existe la ".  $resultDatos[0]-> nombre_tipo_citaciones." del juicio " . $resultDatos[0]->juicio_referido_titulo_credito
+			 					 	
+			 					 ));
+			 					 	
+			 					exit();
+			 					
+			 				}
+			 											
 
 			 			
 			 		} catch (Exception $e)
@@ -258,8 +305,7 @@ class CitacionesController extends ControladorBase{
 			 			));
 			 		}
 			 		
-			 		$host  = $_SERVER['HTTP_HOST'];
-			 		$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+			 		
 			 		
 			 		
 
@@ -267,24 +313,10 @@ class CitacionesController extends ControladorBase{
 			 		
 			 }
 			 	
-				$traza=new TrazasModel();
-				$_nombre_controlador = "Citaciones";
-				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_id_juicios;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
-				//para generar el pdf
-				print "<script language='JavaScript'>
-				setTimeout(window.open('http://$host$uri/view/ireports/ContCitacionesGuardarReport.php?identificador=$identificador&estado=$_estado&nombre=$_nombre_citacion','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
-				</script>";
-				 
-				print("<script>window.location.replace('index.php?controller=Citaciones&action=index');</script>");
-				
-
-			}
-
-			//$this->redirect("Citaciones", "index");
-
+			
+			
+		}
 		}
 		else
 		{
