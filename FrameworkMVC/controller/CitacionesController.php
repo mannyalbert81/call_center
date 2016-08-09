@@ -221,8 +221,13 @@ class CitacionesController extends ControladorBase{
 				 $_nombre_persona_recibe_citaciones = $_POST["nombre_persona_recibe_citaciones"];
 				 $_relacion_cliente_citaciones = $_POST["relacion_cliente_citaciones"];
 				 $_id_usuarios = $_POST["id_usuarioCitador"];
+				 $_id_usuario_registra_citaciones  = $_SESSION['id_usuarios'];
 			 	
-			 	
+				 $host  = $_SERVER['HTTP_HOST'];
+				 $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+
+				  
+				 
 			 foreach($_array_juicios  as $id  )
 			 {
 			 	
@@ -230,25 +235,69 @@ class CitacionesController extends ControladorBase{
 			 	if (!empty($id) )
 			 	{
 			 		
-			 		//busco si exties este nuevo id
+			 		//busco si existe este  id
 			 		try
 			 		{
-			 			
-			 			
-			 			$_id_juicios = $id;
 
-			 			$funcion = "ins_citaciones";
-			 						 			
-			 			$parametros = "'$_id_juicios', '$_fecha_citaciones', '$_id_ciudad', '$_id_tipo_citaciones', '$_nombre_persona_recibe_citaciones', '$_relacion_cliente_citaciones', '$_id_usuarios','$_nombre_citacion','$repositorio_documento','$identificador' ";
+			 			$_id_juicios = $id;
 			 			
-			 			$citaciones->setFuncion($funcion);
-			 			$citaciones->setParametros($parametros);
 			 			
-			 			$resultado=$citaciones->Insert();
+			 			$citaciones=new CitacionesModel();
+			 		   $resulSet=$citaciones->getCondiciones("id_juicios, id_tipo_citaciones", "citaciones", "id_juicios='$_id_juicios' AND id_tipo_citaciones='$_id_tipo_citaciones'", "id_juicios");
 			 			
-			 			$res=$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='CITACIONES'");
-			 						 			
+			 		   
+			 		   
+			 			if (empty($resulSet) )
+			 			{
 			 			
+                            $funcion = "ins_citaciones";
+			 				$parametros = "'$_id_juicios', '$_fecha_citaciones', '$_id_ciudad', '$_id_tipo_citaciones', '$_nombre_persona_recibe_citaciones', '$_relacion_cliente_citaciones', '$_id_usuarios','$_nombre_citacion','$repositorio_documento','$identificador','$_id_usuario_registra_citaciones' ";
+			 				$citaciones->setFuncion($funcion);
+			 				$citaciones->setParametros($parametros);
+			 				$resultado=$citaciones->Insert();
+			 				$res=$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='CITACIONES'");
+			 				 
+			 				
+			 				
+			 				$traza=new TrazasModel();
+			 				$_nombre_controlador = "Citaciones";
+			 				$_accion_trazas  = "Guardar";
+			 				$_parametros_trazas = $_id_juicios;
+			 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+			 				
+			 				//para generar el pdf
+			 				print "<script language='JavaScript'>
+			 				setTimeout(window.open('http://$host$uri/view/ireports/ContCitacionesGuardarReport.php?identificador=$identificador&estado=$_estado&nombre=$_nombre_citacion','popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0,visible=false'),1000);
+			 				
+			 				</script>";
+			 				
+			 				$this->notificacionCitador($_id_usuarios);
+			 					
+			 				print("<script>window.location.replace('index.php?controller=Citaciones&action=index');</script>");
+			 			
+			 			}
+			 				else
+			 				{
+			 					
+			 					$columnas = " juicios.juicio_referido_titulo_credito, juicios.id_juicios, tipo_citaciones.nombre_tipo_citaciones";
+			 					$tablas   = "public.citaciones, public.juicios, public.tipo_citaciones";
+			 					$where    = "juicios.id_juicios = citaciones.id_juicios AND tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones AND citaciones.id_juicios = '$_id_juicios' AND citaciones.id_tipo_citaciones = '$_id_tipo_citaciones'";
+			 						
+			 					$id       = "juicios.id_juicios";
+			 					
+			 						
+			 					$resultDatos=$citaciones->getCondiciones($columnas ,$tablas ,$where, $id);
+			 					
+			 					$this->view("Error",array(
+			 					 	
+			 					 			"resultado"=>"Ya existe la ".  $resultDatos[0]-> nombre_tipo_citaciones." del juicio " . $resultDatos[0]->juicio_referido_titulo_credito
+			 					 	
+			 					 ));
+			 					 	
+			 					exit();
+			 					
+			 				}
+			 											
 
 			 			
 			 		} catch (Exception $e)
@@ -257,35 +306,25 @@ class CitacionesController extends ControladorBase{
 			 					"resultado"=>"Eror al Asignar ->". $id 
 			 			));
 			 		}
-			 		
-			 		$host  = $_SERVER['HTTP_HOST'];
-			 		$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-			 		
-			 		
 
 			 	}
 			 		
 			 }
 			 	
-				$traza=new TrazasModel();
-				$_nombre_controlador = "Citaciones";
-				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_id_juicios;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				
-				//para generar el pdf
-				print "<script language='JavaScript'>
-				setTimeout(window.open('http://$host$uri/view/ireports/ContCitacionesGuardarReport.php?identificador=$identificador&estado=$_estado&nombre=$_nombre_citacion','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
-				</script>";
-				 
-				print("<script>window.location.replace('index.php?controller=Citaciones&action=index');</script>");
+
 				
 
 			}
 
 			//$this->redirect("Citaciones", "index");
 
+
+			
+			
 		}
+
+		
 		else
 		{
 			$this->view("Error",array(
@@ -713,6 +752,31 @@ class CitacionesController extends ControladorBase{
 	
 	}
 	
+	public function notificacionCitador($id_citador,$documento=null)
+	{
+		$tipo_notificacion= new TipoNotificacionModel();
+		$usuario = new UsuariosModel();
+	
+		$res_tipo_notificacion=array();
+		
+		$destino=$id_citador;
+	
+		$archivoPdf=$documento;
+	
+		$_nombre_tipo_notificacion="citacion";
+	
+		$res_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+	
+		$id_tipo_notificacion=$res_tipo_notificacion[0]->id_tipo_notificacion;
+	
+		$descripcion="Citacion Creada";
+	
+		$numero_movimiento=0;
+	
+		$tipo_notificacion->CrearNotificacion($id_tipo_notificacion, $destino, $descripcion, $numero_movimiento, $archivoPdf);
+	
+	}
+	
 	public function abrirPdf()
 	{
 		$citaciones = new CitacionesModel();
@@ -744,8 +808,145 @@ class CitacionesController extends ControladorBase{
 	
 	}
 	
+	public function firmar_citaciones(){
+	
+		session_start();
+	
+		//Creamos el objeto usuario
+		$resultSet="";
+	
+		$ciudad = new CiudadModel();
+		$citaciones= new CitacionesModel();
+	
+		$_id_usuarios= $_SESSION["id_usuarios"];
+	
+		
+		$resultDatos= $ciudad->getCondiciones("usuarios.id_ciudad,
+											  ciudad.nombre_ciudad,
+											  usuarios.nombre_usuarios",
+											  "public.usuarios,public.ciudad",
+											  "ciudad.id_ciudad = usuarios.id_ciudad AND 
+											  usuarios.id_usuarios = '$_id_usuarios'",
+											  "usuarios.id_ciudad"
+												);
+	
+		
+	
+		if (isset(  $_SESSION['usuario_usuarios']) )
+		{
+			$permisos_rol = new PermisosRolesModel();
+			$nombre_controladores = "Citaciones";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $citaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+	
+			if (!empty($resultPer))
+			{
+				
+					$columnas = "citaciones.id_citaciones,
+					juicios.id_juicios,
+  					juicios.juicio_referido_titulo_credito,
+ 					clientes.nombres_clientes,
+  					clientes.identificacion_clientes,
+  					citaciones.fecha_citaciones,
+  					ciudad.nombre_ciudad,
+  					ciudad.id_ciudad,
+  					tipo_citaciones.id_tipo_citaciones,
+  					tipo_citaciones.nombre_tipo_citaciones,
+  					citaciones.nombre_persona_recibe_citaciones,
+  					citaciones.relacion_cliente_citaciones,
+  					usuarios.nombre_usuarios";
+	
+					$tablas="public.citaciones,
+  					public.juicios,
+  					public.ciudad,
+  					public.tipo_citaciones,
+  					public.usuarios,
+  					public.clientes,
+  					public.notificaciones";
+	
+					$where="juicios.id_juicios = citaciones.id_juicios AND
+					ciudad.id_ciudad = citaciones.id_ciudad AND
+					tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones AND
+					usuarios.id_usuarios = citaciones.id_usuarios AND
+					clientes.id_clientes = juicios.id_clientes AND citaciones.id_usuarios ='$_id_usuarios' AND citaciones.firma_citador='FALSE'
+					AND notificaciones.usuario_destino_notificaciones = '$_id_usuarios' ";
+	
+					$id="citaciones.id_citaciones";
+	
+	
+					$resultSet=$citaciones->getCondiciones($columnas ,$tablas , $where, $id);
+	
+	
+				
+	
+				$this->view("ConsultaCitacionesFirmar",array(
+						"resultSet"=>$resultSet, "resultDatos"=>$resultDatos
+							
+				));
+	
+	
+	
+			}
+			else
+			{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Acceso a Citaciones"
+	
+				));
+	
+				exit();
+			}
+	
+		}
+		else
+		{
+			$this->view("ErrorSesion",array(
+					"resultSet"=>""
+	
+			));
+	
+		}
+	
+	}
+	
+	// funcioones utilizadas con jquery en la vista 
+	
 	public function returnCitadorbyciudad()
 	{
+	
+		//CONSULTA DE USUARIOS POR SU ROL
+		$idciudad=(int)$_POST["ciudad"];
+		$usuarios=new UsuariosModel();
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios,ciudad,rol";
+		$id="rol.id_rol";
+	
+		$where="rol.id_rol=usuarios.id_rol AND usuarios.id_ciudad=ciudad.id_ciudad
+		AND rol.nombre_rol='CITADOR JUDICIAL' AND ciudad.id_ciudad='$idciudad'";
+	
+		$resultUsuarioCitador=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultUsuarioCitador);
+	}
+	
+	public function ValidarJuicioCitacion()
+	{
+		$citaciones=new CitacionesModel();
+		
+		$_id_juicios=(int)$_POST['id_juicio'];
+		
+		
+		$columnas = " juicios.juicio_referido_titulo_credito, juicios.id_juicios, tipo_citaciones.nombre_tipo_citaciones";
+		$tablas   = "public.citaciones, public.juicios, public.tipo_citaciones";
+		$where    = "juicios.id_juicios = citaciones.id_juicios AND tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones AND citaciones.id_juicios = '$_id_juicios' AND citaciones.id_tipo_citaciones = '$_id_tipo_citaciones'";
+		
+		$id       = "juicios.id_juicios";
+			
+		
+		$resultDatos=$citaciones->getCondiciones($columnas ,$tablas ,$where, $id);
+			
+		
+			
 	
 		//CONSULTA DE USUARIOS POR SU ROL
 		$idciudad=(int)$_POST["ciudad"];
