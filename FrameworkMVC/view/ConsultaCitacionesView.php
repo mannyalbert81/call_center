@@ -278,8 +278,8 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->relacion_cliente_citaciones; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContCitacionesSubReport.php?id_citaciones=<?php echo $res->id_citaciones; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
-		               </td> 
+		               <a href="<?php echo $helper->url("Citaciones","abrirPdf"); ?>&id=<?php echo $res->id_citaciones; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		                </td> 
 		    		</tr>
 		        <?php } }  ?>
                

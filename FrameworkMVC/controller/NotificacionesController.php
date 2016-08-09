@@ -299,6 +299,23 @@ class NotificacionesController extends ControladorBase{
 	 
 	}
 	
+	public function notificacionAvoco()
+	{
+		session_start();
+		//Creamos el objeto usuario
+		$usuarios=new UsuariosModel();
+		
+		$id_usuario=$_SESSION['id_usuarios'];
+		 
+		//Conseguimos todos los usuarios
+		$allusers=$usuarios->getBy("id_usuarios='$id_usuario'");
+		 
+		//Cargamos la vista index y l e pasamos valores
+		$this->view("Bienvenida",array(
+				"allusers"=>$allusers
+		));
+	}
+	
 	
 	
 }
