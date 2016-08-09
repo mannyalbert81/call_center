@@ -182,17 +182,18 @@ class ConsultaAvocoImpulsoresController extends ControladorBase{
 										
 											//dirigir notificacion
 										
-											$id_impulsor=$_SESSION['id_usuarios'];
+											//$id_impulsor=$_SESSION['id_usuarios'];
 											
-											$result_asg_secretario=$asignacion_secreatario->getBy("id_abogado_asignacion_secretarios='$id_impulsor'");
+											//$result_asg_secretario=$asignacion_secreatario->getBy("id_abogado_asignacion_secretarios='$id_impulsor'");
 												
-											if(!empty($result_asg_secretario))
+											/*if(!empty($result_asg_secretario))
 											{
 												$usuarioDestino=$result_asg_secretario[0]->id_secretario_asignacion_secretarios;
 												$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $nombrePdf);
 												
-											}
+											}*/
 											
+											$this->notificacionImpulsor($nombrePdf);
 										
 									}catch(Exception $e)
 									{
@@ -486,6 +487,36 @@ class ConsultaAvocoImpulsoresController extends ControladorBase{
 			)); 
 	
 		}
+	
+	}
+	
+	public function notificacionImpulsor($documento=null)
+	{
+		$tipo_notificacion= new TipoNotificacionModel();
+		$usuario = new UsuariosModel();
+	
+		$res_tipo_notificacion=array();
+	
+		$res_liquidador=$usuario->getCondiciones("usuarios.id_usuarios",
+				"public.usuarios,public.rol",
+				"rol.id_rol = usuarios.id_rol AND rol.nombre_rol = 'LIQUIDADOR'",
+				"usuarios.id_usuarios"
+				);
+		$destino=$res_liquidador[0]->id_usuarios;
+	
+		$archivoPdf=$documento;
+	
+		$_nombre_tipo_notificacion="avoco_impulsor";
+	
+		$res_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
+	
+		$id_tipo_notificacion=$res_tipo_notificacion[0]->id_tipo_notificacion;
+	
+		$descripcion="Avoco Conocimiento";
+	
+		$numero_movimiento=0;
+	
+		$tipo_notificacion->CrearNotificacion($id_tipo_notificacion, $destino, $descripcion, $numero_movimiento, $archivoPdf);
 	
 	}
 
