@@ -268,6 +268,8 @@ class CitacionesController extends ControladorBase{
 			 				print "<script language='JavaScript'>
 			 				setTimeout(window.open('http://$host$uri/view/ireports/ContCitacionesGuardarReport.php?identificador=$identificador&estado=$_estado&nombre=$_nombre_citacion','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
 			 				</script>";
+			 				
+			 				$this->notificacionCitador($_id_usuarios);
 			 					
 			 				print("<script>window.location.replace('index.php?controller=Citaciones&action=index');</script>");
 			 				
