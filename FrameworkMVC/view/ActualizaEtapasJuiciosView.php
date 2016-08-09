@@ -296,7 +296,7 @@
 		              		 	 <a href="<?php echo $helper->url("EtapasJuicios","ActualizaEtapasJuicios"); ?>&id_juicios=<?php echo $res->id_juicios;?>" class="btn btn-warning" onClick="notificacion()" style="font-size:70%;">Actualizar</a>
 			                </div>
 		               </td> 
-		                <td>
+		               <td>
 			           		<div class="right">
 			           			<a href="/FrameworkMVC/view/ireports/ContJuiciosSubReport.php?id_juicios=<?php echo $res->id_juicios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:70%;">Ver</a>
 		             		</div>
@@ -306,17 +306,11 @@
 		        <?php } }  ?>
            
        	</table>     
-      </section>
+        </section>
       
-      </div>
-		 
-		 		 
-		 </div>
-		 
-		
-		
-      
-       </form>
+        </div>
+	    </div>
+		</form>
      
       </div>
      

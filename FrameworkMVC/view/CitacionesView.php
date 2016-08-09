@@ -381,7 +381,7 @@ $(document).ready(function() {
            
            <div class="col-xs-4" >
 		
-			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("Citaciones","index"); ?>'" value="Buscar" class="btn btn-default"/>
+			  	<input type="submit" id="buscar" name="buscar"  onclick="this.form.action='<?php echo $helper->url("Citaciones","index"); ?>'" class="btn btn-info" value="Buscar" class="btn btn-default"/>
 			</div>
 		<div class="col-xs-12" style="margin: 10px;">	
 
