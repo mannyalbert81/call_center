@@ -306,10 +306,6 @@ class CitacionesController extends ControladorBase{
 			 					"resultado"=>"Eror al Asignar ->". $id 
 			 			));
 			 		}
-			 		
-			 		
-			 		
-			 		
 
 			 	}
 			 		
