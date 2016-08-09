@@ -275,6 +275,7 @@ class CitacionesController extends ControladorBase{
 			 				
 			 				
 			 			
+			 				
 			 			}
 			 				else
 			 				{
@@ -913,8 +914,44 @@ class CitacionesController extends ControladorBase{
 	
 	}
 	
+	// funcioones utilizadas con jquery en la vista 
+	
 	public function returnCitadorbyciudad()
 	{
+	
+		//CONSULTA DE USUARIOS POR SU ROL
+		$idciudad=(int)$_POST["ciudad"];
+		$usuarios=new UsuariosModel();
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios,ciudad,rol";
+		$id="rol.id_rol";
+	
+		$where="rol.id_rol=usuarios.id_rol AND usuarios.id_ciudad=ciudad.id_ciudad
+		AND rol.nombre_rol='CITADOR JUDICIAL' AND ciudad.id_ciudad='$idciudad'";
+	
+		$resultUsuarioCitador=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultUsuarioCitador);
+	}
+	
+	public function ValidarJuicioCitacion()
+	{
+		$citaciones=new CitacionesModel();
+		
+		$_id_juicios=(int)$_POST['id_juicio'];
+		
+		
+		$columnas = " juicios.juicio_referido_titulo_credito, juicios.id_juicios, tipo_citaciones.nombre_tipo_citaciones";
+		$tablas   = "public.citaciones, public.juicios, public.tipo_citaciones";
+		$where    = "juicios.id_juicios = citaciones.id_juicios AND tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones AND citaciones.id_juicios = '$_id_juicios' AND citaciones.id_tipo_citaciones = '$_id_tipo_citaciones'";
+		
+		$id       = "juicios.id_juicios";
+			
+		
+		$resultDatos=$citaciones->getCondiciones($columnas ,$tablas ,$where, $id);
+			
+		
+			
 	
 		//CONSULTA DE USUARIOS POR SU ROL
 		$idciudad=(int)$_POST["ciudad"];
