@@ -221,6 +221,7 @@ class CitacionesController extends ControladorBase{
 				 $_nombre_persona_recibe_citaciones = $_POST["nombre_persona_recibe_citaciones"];
 				 $_relacion_cliente_citaciones = $_POST["relacion_cliente_citaciones"];
 				 $_id_usuarios = $_POST["id_usuarioCitador"];
+				 $_id_usuario_registra_citaciones  = $_SESSION['id_usuarios'];
 			 	
 				 $host  = $_SERVER['HTTP_HOST'];
 				 $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
@@ -250,7 +251,7 @@ class CitacionesController extends ControladorBase{
 			 			{
 			 			
                             $funcion = "ins_citaciones";
-			 				$parametros = "'$_id_juicios', '$_fecha_citaciones', '$_id_ciudad', '$_id_tipo_citaciones', '$_nombre_persona_recibe_citaciones', '$_relacion_cliente_citaciones', '$_id_usuarios','$_nombre_citacion','$repositorio_documento','$identificador' ";
+			 				$parametros = "'$_id_juicios', '$_fecha_citaciones', '$_id_ciudad', '$_id_tipo_citaciones', '$_nombre_persona_recibe_citaciones', '$_relacion_cliente_citaciones', '$_id_usuarios','$_nombre_citacion','$repositorio_documento','$identificador','$_id_usuario_registra_citaciones' ";
 			 				$citaciones->setFuncion($funcion);
 			 				$citaciones->setParametros($parametros);
 			 				$resultado=$citaciones->Insert();
