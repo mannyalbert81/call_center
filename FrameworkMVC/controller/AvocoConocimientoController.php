@@ -273,16 +273,7 @@ public function index(){
 			
 			//cargar array q va por get
 			
-			$arrayGet['id_juicio']=$_id_juicio;
-			$arrayGet['juicio']=$resultJuicio[0]->juicio_referido_titulo_credito;
-			$arrayGet['id_reemplazo']=$resultSecretario[0]->id_usuarios;
-			$arrayGet['reemplazo']=$resultSecretario[0]->nombre_usuarios;
-			$arrayGet['id_ciudad']=$resultCiudad[0]->id_ciudad;
-			$arrayGet['ciudad']=$resultCiudad[0]->nombre_ciudad;
-			$arrayGet['id_secretario']=$resultAbogados[0]->id_secretario;
-			$arrayGet['secretario']=$resultAbogados[0]->secretarios;
-			$arrayGet['id_impulsor']=$resultAbogados[0]->id_abogado;
-			$arrayGet['impulsor']=$resultAbogados[0]->impulsores;
+			  
 			
 			
 			
