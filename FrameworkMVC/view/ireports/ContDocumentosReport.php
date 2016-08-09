@@ -97,6 +97,12 @@ $estado=$_GET['estado'];
 				
 				$PHPJasperXML->outpage("F",$directorio.$nombre.'.pdf');
 	
+				
+				echo "<script type='text/javascript'>";
+				echo "window.close()";
+				echo "</script>";
+				exit();
+				
            }
 
 ?>
