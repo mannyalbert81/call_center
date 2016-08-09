@@ -7,16 +7,14 @@
         <meta charset="utf-8"/>
         <title>Avoco Conocimiento - Coactiva 2016</title>
         
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		  			   
-          <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		
 		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
- 		
  		<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
 		
 		<script>
@@ -28,8 +26,6 @@
 		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
 		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
 		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
-		
-		
 		
 		<script>
 
@@ -61,13 +57,11 @@
             .right{
                 float:right;
             }
-                
-            
         </style>
          
        
          <script >
-		$(document).ready(function(){
+		    $(document).ready(function(){
 
 		    // cada vez que se cambia el valor del combo
 		    $("#Guardar").click(function() 
@@ -127,16 +121,9 @@
 		            
 				}
 		    	
-		    	
-
-			
-		    					    
 
 			}); 
 
-
-		 
-				
 				$( "#juicios" ).focus(function() {
 					$("#mensaje_juicio").fadeOut("slow");
 					});
@@ -153,10 +140,6 @@
 									$("#mensaje_avoco").fadeOut("slow"); 			});
 				
 			
-		
-				
-		
-		      
 				    
 		}); 
 
@@ -322,8 +305,6 @@
        	 
        }
        
-    
-        
        if($_SERVER['REQUEST_METHOD']=='GET')
        {
        	
@@ -468,17 +449,13 @@
 		    
   			 
 		</div>
-		
 		</div>
-		 
 		</div>
 		
 	   </form>
        
       </div>
       </div>
-     
-
      
    </body>  
  <?php include 'view/modulos/footer.php';?>
