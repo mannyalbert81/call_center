@@ -29,7 +29,7 @@ class CitacionesController extends ControladorBase{
 
 		$where="rol.nombre_rol='CITADOR JUDICIAL'";
 		$resultUsuarios=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
-
+		
 
 		$resultEdit = "";
 
