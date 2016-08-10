@@ -245,6 +245,74 @@ $(document).ready(function() {
         });
         });
     </script>
+    
+    <script >
+        $(document).ready(function() {
+            
+		$('#Guardar').click(function(){
+
+			
+			var result='';
+
+			var data='';
+			
+			var checkboxValues = "";
+			
+			$('input[type=checkbox]:checked').each(function() {
+				checkboxValues += $(this).val() + ",";
+			});
+			
+			checkboxValues = checkboxValues.substring(0, checkboxValues.length-1);
+
+		 var datos = {
+                 	   
+					 id_juicio:checkboxValues,
+					 id_tipo_citacion:$("#id_tipo_citaciones").val()
+                };
+
+			 
+		       
+       	   $.post("<?php echo $helper->url("Citaciones","ValidarJuicioCitacion"); ?>", datos, function(resultado) {
+
+       		//console.log(resultado); 
+       		
+       		var obj = jQuery.parseJSON(resultado);
+
+       		//console.log(obj[0].nombre_tipo_citaciones);
+
+       		data=obj[0].nombre_tipo_citaciones;
+       		
+       		   if(data!='')
+           		{
+              		
+       			return data;
+       			
+           		
+           		}else{
+
+           		result='';
+
+               		}
+
+
+	    		}); 
+
+      		result=data;
+
+       	    if (result == '') {
+
+       	    	console.log(result+' entro');
+	            return false;
+	        }
+	        else{
+		        
+	            alert('Citacion ya existe');
+	            return false;
+	        }
+	        
+			});
+        });
+	</script>
 
 		
     </head>
@@ -406,6 +474,7 @@ $(document).ready(function() {
 	        		<tr>
 	        		  <th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_juicios[]"   name="id_juicios[]"  value="<?php echo $res->id_juicios; ?>" class="marcados"></th>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_juicios; ?></td>
+	                   
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
 		              <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		              <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 

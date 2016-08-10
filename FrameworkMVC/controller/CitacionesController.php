@@ -935,7 +935,12 @@ class CitacionesController extends ControladorBase{
 	{
 		$citaciones=new CitacionesModel();
 		
+		$resultSet=array();
+		
+		$respuesta=null;
+		
 		$_id_juicios=(int)$_POST['id_juicio'];
+		$_id_tipo_citaciones=(int)$_POST['id_tipo_citacion'];
 		
 		
 		$columnas = " juicios.juicio_referido_titulo_credito, juicios.id_juicios, tipo_citaciones.nombre_tipo_citaciones";
@@ -945,24 +950,16 @@ class CitacionesController extends ControladorBase{
 		$id       = "juicios.id_juicios";
 			
 		
-		$resultDatos=$citaciones->getCondiciones($columnas ,$tablas ,$where, $id);
-			
+		$resultSet=$citaciones->getCondiciones($columnas ,$tablas ,$where, $id);
 		
-			
-	
-		//CONSULTA DE USUARIOS POR SU ROL
-		$idciudad=(int)$_POST["ciudad"];
-		$usuarios=new UsuariosModel();
-		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
-		$tablas="usuarios,ciudad,rol";
-		$id="rol.id_rol";
-	
-		$where="rol.id_rol=usuarios.id_rol AND usuarios.id_ciudad=ciudad.id_ciudad
-		AND rol.nombre_rol='CITADOR JUDICIAL' AND ciudad.id_ciudad='$idciudad'";
-	
-		$resultUsuarioCitador=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
-	
-		echo json_encode($resultUsuarioCitador);
+		if(empty($resultSet))
+		{
+			$respuesta=0;
+		}else{
+			$respuesta=$resultSet;
+		}
+		
+		echo json_encode($respuesta);
 	}
 
 }

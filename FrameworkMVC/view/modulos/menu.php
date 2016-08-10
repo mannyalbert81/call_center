@@ -119,7 +119,7 @@ $controladores=$_SESSION['controladores'];
 			<li style="<?php echo getcontrolador("FirmasDigitales",$controladores) ?>">
 			<a href="index.php?controller=FirmasDigitales&action=index"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Firmas Digitales</span> </a>
             </li>
-            <li style="<?php echo getcontrolador("CertificadosElectronicos",$controladores) ?>">
+            <li style="<?php echo getcontrolador("Certificados",$controladores) ?>">
             <a href="index.php?controller=CertificadosElectronicos&action=index"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"> Registrar Certificado Electronico</span> </a>
             </li>
             <li style="<?php echo getcontrolador("FirmasDigitales",$controladores) ?>">
