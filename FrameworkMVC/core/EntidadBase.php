@@ -305,6 +305,9 @@ class EntidadBase{
     }
     
     
+    
+    
+    
     public function AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador)
     {
     
