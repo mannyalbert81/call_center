@@ -16,7 +16,7 @@ class CitacionesController extends ControladorBase{
 		$resultSet=$citaciones->getAll("id_citaciones");
 
 		$ciudad = new CiudadModel();
-		$resultCiu = $ciudad->getAll("nombre_ciudad");
+		$resultCiu = $ciudad->getAll("nombre_ciudad");                                                                                                                                                                                                                                                                                  
 
 		$tipo_citaciones = new TipoCitacionesModel();
 		$resultTipoCit =$tipo_citaciones->getAll("nombre_tipo_citaciones");
@@ -29,7 +29,7 @@ class CitacionesController extends ControladorBase{
 
 		$where="rol.nombre_rol='CITADOR JUDICIAL'";
 		$resultUsuarios=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
-
+		
 
 		$resultEdit = "";
 
@@ -267,16 +267,14 @@ class CitacionesController extends ControladorBase{
 			 				
 			 				//para generar el pdf
 			 				print "<script language='JavaScript'>
-			 				setTimeout(window.open('http://$host$uri/view/ireports/ContCitacionesGuardarReport.php?identificador=$identificador&estado=$_estado&nombre=$_nombre_citacion','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+			 				setTimeout(window.open('http://$host$uri/view/ireports/ContCitacionesGuardarReport.php?identificador=$identificador&estado=$_estado&nombre=$_nombre_citacion','popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0,visible=false'),1000);
+			 				
 			 				</script>";
 			 				
 			 				$this->notificacionCitador($_id_usuarios);
 			 					
 			 				print("<script>window.location.replace('index.php?controller=Citaciones&action=index');</script>");
-			 				
-			 				
 			 			
-			 				
 			 			}
 			 				else
 			 				{
