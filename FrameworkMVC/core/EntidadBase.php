@@ -444,7 +444,9 @@ class EntidadBase{
     
     
     public function verMacAddress(){
-    
+    /*
+    	
+    	
     	ob_start();
     
     	system('ipconfig /all');
@@ -469,7 +471,8 @@ class EntidadBase{
     		
     	$macaddress=substr($mycomsys,($pmac+43),23);
     
-    	return $macaddress;
+    	return $macaddress;*/
+    	return '1';
     }
     
     
