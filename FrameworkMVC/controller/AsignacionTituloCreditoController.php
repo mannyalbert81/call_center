@@ -31,7 +31,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 			$usuarios=new UsuariosModel();
 			$resultUsu = $usuarios->getAll("nombre_usuarios");
 			
-			$resultDatos=" ";
+			$resultDatos=array();
 			
 			
 			$resultPer = $permisos_rol->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -88,7 +88,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 							  public.ciudad";
 					
 						$where    = "clientes.id_clientes = titulo_credito.id_clientes AND
-	                         ciudad.id_ciudad = titulo_credito.id_ciudad";
+	                         ciudad.id_ciudad = titulo_credito.id_ciudad AND titulo_credito.asignado_titulo_credito='FALSE'";
 					
 						$id       = "titulo_credito.id_titulo_credito";
 							
@@ -153,6 +153,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 		session_start();
 		
 		$resultado = null;
+		$titulo_credito = new TituloCreditoModel();
 		$permisos_rol=new PermisosRolesModel();
 		$asignacion_titulo_credito = new AsignacionTitulosCreditoModel();
 	    $nombre_controladores = "AsignacionTituloCredito";
@@ -164,7 +165,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 			$resultado = null;
 			$asignacion_titulo_credito = new AsignacionTitulosCreditoModel();
 
-			if (isset ($_POST["id_titulo_credito"])   )
+			if (isset ($_POST["Guardar"])   )
 			{
 				
 				$_array_titulo_credito = $_POST["id_titulo_credito"];
@@ -185,6 +186,9 @@ class AsignacionTituloCreditoController extends ControladorBase{
 							$asignacion_titulo_credito->setFuncion($funcion);
 							$asignacion_titulo_credito->setParametros($parametros);
 							$resultado=$asignacion_titulo_credito->Insert();
+							
+							$actualizar=$titulo_credito->UpdateBy("asignado_titulo_credito='TRUE'", "titulo_credito", "id_titulo_credito='$_id_titulo_credito'");
+							
 										
 						} catch (Exception $e) 
 						{
