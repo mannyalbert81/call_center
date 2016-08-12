@@ -63,6 +63,80 @@
                 
             
         </style>
+       <script>
+       		$(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#buscar").click(function() 
+			{
+		    	var identificacion = $("#identificacion").val();
+		    	var numero_juicio = $("#numero_juicio").val();
+		    	var numero_titulo = $("#numero_titulo").val();
+		    			   				
+		    	if (identificacion == "")
+		    	{
+			    	
+		    		$("#mensaje_identificacion").text("Introduzca una Identificacion");
+		    		$("#mensaje_identificacion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_identificacion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+
+				if (numero_juicio == "")
+		    	{
+			    	
+		    		$("#mensaje_juicio").text("Introduzca un Juicio");
+		    		$("#mensaje_juicio").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_juicio").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+				if (numero_titulo == "")
+		    	{
+			    	
+		    		$("#mensaje_titulo").text("Introduzca un Titulo");
+		    		$("#mensaje_titulo").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_titulo").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+			}); 
+
+
+		 
+				
+				$( "#identificacion" ).focus(function() {
+					$("#mensaje_identificacion").fadeOut("slow");
+					});
+					
+					
+						$( "#numero_juicio" ).focus(function() {
+							$("#mensaje_juicio").fadeOut("slow");
+						});
+
+						$( "#numero_titulo" ).focus(function() {
+							$("#mensaje_titulo").fadeOut("slow");
+						});
+						
+
+					    
+		}); 
+
+	</script>
+       
+       
          
          <script >
 		$(document).ready(function(){
@@ -194,13 +268,13 @@
 		  <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Nº Juicio:</p>
 			  	<input type="text"  name="numero_juicio" id="numero_juicio" value="<?php echo $sel_numero_juicio;?>" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+			    <div id="mensaje_juicio" class="errores"></div>
 
          </div>
           <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Nº Titulo:</p>
 			  	<input type="text"  name="numero_titulo" id="numero_titulo" value="<?php echo $sel_numero_titulo;?>" class="form-control"/> 
-			    <div id="mensaje_numero_titulo" class="errores"></div>
+			    <div id="mensaje_titulo" class="errores"></div>
 
          </div>
          
