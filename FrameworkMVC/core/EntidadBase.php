@@ -533,7 +533,8 @@ class EntidadBase{
     	@@session_start();
     						
     	//$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/';
-    	$id_rol=$_SESSION['id_rol'];    	
+    	$id_rol=$_SESSION['id_rol'];
+    	
 
 		$origen = $directorio . $nombrePdf;
 		
@@ -639,6 +640,9 @@ class EntidadBase{
     
     public function FirmarPDFs($destino,$nombrePdf,$id_firma,$id_rol)
     {
+    	@@ session_start();
+    	$id_usuario=$_SESSION['id_usuarios'];
+    	
     	$ruta_ejecutable = $_SERVER['DOCUMENT_ROOT'].'/documentos/firmar/FirmadorElectronico.exe';
     	$tmp = $_SERVER['DOCUMENT_ROOT'].'/documentos/tmp_documentos/';
     	
@@ -650,7 +654,7 @@ class EntidadBase{
     	$origen=$moveTo;
     	$destino=$moveOf;
     	
-    	$comando = 'start "" /b "' . $ruta_ejecutable . '" ' . $id_firma . ' ' . $origen . ' ' . $destino . ' '.$id_rol.' ';
+    	$comando = 'start "" /b "' . $ruta_ejecutable . '" ' . $id_firma . ' ' . $origen . ' ' . $destino . ' '.$id_rol.' '.$id_usuario.' ';
     
     	$comando_esc = escapeshellcmd ( $comando );
     
