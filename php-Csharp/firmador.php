@@ -1,7 +1,7 @@
 <?php
 $parametros="100";
 
-$comando='start "" /b "C:\Users\User\git\coactiva\documentos\firmar\FirmadorElectronico.exe" 23 C:\Users\User\git\coactiva\documentos\Razon_1_GYE-89-2014.pdf C:\Users\User\git\coactiva\documentos\Razon_1_GYE-89-2014.pdf';
+$comando='start "" /b "C:\Users\User\git\coactiva\documentos\firmar\FirmadorElectronico.exe" 33 C:\Users\User\Desktop\avoco2.pdf C:\Users\User\Desktop\PdfFirmados\avoco2.pdf 3 65';
  
 $comando_esc = escapeshellcmd($comando);
 

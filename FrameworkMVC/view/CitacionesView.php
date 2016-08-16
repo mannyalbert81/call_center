@@ -248,13 +248,16 @@ $(document).ready(function() {
     
     <script >
         $(document).ready(function() {
-            
+        	
+		 	
 		$('#Guardar').click(function(){
 
 			
 			var result='';
 
-			var data='';
+			var output;
+
+			var data;
 			
 			var checkboxValues = "";
 			
@@ -270,46 +273,17 @@ $(document).ready(function() {
 					 id_tipo_citacion:$("#id_tipo_citaciones").val()
                 };
 
-			 
+		 
 		       
-       	   $.post("<?php echo $helper->url("Citaciones","ValidarJuicioCitacion"); ?>", datos, function(resultado) {
+		 output =  $.post("<?php echo $helper->url("Citaciones","ValidarJuicioCitacion"); ?>", datos, function(resultado) {},"json");
 
-       		//console.log(resultado); 
-       		
-       		var obj = jQuery.parseJSON(resultado);
+		 console.log(output);
+		 
+		var resultado = output.responseText
 
-       		//console.log(obj[0].nombre_tipo_citaciones);
-
-       		data=obj[0].nombre_tipo_citaciones;
-       		
-       		   if(data!='')
-           		{
-              		
-       			return data;
-       			
-           		
-           		}else{
-
-           		result='';
-
-               		}
-
-
-	    		}); 
-
-      		result=data;
-
-       	    if (result == '') {
-
-       	    	console.log(result+' entro');
-	            return false;
-	        }
-	        else{
-		        
-	            alert('Citacion ya existe');
-	            return false;
-	        }
-	        
+	       	console.log(resultado);
+       	
+      		return false;
 			});
         });
 	</script>
@@ -421,6 +395,9 @@ $(document).ready(function() {
 		       <div class="row">
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
 			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
+			  </div>
+			  <div class="col-xs-12 col-md-12">
+			  <div id="mensaje_resultado" class="errores"><span>hola</span></div>
 			  </div>
 			</div>     
                

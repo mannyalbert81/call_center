@@ -549,6 +549,7 @@ class OficiosController extends ControladorBase{
 					$tipo_notificacion = new TipoNotificacionModel();
 					$asignacion_secreatario= new AsignacionSecretariosModel();
 					
+					
 					$ruta="";
 					$nombrePdf="";
 					

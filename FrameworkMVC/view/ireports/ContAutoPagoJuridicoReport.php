@@ -52,14 +52,11 @@ $estado=$_GET['estado'];
 				//aqui va la consulta
 				$sql="SELECT * FROM auto_pagos_report WHERE identificador='$id' ";
 				
-				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/AutoPagos/';
-	
-	
 				$PHPJasperXML = new PHPJasperXML();
 				
-				$PHPJasperXML->arrayParameter=array("_sql" => $sql,"identificador"=>"'".$id."'");
+				$PHPJasperXML->arrayParameter=array("sql" => $sql);
 				
-				$PHPJasperXML->load_xml_file("AutoPagoJURIDICOCREGARANTEReport.jrxml");
+				$PHPJasperXML->load_xml_file("AutoPagoGuardar.jrxml");
 				
 				$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 				

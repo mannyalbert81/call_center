@@ -212,6 +212,7 @@ public function index(){
 			$_id_abogado      			= $_POST["id_impulsor"];
 			
 			
+				
 			//consulta datos de juicio
 			$columnas="juicios.juicio_referido_titulo_credito,
 			clientes.nombres_clientes,clientes.identificacion_clientes,clientes.nombre_garantes,
@@ -254,7 +255,7 @@ public function index(){
 			$dato['hora']= date ("h:i:s");
 			//$this->view("Error", array("resultado"=>print_r($dato))); exit();
 						
-		
+				
 			$traza=new TrazasModel();
 			$_nombre_controlador = "Avoco";
 			$_accion_trazas  = "Visualizar";
@@ -264,8 +265,16 @@ public function index(){
 			
 			//cargar array q va por get
 			
-			  
-			
+			$arrayGet['id_juicio']=$_id_juicio;
+			$arrayGet['juicio']=$resultJuicio[0]->juicio_referido_titulo_credito;
+			$arrayGet['id_reemplazo']=$_id_secretario_reemplazar;
+			$arrayGet['reemplazo']=$resultSecretario[0]->nombre_usuarios;
+			$arrayGet['id_ciudad']=$resultCiudad[0]->id_ciudad;
+			$arrayGet['ciudad']=$resultCiudad[0]->nombre_ciudad;
+			$arrayGet['id_secretario']=$_id_secretario;
+			$arrayGet['secretario']=$resultAbogados[0]->secretarios;
+			$arrayGet['id_impulsor']=$_id_abogado;
+			$arrayGet['impulsor']=$resultAbogados[0]->impulsores;;
 			
 			
 		}
@@ -275,18 +284,19 @@ public function index(){
 		
 		$resultArray=urlencode(serialize($arrayGet));
 		
+			
+		
 		$host  = $_SERVER['HTTP_HOST'];
 		$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 		
-		
+	
         
 		print "<script language='JavaScript'>
 			 setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000); 
-		      </script>";
+		     </script>";
 		
 		print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index&dato=$resultArray');</script>");
-		
-
+	
 	}
 	
 	

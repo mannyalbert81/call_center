@@ -5,7 +5,7 @@ class CitacionesController extends ControladorBase{
 		parent::__construct();
 	}
 
-
+//comit
 
 	public function index(){
 
