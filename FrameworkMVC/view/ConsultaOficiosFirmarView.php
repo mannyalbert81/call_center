@@ -87,6 +87,33 @@
 			});
         </script>
 
+	<script >
+        $(document).ready(function() {
+		$('#firmar').click(function(){
+	        var selected = '';  
+	          
+	        $('.marcados').each(function(){
+	            if (this.checked) {
+	                selected +=$(this)+' esta '+$(this).val()+', ';
+	            }
+	        }); 
+
+	        if (selected != '') {
+	            return true;
+	        }
+	        else{
+	            alert('Debes seleccionar un Oficio.');
+	            return false;
+	        }
+
+
+	      
+	    }); 
+
+	});
+	</script>
+ 
+
     </head>
     <body style="background-color: #d9e3e4;">
     

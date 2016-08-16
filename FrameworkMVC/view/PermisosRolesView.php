@@ -167,7 +167,17 @@
             
              <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
 	            	
-	            	Nombre Permisos Rol: <input type="text" id="nombre_permisos_rol" name="nombre_permisos_rol" value="<?php echo $resEdit->nombre_permisos_rol; ?>" class="form-control"/>
+	            	
+	            	<div class="row">
+		       <div class="col-xs-6 col-md-6">
+			  	<p  class="formulario-subtitulo" >Nombres Permisos Roles</p>
+			  	<input type="text" id="nombre_permisos_rol" name="nombre_permisos_rol" value="<?php echo $resEdit->nombre_permisos_rol; ?>" class="form-control"/>
+			  	 <div id="mensaje_nombres" class="errores"></div>
+			  </div>
+			   </div>
+	            	
+	            	
+	            	
 	            	
 	            	Nombre Rol: <select name="id_rol" id="id_rol"  class="form-control">
 									<?php foreach($resultRol as $resRol) {?>
@@ -217,8 +227,16 @@
 		    
 		     		
 		     		
+		     		<div class="row">
+		       <div class="col-xs-6 col-md-12">
+			  	<p  class="formulario-subtitulo" >Nombres Permisos Roles</p>
+			  	<input type="text" id="nombre_permisos_rol" name="nombre_permisos_rol" value="" class="form-control"/>
+			  	 <div id="mensaje_nombres" class="errores"></div>
+			  </div>
+			   </div>
 		     		
-		     		Nombre Permisos Rol: <input type="text" id="nombre_permisos_rol" name="nombre_permisos_rol" value="" class="form-control"/>
+		     		
+		     		
 	            	
 	            	Nombre Rol: <select name="id_rol" id="id_rol"  class="form-control">
 									<?php foreach($resultRol as $resRol) {?>
