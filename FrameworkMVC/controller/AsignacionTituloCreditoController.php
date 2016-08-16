@@ -31,7 +31,7 @@ class AsignacionTituloCreditoController extends ControladorBase{
 			$usuarios=new UsuariosModel();
 			$resultUsu = $usuarios->getAll("nombre_usuarios");
 			
-			$resultDatos=" ";
+			$resultDatos=array();
 			
 			
 			$resultPer = $permisos_rol->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
