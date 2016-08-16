@@ -64,61 +64,7 @@
             
         </style>
          
-        <script> 
-         		$(document).ready(function(){
-
-		    // cada vez que se cambia el valor del combo
-		    $("#buscar").click(function() 
-			{
-		    	var identificacion = $("#identificacion").val();
-		    	var numero_juicio = $("#numero_juicio").val();
-		    			   				
-		    	if (identificacion == "")
-		    	{
-			    	
-		    		$("#mensaje_identificacion").text("Introduzca una Identificacion");
-		    		$("#mensaje_identificacion").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_identificacion").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	
-
-				if (numero_juicio == "")
-		    	{
-			    	
-		    		$("#mensaje_juicio").text("Introduzca un Juicio");
-		    		$("#mensaje_juicio").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_juicio").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-			}); 
-
-
-		 
-				
-				$( "#identificacion" ).focus(function() {
-					$("#mensaje_identificacion").fadeOut("slow");
-					});
-					
-					
-						$( "#numero_juicio" ).focus(function() {
-							$("#mensaje_juicio").fadeOut("slow");
-						});
-
-					    
-		}); 
-
-	</script>
-         
-         
+                
 	<script>
 	$(document).ready(function(){
 			$("#fecha_hasta").change(function(){

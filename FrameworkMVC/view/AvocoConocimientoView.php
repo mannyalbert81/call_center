@@ -319,7 +319,12 @@
 	        
 	         <input type="hidden" id="id_juicios" name="id_juicios" value="<?php if(!empty($resulSet)){ foreach ($resulSet as $res){
 	         echo 	$res->id_juicios;
+<<<<<<< HEAD
 	         }}elseif (   !empty($datosGet)){echo $datosGet['id_juicio'];}?>">
+=======
+	         }}else
+	         	if  (empty($datosGet)){echo $datosGet['id_juicio'];}?>">
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 		   	<div id="mensaje_juicio" class="errores"></div>	   
 		    </div>
 			  
