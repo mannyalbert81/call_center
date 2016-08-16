@@ -407,7 +407,7 @@ public function index(){
     			
     			
     			$resultado=$sesiones->Insert();
-    			//aumento de array de result_notificaciones
+    			
     		    $this->view("Bienvenida",array(
     				"allusers"=>$_usuario
 	    		));
