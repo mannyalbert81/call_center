@@ -112,10 +112,11 @@ public function index(){
 				$_id_secretario_reemplazar  = $_POST["id_secretario_reemplazo"];
 				$_id_secretario     		= $_POST["id_secretario"];
 				$_id_impulsor     			= $_POST["id_impulsor"];
-				
+				$_tipo_avoco     			= $_POST["tipo_avoco"];
 			
 					if (isset($_POST["Guardar"]))
 					{
+						
 						
 						//Guarda en la base de datos
 						
@@ -130,10 +131,6 @@ public function index(){
 						$nombre_documento=$repositorio_documento.$identificador;
 						
 						$funcion = "ins_avoco_conocimiento";
-						
-						//parametrsos sql
-						//_id_juicios integer, _id_ciudad integer, _id_secretario integer, _id_impulsor integer, _id_usuario_registra_avoco integer, _nombre_documento character varying, _ruta_documento character varying, _identificador character varying, _secretario_reemplazo integer
-						
 							
 						$parametros = " '$_id_juicio' ,'$_id_ciudad' , '$_id_secretario' , '$_id_impulsor' , '$id_usuario' , '$nombre_documento' , '$repositorio_documento' , '$identificador','$_id_secretario_reemplazar'";
 						$avoco->setFuncion($funcion);
@@ -159,20 +156,30 @@ public function index(){
 						$this->notificacionimpulsor($_id_impulsor,$nombre_documento);
 						$this->notificacionSecretarioReemplazo($_id_secretario_reemplazar,$nombre_documento);
 						
-						
 					}
-					
-				}
+			   }
+				
+			   if($_tipo_avoco == "con_garante"){
+			   
 				$host  = $_SERVER['HTTP_HOST'];
 				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-				
 				
 				print "<script language='JavaScript'>
 				setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
 				</script>";
 				
 				print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index');</script>");
-
+			   
+			   }else
+				{
+					
+					$this->view("Error",array(
+						
+					"resultado"=>"Entro"
+		
+					));
+		
+				}
 		
 			}else
 				{
@@ -184,6 +191,7 @@ public function index(){
 					));
 		
 				}
+				
           }
 	
 	public function VisualizarAvoco(){

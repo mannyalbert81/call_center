@@ -28,8 +28,7 @@
 		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
 		
 		<script>
-
-		function Ok(){
+            function Ok(){
 				alertify.success("Has Pulsado en Guardar"); 
 				return false;
 			}
@@ -120,8 +119,6 @@
 		}); 
 
 	</script>
-	
-
 
 	
 	 <script>
@@ -322,7 +319,7 @@
 	        
 	         <input type="hidden" id="id_juicios" name="id_juicios" value="<?php if(!empty($resulSet)){ foreach ($resulSet as $res){
 	         echo 	$res->id_juicios;
-	         }}elseif ( m   !empty($datosGet)){echo $datosGet['id_juicio'];}?>">
+	         }}elseif (   !empty($datosGet)){echo $datosGet['id_juicio'];}?>">
 		   	<div id="mensaje_juicio" class="errores"></div>	   
 		    </div>
 			  
@@ -332,6 +329,16 @@
 			 </div>
 			 <br>
 			 <hr>
+		 	        
+		 	  <div class="col-xs-6 col-md-3">
+			   <p  class="formulario-subtitulo" >Tipo Avoco</p>
+			  
+			   <select name="tipo_avoco" id="tipo_avoco"  class="form-control" <?php echo $habilitar;?>>
+			    <option value="0">--Seleccione--</option>
+				<option value="con_garante"  >Con Garante</option>
+			    <option value="sin_garante"  >Sin Garante</option>
+		     </select>
+			  </div>    
 		 	        
 		       <div class="col-xs-6 col-md-3" >
 			  	<p  class="formulario-subtitulo" >Secretario A Reemplazar:</p>
@@ -351,7 +358,6 @@
 			
 			  
 			  <hr>
-			  
 			   <div class="col-xs-6 col-md-4" >
 			  	<p  class="formulario-subtitulo" >Ciudad:</p>
 			  	
