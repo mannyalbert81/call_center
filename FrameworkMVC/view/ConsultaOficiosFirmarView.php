@@ -65,54 +65,7 @@
         </style>
          
         
-	<script>
-	$(document).ready(function(){
-			$("#fecha_hasta").change(function(){
-				 var startDate = new Date($('#fecha_desde').val());
-
-                 var endDate = new Date($('#fecha_hasta').val());
-
-                 if (startDate > endDate){
- 
-                    $("#mensaje_fecha_hasta").text("Fecha desde no debe ser mayor ");
-		    		$("#mensaje_fecha_hasta").fadeIn("slow"); //Muestra mensaje de error  
-		    		$("#fecha_hasta").val("");
-
-                        }
-				});
-
-			 $( "#fecha_hasta" ).focus(function() {
-				  $("#mensaje_fecha_hasta").fadeOut("slow");
-			   });
-			});
-        </script>
-
-	<script >
-        $(document).ready(function() {
-		$('#firmar').click(function(){
-	        var selected = '';  
-	          
-	        $('.marcados').each(function(){
-	            if (this.checked) {
-	                selected +=$(this)+' esta '+$(this).val()+', ';
-	            }
-	        }); 
-
-	        if (selected != '') {
-	            return true;
-	        }
-	        else{
-	            alert('Debes seleccionar un Oficio.');
-	            return false;
-	        }
-
-
-	      
-	    }); 
-
-	});
-	</script>
- 
+	 
 
     </head>
     <body style="background-color: #d9e3e4;">

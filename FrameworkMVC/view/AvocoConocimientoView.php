@@ -322,7 +322,8 @@
 	        
 	         <input type="hidden" id="id_juicios" name="id_juicios" value="<?php if(!empty($resulSet)){ foreach ($resulSet as $res){
 	         echo 	$res->id_juicios;
-	         }}elseif ( m   !empty($datosGet)){echo $datosGet['id_juicio'];}?>">
+	         }}else
+	         	if  (empty($datosGet)){echo $datosGet['id_juicio'];}?>">
 		   	<div id="mensaje_juicio" class="errores"></div>	   
 		    </div>
 			  
