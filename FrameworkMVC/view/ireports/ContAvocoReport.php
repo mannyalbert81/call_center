@@ -99,7 +99,7 @@ $estado=$_GET['estado'];
 	
            }
            
-           echo "<script type='text/javascript'>";
+           echo "<script type='text/javascript'>";	
            echo "window.close()";
            echo "</script>";
            exit();
