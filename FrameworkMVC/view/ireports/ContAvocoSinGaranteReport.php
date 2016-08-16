@@ -64,8 +64,7 @@ $estado=$_GET['estado'];
 					  asignacion_secretarios_view.secretarios, 
 					  asignacion_secretarios_view.impulsores, 
 					  usuarios.nombre_usuarios as secretario_reemplazo,
-					  clientes.nombre_garantes,
-					  clientes.identificacion_garantes
+					
 					  
 					FROM 
 					  public.avoco_conocimiento, 
