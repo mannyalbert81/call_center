@@ -58,118 +58,71 @@
                 float:right;
             }
         </style>
-         
-       
-         <script >
-		    $(document).ready(function(){
+
+		 <script>
+		$(document).ready(function(){
+
+		    // cada vez que se cambia el valor del combo
+		    $("#Validar").click(function() 
+			{
+		    	var juicios = $("#juicios").val();
+		   				
+		    	if (juicios == "")
+		    	{
+			    	
+		    		$("#mensaje_juicio").text("Introduzca un Juicio");
+		    		$("#mensaje_juicio").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_juicio").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+			}); 
+
+			$( "#juicios" ).focus(function() {
+				$("#mensaje_juicio").fadeOut("slow");
+			});
+
+		}); 
+
+	</script>
+
+		<script>
+		$(document).ready(function(){
 
 		    // cada vez que se cambia el valor del combo
 		    $("#Guardar").click(function() 
 			{
-		    	var juicios = $("#juicios").val();
-		    	var detalle_documentos = $("#detalle_documentos").val();
-		    	var observacion_documentos = $("#observacion_documentos").val();
-		    	var avoco_vistos_documentos = $("#avoco_vistos_documentos").val();
-		    	
+		    	var id_secretario_reemplazo = $("#id_secretario_reemplazo").val();
 		   				
-		    	if (juicios == "")
+		    	if (id_secretario_reemplazo == "")
 		    	{
 			    	
-		    		$("#mensaje_juicio").text("Introduzca un Juicio");
-		    		$("#mensaje_juicio").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_re_secretario").text("Seleccione un Secretario");
+		    		$("#mensaje_re_secretario").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_juicio").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_re_secretario").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
 		    	
-
-				if (detalle_documentos == "")
-		    	{
-			    	
-		    		$("#mensaje_detalle").text("Introduzca un Detalle");
-		    		$("#mensaje_detalle").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_detalle").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}if (observacion_documentos == "")
-		    	{
-			    	
-		    		$("#mensaje_observacion").text("Introduzca una Observacion");
-		    		$("#mensaje_observacion").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_observacion").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}if (avoco_vistos_documentos == "")
-		    	{
-			    	
-		    		$("#mensaje_avoco").text("Introduzca un Contenido");
-		    		$("#mensaje_avoco").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_avoco").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	
-
 			}); 
 
-				$( "#juicios" ).focus(function() {
-					$("#mensaje_juicio").fadeOut("slow");
-					});
-					
-					
-						$( "#detalle_documentos" ).focus(function() {
-							$("#mensaje_detalle").fadeOut("slow");
-						});
+			$( "#id_secretario_reemplazo" ).focus(function() {
+				$("#mensaje_re_secretario").fadeOut("slow");
+			});
 
-							$( "#observacion_documentos" ).focus(function() {
-								$("#mensaje_observacion").fadeOut("slow");
-							});
-								$( "#avoco_vistos_documentos" ).focus(function() {
-									$("#mensaje_avoco").fadeOut("slow"); 			});
-				
-			
-				    
 		}); 
 
 	</script>
 	
-	 <script >
-		$(document).ready(function(){
 
-		    // cada vez que se cambia el valor del combo
-		    $("#Visualizar").click(function() 
-			{
-		    	var juicios = $("#juicios").val();
-		   				
-		    	if (juicios == "")
-		    	{
-			    	
-		    		$("#mensaje_juicio").text("Introduzca un Juicio");
-		    		$("#mensaje_juicio").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_juicio").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	
-			}); 
-		}); 
 
-	</script>
 	
 	 <script>
 	$(document).ready(function(){
@@ -391,6 +344,7 @@
 					 <option value="<?php echo $res->id_usuarios; ?>"  ><?php echo $res->nombre_usuarios; ?> </option>
 			        <?php }} ?>
 				</select> 
+				<div id="mensaje_re_secretario" class="errores"></div>
 				   
 			  </div>
 			  <br>

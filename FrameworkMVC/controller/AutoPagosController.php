@@ -136,7 +136,7 @@ class AutoPagosController extends ControladorBase{
 							  public.ciudad";
 					
 						$where    = "clientes.id_clientes = titulo_credito.id_clientes AND
-	                         ciudad.id_ciudad = titulo_credito.id_ciudad";
+	                         ciudad.id_ciudad = titulo_credito.id_ciudad AND titulo_credito.asignado_titulo_credito='TRUE'";
 					
 						$id       = "titulo_credito.id_titulo_credito";
 							
@@ -183,7 +183,7 @@ class AutoPagosController extends ControladorBase{
 			
 					if (isset ($_POST["ddl_resultado"]) && isset($_POST["ddl_busqueda"]))
 					{
-					
+					/*
 						//busqueda  WHERE  B.id_secretario_asignacion_secretarios=28
 							
 					$columnas = "B.id_asignacion_secretarios AS id_asignacion_secretarios ,
@@ -212,6 +212,7 @@ class AutoPagosController extends ControladorBase{
 					
 							//Conseguimos todos los usuarios con filtros
 					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+					*/
 					
 						}
 					
@@ -253,6 +254,7 @@ class AutoPagosController extends ControladorBase{
 		session_start();
 		
 		$resultado = null;
+		$titulo_credito= new TituloCreditoModel();
 		$notificaciones = new NotificacionesModel();
 		$tipo_notificacion = new TipoNotificacionModel();
 		$permisos_rol=new PermisosRolesModel();
@@ -272,7 +274,7 @@ class AutoPagosController extends ControladorBase{
 				$_array_titulo_credito = $_POST["id_titulo_credito"];
 				$_usuario_asigna = $_SESSION['id_usuarios'];
 				$_id_ciudad = $_POST["id_ciudad"];
-				$_id_usuario_impulsor = $_POST["id_usuarioImpulsor"];
+				
 				$_id_usuario_agente = $_POST["id_usuarioAgente"];
 				$_fecha_asignado=$_POST["fecha_asignacion"];
 				$_estado =$_POST["id_estado"];
@@ -285,10 +287,16 @@ class AutoPagosController extends ControladorBase{
 						//busco si existe este nuevo id
 						try 
 						{
+							//capturar id de impulsor de titulo credito
 							$_id_titulo_credito = $id;
+							$resultImpulsor=$titulo_credito->getCondiciones("id_titulo_credito,id_usuarios", "asignacion_titulo_credito", "id_titulo_credito='$_id_titulo_credito'", "id_titulo_credito");
+							$idImpulsor=$resultImpulsor[0]->id_usuarios;
+
+							//$_id_usuario_impulsor = $_POST["id_usuarioImpulsor"];
+							
 							//parametros  _id_titulo_credito integer, _id_usuario_asigna integer, _id_usuario_impulsor integer, _id_usuario_agente integer, _id_estado integer, _fecha_asiganacion_auto_pagos date
 							$funcion = "ins_auto_pagos";
-							$parametros = "'$_id_titulo_credito','$_usuario_asigna', '$_id_usuario_impulsor','$_id_usuario_agente','$_estado','$_fecha_asignado'";
+							$parametros = "'$_id_titulo_credito','$_usuario_asigna', '$idImpulsor','$_id_usuario_agente','$_estado','$_fecha_asignado'";
 							$auto_pagos->setFuncion($funcion);
 							$auto_pagos->setParametros($parametros);
 							$resultado=$auto_pagos->Insert();

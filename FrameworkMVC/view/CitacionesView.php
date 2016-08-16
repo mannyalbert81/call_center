@@ -245,6 +245,51 @@ $(document).ready(function() {
         });
         });
     </script>
+<<<<<<< HEAD
+=======
+    
+    <script >
+        $(document).ready(function() {
+        	
+		 	
+		$('#Guardar').click(function(){
+
+			
+			var result='';
+
+			var output;
+
+			var data;
+			
+			var checkboxValues = "";
+			
+			$('input[type=checkbox]:checked').each(function() {
+				checkboxValues += $(this).val() + ",";
+			});
+			
+			checkboxValues = checkboxValues.substring(0, checkboxValues.length-1);
+
+		 var datos = {
+                 	   
+					 id_juicio:checkboxValues,
+					 id_tipo_citacion:$("#id_tipo_citaciones").val()
+                };
+
+		 
+		       
+		 output =  $.post("<?php echo $helper->url("Citaciones","ValidarJuicioCitacion"); ?>", datos, function(resultado) {},"json");
+
+		 console.log(output);
+		 
+		var resultado = output.responseText
+
+	       	console.log(resultado);
+       	
+      		return false;
+			});
+        });
+	</script>
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
 
 		
     </head>
@@ -353,6 +398,9 @@ $(document).ready(function() {
 		       <div class="row">
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" >
 			  	<input type="submit" id="Guardar" name="Guardar" value="Guardar" onClick="Ok()" class="btn btn-success"/>
+			  </div>
+			  <div class="col-xs-12 col-md-12">
+			  <div id="mensaje_resultado" class="errores"><span>hola</span></div>
 			  </div>
 			</div>     
                

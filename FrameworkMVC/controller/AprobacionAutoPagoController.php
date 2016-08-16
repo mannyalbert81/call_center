@@ -342,6 +342,9 @@ class AprobacionAutoPagoController extends ControladorBase{
 				$host  = $_SERVER['HTTP_HOST'];
 				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 				
+				//$this->view("Error", array("resultado"=>$host.$uri));
+				
+				
 				 print "<script language='JavaScript'>
 				 setTimeout(window.open('http://$host$uri/view/ireports/ContAutoPagoJuridicoReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
 				 </script>";

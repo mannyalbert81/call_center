@@ -268,7 +268,7 @@
      	
      	
      	$sel_id_usuarioAgente = "";
-     	$sel_id_usuarioImpulsor="";
+     
      	$sel_id_ciudad="";
      	$sel_fecha_asignacion="";
    
@@ -276,7 +276,7 @@
      	if($_SERVER['REQUEST_METHOD']=='POST' )
      		{
      			$sel_id_usuarioAgente = $_POST['id_usuarioAgente'];
-     			$sel_id_usuarioImpulsor=$_POST['id_usuarioImpulsor'];
+     			
      			$sel_id_ciudad=$_POST['id_ciudad'];
      			$sel_fecha_asignacion=$_POST['fecha_asignacion'];
      	
@@ -328,13 +328,7 @@
 			</div>
 		
 		  
-		    <div class="col-xs-5">
-			  <p  class="formulario-subtitulo" >Abogado(a) Impulsor</p>
-	            	 <select name="id_usuarioImpulsor" id="id_usuarioImpulsor"  class="form-control">
-						<option value="0"  > -- SIN ESPECIFICAR -- </option>
-									</select>
-		   		   
-		    </div>
+		    
 		    
 			   <div class="col-xs-5">
 			  <p  class="formulario-subtitulo" >Agente Judicial </p>
@@ -344,9 +338,7 @@
 									</select>
 		   		   
 		    </div>
-		    <div class="col-xs-1"  style="width: 400px;">
-			<hr>
-			</div>
+		    
 			
 			<div class="col-xs-5">
 			  <p  class="formulario-subtitulo" >Estado </p>
