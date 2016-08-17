@@ -145,8 +145,8 @@
 		   			
            <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" readonly>
-			  		<?php foreach($resultDatos as $res) {?>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control">
+			  		<?php foreach($resultCiu as $res) {?>
 						 <option value="<?php echo $res->id_ciudad; ?>" <?php if($sel_id_ciudad==$res->id_ciudad){echo "selected";}?>   ><?php echo $res->nombre_ciudad; ?> </option>
 			            <?php } ?>
 				</select>
@@ -154,9 +154,10 @@
 		 
 		 <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Impulsor:</p>
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" readonly>
-			   <option value="<?php echo $_SESSION['id_usuarios'];  ?>" <?php if($sel_id_usuarios==$_SESSION['id_usuarios']){echo "selected";}?>  ><?php echo $_SESSION['nombre_usuarios'];  ?></option>  
-			     
+			  	<select name="id_usuarios" id="id_usuarios"  class="form-control">
+			  <?php foreach($resultUsu as $res) {?>
+			   <option value="<?php echo $res->id_usuarios; ?>" <?php if($sel_id_usuarios==$res->id_usuarios){echo "selected";}?>  ><?php echo $res->nombre_usuarios;  ?></option>  
+			      <?php } ?>
 			    </select>
 		 </div>
 		 
