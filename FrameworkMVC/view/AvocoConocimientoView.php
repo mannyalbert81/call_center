@@ -4,7 +4,8 @@
 
       <head>
       
-        
+        <meta charset="utf-8"/>
+        <title>Avoco Conocimiento - Coactiva 2016</title>
         
          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
