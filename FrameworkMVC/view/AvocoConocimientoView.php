@@ -4,8 +4,7 @@
 
       <head>
       
-        <meta charset="utf-8"/>
-        <title>Avoco Conocimiento - Coactiva 2016</title>
+        
         
          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -319,12 +318,9 @@
 	        
 	         <input type="hidden" id="id_juicios" name="id_juicios" value="<?php if(!empty($resulSet)){ foreach ($resulSet as $res){
 	         echo 	$res->id_juicios;
-<<<<<<< HEAD
+
 	         }}elseif (   !empty($datosGet)){echo $datosGet['id_juicio'];}?>">
-=======
-	         }}else
-	         	if  (empty($datosGet)){echo $datosGet['id_juicio'];}?>">
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
+
 		   	<div id="mensaje_juicio" class="errores"></div>	   
 		    </div>
 			  
@@ -339,8 +335,7 @@
 			   <p  class="formulario-subtitulo" >Tipo Avoco</p>
 			  
 			   <select name="tipo_avoco" id="tipo_avoco"  class="form-control" <?php echo $habilitar;?>>
-			    <option value="0">--Seleccione--</option>
-				<option value="con_garante"  >Con Garante</option>
+			   <option value="con_garante"  >Con Garante</option>
 			    <option value="sin_garante"  >Sin Garante</option>
 		     </select>
 			  </div>    

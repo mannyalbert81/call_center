@@ -173,11 +173,15 @@ public function index(){
 			   }else
 				{
 					
-					$this->view("Error",array(
-						
-					"resultado"=>"Entro"
-		
-					));
+					$host  = $_SERVER['HTTP_HOST'];
+					$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+					
+					print "<script language='JavaScript'>
+					setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoSinGaranteReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+					</script>";
+					
+					print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index');</script>");
+					
 		
 				}
 		
@@ -218,7 +222,7 @@ public function index(){
 			$_id_secretario_reemplazar  = $_POST["id_secretario_reemplazo"];
 			$_id_secretario     		= $_POST["id_secretario"];
 			$_id_abogado      			= $_POST["id_impulsor"];
-			
+			$_tipo_avoco     			= $_POST["tipo_avoco"];
 			
 				
 			//consulta datos de juicio
@@ -292,19 +296,36 @@ public function index(){
 		
 		$resultArray=urlencode(serialize($arrayGet));
 		
-			
+			if($_tipo_avoco == "con_garante"){
+				
+				$host  = $_SERVER['HTTP_HOST'];
+				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+				
+				print "<script language='JavaScript'>
+				setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+				</script>";
+				
+				print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index&dato=$resultArray');</script>");
+				
+				
+			}
+			else{
+				
+				$host  = $_SERVER['HTTP_HOST'];
+				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+				
+				
+				
+				print "<script language='JavaScript'>
+				setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoSinGaranteReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+				</script>";
+				
+				print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index&dato=$resultArray');</script>");
+				
+				
+			}
 		
-		$host  = $_SERVER['HTTP_HOST'];
-		$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 		
-	
-        
-		print "<script language='JavaScript'>
-			 setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000); 
-		     </script>";
-		
-		print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index&dato=$resultArray');</script>");
-	
 	}
 	
 	
@@ -390,15 +411,10 @@ public function index(){
 		$id_tipo_notificacion=$res_tipo_notificacion[0]->id_tipo_notificacion;
 	
 		$descripcion="Avoco Conocimiento";
-	
-		$numero_movimiento=0;
-	
-		$tipo_notificacion->CrearNotificacion($id_tipo_notificacion, $destino, $descripcion, $numero_movimiento, $archivoPdf);
+	    $numero_movimiento=0;
+	    $tipo_notificacion->CrearNotificacion($id_tipo_notificacion, $destino, $descripcion, $numero_movimiento, $archivoPdf);
 	
 	}
-	
-	
-	
 	
 	//funcion script para mosttrar Secretarios de acuerdo a la ciudad selecionada
 	public function returnSecretariosbyciudad()
