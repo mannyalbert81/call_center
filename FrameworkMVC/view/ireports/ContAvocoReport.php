@@ -21,23 +21,6 @@ $estado=$_GET['estado'];
 		{
 			
 			
-			$a=stripslashes($_GET['dato']);
-			
-			$_dato=urldecode($a);
-			
-			$_dato=unserialize($a);
-			
-			$PHPJasperXML = new PHPJasperXML ( "en", "TCPDF" );
-			
-			$PHPJasperXML->debugsql = false;
-		
-		    $PHPJasperXML->arrayParameter=$_dato;
-		    
-			$PHPJasperXML->load_xml_file( "AvocoVisualizarReport.jrxml" );
-			
-			$PHPJasperXML->transferDBtoArray ( $server, $user, $pass, $db, $driver );
-			
-			$PHPJasperXML->outpage ( "I" );
 			
 			
 		
