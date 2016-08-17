@@ -16,11 +16,23 @@ class ConsultaCordinadorController extends ControladorBase{
 		$documentos_impulsores=new DocumentosModel();
 		
 		$ciudad = new CiudadModel();
-		$resultCiu = $ciudad->getAll("nombre_ciudad");
+		$resultCiu = $ciudad->getBy("nombre_ciudad='QUITO' OR nombre_ciudad='GUAYAQUIL' ");
 		
 		
 		$usuarios = new UsuariosModel();
-		$resultUsu = $usuarios->getAll("nombre_usuarios");
+		$resultImpulsores=$usuarios->getCondiciones("usuarios.id_usuarios, 
+													  usuarios.nombre_usuarios, 
+													  rol.nombre_rol",
+													"public.rol, public.usuarios",
+				"rol.id_rol = usuarios.id_rol AND rol.nombre_rol='ABOGADO IMPULSOR'",
+				"usuarios.nombre_usuarios");
+		
+		$resultSecretarios=$usuarios->getCondiciones("usuarios.id_usuarios,
+													  usuarios.nombre_usuarios,
+													  rol.nombre_rol",
+				"public.rol, public.usuarios",
+				"rol.id_rol = usuarios.id_rol AND rol.nombre_rol='SECRETARIO'",
+				"usuarios.nombre_usuarios");
 		
         $documentos_impulsores=new DocumentosModel();
 
@@ -77,8 +89,7 @@ class ConsultaCordinadorController extends ControladorBase{
 						  juicios.id_juicios = documentos.id_juicio AND
 						  usuarios.id_usuarios = documentos.id_usuario_registra_documentos AND
 						  clientes.id_clientes = juicios.id_clientes AND
-						  estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios
-							AND documentos.firma_impulsor ='FALSE'";
+						  estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios";
 
 					$id="documentos.id_documentos";
 						
@@ -110,7 +121,7 @@ class ConsultaCordinadorController extends ControladorBase{
 				
 
 				$this->view("ConsultaCordinador",array(
-						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu, "resultDatos"=>$resultDatos
+						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu, "resultImpulsores"=>$resultImpulsores, "resultSecretarios"=>$resultSecretarios
 							
 				));
 

@@ -153,9 +153,18 @@
 		 </div>
 		 
 		 <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo" style="" >Impulsor:</p>
+			  	<p  class="formulario-subtitulo" style="" >Impulsores:</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control">
-			  <?php foreach($resultUsu as $res) {?>
+			  <?php foreach($resultImpulsores as $res) {?>
+			   <option value="<?php echo $res->id_usuarios; ?>" <?php if($sel_id_usuarios==$res->id_usuarios){echo "selected";}?>  ><?php echo $res->nombre_usuarios;  ?></option>  
+			      <?php } ?>
+			    </select>
+		 </div>
+		 
+		 <div class="col-xs-2">
+			  	<p  class="formulario-subtitulo" style="" >Secretarios:</p>
+			  	<select name="id_usuarios" id="id_usuarios"  class="form-control">
+			  <?php foreach($resultSecretarios as $res) {?>
 			   <option value="<?php echo $res->id_usuarios; ?>" <?php if($sel_id_usuarios==$res->id_usuarios){echo "selected";}?>  ><?php echo $res->nombre_usuarios;  ?></option>  
 			      <?php } ?>
 			    </select>
