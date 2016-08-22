@@ -224,4 +224,4 @@ class ConsultaCordinadorController extends ControladorBase{
 		echo json_encode($resultImpulsor);
 	}
 }
-?>
+?> 
