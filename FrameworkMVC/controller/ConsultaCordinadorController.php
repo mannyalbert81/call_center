@@ -5,7 +5,6 @@ class ConsultaCordinadorController extends ControladorBase{
 		parent::__construct();
 	}
 
-	
 
 	public function consulta_cordinador(){
 
@@ -17,6 +16,7 @@ class ConsultaCordinadorController extends ControladorBase{
 		
 		$ciudad = new CiudadModel();
 		$resultCiu = $ciudad->getBy("nombre_ciudad='QUITO' OR nombre_ciudad='GUAYAQUIL' ");
+		
 		
 		
 		$usuarios = new UsuariosModel();
@@ -36,6 +36,11 @@ class ConsultaCordinadorController extends ControladorBase{
 		
         $documentos_impulsores=new DocumentosModel();
 
+        
+        
+         
+         
+        
 
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
@@ -51,6 +56,8 @@ class ConsultaCordinadorController extends ControladorBase{
 					
 				if(isset($_POST["buscar"])){
 
+				
+					
 					$id_ciudad=$_POST['id_ciudad'];
 					$id_usuarios=$_POST['id_usuarios'];
 					$identificacion=$_POST['identificacion'];
@@ -150,13 +157,8 @@ class ConsultaCordinadorController extends ControladorBase{
 
 	
 	
-	
-	
-	
-	
-	
-	public function abrirPdf()
-	{
+	  public function abrirPdf()
+	  {
 		$documentos = new DocumentosModel();
 	
 		if(isset($_GET['id']))
@@ -183,12 +185,43 @@ class ConsultaCordinadorController extends ControladorBase{
 	
 	
 		}
-	
-	
 		
 	}
-
-
-
+	
+	public function Secrtetarios()
+	{
+	
+		//CONSULTA DE USUARIOS POR SU ROL
+		$idciudad=(int)$_POST["ciudad"];
+		$usuarios=new UsuariosModel();
+		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
+		$tablas="usuarios,ciudad,rol";
+		$id="rol.id_rol";
+	
+		$where="rol.id_rol=usuarios.id_rol AND usuarios.id_ciudad=ciudad.id_ciudad
+		AND rol.nombre_rol='SECRETARIO' AND ciudad.id_ciudad='$idciudad'";
+	
+		$resultSecretario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultSecretario);
+	}
+	
+	public function Impulsor()
+	{
+	
+		//CONSULTA DE USUARIOS POR SU ROL
+		$idusuarios=(int)$_POST["usuarios"];
+		$usuarios=new UsuariosModel();
+		$columnas = "asignacion_secretarios_view.id_abogado,
+					  asignacion_secretarios_view.impulsores";
+		$tablas="public.asignacion_secretarios_view";
+		$id="asignacion_secretarios_view.id_abogado";
+	
+		$where="public.asignacion_secretarios_view.id_secretario = '$idusuarios'";
+	
+		$resultImpulsor=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
+	
+		echo json_encode($resultImpulsor);
+	}
 }
 ?>

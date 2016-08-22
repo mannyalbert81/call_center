@@ -509,7 +509,7 @@ class AutoPagosController extends ControladorBase{
 	}
 	
 	
-	
+		
 	public function returnSecretarios()
 	{
 	

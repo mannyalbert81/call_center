@@ -89,6 +89,108 @@
         </script>
         
     
+    <script>
+	$(document).ready(function(){
+		$("#id_secretario").change(function(){
+
+            // obtenemos el combo de resultado combo 2
+           var $ddl_impulsor = $("#id_impulsor");
+       	
+
+            // lo vaciamos
+           var ddl_secretario = $(this).val();
+
+          
+           $ddl_impulsor.empty();
+
+          
+            if(ddl_secretario != 0)
+            {
+            	
+            	 var datos = {
+                   	   
+           			   usuarios:$(this).val()
+                  };
+             
+            	
+
+
+         	   $.post("<?php echo $helper->url("ConsultaCordinador","Impulsor"); ?>", datos, function(resultImpulsor) {
+
+         		 		$.each(resultImpulsor, function(index, value) {
+         		 			$ddl_impulsor.append("<option value= " +value.id_abogado +" >" + value.impulsores  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_resultado.empty();
+
+            }
+		//alert("hola;");
+		});
+        });
+	
+       
+
+	</script>
+	
+	
+	<script>
+	$(document).ready(function(){
+		$("#id_ciudad").change(function(){
+
+            // obtenemos el combo de resultado combo 2
+           var $ddl_secretario = $("#id_secretario");
+       	
+
+            // lo vaciamos
+           var ddl_ciudad = $(this).val();
+
+          
+           $ddl_secretario.empty();
+
+          
+            if(ddl_ciudad != 0)
+            {
+            	
+            	 var datos = {
+                   	   
+           			   ciudad:$(this).val()
+                  };
+             
+            	
+
+
+         	   $.post("<?php echo $helper->url("ConsultaCordinador","Secrtetarios"); ?>", datos, function(resultSecretario) {
+
+         		 		$.each(resultSecretario, function(index, value) {
+         		 			$ddl_secretario.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_resultado.empty();
+
+            }
+		//alert("hola;");
+		});
+});
+	
+       
+
+	</script>
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -142,61 +244,82 @@
   			<div class="panel-body">
   			
   			
-		   			
-           <div class="col-xs-2">
+		   <div class="row">
+	     <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control">
+			  	<option value="0"  >--Seleccione--</option>
 			  		<?php foreach($resultCiu as $res) {?>
 						 <option value="<?php echo $res->id_ciudad; ?>" <?php if($sel_id_ciudad==$res->id_ciudad){echo "selected";}?>   ><?php echo $res->nombre_ciudad; ?> </option>
 			            <?php } ?>
 				</select>
 		 </div>
 		 
-		 <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo" style="" >Impulsores:</p>
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control">
-			  <?php foreach($resultImpulsores as $res) {?>
-			   <option value="<?php echo $res->id_usuarios; ?>" <?php if($sel_id_usuarios==$res->id_usuarios){echo "selected";}?>  ><?php echo $res->nombre_usuarios;  ?></option>  
-			      <?php } ?>
-			    </select>
-		 </div>
-		 
-		 <div class="col-xs-2">
+		   <div class="col-xs-2 ">
+			   <p  class="formulario-subtitulo" >Tipo Documento:</p>
+			  
+			   <select name="tipo_documento" id="tipo_documento"  class="form-control">
+			    <option value="0"  >Todos</option>
+			    <option value="citaciones"  >Citaciones</option>
+			    <option value="providencias"  >Providencias</option>
+			    <option value="oficios"  >Oficios</option>
+			    <option value="avoco_conocimiento"  >Avoco Conocimiento</option>
+			    <option value="auto_pago"  >Auto de Pago</option>
+			   </select>
+	      </div> 
+	      
+	      <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Secretarios:</p>
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control">
-			  <?php foreach($resultSecretarios as $res) {?>
-			   <option value="<?php echo $res->id_usuarios; ?>" <?php if($sel_id_usuarios==$res->id_usuarios){echo "selected";}?>  ><?php echo $res->nombre_usuarios;  ?></option>  
-			      <?php } ?>
+			  <select name="id_secretario" id="id_secretario"  class="form-control">
+			  	<option value="0">--Sin Especificar--</option>
 			    </select>
 		 </div>
-		 
+		   	
+		  <div class="col-xs-2">
+			  	<p  class="formulario-subtitulo" style="" >Impulsores:</p>
+			  	<select name="id_impulsor" id="id_impulsor"  class="form-control">
+			  	<option value="0">--Sin Especificar--</option>
+			    </select>
+		 </div>
+		  		
 		 <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Identificacion:</p>
-			  	<input type="text"  name="identificacion" id="identificacion" value="<?php echo $sel_identificacion;?>" class="form-control"/> 
+			  	<input type="text"  name="identificacion" id="identificacion" value="<?php echo $sel_identificacion;?>" class="form-control" placeholder="Ingrese"/> 
 			    <div id="mensaje_identificacion" class="errores"></div>
 
          </div>
 		 
 		  <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Nº Juicio:</p>
-			  	<input type="text"  name="numero_juicio" id="numero_juicio" value="<?php echo $sel_numero_juicio;?>" class="form-control"/> 
+			  	<input type="text"  name="numero_juicio" id="numero_juicio" value="<?php echo $sel_numero_juicio;?>" class="form-control" placeholder="Ingrese"/> 
 			    <div id="mensaje_juicio" class="errores"></div>
 
          </div>
-          
+        </div>
+	     
+	    <div class="row"> 
+	     <div class="col-xs-2 ">
+			   <p  class="formulario-subtitulo" >Estado Documento:</p>
+			  
+			 <select name="estado_documento" id="estado_documento"  class="form-control">
+			   <option value="0"  >--Seleccione--</option>
+			   <option value="firmado"  >Firmado</option>
+			   <option value="no_firmado"  >No Firmado</option>
+			 </select>
+	    </div> 
          
          <div class="col-xs-2 ">
          		<p class="formulario-subtitulo" >Desde:</p>
-			  	<input type="date"  name="fecha_desde" id="fecha_desde" value="<?php echo $sel_fecha_desde;?>" class="form-control "/> 
+			  	<input type="date"  name="fecha_desde" id="fecha_desde" value="<?php echo $sel_fecha_desde;?>" class="form-control " placeholder="Seleccione"/> 
 			    <div id="mensaje_fecha_desde" class="errores"></div>
 		</div>
          
-          <div class="col-xs-2 ">
+        <div class="col-xs-2 ">
           		<p class="formulario-subtitulo" >Hasta:</p>
-			  	<input type="date"  name="fecha_hasta" id="fecha_hasta" value="<?php echo $sel_fecha_hasta;?>" class="form-control "/> 
+			  	<input type="date"  name="fecha_hasta" id="fecha_hasta" value="<?php echo $sel_fecha_hasta;?>" class="form-control " placeholder="Seleccione"/> 
 			    <div id="mensaje_fecha_hasta" class="errores"></div>
 		</div>
-		 
+		 </div>
   			</div>
   		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" onClick="notificacion()" class="btn btn-warning " style="margin-top: 10px;"/> 	
@@ -256,7 +379,7 @@
 		        <?php } }else {  ?>
 
                 <tr>
-	                  	<td></td>
+	                  	
             			<td></td>
             			<td></td>
             			<td></td>

@@ -245,8 +245,7 @@ $(document).ready(function() {
         });
         });
     </script>
-<<<<<<< HEAD
-=======
+
     
     <script >
         $(document).ready(function() {
@@ -289,7 +288,7 @@ $(document).ready(function() {
 			});
         });
 	</script>
->>>>>>> branch 'master' of https://github.com/mannyalbert81/coactiva.git
+
 
 		
     </head>
