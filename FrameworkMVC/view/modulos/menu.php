@@ -160,19 +160,18 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("ConsultaDocumentosImpulsores",$controladores) ?>">
           <a href="index.php?controller=ConsultaDocumentosImpulsores&action=consulta_impulsores_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Providencias Impulsores</span> </a>
           </li>
-           <li style="<?php echo getcontrolador("ConsultaCordinador",$controladores) ?>">
-          <a href="index.php?controller=ConsultaCordinador&action=consulta_cordinador"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Codinador</span> </a>
-          </li>
           <li style="<?php echo getcontrolador("ConsultaDocumentosSecretarios",$controladores) ?>">
           <a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Providencias Secretarios</span> </a>
           </li>
-          
-		  <li style="<?php echo getcontrolador("ConsultaAvocoImpulsores",$controladores) ?>">
+          <li style="<?php echo getcontrolador("ConsultaAvocoImpulsores",$controladores) ?>">
           <a href="index.php?controller=ConsultaAvocoImpulsores&action=consulta_impulsores_avoco_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Avoco Impulsores</span> </a>
           </li>
           <li style="<?php echo getcontrolador("ConsultaAvocoSecretarios",$controladores) ?>">
           <a href="index.php?controller=ConsultaAvocoSecretarios&action=consulta_secretarios_avoco_firmados"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Avoco Secretarios</span> </a>
           </li>	
+          <li style="<?php echo getcontrolador("ConsultaCordinador",$controladores) ?>">
+          <a href="index.php?controller=ConsultaCordinador&action=consulta_cordinador"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Cordinador</span> </a>
+          </li>
 </ul>
 </li>
 

@@ -14,36 +14,27 @@ class ConsultaCordinadorController extends ControladorBase{
 		//Creamos el objeto usuario
 		$resultSet="";
 		$documentos_impulsores=new DocumentosModel();
-		$ciudad = new CiudadModel();
-		
-		$_id_usuarios= $_SESSION["id_usuarios"]; 
-		
-		$columnas = " usuarios.id_ciudad, 
-					  ciudad.nombre_ciudad, 
-					  usuarios.nombre_usuarios";
-			
-		$tablas   = "public.usuarios, 
-                     public.ciudad";
-			
-		$where    = "ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuarios'";
-			
-		$id       = "usuarios.id_ciudad";
-		
-			
-		$resultDatos=$ciudad->getCondiciones($columnas ,$tablas ,$where, $id);
-		
-		
-		
 		
 		$ciudad = new CiudadModel();
-		$resultCiu = $ciudad->getAll("nombre_ciudad");
+		$resultCiu = $ciudad->getBy("nombre_ciudad='QUITO' OR nombre_ciudad='GUAYAQUIL' ");
 		
 		
 		$usuarios = new UsuariosModel();
-		$resultUsu = $usuarios->getAll("nombre_usuarios");
+		$resultImpulsores=$usuarios->getCondiciones("usuarios.id_usuarios, 
+													  usuarios.nombre_usuarios, 
+													  rol.nombre_rol",
+													"public.rol, public.usuarios",
+				"rol.id_rol = usuarios.id_rol AND rol.nombre_rol='ABOGADO IMPULSOR'",
+				"usuarios.nombre_usuarios");
 		
-
-		$documentos_impulsores=new DocumentosModel();
+		$resultSecretarios=$usuarios->getCondiciones("usuarios.id_usuarios,
+													  usuarios.nombre_usuarios,
+													  rol.nombre_rol",
+				"public.rol, public.usuarios",
+				"rol.id_rol = usuarios.id_rol AND rol.nombre_rol='SECRETARIO'",
+				"usuarios.nombre_usuarios");
+		
+        $documentos_impulsores=new DocumentosModel();
 
 
 		if (isset(  $_SESSION['usuario_usuarios']) )
@@ -98,8 +89,7 @@ class ConsultaCordinadorController extends ControladorBase{
 						  juicios.id_juicios = documentos.id_juicio AND
 						  usuarios.id_usuarios = documentos.id_usuario_registra_documentos AND
 						  clientes.id_clientes = juicios.id_clientes AND
-						  estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios
-							AND documentos.firma_impulsor ='FALSE'";
+						  estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios";
 
 					$id="documentos.id_documentos";
 						
@@ -126,107 +116,14 @@ class ConsultaCordinadorController extends ControladorBase{
 
 
 					$resultSet=$documentos_impulsores->getCondiciones($columnas ,$tablas , $where_to, $id);
-					
-									
-
-
+				
 				}
 				
-				if(isset($_POST['firmar']))
-				{
-					$firmas= new FirmasDigitalesModel();
-					$documentos = new DocumentosModel();
-					$tipo_notificacion = new TipoNotificacionModel();
-					$asignacion_secreatario= new AsignacionSecretariosModel();
-					
-					$ruta="Providencias";
-					$nombrePdf="";
-						
-					$destino = $_SERVER['DOCUMENT_ROOT'].'/documentos/'.$ruta.'/';
-						
-					$array_documento=$_POST['file_firmar'];
-					
-				
-					$permisosFirmar=$permisos_rol->getPermisosFirmarPdfs($_id_usuarios);
-					
-					//para las notificaciones
-					$_nombre_tipo_notificacion="documentos";
-					$resul_tipo_notificacion=$tipo_notificacion->getBy("descripcion_notificacion='$_nombre_tipo_notificacion'");
-					$id_tipo_notificacion=$resul_tipo_notificacion[0]->id_tipo_notificacion;
-					$descripcion="Documento Firmado por";
-					$numero_movimiento=0;
-					$id_impulsor="";
-					
-						
-					if($permisosFirmar['estado'])
-					{
-				
-						$id_firma = $permisosFirmar['valor'];
-						
-				
-				
-						foreach ($array_documento as $id )
-						{
-				
-							if(!empty($id))
-							{
-				
-								$id_documento = $id;
-								
-								$resultDocumento=$documentos->getBy("id_documentos='$id'");
-								
-								$nombrePdf=$resultDocumento[0]->nombre_documento;
-								
-								$nombrePdf=$nombrePdf.".pdf";
-				
-								$id_rol=$_SESSION['id_rol'];
-				
-								try {
-										$res=$firmas->FirmarPDFs( $destino, $nombrePdf, $id_firma,$id_rol);
-					
-										$firmas->UpdateBy("firma_impulsor='TRUE'", "documentos", "id_documentos='$id_documento'");
-										
-											//dirigir notificacion
-										
-											$id_impulsor=$_SESSION['id_usuarios'];
-											
-											$result_asg_secretario=$asignacion_secreatario->getBy("id_abogado_asignacion_secretarios='$id_impulsor'");
-												
-											if(!empty($result_asg_secretario))
-											{
-												$usuarioDestino=$result_asg_secretario[0]->id_secretario_asignacion_secretarios;
-												$result_notificaciones=$firmas->CrearNotificacion($id_tipo_notificacion, $usuarioDestino, $descripcion, $numero_movimiento, $nombrePdf);
-												
-											}
-											
-										
-									}catch(Exception $e)
-									{
-										echo $e->getMessage();
-									}
-								
-				
-							}
-						}
-					}else{
-						//para cuando no puede firmar
-						
-						$this->view("Error", array("resultado"=>"Error <br>".$permisosFirmar['error']));
-						exit();
-						
-					} 
-					
-				}
-
-
-
 
 				$this->view("ConsultaCordinador",array(
-						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu, "resultDatos"=>$resultDatos
+						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu, "resultImpulsores"=>$resultImpulsores, "resultSecretarios"=>$resultSecretarios
 							
 				));
-
-
 
 			}
 			else
