@@ -179,14 +179,137 @@ class ConsultaCordinadorController extends ControladorBase{
 					//buscar por oficios
 					if($tipo_documento == "oficios")
 					{
+						$id_ciudad=$_POST['id_ciudad'];
+						$id_secretario=$_POST['id_secretario'];
+						$id_impulsor=$_POST['id_impulsor'];
+						$identificacion=$_POST['identificacion'];
+						$numero_juicio=$_POST['numero_juicio'];
+						$estado_documento=$_POST['estado_documento'];
+						$fechadesde=$_POST['fecha_desde'];
+						$fechahasta=$_POST['fecha_hasta'];
+	
+					$oficios= new OficiosModel();
 					
+					$columnas = "oficios.id_oficios,
+					oficios.creado,
+					oficios.numero_oficios,
+					juicios.id_juicios,
+					juicios.juicio_referido_titulo_credito,
+					juicios.id_titulo_credito,
+					clientes.nombres_clientes,
+					clientes.identificacion_clientes,
+					entidades.id_entidades,
+					entidades.nombre_entidades";
+	
+					$tablas="public.oficios,
+					public.juicios,
+					public.entidades,
+					public.clientes,
+					public.usuarios";
+	
+					$where="juicios.id_juicios = oficios.id_juicios AND
+					entidades.id_entidades = oficios.id_entidades AND
+					clientes.id_clientes = juicios.id_clientes AND usuarios.id_usuarios = oficios.id_usuario_registra_oficios";
+	
+					$id="oficios.id_oficios";
+						
+						$where_0 = "";
+						$where_1 = "";
+						$where_2 = "";
+						$where_3 = "";
+						$where_4 = "";
+						$where_5 = "";
+						
+						
+						if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
+							
+						if($id_secretario!=0){$where_1=" AND usuarios.id_usuarios='$id_secretario'";}
+						
+						if($id_impulsor!=0){$where_2=" AND usuarios.id_usuarios='$id_impulsor'";}
+						
+						if($identificacion!=""){$where_3=" AND clientes.identificacion_clientes='$identificacion'";}
+							
+						if($numero_juicio!=""){$where_4=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
+						
+						if($fechadesde!="" && $fechahasta!=""){$where_5=" AND  documentos.fecha_emision_documentos BETWEEN '$fechadesde' AND '$fechahasta'";}
+						
+						
+						$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4 . $where_5;
+						
+						
+						$resultSet=$oficios->getCondiciones($columnas ,$tablas , $where_to, $id);
+						
+						
 					
 					}
 					
 					//buscar por avoco conocimiento
 					if($tipo_documento == "avoco_conocimiento")
 					{
-					
+						$id_ciudad=$_POST['id_ciudad'];
+						$id_secretario=$_POST['id_secretario'];
+						$id_impulsor=$_POST['id_impulsor'];
+						$identificacion=$_POST['identificacion'];
+						$numero_juicio=$_POST['numero_juicio'];
+						$estado_documento=$_POST['estado_documento'];
+						$fechadesde=$_POST['fecha_desde'];
+						$fechahasta=$_POST['fecha_hasta'];
+						
+						$avoco_conocimiento =new AvocoConocimientoModel();
+						
+						
+						$columnas = "documentos.id_documentos,
+						ciudad.nombre_ciudad,
+						juicios.juicio_referido_titulo_credito,
+						clientes.nombres_clientes,
+						clientes.identificacion_clientes,
+						documentos.nombre_documento,
+						asignacion_secretarios_view.impulsores,
+						asignacion_secretarios_view.secretarios,
+						documentos.fecha_emision_documentos,
+						documentos.hora_emision_documentos";
+						
+						$tablas=" public.ciudad,
+								  public.clientes,
+								  public.juicios,
+								  public.asignacion_secretarios_view,
+								  public.documentos";
+						
+						$where="clientes.id_clientes = juicios.id_clientes AND
+							  juicios.id_juicios = documentos.id_juicio AND
+							  asignacion_secretarios_view.id_abogado = documentos.id_usuario_registra_documentos AND
+							  documentos.id_ciudad = ciudad.id_ciudad";
+						
+						$id="avoco_conocimiento.id_avoco_conocimiento";
+						
+						
+						$where_0 = "";
+						$where_1 = "";
+						$where_2 = "";
+						$where_3 = "";
+						$where_4 = "";
+						$where_5 = "";
+						
+						
+						if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
+							
+						if($id_secretario!=0){$where_1=" AND asignacion_secretarios_view.id_secretario='$id_secretario'";}
+						
+						if($id_impulsor!=0){$where_2=" AND asignacion_secretarios_view.id_abogado='$id_impulsor'";}
+						
+						if($identificacion!=""){$where_3=" AND clientes.identificacion_clientes='$identificacion'";}
+							
+						if($numero_juicio!=""){$where_4=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
+						
+						if($fechadesde!="" && $fechahasta!=""){$where_5=" AND  documentos.fecha_emision_documentos BETWEEN '$fechadesde' AND '$fechahasta'";}
+						
+						
+						$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4 . $where_5;
+						
+						
+						$resultSet=$avoco_conocimiento->getCondiciones($columnas ,$tablas , $where_to, $id);
+						
+						
 					
 					}
 					
