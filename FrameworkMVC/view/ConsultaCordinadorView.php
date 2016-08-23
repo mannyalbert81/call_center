@@ -366,7 +366,11 @@
 		
 		
 		 <section class="" style="height:300px;overflow-y:scroll;">
-        <table class="table table-hover ">
+        
+            
+                
+	           <?php if (!empty($resultCita)) {  foreach($resultCita as $res) {   ?>
+	           <table class="table table-hover ">
 	         <tr >
 	            <th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Nº Juicio Referido</th>
@@ -379,9 +383,6 @@
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
-            
-                
-	           <?php if (!empty($resultCita)) {  foreach($resultCita as $res) {   ?>
 
                		<tr>
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
@@ -399,6 +400,19 @@
 		    		
 		    	<?php } }elseif (!empty($resultProv)) {  foreach($resultProv as $res) {   ?>
 
+<table class="table table-hover ">
+	         <tr >
+	            <th style="color:#456789;font-size:80%;"><b>Id</b></th>
+	    		<th style="color:#456789;font-size:80%;">Nº Juicio Referido</th>
+	    		<th style="color:#456789;font-size:80%;">Cliente</th>
+	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Estado Procesal</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Emisión</th>
+	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
+	    		
+	    		<th></th>
+	    		<th></th>
+	  		</tr>
                		<tr>
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
@@ -415,6 +429,19 @@
 		    		
 		    	<?php } }elseif (!empty($resultOfi)) {  foreach($resultOfi as $res) {   ?>
 
+<table class="table table-hover ">
+	         <tr >
+	            <th style="color:#456789;font-size:80%;"><b>Id</b></th>
+	    		<th style="color:#456789;font-size:80%;">Nº Juicio Referido</th>
+	    		<th style="color:#456789;font-size:80%;">Cliente</th>
+	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Estado Procesal</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Emisión</th>
+	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
+	    		
+	    		<th></th>
+	    		<th></th>
+	  		</tr>
                		<tr>
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
@@ -431,6 +458,19 @@
 		    		
 		    		<?php } }elseif (!empty($resultAvoCono)) {  foreach($resultAvoCono as $res) {   ?>
 
+<table class="table table-hover ">
+	         <tr >
+	            <th style="color:#456789;font-size:80%;"><b>Id</b></th>
+	    		<th style="color:#456789;font-size:80%;">Nº Juicio Referido</th>
+	    		<th style="color:#456789;font-size:80%;">Cliente</th>
+	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Estado Procesal</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Emisión</th>
+	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
+	    		
+	    		<th></th>
+	    		<th></th>
+	  		</tr>
                		<tr>
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
@@ -447,6 +487,19 @@
 		    		
 		    		<?php } }elseif (!empty($resultAutoPago)) {  foreach($resultAutoPago as $res) {   ?>
 
+<table class="table table-hover ">
+	         <tr >
+	            <th style="color:#456789;font-size:80%;"><b>Id</b></th>
+	    		<th style="color:#456789;font-size:80%;">Nº Juicio Referido</th>
+	    		<th style="color:#456789;font-size:80%;">Cliente</th>
+	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Estado Procesal</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Emisión</th>
+	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
+	    		
+	    		<th></th>
+	    		<th></th>
+	  		</tr>
                		<tr>
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
@@ -462,6 +515,20 @@
 		    		</tr>
 		    		
 		    		<?php }}else {?>
+		    		
+		    		<table class="table table-hover ">
+	         <tr >
+	            <th style="color:#456789;font-size:80%;"><b>Id</b></th>
+	    		<th style="color:#456789;font-size:80%;">Nº Juicio Referido</th>
+	    		<th style="color:#456789;font-size:80%;">Cliente</th>
+	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Estado Procesal</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Emisión</th>
+	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
+	    		
+	    		<th></th>
+	    		<th></th>
+	  		</tr>
 		    		
 		    		<tr>
 	                  	<td></td>
