@@ -11,16 +11,19 @@ class ConsultaCordinadorController extends ControladorBase{
 		session_start();
 
 		//Creamos el objeto usuario
-		$resultSet="";
-		$documentos_impulsores=new DocumentosModel();
+		$resultCita=array();
+		$resultProv=array();
+		$resultOfi=array();
+		$resultAvoCono=array();
+		$resultAutoPago=array();
 		
+		
+		$documentos_impulsores=new DocumentosModel();
 		$ciudad = new CiudadModel();
 		$resultCiu = $ciudad->getBy("nombre_ciudad='QUITO' OR nombre_ciudad='GUAYAQUIL' ");
 		
-
-
-		if (isset(  $_SESSION['usuario_usuarios']) )
-		{
+            if (isset(  $_SESSION['usuario_usuarios']) )
+		    {
 			//notificaciones
 			$documentos_impulsores->MostrarNotificaciones($_SESSION['id_usuarios']);
 			$permisos_rol = new PermisosRolesModel();
@@ -33,15 +36,13 @@ class ConsultaCordinadorController extends ControladorBase{
 					
 				if(isset($_POST["buscar"])){
 
-					
 					$tipo_documento=$_POST['tipo_documento'];
 					
 					//buscar por citaciones
 					if($tipo_documento == "citaciones")
 					{
 						
-					
-						$id_ciudad=$_POST['id_ciudad'];
+					    $id_ciudad=$_POST['id_ciudad'];
 						$id_secretario=$_POST['id_secretario'];
 						$id_impulsor=$_POST['id_impulsor'];
 						$identificacion=$_POST['identificacion'];
@@ -102,7 +103,7 @@ class ConsultaCordinadorController extends ControladorBase{
 						$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4 . $where_5;
 						
 						
-						$resultSet=$citaciones->getCondiciones($columnas ,$tablas , $where_to, $id);
+						$resultCita=$citaciones->getCondiciones($columnas ,$tablas , $where_to, $id);
 						
 					}
 					
@@ -171,7 +172,7 @@ class ConsultaCordinadorController extends ControladorBase{
 						$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4 . $where_5;
 						
 						
-						$resultSet=$documentos->getCondiciones($columnas ,$tablas , $where_to, $id);
+						$resultProv=$documentos->getCondiciones($columnas ,$tablas , $where_to, $id);
 						
 						
 					}
@@ -237,7 +238,7 @@ class ConsultaCordinadorController extends ControladorBase{
 						$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4 . $where_5;
 						
 						
-						$resultSet=$oficios->getCondiciones($columnas ,$tablas , $where_to, $id);
+						$resultOfi=$oficios->getCondiciones($columnas ,$tablas , $where_to, $id);
 						
 						
 					
@@ -309,7 +310,7 @@ class ConsultaCordinadorController extends ControladorBase{
 						$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4 . $where_5;
 						
 						
-						$resultSet=$avoco_conocimiento->getCondiciones($columnas ,$tablas , $where_to, $id);
+						$resultAvoCono=$avoco_conocimiento->getCondiciones($columnas ,$tablas , $where_to, $id);
 						
 						
 					
@@ -319,9 +320,10 @@ class ConsultaCordinadorController extends ControladorBase{
 				
 				}
 				
+				
 
 				$this->view("ConsultaCordinador",array(
-						"resultSet"=>$resultSet,"resultCiu"=>$resultCiu
+						"resultCita"=>$resultCita, "resultProv"=>$resultProv,"resultCiu"=>$resultCiu,"resultOfi"=>$resultOfi,"resultAvoCono"=>$resultAvoCono,"resultAutoPago"=>$resultAutoPago
 							
 				));
 
