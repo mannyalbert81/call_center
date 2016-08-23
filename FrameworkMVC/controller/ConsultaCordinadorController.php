@@ -259,29 +259,31 @@ class ConsultaCordinadorController extends ControladorBase{
 						$avoco_conocimiento =new AvocoConocimientoModel();
 						
 						
-						$columnas = "documentos.id_documentos,
-						ciudad.nombre_ciudad,
-						juicios.juicio_referido_titulo_credito,
-						clientes.nombres_clientes,
-						clientes.identificacion_clientes,
-						documentos.nombre_documento,
-						asignacion_secretarios_view.impulsores,
-						asignacion_secretarios_view.secretarios,
-						documentos.fecha_emision_documentos,
-						documentos.hora_emision_documentos";
-						
-						$tablas=" public.ciudad,
-								  public.clientes,
-								  public.juicios,
-								  public.asignacion_secretarios_view,
-								  public.documentos";
-						
-						$where="clientes.id_clientes = juicios.id_clientes AND
-							  juicios.id_juicios = documentos.id_juicio AND
-							  asignacion_secretarios_view.id_abogado = documentos.id_usuario_registra_documentos AND
-							  documentos.id_ciudad = ciudad.id_ciudad";
-						
-						$id="avoco_conocimiento.id_avoco_conocimiento";
+					$columnas = "avoco_conocimiento.id_avoco_conocimiento, 
+							  juicios.juicio_referido_titulo_credito, 
+							  clientes.nombres_clientes, 
+							  clientes.identificacion_clientes, 
+							  ciudad.nombre_ciudad, 
+							  asignacion_secretarios_view.secretarios, 
+							  asignacion_secretarios_view.impulsores, 
+							  usuarios.nombre_usuarios, 
+							  avoco_conocimiento.creado";
+
+					$tablas=" public.avoco_conocimiento, 
+							  public.juicios, 
+							  public.ciudad, 
+							  public.asignacion_secretarios_view, 
+							  public.clientes, 
+							  public.usuarios";
+
+					$where="avoco_conocimiento.id_secretario = asignacion_secretarios_view.id_secretario AND
+						  avoco_conocimiento.id_impulsor = asignacion_secretarios_view.id_abogado AND
+						  avoco_conocimiento.secretario_reemplazo = usuarios.id_usuarios AND
+						  juicios.id_juicios = avoco_conocimiento.id_juicios AND
+						  ciudad.id_ciudad = avoco_conocimiento.id_ciudad AND
+						  clientes.id_clientes = juicios.id_clientes'";
+
+					$id="avoco_conocimiento.id_avoco_conocimiento";
 						
 						
 						$where_0 = "";
@@ -294,9 +296,9 @@ class ConsultaCordinadorController extends ControladorBase{
 						
 						if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
 							
-						if($id_secretario!=0){$where_1=" AND asignacion_secretarios_view.id_secretario='$id_secretario'";}
+						if($id_secretario!=0){$where_1=" AND usuarios.id_usuarios='$id_secretario'";}
 						
-						if($id_impulsor!=0){$where_2=" AND asignacion_secretarios_view.id_abogado='$id_impulsor'";}
+						if($id_impulsor!=0){$where_2=" AND usuarios.id_usuarios='$id_impulsor'";}
 						
 						if($identificacion!=""){$where_3=" AND clientes.identificacion_clientes='$identificacion'";}
 							
