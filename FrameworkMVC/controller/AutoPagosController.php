@@ -329,7 +329,6 @@ class AutoPagosController extends ControladorBase{
 								
 							}
 							
-							
 										
 						} catch (Exception $e) 
 						{
@@ -348,7 +347,7 @@ class AutoPagosController extends ControladorBase{
 				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 		
 				
-			}
+			   }
 			
 
 			$this->redirect("AutoPagos", "index");
@@ -362,10 +361,7 @@ class AutoPagosController extends ControladorBase{
 		
 			));
 		
-		
 		}
-		
-		
 		
 	}
 	
@@ -411,83 +407,6 @@ class AutoPagosController extends ControladorBase{
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
-	public function devuelveAcciones()
-	{
-		$resultAcc = array();
-	
-		if(isset($_POST["id_controladores"]))
-		{
-	
-			$id_controladores=(int)$_POST["id_controladores"];
-	
-			$acciones=new AccionesModel();
-	
-			$resultAcc = $acciones->getBy(" id_controladores = '$id_controladores'  ");
-	
-	
-		}
-	
-		echo json_encode($resultAcc);
-	
-	}
-	
-	
-	public function devuelveSubByAcciones()
-	{
-		$resultAcc = array();
-	
-		if(isset($_POST["id_acciones"]))
-		{
-	
-			$id_acciones=(int)$_POST["id_acciones"];
-	
-			$acciones=new AccionesModel();
-	
-			$resultAcc = $acciones->getBy(" id_acciones = '$id_acciones'  ");
-	
-	
-		}
-	
-		echo json_encode($resultAcc);
-	
-	}
-	
- public function devuelveAllAcciones()
-	{
-		$resultAcc = array();
-	
-		$acciones=new AccionesModel();
-	
-		$resultAcc = $acciones->getAll(" id_controladores, nombre_acciones");
-	
-		echo json_encode($resultAcc);
-	
-	}
-	
-	public function returnImpulsorbyciudad()
-	{
-	
-		//CONSULTA DE USUARIOS POR SU ROL
-		$idciudad=(int)$_POST["ciudad"];
-		$usuarios=new UsuariosModel();
-		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
-		$tablas="usuarios,ciudad,rol";
-		$id="rol.id_rol";
-	
-		$where="rol.id_rol=usuarios.id_rol AND usuarios.id_ciudad=ciudad.id_ciudad
-		AND rol.nombre_rol='ABOGADO IMPULSOR' AND ciudad.id_ciudad='$idciudad'";
-	
-		$resultUsuarioImpulC=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
-	
-		echo json_encode($resultUsuarioImpulC);
-	}
-		
 		
 		
 		public function returnAgentesbyciudad()
@@ -510,73 +429,7 @@ class AutoPagosController extends ControladorBase{
 	
 	
 		
-	public function returnSecretarios()
-	{
-	
-		
-		//CONSULTA DE USUARIOS POR SU ROL
-		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
-		$tablas="usuarios inner join rol on(usuarios.id_rol=rol.id_rol)";
-		$id="rol.id_rol";
-			
-		$usuarios=new UsuariosModel();
-		
-		$where="rol.nombre_rol='SECRETARIO'";
-		$resultUsuarioSecretario=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
-	
-		echo json_encode($resultUsuarioSecretario);
-	
-	}
-	
-	public function returnImpulsores()
-	{
-	
-		//CONSULTA DE USUARIOS POR SU ROL
-		$columnas = "usuarios.id_usuarios,usuarios.nombre_usuarios";
-		$tablas="usuarios inner join rol on(usuarios.id_rol=rol.id_rol)";
-		$id="rol.id_rol";
-			
-		$usuarios=new UsuariosModel();
-	
-		$where="rol.nombre_rol='ABOGADO IMPULSOR'";
-		$resultUsuarioImpulsor=$usuarios->getCondiciones($columnas ,$tablas , $where, $id);
-	
-		echo json_encode($resultUsuarioImpulsor);
-	
-	}
-	
-	public function CompruebaImpulsores()
-	{
-		$resultado=0;
-		//consulta para ver si hay impulsores en la tabla asignacio secretario
-		$asignacionSecretarios=new AsignacionSecretariosModel();
-			
-		$_id_impulsor=$_POST['id_abgImpulsor'];
-		$col="id_abogado_asignacion_secretarios";
-		$tbl="asignacion_secretarios";
-		$whre="id_abogado_asignacion_secretarios=".$_id_impulsor;
-		$id="id_asignacion_secretarios";
-			
-		$ressultAsg=$asignacionSecretarios->getCondiciones($col, $tbl, $whre, $id);
-		
-		if(empty($ressultAsg)){
-			
-			$this->view("Error",array(
-					"resultado"=>"No existen datos"
-			
-			));
-			exit();
-		}else{
-			$this->view("Error",array(
-					"resultado"=>"datos extraidos"
-		
-			));
-			exit();
-		}
-			
-		echo json_encode($ressultAsg);
-	
-	}
+	  
 	
 	public function VisualizarAutoPago(){
 	
@@ -670,35 +523,6 @@ class AutoPagosController extends ControladorBase{
 	
 	}
 	
-	
-	public function Reporte(){
-	
-		//Creamos el objeto usuario
-		$subcategorias=new SubCategoriasModel();
-		//Conseguimos todos los usuarios
-	
-	
-		$columnas = " subcategorias.id_subcategorias, categorias.nombre_categorias, subcategorias.nombre_subcategorias, subcategorias.path_subcategorias";
-		$tablas   = "public.subcategorias, public.categorias";
-		$where    = "subcategorias.id_categorias = categorias.id_categorias";
-		$id       = "categorias.nombre_categorias,subcategorias.nombre_subcategorias";
-		
-	
-		session_start();
-	
-	
-		if (isset(  $_SESSION['usuario']) )
-		{
-			$resultRep = $subcategorias->getCondicionesPDF($columnas, $tablas, $where, $id);
-			
-			$this->report("SubCategorias",array(	"resultRep"=>$resultRep));
-	
-		}
-			
-	
-	}
-	
-
 	
 }
 ?>      
