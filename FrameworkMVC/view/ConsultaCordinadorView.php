@@ -259,7 +259,6 @@
 			   <p  class="formulario-subtitulo" >Tipo Documento:</p>
 			  
 			   <select name="tipo_documento" id="tipo_documento"  class="form-control">
-			    <option value="0"  >Todos</option>
 			    <option value="citaciones"  >Citaciones</option>
 			    <option value="providencias"  >Providencias</option>
 			    <option value="oficios"  >Oficios</option>
@@ -345,7 +344,26 @@
 		 </div>
 		 
 		 <div class="col-lg-12">
-		 
+		
+		<?php if(!empty($resultSet)) {?> 
+		
+		<p class="formulario-subtitulo" >Citaciones</p>
+		
+		<?php }?>
+		
+		<?php if(!empty($resultSet)) {?> 
+		
+		<p class="formulario-subtitulo" >Providencias</p>
+		
+		<?php }?>
+		
+		
+		
+		
+		
+		
+		
+		
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
@@ -361,10 +379,11 @@
 	    		<th></th>
 	  		</tr>
             
-	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
-	        		<tr>
-	        		
-	        		  <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
+                
+	           <?php if (!empty($resultCita)) {  foreach($resultCita as $res) {   ?>
+
+               		<tr>
+	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
@@ -376,18 +395,82 @@
 		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
 		               </td> 
 		    		</tr>
-		        <?php } }else {  ?>
+		    		
+		    	<?php } }elseif (!empty($resultProv)) {  foreach($resultProv as $res) {   ?>
 
-                <tr>
-	                  	
-            			<td></td>
+               		<tr>
+	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado_procesal_juicios; ?></td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_emision_documentos; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
+		            
+		               <td style="color:#000000;font-size:80%;">
+		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               </td> 
+		    		</tr>
+		    		
+		    	<?php } }elseif (!empty($resultOfi)) {  foreach($resultOfi as $res) {   ?>
+
+               		<tr>
+	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado_procesal_juicios; ?></td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_emision_documentos; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
+		            
+		               <td style="color:#000000;font-size:80%;">
+		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               </td> 
+		    		</tr>
+		    		
+		    		<?php } }elseif (!empty($resultAvoCono)) {  foreach($resultAvoCono as $res) {   ?>
+
+               		<tr>
+	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado_procesal_juicios; ?></td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_emision_documentos; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
+		            
+		               <td style="color:#000000;font-size:80%;">
+		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               </td> 
+		    		</tr>
+		    		
+		    		<?php } }elseif (!empty($resultAutoPago)) {  foreach($resultAutoPago as $res) {   ?>
+
+               		<tr>
+	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado_procesal_juicios; ?></td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_emision_documentos; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
+		            
+		               <td style="color:#000000;font-size:80%;">
+		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               </td> 
+		    		</tr>
+		    		
+		    		<?php }}else {?>
+		    		
+		    		<tr>
+	                  	<td></td>
             			<td></td>
             			<td></td>
             			<td colspan="5" style="color:#ec971f;font-size:8;" style="text-aling:center";> <?php echo '<span id="snResult">NO EXISTE DATOS PARA ESOS FILTROS</span>' ?></td>
 	       				
-		    	</tr>
+		    	   </tr>
 		    		
-		    		<?php }?>
+		    		<?php } ?>
                
        	</table>
        </section>
