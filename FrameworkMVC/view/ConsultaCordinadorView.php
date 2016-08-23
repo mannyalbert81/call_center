@@ -214,7 +214,8 @@
        
        
        	$sel_id_ciudad = $_POST['id_ciudad'];
-       	$sel_id_usuarios = $_POST['id_usuarios'];
+       	$sel_id_secretario = $_POST['id_secretario'];
+       	$sel_id_impulsor = $_POST['id_impulsor'];
        	$sel_identificacion=$_POST['identificacion'];
        	$sel_numero_juicio=$_POST['numero_juicio'];
       
