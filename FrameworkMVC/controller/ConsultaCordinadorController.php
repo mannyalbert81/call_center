@@ -281,7 +281,7 @@ class ConsultaCordinadorController extends ControladorBase{
 						  avoco_conocimiento.secretario_reemplazo = usuarios.id_usuarios AND
 						  juicios.id_juicios = avoco_conocimiento.id_juicios AND
 						  ciudad.id_ciudad = avoco_conocimiento.id_ciudad AND
-						  clientes.id_clientes = juicios.id_clientes'";
+						  clientes.id_clientes = juicios.id_clientes";
 
 					$id="avoco_conocimiento.id_avoco_conocimiento";
 						
@@ -314,6 +314,73 @@ class ConsultaCordinadorController extends ControladorBase{
 						
 						
 					
+					}
+					
+					//buscar por auto pago
+					if($tipo_documento == "auto_pago")
+					{
+						$id_ciudad=$_POST['id_ciudad'];
+						$id_secretario=$_POST['id_secretario'];
+						$id_impulsor=$_POST['id_impulsor'];
+						$identificacion=$_POST['identificacion'];
+						$numero_juicio=$_POST['numero_juicio'];
+						$estado_documento=$_POST['estado_documento'];
+						$fechadesde=$_POST['fecha_desde'];
+						$fechahasta=$_POST['fecha_hasta'];
+					
+						$auto_pago =new AutoPagosModel();
+					
+					
+						$columnas = " auto_pagos.id_auto_pagos, 
+						  auto_pagos.id_titulo_credito, 
+						  clientes.identificacion_clientes, 
+						  clientes.nombres_clientes, 
+						  usuarios.nombre_usuarios, 
+						  auto_pagos.fecha_asiganacion_auto_pagos, 
+						  estado.nombre_estado";
+					
+						$tablas   = "public.auto_pagos, 
+								  public.usuarios, 
+								  public.titulo_credito, 
+								  public.estado, 
+								  public.clientes";
+					
+						$where    = "usuarios.id_usuarios = auto_pagos.id_usuario_impulsor AND
+								  titulo_credito.id_titulo_credito = auto_pagos.id_titulo_credito AND
+								  estado.id_estado = auto_pagos.id_estado AND
+								  clientes.id_clientes = titulo_credito.id_clientes ";
+					
+						$id       = "auto_pagos.id_auto_pagos";
+					
+					
+						$where_0 = "";
+						$where_1 = "";
+						$where_2 = "";
+						$where_3 = "";
+						$where_4 = "";
+						$where_5 = "";
+					
+					
+						if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
+							
+						if($id_secretario!=0){$where_1=" AND usuarios.id_usuarios='$id_secretario'";}
+					
+						if($id_impulsor!=0){$where_2=" AND usuarios.id_usuarios='$id_impulsor'";}
+					
+						if($identificacion!=""){$where_3=" AND clientes.identificacion_clientes='$identificacion'";}
+							
+						if($numero_juicio!=""){$where_4=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
+					
+						if($fechadesde!="" && $fechahasta!=""){$where_5=" AND  documentos.fecha_emision_documentos BETWEEN '$fechadesde' AND '$fechahasta'";}
+					
+					
+						$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4 . $where_5;
+					
+					
+						$resultAutoPago=$auto_pago->getCondiciones($columnas ,$tablas , $where_to, $id);
+					
+					
+							
 					}
 					
 				
