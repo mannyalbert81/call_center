@@ -25,7 +25,7 @@
            <!-- AQUI NOTIFICAIONES -->
 		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
 		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
-		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+		<link rel="stylesheet" href="view/css/themes/alertify.de43fault.css" />
 		
 		<script>
             function Ok(){

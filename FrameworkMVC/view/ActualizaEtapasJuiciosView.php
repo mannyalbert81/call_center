@@ -234,6 +234,7 @@
 			  	<input type="date"  name="fecha_hasta" id="fecha_hasta" value="<?php echo $sel_fecha_hasta;?>" class="form-control "/> 
 			    <div id="mensaje_fecha_hasta" class="errores"></div>
 		</div>
+		<td style="color:#000000;font-size:75%;"></td> 
 		 
   			</div>
   		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
@@ -247,8 +248,18 @@
 		</div>
         	
 		 </div>
+		 <div class="col-xs-2">
+			  	<p  class="formulario-subtitulo" style="" >Etapas:</p>
+			  	<select name="id_etapas_juicios" id="id_etapas_juicios" class="form-control">
+			  	<?php foreach($resultEtapas as $res1) {?>
+			  	<option value="<?php echo $res1->id_etapas_juicios; ?>" ><?php echo $res1->nombre_etapas; ?> </option>
+			  	<?php } ?>
+			  	</select>
+			  		<input type="submit" value="Actualizar" id="actualizar" name="actualizar" class="btn btn-success" style="margin-top: 10px;"/>
+		   		 	
+		 </div>
 		 
-		 
+			 
 		 <div class="col-lg-12">
 		 
 		 <div class="col-lg-12">
@@ -274,6 +285,7 @@
 	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
 	    		<th style="color:#456789;font-size:80%;">Secretario</th>
 	    		<th style="color:#456789;font-size:80%;">Etapa</th>
+	    		 
 	    		<th style="color:#456789;font-size:80%;">Tipo Juicio</th>
 	    		<th style="color:#456789;font-size:80%;">Fecha Emision</th>
 	    		<th style="color:#456789;font-size:80%;">Total</th>
@@ -284,8 +296,9 @@
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
 	        		
-	        		   <th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_juicios"   name="id_juicios"  value="<?php echo $res->id_juicios; ?>" ocultar();></th>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_juicios; ?></td>
+	        		   
+	        		   <td> <input type="checkbox" name="id_juicios" id="id_juicios" class="marcados" value="<?php echo $res->id_juicios; ?>" ocultar();></th>
+	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_juicios; ?></td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>     </td> 
@@ -294,16 +307,11 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?>     </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->impulsores; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->secretarios; ?>     </td> 
-		               <td style="color:#000000;font-size:75%;"><select name="id_etapas_juicios" id="id_etapas_juicios"><?php foreach($resultEtapas as $res1) {?><option value="<?php echo $res1->id_etapas_juicios; ?>" ><?php echo $res1->nombre_etapas; ?> </option><?php } ?></select></td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_juicios; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>     </td> 
 		             
-		               <td>
-		               		 <div class="right">
-		              		 	<input type="button" id="actualizar" value="Actualizar" class="btn btn-success"  style="font-size:60%;"/>
-			                </div>
-		               </td> 
+		               
 		               <td>
 			           		<div class="right">
 			           			<a href="/FrameworkMVC/view/ireports/ContJuiciosSubReport.php?id_juicios=<?php echo $res->id_juicios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:70%;">Ver</a>
