@@ -88,7 +88,56 @@
 			});
         </script>
         
-    
+     <script>
+	$(document).ready(function(){
+		$("#id_secretario").change(function(){
+
+            // obtenemos el combo de resultado combo 2
+           var $ddl_impulsor = $("#id_impulsor");
+       	
+
+            // lo vaciamos
+           var ddl_secretario = $(this).val();
+
+          
+           $ddl_impulsor.empty();
+
+          
+            if(ddl_secretario != 0)
+            {
+            	
+            	 var datos = {
+                   	   
+           			   usuarios:$(this).val()
+                  };
+             
+            	
+
+
+         	   $.post("<?php echo $helper->url("ConsultaCordinador","Impulsor"); ?>", datos, function(resultImpulsor) {
+
+         		 		$.each(resultImpulsor, function(index, value) {
+         		 			$ddl_impulsor.append("<option value= " +value.id_abogado +" >" + value.impulsores  + "</option>");	
+                    		 });
+
+         		 		 	 		   
+         		  }, 'json');
+
+
+            }
+            else
+            {
+                
+         	   $ddl_resultado.empty();
+
+            }
+		//alert("hola;");
+		});
+        });
+	
+       
+
+	</script>
    
 	
 	
