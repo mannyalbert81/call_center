@@ -419,24 +419,24 @@ class ConsultaCordinadorController extends ControladorBase{
 
 	
 	
-	  public function abrirPdf()
+	  public function abrirPdf_citaciones()
 	  {
-		$documentos = new DocumentosModel();
+		$citaciones = new CitacionesModel();
 	
 		if(isset($_GET['id']))
 		{
 				
-			$id_documento = $_GET ['id'];
+			$id_citacion = $_GET ['id'];
 				
-			$resultDocumento = $documentos->getBy ( "id_documentos='$id_documento'" );
+			$resultCitacion= $citaciones->getBy ( "id_citaciones='$id_citacion'" );
 				
-			if (! empty ( $resultDocumento )) {
+			if (! empty ( $resultCitacion )) {
 	
-				$nombrePdf = $resultDocumento [0]->nombre_documento;
+				$nombrePdf = $resultCitacion [0]->nombre_citacion;
 	
 				$nombrePdf .= ".pdf";
 	
-				$ruta = $resultDocumento [0]->ruta_documento;
+				$ruta = $resultCitacion [0]->ruta_citacion;
 	
 				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
 	
@@ -448,7 +448,135 @@ class ConsultaCordinadorController extends ControladorBase{
 	
 		}
 		
-	}
+	
+	  }
+	  
+	  
+	  public function abrirPdf_oficios()
+	  {
+	  	$oficios = new OficiosModel();
+	  
+	  	if(isset($_GET['id']))
+	  	{
+	  
+	  		$id_oficios = $_GET ['id'];
+	  
+	  		$resultOficios = $oficios->getBy ( "id_oficios='$id_oficios'" );
+	  
+	  		if (! empty ( $resultOficios )) {
+	  
+	  			$nombrePdf = $resultOficios [0]->nombre_oficio;
+	  
+	  			$nombrePdf .= ".pdf";
+	  
+	  			$ruta = $resultOficios [0]->ruta_oficio;
+	  
+	  			$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
+	  
+	  			header('Content-type: application/pdf');
+	  			header('Content-Disposition: inline; filename="'.$directorio.'"');
+	  			readfile($directorio);
+	  		}
+	  
+	  
+	  	}
+	  
+	  }
+	  
+	  public function abrirPdf_providencias()
+	  {
+	  	$documentos = new DocumentosModel();
+	  
+	  	if(isset($_GET['id']))
+	  	{
+	  
+	  		$id_documento = $_GET ['id'];
+	  
+	  		$resultDocumento = $documentos->getBy ( "id_documentos='$id_documento'" );
+	  
+	  		if (! empty ( $resultDocumento )) {
+	  
+	  			$nombrePdf = $resultDocumento [0]->nombre_documento;
+	  
+	  			$nombrePdf .= ".pdf";
+	  
+	  			$ruta = $resultDocumento [0]->ruta_documento;
+	  
+	  			$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
+	  
+	  			header('Content-type: application/pdf');
+	  			header('Content-Disposition: inline; filename="'.$directorio.'"');
+	  			readfile($directorio);
+	  		}
+	  
+	  
+	  	}
+	  
+	  }
+	  
+	  public function abrirPdf_avoco_conocimiento()
+	  {
+	  	$avoco_conocimiento = new AvocoConocimientoModel();
+	  
+	  	if(isset($_GET['id']))
+	  	{
+	  
+	  		$id_avoco_conocimiento = $_GET ['id'];
+	  
+	  		$resultAvoco= $avoco_conocimiento->getBy ( "id_avoco_conocimiento='$id_avoco_conocimiento'" );
+	  
+	  		if (! empty ( $resultAvoco )) {
+	  
+	  			$nombrePdf = $resultAvoco [0]->nombre_documento;
+	  
+	  			$nombrePdf .= ".pdf";
+	  
+	  			$ruta = $resultAvoco [0]->ruta_documento;
+	  
+	  			$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
+	  
+	  			header('Content-type: application/pdf');
+	  			header('Content-Disposition: inline; filename="'.$directorio.'"');
+	  			readfile($directorio);
+	  		}
+	  
+	  
+	  	}
+	  
+	  }
+	  
+	  
+	  public function abrirPdf_auto_pago()
+	  {
+	  	$auto_pago = new AutoPagosModel();
+	  	 
+	  	if(isset($_GET['id']))
+	  	{
+	  		 
+	  		$id_auto_pagos= $_GET ['id'];
+	  		 
+	  		$resultAuto_Pago = $auto_pago->getBy ( "id_auto_pagos='$id_auto_pagos'" );
+	  		 
+	  		if (! empty ( $resultAuto_Pago )) {
+	  			 
+	  			$nombrePdf = $resultAuto_Pago [0]->nombre_auto_pagos;
+	  			 
+	  			$nombrePdf .= ".pdf";
+	  			 
+	  			$ruta = $resultAuto_Pago [0]->ruta_auto_pagos;
+	  			 
+	  			$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/' . $ruta . '/' . $nombrePdf;
+	  			 
+	  			header('Content-type: application/pdf');
+	  			header('Content-Disposition: inline; filename="'.$directorio.'"');
+	  			readfile($directorio);
+	  		}
+	  		 
+	  		 
+	  	}
+	  	 
+	  }
+	  
 	
 	public function Secrtetarios()
 	{
