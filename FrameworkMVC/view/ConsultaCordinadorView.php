@@ -380,7 +380,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
 		            
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf_citaciones"); ?>&id=<?php echo $res->id_citaciones; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
 		               </td> 
 		    		</tr>
 		    		
@@ -423,7 +423,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->hora_emision_documentos; ?>     </td> 
 		               
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf_providencias"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
 		               </td> 
 		    		</tr>
 		    		
@@ -461,7 +461,7 @@
 		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
 		            
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf_oficios"); ?>&id=<?php echo $res->id_oficios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
 		               </td> 
 		    		</tr>
 		    		
@@ -495,7 +495,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
 		            
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf_avoco_conocimiento"); ?>&id=<?php echo $res->id_avoco_conocimiento; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
 		               </td> 
 		    		</tr>
 		    		
@@ -528,7 +528,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_estado; ?>     </td> 
 		            
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
+		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf_auto_pago"); ?>&id=<?php echo $res->id_auto_pagos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
 		               </td> 
 		    		</tr>
 		    		
