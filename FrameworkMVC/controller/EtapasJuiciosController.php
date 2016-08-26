@@ -117,8 +117,7 @@ class EtapasJuiciosController extends ControladorBase{
 
 		$nombre_controladores = "EtapasJuicios";
 		$id_rol= $_SESSION['id_rol'];
-        $resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-        $resultPer = $etapas_juicios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+         $resultPer = $etapas_juicios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 
 		
 		
@@ -193,90 +192,85 @@ class EtapasJuiciosController extends ControladorBase{
 	}
 	
 	
+	public function ActualizarEtapasJuicios(){
 	
-	public function ActualizaEtapasJuicios(){
-			
 		session_start();
-		$permisos_rol=new PermisosRolesModel();
-		$etapas_juicios = new EtapasJuiciosModel();
-		$permisos_rol=new PermisosRolesModel();
 	
+		$resultado = null;
+	   
+		$notificaciones = new NotificacionesModel();
+		$tipo_notificacion = new TipoNotificacionModel();
+		$permisos_rol=new PermisosRolesModel();
+		$etapas_juicios = new EtapasJuiciosModel(); 
 		$nombre_controladores = "EtapasJuicios";
 		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $permisos_rol->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-		$resultPer = $etapas_juicios->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-	
-	
+		$resultPer = $etapas_juicios->getPermisosEditar("   nombre_controladores = '$nombre_controladores' AND id_rol = '$id_rol' " );
 	
 		if (!empty($resultPer))
 		{
-	
-	
-	
-			$resultado = null;
 				
-			$etapas_juicios = new EtapasJuiciosModel();
 	
-			//_nombre_controladores
-				
-			if (isset ($_POST["nombre_etapas"]) )
-	
+			if (isset ($_POST["actualizar"])   )
 			{
 	
 	
+				$_array_juicios = $_POST["id_juicios"];
+				$_id_etapas_juicios = $_POST["id_etapas_juicios"];
+				$_usuario_registra = $_SESSION['id_usuarios'];
+				
 	
-				$_nombre_etapas = $_POST["nombre_etapas"];
-	
-	
-				if(isset($_POST["id_etapas_juicios"]))
+				foreach($_array_juicios  as $id  )
 				{
 						
-					$_id_etapas_juicios = $_POST["id_etapas_juicios"];
+					if (!empty($id) )
+					{
+						//busco si existe este nuevo id
+						try
+						{
+							//capturar id de impulsor de titulo credito
+							$_id_juicios = $id;
 						
-					$colval = " nombre_etapas = '$_nombre_etapas'   ";
-					$tabla = "etapas_juicios";
-					$where = "id_etapas_juicios = '$_id_etapas_juicios'    ";
-						
-					$resultado=$etapas_juicios->UpdateBy($colval, $tabla, $where);
-						
-				}else {
-						
-						
+							$funcion = "ins_actualizar_etapas_juicios";
+							$parametros = "'$_id_juicios','$_id_etapas_juicios', '$_usuario_registra'";
+							$etapas_juicios->setFuncion($funcion);
+							$etapas_juicios->setParametros($parametros);
+							$resultado=$etapas_juicios->Insert();
+							
+						} catch (Exception $e)
+						{
+							$this->view("Error",array(
+									"resultado"=>"Eror al Asignar ->". $id
+							));
+						}
+							
+					}
 	
-					$funcion = "ins_etapas_juicios";
-	
-					$parametros = " '$_nombre_etapas'  ";
-						
-					$etapas_juicios->setFuncion($funcion);
-	
-					$etapas_juicios->setParametros($parametros);
-	
-	
-					$resultado=$etapas_juicios->Insert();
-						
-					$traza=new TrazasModel();
-					$_nombre_controlador = "Etapas Juicios";
-					$_accion_trazas  = "Guardar";
-					$_parametros_trazas = $_nombre_etapas;
-					$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 				}
+				$traza=new TrazasModel();
+				$_nombre_controlador = "EtapasJuicios";
+				$_accion_trazas  = "Guardar";
+				$_parametros_trazas = $_id_juicios;
+				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+	
 	
 			}
-			$this->redirect("EtapasJuicios", "index");
+				
 	
+			$this->redirect("EtapasJuicios", "consulta_juicios");
+	
+				
 		}
 		else
 		{
 			$this->view("Error",array(
-						
-					"resultado"=>"No tiene Permisos de Actualizar Etapas Juicios"
+					"resultado"=>"No tiene Permisos para Actualizar Etapas Juicios"
 	
 			));
-	
 	
 		}
 	
 	}
+	
 	
 	
 	public function consulta_juicios(){
@@ -289,9 +283,6 @@ class EtapasJuiciosController extends ControladorBase{
 		
 		$etapa_juicios = new EtapasJuiciosModel();
 		$resultEtapas =$etapa_juicios->getAll("nombre_etapas");
-		
-		
-		
 		
 		
 		
@@ -398,6 +389,12 @@ class EtapasJuiciosController extends ControladorBase{
 					$resultSet=$citaciones->getCondiciones($columnas ,$tablas , $where_to, $id);
 	
 	
+				}
+				
+				if(isset($_POST["actualizar"])){
+				
+					$id_ciudad=$_POST['id_etapas_juicios'];
+				  
 				}
 	
 	

@@ -111,6 +111,33 @@
 		});
 
 	</script>
+	
+	<script >
+        $(document).ready(function() {
+		$('#actualizar').click(function(){
+	        var selected = '';  
+	          
+	        $('.marcados').each(function(){
+	            if (this.checked) {
+	                selected +=$(this)+' esta '+$(this).val()+', ';
+	            }
+	        }); 
+
+	        if (selected != '') {
+	            return true;
+	        }
+	        else{
+	            alert('Debes seleccionar un Juicio.');
+	            return false;
+	        }
+
+
+	      
+	    }); 
+
+	});
+	</script>
+	
 	<script>
 	$(document).ready(function(){
 			$("#fecha_hasta").change(function(){
@@ -134,11 +161,21 @@
         </script>
        
        
-			 <script languaje="javascript">
-			function ocultar(id_juicios) {
-			document.all[id_juicios].style.display = "checkbox";
-			}
-			</script>
+			<script>
+    $(document).ready(function(){
+        $("#marcar_todo").change(function () {
+            if ($(this).is(':checked')) {
+               
+                $(".marcados").prop('checked', true); 
+            } else {
+                
+                $("input:checkbox").prop('checked', false);
+                $("input[type=checkbox]").prop('checked', false);
+            }
+        });
+        });
+    </script>
+    
     
     
     
@@ -247,7 +284,10 @@
 		 </div>
 		</div>
         	
-		 </div>
+		
+		 
+		 
+		  <div class="row">
 		 <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Etapas:</p>
 			  	<select name="id_etapas_juicios" id="id_etapas_juicios" class="form-control">
@@ -255,10 +295,18 @@
 			  	<option value="<?php echo $res1->id_etapas_juicios; ?>" ><?php echo $res1->nombre_etapas; ?> </option>
 			  	<?php } ?>
 			  	</select>
-			  		<input type="submit" value="Actualizar" id="actualizar" name="actualizar" class="btn btn-success" style="margin-top: 10px;"/>
+			  	
+			  	
 		   		 	
 		 </div>
+		  <div class="col-xs-12 col-md-3">
+			  <p  class="formulario-subtitulo" style="color: #ffffff;" >--</p>
+  		     <input type="submit" id="actualizar" name="actualizar"  onclick="this.form.action='<?php echo $helper->url("EtapasJuicios","ActualizarEtapasJuicios"); ?>'" class="btn btn-success" value="Actualizar" class="btn btn-default"/>
+			
+  		    </div>
+		 </div>
 		 
+		 </div>
 			 
 		 <div class="col-lg-12">
 		 
@@ -274,7 +322,7 @@
 		 <section class="" style="height:300px;overflow-y:scroll;">
         <table class="table table-hover ">
 	         <tr >
-	             <th style="color:#456789;font-size:80%;"></th>
+	             <th style="color:#456789;font-size:80%;"><input type="checkbox" id="marcar_todo" class="checkbox"> </th>
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
 	    		<th style="color:#456789;font-size:80%;">Coactivad@</th>
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
@@ -285,7 +333,6 @@
 	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
 	    		<th style="color:#456789;font-size:80%;">Secretario</th>
 	    		<th style="color:#456789;font-size:80%;">Etapa</th>
-	    		 
 	    		<th style="color:#456789;font-size:80%;">Tipo Juicio</th>
 	    		<th style="color:#456789;font-size:80%;">Fecha Emision</th>
 	    		<th style="color:#456789;font-size:80%;">Total</th>
@@ -295,9 +342,8 @@
             
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
 	        		<tr>
-	        		
-	        		   
-	        		   <td> <input type="checkbox" name="id_juicios" id="id_juicios" class="marcados" value="<?php echo $res->id_juicios; ?>" ocultar();></th>
+	        	       <th style="color:#456789;font-size:80%;"><input type="checkbox" id="id_juicios[]"   name="id_juicios[]"  value="<?php echo $res->id_juicios; ?>" class="marcados"></th>
+	                
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_juicios; ?></td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
@@ -307,11 +353,9 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?>     </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->impulsores; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->secretarios; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_juicios; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_etapas; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>     </td> 
-		             
-		               
 		               <td>
 			           		<div class="right">
 			           			<a href="/FrameworkMVC/view/ireports/ContJuiciosSubReport.php?id_juicios=<?php echo $res->id_juicios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:70%;">Ver</a>
@@ -320,7 +364,7 @@
 			          </td>  
 		    		</tr>
 		        <?php } }  ?>
-           
+              
        	</table>     
         </section>
       
