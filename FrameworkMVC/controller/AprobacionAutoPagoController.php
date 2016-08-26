@@ -1,7 +1,5 @@
 <?php
 
-require_once 'config/global.php';
-
 class AprobacionAutoPagoController extends ControladorBase{
 
 	public function __construct() {
