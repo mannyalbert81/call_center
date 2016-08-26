@@ -3,9 +3,8 @@
 <html lang="es">
 
       <head>
-      
         <meta charset="utf-8"/>
-        <title>Avoco Conocimiento - Coactiva 2016</title>
+        <title>Avoco Conocimiento General- Coactiva 2016</title>
         
          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -26,6 +25,8 @@
 		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
 		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
 		<link rel="stylesheet" href="view/css/themes/alertify.de43fault.css" />
+		
+		<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 		
 		<script>
             function Ok(){
@@ -196,7 +197,7 @@
                     	 	 };
              
             	
-         	   	$.post("<?php echo $helper->url("AvocoConocimiento","returnImpulsoresxSecretario"); ?>", datos, function(resultado) {
+         	   	$.post("<?php echo $helper->url("AvocoConocimientoGeneral","returnImpulsoresxSecretario"); ?>", datos, function(resultado) {
 
          		 		$.each(resultado, function(index, value) {
             		 	    $ddl_impulsor.append("<option value= " +value.id_abogado +" >" + value.impulsores  + "</option>");	
@@ -222,8 +223,6 @@
 	</script>
 	
 	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-	
-	  
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -231,8 +230,6 @@
        <?php include("view/modulos/modal.php"); ?>
        <?php include("view/modulos/head.php"); ?>
        <?php include("view/modulos/menu.php"); ?>
-       
-       
        
        <?php
        
@@ -299,13 +296,13 @@
 					 
 			  </div>
 			     <br>
-			</div>
+			 </div>
     
      
      
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("AvocoConocimiento","index"); ?>" method="post" enctype="multipart/form-data">
+      <form action="<?php echo $helper->url("AvocoConocimientoGeneral","index"); ?>" method="post" enctype="multipart/form-data">
             
         <div class="col-lg-12" style="margin-top: 10px">
          
@@ -326,7 +323,7 @@
 			  
 			  <div class="col-xs-12 col-md-3">
 		     <p  class="formulario-subtitulo" >Validar:</p>
-			  <input type="submit" id="Validar" name="Validar" value="Validar"  class="btn btn-warning"/>
+			  <input type="submit" id="Validar" name="Validar" value="Validar" class="btn btn-warning"/>
 			 </div>
 			 <br>
 			 <hr>
@@ -400,17 +397,47 @@
 		    </div>
 		    </div>
 		    		
+		    	
+		    		
+		    		
 		<div class="col-xs-12 col-md-12" style="margin-top:10px">
 		 <div class="form-group">
+		      
+		      <?php  include ("view/ckeditor/ckeditor.php");
+			   $valor = "$sel_avoco";
+			   $CKEditor = new CKEditor();
+			   $config = array();
+			   $config['toolbar'] = array(
+			   	      array( 'Source', '-', 'Bold', 'Italic', 'Underline', 'Strike','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'),
+			   		  array( 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo'),
+			   	      array( 'TextColor','BGColor','-','NewPage','Maximize'),
+			   		  array( 'NumberedList','BulletedList','-','Outdent','Indent','/'),
+			   		  array( 'Styles','Format','Font','FontSize')
+			   	  );
+			  $CKEditor->basePatch = "./ckeditor/";
+			   $CKEditor->editor("avoco_vistos_documentos",$valor,$config);
+			   //$CKEditor->replaceAll();
+	           ?> 
+	           
+	          
+	          <!--  
+	          <div class="col-xs-12 col-md-12" style="margin-top:10px">
+		       
+  				<label for="comment"><?php setlocale(LC_ALL,"es_ES");  echo strftime("%A %d de %B del %Y");?></label>
+  				<textarea class="form-control" rows="8" id="avoco" name="avoco"  <?php echo $habilitar;?>><?php echo "Vistos: ".$sel_avoco;?></textarea>
+  				<div id="mensaje_avoco" class="errores"></div>
+			 
+			  </div>
+  			  -->
 		       
 	        
 		      <div class="col-xs-12 col-md-6" style="text-align: center; margin-top:10px"  >
 		      </div>
 		       <div class="col-xs-12 col-md-3" style="text-align: center; margin-top:10px"  >
-			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php  echo $helper->url("AvocoConocimiento","InsertaAvoco"); ?>'" value="Guardar" class="btn btn-success" <?php echo $habilitar;?>/>
+			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php  echo $helper->url("AvocoConocimientoGeneral","InsertaAvocoGeneral"); ?>'" value="Guardar" class="btn btn-success" <?php echo $habilitar;?>/>
 			  </div>
 			   <div class="col-xs-12 col-md-3" style="text-align: center; margin-top:10px" >
-			 <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php echo $helper->url("AvocoConocimiento","VisualizarAvoco"); ?>'" value="Visualizar" class="btn btn-info" <?php echo $habilitar;?>/>
+			 <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php echo $helper->url("AvocoConocimientoGeneral","VisualizarAvocoGeneral"); ?>'" value="Visualizar" class="btn btn-info" <?php echo $habilitar;?>/>
 			 </div>
 			 
 			 <div class="col-xs-6 col-md-12" style="margin-top:50px">

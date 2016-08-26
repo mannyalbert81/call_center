@@ -202,6 +202,7 @@
        <?php
        
        $sel_id_ciudad = "";
+       $sel_tipo_documento ="";
        $sel_id_secretario = "";
        $sel_id_impulsor = "";
        $sel_identificacion="";
@@ -213,19 +214,18 @@
        if($_SERVER['REQUEST_METHOD']=='POST' )
        {
        
-       
-       	$sel_id_ciudad = $_POST['id_ciudad'];
-       	$sel_id_secretario = $_POST['id_secretario'];
-       	$sel_id_impulsor = $_POST['id_impulsor'];
-       	$sel_identificacion=$_POST['identificacion'];
-       	$sel_numero_juicio=$_POST['numero_juicio'];
+       	$sel_id_ciudad = 			$_POST['id_ciudad'];
+       	$sel_tipo_documento = 		$_POST['tipo_documento'];
+       	$sel_id_secretario = 		$_POST['id_secretario'];
+       	$sel_id_impulsor = 			$_POST['id_impulsor'];
+       	$sel_identificacion=		$_POST['identificacion'];
+       	$sel_numero_juicio=			$_POST['numero_juicio'];
       
-       	$sel_fecha_desde=$_POST['fecha_desde'];
-       	$sel_fecha_hasta=$_POST['fecha_hasta'];
-       	 
-       }
+       	$sel_fecha_desde=			$_POST['fecha_desde'];
+       	$sel_fecha_hasta=			$_POST['fecha_hasta'];
        
-     	?>
+       }
+       ?>
  
   
   <div class="container">
@@ -334,11 +334,8 @@
 		</div>
         	
 		 </div>
-		 
-		 
 		 <div class="col-lg-12">
-		 
-	     <div class="col-lg-12">
+		 <div class="col-lg-12">
 		 <div class="col-lg-10"></div>
 		 <div class="col-lg-2">
 		 <span class="form-control"><strong>Registros:</strong><?php if(!empty($resultSet)) echo "  ".count($resultSet);?></span>
@@ -379,7 +376,6 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_persona_recibe_citaciones; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->relacion_cliente_citaciones; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
-		            
 		               <td style="color:#000000;font-size:80%;">
 		               <a href="<?php echo $helper->url("ConsultaCordinador","abrirPdf_citaciones"); ?>&id=<?php echo $res->id_citaciones; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
 		               </td> 
@@ -398,9 +394,6 @@
 		    		<th style="color:#456789;font-size:80%;">secretarios</th>
 		    		<th style="color:#456789;font-size:80%;">Fecha Emisión</th>
 		    		<th style="color:#456789;font-size:80%;">Hora Emision</th>
-		    		 
-		    		 
-		    		 
 		    		<th></th>
 		    		<th></th>
 		    		</tr>
@@ -408,9 +401,7 @@
 		    		<?php 
 		    		
 		    		foreach($resultProv as $res) {   ?>
-
-			
-	  		
+		
                		<tr>
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_documentos; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>     </td> 
@@ -441,9 +432,7 @@
 	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
 	    		<th style="color:#456789;font-size:80%;">Entidades</th>
 	    		<th style="color:#456789;font-size:80%;">Creado</th>
-	
-	   
-					
+	             	
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
@@ -485,7 +474,7 @@
 	  		</tr>
 		    		<?php foreach($resultAvoCono as $res) {   ?>
 
-				               		<tr>
+				     <tr>
 	        		   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_avoco_conocimiento; ?></td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
@@ -555,7 +544,7 @@
             			<td></td>
             			<td colspan="5" style="color:#ec971f;font-size:8;" style="text-aling:center";> <?php echo '<span id="snResult">NO EXISTE DATOS PARA ESOS FILTROS</span>' ?></td>
 	       				
-		    	   </tr>
+		   </tr>
 		    		
 		    		<?php } ?>
                
@@ -575,8 +564,7 @@
 </ul>                       
  </div>
 
-
-       </form>
+      </form>
      
       </div>
      

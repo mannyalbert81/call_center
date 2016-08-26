@@ -1,5 +1,5 @@
  <?php
-class AvocoConocimientoController extends ControladorBase{
+class AvocoConocimientoGeneralController extends ControladorBase{
     
     public function __construct() {
         parent::__construct();
@@ -30,7 +30,7 @@ public function index(){
 			$documentos = new DocumentosModel();
 			
 			
-			$nombre_controladores = "Avoco";
+			$nombre_controladores = "AvocoConocimientoGeneral";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $documentos->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
@@ -58,12 +58,12 @@ public function index(){
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Avoco Conocimiento"
+						"resultado"=>"No tiene Permisos de Acceso a Avoco Conocimiento General"
 				));
 				exit();
 			}
 			
-			$this->view("AvocoConocimiento",array(
+			$this->view("AvocoConocimientoGeneral",array(
 					 "resulSecretario"=>$resulSecretario,"resulSet"=>$resulSet, "resultDatos"=>$resultDatos
 			
 			));
@@ -77,7 +77,7 @@ public function index(){
 		}
 	}
 	
-	public function InsertaAvoco(){
+	public function InsertaAvocoGeneral(){
 		
 		
 		session_start();
@@ -85,7 +85,7 @@ public function index(){
 		$avoco = new AvocoConocimientoModel();
 		
 		$juicio = new  JuiciosModel();
-		$nombre_controladores = "Avoco";
+		$nombre_controladores = "AvocoConocimientoGeneral";
 		$id_rol= $_SESSION['id_rol'];
 		$resultPer = $avoco->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 		$id_usuario=$_SESSION['id_usuarios'];
@@ -168,7 +168,7 @@ public function index(){
 				setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
 				</script>";
 				
-				print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index');</script>");
+				print("<script>window.location.replace('index.php?controller=AvocoConocimientoGeneral&action=index');</script>");
 			   
 			   }else
 				{
@@ -180,7 +180,7 @@ public function index(){
 					setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoSinGaranteReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_documento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
 					</script>";
 					
-					print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index');</script>");
+					print("<script>window.location.replace('index.php?controller=AvocoConocimientoGeneral&action=index');</script>");
 					
 		
 				}
@@ -198,7 +198,7 @@ public function index(){
 				
           }
 	
-          public function VisualizarAvoco(){
+          public function VisualizarAvocoGeneral(){
           
           	session_start();
           
@@ -307,7 +307,7 @@ public function index(){
           		setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoSinGaranteReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
           		</script>";
           		
-          		print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index&dato=$resultArray');</script>");
+          		print("<script>window.location.replace('index.php?controller=AvocoConocimientoGeneral&action=index&dato=$resultArray');</script>");
           		
           
           	}
@@ -320,7 +320,7 @@ public function index(){
           		setTimeout(window.open('http://$host$uri/view/ireports/ContAvocoReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
           		</script>";
           		
-          		print("<script>window.location.replace('index.php?controller=AvocoConocimiento&action=index&dato=$resultArray');</script>");
+          		print("<script>window.location.replace('index.php?controller=AvocoConocimientoGeneral&action=index&dato=$resultArray');</script>");
           		
           		
           

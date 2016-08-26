@@ -20,6 +20,7 @@ $estado=$_GET['estado'];
 		if ($estado == 'Visualizar') 
 		{
 			
+			
 			$a=stripslashes($_GET['dato']);
 				
 			$_dato=urldecode($a);
@@ -38,12 +39,7 @@ $estado=$_GET['estado'];
 				
 			$PHPJasperXML->outpage ( "I" );
 				
-			
-			
-		
-			
 
-	
 		} else 
 		{
 			
@@ -103,8 +99,6 @@ $estado=$_GET['estado'];
            echo "window.close()";
            echo "</script>";
            exit();
-           
-       
 
 ?>
 

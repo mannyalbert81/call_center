@@ -21,7 +21,6 @@ $controladores=$_SESSION['controladores'];
  	return $display;
  }
 
- 
 ?>
 
 
@@ -104,7 +103,6 @@ $controladores=$_SESSION['controladores'];
 			 <li style="<?php echo getcontrolador("Clientes",$controladores) ?>">
             <a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Clientes</span> </a>
 			</li>
-			
 			
 </ul>
 </li>
@@ -230,8 +228,6 @@ $controladores=$_SESSION['controladores'];
 </ul>
 </li>
       
-
-      
 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Documentos" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -244,8 +240,11 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("ConsultaDocumentosSecretarios",$controladores) ?>">
           <a href="index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Providencias Secretarios</span> </a>           
           </li>
-           <li style="<?php echo getcontrolador("Avoco",$controladores) ?>">
+          <li style="<?php echo getcontrolador("Avoco",$controladores) ?>">
           <a href="index.php?controller=AvocoConocimiento&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Avoco Conocimiento</span> </a>           
+          </li>
+          <li style="<?php echo getcontrolador("AvocoConocimientoGeneral",$controladores) ?>">
+          <a href="index.php?controller=AvocoConocimientoGeneral&action=index"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Avoco Conocimiento General</span> </a>           
           </li>
           
           <li style="<?php echo getcontrolador("ConsultaAvocoImpulsores",$controladores) ?>">
@@ -256,6 +255,7 @@ $controladores=$_SESSION['controladores'];
           </li>
 </ul>
 </li>
+
 <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Reportes" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -280,7 +280,6 @@ $controladores=$_SESSION['controladores'];
             </li>
 </ul>
 </li>
-
 </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
