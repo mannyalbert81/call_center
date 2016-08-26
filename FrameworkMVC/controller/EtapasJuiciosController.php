@@ -197,7 +197,6 @@ class EtapasJuiciosController extends ControladorBase{
 		session_start();
 	
 		$resultado = null;
-	   
 		$notificaciones = new NotificacionesModel();
 		$tipo_notificacion = new TipoNotificacionModel();
 		$permisos_rol=new PermisosRolesModel();
@@ -236,21 +235,31 @@ class EtapasJuiciosController extends ControladorBase{
 							$etapas_juicios->setParametros($parametros);
 							$resultado=$etapas_juicios->Insert();
 							
+							
+							$traza=new TrazasModel();
+							$_nombre_controlador = "EtapasJuicios";
+							$_accion_trazas  = "Guardar";
+							$_parametros_trazas = $_id_juicios;
+							$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+							
+							
+							
+							$res=$etapas_juicios->UpdateBy("id_etapas_juicios='$_id_etapas_juicios'", "juicios", "id_juicios='$_id_juicios'");
+							
+							
 						} catch (Exception $e)
 						{
 							$this->view("Error",array(
 									"resultado"=>"Eror al Asignar ->". $id
 							));
 						}
+						
+					
 							
 					}
 	
 				}
-				$traza=new TrazasModel();
-				$_nombre_controlador = "EtapasJuicios";
-				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_id_juicios;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+				
 	
 	
 			}

@@ -170,6 +170,9 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("ConsultaCordinador",$controladores) ?>">
           <a href="index.php?controller=ConsultaCordinador&action=consulta_cordinador"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Cordinador</span> </a>
           </li>
+          <li style="<?php echo getcontrolador("ConsultaRazon",$controladores) ?>">
+          <a href="index.php?controller=ConsultaRazon&action=consulta_razon"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Consulta Razon</span> </a>
+          </li>
 </ul>
 </li>
 
@@ -253,6 +256,7 @@ $controladores=$_SESSION['controladores'];
           <li style="<?php echo getcontrolador("ConsultaAvocoSecretarios",$controladores) ?>">
           <a href="index.php?controller=ConsultaAvocoSecretarios&action=consulta_secretarios_avoco"><span class=" glyphicon glyphicon-console" aria-hidden="true"> Firmar Avoco Secretarios</span> </a>           
           </li>
+         
 </ul>
 </li>
 

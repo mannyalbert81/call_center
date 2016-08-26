@@ -161,23 +161,57 @@
         </script>
        
        
-			<script>
+      <script>
+       $(document).ready(function(){
+
+    	   $("#id_etapas_juicios").prop("disabled","disabled");
+    	   $("#actualizar").prop("disabled","disabled");
+          
+ 
+
+            $(".marcados").click(function(){
+
+            	var cant = $("input:checked").length;
+            	
+                if(cant!=0)
+                {
+            	 $("#id_etapas_juicios").prop("disabled","");
+          	     $("#actualizar").prop("disabled","");
+                 0
+                }else
+                    {
+                	  $("#id_etapas_juicios").prop("disabled","disabled");
+               	      $("#actualizar").prop("disabled","disabled");
+                     
+                    }
+                
+                });
+ 	 });
+       </script>
+       
+        <script >
     $(document).ready(function(){
+        
         $("#marcar_todo").change(function () {
             if ($(this).is(':checked')) {
                
                 $(".marcados").prop('checked', true); 
+                $("#id_etapas_juicios").prop("disabled","");
+         	     $("#actualizar").prop("disabled","");
+               
+
+                
             } else {
                 
                 $("input:checkbox").prop('checked', false);
                 $("input[type=checkbox]").prop('checked', false);
+                $("#id_etapas_juicios").prop("disabled","disabled");
+         	      $("#actualizar").prop("disabled","disabled");
+               
             }
         });
         });
-    </script>
-    
-    
-    
+	</script>
     
     </head>
     <body style="background-color: #d9e3e4;">
@@ -273,8 +307,8 @@
 		</div>
 		<td style="color:#000000;font-size:75%;"></td> 
 		 
-  			</div>
-  		<div class="col-lg-12" style="text-align: center; margin-bottom: 20px">
+  		
+  		<div class="col-lg-12" style="text-align: center; margin-bottom: 10px">
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-warning " onClick="notificacion()" style="margin-top: 10px;"/> 	
 		
 		<?php if(!empty($resultSet))  {?>
@@ -283,12 +317,13 @@
 		  <?php } ?>
 		 </div>
 		</div>
-        	
+        	</div>	
 		
 		 
+		  <div class="panel panel-default" >
+  			<div class="panel-body" >
 		 
-		  <div class="row">
-		 <div class="col-xs-2">
+		 <div class="col-xs-3" >
 			  	<p  class="formulario-subtitulo" style="" >Etapas:</p>
 			  	<select name="id_etapas_juicios" id="id_etapas_juicios" class="form-control">
 			  	<?php foreach($resultEtapas as $res1) {?>
@@ -299,13 +334,14 @@
 			  	
 		   		 	
 		 </div>
-		  <div class="col-xs-12 col-md-3">
+		  <div class="col-xs-3 col-md-3">
 			  <p  class="formulario-subtitulo" style="color: #ffffff;" >--</p>
   		     <input type="submit" id="actualizar" name="actualizar"  onclick="this.form.action='<?php echo $helper->url("EtapasJuicios","ActualizarEtapasJuicios"); ?>'" class="btn btn-success" value="Actualizar" class="btn btn-default"/>
 			
-  		    </div>
+  		
 		 </div>
-		 
+		  </div>
+	    </div>
 		 </div>
 			 
 		 <div class="col-lg-12">
@@ -368,8 +404,9 @@
        	</table>     
         </section>
       
-        </div>
-	    </div>
+       
+	     </div>
+		</div>
 		</form>
      
       </div>
