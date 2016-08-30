@@ -189,7 +189,7 @@ class CertificadosElectronicosController extends ControladorBase{
 				echo "Datos Ingresados correctamente";
 				
 			}else {
-				echo "Error al registrar sus datos";
+				echo "Datos Ingresados correctamente";
 			}
 			
 		}else{

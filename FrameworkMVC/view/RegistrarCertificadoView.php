@@ -79,15 +79,14 @@
        <?php include("view/modulos/menu.php"); ?>
       
        <?php
+	   $id_usuario="";
+	   print_r($id_usuario);
+	   
        if($resultUsuario!="")
-       {
-       $id_usuario=$resultUsuario;
-       }else{
-       $id_usuario="";
-       }
+	   {
+		   $id_usuario=$resultUsuario;
+	   }
 		?>
-
-
 
   
   <div class="container">
@@ -147,12 +146,12 @@
 		   
 		    	
 		    	 <div class="row">
+				 
 		    	<div class="col-xs-6 col-md-6">
-				  
-				<applet code="verfirma.Certificados.class" archive="Certificados.jar" codebase="http://186.4.241.148:4000/FrameworkMVC/view/" type="application/x-java-applet;jpi-version=7" width="600" height="300">
+				
+				<applet code="verfirma.Certificados.class" archive="Certificados.jar" codebase="http://186.4.241.148:4000/FrameworkMVC/view/applets" type="application/x-java-applet;jpi-version=7" width="1100" height="300">
 				<param name="idUsuario" value="<?php echo $id_usuario; ?>">
 				</applet>
-				
 		    	
 		         </div>
 		         
@@ -163,52 +162,10 @@
 		
     </form>
        
-        <div class="col-lg-6">
-            <h4 style="color:#ec971f;"></h4>
-            <hr/>
-        </div>
-        <section class="col-lg-6 usuario" style="height:400px;overflow-y:scroll;">
-        
-        	<table class="table table-hover">
-	         <tr>
-	    		
-	    		
-	    		
-	  		</tr>
-                <?php $registros = 1;?>
-                 <?php if($resultSet!=""){ foreach($resultSet as $res) {?>
-	        		<tr>
-	        		   <td> <?php echo $registros; ?>  </td>
-		               <td> <?php echo $res->nombre_usuarios; ?>     </td> 
-		               <td> <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->id_firmas_digitales; ?>&id_nombre=id_firmas_digitales&tabla=firmas_digitales&campo=imagen_firmas_digitales"  alt="<?php echo $res->id_usuarios; ?>" width="80" height="60" >      </td>
-		               <td>
-			           		<div class="right">
-			                    <a href="<?php echo $helper->url("FirmasDigitales","index"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Editar</a>
-			                </div>
-			            
-			             </td>
-			             <td>   
-			                	<div class="right">
-			                    <a href="<?php echo $helper->url("FirmasDigitales","borrarId"); ?>&id_firmas_digitales=<?php echo $res->id_firmas_digitales; ?>" class="btn btn-danger" onClick="Borrar()" style="font-size:65%;">Borrar</a>
-			                </div>
-			                <hr/>
-		               </td>
-		    		</tr>
-		    		<?php $registros ++?>
-		        <?php } }?>
+       
             
-            <?php 
             
-            //echo "<script type='text/javascript'> alert('Hola')  ;</script>";
-            
-            ?>
-            
-       	</table>     
-        	
-        
-        
-        </section>
-       </div>
+       
  
   </div>
        
