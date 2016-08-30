@@ -79,8 +79,12 @@
        <?php include("view/modulos/menu.php"); ?>
       
        <?php
-       
-        
+       if($resultUsuario!="")
+       {
+       $id_usuario=$resultUsuario;
+       }else{
+       $id_usuario="";
+       }
 		?>
 
 
@@ -144,10 +148,11 @@
 		    	
 		    	 <div class="row">
 		    	<div class="col-xs-6 col-md-6">
-				
-				<applet code="" archive="" width="" height="">
-				
+				<!--  
+				<applet code="verfirma.Certificados.class" archive="Certificados.jar" codebase="http://186.4.241.148:4000/FrameworkMVC/view/" type="application/x-java-applet;jpi-version=7" width="600" height="300">
+				<param name="idUsuario" value="<?php echo $id_usuario; ?>">
 				</applet>
+				-->
 		    	
 		         </div>
 		         

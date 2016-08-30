@@ -34,7 +34,7 @@ class CertificadosElectronicosController extends ControladorBase{
 			if (!empty($resultPer))
 			{
 				
-				
+				$resultUsuario=$_SESSION['id_usuarios'];
 				
 				
 				
@@ -42,21 +42,7 @@ class CertificadosElectronicosController extends ControladorBase{
 					
 					
 					
-					$comando='start "" /b "C:\CertificadosDigitales\registrar\RegistrarCertificado.exe" ';
-						
-					$comando_esc = escapeshellcmd($comando);
-						
-					exec($comando_esc,$resultadoSalida,$ejecucion);
-						
-					//echo "valor estatus de la aplicacion en C# ".$ejecucion."<br>(0=> la aplicacion se ejecuto exitosamente)<br> (1=>la aplicacion no se ejecuto correctamente ocurrio algun error)<br>";
-						
-					if(count($resultadoSalida)>0)
-					{
-						$resultCertificado=$resultadoSalida;
 					
-					}else{
-							
-					}
 					
 				}
 				
@@ -67,8 +53,8 @@ class CertificadosElectronicosController extends ControladorBase{
 				
 				
 				
-				$this->view("CertificadosElectronicos",array(
-						"resultSet"=>$resultSet,"resultEdit"=>$resultEdit,"resultCertificado"=>$resultCertificado
+				$this->view("RegistrarCertificado",array(
+						"resultSet"=>$resultSet,"resultUsuario"=>$resultUsuario,"resultCertificado"=>$resultCertificado
 			
 				));
 		
@@ -172,6 +158,42 @@ class CertificadosElectronicosController extends ControladorBase{
 			));
 		
 		
+		}
+		
+	}
+	
+	public function registrar_certificado()
+	{
+		$certificado = new CertificadosModel();
+		$consulta=array();
+		
+		if(isset($_POST['certificado'])&&isset($_POST['mac'])&&isset($_POST['id_usuario']))
+		{
+			
+			$dato_certificado=$_POST['certificado'];
+			$dato_mac=$_POST['mac'];
+			$dato_usuario=$_POST['id_usuario'];
+			
+			$funcion="ins_certificado_electronico";
+			$parametros="'$dato_usuario','$dato_mac','$dato_certificado'";
+			
+			$certificado->setFuncion($funcion);
+			$certificado->setParametros($parametros);
+			
+			$resultado=$certificado->Insert();
+			
+			$consulta=$certificado->getBy("id_usuarios_certificado_digital='$dato_usuario'");
+			
+			if (!empty($consulta)){
+				
+				echo "Datos Ingresados correctamente";
+				
+			}else {
+				echo "Error al registrar sus datos";
+			}
+			
+		}else{
+			echo "Error al enviar sus datos ";
 		}
 		
 	}
