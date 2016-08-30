@@ -64,26 +64,7 @@
             
         </style>
        
-    <script>
-	$(document).ready(function(){
-		$("#buscar").click(function(){
-			var criterio=$("#criterio_busqueda").val();
-			var contenido=$("#contenido_busqueda").val();
-
-			if(contenido==''){
-				$("#mensaje_contenido_busqueda").text("Ingrese Contenido a buscar");
-	    		$("#mensaje_contenido_busqueda").fadeIn("slow"); 
-	            return false;
-				}else{
-				return true;
-					}
-			});
-		$( "#contenido_busqueda" ).focus(function() {
-			  $("#mensaje_contenido_busqueda").fadeOut("slow");
-		    });
-	
-		});
-    </script>
+  
     
     </head>
     <body style="background-color: #d9e3e4;">

@@ -6,12 +6,9 @@ class AutoPagosController extends ControladorBase{
 		parent::__construct();
 	}
 
-
-
 	public function index(){
 	
 		session_start();
-	
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
@@ -158,8 +155,6 @@ class AutoPagosController extends ControladorBase{
 								//id_titulo de credito
 								$where_2 = " AND  titulo_credito.id_titulo_credito = '$contenido_busqueda'  ";
 								break;
-								
-							
 						}
 					
 					

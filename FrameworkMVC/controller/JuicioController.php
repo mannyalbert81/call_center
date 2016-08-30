@@ -6,8 +6,6 @@ class JuicioController extends ControladorBase{
 		parent::__construct();
 	}
 
-
-
 	public function index(){
 	
 		session_start();
@@ -121,11 +119,7 @@ class JuicioController extends ControladorBase{
 							
 					}
 					
-					
 			
-					
-				
-					
 					$this->view("Juicio",array(
 							
 							 "resultEdit"=>$resultEdit, "resultSet"=>$resultSet
@@ -537,15 +531,15 @@ class JuicioController extends ControladorBase{
 			
 		$resultDatos=$ciudad->getCondiciones($columnas ,$tablas ,$where, $id);
 	
-		$citaciones = new CitacionesModel();
+		$juicios = new JuiciosModel();
 	
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$permisos_rol = new PermisosRolesModel();
-			$nombre_controladores = "Citaciones";
+			$nombre_controladores = "Juicio";
 			$id_rol= $_SESSION['id_rol'];
-			$resultPer = $citaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+			$resultPer = $juicios->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 	
 			if (!empty($resultPer))
 			{
@@ -619,25 +613,225 @@ class JuicioController extends ControladorBase{
 	
 	
 					$resultSet=$citaciones->getCondiciones($columnas ,$tablas , $where_to, $id);
+	        }
 	
-	
-				}
-	
-	
-	
-	
-				$this->view("ConsultaJuicios",array(
+	            $this->view("ConsultaJuicios",array(
 						"resultSet"=>$resultSet,"resultDatos"=>$resultDatos
 							
 				));
-	
 	
 	
 			}
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Citaciones"
+						"resultado"=>"No tiene Permisos de Acceso a Consulta Juicios"
+	
+				));
+	
+				exit();
+			}
+	
+		}
+		else
+		{
+			$this->view("ErrorSesion",array(
+					"resultSet"=>""
+	
+			));
+	
+		}
+	
+	}
+	
+	
+	
+	public function consulta_seguimiento_juicio(){
+	
+		session_start();
+	
+		//Creamos el objeto usuario
+		$resultSet="";
+	
+		$ciudad = new CiudadModel();
+	
+	
+		$_id_usuarios= $_SESSION["id_usuarios"];
+	    $columnas = " usuarios.id_ciudad,
+					  ciudad.nombre_ciudad,
+					  usuarios.nombre_usuarios";
+		$tablas   = "public.usuarios,
+                     public.ciudad";
+		$where    = "ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuarios'";
+		$id       = "usuarios.id_ciudad";
+	    $resultDatos=$ciudad->getCondiciones($columnas ,$tablas ,$where, $id);
+	
+		$juicios = new JuicioModel();
+	
+	
+		if (isset(  $_SESSION['usuario_usuarios']) )
+		{
+			$permisos_rol = new PermisosRolesModel();
+			$nombre_controladores = "Juicio";
+			$id_rol= $_SESSION['id_rol'];
+			$resultPer = $juicios->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+	
+			if (!empty($resultPer))
+			{
+					
+				if(isset($_POST["buscar"])){
+	 
+				    //RESULT CITACIONES IMPULSORES
+					$citaciones= new CitacionesModel();
+					
+					$columnas_citaciones = "citaciones.id_citaciones,
+					juicios.id_juicios,
+  					juicios.juicio_referido_titulo_credito,
+ 					clientes.nombres_clientes,
+  					clientes.identificacion_clientes,
+  					citaciones.fecha_citaciones,
+  					ciudad.nombre_ciudad,
+  					ciudad.id_ciudad,
+  					tipo_citaciones.id_tipo_citaciones,
+  					tipo_citaciones.nombre_tipo_citaciones,
+  					citaciones.nombre_persona_recibe_citaciones,
+  					citaciones.relacion_cliente_citaciones,
+  					usuarios.nombre_usuarios";
+					
+					$tablas_citaciones=" public.citaciones,
+  					public.juicios,
+  					public.ciudad,
+  					public.tipo_citaciones,
+  					public.usuarios,
+  					public.clientes";
+					
+					$where_citaciones="juicios.id_juicios = citaciones.id_juicios AND
+					ciudad.id_ciudad = citaciones.id_ciudad AND
+					tipo_citaciones.id_tipo_citaciones = citaciones.id_tipo_citaciones AND
+					usuarios.id_usuarios = citaciones.id_usuarios AND
+					clientes.id_clientes = juicios.id_clientes";
+					
+					$id_citaciones="citaciones.id_citaciones";
+					
+					$result_citaciones=$citaciones->getCondiciones($columnas_citaciones ,$tablas_citaciones , $where_citaciones, $id_citaciones);
+				
+				
+				   //CONSULTA DOCUMENTOS IMPULSORES
+				
+					$documentos_impulsores=new DocumentosModel();
+					
+					$columnas_documentos_impulsores = "documentos.id_documentos,
+					ciudad.nombre_ciudad,
+					juicios.juicio_referido_titulo_credito,
+					clientes.nombres_clientes,
+					clientes.identificacion_clientes,
+					estados_procesales_juicios.nombre_estado_procesal_juicios,
+				    documentos.fecha_emision_documentos,
+					documentos.hora_emision_documentos,
+					documentos.detalle_documentos,
+					documentos.observacion_documentos,
+					documentos.avoco_vistos_documentos,
+					documentos.ruta_documento,
+					documentos.nombre_documento,
+					usuarios.id_usuarios,
+					usuarios.nombre_usuarios,
+					usuarios.imagen_usuarios";
+					
+					$tablas_documentos_impulsores=" public.documentos,
+					public.ciudad,
+					public.juicios,
+					public.usuarios,
+					public.clientes,
+					public.estados_procesales_juicios";
+					
+					$where_documentos_impulsores= "ciudad.id_ciudad = documentos.id_ciudad AND
+					juicios.id_juicios = documentos.id_juicio AND
+					usuarios.id_usuarios = documentos.id_usuario_registra_documentos AND
+					clientes.id_clientes = juicios.id_clientes AND
+					estados_procesales_juicios.id_estados_procesales_juicios = documentos.id_estados_procesales_juicios";
+							
+					$id_documentos_impulsores= "documentos.id_documentos";
+				
+				    $result_documentos_impulsores=$documentos_impulsores->getCondiciones($columnas_documentos_impulsores ,$tablas_documentos_impulsores , $where_documentos_impulsores, $id_documentos_impulsores);
+						
+				    
+				    //CONSULTA OFICIOS IMPULSORES
+				
+				    $oficios= new OficiosModel();
+				    	
+				    $columnas_oficios = "oficios.id_oficios,
+					oficios.creado,
+					oficios.numero_oficios,
+					juicios.id_juicios,
+					juicios.juicio_referido_titulo_credito,
+					juicios.id_titulo_credito,
+					clientes.nombres_clientes,
+					clientes.identificacion_clientes,
+					entidades.id_entidades,
+					entidades.nombre_entidades";
+				    
+				    $tablas_oficios="public.oficios,
+					public.juicios,
+					public.entidades,
+					public.clientes,
+					public.usuarios";
+				    
+				    $where_oficios="juicios.id_juicios = oficios.id_juicios AND
+					entidades.id_entidades = oficios.id_entidades AND
+					clientes.id_clientes = juicios.id_clientes AND usuarios.id_usuarios = oficios.id_usuario_registra_oficios";
+				    
+				    $id_oficios="oficios.id_oficios";
+				    
+				    $result_oficios=$oficios->getCondiciones($columnas_oficios ,$tablas_oficios , $where_oficios, $id_oficios);
+				    
+				    
+				    //CONSULTA AVOCO CONOCIMIENTO IMPULSORES
+				    
+				    $avoco=new AvocoConocimientoModel();
+				    
+				    $columnas_avoco = "avoco_conocimiento.id_avoco_conocimiento,
+					juicios.juicio_referido_titulo_credito,
+					clientes.nombres_clientes,
+					clientes.identificacion_clientes,
+					ciudad.nombre_ciudad,
+					asignacion_secretarios_view.secretarios,
+					asignacion_secretarios_view.impulsores,
+					usuarios.nombre_usuarios,
+					avoco_conocimiento.creado";
+				    
+				    $tablas_avoco = " public.avoco_conocimiento,
+					public.juicios,
+					public.ciudad,
+					public.asignacion_secretarios_view,
+					public.clientes,
+					public.usuarios";
+				    
+				    $where_avoco= "avoco_conocimiento.id_secretario = asignacion_secretarios_view.id_secretario AND
+					avoco_conocimiento.id_impulsor = asignacion_secretarios_view.id_abogado AND
+					avoco_conocimiento.secretario_reemplazo = usuarios.id_usuarios AND
+					juicios.id_juicios = avoco_conocimiento.id_juicios AND
+					ciudad.id_ciudad = avoco_conocimiento.id_ciudad AND
+					clientes.id_clientes = juicios.id_clientes";
+				    
+				    $id_avoco="avoco_conocimiento.id_avoco_conocimiento";
+				    
+				    $result_avoco=$avoco->getCondiciones($columnas_avoco ,$tablas_avoco , $where_avoco, $id_avoco);
+				 
+				    //CONSULTA AUTOS DE PAGO
+				    
+				}
+	
+				$this->view("Juicio",array(
+						"resultSet"=>$resultSet,"resultDatos"=>$resultDatos
+							
+				));
+	
+	
+			}
+			else
+			{
+				$this->view("Error",array(
+						"resultado"=>"No tiene Permisos de Acceso a Seguimiento Juicios"
 	
 				));
 	
@@ -657,6 +851,8 @@ class JuicioController extends ControladorBase{
 	}
 	
 
+	
+	
 	
 }
 ?>      
