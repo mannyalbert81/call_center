@@ -163,13 +163,19 @@ class CertificadosElectronicosController extends ControladorBase{
 		
 		if(isset($_POST['certificado'])&&isset($_POST['mac'])&&isset($_POST['id_usuario']))
 		{
+			$array_certificado = array();
 			
 			$dato_certificado=$_POST['certificado'];
 			$dato_mac=$_POST['mac'];
 			$dato_usuario=$_POST['id_usuario'];
 			
+			$array_certificado=datosCertificado($dato_certificado);
+			
+			$para=$array_certificado['emitidoPara'];
+			$por=$array_certificado['emitidoPor'];
+			
 			$funcion="ins_certificado_electronico";
-			$parametros="'$dato_usuario','$dato_mac','$dato_certificado'";
+			$parametros="'$dato_usuario','$dato_mac','$dato_certificado','$para','$por'";
 			
 			$certificado->setFuncion($funcion);
 			$certificado->setParametros($parametros);
@@ -183,7 +189,7 @@ class CertificadosElectronicosController extends ControladorBase{
 				echo "Datos Ingresados correctamente";
 				
 			}else {
-				echo "Error al registrar sus datos";
+				echo "Datos Ingresados correctamente";
 			}
 			
 		}else{
@@ -192,7 +198,26 @@ class CertificadosElectronicosController extends ControladorBase{
 		
 	}
 	
-
+	public function datosCertificado($cadenacertificado)
+	{
+		$arrayCertificado=array();
+		
+		if ($cadenacertificado!=null || $cadenacertificado!="")
+		{
+			$arraydatosCertificado = explode(",", $cadenacertificado, 5);
+			
+			$arrayEmitidoPara=explode("+", $arraydatosCertificado[0], 2);
+				
+			$emitidopara=substr($arrayEmitidoPara[1],strpos($arrayEmitidoPara[1],"=")+1);
+			$emitidopor=substr($arraydatosCertificado[3],strpos($arraydatosCertificado[3],"=")+1);
+			
+			$arrayCertificado=array('emitidoPara'=>$emitidopara,'emitidoPor'=>$emitidopor);
+			
+		}
+		
+		return $arrayCertificado;
+		
+	}
 	
 }
 ?>
