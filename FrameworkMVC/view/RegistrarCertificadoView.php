@@ -105,7 +105,7 @@
 				 
 		    	<div class="col-xs-12 col-md-12">
 				
-				<span>
+				<span style="height: 400px">
 				!! Usted ya cuenta con certificado Registrado en el Sistema para firmar documentos
 				</span>
 		    	
