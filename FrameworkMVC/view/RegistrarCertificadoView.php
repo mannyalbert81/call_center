@@ -101,7 +101,18 @@
            
           <?php if (!empty($resultCertificado) ) { ?>
           
-          	<
+              <div class="row">
+				 
+		    	<div class="col-xs-6 col-md-6">
+				
+				<span>
+				Usted ya cuenta con certificado Registrado en el Sisteam para firmar documentos
+				</span>
+		    	
+		         </div>
+		         
+			  </div>
+          	
 		     <?php  } else {?>
 		    	
 		   
@@ -126,7 +137,7 @@
        
             
             
-       
+   </div>    
  
   </div>
        
