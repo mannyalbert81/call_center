@@ -19,7 +19,7 @@ class Conectar{
         if($this->driver=="pgsql" || $this->driver==null){
        
         //$con = pg_connect("host=192.168.100.3 port=5432 dbname=coactiva user=postgres password=.Romina.2012 ");
-         $con = pg_connect("host=186.4.241.148 port=5433 dbname=coactiva user=postgres password=.Romina.2012 ");
+        $con = pg_connect("host=186.4.241.148 port=5433 dbname=coactiva user=postgres password=.Romina.2012 ");
         	if(!$con){
         		echo "No se puedo Conectar a la Base";
         		exit();

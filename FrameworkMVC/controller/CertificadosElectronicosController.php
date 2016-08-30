@@ -23,6 +23,7 @@ class CertificadosElectronicosController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$firmas_digitales = new FirmasDigitalesModel();
+			$certificado = new CertificadosModel();
 			//NOTIFICACIONES
 			$firmas_digitales->MostrarNotificaciones($_SESSION['id_usuarios']);
 			
@@ -34,31 +35,10 @@ class CertificadosElectronicosController extends ControladorBase{
 			if (!empty($resultPer))
 			{
 				
+				$resultUsuario=$_SESSION['id_usuarios'];
 				
+				$resultCertificado=$certificado->getBy("id_usuarios_certificado_digital='$resultUsuario'");
 				
-				
-				
-				if(isset($_POST['registrar'])){
-					
-					
-					
-					$comando='start "" /b "C:\CertificadosDigitales\registrar\RegistrarCertificado.exe" ';
-						
-					$comando_esc = escapeshellcmd($comando);
-						
-					exec($comando_esc,$resultadoSalida,$ejecucion);
-						
-					//echo "valor estatus de la aplicacion en C# ".$ejecucion."<br>(0=> la aplicacion se ejecuto exitosamente)<br> (1=>la aplicacion no se ejecuto correctamente ocurrio algun error)<br>";
-						
-					if(count($resultadoSalida)>0)
-					{
-						$resultCertificado=$resultadoSalida;
-					
-					}else{
-							
-					}
-					
-				}
 				
 				if(isset($_POST['aceptar']))
 				{
@@ -67,8 +47,8 @@ class CertificadosElectronicosController extends ControladorBase{
 				
 				
 				
-				$this->view("CertificadosElectronicos",array(
-						"resultSet"=>$resultSet,"resultEdit"=>$resultEdit,"resultCertificado"=>$resultCertificado
+				$this->view("RegistrarCertificado",array(
+						"resultSet"=>$resultSet,"resultUsuario"=>$resultUsuario,"resultCertificado"=>$resultCertificado
 			
 				));
 		
@@ -176,6 +156,68 @@ class CertificadosElectronicosController extends ControladorBase{
 		
 	}
 	
+	public function registrar_certificado()
+	{
+		$certificado = new CertificadosModel();
+		$consulta=array();
+		
+		if(isset($_POST['certificado'])&&isset($_POST['mac'])&&isset($_POST['id_usuario']))
+		{
+			$array_certificado = array();
+			
+			$dato_certificado=$_POST['certificado'];
+			$dato_mac=$_POST['mac'];
+			$dato_usuario=$_POST['id_usuario'];
+			
+			$array_certificado=datosCertificado($dato_certificado);
+			
+			$para=$array_certificado['emitidoPara'];
+			$por=$array_certificado['emitidoPor'];
+			
+			$funcion="ins_certificado_electronico";
+			$parametros="'$dato_usuario','$dato_mac','$dato_certificado','$para','$por'";
+			
+			$certificado->setFuncion($funcion);
+			$certificado->setParametros($parametros);
+			
+			$resultado=$certificado->Insert();
+			
+			$consulta=$certificado->getBy("id_usuarios_certificado_digital='$dato_usuario'");
+			
+			if (!empty($consulta)){
+				
+				echo "Datos Ingresados correctamente";
+				
+			}else {
+				echo "Datos Ingresados correctamente";
+			}
+			
+		}else{
+			echo "Error al enviar sus datos ";
+		}
+		
+	}
+	
+	public function datosCertificado($cadenacertificado)
+	{
+		$arrayCertificado=array();
+		
+		if ($cadenacertificado!=null || $cadenacertificado!="")
+		{
+			$arraydatosCertificado = explode(",", $cadenacertificado, 5);
+			
+			$arrayEmitidoPara=explode("+", $arraydatosCertificado[0], 2);
+				
+			$emitidopara=substr($arrayEmitidoPara[1],strpos($arrayEmitidoPara[1],"=")+1);
+			$emitidopor=substr($arraydatosCertificado[3],strpos($arraydatosCertificado[3],"=")+1);
+			
+			$arrayCertificado=array('emitidoPara'=>$emitidopara,'emitidoPor'=>$emitidopor);
+			
+		}
+		
+		return $arrayCertificado;
+		
+	}
 	
 }
 ?>
