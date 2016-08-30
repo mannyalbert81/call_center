@@ -1,13 +1,24 @@
 <?php
-include 'PDFMerger.php';
 
-$pdf = new PDFMerger;
+#<?php
+#Importas la librer�a PhpJasperLibrary
+include_once('PhpJasperLibrary/class/tcpdf/tcpdf.php');
+include_once("PhpJasperLibrary/class/PHPJasperXML.inc.php");
+include_once ('conexion.php');
+#Conectas a la base de datos
+$server  = server;
+$user    = user;
+$pass    = pass;
+$db      = db;
+$driver  = driver;
+ini_set('display_errors', 0);
 
-$pdf->addPDF('samplepdfs/one.pdf', '1, 3, 4')
-	->addPDF('samplepdfs/two.pdf', '1-2')
-	->addPDF('samplepdfs/three.pdf', 'all')
-	->merge('file', 'samplepdfs/TEST2.pdf');
-	
-	//REPLACE 'file' WITH 'browser', 'download', 'string', or 'file' for output options
-	//You do not need to give a file path for browser, string, or download - just the name.
+#aqu� va el reporte
+
+$PHPJasperXML = new PHPJasperXML();
+//$PHPJasperXML->debugsql=true;
+$PHPJasperXML->load_xml_file("RazonReport.jrxml");
+
+$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
+$PHPJasperXML->outpage("I") 
 ?>
