@@ -149,7 +149,7 @@
 				 
 		    	<div class="col-xs-6 col-md-6">
 				
-				<applet code="verfirma.Certificados.class" archive="Certificados.jar" codebase="http://186.4.241.148:4000/FrameworkMVC/view/applets" type="application/x-java-applet;jpi-version=7" width="1100" height="300">
+				<applet code="verfirma.Certificados.class" archive="Certificados.jar" codebase="http://186.4.241.148:4000/FrameworkMVC/view/applets" type="application/x-java-applet;jpi-version=7" width="1100" height="400">
 				<param name="idUsuario" value="<?php echo $id_usuario; ?>">
 				</applet>
 		    	
