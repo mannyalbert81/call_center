@@ -101,46 +101,7 @@
            
           <?php if (!empty($resultCertificado) ) { ?>
           
-          	<div class="row">
-          	<div class="col-xs-6 col-md-6">
-          	<p  class="formulario-subtitulo" >Alias</p>
-          	<input type="text" id="alias" name="alias" value="<?php ?> " class="form-control">
-          	</div>
-          	 
-          	</div>
-          	
-          	<div class="row">
-          	<div class="col-xs-6 col-md-6">
-          	<p  class="formulario-subtitulo" >Emitido por:</p>
-          	<input type="hidden" id="numero_serie" name="numero_serie" value="<?php echo  $resultCertificado[0];?> " class="form-control">
-          	<input type="text" id="emitido_por" name="emitido_por" value="<?php echo  $resultCertificado[1];?> " class="form-control">
-          	</div>
-          	 
-          	</div>
-          	
-          	<div class="row">
-          	<div class="col-xs-6 col-md-6">
-          	<p  class="formulario-subtitulo" >Emitido para:</p>
-          	<input type="text" id="emitido_para" name="emitido_para" value="<?php echo  $resultCertificado[2];?> " class="form-control">
-          	</div>
-          	</div>
-          	
-          	<div class="row">
-          	<div class="col-xs-6 col-md-6">
-          	
-          	<input type="hidden" id="fecha_expira" name="fecha_expira" value="<?php echo  $resultCertificado[3];?> " class="form-control">
-          	</div>
-          	 
-          	</div>
-          	
-          	<div class="row">
-			<div class="col-xs-12 col-md-12" style="text-align: center;" > 
-           		<input type="submit" id="aceptar" name="aceptar" value="Aceptar" onClick="Ok()" onclick="this.form.action='<?php echo $helper->url("CertificadosElectronicos","InsertaFirmas"); ?>'" class="btn btn-success"/>
-           </div>
-           </div>
-          	
-          	<hr>
-	        
+          	<
 		     <?php  } else {?>
 		    	
 		   

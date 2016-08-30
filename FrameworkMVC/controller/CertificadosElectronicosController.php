@@ -23,6 +23,7 @@ class CertificadosElectronicosController extends ControladorBase{
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			$firmas_digitales = new FirmasDigitalesModel();
+			$certificado = new CertificadosModel();
 			//NOTIFICACIONES
 			$firmas_digitales->MostrarNotificaciones($_SESSION['id_usuarios']);
 			
@@ -36,15 +37,8 @@ class CertificadosElectronicosController extends ControladorBase{
 				
 				$resultUsuario=$_SESSION['id_usuarios'];
 				
+				$resultCertificado=$certificado->getBy("id_usuarios_certificado_digital='$resultUsuario'");
 				
-				
-				if(isset($_POST['registrar'])){
-					
-					
-					
-					
-					
-				}
 				
 				if(isset($_POST['aceptar']))
 				{
