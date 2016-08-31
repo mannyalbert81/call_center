@@ -653,7 +653,7 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 				foreach ($arrayFilesAfirmar as $res)
 				{
 					$cadenaFiles.=$res.";";
-					$cadenaId.=",";
+					$cadenaId.=$res.",";
 				}
 				
 			//$cadenaFiles = substr($cadenaFiles, 0, -1);
