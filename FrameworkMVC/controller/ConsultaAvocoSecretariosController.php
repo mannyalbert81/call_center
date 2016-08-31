@@ -643,7 +643,7 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 			$arrayFilesAfirmar=$_POST['file_firmar'];
 			$cadenaFiles="";
 			
-			if(count($arrayFilesAfirmar)>=1)
+			if(count($arrayFilesAfirmar)>1)
 			{
 				/*
 				foreach ($arrayFilesAfirmar as $res)
@@ -657,6 +657,12 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 							
 				));
 				
+			}else{
+				$this->view("Error",array(
+				
+						"resultado"=>"hay DaTOS ERRONEOS"
+							
+				));
 			}
 			
 			/*$resultUsuario="";
