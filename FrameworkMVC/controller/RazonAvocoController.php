@@ -1,5 +1,5 @@
 <?php
-class RazonDocumentosController extends ControladorBase{
+class RazonAvocoController extends ControladorBase{
     
     public function __construct() {
         parent::__construct();
@@ -35,7 +35,7 @@ public function index(){
 			//NOTIFICACIONES
 			$documentos->MostrarNotificaciones($_SESSION['id_usuarios']);
 			
-			$nombre_controladores = "ConsultaDocumentosSecretarios";
+			$nombre_controladores = "ConsultaAvocoSecretarios";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $documentos->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				
@@ -45,14 +45,14 @@ public function index(){
 				
 				$resultEdit = "";
 				
-				if(isset($_GET["id_juicios"]) && isset($_GET["id_documentos"]))
+				if(isset($_GET["id_juicios"]) && isset($_GET["id_avoco_conocimiento"]))
 				{
-					$documentos = new DocumentosModel();
+					$avoco_conocimiento = new AvocoConocimientoModel();
 						
 					$id_juicios = $_GET["id_juicios"];
-					$id_documentos = $_GET["id_documentos"];
+					$id_avoco_conocimiento = $_GET["id_avoco_conocimiento"];
 				
-					$datos=array("idJuicios"=>$id_juicios,"idDocumentos"=>$id_documentos);
+					$datos=array("idJuicios"=>$id_juicios,"idAvoco"=>$id_avoco_conocimiento);
 					
 				}
 				
@@ -61,14 +61,14 @@ public function index(){
 			else
 			{
 				$this->view("Error",array(
-						"resultado"=>"No tiene Permisos de Acceso a Razon Documentos"
+						"resultado"=>"No tiene Permisos de Acceso a Razon Avoco"
 			
 				));
 				exit();
 			
 			}
 			
-			$this->view("RazonDocumentos",array(
+			$this->view("RazonAvoco",array(
 					 "resultEdit"=>$resultEdit, "resultSet"=>$resultSet,"datos"=>$datos
 			
 			));
@@ -87,16 +87,16 @@ public function index(){
 	
 	
 	
-	public function InsertaRazonDocumentos(){
+	public function InsertaRazonAvoco(){
 		
 		
 		session_start();
-		$razon_documentos=new RazonDocumentosModel();
+		$razon_avoco=new RazonAvocoModel();
 		
 		$juicio = new  JuiciosModel();
-		$nombre_controladores = "ConsultaDocumentosSecretarios";
+		$nombre_controladores = "ConsultaAvocoSecretarios";
 		$id_rol= $_SESSION['id_rol'];
-		$resultPer = $razon_documentos->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+		$resultPer = $razon_avoco->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 		
 		$avoco='';
 		
@@ -104,10 +104,10 @@ public function index(){
 		{
 		
 			$resultado = null;
-			$razon_documentos = new RazonDocumentosModel();
+			$razon_avoco = new RazonAvocoModel();
 		
 		//_nombre_categorias character varying, _path_categorias character varying
-			if (isset ($_POST["id_documentos"]) && isset($_POST["Guardar"]))
+			if (isset ($_POST["id_avoco_conocimiento"]) && isset($_POST["Guardar"]))
 			{
 				//estado de documento pdf
 				$_estado = "";
@@ -118,9 +118,9 @@ public function index(){
 				$identificador="";
 				
 				//parametros
-				$_id_documentos     = $_POST["id_documentos"];
+				$_id_avoco_conocimiento     = $_POST["id_avoco_conocimiento"];
 				$_id_usuario_registra   = $_SESSION['id_usuarios'];
-			    $_cuerpo_razon_documentos   = $cuerpo. $_POST["cuerpo_razon_documentos"];
+			    $_cuerpo_razon_avoco_conocimiento   = $cuerpo. $_POST["cuerpo_razon_avoco_conocimiento"];
 				
 				
 					if (isset($_POST["Guardar"]))
@@ -129,33 +129,33 @@ public function index(){
 						//Guarda en la base de datos
 						
 						$consecutivo= new ConsecutivosModel();
-						$resultConsecutivo= $consecutivo->getBy("documento_consecutivos='RAZONDOCUMENTOS'");
+						$resultConsecutivo= $consecutivo->getBy("documento_consecutivos='RAZONAVOCO'");
 						
 						$identificador=$resultConsecutivo[0]->real_consecutivos;
 						
 						
-						$ruta_razon_documentos = "RazonDocumentos";
+						$ruta_razon_avoco_conocimiento = "RazonAvoco";
 						
-						$nombre_razon_documentos = $ruta_razon_documentos.$identificador;
+						$nombre_razon_avoco_conocimiento = $ruta_razon_avoco_conocimiento.$identificador;
 						
-						$funcion = "ins_razon_documentos";
+						$funcion = "ins_razon_avoco_conocimiento";
 					
-						$parametros = " '$_id_documentos' ,'$nombre_razon_documentos' , '$ruta_razon_documentos' , '$identificador' , '$_id_usuario_registra' , '$_cuerpo_razon_documentos'";
-						$razon_documentos->setFuncion($funcion);
+						$parametros = " '$_id_avoco_conocimiento' ,'$nombre_razon_avoco_conocimiento' , '$ruta_razon_avoco_conocimiento' , '$identificador' , '$_id_usuario_registra' , '$_cuerpo_razon_avoco_conocimiento'";
+						$razon_avoco->setFuncion($funcion);
 						
-						$razon_documentos->setParametros($parametros);
-						$resultado=$razon_documentos->Insert();
+						$razon_avoco->setParametros($parametros);
+						$resultado=$razon_avoco->Insert();
 						
 						//auditoria
 						$traza=new TrazasModel();
-						$_nombre_controlador = "RazonDocumentos";
+						$_nombre_controlador = "RazonAvoco";
 						$_accion_trazas  = "Guardar";
-						$_parametros_trazas = $nombre_razon_documentos;
+						$_parametros_trazas = $nombre_razon_avoco_conocimiento;
 						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 						
 						//$this->view("Error", array("resultado"=>print_r($resultado)));
 						
-						$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='RAZONDOCUMENTOS'");
+						$consecutivo->UpdateBy("real_consecutivos=real_consecutivos+1", "consecutivos", "documento_consecutivos='RAZONAVOCO'");
 						
 						$_estado = "Guardar";
 					}
@@ -165,17 +165,17 @@ public function index(){
 				
 				
 				print "<script language='JavaScript'>
-				setTimeout(window.open('http://$host$uri/view/ireports/ContRazonDocumentosReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_razon_documentos','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
+				setTimeout(window.open('http://$host$uri/view/ireports/ContRazonAvocoReport.php?identificador=$identificador&estado=$_estado&nombre=$nombre_razon_avoco_conocimiento','Popup','height=300,width=400,scrollTo,resizable=1,scrollbars=1,location=0'), 5000);
 				</script>";
 				
-				print("<script>window.location.replace('index.php?controller=ConsultaDocumentosSecretarios&action=consulta_secretarios_firmados');</script>");
+				print("<script>window.location.replace('index.php?controller=ConsultaAvocoSecretarios&action=consulta_secretarios_avoco_firmados');</script>");
 			
 			}else
 				{
 					
 					$this->view("Error",array(
 						
-					"resultado"=>"No tiene Permisos de Insertar Razon Documentos"
+					"resultado"=>"No tiene Permisos de Insertar Razon Avoco"
 		
 					));
 	
@@ -184,13 +184,13 @@ public function index(){
 
 	}
 	
-	public function VisualizarRazonDocumentos(){
+	public function VisualizarRazonAvoco(){
 		
 		session_start();
 		
 		$cuerpo='';
 			
-		$razon_documentos = new RazonDocumentosModel();
+		$razon_avoco = new RazonAvocoModel();
 		
 		$identificador="";
 		$_estado="Visualizar";
@@ -199,25 +199,24 @@ public function index(){
 		
 		if (isset($_POST["Visualizar"]))
 		{
-			
-			//parametros
-			$_id_documentos     = $_POST["id_documentos"];
+			$_id_avoco_conocimiento     = $_POST["id_avoco_conocimiento"];
 			$_id_usuario_registra   = $_SESSION['id_usuarios'];
-			$_cuerpo_razon_documentos   = $_POST["cuerpo_razon_documentos"];
+			$_cuerpo_razon_avoco_conocimiento   = $_POST["cuerpo_razon_avoco_conocimiento"];
+			
 			
              //traer datos para el reporte	
-			$dato['cuerpo_razon_documentos']=$cuerpo.$_cuerpo_razon_documentos;
+			$dato['cuerpo_razon_avoco_conocimiento']=$cuerpo.$_cuerpo_razon_avoco_conocimiento;
 		
 			$traza=new TrazasModel();
-			$_nombre_controlador = "Documentos";
+			$_nombre_controlador = "Avoco";
 			$_accion_trazas  = "Visualizar";
-			$_parametros_trazas = $_id_documentos;
+			$_parametros_trazas = $_id_avoco_conocimiento;
 			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
 			
 			
 			//cargar array q va por get
-			$arrayGet['cuerpo']=$_cuerpo_razon_documentos;
-			$arrayGet['idDocumento']=$_id_documentos;
+			$arrayGet['cuerpo']=$_cuerpo_razon_avoco_conocimiento;
+			$arrayGet['idAvoco']=$_id_avoco_conocimiento;
 			
 		}
 		
@@ -232,10 +231,10 @@ public function index(){
 		
         
 		print "<script language='JavaScript'>
-			 setTimeout(window.open('http://$host$uri/view/ireports/ContRazonDocumentosReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000); 
+			 setTimeout(window.open('http://$host$uri/view/ireports/ContRazonAvocoReport.php?estado=$_estado&dato=$result','Popup','height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0'), 5000); 
 		      </script>";
 		
-		print("<script>window.location.replace('index.php?controller=RazonDocumentos&action=index&dato=$resultArray');</script>");
+		print("<script>window.location.replace('index.php?controller=RazonAvoco&action=index&dato=$resultArray');</script>");
 		
 
 	}

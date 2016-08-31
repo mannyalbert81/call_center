@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-08-31T12:59:25 -->
+<!-- 2016-08-31T17:36:41 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="ciudad" class="java.lang.String"/>
-	<parameter name="juicio_referido" class="java.lang.String"/>
-	<parameter name="fecha_emision_documentos" class="java.lang.String"/>
-	<parameter name="cliente" class="java.lang.String"/>
-	<parameter name="hora_emision_documentos" class="java.lang.String"/>
-	<parameter name="avoco_vistos_documentos" class="java.lang.String"/>
+	<parameter name="cuerpo_razon_documentos" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT 1 FROM documentos LIMIT 1]]>
+		<![CDATA[SELECT 1 FROM razon_documentos LIMIT 1]]>
 	</queryString>
 	<field name="nombre_ciudad" class="java.lang.String"/>
 	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
@@ -24,30 +19,21 @@
 	</background>
 	<title>
 		<band height="77" splitType="Stretch">
-			<rectangle>
-				<reportElement x="10" y="12" width="535" height="50" uuid="4897037e-9b1b-411c-927b-2b3afeba5254"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="20" y="20" width="515" height="35" uuid="dbd469e2-e273-4bbb-9bb0-f533d803caee"/>
-			</rectangle>
-			<staticText>
-				<reportElement x="25" y="26" width="512" height="30" backcolor="#000000" uuid="2a47ab86-e168-4c13-8677-a347fc2eb3db"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font size="19" isBold="true"/>
-				</textElement>
-				<text><![CDATA[BANCO DEL FOMENTO S.A. EN LIQUIDACIÓN]]></text>
-			</staticText>
+			<image>
+				<reportElement x="370" y="10" width="150" height="50" uuid="85c5aff0-8a43-427d-9332-d9ab85251e95"/>
+				<imageExpression><![CDATA["C:/Users/Steven/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondo_blanco.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>
 		<band height="387" splitType="Stretch">
 			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement x="40" y="0" width="460" height="370" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
-				<textElement textAlignment="Justified" markup="styled">
+				<reportElement x="40" y="10" width="460" height="360" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
+				<textElement textAlignment="Justified" markup="html">
 					<font fontName="Arial" size="12"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{avoco_vistos_documentos}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{cuerpo_razon_documentos}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

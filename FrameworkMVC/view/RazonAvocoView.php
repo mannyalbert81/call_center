@@ -5,7 +5,7 @@
       <head>
       
         <meta charset="utf-8"/>
-        <title>RazonDocumentos - aDocument 2015</title>
+        <title>RazonAvoco - aDocument 2015</title>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -204,7 +204,7 @@
        
       
        $sel_cuerpo="";
-       $sel_id_documento="";
+       $sel_id_avoco="";
        
       
         
@@ -221,12 +221,15 @@
        	
        	
        	$sel_cuerpo=$_dato['cuerpo'];
-       	$sel_id_documento=$_dato['idDocumento'];
+       	$sel_id_avoco=$_dato['idAvoco'];
        	}
       
        }
+      
+         
 		?>
-   
+ 
+			  
 			  <div class="container">
 			  
 			  <div class="row" style="background-color: #ffffff;" >
@@ -243,7 +246,7 @@
      
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("RazonDocumentos","index"); ?>" method="post" enctype="multipart/form-data">
+      <form action="<?php echo $helper->url("RazonAvoco","index"); ?>" method="post" enctype="multipart/form-data">
             
         <div class="col-lg-12" style="margin-top: 10px">
          
@@ -255,8 +258,8 @@
 		     <?php } } else {?>
   			
   			 <div class="col-xs-2 ">
-			  	<p  class="formulario-subtitulo" >Documento:</p>
-			  	<input type="text"  name="id_documentos" id="id_documentos" value="<?php  if($sel_id_documento==""){echo $datos['idDocumentos'];}else{echo $sel_id_documento;} ?>" class="form-control"/>
+			  	<p  class="formulario-subtitulo" >Avoco:</p>
+			  	<input type="text"  name="id_avoco_conocimiento" id="id_avoco_conocimiento" value="<?php  if($sel_id_avoco==""){echo $datos['idAvoco'];}else{echo $sel_id_avoco;} ?>" class="form-control" readonly/>
 			   </div>
             
 		    <?php } ?>
@@ -278,7 +281,7 @@
 			   		  array( 'Styles','Format','Font','FontSize')
 			   	  );
 			  $CKEditor->basePatch = "./ckeditor/";
-			   $CKEditor->editor("cuerpo_razon_documentos",$valor,$config);
+			   $CKEditor->editor("cuerpo_razon_avoco_conocimiento",$valor,$config);
 			   //$CKEditor->replaceAll();
 	           ?> 
 	           
@@ -298,10 +301,10 @@
 		      <div class="col-xs-12 col-md-6" style="text-align: center; margin-top:10px"  >
 		      </div>
 		       <div class="col-xs-12 col-md-3" style="text-align: center; margin-top:10px"  >
-			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php  echo $helper->url("RazonDocumentos","InsertaRazonDocumentos"); ?>'" value="Guardar" class="btn btn-success"/>
+			  <input type="submit" id="Guardar" name="Guardar" onclick="this.form.action='<?php  echo $helper->url("RazonAvoco","InsertaRazonAvoco"); ?>'" value="Guardar" class="btn btn-success"/>
 			  </div>
 			   <div class="col-xs-12 col-md-3" style="text-align: center; margin-top:10px" >
-			 <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php echo $helper->url("RazonDocumentos","VisualizarRazonDocumentos"); ?>'" value="Visualizar" class="btn btn-info"/>
+			 <input type="submit" id="Visualizar" name="Visualizar" onclick="this.form.action='<?php echo $helper->url("RazonAvoco","VisualizarRazonAvoco"); ?>'" value="Visualizar" class="btn btn-info"/>
 			 </div>
 			 
 			 <div class="col-xs-6 col-md-12" style="margin-top:50px">

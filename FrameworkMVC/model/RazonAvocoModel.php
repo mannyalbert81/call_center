@@ -1,5 +1,5 @@
 <?php
-class RazonAvocoConocimientoModel extends ModeloBase{
+class RazonAvocoModel extends ModeloBase{
 	
 	private $table;
 	private $where;
