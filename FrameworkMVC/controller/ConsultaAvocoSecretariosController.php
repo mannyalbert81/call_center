@@ -652,22 +652,27 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 				
 				foreach ($arrayFilesAfirmar as $res)
 				{
-					$cadenaFiles.=$res.";";
 					$cadenaId.=$res.",";
 				}
 				
 			//$cadenaFiles = substr($cadenaFiles, 0, -1);
 			//$cadenaId = substr($cadenaId, 0, -1);
 			
-			$cadenaFiles = trim($cadenaFiles,";");
 			$cadenaId = trim($cadenaId,",");
 			
 			$consulta=$avoco->getBy("id_avoco_conocimiento in ('$cadenaId')");
 			
-				
+			if (!empty($consulta)) {  foreach($consulta as $res) {
+						
+						$cadenaFiles.=$res->nombre_documento;
+					}
+				}
+			
+			$cadenaFiles = trim($cadenaFiles,",");
+			
 			$this->view("Error",array(
 						
-					"resultado"=>print_r($consulta)
+					"resultado"=>$cadenaFiles
 			
 			));
 			/*$this->view("FirmarPdf",array(
