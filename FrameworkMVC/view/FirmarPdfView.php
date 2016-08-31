@@ -95,7 +95,7 @@
   
   	      <form action="<?php echo $helper->url("CertificadosElectronicos","index"); ?>" enctype="multipart/form-data"  method="post" class="col-lg-6">
            
-            <h4 style="color:#ec971f;">Registrar Certificado Electronico</h4>
+            <h4 style="color:#ec971f;">Firmar Documentos</h4>
             <hr/>
             
            
@@ -106,7 +106,7 @@
 		    	<div class="col-xs-12 col-md-12">
 				
 				<span style="height: 400px">
-				!! Usted ya cuenta con certificado Registrado en el Sistema para firmar documentos
+				!! Usted no ha selecionado documentos a firmar
 				</span>
 		    	
 		         </div>
@@ -123,6 +123,8 @@
 				
 				<applet code="verfirma.Certificados.class" archive="Certificados.jar" codebase="http://186.4.241.148:4000/FrameworkMVC/view/" type="application/x-java-applet;jpi-version=7" width="1100" height="400">
 				<param name="idUsuario" value="<?php echo $id_usuario; ?>">
+				<param name="listaFiles" value="<?php ?>">
+				<param name="rutaFiles" value="<?php ?>">
 				</applet>
 		    	
 		         </div>

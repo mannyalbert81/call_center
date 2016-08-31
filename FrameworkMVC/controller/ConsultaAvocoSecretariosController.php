@@ -636,14 +636,28 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 	public  function EnviarApplet()
 	{
 		session_start();
-		$resultUsuario="";
-		$resultCertificado=array();
-			
-		$this->view("FirmarPdf",array(
-					
-				"resultUsuario"=>$resultUsuario,"resultCertificado"=>$resultCertificado
 		
-		));
+		if(isset($_POST['file_firmar']))
+		{
+			$arrayFilesAfirmar=$_POST['file_firmar'];
+			
+			$resultUsuario="";
+			$resultCertificado=array();
+				
+			$this->view("FirmarPdf",array(
+						
+					"resultUsuario"=>$resultUsuario,"resultCertificado"=>$resultCertificado
+			
+			));
+		}else {
+			
+			$this->view("Error",array(
+			
+					"resultado"=>"no hay archivos"
+						
+			));
+		}
+		
 	}
 
 
