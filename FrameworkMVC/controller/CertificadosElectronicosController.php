@@ -169,7 +169,7 @@ class CertificadosElectronicosController extends ControladorBase{
 			$dato_mac=$_POST['mac'];
 			$dato_usuario=$_POST['id_usuario'];
 			
-			$array_certificado=datosCertificado($dato_certificado);
+			$array_certificado=$this->datosCertificado($dato_certificado);
 			
 			$para=$array_certificado['emitidoPara'];
 			$por=$array_certificado['emitidoPor'];
@@ -206,7 +206,7 @@ class CertificadosElectronicosController extends ControladorBase{
 		{
 			$arraydatosCertificado = explode(",", $cadenacertificado, 5);
 			
-			$arrayEmitidoPara=explode("+", $arraydatosCertificado[0], 2);
+			$arrayEmitidoPara=explode(" ", $arraydatosCertificado[0], 2);
 				
 			$emitidopara=substr($arrayEmitidoPara[1],strpos($arrayEmitidoPara[1],"=")+1);
 			$emitidopor=substr($arraydatosCertificado[3],strpos($arraydatosCertificado[3],"=")+1);
