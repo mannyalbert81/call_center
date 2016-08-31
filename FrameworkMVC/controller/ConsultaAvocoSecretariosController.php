@@ -134,6 +134,17 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 				
 				if(isset($_POST['firmar']))
 				{
+					$resultUsuario="";
+					$resultCertificado=array();
+					
+					$this->view("FirmarPdf",array(
+							
+							"resultImpul"=>$resultImpul,"resultCertificado"=>$resultCertificado
+								
+					));
+				
+				
+				/*
 					$firmas= new FirmasDigitalesModel();
 					$avoco=new AvocoConocimientoModel();
 					$tipo_notificacion = new TipoNotificacionModel();
@@ -200,7 +211,9 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 								
 							}
 						}
-					}
+					}*/
+					
+					
 				}
 
 
