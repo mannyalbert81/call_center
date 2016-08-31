@@ -225,11 +225,8 @@
        	}
       
        }
-      
-         
 		?>
- 
-			  
+   
 			  <div class="container">
 			  
 			  <div class="row" style="background-color: #ffffff;" >
