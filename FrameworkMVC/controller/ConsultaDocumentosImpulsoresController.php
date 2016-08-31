@@ -33,8 +33,6 @@ class ConsultaDocumentosImpulsoresController extends ControladorBase{
 		$resultDatos=$ciudad->getCondiciones($columnas ,$tablas ,$where, $id);
 		
 		
-		
-		
 		$ciudad = new CiudadModel();
 		$resultCiu = $ciudad->getAll("nombre_ciudad");
 		

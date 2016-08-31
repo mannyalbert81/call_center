@@ -246,7 +246,13 @@
 		            
 		               <td style="color:#000000;font-size:80%;">
 		               <a href="<?php echo $helper->url("ConsultaDocumentosSecretarios","abrirPdf"); ?>&id=<?php echo $res->id_documentos; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
-		               </td> 
+		               </td>
+		               
+		               <td style="color:#000000;font-size:80%;">
+		               <a href="<?php echo $helper->url("RazonDocumentos","index"); ?>&id_juicios=<?php echo $res->id_juicios; ?>&id_documentos=<?php echo $res->id_documentos; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">--RAZÓN--</a>
+			           </td>
+		                
+
 		    		</tr>
 		        <?php } }else {  ?>
 

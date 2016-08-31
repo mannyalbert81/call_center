@@ -319,7 +319,9 @@ class ConsultaDocumentosSecretariosController extends ControladorBase{
 	
 					$columnas = "documentos.id_documentos,
 								  ciudad.nombre_ciudad,
+							      juicios.id_juicios,
 								  juicios.juicio_referido_titulo_credito,
+							      clientes.id_clientes,
 								  clientes.nombres_clientes,
 								  clientes.identificacion_clientes,
 								  estados_procesales_juicios.nombre_estado_procesal_juicios,
