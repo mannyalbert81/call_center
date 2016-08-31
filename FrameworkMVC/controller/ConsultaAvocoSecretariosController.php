@@ -139,7 +139,7 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 					
 					$this->view("FirmarPdf",array(
 							
-							"resultImpul"=>$resultImpul,"resultCertificado"=>$resultCertificado
+							"resultUsuario"=>$resultUsuario,"resultCertificado"=>$resultCertificado
 								
 					));
 				
