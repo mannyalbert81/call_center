@@ -259,7 +259,7 @@
   			
   			 <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Documento:</p>
-			  	<input type="text"  name="id_documentos" id="id_documentos" value="<?php  if($sel_id_documento==""){echo $datos['idDocumentos'];}else{echo $sel_id_documento;} ?>" class="form-control"/>
+			  	<input type="text"  name="id_documentos" id="id_documentos" value="<?php  if($sel_id_documento==""){echo $datos['idDocumentos'];}else{echo $sel_id_documento;} ?>" class="form-control"/ readonly>
 			   </div>
             
 		    <?php } ?>
