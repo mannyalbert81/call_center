@@ -258,8 +258,8 @@
 		     <?php } } else {?>
   			
   			 <div class="col-xs-2 ">
-			  	<p  class="formulario-subtitulo" >Documento:</p>
-			  	<input type="text"  name="id_avoco" id="id_avoco" value="<?php  if($sel_id_avoco==""){echo $datos['idAvoco'];}else{echo $sel_id_avoco;} ?>" class="form-control"/>
+			  	<p  class="formulario-subtitulo" >Avoco:</p>
+			  	<input type="text"  name="id_avoco_conocimiento" id="id_avoco_conocimiento" value="<?php  if($sel_id_avoco==""){echo $datos['idAvoco'];}else{echo $sel_id_avoco;} ?>" class="form-control" readonly/>
 			   </div>
             
 		    <?php } ?>
@@ -281,7 +281,7 @@
 			   		  array( 'Styles','Format','Font','FontSize')
 			   	  );
 			  $CKEditor->basePatch = "./ckeditor/";
-			   $CKEditor->editor("cuerpo_razon_avoco",$valor,$config);
+			   $CKEditor->editor("cuerpo_razon_avoco_conocimiento",$valor,$config);
 			   //$CKEditor->replaceAll();
 	           ?> 
 	           

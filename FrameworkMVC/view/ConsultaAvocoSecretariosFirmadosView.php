@@ -246,7 +246,7 @@
 		               <a href="<?php echo $helper->url("ConsultaAvocoSecretarios","abrirPdf"); ?>&id=<?php echo $res->id_avoco_conocimiento; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:65%;">-- VER --</a>
 		               </td> 
 		               <td style="color:#000000;font-size:80%;">
-		               <a href="<?php echo $helper->url("RazonAvoco","index"); ?>&id_juicios=<?php echo $res->id_juicios; ?>&id_avoco=<?php echo $res->id_avoco_conocimiento; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">--RAZÓN--</a>
+		               <a href="<?php echo $helper->url("RazonAvoco","index"); ?>&id_juicios=<?php echo $res->id_juicios; ?>&id_avoco_conocimiento=<?php echo $res->id_avoco_conocimiento; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">--RAZÓN--</a>
 			           </td>
 		    		</tr>
 		    		

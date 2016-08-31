@@ -425,6 +425,7 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 	
 	
 					$columnas = "avoco_conocimiento.id_avoco_conocimiento, 
+							juicios.id_juicios,
 							  juicios.juicio_referido_titulo_credito, 
 							  clientes.nombres_clientes, 
 							  clientes.identificacion_clientes, 
