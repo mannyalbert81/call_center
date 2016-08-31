@@ -660,7 +660,7 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 			
 			$this->view("Error",array(
 						
-					"resultado"=>print_r($arrayFilesAfirmar)
+					"resultado"=>print_r(count($arrayFilesAfirmar))
 			
 			));
 			
