@@ -636,44 +636,46 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 	
 	public  function EnviarApplet()
 	{
+		
 		session_start();
+		
+		$consulta = array();
+		
+		$avoco=new AvocoConocimientoModel();
 		
 		if(isset($_POST['file_firmar']))
 		{
+			
 			$arrayFilesAfirmar=$_POST['file_firmar'];
 			$cadenaFiles="";
-			
-			if(count($arrayFilesAfirmar)>1)
-			{
-				/*
+			$cadenaId="";
+				
 				foreach ($arrayFilesAfirmar as $res)
 				{
 					$cadenaFiles.=$res.";";
+					$cadenaId.=",";
 				}
-				*/
-				$this->view("Error",array(
 				
-						"resultado"=>print_r(count($arrayFilesAfirmar))
-							
-				));
-				
-			}else{
-				$this->view("Error",array(
-				
-						"resultado"=>"hay DaTOS ERRONEOS"
-							
-				));
-			}
+			//$cadenaFiles = substr($cadenaFiles, 0, -1);
+			//$cadenaId = substr($cadenaId, 0, -1);
 			
-			/*$resultUsuario="";
-			$resultCertificado=array();
+			$cadenaFiles = trim($cadenaFiles,";");
+			$cadenaId = trim($cadenaId,",");
+			
+			$consulta=$avoco->getBy("id_avoco_conocimiento in ('$cadenaId')");
+			
 				
-			$this->view("FirmarPdf",array(
+			$this->view("Error",array(
+						
+					"resultado"=>print_r($consulta)
+			
+			));
+			/*$this->view("FirmarPdf",array(
 						
 					"resultUsuario"=>$resultUsuario,"resultCertificado"=>$resultCertificado
 			
-			));*/
-			
+			));
+			*/
 			
 			
 		}else {
