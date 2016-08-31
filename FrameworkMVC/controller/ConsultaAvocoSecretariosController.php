@@ -643,11 +643,21 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 			$arrayFilesAfirmar=$_POST['file_firmar'];
 			$cadenaFiles="";
 			
-			/*if( $arrayFilesAfirmar)
-			foreach ($arrayFilesAfirmar as $res)
+			if(count($arrayFilesAfirmar)>=1)
 			{
-				$cadenaFiles.=$res.";";
-			}*/
+				/*
+				foreach ($arrayFilesAfirmar as $res)
+				{
+					$cadenaFiles.=$res.";";
+				}
+				*/
+				$this->view("Error",array(
+				
+						"resultado"=>print_r(count($arrayFilesAfirmar))
+							
+				));
+				
+			}
 			
 			/*$resultUsuario="";
 			$resultCertificado=array();
@@ -658,11 +668,7 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 			
 			));*/
 			
-			$this->view("Error",array(
-						
-					"resultado"=>print_r(count($arrayFilesAfirmar))
 			
-			));
 			
 		}else {
 			
