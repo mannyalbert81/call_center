@@ -640,15 +640,29 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 		if(isset($_POST['file_firmar']))
 		{
 			$arrayFilesAfirmar=$_POST['file_firmar'];
+			$cadenaFiles="";
 			
-			$resultUsuario="";
+			/*if( $arrayFilesAfirmar)
+			foreach ($arrayFilesAfirmar as $res)
+			{
+				$cadenaFiles.=$res.";";
+			}*/
+			
+			/*$resultUsuario="";
 			$resultCertificado=array();
 				
 			$this->view("FirmarPdf",array(
 						
 					"resultUsuario"=>$resultUsuario,"resultCertificado"=>$resultCertificado
 			
+			));*/
+			
+			$this->view("Error",array(
+						
+					"resultado"=>print_r($arrayFilesAfirmar)
+			
 			));
+			
 		}else {
 			
 			$this->view("Error",array(
