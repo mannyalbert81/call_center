@@ -34,31 +34,13 @@ $estado=$_GET['estado'];
 		
 		    $PHPJasperXML->arrayParameter=$_dato;
 		    
-			$PHPJasperXML->load_xml_file( "RazonVisualizarReport.jrxml" );
+			$PHPJasperXML->load_xml_file( "RazonDocumentosVisualizarReport.jrxml" );
 			
 			$PHPJasperXML->transferDBtoArray ( $server, $user, $pass, $db, $driver );
 			
 			$PHPJasperXML->outpage ( "I" );
 			
-			
-			
 		
-			/* para prueba de llegar datos
-			 * 
-			$dato['id_ciudad']='504';
-			$dato['id_juicios']='18';
-			$dato['id_estados_procesales_juicios']='4';
-			$dato['fecha_emision_documentos']='2016-07-14';
-			$dato['hora_emision_documentos']='10:30';
-			$dato['detalle_documentos']='lskerlkse';
-			$dato['observacion_documentos']='valiste';
-			$dato['avoco_vistos_documentos']='qvbvccv';
-			$dato['id_usuarios']='41';
-				
-			$result=urlencode(serialize($_dato));
-			
-			header('Location: ' . '/FrameworkMVC/index.php?controller=Controladores&action=verError&dato='.$result);
-			*/
 
 	
 		} else 
@@ -68,30 +50,22 @@ $estado=$_GET['estado'];
 				$nombre=$_GET['nombre'];
 				//aqui va la consulta
 				$sql="SELECT
-				ciudad.nombre_ciudad,
-				juicios.juicio_referido_titulo_credito,
-				clientes.nombres_clientes,
-				documentos.fecha_emision_documentos,
-				documentos.hora_emision_documentos,
-				documentos.avoco_vistos_documentos
+				razon_documentos.cuerpo_razon_documentos
 				FROM
-				public.documentos,
-				public.ciudad,
-				public.juicios,
-				public.clientes
+				public.razon_documentos,
+				public.documentos
 				WHERE
-				ciudad.id_ciudad = documentos.id_ciudad AND
-				juicios.id_juicios = documentos.id_juicio AND
-				clientes.id_clientes = juicios.id_clientes AND
-				documentos.identificador= '$id'";
+				documentos.id_documentos = razon_documentos.id_documentos AND
+				razon_documentos.identificador= '$id'";
 				
-				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/Providencias/';
+				
+				$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/documentos/RazonDocumentos/';
 	
 				$PHPJasperXML = new PHPJasperXML();
 				
 				$PHPJasperXML->arrayParameter=array("_sql" => $sql);
 				
-				$PHPJasperXML->load_xml_file("RazonGuardarReport.jrxml");
+				$PHPJasperXML->load_xml_file("RazonDocumentosGuardarReport.jrxml");
 				
 				$PHPJasperXML->transferDBtoArray($server,$user,$pass,$db, $driver);
 				
