@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-08-31T12:46:42 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="ciudad" class="java.lang.String"/>
+	<parameter name="juicio_referido" class="java.lang.String"/>
+	<parameter name="fecha_emision_documentos" class="java.lang.String"/>
+	<parameter name="cliente" class="java.lang.String"/>
+	<parameter name="hora_emision_documentos" class="java.lang.String"/>
+	<parameter name="avoco_vistos_documentos" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 1 FROM documentos LIMIT 1]]>
+	</queryString>
+	<field name="nombre_ciudad" class="java.lang.String"/>
+	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
+	<field name="nombres_clientes" class="java.lang.String"/>
+	<field name="fecha_emision_documentos" class="java.sql.Date"/>
+	<field name="hora_emision_documentos" class="java.sql.Time"/>
+	<field name="avoco_vistos_documentos" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="119" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="12" width="535" height="50" uuid="4897037e-9b1b-411c-927b-2b3afeba5254"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="20" y="20" width="515" height="35" uuid="dbd469e2-e273-4bbb-9bb0-f533d803caee"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="25" y="26" width="512" height="30" backcolor="#000000" uuid="2a47ab86-e168-4c13-8677-a347fc2eb3db"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BANCO DEL FOMENTO S.A. EN LIQUIDACIÓN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="120" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="387" splitType="Stretch">
+			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="40" y="0" width="460" height="370" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
+				<textElement textAlignment="Justified" markup="styled">
+					<font fontName="Arial" size="12"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{avoco_vistos_documentos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="97" y="6" width="320" height="12" forecolor="#000000" uuid="ddba44e4-51f1-4823-a329-b4d064fb12f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tw Cen MT Condensed Extra Bold" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Coactivas  - AllCoercive 2016 -www.masoft.net - Copyright]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
