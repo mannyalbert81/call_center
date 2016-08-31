@@ -134,14 +134,7 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 				
 				if(isset($_POST['firmar']))
 				{
-					$resultUsuario="";
-					$resultCertificado=array();
 					
-					$this->view("FirmarPdf",array(
-							
-							"resultUsuario"=>$resultUsuario,"resultCertificado"=>$resultCertificado
-								
-					));
 				
 				
 				/*
@@ -360,7 +353,6 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 	
 	}
 	
-	
 	public function consulta_secretarios_avoco_firmados(){
 	
 		session_start();
@@ -513,9 +505,6 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 	
 	}
 
-	
-
-	
 	public function abrirPdf()
 	{
 		$avoco = new AvocoConocimientoModel();
@@ -642,6 +631,18 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 		
 		$tipo_notificacion->CrearNotificacion($id_tipo_notificacion, $destino, $descripcion, $numero_movimiento, $archivoPdf);
 		
+	}
+	
+	public  function EnviarApplet()
+	{
+		$resultUsuario="";
+		$resultCertificado=array();
+			
+		$this->view("FirmarPdf",array(
+					
+				"resultUsuario"=>$resultUsuario,"resultCertificado"=>$resultCertificado
+		
+		));
 	}
 
 

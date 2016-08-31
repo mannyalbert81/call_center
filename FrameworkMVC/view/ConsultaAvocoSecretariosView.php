@@ -219,7 +219,7 @@
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" onClick="notificacion()" class="btn btn-warning " style="margin-top: 10px;"/> 	
 		 
 		 <?php if(!empty($resultSet))  {?>
-		 <input type="submit" value="Firmar" id="firmar" name="firmar" class="btn btn-info" style="margin-top: 10px;"/>
+		 <input type="submit" value="Firmar" id="firmar" name="firmar" class="btn btn-info" onclick="this.form.action='index.php?controller=ConsultaAvocoSercretarios&action=EnviarApplet'" style="margin-top: 10px;"/>
 		         
 		  <?php } else {?>
 		  
