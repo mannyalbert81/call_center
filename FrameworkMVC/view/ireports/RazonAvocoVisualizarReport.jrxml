@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-08-31T15:00:35 -->
+<!-- 2016-08-31T17:35:43 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="cuerpo_razon_documentos" class="java.lang.String"/>
+	<parameter name="cuerpo_razon_avoco_conocimiento" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT 1 FROM razon_documentos LIMIT 1]]>
+		<![CDATA[SELECT 1 FROM razon_avoco_conocimiento LIMIT 1]]>
 	</queryString>
-	<field name="nombre_ciudad" class="java.lang.String"/>
-	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
-	<field name="nombres_clientes" class="java.lang.String"/>
-	<field name="fecha_emision_documentos" class="java.sql.Date"/>
-	<field name="hora_emision_documentos" class="java.sql.Time"/>
-	<field name="avoco_vistos_documentos" class="java.lang.String"/>
+	<field name="cuerpo_razon_avoco_conocimiento" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -29,11 +24,11 @@
 		<band height="387" splitType="Stretch">
 			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
 				<reportElement x="40" y="10" width="460" height="360" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
-				<textElement textAlignment="Justified" markup="styled">
+				<textElement textAlignment="Justified" markup="html">
 					<font fontName="Arial" size="12"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{cuerpo_razon_documentos}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{cuerpo_razon_avoco_conocimiento}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
