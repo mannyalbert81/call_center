@@ -635,6 +635,7 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 	
 	public  function EnviarApplet()
 	{
+		session_start();
 		$resultUsuario="";
 		$resultCertificado=array();
 			
