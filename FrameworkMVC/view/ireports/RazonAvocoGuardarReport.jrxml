@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-08-31T15:00:35 -->
+<!-- 2016-08-31T13:21:28 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentosRepositorioReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6663ca52-3942-4815-8316-904ff4a4a50e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="cuerpo_razon_documentos" class="java.lang.String"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
+	<parameter name="_sql" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT 1 FROM razon_documentos LIMIT 1]]>
+		<![CDATA[$P{_sql}]]>
 	</queryString>
-	<field name="nombre_ciudad" class="java.lang.String"/>
-	<field name="juicio_referido_titulo_credito" class="java.lang.String"/>
-	<field name="nombres_clientes" class="java.lang.String"/>
-	<field name="fecha_emision_documentos" class="java.sql.Date"/>
-	<field name="hora_emision_documentos" class="java.sql.Time"/>
-	<field name="avoco_vistos_documentos" class="java.lang.String"/>
+	<field name="cuerpo_razon_documentos" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="77" splitType="Stretch">
+		<band height="79" splitType="Stretch">
 			<image>
-				<reportElement x="370" y="10" width="150" height="50" uuid="85c5aff0-8a43-427d-9332-d9ab85251e95"/>
+				<reportElement x="370" y="10" width="150" height="50" uuid="a0158378-49de-4ca5-ac5a-4bae8ad1b53f"/>
 				<imageExpression><![CDATA["C:/Users/Steven/git/coactiva/FrameworkMVC/view/ireports/PhpJasperLibrary/class/tcpdf/images/coactivas_fondo_blanco.jpg"]]></imageExpression>
 			</image>
 		</band>
@@ -28,12 +23,13 @@
 	<detail>
 		<band height="387" splitType="Stretch">
 			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
-				<reportElement x="40" y="10" width="460" height="360" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
+				<reportElement x="40" y="-10" width="460" height="388" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b2129fe7-24ba-4dc3-8428-f44b3fa0fc3c"/>
 				<textElement textAlignment="Justified" markup="styled">
 					<font fontName="Arial" size="12"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{cuerpo_razon_documentos}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cuerpo_razon_documentos}]]></textFieldExpression>
+				<patternExpression><![CDATA[$F{avoco_vistos_documentos}]]></patternExpression>
 			</textField>
 		</band>
 	</detail>
