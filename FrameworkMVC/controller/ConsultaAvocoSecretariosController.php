@@ -636,19 +636,27 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 	
 	public  function EnviarApplet()
 	{
+		//pasar parametros 
 		
 		session_start();
 		
 		$consulta = array();
 		
+		$resultUsuario="";
+		$resultnombreFiles="";
+		$ruta="";
+		$resultIds="";
+		
 		$avoco=new AvocoConocimientoModel();
 		
 		if(isset($_POST['file_firmar']))
 		{
+			$resultUsuario=$_SESSION['id_usuarios'];
 			
 			$arrayFilesAfirmar=$_POST['file_firmar'];
 			$cadenaFiles="";
 			$cadenaId="";
+			
 				
 				foreach ($arrayFilesAfirmar as $res)
 				{
@@ -668,16 +676,18 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 					}
 				}
 			
-			$cadenaFiles = trim($cadenaFiles,",");
+			$resultnombreFiles = trim($cadenaFiles,",");
+			
 			
 			$this->view("Error",array(
 						
-					"resultado"=>$cadenaFiles
+					"resultado"=>$cadenaFiles." df ".$resultnombreFiles." df ".$ruta." df ".$resultIds
 			
 			));
+			
 			/*$this->view("FirmarPdf",array(
 						
-					"resultUsuario"=>$resultUsuario,"resultCertificado"=>$resultCertificado
+					"resultUsuario"=>$resultUsuario,"resultnombreFiles"=>$resultnombreFiles,"ruta"=>$ruta,"resultIds"=>$resultIds
 			
 			));
 			*/
