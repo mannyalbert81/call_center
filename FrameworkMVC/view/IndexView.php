@@ -41,7 +41,7 @@
         </section>
         <footer class="col-lg-12">
             <hr/>
-           Gestiï¿½n Documental  - aDocument 2015 - <a href="http://www.masoft.net">www.masoft.net</a> - Copyright &copy; <?php echo  date("Y"); ?>
+           Central Telefónica CallCenter 2016 - <a href="http://www.masoft.net">www.masoft.net</a> - Copyright &copy; <?php echo  date("Y"); ?>
         </footer>
     </body>
 </html>

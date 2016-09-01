@@ -363,25 +363,6 @@
 			  </div>
 		    </div>
 		    
-		    
-		     <div class="row">
-		    <div class="col-xs-6 col-md-6" style="margin-top:10px">
-			  	<p  class="formulario-subtitulo" >Nombres Garante</p>
-			  	<input type="text"  name="nombre_garantes" id="nombre_garantes" value="<?php echo $resEdit->nombre_garantes; ?>" class="form-control" /> 
-			    <div id="mensaje_nombre_garantes" class="errores"></div>
-			</div>
-			  
-			   
-			   
-		   
-		    <div class="col-xs-6 col-md-6" style="margin-top:10px">
-			  	<p  class="formulario-subtitulo" >Numero de Identificación Garante</p>
-			  	<input type="text" name="identificacion_garantes" id="identificacion_garantes" value="<?php echo $resEdit->identificacion_garantes; ?>" class="form-control" readonly/>
-			  <div id="mensaje_identificacion_garantes" class="errores"></div>
-			    <input type="hidden"  name="id_clientes"  value="<?php echo $resEdit->id_clientes; ?>" class="form-control"/> 
-			  </div>
-		     </div>
-		    
 		    <hr>
 		    
          
@@ -460,21 +441,6 @@
 			  </div>
 			   </div>
 			   
-			   <div class="row">
-			   <div class="col-xs-6 col-md-6" style="margin-top:10px">
-			  	<p  class="formulario-subtitulo" >Nombres Garante</p>
-			  	<input type="text"  name="nombre_garantes" id="nombre_garantes" value="" class="form-control"/> 
-			    <div id="mensaje_nombre_garantes" class="errores"></div>
-			  </div>
-			   
-			   
-		    <div class="col-xs-6 col-md-6" style="margin-top:10px">
-		     <p  class="formulario-subtitulo" >Numero de Identificación Garante</p>
-		 	<input type="text" name="identificacion_garantes" id="identificacion_garantes" value="" class="form-control"/>
-			  <div id="mensaje_identificacion_garantes" class="errores"></div>
-			  </div>
-			  </div>
-			  
 		     
 		    <hr>
 		    
@@ -539,8 +505,7 @@
 	    		<th style="color:#456789;font-size:80%;">Celular</th>
 	    		<th style="color:#456789;font-size:80%;">Dirección</th>
 	    		<th style="color:#456789;font-size:80%;">Ciudad</th>
-	    		<th style="color:#456789;font-size:80%;">Nombres Garante</th>
-	    		<th style="color:#456789;font-size:80%;">Identificación Garante</th>
+	    		
 	    		
 	    		
 	    		<th></th>
@@ -556,8 +521,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->celular_clientes; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->direccion_clientes; ?>  </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_garantes; ?>  </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_garantes; ?>  </td>
+		       
 		             
 		              
 		           	   <td>

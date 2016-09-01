@@ -40,7 +40,7 @@ public function index(){
 			if (!empty($resultPer))
 			{
 			
-					$columnas = " clientes.id_clientes, tipo_identificacion.nombre_tipo_identificacion,tipo_identificacion.id_tipo_identificacion, clientes.identificacion_clientes, clientes.nombres_clientes, clientes.telefono_clientes, clientes.celular_clientes, clientes.direccion_clientes, ciudad.nombre_ciudad, ciudad.id_ciudad, tipo_persona.nombre_tipo_persona, tipo_persona.id_tipo_persona, clientes.nombre_garantes, clientes.identificacion_garantes";
+					$columnas = " clientes.id_clientes, tipo_identificacion.nombre_tipo_identificacion,tipo_identificacion.id_tipo_identificacion, clientes.identificacion_clientes, clientes.nombres_clientes, clientes.telefono_clientes, clientes.celular_clientes, clientes.direccion_clientes, ciudad.nombre_ciudad, ciudad.id_ciudad, tipo_persona.nombre_tipo_persona, tipo_persona.id_tipo_persona";
 					$tablas   = "public.clientes, public.ciudad, public.tipo_persona, public.tipo_identificacion";
 					$where    = "clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion AND clientes.id_ciudad = ciudad.id_ciudad AND clientes.id_tipo_persona = tipo_persona.id_tipo_persona";
 					$id       = "clientes.identificacion_clientes"; 
@@ -91,9 +91,7 @@ public function index(){
 							clientes.celular_clientes, 
 							clientes.direccion_clientes, 
 							ciudad.nombre_ciudad, 
-							tipo_persona.nombre_tipo_persona, 
-							clientes.nombre_garantes, 
-							clientes.identificacion_garantes";
+							tipo_persona.nombre_tipo_persona";
 					
 					$tablas   = "public.clientes, public.ciudad, public.tipo_persona, public.tipo_identificacion";
 					$where    = "clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion AND clientes.id_ciudad = ciudad.id_ciudad AND clientes.id_tipo_persona = tipo_persona.id_tipo_persona";
@@ -186,15 +184,14 @@ public function index(){
 			$_direccion_clientes   = $_POST["direccion_clientes"];
 			$_id_ciudad   = $_POST["id_ciudad"];
 			$_id_tipo_persona   = $_POST["id_tipo_persona"];
-			$_nombre_garantes   = $_POST["nombre_garantes"];
-			$_identificacion_garantes   = $_POST["identificacion_garantes"];
+			
 			
 			if(isset($_POST["id_clientes"]))
 			{
 	
 				$_id_clientes = $_POST["id_clientes"];
 					
-				$colval = " id_tipo_identificacion = '$_id_tipo_identificacion',  identificacion_clientes = '$_identificacion_clientes', nombres_clientes = '$_nombres_clientes', telefono_clientes = '$_telefono_clientes', celular_clientes = '$_celular_clientes', direccion_clientes = '$_direccion_clientes', id_ciudad = '$_id_ciudad', id_tipo_persona = '$_id_tipo_persona', nombre_garantes = '$_nombre_garantes', identificacion_garantes = '$_identificacion_garantes'  ";
+				$colval = " id_tipo_identificacion = '$_id_tipo_identificacion',  identificacion_clientes = '$_identificacion_clientes', nombres_clientes = '$_nombres_clientes', telefono_clientes = '$_telefono_clientes', celular_clientes = '$_celular_clientes', direccion_clientes = '$_direccion_clientes', id_ciudad = '$_id_ciudad', id_tipo_persona = '$_id_tipo_persona' ";
 				$tabla = "clientes";
 				$where = "id_clientes = '$_id_clientes'    ";
 					
@@ -205,7 +202,7 @@ public function index(){
 			
 				$funcion = "ins_clientes";
 					
-				$parametros = " '$_id_tipo_identificacion' ,'$_identificacion_clientes' , '$_nombres_clientes' , '$_telefono_clientes' , '$_celular_clientes' , '$_direccion_clientes' , '$_id_ciudad' , '$_id_tipo_persona' , '$_nombre_garantes' , '$_identificacion_garantes'";
+				$parametros = " '$_id_tipo_identificacion' ,'$_identificacion_clientes' , '$_nombres_clientes' , '$_telefono_clientes' , '$_celular_clientes' , '$_direccion_clientes' , '$_id_ciudad' , '$_id_tipo_persona' ";
 				$clientes->setFuncion($funcion);
 				
 				$clientes->setParametros($parametros);

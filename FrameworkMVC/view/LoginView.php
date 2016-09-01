@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="utf-8"/>
-        <title>Login Coactiva 2016</title>
+        <title>Login CallCenter 2016</title>
        
        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -29,7 +29,7 @@
 			
 			    /* Ubicación de la imagen */
 		 
-		  background-image: url(view/images/fondo_hd.jpg);
+		  background-image: url(view/images/call_center.jpg);
 		
 		  /* Nos aseguramos que la imagen de fondo este centrada vertical y
 		    horizontalmente en todo momento */
@@ -66,17 +66,20 @@
         <div class="row">
         
         
-        	<div class="col-xs-2 col-md-2">
+        	<div class="col-xs-1 col-md-1">
         	</div>
         	<div class="col-xs-8 col-md-4">
         		<div class="col-xs-4 col-md-2">
         		</div>
+        		
         	    <div class="col-xs-8 col-md-8">
-		        	  <div   style="background:#d93e1b ;border-radius: 5px;  border: 1px solid #063B41;"  >
+		        	  <div   style="background:#A5DF00 ;border-radius: 5px;  border: 1px solid #063B41;"  >
 		     		     <div class="row">
 								<div class="col-xs-2 col-md-2">					
 									
 								</div>
+								
+								
 								<div class="col-xs-8 col-md-8">					
 									<h5 class="text-center" style="color: #ffffff;" >Inicio de Sesión</h5>
 								</div>
@@ -118,6 +121,9 @@
 								</div>
 								<div class="col-xs-8 col-md-8">					
 									<input type="submit" value="Login" class="btn btn-default" />
+								<br>
+								<br>
+									
 								</div>
 								<div class="col-xs-2 col-md-2">					
 									
@@ -131,7 +137,7 @@
 		          <div class="col-xs-2 col-md-2">
         		  </div>
         	</div>
-            <div class="col-xs-2 col-md-2">
+            <div class="col-xs-3 col-md-3">
         	</div>
         	
           

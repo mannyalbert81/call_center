@@ -118,7 +118,7 @@ $(document).ready(function(){
 <div class="container"  style=" -webkit-box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.49);-moz-box-shadow: 0px 2px 2px 4px rgba(0,0,0,0.49); box-shadow: 0px 2px 2px 4px rgba(0,0,0,0.49);">
   
   
-  <div class="row" style=" background-color:#d93e1b;">
+  <div class="row" style=" background-color:#A5DF00;">
   
   <div style=" margin-top: 10px; "   class="col-xs-6 col-md-8"  >
   <img src="view/images/logo-coctiva.png" class="img-responsive" alt="Responsive image">
