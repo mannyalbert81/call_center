@@ -505,7 +505,7 @@ public function index(){
 					else
 					{
 					
-						 $colval   = " nombre_usuarios = '$_nombre_usuario' , clave_usuarios = '$_clave_usuario'   , telefono_usuarios = '$_telefono_usuario' ,  celular_usuarios = '$_celular_usuario' , correo_usuarios = '$_correo_usuario' , usuario_usuarios = '$_usuario_usuario', cedula_usuarios = '$_cedula_usuarios', id_ciudad = '$_id_ciudad' ";
+					$colval   = " nombre_usuarios = '$_nombre_usuario' , clave_usuarios = '$_clave_usuario'   , telefono_usuarios = '$_telefono_usuario' ,  celular_usuarios = '$_celular_usuario' , correo_usuarios = '$_correo_usuario' , usuario_usuarios = '$_usuario_usuario', cedula_usuarios = '$_cedula_usuarios', id_ciudad = '$_id_ciudad' ";
 					$tabla    = "usuarios";
 					$where    = " id_usuarios = '$_id_usuario' ";
 					
@@ -513,9 +513,7 @@ public function index(){
 				
 					
 					}
-					
-					
-					
+												
 					$this->view("Login",array(
 							"allusers"=>""
 					));
