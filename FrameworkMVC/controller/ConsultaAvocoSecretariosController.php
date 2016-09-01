@@ -681,19 +681,21 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 			
 			
 			
+			$this->view("FirmarPdf",array(
+						
+					"resultUsuario"=>$resultUsuario,"resultnombreFiles"=>$resultnombreFiles,"ruta"=>$ruta,"resultIds"=>$resultIds
+			
+			));
+			
+			/*
+			 * 
 			$this->view("Error",array(
 						
 					"resultado"=>$resultUsuario." df ".$resultnombreFiles." df ".$ruta." df ".$resultIds
 			
 			));
 			
-			/*$this->view("FirmarPdf",array(
-						
-					"resultUsuario"=>$resultUsuario,"resultnombreFiles"=>$resultnombreFiles,"ruta"=>$ruta,"resultIds"=>$resultIds
-			
-			));
-			*/
-			
+			 */
 			
 		}else {
 			

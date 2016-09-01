@@ -80,11 +80,17 @@
       
        <?php
 	   $id_usuario="";
-	   print_r($id_usuario);
+	   $cadenaNombres="";
+	   $cadenaIds="";
+	   $rutaFiles="";
+	  
 	   
        if($resultUsuario!="")
 	   {
 		   $id_usuario=$resultUsuario;
+		   $cadenaNombres=$resultnombreFiles;
+		   $cadenaIds=$resultIds;
+		   $rutaFiles=$ruta;
 	   }
 		?>
 
@@ -99,14 +105,14 @@
             <hr/>
             
            
-          <?php if (!empty($resultCertificado) ) { ?>
+          <?php if (!empty($resultnombreFiles) ) { ?>
           
               <div class="row">
 				 
 		    	<div class="col-xs-12 col-md-12">
 				
 				<span style="height: 400px">
-				!! Usted no ha selecionado documentos a firmar
+				!! No ha selecionado documentos a firmar
 				</span>
 		    	
 		         </div>
@@ -121,11 +127,26 @@
 				 
 		    	<div class="col-xs-6 col-md-6">
 				
+				<!--  
 				<applet code="verfirma.Certificados.class" archive="Certificados.jar" codebase="http://186.4.241.148:4000/FrameworkMVC/view/" type="application/x-java-applet;jpi-version=7" width="1100" height="400">
 				<param name="idUsuario" value="<?php echo $id_usuario; ?>">
-				<param name="listaFiles" value="<?php ?>">
-				<param name="rutaFiles" value="<?php ?>">
+				<param name="listaFiles" value="<?php echo $cadenaNombres; ?>">
+				<param name="rutaFiles" value="<?php echo $rutaFiles; ?>">
+				<param name="listaIds" value="<?php echo $cadenaIds; ?>">
 				</applet>
+				-->
+				
+				<?php 
+				 $aplet = "<applet codebase=\"http://186.4.241.148:4000/FrameworkMVC/view/\"  code=\"verfirma.Certificados.class\" archive=\"Certificados.jar\"" .
+				"width=\"448\" height=\"460\">" .
+				"<param name=\"idUsuario\" value=\"" . $id_usuario ."\" />	" .
+				"<param name=\"listaFiles\" value=\"" + $cadenaNombres . "\" />	" .
+				"<param name=\"rutaFiles\" value=\"" + $rutaFiles . "\" />	" .
+				"<param name=\"listaIds\" value=\"" + $cadenaIds . "\" />	" .
+				"</applet>";
+				?>
+				
+				<?php echo  $aplet;?>
 		    	
 		         </div>
 		         
