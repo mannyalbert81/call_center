@@ -106,6 +106,9 @@ $controladores=$_SESSION['controladores'];
             <a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Clientes</span> </a>
 			</li>
           	
+          	<li style="<?php echo getcontrolador("RegistrarLlamadas",$controladores) ?>">
+            <a href="index.php?controller=RegistrarLlamadas&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Registrar Llamadas</span> </a>
+			</li>
 </ul>
 </li>
         
