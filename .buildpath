@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="FrameworkMVC"/>
+	<buildpathentry kind="src" path="info"/>
+	<buildpathentry kind="src" path="jquery-load"/>
+	<buildpathentry kind="src" path="php-Csharp"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>
