@@ -60,28 +60,37 @@ $controladores=$_SESSION['controladores'];
 			<li style="<?php echo getcontrolador("Controladores",$controladores) ?>">
 			<a href="index.php?controller=Controladores&action=index"><span class="glyphicon glyphicon-inbox" aria-hidden="true"> Controladores</span> </a>
 			</li>
-			<li style="<?php echo getcontrolador("Entidades",$controladores) ?>">
-			<a href="index.php?controller=Entidades&action=index"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> Entidades</span> </a>
-			</li>
-			<li style="<?php echo getcontrolador("TipoIdentificacion",$controladores) ?>">
-			<a href="index.php?controller=TipoIdentificacion&action=index"><span class="glyphicon glyphicon-time" aria-hidden="true"> Tipo de Identificacion</span> </a>
-			</li>
-			<li style="<?php echo getcontrolador("TipoNotificacion",$controladores) ?>">
-			<a href="index.php?controller=TipoNotificacion&action=index"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"> Tipo Notificacion</span> </a>
-			</li>
-			<li style="<?php echo getcontrolador("Notificaciones",$controladores) ?>">
-			<a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
-			</li>
 			
+</ul>
+</li>
+
+    <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          
+          <li style="<?php echo getcontrolador("Ciudad",$controladores) ?>">
+			<a href="index.php?controller=Ciudad&action=index"><span class="glyphicon glyphicon-object-align-vertical" aria-hidden="true"> Ciudades</span> </a>
+			</li> 
 			
-			<li role="separator" class="divider"></li>
+		   <li style="<?php echo getcontrolador("Entidades",$controladores) ?>">
+            <a href="index.php?controller=Entidades&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Entidades</span> </a>
+			</li> 
 			
-            
-            <li style="<?php echo getcontrolador("TipoPersona",$controladores) ?>">
+          <li style="<?php echo getcontrolador("TipoPersona",$controladores) ?>">
             <a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
 			</li>
+		
+		   <li style="<?php echo getcontrolador("TipoIdentificación",$controladores) ?>">
+            <a href="index.php?controller=TipoIdentificación&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Identificación</span> </a>
+			</li> 
+		   
+		   <li style="<?php echo getcontrolador("TipoNotificacion",$controladores) ?>">
+			<a href="index.php?controller=TipoNotificacion&action=index"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"> Tipo Notificacion</span> </a>
+			</li>
 			
-			
+			<li style="<?php echo getcontrolador("Notificaciones",$controladores) ?>">
+			<a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
+			</li>     	
 </ul>
 </li>
 

@@ -2,7 +2,7 @@
 <html lang="es">
       <head>
         <meta charset="utf-8"/>
-        <title>Permisos Rol - coactiva 2016</title>
+        <title>Permisos Rol - CallCenter 2016</title>
    
      <!-- AQUI NOTIFICAIONES -->
 		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
@@ -342,6 +342,6 @@
       </section>
       </div>
       </div>
-       
+       <?php include("view/modulos/footer.php"); ?>
      </body>  
     </html>   

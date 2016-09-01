@@ -11,7 +11,7 @@
     <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel2" data-slide-to="1"></li>
     <li data-target="#myCarousel3" data-slide-to="2"></li>
-    <li data-target="#myCarousel4" data-slide-to="3"></li>
+    
     
   </ol>
 
@@ -28,9 +28,7 @@
   <div class="item">
       <img src="view/images/banner/3.jpg" alt="Chania">
     </div>
-      <div class="item">
-      <img src="view/images/banner/4.jpg" alt="Chania">
-    </div>
+     
     
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#myCarousel1" role="button" data-slide="prev">

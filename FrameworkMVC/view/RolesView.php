@@ -2,7 +2,7 @@
 <html lang="es">
      <head>
         <meta charset="utf-8"/>
-        <title>Roles - coactiva 2016</title>
+        <title>Roles - CallCenter 2016</title>
    
            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		  			   
@@ -195,8 +195,9 @@
        
   
        
-       <?php include("view/modulos/footer.php"); ?>
+       
         </div>
       </div>
+      <?php include("view/modulos/footer.php"); ?>
      </body>  
     </html>          
