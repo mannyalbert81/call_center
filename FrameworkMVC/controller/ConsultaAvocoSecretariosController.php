@@ -656,6 +656,7 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 			$arrayFilesAfirmar=$_POST['file_firmar'];
 			$cadenaFiles="";
 			$cadenaId="";
+			$ruta="Avoco";
 			
 				
 				foreach ($arrayFilesAfirmar as $res)
@@ -666,9 +667,9 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 			//$cadenaFiles = substr($cadenaFiles, 0, -1);
 			//$cadenaId = substr($cadenaId, 0, -1);
 			
-			$cadenaId = trim($cadenaId,",");
+			$resultIds = trim($cadenaId,",");
 			
-			$consulta=$avoco->getBy("id_avoco_conocimiento in ('$cadenaId')");
+			$consulta=$avoco->getBy("id_avoco_conocimiento in ('$resultIds')");
 			
 			if (!empty($consulta)) {  foreach($consulta as $res) {
 						
@@ -679,9 +680,10 @@ class ConsultaAvocoSecretariosController extends ControladorBase{
 			$resultnombreFiles = trim($cadenaFiles,",");
 			
 			
+			
 			$this->view("Error",array(
 						
-					"resultado"=>$cadenaFiles." df ".$resultnombreFiles." df ".$ruta." df ".$resultIds
+					"resultado"=>$resultUsuario." df ".$resultnombreFiles." df ".$ruta." df ".$resultIds
 			
 			));
 			
