@@ -105,7 +105,7 @@
             <hr/>
             
            
-          <?php if (!empty($resultnombreFiles) ) { ?>
+          <?php if ($resultnombreFiles="") { ?>
           
               <div class="row">
 				 
