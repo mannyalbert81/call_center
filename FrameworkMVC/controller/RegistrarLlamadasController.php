@@ -8,16 +8,13 @@ class RegistrarLlamadasController extends ControladorBase{
 public function index(){
 	
 		session_start();
-		
-		
-		
+		$resultSet="";
 		
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-			//creacion menu busqueda
-			//$resultMenu=array("1"=>Nombre,"2"=>Usuario,"3"=>Correo,"4"=>Rol);
-			$resultMenu=array(0=>'--Seleccione--',1=>'Nombre', 2=>'Identificación');
-			//Creamos el objeto usuario
+				
+			$parentesco = new ParentescoClientesModel();
+			$resultParent = $parentesco->getAll("nombre_parentesco_clientes");
 			
 			$tipo_identificacion = new TipoIdentificacionModel();
 			$resultTipoIdent = $tipo_identificacion->getAll("nombre_tipo_identificacion");
@@ -39,31 +36,60 @@ public function index(){
 				
 			if (!empty($resultPer))
 			{
+				$resultEdit="";
 			
-					$columnas = " clientes.id_clientes, tipo_identificacion.nombre_tipo_identificacion,tipo_identificacion.id_tipo_identificacion, clientes.identificacion_clientes, clientes.nombres_clientes, clientes.telefono_clientes, clientes.celular_clientes, clientes.direccion_clientes, ciudad.nombre_ciudad, ciudad.id_ciudad, tipo_persona.nombre_tipo_persona, tipo_persona.id_tipo_persona";
-					$tablas   = "public.clientes, public.ciudad, public.tipo_persona, public.tipo_identificacion";
-					$where    = "clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion AND clientes.id_ciudad = ciudad.id_ciudad AND clientes.id_tipo_persona = tipo_persona.id_tipo_persona";
-					$id       = "clientes.identificacion_clientes"; 
-			
+				if(isset($_POST["buscar"])){
 				
-					$resultSet=$registrar_llamadas->getCondiciones($columnas ,$tablas ,$where, $id);
 					
+					$identificacion=$_POST['identificacion'];
+					 
+				    $clientes = new ClientesModel();
+				
+				    $columnas = "clientes.id_clientes,
+				    		      tipo_identificacion.id_tipo_identificacion,
+								  tipo_identificacion.nombre_tipo_identificacion, 
+								  clientes.identificacion_clientes, 
+								  clientes.nombres_clientes, 
+								  clientes.telefono_clientes, 
+								  clientes.celular_clientes, 
+								  clientes.direccion_clientes, 
+				    		      ciudad.id_ciudad,
+								  ciudad.nombre_ciudad, 
+				    		      tipo_persona.id_tipo_persona,
+								  tipo_persona.nombre_tipo_persona";
+				
+					$tablas=" public.clientes, 
+							  public.ciudad, 
+							  public.tipo_persona, 
+							  public.tipo_identificacion";
+				
+					$where="ciudad.id_ciudad = clientes.id_ciudad AND
+						  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
+						  tipo_identificacion.id_tipo_identificacion = clientes.id_tipo_identificacion";
+				
+					$id="clientes.id_clientes";
+				
+				
+					$where_0 = "";
 					
-					$resultEdit = "";
-			
-					if (isset ($_GET["id_clientes"])   )
-					{
-						$_id_clientes = $_GET["id_clientes"];
-					    $where    = " clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion AND clientes.id_ciudad = ciudad.id_ciudad AND clientes.id_tipo_persona = tipo_persona.id_tipo_persona AND clientes.id_clientes = '$_id_clientes' "; 
-						$resultEdit = $registrar_llamadas->getCondiciones($columnas ,$tablas ,$where, $id); 
+				
+				
 					
-						$traza=new TrazasModel();
-						$_nombre_controlador = "Clientes";
-						$_accion_trazas  = "Editar";
-						$_parametros_trazas = $_id_clientes;
-						$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+					if($identificacion!=""){$where_0=" AND clientes.identificacion_clientes='$identificacion'";}
+				
+					
+				
+					$where_to  = $where . $where_0;
+				
+					
+					$resultSet=$clientes->getCondiciones($columnas ,$tablas , $where_to, $id);
+				
+				
+				}
+				$this->view("RegistrarLlamadas",array(
+					"resultSet"=>$resultSet, "resultEdit"=>$resultEdit, "resultTipoIdent"=> $resultTipoIdent, "resultTipoPer"=> $resultTipoPer, "resultCiu"=>$resultCiu, "resultParent"=>$resultParent
 						
-					}
+			));
 				
 			}
 			else
@@ -76,74 +102,7 @@ public function index(){
 			}
 			
 			
-			$resultPerVer= $registrar_llamadas->getPermisosVer("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 			
-			if (!empty($resultPerVer))
-			{
-				if (isset ($_POST["criterio"])  && isset ($_POST["contenido"])  )
-				{
-				
-					$columnas = " clientes.id_clientes, 
-							tipo_identificacion.nombre_tipo_identificacion, 
-							clientes.identificacion_clientes, 
-							clientes.nombres_clientes, 
-							clientes.telefono_clientes, 
-							clientes.celular_clientes, 
-							clientes.direccion_clientes, 
-							ciudad.nombre_ciudad, 
-							tipo_persona.nombre_tipo_persona";
-					
-					$tablas   = "public.clientes, public.ciudad, public.tipo_persona, public.tipo_identificacion";
-					$where    = "clientes.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion AND clientes.id_ciudad = ciudad.id_ciudad AND clientes.id_tipo_persona = tipo_persona.id_tipo_persona";
-					$id       = "clientes.identificacion_clientes"; 
-
-					$criterio = $_POST["criterio"];
-					$contenido = $_POST["contenido"];
-						
-					
-					//$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
-						
-					if ($contenido !="")
-					{
-							
-						$where_0 = "";
-						$where_1 = "";
-						$where_2 = "";
-						
-							
-						switch ($criterio) {
-							case 0:
-								$where_0 = "OR  clientes.nombres_clientes LIKE '$contenido'   OR clientes.identificacion_clientes LIKE '$contenido'";
-								break;
-							case 1:
-								//Ruc Cliente/Proveedor
-								$where_1 = " AND  clientes.nombres_clientes LIKE '$contenido'  ";
-								break;
-							case 2:
-								//Nombre Cliente/Proveedor
-								$where_2 = " AND clientes.identificacion_clientes LIKE '$contenido'  ";
-								break;
-							
-						}
-							
-						$where_to  = $where .  $where_0 . $where_1 . $where_2;
-							
-						$resul = $where_to;
-						
-						//Conseguimos todos los usuarios con filtros
-						$resultSet=$registrar_llamadas->getCondiciones($columnas ,$tablas ,$where_to, $id);
-							
-								
-					}
-				}
-			}
-			
-			//"resultMenu"=>$resultMenu
-			
-			$this->view("RegistrarLlamadas",array(
-					"resultSet"=>$resultSet, "resultEdit" =>$resultEdit, "resultMenu"=>$resultMenu, "resultTipoIdent"=> $resultTipoIdent, "resultTipoPer"=> $resultTipoPer, "resultCiu"=>$resultCiu
-			
-			));
 			
 			
 		}
