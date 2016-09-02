@@ -24,8 +24,8 @@ $PHPJasperXML->debugsql=false;
 
 $id_ciudad=0;
 $identificacion=0;
-$numero_juicio=0;
-$titulo_credito=0;
+$nombre_clientes=0;
+$celular_clientes=0;
 $fecha_desde=0;
 $fecha_hasta=0;
 $sql="";
@@ -47,18 +47,18 @@ if ($_GET['identificacion']!="")
 	$detallesql=$detallesql." AND clientes.identificacion_clientes = '$identificacion'";
 }
 	
-if ($_GET['numero_juicio']!="")
+if ($_GET['nombres_clientes']!="")
 {
 		
-	$numero_juicio= $_GET['numero_juicio'];
-	$detallesql=$detallesql." AND juicios.juicio_referido_titulo_credito = '$numero_juicio'";
+	$nombre_clientes= $_GET['nombres_clientes'];
+	$detallesql=$detallesql." AND clientes.nombres_clientes = '$nombre_clientes'";
 }
 	
-if ($_GET['numero_titulo']!="")
+if ($_GET['celular_clientes']!="")
 {
 		
-	$titulo_credito= $_GET['numero_titulo'];
-	$detallesql=$detallesql." AND juicios.id_titulo_credito = '$titulo_credito'";
+	$celular_clientes= $_GET['celular_clientes'];
+	$detallesql=$detallesql." AND clientes.celular_clientes = '$celular_clientes'";
 }
 	
 if ($_GET['fecha_desde']!="" && $_GET['fecha_hasta']!="")
@@ -71,37 +71,25 @@ if ($_GET['fecha_desde']!="" && $_GET['fecha_hasta']!="")
 	
 	
 	
- $cabeceraSql="select           juicios.id_juicios,
-					clientes.id_clientes,
-  					clientes.nombres_clientes, 
-  					clientes.identificacion_clientes, 
-  					ciudad.nombre_ciudad, 
-  					tipo_persona.nombre_tipo_persona, 
-  					juicios.juicio_referido_titulo_credito, 
-  					asignacion_secretarios_view.impulsores,
-  					asignacion_secretarios_view.secretarios,
-					titulo_credito.id_titulo_credito, 
-  					etapas_juicios.nombre_etapas, 
-  					tipo_juicios.nombre_tipo_juicios, 
-  					juicios.creado, 
-  					titulo_credito.total
+ $cabeceraSql="select           clientes.id_clientes, 
+							  tipo_identificacion.nombre_tipo_identificacion, 
+							  clientes.identificacion_clientes, 
+							  clientes.nombres_clientes, 
+							  clientes.telefono_clientes, 
+							  clientes.celular_clientes, 
+							  clientes.direccion_clientes, 
+							  ciudad.nombre_ciudad, 
+							  tipo_persona.nombre_tipo_persona, 
+							  clientes.creado
 
-	from	                    public.clientes, 
-					  public.ciudad, 
-					  public.tipo_persona, 
-					  public.juicios, 
-					  public.titulo_credito, 
-					  public.etapas_juicios, 
-					  public.tipo_juicios,
-					  public.asignacion_secretarios_view
+	from	                   public.clientes, 
+							  public.ciudad, 
+							  public.tipo_persona, 
+							  public.tipo_identificacion
 
 	where		    ciudad.id_ciudad = clientes.id_ciudad AND
-					  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
-					  juicios.id_titulo_credito = titulo_credito.id_titulo_credito AND
-					  juicios.id_clientes = clientes.id_clientes AND
-					  juicios.id_tipo_juicios = tipo_juicios.id_tipo_juicios AND
-					  etapas_juicios.id_etapas_juicios = juicios.id_etapas_juicios AND
-					  juicios.id_usuarios= asignacion_secretarios_view.id_abogado";
+							  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
+							  tipo_identificacion.id_tipo_identificacion = clientes.id_tipo_identificacion";
 
  
  

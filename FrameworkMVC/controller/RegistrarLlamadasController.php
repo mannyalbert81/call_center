@@ -13,8 +13,7 @@ public function index(){
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 				
-			$parentesco = new ParentescoClientesModel();
-			$resultParent = $parentesco->getAll("nombre_parentesco_clientes");
+		
 			
 			$tipo_identificacion = new TipoIdentificacionModel();
 			$resultTipoIdent = $tipo_identificacion->getAll("nombre_tipo_identificacion");
@@ -42,7 +41,13 @@ public function index(){
 				
 					
 					$identificacion=$_POST['identificacion'];
-					 
+					
+					
+					if($identificacion==""){
+						
+					}
+					
+					else{
 				    $clientes = new ClientesModel();
 				
 				    $columnas = "clientes.id_clientes,
@@ -83,11 +88,11 @@ public function index(){
 				
 					
 					$resultSet=$clientes->getCondiciones($columnas ,$tablas , $where_to, $id);
-				
+					}
 				
 				}
 				$this->view("RegistrarLlamadas",array(
-					"resultSet"=>$resultSet, "resultEdit"=>$resultEdit, "resultTipoIdent"=> $resultTipoIdent, "resultTipoPer"=> $resultTipoPer, "resultCiu"=>$resultCiu, "resultParent"=>$resultParent
+					"resultSet"=>$resultSet, "resultEdit"=>$resultEdit, "resultTipoIdent"=> $resultTipoIdent, "resultTipoPer"=> $resultTipoPer, "resultCiu"=>$resultCiu
 						
 			));
 				
@@ -132,24 +137,48 @@ public function index(){
 			$resultado = null;
 		
 		
-		if (isset ($_POST["identificacion_clientes"]) )
+		if (isset ($_POST["Guardar"]) )
 		{
 
-			$_id_tipo_identificacion     = $_POST["id_tipo_identificacion"];
-			$_identificacion_clientes      = $_POST["identificacion_clientes"];
-			$_nombres_clientes   = $_POST["nombres_clientes"];
-			$_telefono_clientes   = $_POST["telefono_clientes"];
-			$_celular_clientes   = $_POST["celular_clientes"];
-			$_direccion_clientes   = $_POST["direccion_clientes"];
-			$_id_ciudad   = $_POST["id_ciudad"];
-			$_id_tipo_persona   = $_POST["id_tipo_persona"];
+			$_id_clientes     = $_POST["id_clientes"];
+			$_id_usuario_registra_llamada      = $_SESSION['id_usuarios'];
+			$_fecha_registrar_llamadas   = $_POST["fecha_registrar_llamadas"];
+			$_hora_registrar_llamadas   = $_POST["hora_registrar_llamadas"];
+			$_recibio_registrar_llamadas   = $_POST["recibio_registrar_llamadas"];
+			$_persona_contesta_llamada   = $_POST["persona_contesta_llamada"];
+			$_observaciones_registra_llamadas   = $_POST["observaciones_registra_llamadas"];
+			$_id_parentesco_clientes   = $_POST["parentesco_clientes"];
+			
+			$funcion = "ins_registrar_llamadas";
+			$parametros = " '$_id_clientes' ,'$_id_usuario_registra_llamada' , '$_fecha_registrar_llamadas' , '$_hora_registrar_llamadas' , '$_recibio_registrar_llamadas' , '$_persona_contesta_llamada' , '$_observaciones_registra_llamadas', '$_id_parentesco_clientes'  ";
+			$registrar_llamadas->setFuncion($funcion);
+			$registrar_llamadas->setParametros($parametros);
+			$resultado=$registrar_llamadas->Insert();
+			 
+			
+			$traza=new TrazasModel();
+			$_nombre_controlador = "Clientes";
+			$_accion_trazas  = "Guardar";
+			$_parametros_trazas = $_nombres_clientes;
+			$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
+			
+		}
+			
 			
 			
 			if(isset($_POST["id_clientes"]))
 			{
 	
 				$_id_clientes = $_POST["id_clientes"];
-					
+				$_id_tipo_identificacion     = $_POST["id_tipo_identificacion"];
+				$_identificacion_clientes      = $_POST["identificacion_clientes"];
+				$_nombres_clientes   = $_POST["nombres_clientes"];
+				$_telefono_clientes   = $_POST["telefono_clientes"];
+				$_celular_clientes   = $_POST["celular_clientes"];
+				$_direccion_clientes   = $_POST["direccion_clientes"];
+				$_id_ciudad   = $_POST["id_ciudad"];
+				$_id_tipo_persona   = $_POST["id_tipo_persona"];
+				
 				$colval = " id_tipo_identificacion = '$_id_tipo_identificacion',  identificacion_clientes = '$_identificacion_clientes', nombres_clientes = '$_nombres_clientes', telefono_clientes = '$_telefono_clientes', celular_clientes = '$_celular_clientes', direccion_clientes = '$_direccion_clientes', id_ciudad = '$_id_ciudad', id_tipo_persona = '$_id_tipo_persona' ";
 				$tabla = "clientes";
 				$where = "id_clientes = '$_id_clientes'    ";
@@ -159,21 +188,7 @@ public function index(){
 			}
 			else{
 			
-				$funcion = "ins_clientes";
-					
-				$parametros = " '$_id_tipo_identificacion' ,'$_identificacion_clientes' , '$_nombres_clientes' , '$_telefono_clientes' , '$_celular_clientes' , '$_direccion_clientes' , '$_id_ciudad' , '$_id_tipo_persona' ";
-				$registrar_llamadas->setFuncion($funcion);
 				
-				$registrar_llamadas->setParametros($parametros);
-				$resultado=$registrar_llamadas->Insert();
-			    
-				
-				$traza=new TrazasModel();
-				$_nombre_controlador = "Clientes";
-				$_accion_trazas  = "Guardar";
-				$_parametros_trazas = $_nombres_clientes;
-				$resultado = $traza->AuditoriaControladores($_accion_trazas, $_parametros_trazas, $_nombre_controlador);
-				}
 				
 				
 			}

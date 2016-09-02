@@ -10,8 +10,6 @@ public function index(){
 		session_start();
 		
 		
-		
-		
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
 			//creacion menu busqueda
@@ -468,20 +466,9 @@ public function index(){
 	}
 	
 	
-	public function ReporteClientes(){
 	
-		session_start();
-		
-		//$id_clientes=$_GET['id_clientes'];
-		//echo "<a href='/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=".$id_clientes."' target='/FrameworkMVC/view/ireports/ContClientesSubReport.php' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\">Reporte</a>";
-		    //echo "<a href='tuArchivo.php?variablePorURL=".$variablePorURL."' target='tuArchivo' onclick=\"window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false;\"> Contrato </a>";
-		
-		//$this->ireport("ContClientes");
-		
 	
-	}
-	
-	public function consulta(){
+	public function consulta_clientes(){
 	
 		session_start();
 	
@@ -489,24 +476,8 @@ public function index(){
 		$resultSet="";
 	
 		$ciudad = new CiudadModel();
+		$resultCiu = $ciudad->getBy("nombre_ciudad='CUENCA'"); 
 		
-		
-		$_id_usuarios= $_SESSION["id_usuarios"];
-		
-		$columnas = " usuarios.id_ciudad,
-					  ciudad.nombre_ciudad,
-					  usuarios.nombre_usuarios";
-			
-		$tablas   = "public.usuarios,
-                     public.ciudad";
-			
-		$where    = "ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuarios'";
-			
-		$id       = "usuarios.id_ciudad";
-		
-			
-		$resultDatos=$ciudad->getCondiciones($columnas ,$tablas ,$where, $id);
-	
 		$clientes = new ClientesModel();
 	
 		if (isset(  $_SESSION['usuario_usuarios']) )
@@ -523,47 +494,35 @@ public function index(){
 	
 					$id_ciudad=$_POST['id_ciudad'];
 					$identificacion=$_POST['identificacion'];
-					$numero_juicio=$_POST['numero_juicio'];
-					$titulo_credito=$_POST['numero_titulo'];
+					$nombre_clientes=$_POST['nombres_clientes'];
+					$celular_clientes=$_POST['celular_clientes'];
 					$fechadesde=$_POST['fecha_desde'];
 					$fechahasta=$_POST['fecha_hasta'];
 	
 					$clientes = new ClientesModel();
 	
 	
-					$columnas = "juicios.id_juicios,
-					clientes.id_clientes,
-  					clientes.nombres_clientes, 
-  					clientes.identificacion_clientes, 
-  					ciudad.nombre_ciudad, 
-  					tipo_persona.nombre_tipo_persona, 
-  					juicios.juicio_referido_titulo_credito, 
-  					asignacion_secretarios_view.impulsores,
-  					asignacion_secretarios_view.secretarios,
-					titulo_credito.id_titulo_credito, 
-  					etapas_juicios.nombre_etapas, 
-  					tipo_juicios.nombre_tipo_juicios, 
-  					juicios.creado, 
-  					titulo_credito.total";
+					$columnas = "clientes.id_clientes, 
+							  tipo_identificacion.nombre_tipo_identificacion, 
+							  clientes.identificacion_clientes, 
+							  clientes.nombres_clientes, 
+							  clientes.telefono_clientes, 
+							  clientes.celular_clientes, 
+							  clientes.direccion_clientes, 
+							  ciudad.nombre_ciudad, 
+							  tipo_persona.nombre_tipo_persona, 
+							  clientes.creado";
 	
 					$tablas="public.clientes, 
-					  public.ciudad, 
-					  public.tipo_persona, 
-					  public.juicios, 
-					  public.titulo_credito, 
-					  public.etapas_juicios, 
-					  public.tipo_juicios,
-					  public.asignacion_secretarios_view";
+							  public.ciudad, 
+							  public.tipo_persona, 
+							  public.tipo_identificacion";
 	
-					$where="ciudad.id_ciudad = clientes.id_ciudad AND
-					  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
-					  juicios.id_titulo_credito = titulo_credito.id_titulo_credito AND
-					  juicios.id_clientes = clientes.id_clientes AND
-					  juicios.id_tipo_juicios = tipo_juicios.id_tipo_juicios AND
-					  etapas_juicios.id_etapas_juicios = juicios.id_etapas_juicios AND
-					  juicios.id_usuarios= asignacion_secretarios_view.id_abogado AND juicios.id_usuarios ='$_id_usuarios'";
-	
-					$id="juicios.id_juicios";
+					$where=" ciudad.id_ciudad = clientes.id_ciudad AND
+							  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
+							  tipo_identificacion.id_tipo_identificacion = clientes.id_tipo_identificacion";
+								
+					$id="clientes.id_clientes";
 						
 						
 					$where_0 = "";
@@ -574,14 +533,14 @@ public function index(){
 	
 	
 					if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
+					
+					if($identificacion!=""){$where_1=" AND clientes.identificacion_clientes='$identificacion'";}
 						
-					if($numero_juicio!=""){$where_1=" AND juicios.juicio_referido_titulo_credito='$numero_juicio'";}
+					if($nombre_clientes!=""){$where_2=" AND clientes.nombres_clientes='$nombre_clientes'";}
+					
+					if($celular_clientes!=""){$where_3=" AND clientes.celular_clientes='$celular_clientes'";}
 						
-					if($identificacion!=""){$where_2=" AND clientes.identificacion_clientes='$identificacion'";}
-						
-					if($titulo_credito!=""){$where_3=" AND juicios.id_titulo_credito='$titulo_credito'";}
-						
-					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  juicios.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  clientes.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
 	
 	
 					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;
@@ -592,7 +551,7 @@ public function index(){
 	
 				}
 	                    $this->view("ConsultaClientes",array(
-						"resultSet"=>$resultSet,"resultDatos"=>$resultDatos
+						"resultSet"=>$resultSet, "resultCiu"=>$resultCiu
 							
 				));
 	

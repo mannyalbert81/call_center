@@ -138,13 +138,14 @@ $(document).ready(function(){
 		
 			 if  (isset( $_SESSION['nombre_usuarios'] ))  {  
 		?>
+		
 		  <input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $_SESSION['id_usuarios']; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $_SESSION['id_usuarios'];?>" width="70" height="60"  style="float:left;" >
  		
 		  <div class="col-xs-7 col-md-5">
 			
 			<div class="dropdown">
 			
-				  <button id="noti_btn" class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><FONT  SIZE=1><?php echo " ".$_SESSION['nombre_usuarios'];?></FONT></span>
+				  <button id="noti_btn" class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" ><FONT  SIZE=2><?php echo " ".$_SESSION['nombre_usuarios'];?></FONT></span>
 				  
 				  <span class="caret"></span>
 				  </button>
@@ -156,47 +157,7 @@ $(document).ready(function(){
 								  
 			</div>
 		</div>
-			<!-- empieza notificacion -->
-		<div class="col-xs-7 col-md-3" style="float: left; margin-left: 5px;">
-
-            <form action="<?php echo $helper->url("",""); ?>" method="post" >
-            <?php 
-            
-            $resultNotificaciones=$_SESSION['resultNotificaciones'];
-            $cantidad=$_SESSION['cantidad'];
-            $cantidadXfila=$_SESSION['cantidad_fila_notificaciones'];
-            
-            ?>
-            
-			<div class="dropdown" id="">
-			<button type="button" id="boton_notificacion" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="badge"><?php echo $cantidad; ?></span></button>
-			<?php if($cantidad>0){ ?>
-			
-			<ul class="dropdown-menu sub-menu" id="ul_notificacion" style="min-width: 425px; overflow: auto; margin: 2px 0 0 -175px;" >
-			<?php foreach ($resultNotificaciones as $res){?>
-			<?php $fecha= new DateTime($res->creado);?>
-			
-			<li class="list-group-item" >
-			<div   >
-			
-			<input type="image" name="image" src="view/DevuelveImagen.php?id_valor=<?php echo $res->usuario_origen_notificaciones; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=imagen_usuarios"  alt="<?php echo $res->usuario_origen_notificaciones;?>" width="50" height="40"  style="float:left;" >
- 		
-			</div>
-			<a href="index.php?controller=Notificaciones&action=actualizaNotificaciones&id_notificaciones=<?php echo $res->id_notificaciones;?>" style="display: inline-block; padding: 3px 5px;">
-			<?php echo '<b>'.$res->descripcion_notificaciones.'</b>'; echo ' '.$res->usuario_usuarios;  echo '<br>'.'('.$res->cantidad_cartones_notificaciones.')'; echo '   '; echo 'Fecha '; echo $fecha->format('Y-m-d');?>
-			</a>
-			<span class="badge"><?php echo $cantidadXfila[$res->descripcion_notificacion]; ?></span>
-			</li>			
-			<?php }?>
-			</ul>
-			<?php }?>
-			</div>
-			</form>
-		</div>
 		
-		
-
-			
 		 	 <?php  ?> 
 		<?php 
 			 }

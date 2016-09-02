@@ -83,14 +83,7 @@ $controladores=$_SESSION['controladores'];
 		   <li style="<?php echo getcontrolador("TipoIdentificación",$controladores) ?>">
             <a href="index.php?controller=TipoIdentificación&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Identificación</span> </a>
 			</li> 
-		   
-		   <li style="<?php echo getcontrolador("TipoNotificacion",$controladores) ?>">
-			<a href="index.php?controller=TipoNotificacion&action=index"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"> Tipo Notificacion</span> </a>
-			</li>
-			
-			<li style="<?php echo getcontrolador("Notificaciones",$controladores) ?>">
-			<a href="index.php?controller=Notificaciones&action=index"><span class="glyphicon glyphicon-globe" aria-hidden="true"> Notificaciones</span> </a>
-			</li>     	
+		     	
 </ul>
 </li>
 
@@ -121,7 +114,7 @@ $controladores=$_SESSION['controladores'];
           <a href="index.php?controller=Trazas&action=index"><span class="glyphicon glyphicon-save-file" aria-hidden="true"> Auditoria del Sistema</span> </a>
           </li>
            <li style="<?php echo getcontrolador("Clientes",$controladores) ?>">
-          <a href="index.php?controller=Clientes&action=consulta"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"> Clientes</span> </a>
+          <a href="index.php?controller=Clientes&action=consulta_clientes"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"> Clientes</span> </a>
           </li>
          
 </ul>
@@ -136,8 +129,6 @@ $controladores=$_SESSION['controladores'];
             </li>
             <li><a href="/FrameworkMVC/view/ireports/ContUsuariosReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"> <span class="glyphicon glyphicon-file" aria-hidden="true"> Usuarios</span> </a>
             </li>  
-             <li><a href="/FrameworkMVC/view/ireports/ContNotificacionesReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-envelope" aria-hidden="true"> Notificaciones</span> </a>
-            </li>
             <li><a href="/FrameworkMVC/view/ireports/ContTrazasReport.php"onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"> Auditoria del Sistema</span> </a>
             </li>
            

@@ -65,27 +65,7 @@
         </style>
          
        
-	<script>
-	$(document).ready(function(){
-			$("#fecha_hasta").change(function(){
-				 var startDate = new Date($('#fecha_desde').val());
-
-                 var endDate = new Date($('#fecha_hasta').val());
-
-                 if (startDate > endDate){
- 
-                    $("#mensaje_fecha_hasta").text("Fecha desde no debe ser mayor ");
-		    		$("#mensaje_fecha_hasta").fadeIn("slow"); //Muestra mensaje de error  
-		    		$("#fecha_hasta").val("");
-
-                        }
-				});
-
-			 $( "#fecha_hasta" ).focus(function() {
-				  $("#mensaje_fecha_hasta").fadeOut("slow");
-			   });
-			});
-        </script>
+	
 
     </head>
     <body style="background-color: #d9e3e4;">
@@ -98,19 +78,20 @@
 
        $sel_id_ciudad = "";
        $sel_identificacion="";
-       $sel_numero_juicio="";
-       $sel_numero_titulo="";
+       $sel_nombres_clientes="";
+       $sel_celular_clientes="";
        $sel_fecha_desde="";
        $sel_fecha_hasta="";
         
+    
        if($_SERVER['REQUEST_METHOD']=='POST' )
        {
        	 
        	 
        	$sel_id_ciudad = $_POST['id_ciudad'];
        	$sel_identificacion=$_POST['identificacion'];
-       	$sel_numero_juicio=$_POST['numero_juicio'];
-       	$sel_numero_titulo=$_POST['numero_titulo'];
+       	$sel_nombres_clientes=$_POST['nombres_clientes'];
+       	$sel_celular_clientes=$_POST['celular_clientes'];
        	$sel_fecha_desde=$_POST['fecha_desde'];
        	$sel_fecha_hasta=$_POST['fecha_hasta'];
        	 
@@ -125,7 +106,7 @@
   
        <!-- empieza el form --> 
        
-      <form action="<?php echo $helper->url("Clientes","consulta"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
+      <form action="<?php echo $helper->url("Clientes","consulta_clientes"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
          
          <!-- comienxza busqueda  -->
          <div class="col-lg-12" style="margin-top: 10px">
@@ -140,8 +121,8 @@
 		   			
           <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Ciudad:</p>
-			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" readonly>
-			  		<?php foreach($resultDatos as $res) {?>
+			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+			  		<?php foreach($resultCiu as $res) {?>
 						<option value="<?php echo $res->id_ciudad; ?>" <?php if($sel_id_ciudad==$res->id_ciudad){echo "selected";}?>><?php echo $res->nombre_ciudad;  ?> </option>
 			            <?php } ?>
 				</select>
@@ -155,14 +136,14 @@
          </div>
 		 
 		  <div class="col-xs-2 ">
-			  	<p  class="formulario-subtitulo" >Nº Juicio:</p>
-			  	<input type="text"  name="numero_juicio" id="numero_juicio" value="<?php echo $sel_numero_juicio;?>" class="form-control"/> 
-			    <div id="mensaje_nombres" class="errores"></div>
+			  	<p  class="formulario-subtitulo" >Nombres y Apellidos</p>
+			  	<input type="text"  name="nombres_clientes" id="nombres_clientes" value="<?php echo $sel_nombres_clientes;?>" class="form-control"/> 
+			    
 
          </div>
           <div class="col-xs-2 ">
-			  	<p  class="formulario-subtitulo" >Nº Titulo:</p>
-			  	<input type="text"  name="numero_titulo" id="numero_titulo" value="<?php echo $sel_numero_titulo;?>" class="form-control"/> 
+			  	<p  class="formulario-subtitulo" >Celular</p>
+			  	<input type="text"  name="celular_clientes" id="celular_clientes" value="<?php echo $sel_celular_clientes;?>" class="form-control"/> 
 			    <div id="mensaje_numero_titulo" class="errores"></div>
 
          </div>
@@ -184,7 +165,7 @@
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-warning " onClick="notificacion()" style="margin-top: 10px;"/> 	
 		
 		<?php if(!empty($resultSet))  {?>
-		 <a href="/FrameworkMVC/view/ireports/ContClientesReport.php?id_ciudad=<?php  echo $sel_id_ciudad ?>&identificacion=<?php  echo $sel_identificacion?>&numero_juicio=<?php  echo $sel_numero_juicio?>&numero_titulo=<?php  echo $sel_numero_titulo?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
+		 <a href="/FrameworkMVC/view/ireports/ContClientesReport.php?id_ciudad=<?php  echo $sel_id_ciudad ?>&identificacion=<?php  echo $sel_identificacion?>&nombres_clientes=<?php  echo $sel_nombres_clientes?>&celular_clientes=<?php  echo $sel_celular_clientes?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
 		            
 		  <?php } else {?>
 		  
@@ -211,19 +192,16 @@
 	         <tr >
 	            
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Coactivad@</th>
-	    		<th style="color:#456789;font-size:80%;">Identificacion</th>
-	    		<th style="color:#456789;font-size:80%;">Ciudad</th>
+	    		<th style="color:#456789;font-size:80%;">Tipo Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">N� Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;">Cliente</th>
 	    		<th style="color:#456789;font-size:80%;">Tipo Persona</th>
-	    		<th style="color:#456789;font-size:80%;">Nº Juicio</th>
-	    		<th style="color:#456789;font-size:80%;">Nº Titulo Credito</th>
-	    		<th style="color:#456789;font-size:80%;">Impulsor</th>
-	    		<th style="color:#456789;font-size:80%;">Secretario</th>
-	    		<th style="color:#456789;font-size:80%;">Etapa</th>
-	    		<th style="color:#456789;font-size:80%;">Tipo Juicio</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha Emision</th>
-	    		<th style="color:#456789;font-size:80%;">Total</th>
-	    		<th></th>
+	    		<th style="color:#456789;font-size:80%;">Ciudad</th>
+	    		<th style="color:#456789;font-size:80%;">Telefono</th>
+	    		<th style="color:#456789;font-size:80%;">Celular</th>
+	    		<th style="color:#456789;font-size:80%;">Direccion</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha</th>
+	    	    <th></th>
 	    		<th></th>
 	  		</tr>
             
@@ -231,21 +209,18 @@
 	        		<tr>
 	        		
 	        		  
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_juicios; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_persona; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->juicio_referido_titulo_credito; ?>     </td> 
-		                <td style="color:#000000;font-size:80%;"> <?php echo $res->id_titulo_credito; ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->impulsores; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->secretarios; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_etapas; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_juicios; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_clientes; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?>     </td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
+		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_persona; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->telefono_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->celular_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->direccion_clientes; ?>     </td>
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->total; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_juicios=<?php echo $res->id_juicios; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:80%;">Ver</a>
+		                <td style="color:#000000;font-size:80%;">
+		               <a href="/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=<?php echo $res->id_clientes; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:80%;">Ver</a>
 		               </td> 
 		    		</tr>
 		        <?php } }  ?>
