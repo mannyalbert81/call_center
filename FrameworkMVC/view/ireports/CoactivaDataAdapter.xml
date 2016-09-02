@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>coactiva</name><driver>org.postgresql.Driver</driver><username>postgres</username><password>.Romina.2012</password><savePassword>true</savePassword><url>jdbc:postgresql://186.4.241.148:5433/coactiva</url><database></database><serverAddress></serverAddress></jdbcDataAdapter>

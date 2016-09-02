@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-09-02T14:50:25 -->
+<!-- 2016-09-02T14:57:56 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UsuariosReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536544f0-7708-44b6-b9b7-fcff2889a866">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="view\ireports\CoactivaDataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FrameworkMVC\view\ireports\CallCenterDataAdapter.xml"/>
 	<parameter name="_id_clientes" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT clientes.id_clientes, 
@@ -24,7 +24,7 @@ WHERE
 	 ciudad.id_ciudad = clientes.id_ciudad AND
 							  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
 							  tipo_identificacion.id_tipo_identificacion = clientes.id_tipo_identificacion AND
-	 clientes.id_clientes =  $P{_id_clientes} ]]>
+	 clientes.id_clientes =  $P{_id_clientes}]]>
 	</queryString>
 	<field name="id_clientes" class="java.lang.String"/>
 	<field name="nombre_tipo_identificacion" class="java.lang.String"/>
@@ -176,21 +176,21 @@ WHERE
 				<textFieldExpression><![CDATA[$F{nombres_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="530" y="0" width="62" height="10" uuid="d6141f27-2746-4b4c-a893-3e60090e3864"/>
+				<reportElement x="533" y="0" width="62" height="10" uuid="d6141f27-2746-4b4c-a893-3e60090e3864"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{celular_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="751" y="0" width="38" height="10" uuid="641ccdf6-1cae-4bfa-9374-0310a936d11e"/>
+				<reportElement x="743" y="0" width="46" height="10" uuid="641ccdf6-1cae-4bfa-9374-0310a936d11e"/>
 				<textElement textAlignment="Center">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{creado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="600" y="0" width="144" height="10" uuid="0bd94fad-852c-4eda-a194-afe2dbe748b7"/>
+				<reportElement x="600" y="0" width="134" height="10" uuid="0bd94fad-852c-4eda-a194-afe2dbe748b7"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -204,14 +204,14 @@ WHERE
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="455" y="0" width="62" height="10" uuid="e6ac7aa4-b15c-4547-9d0d-c9d6f3104794"/>
+				<reportElement x="458" y="0" width="62" height="10" uuid="e6ac7aa4-b15c-4547-9d0d-c9d6f3104794"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telefono_clientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="1" width="79" height="10" uuid="6bbdf0fb-9410-4159-9598-8b43bd403cd6"/>
+				<reportElement x="373" y="1" width="79" height="10" uuid="6bbdf0fb-9410-4159-9598-8b43bd403cd6"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
