@@ -31,7 +31,6 @@
 		
 		
 		<script>
-
 		function Ok(){
 				alertify.success("Has Pulsado en Reporte"); 
 				return false;
@@ -41,7 +40,6 @@
 				alertify.success("Has Pulsado en Borrar"); 
 				return false; 
 			}
-
 			function notificacion(){
 				alertify.success("Has Pulsado en Buscar"); 
 				return false; 
@@ -75,7 +73,6 @@
        <?php include("view/modulos/menu.php"); ?>
        
        <?php
-
        $sel_id_ciudad = "";
        $sel_nombre_usuarios="";
        $sel_identificacion="";
@@ -96,6 +93,7 @@
        	 
        }
       
+	  $arrayOpciones=array("todos"=>'--Todos--',"si"=>'--Si--',"no"=>'--No--');
 		?>
  
   
@@ -146,9 +144,9 @@
           <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Respondidas</p>
 			  	<select name="recibio_registrar_llamadas" id="recibio_registrar_llamadas"  class="form-control">
-						<option value="todos">--Todos--</option>
-						<option value="si">--Si--</option>
-						<option value="no">--No--</option>
+					<?php foreach($arrayOpciones as $res=>$val) {?>
+						<option value="<?php echo $res; ?>" <?php if($sel_llamada_recibida==$res){echo "selected";}?>><?php echo $val;  ?> </option>
+					<?php } ?>
 		        </select>
          </div>
          
@@ -245,4 +243,4 @@
       <?php include("view/modulos/footer.php"); ?>
    </body>  
 
-    </html>   
+</html> 
