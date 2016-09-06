@@ -146,8 +146,9 @@
           <div class="col-xs-2 ">
 			  	<p  class="formulario-subtitulo" >Respondidas</p>
 			  	<select name="recibio_registrar_llamadas" id="recibio_registrar_llamadas"  class="form-control">
-						<option value="t"   >Si</option>
-						<option value="f"  >No </option>
+						<option value="todos">--Todos--</option>
+						<option value="si">--Si--</option>
+						<option value="no">--No--</option>
 		        </select>
          </div>
          
@@ -195,16 +196,15 @@
 	         <tr >
 	            
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">Tipo Identificacion</th>
 	    		<th style="color:#456789;font-size:80%;">N° Identificacion</th>
-	    		<th style="color:#456789;font-size:80%;">Cliente</th>
-	    		<th style="color:#456789;font-size:80%;">Tipo Persona</th>
-	    		<th style="color:#456789;font-size:80%;">Ciudad</th>
-	    		<th style="color:#456789;font-size:80%;">Telefono</th>
-	    		<th style="color:#456789;font-size:80%;">Celular</th>
-	    		<th style="color:#456789;font-size:80%;">Direccion</th>
-	    		<th style="color:#456789;font-size:80%;">Fecha</th>
-	    	    <th></th>
+	    		<th style="color:#456789;font-size:80%;"> Cliente</th>
+	    		<th style="color:#456789;font-size:80%;">Llamador</th>
+	    		<th style="color:#456789;font-size:80%;">Fecha Llamada</th>
+	    		<th style="color:#456789;font-size:80%;">Hora Llamada</th>
+				<th style="color:#456789;font-size:80%;">Respondio</th>
+	    		<th style="color:#456789;font-size:80%;">Nombre Respondio</th>
+	    		<th style="color:#456789;font-size:80%;">Parentesco</th>
+	    		<th></th>
 	    		<th></th>
 	  		</tr>
             
@@ -212,16 +212,16 @@
 	        		<tr>
 	        		
 	        		  
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_clientes; ?></td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_identificacion; ?>     </td>
-	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_tipo_persona; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->telefono_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->celular_clientes; ?>     </td> 
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->direccion_clientes; ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->creado; ?>     </td> 
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->id_registrar_llamadas; ?></td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td>
+	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
+		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_registrar_llamadas; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->hora_registrar_llamadas; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->recibio_registrar_llamadas; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->persona_contesta_llamada; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->parentesco_clientes; ?>     </td>
+		               
 		                <td style="color:#000000;font-size:80%;">
 		               <a href="/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=<?php echo $res->id_clientes; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:80%;">Ver</a>
 		               </td> 

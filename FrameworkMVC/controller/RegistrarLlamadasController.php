@@ -236,12 +236,160 @@ public function index(){
 			if (!empty($resultPer))
 			{
 					
+					
+					 
 				if(isset($_POST["buscar"])){
+	
+	           $llamada_recibida=$_POST['recibio_registrar_llamadas'];
+	
+	           if($llamada_recibida=='si'){
 	
 					$id_ciudad=$_POST['id_ciudad'];
 					$nombre_usuarios=$_POST['id_usuarios'];
 					$identificacion=$_POST['identificacion_clientes'];
-					$llamada_recibida=$_POST['recibio_registrar_llamadas'];
+					$fechadesde=$_POST['fecha_desde'];
+					$fechahasta=$_POST['fecha_hasta'];
+	
+					$registrar_llamadas = new RegistrarLLamadasModel();
+	
+	
+					$columnas = "clientes.id_clientes, 
+							registrar_llamadas.id_registrar_llamadas,
+							  tipo_identificacion.nombre_tipo_identificacion, 
+							  clientes.identificacion_clientes, 
+							  clientes.nombres_clientes, 
+							  clientes.telefono_clientes, 
+							  clientes.celular_clientes, 
+							  clientes.direccion_clientes, 
+							  ciudad.nombre_ciudad, 
+							  tipo_persona.nombre_tipo_persona, 
+							  usuarios.nombre_usuarios, 
+							  registrar_llamadas.fecha_registrar_llamadas, 
+							  registrar_llamadas.hora_registrar_llamadas, 
+							  registrar_llamadas.recibio_registrar_llamadas, 
+							  registrar_llamadas.persona_contesta_llamada, 
+							  registrar_llamadas.observaciones_registra_llamadas, 
+							  registrar_llamadas.parentesco_clientes, 
+							  registrar_llamadas.creado";
+	
+					$tablas="public.ciudad, 
+							  public.clientes, 
+							  public.registrar_llamadas, 
+							  public.tipo_persona, 
+							  public.tipo_identificacion, 
+							  public.usuarios";
+	
+					$where=" ciudad.id_ciudad = clientes.id_ciudad AND
+						  clientes.id_clientes = registrar_llamadas.id_clientes AND
+						  registrar_llamadas.id_usuario_registra_llamada = usuarios.id_usuarios AND
+						  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
+						  tipo_identificacion.id_tipo_identificacion = clientes.id_tipo_identificacion AND registrar_llamadas.recibio_registrar_llamadas='TRUE'";
+	
+					$id="clientes.id_clientes";
+	
+	
+					$where_0 = "";
+					$where_1 = "";
+					$where_2 = "";
+					$where_3 = "";
+					
+	
+	
+					if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
+						
+					if($nombre_usuarios!=0){$where_1=" AND usuarios.id_usuarios='$nombre_usuarios'";}
+					
+					if($identificacion!=""){$where_2=" AND clientes.identificacion_clientes='$identificacion'";}
+						
+					if($fechadesde!="" && $fechahasta!=""){$where_3=" AND  registrar_llamadas.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+	
+	
+					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 ;
+	
+	
+					$resultSet=$registrar_llamadas->getCondiciones($columnas ,$tablas , $where_to, $id);
+	
+	                 }
+					 
+					
+
+                     
+                    elseif($llamada_recibida=="no"){
+	
+					$id_ciudad=$_POST['id_ciudad'];
+					$nombre_usuarios=$_POST['id_usuarios'];
+					$identificacion=$_POST['identificacion_clientes'];
+					$fechadesde=$_POST['fecha_desde'];
+					$fechahasta=$_POST['fecha_hasta'];
+	
+					$registrar_llamadas = new RegistrarLLamadasModel();
+	
+	
+					$columnas = "clientes.id_clientes, 
+							registrar_llamadas.id_registrar_llamadas,
+							  tipo_identificacion.nombre_tipo_identificacion, 
+							  clientes.identificacion_clientes, 
+							  clientes.nombres_clientes, 
+							  clientes.telefono_clientes, 
+							  clientes.celular_clientes, 
+							  clientes.direccion_clientes, 
+							  ciudad.nombre_ciudad, 
+							  tipo_persona.nombre_tipo_persona, 
+							  usuarios.nombre_usuarios, 
+							  registrar_llamadas.fecha_registrar_llamadas, 
+							  registrar_llamadas.hora_registrar_llamadas, 
+							  registrar_llamadas.recibio_registrar_llamadas, 
+							  registrar_llamadas.persona_contesta_llamada, 
+							  registrar_llamadas.observaciones_registra_llamadas, 
+							  registrar_llamadas.parentesco_clientes, 
+							  registrar_llamadas.creado";
+	
+					$tablas="public.ciudad, 
+							  public.clientes, 
+							  public.registrar_llamadas, 
+							  public.tipo_persona, 
+							  public.tipo_identificacion, 
+							  public.usuarios";
+	
+					$where=" ciudad.id_ciudad = clientes.id_ciudad AND
+						  clientes.id_clientes = registrar_llamadas.id_clientes AND
+						  registrar_llamadas.id_usuario_registra_llamada = usuarios.id_usuarios AND
+						  tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
+						  tipo_identificacion.id_tipo_identificacion = clientes.id_tipo_identificacion AND registrar_llamadas.recibio_registrar_llamadas='FALSE'";
+	
+					$id="clientes.id_clientes";
+	
+	
+					$where_0 = "";
+					$where_1 = "";
+					$where_2 = "";
+					$where_3 = "";
+					$where_4 = "";
+	
+	
+					if($id_ciudad!=0){$where_0=" AND ciudad.id_ciudad='$id_ciudad'";}
+						
+					if($nombre_usuarios!=0){$where_1=" AND usuarios.id_usuarios='$nombre_usuarios'";}
+					
+					if($identificacion!=""){$where_2=" AND clientes.identificacion_clientes='$identificacion'";}
+						
+					
+	
+					if($fechadesde!="" && $fechahasta!=""){$where_3=" AND  registrar_llamadas.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+	
+	
+					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 ;
+	
+	
+					$resultSet=$registrar_llamadas->getCondiciones($columnas ,$tablas , $where_to, $id);
+	
+	                 }
+
+                    else
+                    {
+                    $id_ciudad=$_POST['id_ciudad'];
+					$nombre_usuarios=$_POST['id_usuarios'];
+					$identificacion=$_POST['identificacion_clientes'];
 					$fechadesde=$_POST['fecha_desde'];
 					$fechahasta=$_POST['fecha_hasta'];
 	
@@ -296,17 +444,17 @@ public function index(){
 					
 					if($identificacion!=""){$where_2=" AND clientes.identificacion_clientes='$identificacion'";}
 						
-					if($llamada_recibida!=""){$where_3=" AND registrar_llamadas.recibio_registrar_llamadas='$llamada_recibida'";}
+					
 	
-					if($fechadesde!="" && $fechahasta!=""){$where_4=" AND  registrar_llamadas.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
+					if($fechadesde!="" && $fechahasta!=""){$where_3=" AND  registrar_llamadas.creado BETWEEN '$fechadesde' AND '$fechahasta'";}
 	
 	
-					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 . $where_4;
+					$where_to  = $where . $where_0 . $where_1 . $where_2. $where_3 ;
 	
 	
 					$resultSet=$registrar_llamadas->getCondiciones($columnas ,$tablas , $where_to, $id);
-	
-	
+				
+					 }
 				}
 				$this->view("ConsultaRegistraLlamadas",array(
 						"resultSet"=>$resultSet, "resultCiu"=>$resultCiu, "resultUsu"=>$resultUsu
