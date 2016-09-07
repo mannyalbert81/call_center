@@ -363,6 +363,23 @@
 			  </div>
 		    </div>
 		    
+		     <div class="row">
+		    <div class="col-xs-6 col-md-6" style="margin-top:10px">
+			  	<p  class="formulario-subtitulo" >Nombres Garante</p>
+			  	<input type="text"  name="nombre_garantes" id="nombre_garantes" value="<?php echo $resEdit->nombre_garantes; ?>" class="form-control" /> 
+			    <div id="mensaje_nombre_garantes" class="errores"></div>
+			</div>
+			  
+			   
+			   
+		   
+		    <div class="col-xs-6 col-md-6" style="margin-top:10px">
+			  	<p  class="formulario-subtitulo" >Numero de Identificación Garante</p>
+			  	<input type="text" name="identificacion_garantes" id="identificacion_garantes" value="<?php echo $resEdit->identificacion_garantes; ?>" class="form-control" readonly/>
+			  <div id="mensaje_identificacion_garantes" class="errores"></div>
+			    <input type="hidden"  name="id_clientes"  value="<?php echo $resEdit->id_clientes; ?>" class="form-control"/> 
+			  </div>
+		     </div>
 		    <hr>
 		    
          
@@ -442,6 +459,20 @@
 			   </div>
 			   
 		     
+		      <div class="row">
+			   <div class="col-xs-6 col-md-6" style="margin-top:10px">
+			  	<p  class="formulario-subtitulo" >Nombres Garante</p>
+			  	<input type="text"  name="nombre_garantes" id="nombre_garantes" value="" class="form-control"/> 
+			    <div id="mensaje_nombre_garantes" class="errores"></div>
+			  </div>
+			   
+			   
+		    <div class="col-xs-6 col-md-6" style="margin-top:10px">
+		     <p  class="formulario-subtitulo" >Numero de Identificación Garante</p>
+		 	<input type="text" name="identificacion_garantes" id="identificacion_garantes" value="" class="form-control"/>
+			  <div id="mensaje_identificacion_garantes" class="errores"></div>
+			  </div>
+			  </div>
 		    <hr>
 		    
 		   
@@ -524,7 +555,7 @@
 		       
 		             
 		              
-		           	   <td>
+		           	    <td>
 			           		<div class="right">
 			                    <a href="<?php echo $helper->url("Clientes","index"); ?>&id_clientes=<?php echo $res->id_clientes; ?>" class="btn btn-warning" onClick="notificacion()" style="font-size:65%;">Editar</a>
 			                </div>
