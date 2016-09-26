@@ -221,7 +221,7 @@
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->parentesco_clientes; ?>     </td>
 		               
 		                <td style="color:#000000;font-size:80%;">
-		               <a href="/FrameworkMVC/view/ireports/ContClientesSubReport.php?id_clientes=<?php echo $res->id_clientes; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:80%;">Ver</a>
+		               <a href="/FrameworkMVC/view/ireports/ContRegistraLlamadasSubReport.php?id_registrar_llamadas=<?php echo $res->id_registrar_llamadas; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:80%;">Ver</a>
 		               </td> 
 		    		</tr>
 		        <?php } }  ?>

@@ -277,7 +277,7 @@ public function index(){
 		$resultSet="";
 	
 		$ciudad = new CiudadModel();
-		$resultCiu = $ciudad->getAll("nombre_ciudad");
+		$resultCiu = $ciudad->getBy("nombre_ciudad='QUITO' OR nombre_ciudad='GUAYAQUIL'");
 	
 		$usuarios= new UsuariosModel();
 		$resultUsu = $usuarios->getAll("nombre_usuarios");
