@@ -152,8 +152,7 @@
     	   $("#observaciones_registra_llamadas").prop("disabled","disabled");
     	   $("#parentesco_clientes").prop("disabled","disabled");
  
-
-            $("#recibio_registrar_llamadas_no").click(function(){
+           $("#recibio_registrar_llamadas_no").click(function(){
 
             	var cant = $("input:checked").length;
             	
