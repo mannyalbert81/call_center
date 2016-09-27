@@ -117,8 +117,9 @@
   			
 		   			
           <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo" style="" >Ciudad</p>
+			  	<p  class="formulario-subtitulo" style="" >Juzgado</p>
 			  	<select name="id_ciudad" id="id_ciudad"  class="form-control" >
+			  	<option value="0">--Todos--</option>
 			  		<?php foreach($resultCiu as $res) {?>
 						<option value="<?php echo $res->id_ciudad; ?>" <?php if($sel_id_ciudad==$res->id_ciudad){echo "selected";}?>><?php echo $res->nombre_ciudad;  ?> </option>
 			            <?php } ?>
@@ -126,8 +127,9 @@
 		 </div>
 		 
 		  <div class="col-xs-2">
-			  	<p  class="formulario-subtitulo" style="" >Usuario Llamador</p>
+			  	<p  class="formulario-subtitulo" style="" >Operador</p>
 			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
+			  	<option value="0">--Todos--</option>
 			  		<?php foreach($resultUsu as $res) {?>
 						<option value="<?php echo $res->id_usuarios; ?>" <?php if($sel_nombre_usuarios==$res->id_usuarios){echo "selected";}?>><?php echo $res->nombre_usuarios;  ?> </option>
 			            <?php } ?>
@@ -167,8 +169,7 @@
 		 <input type="submit" id="buscar" name="buscar" value="Buscar" class="btn btn-warning " onClick="notificacion()" style="margin-top: 10px;"/> 	
 		
 		<?php if(!empty($resultSet))  {?>
-		 <a href="/FrameworkMVC/view/ireports/ContClientesReport.php?id_ciudad=<?php  echo $sel_id_ciudad ?>&identificacion=<?php  echo $sel_identificacion?>&nombres_clientes=<?php  echo $sel_nombres_clientes?>&celular_clientes=<?php  echo $sel_celular_clientes?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
-		            
+		 <a href="/FrameworkMVC/view/ireports/ContRegistraLlamadasReport.php?id_ciudad=<?php  echo $sel_id_ciudad ?>&id_usuarios=<?php  echo $sel_nombre_usuarios?>&identificacion_clientes=<?php  echo $sel_identificacion?>&fecha_desde=<?php  echo $sel_fecha_desde?>&fecha_hasta=<?php  echo $sel_fecha_hasta?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" style="margin-top: 10px;" class="btn btn-success">Reporte</a>
 		  <?php } else {?>
 		  
 		  <?php } ?>
@@ -176,7 +177,6 @@
 		</div>
         	
 		 </div>
-		 
 		 
 		 <div class="col-lg-12">
 		 
@@ -194,14 +194,16 @@
 	         <tr >
 	            
 	    		<th style="color:#456789;font-size:80%;"><b>Id</b></th>
-	    		<th style="color:#456789;font-size:80%;">N∞ Identificacion</th>
+	    		<th style="color:#456789;font-size:80%;"># Identificacion</th>
 	    		<th style="color:#456789;font-size:80%;"> Cliente</th>
-	    		<th style="color:#456789;font-size:80%;">Llamador</th>
+	    		<th style="color:#456789;font-size:80%;">Operador</th>
 	    		<th style="color:#456789;font-size:80%;">Fecha Llamada</th>
 	    		<th style="color:#456789;font-size:80%;">Hora Llamada</th>
 				<th style="color:#456789;font-size:80%;">Respondio</th>
 	    		<th style="color:#456789;font-size:80%;">Nombre Respondio</th>
 	    		<th style="color:#456789;font-size:80%;">Parentesco</th>
+	    		<th style="color:#456789;font-size:80%;">Observaci√≥n</th>
+	    		
 	    		<th></th>
 	    		<th></th>
 	  		</tr>
@@ -214,11 +216,12 @@
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->identificacion_clientes; ?>     </td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_usuarios; ?>     </td> 
-		                 <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_registrar_llamadas; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->fecha_registrar_llamadas; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->hora_registrar_llamadas; ?>     </td>
-		               <td style="color:#000000;font-size:80%;"> <?php echo $res->recibio_registrar_llamadas; ?>     </td> 
+		               <td style="color:#000000;font-size:80%;"> <?php if($res->recibio_registrar_llamadas=="t"){ echo "Si";}else{ echo "No";} ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->persona_contesta_llamada; ?>     </td> 
 		               <td style="color:#000000;font-size:80%;"> <?php echo $res->parentesco_clientes; ?>     </td>
+		               <td style="color:#000000;font-size:80%;"> <?php echo $res->observaciones_registra_llamadas; ?>     </td>
 		               
 		                <td style="color:#000000;font-size:80%;">
 		               <a href="/FrameworkMVC/view/ireports/ContRegistraLlamadasSubReport.php?id_registrar_llamadas=<?php echo $res->id_registrar_llamadas; ?>" onclick="window.open(this.href, this.target, ' width=1000, height=800, menubar=no');return false" class="btn btn-success" onClick="Ok()" style="font-size:80%;">Ver</a>
@@ -226,20 +229,16 @@
 		    		</tr>
 		        <?php } }  ?>
            
-       	</table>     
-      </section>
+        	</table>     
+           </section>
 		 
-		 		 
-		 </div>
-		 </div>
+		   </div>
+		   </div>
 		
-		
-      
-       </form>
+           </form>
      
       </div>
-     
-  </div>
+     </div>
       <?php include("view/modulos/footer.php"); ?>
    </body>  
 

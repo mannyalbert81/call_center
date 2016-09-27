@@ -1,47 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-09-27T10:00:49 -->
+<!-- 2016-09-27T14:45:01 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LlamadasReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7614008e-cbfb-4e55-82db-ac41ba638c32">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FrameworkMVC\view\ireports\CallCenterDataAdapter.xml"/>
-	<parameter name="_id_registrar_llamadas" class="java.lang.String"/>
+	<parameter name="sql" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT 
-  registrar_llamadas.id_registrar_llamadas, 
-  usuarios.nombre_usuarios, 
-  registrar_llamadas.fecha_registrar_llamadas, 
-  registrar_llamadas.hora_registrar_llamadas, 
-  registrar_llamadas.recibio_registrar_llamadas, 
-  registrar_llamadas.persona_contesta_llamada, 
-  registrar_llamadas.observaciones_registra_llamadas, 
-  registrar_llamadas.parentesco_clientes, 
-  registrar_llamadas.creado, 
-  clientes.identificacion_clientes, 
-  clientes.nombres_clientes, 
-  clientes.telefono_clientes, 
-  clientes.celular_clientes, 
-  clientes.direccion_clientes, 
-  ciudad.nombre_ciudad, 
-  clientes.nombre_garantes, 
-  clientes.identificacion_garantes, 
-  clientes.telefono_garantes, 
-  clientes.celular_garantes, 
-  titulo_credito.numero_titulo_credito, 
-  titulo_credito.total_total_titulo_credito, 
-  juicios.juicio_referido_titulo_credito
-FROM 
-  public.ciudad, 
-  public.clientes, 
-  public.usuarios, 
-  public.juicios, 
-  public.titulo_credito, 
-  public.registrar_llamadas
-WHERE 
-  clientes.id_clientes = titulo_credito.id_clientes AND
-  clientes.id_ciudad = ciudad.id_ciudad AND
-  usuarios.id_usuarios = registrar_llamadas.id_usuario_registra_llamada AND
-  juicios.id_titulo_credito = titulo_credito.id_titulo_credito AND
-  registrar_llamadas.id_clientes = clientes.id_clientes AND registrar_llamadas.id_registrar_llamadas= $P{_id_registrar_llamadas}]]>
+		<![CDATA[$P{sql}]]>
 	</queryString>
 	<field name="id_registrar_llamadas" class="java.lang.Integer"/>
 	<field name="nombre_usuarios" class="java.lang.String"/>
@@ -288,10 +253,7 @@ WHERE
 				<textElement textAlignment="Center">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{recibio_registrar_llamadas}==t ? "Si":"No")
-
-
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{recibio_registrar_llamadas}==t ? "Si":"No")]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="545" y="0" width="30" height="17" uuid="6bcdfbe0-aaf5-40d8-a8ab-ac5839b6536e"/>
