@@ -127,11 +127,9 @@
 		 
 		  <div class="col-xs-2">
 			  	<p  class="formulario-subtitulo" style="" >Operador</p>
-			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" >
-			  		<?php foreach($resultUsu as $res) {?>
-						<option value="<?php echo $res->id_usuarios; ?>" <?php if($sel_nombre_usuarios==$res->id_usuarios){echo "selected";}?>><?php echo $res->nombre_usuarios;  ?> </option>
-			            <?php } ?>
-				</select>
+			  	<select name="id_usuarios" id="id_usuarios"  class="form-control" readonly>
+			  		     <option value="<?php echo $_SESSION['id_usuarios'];  ?>" <?php if($sel_nombre_usuarios==$_SESSION['id_usuarios']){echo "selected";}?>  ><?php echo $_SESSION['nombre_usuarios'];  ?></option>  
+			   </select>
 		 </div>
 		 
 		  <div class="col-xs-2 ">
