@@ -33,7 +33,7 @@ $sql="";
 $detallesql="";
 
 
-if ($_GET['id_ciudad']!=0)
+if ($_GET['id_ciudad']!="")
 {
 	$id_ciudad=$_GET['id_ciudad'];
 	$detallesql=$detallesql." AND ciudad.id_ciudad = '$id_ciudad'";
@@ -65,7 +65,7 @@ if ($_GET['fecha_desde']!="" && $_GET['fecha_hasta']!="")
 	
 	
 	
- $cabeceraSql="select          registrar_llamadas.id_registrar_llamadas, 
+ $cabeceraSql="select         registrar_llamadas.id_registrar_llamadas, 
 							  usuarios.nombre_usuarios, 
 							  registrar_llamadas.fecha_registrar_llamadas, 
 							  registrar_llamadas.hora_registrar_llamadas, 

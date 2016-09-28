@@ -374,7 +374,7 @@
 			   
 		   
 		    <div class="col-xs-6 col-md-6" style="margin-top:10px">
-			  	<p  class="formulario-subtitulo" >Numero de IdentificaciÛn Garante</p>
+			  	<p  class="formulario-subtitulo" >Numero de Identificaci√≥n Garante</p>
 			  	<input type="text" name="identificacion_garantes" id="identificacion_garantes" value="<?php echo $resEdit->identificacion_garantes; ?>" class="form-control" readonly/>
 			  <div id="mensaje_identificacion_garantes" class="errores"></div>
 			    <input type="hidden"  name="id_clientes"  value="<?php echo $resEdit->id_clientes; ?>" class="form-control"/> 
@@ -390,7 +390,7 @@
 		    <div class="row">
 		    
 		    <div class="col-xs-6 col-md-6">
-			  	<p  class="formulario-subtitulo" >Tipo Identificacion</p>
+			  	<p  class="formulario-subtitulo" >Tipo Identificaci√≥n</p>
 			  	<select name="id_tipo_identificacion" id="id_tipo_identificacion"  class="form-control" >
 					<?php foreach($resultTipoIdent as $resTipoIdent) {?>
 						<option value="<?php echo $resTipoIdent->id_tipo_identificacion; ?>"  ><?php echo $resTipoIdent->nombre_tipo_identificacion; ?> </option>
@@ -468,7 +468,7 @@
 			   
 			   
 		    <div class="col-xs-6 col-md-6" style="margin-top:10px">
-		     <p  class="formulario-subtitulo" >Numero de IdentificaciÛn Garante</p>
+		     <p  class="formulario-subtitulo" >Numero de Identificaci√≥n Garante</p>
 		 	<input type="text" name="identificacion_garantes" id="identificacion_garantes" value="" class="form-control"/>
 			  <div id="mensaje_identificacion_garantes" class="errores"></div>
 			  </div>
