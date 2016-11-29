@@ -480,7 +480,7 @@ public function index(){
 		$resultSet="";
 	
 		$ciudad = new CiudadModel();
-		$resultCiu = $ciudad->getBy("nombre_ciudad='CUENCA'"); 
+		$resultCiu = $ciudad->getBy("nombre_ciudad='QUITO' OR nombre_ciudad='GUAYAQUIL'"); 
 		
 		$clientes = new ClientesModel();
 	
