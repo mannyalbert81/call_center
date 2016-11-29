@@ -12,8 +12,6 @@ public function index(){
 		
 		if (isset(  $_SESSION['usuario_usuarios']) )
 		{
-				
-		
 			
 			$tipo_identificacion = new TipoIdentificacionModel();
 			$resultTipoIdent = $tipo_identificacion->getAll("nombre_tipo_identificacion");
@@ -29,6 +27,12 @@ public function index(){
              //NOTIFICACIONES
 			$registrar_llamadas->MostrarNotificaciones($_SESSION['id_usuarios']);
 			
+			$estados_procesales = new EstadosProcesalesModel();
+			$resultEstPro=$estados_procesales->getAll("id_estados_procesales_juicios");
+			
+			//para los Abogados
+			$resultAbogados = array();
+			
 			$nombre_controladores = "RegistrarLlamadas";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $registrar_llamadas->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -43,65 +47,82 @@ public function index(){
 					   $_id_clientes = $_GET["id_clientes"];
 					   
 
-					   $columnas = "clientes.id_clientes,
-							  tipo_identificacion.nombre_tipo_identificacion,
-							  clientes.identificacion_clientes,
-							  clientes.nombres_clientes,
-							  clientes.telefono_clientes,
-							  clientes.celular_clientes,
-							  clientes.direccion_clientes,
-							  ciudad.nombre_ciudad,
-							  tipo_persona.nombre_tipo_persona,
-							  clientes.nombre_garantes,
-							  clientes.identificacion_garantes,
-							  clientes.telefono_garantes,
-							  clientes.celular_garantes,
-							  titulo_credito.numero_titulo_credito,
-							  titulo_credito.total_total_titulo_credito,
-							  juicios.juicio_referido_titulo_credito,
-							  usuarios.nombre_usuarios,
-				    		  ciudad.id_ciudad,
-							  tipo_persona.id_tipo_persona,
-							  tipo_identificacion.id_tipo_identificacion";
+					   $columnas_edit="
+					   clientes.nombres_clientes,
+					   clientes.telefono_clientes,
+					   clientes.celular_clientes,
+					   clientes.direccion_clientes,
+					   ciudad.nombre_ciudad,
+					   ciudad.id_ciudad,
+					   clientes.id_clientes,
+					   juicios.juicio_referido_titulo_credito,
+					   estados_procesales_juicios.id_estados_procesales_juicios,
+					   estados_procesales_juicios.nombre_estados_procesales_juicios,
+					   asignacion_secretarios.id_abogado_asignacion_secretarios,
+					   asignacion_secretarios.id_secretario_asignacion_secretarios,
+					   titulo_credito.numero_titulo_credito,
+					   titulo_credito.total_saldo_capital_titulo_credito,
+					   titulo_credito.total_total_titulo_credito,
+					   clientes.identificacion_clientes,
+					   clientes.id_tipo_identificacion,
+					   tipo_persona.id_tipo_persona, 
+                       tipo_persona.nombre_tipo_persona,
+					   clientes.nombre_garantes, 
+					  clientes.identificacion_garantes, 
+					  clientes.telefono_garantes, 
+					  clientes.celular_garantes,
+					   clientes.nombre_garantes_1, 
+					  clientes.identificacion_garantes_1, 
+					  clientes.telefono_garantes_1, 
+					  clientes.celular_garantes_1";
+					   $tablas_edit="
+					   public.asignacion_secretarios,
+					   public.juicios,
+					   public.clientes,
+					   public.estados_procesales_juicios,
+					   public.titulo_credito,
+					   public.ciudad,
+					   public.tipo_persona";
+					   $where_edit="
+					   asignacion_secretarios.id_abogado_asignacion_secretarios = juicios.id_usuarios AND
+					   clientes.id_clientes = juicios.id_clientes AND
+					   estados_procesales_juicios.id_estados_procesales_juicios = juicios.id_estados_procesales_juicios AND
+					   titulo_credito.id_titulo_credito = juicios.id_titulo_credito AND
+					   ciudad.id_ciudad = clientes.id_ciudad AND
+					   tipo_persona.id_tipo_persona = clientes.id_tipo_persona AND
+					   clientes.id_clientes='$_id_clientes'";
 					   
-					   $tablas=" public.clientes,
-							  public.ciudad,
-							  public.tipo_persona,
-							  public.tipo_identificacion,
-							  public.titulo_credito,
-							  public.juicios,
-							  public.usuarios";
-					   
-					  
-					     $where    = " clientes.id_ciudad = ciudad.id_ciudad AND
-						  clientes.id_tipo_persona = tipo_persona.id_tipo_persona AND
-						  clientes.id_clientes = titulo_credito.id_clientes AND
-						  tipo_identificacion.id_tipo_identificacion = clientes.id_tipo_identificacion AND
-						  titulo_credito.id_titulo_credito = juicios.id_titulo_credito AND
-						  usuarios.id_usuarios = juicios.id_usuarios AND clientes.id_clientes = '$_id_clientes' ";
-					   
-					     $id="clientes.id_clientes";
-					     
-					$resultEdit = $clientes->getCondiciones($columnas ,$tablas ,$where, $id);
-						
+					   $id_edit="juicios.id_juicios";
+					
+					$resultEdit = $clientes->getCondiciones($columnas_edit ,$tablas_edit ,$where_edit, $id_edit);
+					
+					if(!empty($resultEdit))
+					{
+					$impulsor=$resultEdit[0]->id_abogado_asignacion_secretarios;
+					$secretario=$resultEdit[0]->id_secretario_asignacion_secretarios;
+					
+					$usuarios = new UsuariosModel();
+					
+					$resultAbogados = $usuarios->getBy("id_usuarios in ('$impulsor','$secretario')");
+					}
+				
 					
 				}
 			
-				if(isset($_POST["buscar"])){
+				if(isset($_POST["buscar"]))
+				{
 				
 					
 					$identificacion=$_POST['identificacion'];
 					$numero_titulo_credito=$_POST['numero_titulo_credito'];
 					
 					
-					if($identificacion=="" && $numero_titulo_credito==""){
+					if($identificacion=="" && $numero_titulo_credito=="")
+					{
 						
 					}
-					
 					else{
 						
-				    $clientes = new ClientesModel();
-				
 				    $columnas = "clientes.id_clientes, 
 							  tipo_identificacion.nombre_tipo_identificacion, 
 							  clientes.identificacion_clientes, 
@@ -144,22 +165,23 @@ public function index(){
 					$where_0 = "";
 					$where_1 = "";
 				
-				
-					
 					if($identificacion!=""){$where_0=" AND clientes.identificacion_clientes='$identificacion'";}
 					if($numero_titulo_credito!=""){$where_1=" AND titulo_credito.numero_titulo_credito='$numero_titulo_credito'";}
 				
 					
-				
 					$where_to  = $where . $where_0 . $where_1;
-				
-					$resultSet=$clientes->getCondiciones($columnas ,$tablas , $where_to, $id);
+					
+					$resultSet = $clientes->getCondiciones($columnas, $tablas, $where_to, $id);
+					
 					
 					}
 				
 				}
+				
 				$this->view("RegistrarLlamadas",array(
-					"resultSet"=>$resultSet, "resultEdit"=>$resultEdit, "resultTipoIdent"=> $resultTipoIdent, "resultTipoPer"=> $resultTipoPer, "resultCiu"=>$resultCiu
+					"resultSet"=>$resultSet, "resultEdit"=>$resultEdit, "resultTipoIdent"=> $resultTipoIdent,
+					"resultTipoPer"=> $resultTipoPer, "resultCiu"=>$resultCiu ,"resultAbogados"=>$resultAbogados,
+					"resultEstPro"=>$resultEstPro
 						
 			));
 				
@@ -317,6 +339,7 @@ public function index(){
 							  clientes.celular_clientes, 
 							  clientes.direccion_clientes, 
 							  ciudad.nombre_ciudad, 
+							  ciudad.id_ciudad,
 							  tipo_persona.nombre_tipo_persona, 
 							  usuarios.nombre_usuarios, 
 							  registrar_llamadas.fecha_registrar_llamadas, 
