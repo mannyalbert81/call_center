@@ -239,35 +239,6 @@
 	
 }
 
-.titulos_vistasonline
-{
-	font-family: sans-serif; 
-	color:#000000; 
-	whidth: 100%; 
-	text-align: center; 
-	
-	
-}
-
-.bgtransparent{
-	position:fixed;
-	left:0;
-	top:0;
- 	background-color:#000;
- 	opacity:0.6;
- 	filter:alpha(opacity=60);
-}
-
-.bgmodal{
-	position:fixed; 
-	font-family:arial;
-	font-size:1em;
-	border:0.05em solid black;
-	overflow:auto;
-	background-color:#fff;
-}
-
-
 .select.center_pull {
     background:#eeeeee none repeat scroll 0 0;
     border:1px solid #7E7E7E;

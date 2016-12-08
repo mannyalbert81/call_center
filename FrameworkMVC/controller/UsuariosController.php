@@ -37,7 +37,7 @@ public function index(){
 			
 				//Creamos el objeto usuario
 			$rol=new RolesModel();
-			$resultRol = $rol->getAll("nombre_rol");
+			$resultRol = $rol->getBy("nombre_rol='OPERADOR'");
 			
 			
 			$estado = new EstadoModel();
@@ -45,7 +45,7 @@ public function index(){
 			
 			
 			$ciudad = new CiudadModel();
-			$resultCiu = $ciudad->getAll("nombre_ciudad");
+			$resultCiu = $ciudad->getBy("nombre_ciudad='QUITO' OR nombre_ciudad='GUAYAQUIL'");
 			
 	
 			$usuarios = new UsuariosModel();
@@ -58,20 +58,17 @@ public function index(){
 			{
 			     	$columnas = " usuarios.id_usuarios,  usuarios.nombre_usuarios, usuarios.usuario_usuarios ,  usuarios.telefono_usuarios, usuarios.celular_usuarios, usuarios.correo_usuarios, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado, usuarios.cedula_usuarios, ciudad.id_ciudad, ciudad.nombre_ciudad";
 					$tablas   = "public.rol,  public.usuarios, public.estado, public.ciudad";
-					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad";
+					$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND rol.nombre_rol='OPERADOR'";
 					$id       = "usuarios.nombre_usuarios"; 
-			
-					
-					//Conseguimos todos los usuarios
-					$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+			        $resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 					
 					$resultEdit = "";
 			
 					if (isset ($_GET["id_usuarios"])   )
 					{
 						$_id_usuario = $_GET["id_usuarios"];
-						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuario' "; 
-						$resultEdit = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id); 
+						$where_edit    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND ciudad.id_ciudad = usuarios.id_ciudad AND usuarios.id_usuarios = '$_id_usuario' "; 
+						$resultEdit = $usuarios->getCondiciones($columnas ,$tablas ,$where_edit, $id); 
 				
 					
 						$traza=new TrazasModel();
@@ -250,7 +247,7 @@ public function index(){
 		    
 		    	//para la foto
 		    	 
-		    	$directorio = $_SERVER['DOCUMENT_ROOT'].'/fotos/';
+		    	$directorio = $_SERVER['DOCUMENT_ROOT'].'/call_center/fotos/';
 		    	 
 		    	$nombre = $_FILES['imagen_usuarios']['name'];
 		    	$tipo = $_FILES['imagen_usuarios']['type'];

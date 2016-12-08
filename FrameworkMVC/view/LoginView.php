@@ -1,3 +1,5 @@
+
+     <?php include("view/modulos/head.php"); ?>
 <!DOCTYPE HTML>
 <html lang="es">
     <head>
@@ -5,25 +7,18 @@
         <title>Login - CallCenter 2016</title>
        
        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		
-		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-		
-		
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>   
-       
-        <style>
-            input{
-                margin-top:5px;
-                margin-bottom:5px;
-            }
-            .right{
-                float:right;
-            }
-        </style>
+      	 <link rel="stylesheet" href="view/css/bootstrap.css">
+    
+			  <script src="view/js/jquery.js"></script>
+			  <script src="view/js/bootstrap.min.js"></script>
+			  <script src="view/js/bootstrapValidator.min.js"></script>
+			  <script src="view/js/noty.js"></script>
+			  <script src="view/js/ValidarLogin.js"></script>
+     
+     
+  
+     
+     
         <style>
 			body {
 			
@@ -56,95 +51,56 @@
    
    
     <body class="img-responsive" style="background-color: #d9e3e4;" >
-     <?php include("view/modulos/modal.php"); ?>
-     <?php include("view/modulos/head.php"); ?>
+    
+     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+     
        
    
    
-        <form action="<?php echo $helper->url("usuarios","Loguear"); ?>" method="post"  class="col-lg-12" style=" padding-top:150px;">
-        
-        <div class="row">
-        
-        
-        	<div class="col-xs-1 col-md-1">
-        	</div>
-        	<div class="col-xs-8 col-md-4">
-        		<div class="col-xs-4 col-md-2">
-        		</div>
-        		
-        	    <div class="col-xs-8 col-md-8">
-		        	  <div   style="background:#A5DF00 ;border-radius: 5px;  border: 1px solid #063B41;"  >
-		     		     <div class="row">
-								<div class="col-xs-2 col-md-2">					
-									
-								</div>
-								
-								
-								<div class="col-xs-8 col-md-8">					
-									<h5 class="text-center" style="color: #ffffff;" >Inicio de Sesión</h5>
-								</div>
-								<div class="col-xs-2 col-md-2">					
-									
-								</div>
-						</div>            	
-		            		
-		     		     
-		     		     
-		   
-		        		<div class="text-center"  >
-							<div class="row">
-								<div class="col-xs-2 col-md-2">					
-									
-								</div>
-								<div class="col-xs-8 col-md-8">					
-									<input type="text" name="usuarios" class="form-control" placeholder="Usuario"  style="text-align: center; " />
-								</div>
-								<div class="col-xs-2 col-md-2">					
-									
-								</div>
-							</div>            	
-		            		<div class="row">
-								<div class="col-xs-2 col-md-2">					
-									
-								</div>
-								<div class="col-xs-8 col-md-8">					
-									<input type="password" name="clave" placeholder="Clave" class="form-control"  style="text-align: center; "/>
-								</div>
-								<div class="col-xs-2 col-md-2">					
-									
-								</div>
-							</div>            	
-		            		
-		            		<div class="row">
-								<div class="col-xs-2 col-md-2">					
-									
-								</div>
-								<div class="col-xs-8 col-md-8">					
-									<input type="submit" value="Login" class="btn btn-default" />
-								<br>
-								<br>
-									
-								</div>
-								<div class="col-xs-2 col-md-2">					
-									
-								</div>
-							</div>            	
-		            		
-		            	
-		            	</div>
-		              </div>
-		          </div>
-		          <div class="col-xs-2 col-md-2">
-        		  </div>
-        	</div>
-            <div class="col-xs-3 col-md-3">
-        	</div>
-        	
+        <form id="form-login"  action="<?php echo $helper->url("Usuarios","Loguear"); ?>" method="post" class="col-lg-6" style="padding-top:250px;">
+                     
+    <div id="login-overlay" class="modal-dialog" >
+      <div class="modal-content">
           
-    	</div>    
-        </form>
+          <div class="modal-body">
+              
+              <div class="row" >
+               <div class="col-lg-6 col-md-3" >
+                      <div class="well">
+                              <div class="form-group">
+                                  <label for="usuarios" class="control-label">Usuario</label>
+                                  <input type="text" class="form-control" id="usuarios" name="usuarios" value=""  placeholder="Usuario">
+                                  <span class="help-block"></span>
+                              </div>
+                              <div class="form-group">
+                                  <label for="clave" class="control-label">Password</label>
+                                  <input type="password" class="form-control" id="clave" name="clave" value="" placeholder="Password">
+                                  <span class="help-block"></span>
+                              </div>
+                             
+                              <button type="submit" class="btn btn-success btn-block">Login</button>
+                               
+                      </div>
+                  </div>
+                  
+                		  <div class="col-lg-6 col-md-3">
+		                      <p class="lead">Consejos de Seguridad <span class="text-success"></span></p>
+		                      <ul class="list-unstyled" style="line-height: 2">
+		                          <li><span class="fa fa-check text-success"></span> Recuerda tu usuario y tu clave.</li>
+		                          <li><span class="fa fa-check text-success"></span> No enseñes a nadie tu clave.</li>
+		                          <li><span class="fa fa-check text-success"></span> La clave es personal.</li>
+		                          <li><span class="fa fa-check text-success"></span> Cuidala.</li>
+		                     
+		                      </ul>
+		                  </div>
+              </div>
+              
+          </div>
+      </div>
+ </div>
+ </form>
        
-   
+   <br>
         
     	<footer class="col-lg-12">
            <?php include("view/modulos/footer.php"); ?>

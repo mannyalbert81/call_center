@@ -43,7 +43,7 @@ $controladores=$_SESSION['controladores'];
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
+        <li class="dropdown"  style="<?php echo getcontrolador("MenuAdministracion",$controladores) ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" ><?php echo " AdministraciÃ³n" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
           
@@ -64,7 +64,7 @@ $controladores=$_SESSION['controladores'];
 </ul>
 </li>
 
-    <li class="dropdown">
+    <li class="dropdown"  style="<?php echo getcontrolador("MenuMantenimiento",$controladores) ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Mantenimiento" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
           
@@ -80,25 +80,21 @@ $controladores=$_SESSION['controladores'];
             <a href="index.php?controller=TipoPersona&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Personas</span> </a>
 			</li>
 		
-		   <li style="<?php echo getcontrolador("TipoIdentificación",$controladores) ?>">
-            <a href="index.php?controller=TipoIdentificación&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Identificación</span> </a>
+		   <li style="<?php echo getcontrolador("TipoIdentificaciï¿½n",$controladores) ?>">
+            <a href="index.php?controller=TipoIdentificaciï¿½n&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Tipo de Identificaciï¿½n</span> </a>
 			</li> 
 		     	
 </ul>
 </li>
 
-        <li class="dropdown">
+        <li class="dropdown" style="<?php echo getcontrolador("MenuProcesos",$controladores) ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Procesos" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
           
-            <li style="<?php echo getcontrolador("Clientes",$controladores) ?>">
-            <a href="index.php?controller=Clientes&action=ImportacionClientes"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Importar Clientes</span> </a>
+            <li style="<?php echo getcontrolador("Asignacion",$controladores) ?>">
+            <a href="index.php?controller=Asignacion&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Asignar Titulos</span> </a>
 			</li>
-          
-            <li style="<?php echo getcontrolador("Clientes",$controladores) ?>">
-            <a href="index.php?controller=Clientes&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Clientes</span> </a>
-			</li>
-          	
+			
           	<li style="<?php echo getcontrolador("RegistrarLlamadas",$controladores) ?>">
             <a href="index.php?controller=RegistrarLlamadas&action=index"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"> Registrar Llamadas</span> </a>
 			</li>
@@ -106,7 +102,7 @@ $controladores=$_SESSION['controladores'];
 </li>
         
 
-         <li class="dropdown">
+         <li class="dropdown" style="<?php echo getcontrolador("MenuConsultas",$controladores) ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh" ><?php echo " Consultas" ;?> </span> <span class="caret"></span></a>
           <ul class="dropdown-menu">
           

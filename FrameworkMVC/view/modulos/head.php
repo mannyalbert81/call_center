@@ -4,7 +4,7 @@
 
 <?php require_once 'config/global.php';?> 
 
-  <title>AllCoercive</title>
+  <title>AllCenter</title>
   <link rel="shortcut icon" href="view/favicon.ico" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
