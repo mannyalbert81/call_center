@@ -1,5 +1,6 @@
 
-
+  <?php include("view/modulos/head.php"); ?>
+     
 
 <!DOCTYPE HTML>
 <html lang="es">
@@ -9,67 +10,12 @@
         <meta charset="utf-8"/>
         <title>Registrar Llamadas - CallCenter 2016</title>
         
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		  			   
-          <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-		
-		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
-        <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-        <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
- 		
- 		<script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
-		
-		<script>
-		    webshims.setOptions('forms-ext', {types: 'date'});
-			webshims.polyfill('forms forms-ext');
-		</script>
-		
-        
-        
-        
-			
-		   <!-- AQUI NOTIFICAIONES -->
-		<script type="text/javascript" src="view/css/lib/alertify.js"></script>
-		<link rel="stylesheet" href="view/css/themes/alertify.core.css" />
-		<link rel="stylesheet" href="view/css/themes/alertify.default.css" />
+     	  <link rel="stylesheet" href="view/css/bootstrap.css">
+          <script src="view/js/jquery.js"></script>
+		  <script src="view/js/bootstrapValidator.min.js"></script>
+		  
 		
 		
-		
-		<script>
-
-		function Ok(){
-				alertify.success("Has Pulsado en Guardar"); 
-				return false;
-			}
-			
-			function Borrar(){
-				alertify.success("Has Pulsado en Borrar"); 
-				return false; 
-			}
-
-			function notificacion(){
-				alertify.success("Has Pulsado en Editar"); 
-				return false; 
-			}
-		</script>
-		
-		
-		
-		<!-- TERMINA NOTIFICAIONES -->	
-       <style>
-            input{
-                margin-top:5px;
-                margin-bottom:5px;
-            }
-            .right{
-                float:right;
-            }
-                
-            
-        </style>
-       
         
 	
 	<script>
@@ -170,10 +116,8 @@
 	
 	
     </head>
-    <body style="background-color: #d9e3e4;" >
+    <body class="cuerpo" >
     
-       <?php include("view/modulos/modal.php"); ?>
-       <?php include("view/modulos/head.php"); ?>
        <?php include("view/modulos/menu.php"); ?>
        
        
@@ -206,14 +150,15 @@
       <!-- empieza el form --> 
        
       <form action="<?php echo $helper->url("RegistrarLlamadas","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12">
-            
-         <div class="col-lg-12">
+           
+           <br>
+           
          
-         <h4 style="color:#ec971f; text-align: center;" >Busqueda</h4>
-        	 	
-		   	<div class="panel panel-default">
-  			<div class="panel-body">
-  			
+         <div class="col-lg-12">
+          <div class="well">  
+         <h4 style="color:#ec971f; text-align: center;" >Busqueda Cliente</h4>
+        <hr/>
+		  
   			<div class="row">
   			<div class="col-xs-2 col-md-2" style="text-align: center;">
 			  
@@ -235,35 +180,84 @@
 		  
 		  </div>
 		    </div>
-		    </div>
-		    </div>	
+		    
             
+             </div>
              </div>
              
             	
           <?php if(!empty($resultSet))  {?>
 		    <div class="col-lg-12">
-			 <div class="panel-panel-default">
-			 <div class="panel-body">
-  		     <section class="" style="height:100px;overflow-y:scroll;">
-             <table class="table table-hover ">
-	         <tr >
-	            
-	            <th style="color:#456789;font-size:80%;"></th>
-	            <th style="color:#456789;font-size:80%;">Identificacion</th>
-	    		<th style="color:#456789;font-size:80%;">Nombre</th>
-	    		<th style="color:#456789;font-size:80%;">Ciudad</th>
-	    		<th style="color:#456789;font-size:80%;">Titulo Credito</th>
-	    		<th style="color:#456789;font-size:80%;">Monto</th>
-	    		<th style="color:#456789;font-size:80%;">Juicio</th>
-	    		<th style="color:#456789;font-size:80%;">Abogado Impulsor</th>
+			
+			 <div class="datagrid"> 
+      		 <section style="height:120px; overflow-y:scroll;">
+       		 <table class="table table-hover ">
+  		      <thead>
+               <tr >
+	            <th style="font-size:100%;">Identificacion</th>
+	    		<th style="font-size:100%;">Nombre</th>
+	    		<th style="font-size:100%;">Ciudad</th>
+	    		<th style="font-size:100%;">Titulo Credito</th>
+	    		<th style="font-size:100%;">Monto</th>
+	    		<th style="font-size:100%;">Juicio</th>
+	    		<th style="font-size:100%;">Abogado Impulsor</th>
 	    		<th></th>
-	    		
-	  		</tr>
-            
+	    		</tr>
+	   		  </thead>
+  		     
+  		     
+  		      <tfoot>
+       		<tr>
+					<td colspan="8">
+						<div id="paging">
+							<ul>
+								<li>
+									<a href="#">
+						<span>Previous</span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="active">
+						<span>1</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+						<span>2</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+						<span>3</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+						<span>4</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+						<span>5</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+						<span>Next</span>
+									</a>
+								</li>
+								</ul>
+						</div>
+					
+			</tr>
+       				
+       </tfoot>
+  		     
 	            <?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
+	        		
+	        		 <tbody>
 	        		<tr>
-	        		   <td style="color:#000000;font-size:80%;"></td>
+	        		   
 	        		   <td style="color:#000000;font-size:80%;"><?php echo $res->identificacion_clientes; ?></td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombres_clientes; ?></td>
 	                   <td style="color:#000000;font-size:80%;"> <?php echo $res->nombre_ciudad; ?>     </td>
@@ -278,21 +272,22 @@
 			            
 			             </td> 
 		    		</tr>
+		    		</tbody>
 		        <?php } }  ?>
            
        	</table>     
       </section>
-		      </div>
+		      
              </div>
-             </div>        
+              
+             </div>       
 		  <?php }?>
        
           <?php if (!empty($resultEdit) ) { foreach($resultEdit as $resEdit) {?>
           
          
           <div class="col-lg-8">
-		     <div class="panel panel-default">
-  			<div class="panel-body">
+		    <div class="well">  
   			
   			<h4 style="color:#ec971f; text-align: center;" >Datos del Cliente</h4>
   			<hr>
@@ -360,13 +355,12 @@
 		    
 			  
 			  </div>
-		    </div> 
+		   
           </div> 
           
           <div class="col-lg-4">
 		     
-		     <div class="panel panel-default">
-  			 <div class="panel-body">
+		    <div class="well">  
 		     
 		     <h4 style="color:#ec971f; text-align: center;" >Datos del Garante</h4>
 		     <hr>
@@ -398,12 +392,11 @@
 		     </div>
 		     
 		     </div>
-		     </div>
+		    
 		     </div>
 		     
 		     <div class="col-lg-5">	
-		     <div class="panel panel-default">
-  			 <div class="panel-body">
+		    <div class="well">  
   			 <h4 style="color:#ec971f; text-align: center;" >Datos del Juicio</h4>
 		     <hr>
   			 
@@ -443,13 +436,12 @@
   			 
   			 
   			  </div>	 
-		     </div>	
+		  	
 		     </div>	
   			 	
   			 	
   			 <div class="col-lg-3">	
-		     <div class="panel panel-default">
-  			 <div class="panel-body">
+		     <div class="well">  
   			 <h4 style="color:#ec971f; text-align: center;" >Datos del Titulo Credito</h4>
 		     <hr>
   			 
@@ -474,12 +466,11 @@
 		    </div>
 		    
   			  </div>	 
-		     </div>	
+		    
 		     </div>		 
 		     	 
 		      <div class="col-lg-4">	
-		     <div class="panel panel-default">
-  			 <div class="panel-body">
+		     <div class="well">  
   			 <h4 style="color:#ec971f; text-align: center;" >Datos del 2do Garante</h4>
 		     <hr>
   			 
@@ -517,7 +508,7 @@
 		     </div>
 		     
 		     </div>	 
-		     </div>	
+		     
 		     </div>	
           
           
@@ -531,10 +522,12 @@
 		     
 		     
 		     <div class="col-lg-12">
-         
-        	 <h4 style="color:#ec971f; text-align: center;" >Registrar Llamada</h4>
+              <div class="col-lg-2">
+              </div>
+              <div class="col-lg-8">
+               <h4 style="color:#ec971f; text-align: center;" >Registrar Llamada</h4>
               
-             <div class="panel panel-default">
+             <div class="well">  
   			 
   			 <div class="row">
   			 <h4 class="formulario-subtitulo"  style="text-align: center;" >Respondio</h4>
@@ -553,8 +546,7 @@
   			<br>
             </div>
                	
-             <div class="panel panel-default">
-  			 <div class="panel-body" >
+            <div class="well">  
   			 
   		     <div class="row">
 		     	 <div class="col-xs-6 col-md-6">
@@ -590,10 +582,13 @@
 			</div>
 			
            </div>
-           </div> 
            
-           	
-           </div>
+              
+              </div>
+              <div class="col-lg-2">
+              </div>
+              </div>
+        	
 		     
 		       <div class="row">
 			  <div class="col-xs-12 col-md-12" style="text-align: center;" >

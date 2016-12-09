@@ -9,11 +9,8 @@
         <meta charset="utf-8"/>
         <title>Actualizar Usuarios - CallCenter 2016</title>
         
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		  			   
-          <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+         <link rel="stylesheet" href="view/css/bootstrap.css">
+         
 		
 		<link rel="stylesheet" href="http://jqueryvalidation.org/files/demo/site-demos.css">
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
@@ -243,19 +240,11 @@
 		<!-- TERMINA NOTIFICAIONES -->
         
     </head>
-   <body style="background-color: #d9e3e4;">
-        <?php include("view/modulos/modal.php"); ?>
-        <?php include("view/modulos/head.php"); ?>
+   <body class="cuerpo">
+         <?php include("view/modulos/head.php"); ?>
         <?php include("view/modulos/menu.php"); ?>
         
         
-         <?php
-       
-       
-       
-		   
-		?>
- 
   
      <div class="container">
   
@@ -266,13 +255,16 @@
         
       <form action="<?php echo $helper->url("Usuarios","Actualiza"); ?>" method="post" enctype="multipart/form-data" class="col-lg-6">
             
-            <center><h4 style="color:#ec971f;">Actualizar Datos de Usuario</h4></center>
-            <hr>
+           
+           <br>
+             
             <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
             
-           
+           <div class="well">
             	
             	
+            <center><h4 style="color:#ec971f;">Actualizar Datos de Usuario</h4></center>
+          
             	<div class="row">
 		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Cedula</p>
@@ -343,15 +335,16 @@
 			  <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Foto</p>
 			  	<input type="file" name="imagen_usuarios" id="imagen_usuarios" value="" class="form-control" /> 
-			  
 			  </div>
             	 </div>
-                  
+                  </div>
             
 		     <?php } } else {?>
 		    
-		   
+		    <div class="well">
             	
+            <center><h4 style="color:#ec971f;">Datos de Usuario</h4></center>
+          
             <div class="row">
 		       <div class="col-xs-6 col-md-6">
 			  	<p  class="formulario-subtitulo" >Cedula</p>
@@ -420,7 +413,7 @@
 			  </div>
 			 
             	 </div>
-            		
+            		</div>
 		        
                	
 		     <?php } ?>
@@ -428,7 +421,7 @@
 		      <hr>
 		    <div class="col-xs-12 col-md-12" style="text-align: center;" >     
            <input type="submit" value="Actualizar" name="Guardar" id="Guardar"  onClick="Ok()" class="btn btn-success"/>
-            <hr>
+           
             </div>    
             </div>         
           	</form>
